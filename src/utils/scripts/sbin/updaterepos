@@ -1,0 +1,89 @@
+#!/usr/bin/env ruby
+
+# This class shamelessly borrowed from
+# http://www.software-testing.com.au/blog/2010/01/13/text-based-progress-bar-in-ruby-for-command-line-programs/
+class ProgressBar
+
+  attr_accessor :items_to_do, :items_done
+
+  def initialize(items_to_do, items_done=0)
+    reset(items_to_do, items_done)
+  end
+
+  def percent_complete
+    return (@items_complete*1.0/@items_to_do*1.0)*100
+  end
+
+  def advance(steps_to_advance=1)
+    @items_complete+=steps_to_advance
+  end
+
+  def reset(items_to_do, items_done=0)
+    @items_to_do=items_to_do
+    @items_complete=items_done
+  end
+
+  def report
+    $stdout.print "\r#{progress_bar} #{@items_complete} of #{@items_to_do} done"
+  end
+
+  def percent_report
+    $stdout.print "\r#{progress_bar} #{percent_complete.round}%"
+  end
+
+  def progress_bar
+    complete_bar=(percent_complete/2.0).floor
+    incomplete_bar=((100-percent_complete)/2.0).ceil
+    return "[#{"*"*complete_bar}#{"-"*incomplete_bar}]"
+  end
+end
+
+require 'find'
+require 'fileutils'
+
+File.umask(0027)
+
+( ARGV[0] && tgt_dir = ARGV[0] ) || tgt_dir = '/var/www/yum/SIMP'
+
+if not File.directory?(tgt_dir) then
+  fail "Error: Could not find directory '#{tgt_dir}'."
+end
+
+Dir.chdir(tgt_dir) {
+
+  Dir.glob('*').each do |dir|
+    if File.directory?(dir) and dir.to_s != 'noarch' then
+      Dir.chdir(dir) {
+        $stdout.puts "Updating: #{tgt_dir}/#{dir}"
+
+        Dir.glob('*.rpm').each do |symlink|
+          if File.symlink?(symlink) and File.readlink(symlink) =~ /^\.\.\/noarch/ then
+            File.unlink(symlink)
+          end
+        end
+
+        link_rpms = Dir.glob('../noarch/*.rpm')
+
+        progress = ProgressBar.new(link_rpms.size)
+
+        link_rpms.each do |rpm|
+          FileUtils.ln_sf(rpm,"./#{File.basename(rpm)}")
+          progress.advance
+          progress.percent_report
+        end
+        puts
+
+        File.umask(0022)
+        %x{/usr/bin/createrepo -p --update .}
+        File.umask(0027)
+
+        FileUtils.chown_R('root','apache', 'repodata')
+        FileUtils.chmod_R('g+srX','repodata')
+
+        if $? != 0 then
+          $stderr.puts("Warning: There was an error running createrepo on #{tgt_dir}/#{dir}")
+        end
+      }
+    end
+  end
+}

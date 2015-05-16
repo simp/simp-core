@@ -1,0 +1,10 @@
+nameserver 10.0.0.1
+nameserver 10.0.0.2
+nameserver 10.0.0.3
+domain tasty.bacon
+# NOTE: the resolver only uses the last of multiple search declarations,
+#       therefore 'useless.bacon' is superfluous and should be ignored.
+search useless.bacon
+search tasty.bacon yucky.bacon instant.bacon
+options ndots:1 timeout:2 attempts:2 rotate
+
