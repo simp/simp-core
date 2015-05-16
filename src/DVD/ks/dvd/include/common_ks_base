@@ -1,0 +1,109 @@
+authconfig --enableshadow --passalgo=sha512 --enablemd5
+network --nodns --hostname=puppet.change.me
+skipx
+rootpw --iscrypted $6$cKH4tleUAthZBrFM$ZnXngjlvHTDCJOJWZOcOWXH5UHR9v75XbkGzshrBaR8LC30Jkxf/KP4kIFrSFOMgxDmha/SuXv9I8N2C0RPV1.
+bootloader --location=mbr --driveorder=sda,hda --append="console=ttyS1,57600 console=tty0" --iscrypted --password=grub.pbkdf2.sha512.10000.D1E70A301431EAA903DAD8AC7E04B305ED44BE24FFA1898B4377E507DB76CB6126535EF74AF7EDDF89C7ECB4CFD80153A1DE2C0D42C148195D74C03CDFF10E55.432B399E4D4103CD3C37C24537F50E7B1A6CF23686B62B0AD0262B3485557B02AE12C3D0BA182531F22AE271375A5834BA9756FB08F07C163399475B0F459DCD
+zerombr
+firewall --enabled --ssh
+firstboot --disable
+logging --level=info
+selinux --enforcing
+timezone --utc GMT
+
+clearpart --all --initlabel
+
+%include /tmp/part-include
+%include /tmp/repo-include
+
+reboot
+
+%packages --nobase
+-sendmail
+-sysklogd
+acl
+aide
+anacron
+audit
+bzip2
+coolkey
+crontabs
+cryptsetup-luks
+dhclient
+git
+gnupg
+iptables
+iptables-ipv6
+irqbalance
+krb5-workstation
+libaio
+libutempter
+logrotate
+logwatch
+lsof
+lsscsi
+mdadm
+microcode_ctl
+mutt
+net-snmp
+net-tools
+netlabel_tools
+ntp
+openssh-clients
+openssh-server
+pam_krb5
+pam_pkcs11
+pciutils
+psacct
+python-chardet
+quota
+redhat-lsb
+rpm
+rsync
+rsyslog
+smartmontools
+sssd
+stunnel
+subversion
+sudo
+sysstat
+tcp_wrappers
+tmpwatch
+unzip
+usbutils
+vim-enhanced
+vlock
+wget
+which
+yum-utils
+zip
+# Puppet stuff
+simp
+rsync
+facter
+puppet
+
+# Puppet Server Complete Load
+elinks
+mkisofs
+openldap-servers
+simp
+
+# In case of broken repo, these should be installed.
+hdparm
+kbd
+libhugetlbfs
+policycoreutils
+prelink
+rootfiles
+selinux-policy-targeted
+setserial
+sysfsutils
+udftools
+
+# Don't install these
+-rhn-check
+-rhn-setup
+-rhnsd
+-subscription-manager
+-yum-rhn-plugin
+%end

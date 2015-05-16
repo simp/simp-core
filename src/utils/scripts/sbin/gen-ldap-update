@@ -1,0 +1,79 @@
+#!/usr/bin/ruby
+
+default_ldif = "/etc/openldap/default.ldif"
+
+if not File.readable?(default_ldif) then
+  $stderr.puts("Error: Could not read #{default_ldif}. Unable to proceed.")
+  exit(1)
+end
+
+# Attempt to discover the base DN, default to the domain name of the system if
+# we can't figure it out.
+
+# Try /etc/openldap/ldap.conf first.
+
+base_dn = nil
+if File.readable?("/etc/openldap/ldap.conf") then
+  File.open("/etc/openldap/ldap.conf",'r').each do |ln|
+    if ln =~ /^\s*BASE\s+(.*)/ then
+      base_dn = $1.chomp
+    end
+  end
+elsif File.readable?("/etc/ldap.conf") then
+  File.open("/etc/ldap.conf").each do |ln|
+    if ln =~ /^\s*base\s+(.*)/ then
+      base_dn = $1.chomp
+    end
+  end
+else
+  require 'socket'
+
+  begin
+    base_dn = Socket.gethostbyname(Socket.gethostname).first.split('.')[1..-1].map { |x| x = "dc=#{x}" }.join(',')
+  rescue Exception => e
+    $stderr.puts("Error: Could not get the hostname for some reason. Not able to set base_dn or proceed.")
+    exit(1)
+  end
+end
+
+# DN's we want to update.
+update_dn = [
+  "cn=default,ou=pwpolicies,#{base_dn}",
+  "cn=noExpire_noLockout,ou=pwpolicies,#{base_dn}"
+]
+
+new_entries = Hash.new
+
+current_dn = nil
+File.open(default_ldif,'r').each do |ln|
+  if ln =~ /^\s*$/ then
+    current_dn = nil
+  end
+
+  if current_dn.nil? then
+    update_dn.each do |dn|
+      if ln =~ /^dn:\s+#{dn}/ then
+        current_dn = "dn: #{dn}"
+        new_entries[current_dn] = Array.new
+      end
+    end
+  elsif ln !~ /^objectClass/ then
+    new_entries[current_dn].push(ln.chomp)
+  end
+end
+
+puts "# You probably want to pipe the output of this script into something like the following:
+# ldapmodify -H ldap://<your LDAP server> -c -ZZ -M -x -W -D cn=LDAPAdmin,ou=People,#{base_dn}\n\n"
+
+new_entries.each_key do |key|
+  puts key
+  puts "changetype: modify"
+  new_entries[key].map! { |x|
+    lhs = x.split(' ').first.chop
+    rhs = x.split(' ')[1..-1]
+    x = "replace: #{lhs}\n#{lhs}: #{rhs}"
+  }
+
+  puts new_entries[key].join("\n-\n")
+  puts
+end
