@@ -1,0 +1,11 @@
+#!/usr/bin/ruby
+
+directories = ['/etc/puppet/hieradata', '/etc/puppet/hieradata/domains','/etc/puppet/hieradata/hosts']
+directories.each do |directory|
+  if !File.directory?(directory)
+    Dir.mkdir(directory)
+  end
+end
+
+system "/bin/chgrp -R puppet /etc/puppet/hieradata"
+system "/bin/chmod -R g+rX /etc/puppet/hieradata"
