@@ -1,5 +1,8 @@
-## Work in Progress
+## SIMP Core
 
-Please excuse us as we transition this code into the public domain.
+This is the supermodule for all of the SIMP build materials.
 
-Downloads, discussion, and patches are still welcome!
+The different releases are tracked on their own branches and the master branch
+should generally be ignored.
+
+This will change in the future when we merge the two branches into a single distribution.
