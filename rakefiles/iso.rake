@@ -203,7 +203,7 @@ namespace :iso do
     Dir.chdir(BASEDIR) do
       File.basename(Dir.glob("#{DVD_DIR}/*.tar.gz").first,'.tar.gz') =~ /SIMP-DVD-[^-]+-(.+)/
       name = "SIMP-#{$1}"
-      sh %{mkisofs -uid 0 -gid 0 -D -A #{name} -J -joliet-long -m ".git*" -m "./build/tmp" -m "./build/SRPMS" -m "./build/RPMS" -m "./build/signkeys" -o #{name}.src.iso .}
+      sh %{mkisofs -uid 0 -gid 0 -D -A #{name} -J -joliet-long -m ".git*" -m "./build/tmp" -m "./build/SRPMS" -m "./build/RPMS" -m "./build/build_keys" -o #{name}.src.iso .}
     end
   end
 end
