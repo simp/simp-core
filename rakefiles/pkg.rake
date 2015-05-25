@@ -97,13 +97,89 @@ namespace :pkg do
   end
 
   desc <<-EOM
+    Prepare the GPG key space for a SIMP build.
+
+    If passed anything but 'dev', will fail if the directory is not present in
+    the 'build/build_keys' directory.
+  EOM
+  task :key_prep,[:key] do |t,args|
+    require 'securerandom'
+
+    args.with_defaults(:key => 'dev')
+
+    Dir.chdir("#{BUILD_DIR}/build_keys") {
+      if (args.key != 'dev')
+        fail("Could not find GPG keydir '#{args.key}' in '#{Dir.pwd}'") unless File.directory?(args.key)
+      end
+
+      mkdir('dev') unless File.directory?('dev')
+      chmod(0750,'dev')
+
+      Dir.chdir('dev') {
+        Dir.glob('*').each do |todel|
+          rm(todel)
+        end
+
+        expire_date = (DateTime.now + 14)
+        now = Time.now.to_i.to_s
+        dev_email = 'simp@development.key'
+        passphrase = SecureRandom.base64(500)
+
+        gpg_infile = <<-EOM
+%echo Generating Development GPG Key
+%echo
+%echo This key will expire on #{expire_date}
+%echo
+Key-Type: DSA
+Key-Length: 2048
+Subkey-Type: ELG-E
+Subkey-Length: 2048
+Name-Real: SIMP Development
+Name-Comment: Development key #{now}
+Name-Email: #{dev_email}
+Expire-Date: 2w
+Passphrase: #{passphrase}
+%pubring pubring.gpg
+%secring secring.gpg
+# The following creates the key, so we can print "Done!" afterwards
+%commit
+%echo New GPG Development Key Created
+        EOM
+
+        File.open('gengpgkey','w'){ |fh| fh.puts(gpg_infile) }
+
+        sh %{gpg --homedir=#{Dir.pwd} --batch --gen-key gengpgkey}
+        sh %{gpg --homedir=#{Dir.pwd} --armor --export #{dev_email} > RPM-GPG-KEY-SIMP-Dev}
+      }
+
+      Dir.chdir(args.key) {
+        rpm_build_keys = Dir.glob('RPM-GPG-KEY-*')
+        target_dir = '../../GPGKEYS'
+
+        fail("Could not find any RPM-GPG-KEY files in '#{Dir.pwd}'") if rpm_build_keys.empty?
+        fail("No GPGKEYS directory at '#{Dir.pwd}/#{target_dir}") unless File.directory?(target_dir)
+
+        dkfh = File.open("#{target_dir}/.dropped_keys",'w')
+
+        rpm_build_keys.each do |gpgkey|
+          cp(gpgkey,target_dir)
+          dkfh.puts(gpgkey)
+        end
+
+        dkfh.flush
+        dkfh.close
+      }
+    }
+  end
+
+  desc <<-EOM
     Build the entire SIMP release
       Building this environment requires a working Mock setup (http://fedoraproject.org/wiki/Projects/Mock)
       * :chroot - The Mock chroot configuration to use. See the '--root' option in mock(1).
       * :docs - Build the docs. Set this to false if you wish to skip building the docs.
       * :key - The GPG key to sign the RPMs with. Defaults to 'dev'.
   EOM
-  task :build,[:chroot,:docs,:key,:snapshot_release] => [:prep,:mock_prep] do |t,args|
+  task :build,[:chroot,:docs,:key,:snapshot_release] => [:prep,:mock_prep,:key_prep] do |t,args|
     validate_in_mock_group?
 
     args.with_defaults(:key => 'dev')
@@ -234,7 +310,7 @@ namespace :pkg do
     ) do |rpm|
       rpminfo = %x{rpm -qip #{rpm} 2>/dev/null}.split("\n")
       if not rpminfo.grep(/Signature\s+:\s+\(none\)/).empty?
-        Simp::RPM.signrpm(rpm,"#{BUILD_DIR}/signkeys/#{args.key}")
+        Simp::RPM.signrpm(rpm,"#{BUILD_DIR}/build_keys/#{args.key}")
       end
     end
   end
