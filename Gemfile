@@ -46,7 +46,7 @@ group :debug do
   if is_ruby_old #ruby_version_below_1_9
     warn( "WARNING: skipping pry-debugger because ruby #{RUBY_VERSION}!" )
   else
-    gem 'pry-debugger'
+    #gem 'pry-debugger'
   end
 end
 
