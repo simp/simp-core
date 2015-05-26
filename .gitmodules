@@ -1,0 +1,273 @@
+[submodule "src/rsync"]
+	path = src/rsync
+	url = git://github.com/simp/simp-rsync
+[submodule "src/doc"]
+	path = src/doc
+	url = git://github.com/simp/simp-doc
+[submodule "src/puppet/modules/aide"]
+	path = src/puppet/modules/aide
+	url = git://github.com/simp/pupmod-simp-aide
+[submodule "src/puppet/modules/apache"]
+	path = src/puppet/modules/apache
+	url = git://github.com/simp/pupmod-simp-apache
+[submodule "src/puppet/modules/auditd"]
+	path = src/puppet/modules/auditd
+	url = git://github.com/simp/pupmod-simp-auditd
+[submodule "src/puppet/modules/autofs"]
+	path = src/puppet/modules/autofs
+	url = git://github.com/simp/pupmod-simp-autofs
+[submodule "src/puppet/modules/backuppc"]
+	path = src/puppet/modules/backuppc
+	url = git://github.com/simp/pupmod-simp-backuppc
+[submodule "src/puppet/modules/cgroups"]
+	path = src/puppet/modules/cgroups
+	url = git://github.com/simp/pupmod-simp-cgroups
+[submodule "src/puppet/modules/clamav"]
+	path = src/puppet/modules/clamav
+	url = git://github.com/simp/pupmod-simp-clamav
+[submodule "src/puppet/modules/common"]
+	path = src/puppet/modules/common
+	url = git://github.com/simp/pupmod-simp-common
+[submodule "src/puppet/modules/concat"]
+	path = src/puppet/modules/concat
+	url = git://github.com/simp/pupmod-simp-concat
+[submodule "src/puppet/modules/dhcp"]
+	path = src/puppet/modules/dhcp
+	url = git://github.com/simp/pupmod-simp-dhcp
+[submodule "src/puppet/modules/elasticsearch"]
+	path = src/puppet/modules/elasticsearch
+	url = git://github.com/simp/puppet-elasticsearch
+[submodule "src/puppet/modules/freeradius"]
+	path = src/puppet/modules/freeradius
+	url = git://github.com/simp/pupmod-simp-freeradius
+[submodule "src/puppet/modules/functions"]
+	path = src/puppet/modules/functions
+	url = git://github.com/simp/pupmod-simp-functions
+[submodule "src/puppet/modules/ganglia"]
+	path = src/puppet/modules/ganglia
+	url = git://github.com/simp/pupmod-simp-ganglia
+[submodule "src/puppet/modules/gfs2"]
+	path = src/puppet/modules/gfs2
+	url = git://github.com/simp/pupmod-simp-gfs2
+[submodule "src/puppet/modules/iptables"]
+	path = src/puppet/modules/iptables
+	url = git://github.com/simp/pupmod-simp-iptables
+[submodule "src/puppet/modules/jenkins"]
+	path = src/puppet/modules/jenkins
+	url = git://github.com/simp/pupmod-simp-jenkins
+[submodule "src/puppet/modules/kibana"]
+	path = src/puppet/modules/kibana
+	url = git://github.com/simp/pupmod-simp-kibana
+[submodule "src/puppet/modules/krb5"]
+	path = src/puppet/modules/krb5
+	url = git://github.com/simp/pupmod-simp-krb5
+[submodule "src/puppet/modules/libvirt"]
+	path = src/puppet/modules/libvirt
+	url = git://github.com/simp/pupmod-simp-libvirt
+[submodule "src/puppet/modules/logrotate"]
+	path = src/puppet/modules/logrotate
+	url = git://github.com/simp/pupmod-simp-logrotate
+[submodule "src/puppet/modules/logstash"]
+	path = src/puppet/modules/logstash
+	url = git://github.com/simp/pupmod-simp-logstash
+[submodule "src/puppet/modules/mcafee"]
+	path = src/puppet/modules/mcafee
+	url = git://github.com/simp/pupmod-simp-mcafee
+[submodule "src/puppet/modules/mozilla"]
+	path = src/puppet/modules/mozilla
+	url = git://github.com/simp/pupmod-simp-mozilla
+[submodule "src/puppet/modules/multipathd"]
+	path = src/puppet/modules/multipathd
+	url = git://github.com/simp/pupmod-simp-multipathd
+[submodule "src/puppet/modules/named"]
+	path = src/puppet/modules/named
+	url = git://github.com/simp/pupmod-simp-named
+[submodule "src/puppet/modules/network"]
+	path = src/puppet/modules/network
+	url = git://github.com/simp/pupmod-simp-network
+[submodule "src/puppet/modules/nfs"]
+	path = src/puppet/modules/nfs
+	url = git://github.com/simp/pupmod-simp-nfs
+[submodule "src/puppet/modules/nscd"]
+	path = src/puppet/modules/nscd
+	url = git://github.com/simp/pupmod-simp-nscd
+[submodule "src/puppet/modules/ntpd"]
+	path = src/puppet/modules/ntpd
+	url = git://github.com/simp/pupmod-simp-ntpd
+[submodule "src/puppet/modules/openldap"]
+	path = src/puppet/modules/openldap
+	url = git://github.com/simp/pupmod-simp-openldap
+[submodule "src/puppet/modules/openscap"]
+	path = src/puppet/modules/openscap
+	url = git://github.com/simp/pupmod-simp-openscap
+[submodule "src/puppet/modules/pam"]
+	path = src/puppet/modules/pam
+	url = git://github.com/simp/pupmod-simp-pam
+[submodule "src/puppet/modules/pki"]
+	path = src/puppet/modules/pki
+	url = git://github.com/simp/pupmod-simp-pki
+[submodule "src/puppet/modules/polkit"]
+	path = src/puppet/modules/polkit
+	url = git://github.com/simp/pupmod-simp-polkit
+[submodule "src/puppet/modules/postfix"]
+	path = src/puppet/modules/postfix
+	url = git://github.com/simp/pupmod-simp-postfix
+[submodule "src/puppet/modules/pupmod"]
+	path = src/puppet/modules/pupmod
+	url = git://github.com/simp/pupmod-simp-pupmod
+[submodule "src/puppet/modules/rsync"]
+	path = src/puppet/modules/rsync
+	url = git://github.com/simp/pupmod-simp-rsync
+[submodule "src/puppet/modules/rsyslog"]
+	path = src/puppet/modules/rsyslog
+	url = git://github.com/simp/pupmod-simp-rsyslog
+[submodule "src/puppet/modules/selinux"]
+	path = src/puppet/modules/selinux
+	url = git://github.com/simp/pupmod-simp-selinux
+[submodule "src/puppet/modules/site"]
+	path = src/puppet/modules/site
+	url = git://github.com/simp/pupmod-simp-site
+[submodule "src/puppet/modules/snmpd"]
+	path = src/puppet/modules/snmpd
+	url = git://github.com/simp/pupmod-simp-snmpd
+[submodule "src/puppet/modules/ssh"]
+	path = src/puppet/modules/ssh
+	url = git://github.com/simp/pupmod-simp-ssh
+[submodule "src/puppet/modules/sssd"]
+	path = src/puppet/modules/sssd
+	url = git://github.com/simp/pupmod-simp-sssd
+[submodule "src/puppet/modules/stunnel"]
+	path = src/puppet/modules/stunnel
+	url = git://github.com/simp/pupmod-simp-stunnel
+[submodule "src/puppet/modules/sudo"]
+	path = src/puppet/modules/sudo
+	url = git://github.com/simp/pupmod-simp-sudo
+[submodule "src/puppet/modules/sudosh"]
+	path = src/puppet/modules/sudosh
+	url = git://github.com/simp/pupmod-simp-sudosh
+[submodule "src/puppet/modules/sysctl"]
+	path = src/puppet/modules/sysctl
+	url = git://github.com/simp/pupmod-simp-sysctl
+[submodule "src/puppet/modules/tcpwrappers"]
+	path = src/puppet/modules/tcpwrappers
+	url = git://github.com/simp/pupmod-simp-tcpwrappers
+[submodule "src/puppet/modules/tftpboot"]
+	path = src/puppet/modules/tftpboot
+	url = git://github.com/simp/pupmod-simp-tftpboot
+[submodule "src/puppet/modules/upstart"]
+	path = src/puppet/modules/upstart
+	url = git://github.com/simp/pupmod-simp-upstart
+[submodule "src/puppet/modules/vnc"]
+	path = src/puppet/modules/vnc
+	url = git://github.com/simp/pupmod-simp-vnc
+[submodule "src/puppet/modules/vsftpd"]
+	path = src/puppet/modules/vsftpd
+	url = git://github.com/simp/pupmod-simp-vsftpd
+[submodule "src/puppet/modules/windowmanager"]
+	path = src/puppet/modules/windowmanager
+	url = git://github.com/simp/pupmod-simp-windowmanager
+[submodule "src/puppet/modules/xinetd"]
+	path = src/puppet/modules/xinetd
+	url = git://github.com/simp/pupmod-simp-xinetd
+[submodule "src/puppet/modules/xwindows"]
+	path = src/puppet/modules/xwindows
+	url = git://github.com/simp/pupmod-simp-xwindows
+[submodule "src/puppet/modules/inifile"]
+	path = src/puppet/modules/inifile
+	url = git://github.com/simp/puppetlabs-inifile
+[submodule "src/puppet/modules/activemq"]
+	path = src/puppet/modules/activemq
+	url = git://github.com/simp/pupmod-simp-activemq
+[submodule "src/puppet/modules/augeasproviders"]
+	path = src/puppet/modules/augeasproviders
+	url = git://github.com/simp/augeasproviders
+[submodule "src/puppet/modules/mcollective"]
+	path = src/puppet/modules/mcollective
+	url = git://github.com/simp/pupmod-simp-mcollective
+[submodule "src/puppet/modules/acpid"]
+	path = src/puppet/modules/acpid
+	url = git://github.com/simp/pupmod-simp-acpid
+[submodule "src/puppet/modules/tpm"]
+	path = src/puppet/modules/tpm
+	url = git://github.com/simp/pupmod-simp-tpm
+[submodule "src/puppet/modules/svckill"]
+	path = src/puppet/modules/svckill
+	url = git://github.com/simp/pupmod-simp-svckill
+[submodule "src/puppet/modules/simp"]
+	path = src/puppet/modules/simp
+	url = git://github.com/simp/pupmod-simp-simp
+[submodule "src/puppet/modules/gpasswd"]
+	path = src/puppet/modules/gpasswd
+	url = git://github.com/simp/puppet-gpasswd
+[submodule "src/puppet/modules/memcached"]
+	path = src/puppet/modules/memcached
+	url = git://github.com/simp/puppet-memcached
+[submodule "src/puppet/modules/mysql"]
+	path = src/puppet/modules/mysql
+	url = git://github.com/simp/puppetlabs-mysql
+[submodule "src/puppet/modules/puppetlabs_apache"]
+	path = src/puppet/modules/puppetlabs_apache
+	url = git://github.com/simp/puppetlabs-apache
+[submodule "src/puppet/modules/oddjob"]
+	path = src/puppet/modules/oddjob
+	url = git://github.com/simp/pupmod-simp-oddjob
+[submodule "src/puppet/modules/stdlib"]
+	path = src/puppet/modules/stdlib
+	url = git://github.com/simp/puppetlabs-stdlib
+[submodule "src/puppet/modules/datacat"]
+	path = src/puppet/modules/datacat
+	url = git://github.com/simp/puppet-datacat
+[submodule "src/puppet/modules/postgresql"]
+	path = src/puppet/modules/postgresql
+	url = git://github.com/simp/puppetlabs-postgresql
+[submodule "src/puppet/modules/puppetdb"]
+	path = src/puppet/modules/puppetdb
+	url = git://github.com/simp/puppetlabs-puppetdb
+[submodule "src/puppet/modules/augeasproviders_apache"]
+	path = src/puppet/modules/augeasproviders_apache
+	url = git://github.com/simp/augeasproviders_apache
+[submodule "src/puppet/modules/augeasproviders_base"]
+	path = src/puppet/modules/augeasproviders_base
+	url = git://github.com/simp/augeasproviders_base
+[submodule "src/puppet/modules/augeasproviders_core"]
+	path = src/puppet/modules/augeasproviders_core
+	url = git://github.com/simp/augeasproviders_core
+[submodule "src/puppet/modules/augeasproviders_grub"]
+	path = src/puppet/modules/augeasproviders_grub
+	url = git://github.com/simp/augeasproviders_grub
+[submodule "src/puppet/modules/augeasproviders_mounttab"]
+	path = src/puppet/modules/augeasproviders_mounttab
+	url = git://github.com/simp/augeasproviders_mounttab
+[submodule "src/puppet/modules/augeasproviders_nagios"]
+	path = src/puppet/modules/augeasproviders_nagios
+	url = git://github.com/simp/augeasproviders_nagios
+[submodule "src/puppet/modules/augeasproviders_pam"]
+	path = src/puppet/modules/augeasproviders_pam
+	url = git://github.com/simp/augeasproviders_pam
+[submodule "src/puppet/modules/augeasproviders_postgresql"]
+	path = src/puppet/modules/augeasproviders_postgresql
+	url = git://github.com/simp/augeasproviders_postgresql
+[submodule "src/puppet/modules/augeasproviders_puppet"]
+	path = src/puppet/modules/augeasproviders_puppet
+	url = git://github.com/simp/augeasproviders_puppet
+[submodule "src/puppet/modules/augeasproviders_shellvar"]
+	path = src/puppet/modules/augeasproviders_shellvar
+	url = git://github.com/simp/augeasproviders_shellvar
+[submodule "src/puppet/modules/augeasproviders_ssh"]
+	path = src/puppet/modules/augeasproviders_ssh
+	url = git://github.com/simp/augeasproviders_ssh
+[submodule "src/puppet/modules/augeasproviders_sysctl"]
+	path = src/puppet/modules/augeasproviders_sysctl
+	url = git://github.com/simp/augeasproviders_sysctl
+[submodule "src/puppet/modules/java"]
+	path = src/puppet/modules/java
+	url = git://github.com/simp/puppetlabs-java
+[submodule "src/puppet/modules/java_ks"]
+	path = src/puppet/modules/java_ks
+	url = git://github.com/simp/puppetlabs-java_ks
+[submodule "src/rubygems/simp-rake-helpers"]
+	path = src/rubygems/simp-rake-helpers
+	url = git://github.com/simp/rubygem-simp-rake-helpers
+[submodule "src/rubygems/simp-cli"]
+	path = src/rubygems/simp-cli
+	url = git://github.com/simp/rubygem-simp-cli
