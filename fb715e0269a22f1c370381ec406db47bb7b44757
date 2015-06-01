@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "facab960_5a193d87",
+        "filename": ".gitmodules",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-06-01T23:43:27Z",
+      "side": 1,
+      "message": "github.com/simp/simp-build doesn\u0027t exist; local build/ directory under simp/simp-core contains directory tree with .source files",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 39
+      },
+      "revId": "fb715e0269a22f1c370381ec406db47bb7b44757",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
