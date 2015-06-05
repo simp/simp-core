@@ -1,4 +1,0 @@
-options ndots:1 timeout:2 attempts:2 rotate
-nameserver 10.0.0.1
-domain tasty.bacon
-search tasty.bacon
