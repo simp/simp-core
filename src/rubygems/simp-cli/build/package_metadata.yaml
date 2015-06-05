@@ -1,6 +1,0 @@
----
-# This RPM is required by the main SIMP RPM
-optional: false
-valid_versions :
- - '4\.(2|1).*'
- - '5\.(1|0).*'
