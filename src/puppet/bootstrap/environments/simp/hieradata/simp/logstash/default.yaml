@@ -1,0 +1,5 @@
+---
+logstash::autoupgrade: true
+logstash::status: 'running'
+logstash::multi_instance: false
+logstash::simp::index_cleanup::keep_days: '30'

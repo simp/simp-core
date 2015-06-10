@@ -1,0 +1,31 @@
+---
+# This must be a copy of at least 'client_nets' from simp_def.yaml if
+# you want this to cover your base YUM repo services.
+# The fact that you can't include other arrays from Hiera is
+# registered in the Puppet Labs JIRA as HI-183.
+#
+apache::conf::allowroot : "%{hiera('client_nets')}"
+
+rsync::server : '127.0.0.1'
+
+# Disable hooking to the remote SIMP repos so that the local filesystem is
+# always hit first.
+#
+# You should change this if using external yum repositories.
+#
+simp::yum::enable_simp_repos : false
+
+# Enable PuppetDB on this system by default
+simp::server::enable_puppetdb : true
+
+# The service name of the Puppet Server service for use with PuppetDB
+#
+# TODO: This should probably be a Fact
+puppetdb::master::puppet_service_name : 'puppetserver'
+
+classes :
+  - 'simp::server'
+  - 'simp::puppetdb'
+  - 'simp::ldap_server'
+  - 'simp::yum_server'
+  - 'simp::kickstart_server'

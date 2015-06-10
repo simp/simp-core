@@ -1,0 +1,3 @@
+---
+# Set the PAM Wheel group to the administrators group by default.
+pam::wheel_group : 'administrators'
