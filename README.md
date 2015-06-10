@@ -8,6 +8,8 @@ should generally be ignored.
 This will change in the future when we merge the two branches into a single distribution.
 
 ## Getting Started
+### Project Structure
+As you can probably tell, the `master` branch of this project is empty. There are two other branches, `4.2.X` and `5.1.X`. These correspond to RHEL/CentOS 6 and 7, respectively. The `5.1.X` branch will be used throughout this guide, but feel free to substitute back and forth. 
 ### Setting up your environment 
 We suggest installing rvm to manage several versions of ruby at once(taken from [the project's homepage](https://rvm.io)):
 ```bash
@@ -24,7 +26,7 @@ $ rvm all do gem install bundler
 
 First, clone the repository using `git clone`:
 ```bash
-$ git clone https://github.com/simp/simp-core.git
+$ git clone https://github.com/simp/simp-core.git --branch 5.1.X
 $ cd simp-core
 ```
 This will clone the simp-core git repository into a folder named simp-core, then it will `cd` into that directory. Next, the dependencies need to be installed using `bundler`, using the `Gemfile` provided by the repo.
