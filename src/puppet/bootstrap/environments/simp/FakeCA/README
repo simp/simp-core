@@ -1,0 +1,18 @@
+These scripts can be used to act as a fake CA.
+
+Enter the hostnames of the certificates that you wish to create in the file
+'togen', one per line and run the 'gencerts.sh' script.
+
+If you wish to use alternate DNS names, separate the names with commas and no
+spaces like the following example:
+
+   primary.name,alt.name.1,alt.name.2,ip.addr.1,ip.addr.2
+
+To generate user certificates, add users to the 'usergen' file in the following
+format (one per line) and run the 'usergen.sh' script.
+
+   username  email-address
+
+The output of usergen will be placed in 'output/users'.
+
+Run the 'clean.sh' script to reset to a clean state.
