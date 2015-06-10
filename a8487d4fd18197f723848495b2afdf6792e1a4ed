@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "facab960_f1612b3a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-06-10T23:18:29Z",
+      "side": 1,
+      "message": "The first line of the commit message should be in the format \"(SIMP-50) Blah Blah Blah.\"  See the example in step #3 at https://simp-project.atlassian.net/wiki/display/SD/Contributing+to+SIMP .",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 35
+      },
+      "revId": "a8487d4fd18197f723848495b2afdf6792e1a4ed",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "facab960_515f3772",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-06-10T23:18:29Z",
+      "side": 1,
+      "message": "You may want to include a Jira issue command such as:\n\"SIMP-50 #close Some comment here\"",
+      "range": {
+        "startLine": 13,
+        "startChar": 27,
+        "endLine": 13,
+        "endChar": 27
+      },
+      "revId": "a8487d4fd18197f723848495b2afdf6792e1a4ed",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "facab960_9150df5f",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-06-10T23:18:29Z",
+      "side": 1,
+      "message": "Remove trailing whitespace (I have a vim shortcut that can help with this)",
+      "range": {
+        "startLine": 15,
+        "startChar": 31,
+        "endLine": 15,
+        "endChar": 32
+      },
+      "revId": "a8487d4fd18197f723848495b2afdf6792e1a4ed",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "facab960_b14fa3bc",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-06-10T23:18:29Z",
+      "side": 1,
+      "message": "Remove trailing whitespace",
+      "range": {
+        "startLine": 38,
+        "startChar": 16,
+        "endLine": 38,
+        "endChar": 17
+      },
+      "revId": "a8487d4fd18197f723848495b2afdf6792e1a4ed",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
