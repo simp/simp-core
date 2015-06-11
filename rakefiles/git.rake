@@ -27,7 +27,11 @@ module Simp
       end
 
       def supermodule_branch
-        exec_sh('git name-rev --name-only HEAD').chomp
+        if ENV['SIMP_GIT_BRANCH'] =~ /\S+/
+          return ENV['SIMP_GIT_BRANCH'].strip
+        else
+          exec_sh('git name-rev --name-only HEAD').chomp
+        end
       end
 
 
@@ -301,6 +305,12 @@ module Simp
         elsif !list_submodules_in_index.include? subm
           puts "  -- adding submodule #{subm} to index & cloning"
           url = submodules_in_gitmodules[subm]
+
+          # Work around issues with Git 2.4.0
+          if File.directory?(".git/modules/#{subm}") && !File.directory?(subm)
+            FileUtils.rm_rf(".git/modules/#{subm}")
+          end
+
           exec_sh("git submodule add #{url} #{subm}")
         end
 
@@ -391,6 +401,12 @@ module Simp
           end
 
           unless thr.value.success?
+
+            subm_base = File.join(Dir.pwd,File.dirname(subm))
+            unless File.directory?(subm_base)
+              FileUtils.mkdir_p(subm_base)
+            end
+
             msg = "'git submodule update --init #{subm}' failed (exit code: #{$?.exitstatus})"
             if text =~ /fatal: reference is not a tree/
               warn "WARNING: #{msg}"
@@ -416,9 +432,9 @@ module Simp
           if !submodule_repo_exists?(subm)
             clone_submodule(subm)
           else
-            sync_submodule_url subm
+            sync_submodule_url(subm)
           end
-          reset subm
+          reset(subm)
 
           puts
           puts
@@ -461,12 +477,14 @@ end
 module Simp::Rake
   class Git < ::Rake::TaskLib
     def initialize
-       define
+      super
+      define
     end
 
 
     # define & namespace each rake task
     def define
+      define_globals
       namespace :git do
         define_tasks
         namespace :submodules  do
@@ -476,7 +494,17 @@ module Simp::Rake
     end
 
 
+    def define_globals
+      task :help do
+        puts <<-EOF.gsub(/^#{' ' * 8}/, '')
+          SIMP_GIT_BRANCH=(GIT_BRANCH)
+              The name of the branch that you wish to use as your base as opposed to the branch upon which you are working.
+        EOF
+      end
+    end
+
     def define_tasks
+
       desc <<-EOM
       lists git remotes
       EOM
@@ -519,8 +547,8 @@ module Simp::Rake
                       - a minus (e.g., '-build') will ignore a submodule
 
       EOM
-      task :reset, [:submodules] => ['git:reset'] do |_t, args|
-        submodules     = args[:submodules].to_s.split + args.extras
+      task :reset, [:submodules] do |_t, args|
+        submodules     = args[:submodules].to_s.split + Array(args.extras)
         all_submodules = (Simp::Git.submodules_in_gitmodules.keys).sort.uniq
         neg_submodules = submodules.select{|x| x =~ /^-/ }
 
