@@ -284,7 +284,6 @@ Passphrase: #{passphrase}
       * :snapshot_release - Will add a define to the Mock to set snapshot_release to current date and time.
   EOM
   task :simp,[:chroot,:snapshot_release] => [:prep,:mock_prep] do |t,args|
-    args.with_defaults(:snapshot_release => 'true')
     build(args.chroot,@build_dirs[:simp],t,false,args.snapshot_release)
   end
 
