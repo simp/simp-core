@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "facab960_ac63c8da",
+        "filename": "rakefiles/git.rake",
+        "patchSetId": 1
+      },
+      "lineNbr": 570,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-06-11T03:26:36Z",
+      "side": 1,
+      "message": "lolol",
+      "range": {
+        "startLine": 570,
+        "startChar": 41,
+        "endLine": 570,
+        "endChar": 42
+      },
+      "revId": "2441c5efc5d5992ae5d0246e8a1a7e8712ecf183",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
