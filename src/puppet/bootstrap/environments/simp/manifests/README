@@ -1,0 +1,10 @@
+= Manifest Directory =
+
+Place all of your site manifests here.
+
+The 'import' statement has been deprecated, and the directory inclusion using
+the 'manifest' option in puppet.conf does not recurse so any node delcarations
+will need to be placed in files in this directory.
+
+Be careful since all code placed in this directory will be directly included
+into ALL nodes unless scoped.

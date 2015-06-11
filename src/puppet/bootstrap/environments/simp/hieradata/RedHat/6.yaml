@@ -1,0 +1,7 @@
+---
+# RHEL/CentOS 6 specific classes
+classes:
+  # You'll want this 99% of the time.
+  # NOTE: you *can not* use gfs2 with acpid!
+  - 'acpid'
+  - 'upstart'
