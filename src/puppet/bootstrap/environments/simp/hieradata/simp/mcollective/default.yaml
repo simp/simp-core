@@ -1,0 +1,14 @@
+---
+mcollective::securityprovider: 'ssl'
+mcollective::middleware_ssl : true
+mcollective::connector : 'activemq'
+activemq::instance : 'mcollective'
+
+mcollective::ssl_client_certs_dir :  '/etc/mcollective/ssl'
+mcollective::ssl_client_certs : 'puppet:///modules/pki/keydist/mcollective'
+
+mcollective::ssl_mco_autokeys : true
+
+mcollective::ssl_activemq_public : "/etc/pki/public/%{::fqdn}.pub"
+mcollective::ssl_activemq_private : '/etc/pki/private/%{::fqdn}.pem'
+mcollective::ssl_activemq_ca : '/etc/pki/cacerts/cacerts.pem'

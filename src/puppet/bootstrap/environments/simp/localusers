@@ -1,0 +1,36 @@
+# This file houses a list of local users specified by system, that should apply
+# to your hosts.
+#
+# The format is:
+# [!|+|-]<fqdn-regex>,<username>,<uid>,<gid>,[<homedir>],<password/MD5 hash>
+#
+# If you add a '!' to the beginning of an entry, the user will have its
+# password expiration set so that it never expires.
+#
+# If you add a '+' to the beginning of an entry the user will retain its
+# existing password expiration entries.
+#
+# If you add a '-' to the beginning of the entry, the user and associated group
+# will be deleted from the system unless the uid is 0.
+#
+# <fqdn> is a regular expression that may follow one of the following formats:
+#     /regex/opts,<username>
+#     /regex/,<username>
+#     regex,<username>
+#     *.<domain>,<username>
+#     fqdn,<username>
+#
+# 'homedir' is the optional home directory of the user.  If nothing is
+# specified, then the system default will be used.
+#
+# The *first* entry in the file will be used.
+#
+# It is highly recommended that you do not change the uid or gid after first
+# assignment unless absolutely necessary. The utility will change the entries
+# but may result in unowned files on your system if you are not extremely
+# careful.
+#
+# Do *not* assign the group for these users to a network-based primary group.
+# If you need the user to be in a network system (LDAP/NIS) then add them to a
+# supplementary group.
+#
