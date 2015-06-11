@@ -8,6 +8,16 @@ module Simp
   class Git
     MASTER_BRANCH_VERSION = '4.1.X'
 
+    # This Array indicates, in order, which 'master' branch should win if there
+    # are multiples declared.
+    #
+    # Specifically, this is to help SIMP work with external repositories while
+    # being good FOSS citizens.
+    MASTER_PRIORITY = [
+      'simp-master',
+      'master'
+    ]
+
     class << self
       # execute shell commands with ability to dry run or accept a hash of
       # mocked { cmd => string output } results
@@ -38,11 +48,28 @@ module Simp
       end
 
 
-      # Array of remote 'gerrit/' branches
-      def list_remote_gerrit_branches
-        %x(git branch -r | grep gerrit | cut -f2 -d'/' | grep -vw ^HEAD)
-          .split("\n")
-          .map{ |x| x.strip }
+      # Array of remote 'stable' branches
+      # 'stable' == 'upstream' if present, 'origin' otherwise
+      def list_remote_stable_branches
+        remote_branches = %x(git branch -r)
+        branch_collection = {}
+        branch_list = []
+
+        remote_branches.split("\n").each do |ref|
+          ref.strip!
+
+          next if ref.include?('/HEAD ')
+
+          origin,branch = ref.split('/')
+
+          branch_collection[origin] = [] unless branch_collection[origin]
+          branch_collection[origin] << branch
+        end
+
+        branch_list = branch_collection['upstream'] if branch_collection['upstream']
+        branch_list = branch_collection['origin'] if branch_collection['origin']
+
+        return branch_list
       end
 
 
@@ -77,7 +104,7 @@ module Simp
           sections[section][git_key] = value
         end
 
-        # Despite all modelling work above, everything currently squashes into a
+        # Despite all modeling work above, everything currently squashes into a
         # simple data structure: {path => url, ...}.  This might seem like a
         # waste, but there are two reasons:
         #
@@ -106,11 +133,12 @@ module Simp
       #    Given supermodule 'Maj.min.X', a subm branch is valid if its name is:
       #       - 'Maj.min.X'
       #       - an earlier revision of the Maj.*.X release
+      #       - the simp-master branch
       #       - the master branch (use MASTER_BRANCH_VERSION for numeric ops)
       #       - a branch named 'Maj.X' should work as well
       #
       # Notes:
-      #   - Gem::Verison's requirements logic handles the comparisons.
+      #   - Gem::Version's requirements logic handles the comparisons.
       #   - By convention, SIMP devs use 'X' as a wildcard # in branch versions.
       # ------------------------------------------------------------------------
       def version_acceptable?(test_branch, target)
@@ -129,11 +157,18 @@ module Simp
                                             ])
 
         # decide if the current test target matches this target's requirements
-        if requirements.satisfied_by?(Gem::Version.new(test_branch)) ||
-           test_branch == MASTER_BRANCH_VERSION
-          true
-        else
-          false
+        begin
+          if requirements.satisfied_by?(Gem::Version.new(test_branch)) ||
+            test_branch == MASTER_BRANCH_VERSION
+            true
+          else
+            false
+          end
+        rescue ArgumentError => e
+          # This handles the presence of random topic branches that cause
+          # Gem::Version to die.
+
+          puts($stderr,"Warning: Branch #{test_branch} was not able to be compared...skipping")
         end
       end
 
@@ -143,9 +178,25 @@ module Simp
       #
       # Returns safest branch (String) if found, otherwise false.
       def find_best_branch(branches=[], target_branch)
+        branch_master = nil
+        target_branch_master = nil
+
+        MASTER_PRIORITY.each do |master_priority|
+          unless branch_master
+            branch_master = master_priority if branches.include?(master_priority)
+          end
+
+          unless target_branch_master
+            target_branch_master = master_priority if target_branch == master_priority
+          end
+        end
+
+        branch_master = 'master' unless branch_master
+        target_branch_master = 'master' unless target_branch_master
+
         result        = false
-        branches      = branches.dup.map{ |x| x.gsub('master', MASTER_BRANCH_VERSION) }
-        target_branch = target_branch.gsub('master', MASTER_BRANCH_VERSION)
+        branches      = branches.dup.map{ |x| x.gsub(branch_master, MASTER_BRANCH_VERSION) }
+        target_branch = target_branch.gsub(target_branch_master, MASTER_BRANCH_VERSION)
         test_branch   = branches.shift
 
         # allow custom target_branches (like Rakemegeddon) to match themselves:
@@ -162,7 +213,7 @@ module Simp
         if !branches.empty?
           other_result = find_best_branch(branches, target_branch)
           if result && other_result
-            if (Gem::Version.new(other_result.gsub('master', MASTER_BRANCH_VERSION)) >
+            if (Gem::Version.new(other_result.gsub(branch_master, MASTER_BRANCH_VERSION)) >
                  Gem::Version.new(result))
               result = other_result
             end
@@ -171,7 +222,7 @@ module Simp
           end
         end
 
-        result = 'master' if result == MASTER_BRANCH_VERSION # can't gsub when false
+        result = branch_master if result == MASTER_BRANCH_VERSION # can't gsub when false
         result
       end
 
@@ -185,14 +236,26 @@ module Simp
       # TODO: should we try to rebase in order to avoid that?
       # ------------------------------------------------------------------------
       def ensure_latest_checkout(project_branch)
-        branch         = find_best_branch(list_remote_gerrit_branches, project_branch)
-        remote_branch  = "gerrit/#{branch}"
+        remotes       = list_remotes
+
+        remote_src    = nil
+        if remotes.include?('upstream')
+          remote_src = 'upstream'
+        elsif remotes.include?('origin')
+          remote_src = 'origin'
+        end
+
+        fail ("Could not find a valid remote source of either 'upstream', or 'origin'") unless remote_src
+
+
+        branch        = find_best_branch(list_remote_stable_branches, project_branch)
+        remote_branch = "#{remote_src}/#{branch}"
 
         puts "  -- Checking out '#{branch}' in #{Dir.pwd}"
         fail "no safe branch found for target '#{project_branch}' in #{Dir.pwd}" unless branch
 
-        %x(git fetch gerrit 2>&1)
-        fail "'git fetch gerrit' (#{remote_branch}) failed in #{Dir.pwd} (exit code: #{$?.exitstatus})" unless $?.success?
+        %x(git fetch #{remote_src} 2>&1)
+        fail "'git fetch #{remote_src}' (#{remote_branch}) failed in #{Dir.pwd} (exit code: #{$?.exitstatus})" unless $?.success?
 
         %x(git checkout -q #{remote_branch})
         fail "checkout to #{remote_branch} failed in #{Dir.pwd} (exit code: #{$?.exitstatus})" unless $?.success?
@@ -222,8 +285,10 @@ module Simp
       #        remote 'origin' is that if 'origin' is missing, git adds it!
       #
       # So, this method is careful to:
-      #   - update 'gerrit' to the new URL if origin was updated
+      #   - update 'upstream' to the new URL if origin was updated
       #   - remove 'origin' ONLY if it was added by our 'git submodule sync'
+      #     - It is expected that the user should add their own remote 'origin'
+      #       from which they will submit Pull Requests.
       #
       def sync_submodule_url(subm)
         puts "  -- submodule URL sync: #{subm}"
@@ -254,7 +319,7 @@ module Simp
 
         if submodule_repo_exists?(subm)
           Dir.chdir subm
-          ensure_gerrit_remote
+          ensure_upstream_remote
           if !keep_origin && list_remotes.include?('origin')
             exec_sh('git remote rm origin')
           end
@@ -263,27 +328,27 @@ module Simp
       end
 
 
-      # Ensure that the remote 'gerrit' exists and its URL is up-to-date
-      def ensure_gerrit_remote
+      # Ensure that the remote 'upstream' exists and its URL is up-to-date
+      def ensure_upstream_remote
         remotes = list_remotes_with_urls
         if remotes.keys.include? 'origin'
-          if !remotes.keys.include? 'gerrit'
+          if !remotes.keys.include? 'upstream'
             # assume a fresh clone and rename 'origin'
-            puts "  -- ensuring remote 'gerrit' exists in #{Dir.pwd}"
-            %x(git remote rename origin gerrit)
+            puts "  -- ensuring remote 'upstream' exists in #{Dir.pwd}"
+            %x(git remote rename origin upstream)
           else
-            # ensure URL for 'gerrit' is up-to-date (preserves 'origin')
+            # ensure URL for 'upstream' is up-to-date (preserves 'origin')
             origin_url = remotes.fetch('origin', false)
-            gerrit_url = remotes.fetch('gerrit', false)
-            if origin_url && (origin_url != gerrit_url)
-              puts "  -- updating remote URL for 'gerrit' to '#{gerrit_url}'"
+            upstream_url = remotes.fetch('upstream', false)
+            if origin_url && (origin_url != upstream_url)
+              puts "  -- updating remote URL for 'upstream' to '#{upstream_url}'"
               warn "     TODO: rebase?"
-              %x(git remote set-url gerrit #{origin_url})
+              %x(git remote set-url upstream #{origin_url})
             end
           end
-        elsif !remotes.keys.include? 'gerrit'
+        elsif !remotes.keys.include? 'upstream'
           # totally freak out
-          raise("No remote 'gerrit' or 'origin' at #{Dir.pwd}:\n#{list_remotes}")
+          raise("No remote 'upstream' or 'origin' at #{Dir.pwd}:\n#{list_remotes}")
         end
       end
 
@@ -291,8 +356,8 @@ module Simp
       # Reset git repository in *dir* to a clean state to work with supermodule
       # ------------------------------------------------------------------------
       # Actions:
-      #  - ensures gerrit exists as a remote (updating URL, if needed)
-      #  - fetches latest revisions from gerrit
+      #  - ensures upstream exists as a remote (updating URL, if needed)
+      #  - fetches latest revisions from upstream
       #  - checks out the branch that best matches the supermodule
       #
       # Notes:
@@ -304,7 +369,7 @@ module Simp
         target_branch = supermodule_branch
         begin
           Dir.chdir dir
-          ensure_gerrit_remote
+          ensure_upstream_remote
           ensure_latest_checkout(target_branch)
         ensure
           Dir.chdir pwd
@@ -330,7 +395,7 @@ module Simp
             if text =~ /fatal: reference is not a tree/
               warn "WARNING: #{msg}"
               warn '-- This is probably a refspec in the index for a branch that is locally'
-              warn '   unavailable (likely a gerrit review).  It is probably safe to leave the '
+              warn '   unavailable (likely a Gerrit review).  It is probably safe to leave the '
               warn '   latest commit in the current branch as-is.'
             else
               fail "ERROR: #{msg}"
@@ -425,7 +490,7 @@ module Simp::Rake
 
       desc <<-EOM
       Reset git configs for supermodule
-        - ensure that the 'gerrit' remote is present in the supermodule
+        - ensure that the 'upstream' remote is present in the supermodule
       EOM
       task :reset do
         Simp::Git.reset
@@ -438,11 +503,11 @@ module Simp::Rake
       This taske shall Un-jacketh all manner of submodule ailments
 
       It will:
-        - ensure that the 'gerrit' remote is present in the supermodule
+        - ensure that the 'upstream' remote is present in the supermodule
         - for each submodule:
           - clone if missing
           - keep the submodule's URL up-to-date in .git/config
-          - ensure that the 'gerrit' remote exists and its URL is up-to-date
+          - ensure that the 'upstream' remote exists and its URL is up-to-date
           - fetch and check out the most recent updates
           - set each submodule branch to the closest version to the supermodule
         - warn if .gitmodules is missing submodules in the index or .git/config
@@ -502,7 +567,7 @@ module Simp::Rake
       end
 
       desc <<-EOM
-      Display submodule discrepencies (abences marked w/'x') between:
+      Display submodule discrepencies (abcences marked w/'x') between:
          M = .gitmodules
          C = .git/config
          I =  index
@@ -512,13 +577,33 @@ module Simp::Rake
         puts compare_submodule_sources.grep(/\bx\b/).join("\n")
       end
 
+      desc <<-EOM
+      UNSAFE: Unstage all submodules from the current repository
+
+      To continue with your submodules after this, you will want to run
+      'rake git:submodules:reset'.
+
+      WARNING: This will not attempt to preserve any work that you have in your
+               submodules so be VERY careful when doing this.
+      EOM
+      task :unstage do
+        Simp::Git.list_submodules_in_index.each do |subm|
+          %x(git rm --cache #{subm})
+          if $?.success?
+            puts "Unstaged: #{subm}"
+          else
+            $stderr.puts "Failed to Unstage: #{subm}"
+          end
+        end
+      end
+
     end
 
 
     # returns an Array of Strings describing submodule statuses
     #   one line per submodule in the format: "I C M path/to/submodule"
     #      I = present in index
-    #      C = preent in .git/config
+    #      C = present in .git/config
     #      M = present in .gitmodules
     #      x = missing from source
     def compare_submodule_sources
