@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "facab960_6d229702",
+        "filename": "README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1005194
+      },
+      "writtenOn": "2015-06-12T11:49:33Z",
+      "side": 1,
+      "message": "we try to avoid whitespace",
+      "range": {
+        "startLine": 13,
+        "startChar": 272,
+        "endLine": 13,
+        "endChar": 273
+      },
+      "revId": "a1d56b209a9fbd31e31295e647122bc0f85a35e7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
