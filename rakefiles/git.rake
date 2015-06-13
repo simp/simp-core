@@ -19,6 +19,14 @@ module Simp
     ]
 
     class << self
+
+      # Clean out the module git space for Git >= 2.4.0
+      def clean_submodule_cache(subm)
+        if File.directory?(".git/modules/#{subm}") && !File.directory?(subm)
+          FileUtils.rm_rf(".git/modules/#{subm}")
+        end
+      end
+
       # execute shell commands with ability to dry run or accept a hash of
       # mocked { cmd => string output } results
       def exec_sh( cmd, verbose=false, _fake_cmds={} )
@@ -334,10 +342,7 @@ module Simp
           puts "  -- adding submodule #{subm} to index & cloning"
           url = submodules_in_gitmodules[subm]
 
-          # Work around issues with Git 2.4.0
-          if File.directory?(".git/modules/#{subm}") && !File.directory?(subm)
-            FileUtils.rm_rf(".git/modules/#{subm}")
-          end
+          clean_submodule_cache(subm)
 
           exec_sh("git submodule add #{url} #{subm}")
         end
@@ -649,6 +654,10 @@ module Simp::Rake
       task :unstage do
         Simp::Git.list_submodules_in_index.each do |subm|
           %x(git rm --cache #{subm})
+          %x(git reset HEAD #{subm})
+
+          Simp::Git.clean_submodule_cache(subm)
+
           if $?.success?
             puts "Unstaged: #{subm}"
           else
