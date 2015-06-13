@@ -2,18 +2,21 @@
 
 require 'simp/rake'
 
-Simp::Rake::Pkg.new( File.dirname( __FILE__ ) )
+Simp::Rake::Pkg.new(File.dirname( __FILE__ ) )
 
-# Clean up the dropped keys from this build...
-Dir.chdir(File.dirname(__FILE__)) do
+Rake::Task['pkg:tar'].enhance do
+  # Clean up the dropped keys from this build...
+  Dir.chdir(File.dirname(__FILE__)) do
 
-  if File.exist?('.dropped_keys')
-    dropped_keys = File.read('.dropped_keys')
+    if File.exist?('.dropped_keys')
+      dropped_keys = File.read('.dropped_keys')
 
-    dropped_keys.each_line do |dk|
-      rm(dk) if File.exist?(dk)
+      dropped_keys.each_line do |dk|
+        dk.strip!
+        rm(dk) if File.exist?(dk)
+      end
+
+      rm('.dropped_keys')
     end
-
-    rm('.dropped_keys')
   end
 end

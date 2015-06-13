@@ -58,7 +58,7 @@ CLEAN.include(
 
 CLOBBER.include(
   DIST_DIR,
-  "#{BUILD_DIR}/gpgkeys/dev"
+  "#{BUILD_DIR}/build_keys/dev"
 )
 
 # This just abstracts the clean/clobber space in such a way that clobber can actally be used!
