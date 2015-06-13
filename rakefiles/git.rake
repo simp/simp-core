@@ -6,7 +6,7 @@ require 'fileutils'
 module Simp
   # A collection of git tasks needed to clone or reset a SIMP development tree
   class Git
-    MASTER_BRANCH_VERSION = '4.1.X'
+    MASTER_BRANCH_VERSION = '4.2.X'
 
     # This Array indicates, in order, which 'master' branch should win if there
     # are multiples declared.
@@ -70,8 +70,8 @@ module Simp
           branch_collection[origin] << branch
         end
 
-        branch_list = branch_collection['upstream'] if branch_collection['upstream']
         branch_list = branch_collection['origin'] if branch_collection['origin']
+        branch_list = branch_collection['upstream'] if branch_collection['upstream']
 
         return branch_list
       end
@@ -135,17 +135,28 @@ module Simp
       # ------------------------------------------------------------------------
       # The rules:
       #    Given supermodule 'Maj.min.X', a subm branch is valid if its name is:
-      #       - 'Maj.min.X'
-      #       - an earlier revision of the Maj.*.X release
+      #       - 'simp-Maj.min.X'
+      #       - an earlier revision of the simp-Maj.*.X release
       #       - the simp-master branch
       #       - the master branch (use MASTER_BRANCH_VERSION for numeric ops)
-      #       - a branch named 'Maj.X' should work as well
+      #       - a branch named 'simp-Maj.X' should work as well
       #
       # Notes:
       #   - Gem::Version's requirements logic handles the comparisons.
       #   - By convention, SIMP devs use 'X' as a wildcard # in branch versions.
+      #   - All SIMP branches are prefixed with 'simp-' to prevent conflicts
+      #     with external projects.
       # ------------------------------------------------------------------------
       def version_acceptable?(test_branch, target)
+
+        # Shortcut anything that just doesn't make sense
+        # Remember, that this code expects everything valid to be prefaced with
+        # *simp-*, with the exception of 'master'
+        return false unless ( test_branch[0..4] == 'simp-' && target[0..4] == 'simp-')
+
+        test_branch = test_branch[5..-1]
+        target = target[5..-1]
+
         vers = target.split('.')
         major_release_x = [
                             vers.shift,
@@ -162,11 +173,12 @@ module Simp
 
         # decide if the current test target matches this target's requirements
         begin
+
           if requirements.satisfied_by?(Gem::Version.new(test_branch)) ||
             test_branch == MASTER_BRANCH_VERSION
-            true
+            return true
           else
-            false
+            return false
           end
         rescue ArgumentError => e
           # This handles the presence of random topic branches that cause
@@ -201,11 +213,12 @@ module Simp
         result        = false
         branches      = branches.dup.map{ |x| x.gsub(branch_master, MASTER_BRANCH_VERSION) }
         target_branch = target_branch.gsub(target_branch_master, MASTER_BRANCH_VERSION)
-        test_branch   = branches.shift
+        test_branch   = branches.shift.strip
 
-        # allow custom target_branches (like Rakemegeddon) to match themselves:
-        re = /\d+\.(\d+\.)*(\d+|X)+?/ # allow semver or variants ending with 'X'
-        if (target_branch !~ re) || (test_branch !~ re)
+        # allow custom target_branches (like simp-Rakemegeddon) to match themselves:
+        re = /^simp-(\d+\.(\d+\.)*(\d+|X)+?)/ # allow semver or variants ending with 'X' with the 'simp-' prefix.
+
+        unless (target_branch =~ re) && (test_branch =~ re)
           return test_branch if test_branch == target_branch
           return find_best_branch(branches, target_branch) unless branches.empty?
           return false
@@ -252,11 +265,26 @@ module Simp
         fail ("Could not find a valid remote source of either 'upstream', or 'origin'") unless remote_src
 
 
-        branch        = find_best_branch(list_remote_stable_branches, project_branch)
+        remote_stable_branches = list_remote_stable_branches
+        branch        = find_best_branch(remote_stable_branches, project_branch)
+
+        # Set the branch back to a reasonable master branch if we couldn't find
+        # anything else.
+        if !branch
+          MASTER_PRIORITY.each do |master_priority|
+            if remote_stable_branches.include?(master_priority) and !branch
+              branch = master_priority
+            end
+          end
+        end
+
         remote_branch = "#{remote_src}/#{branch}"
 
-        puts "  -- Checking out '#{branch}' in #{Dir.pwd}"
-        fail "no safe branch found for target '#{project_branch}' in #{Dir.pwd}" unless branch
+        if branch
+          puts "  -- Checking out '#{branch}' in #{Dir.pwd}"
+        else
+          fail "no safe branch found for target '#{project_branch}' in #{Dir.pwd}" unless branch
+        end
 
         %x(git fetch #{remote_src} 2>&1)
         fail "'git fetch #{remote_src}' (#{remote_branch}) failed in #{Dir.pwd} (exit code: #{$?.exitstatus})" unless $?.success?
@@ -377,6 +405,7 @@ module Simp
       def reset(dir=Dir.pwd)
         pwd = Dir.pwd
         target_branch = supermodule_branch
+        target_branch = 'simp-' + target_branch unless target_branch[0..4] == 'simp-'
         begin
           Dir.chdir dir
           ensure_upstream_remote
@@ -518,6 +547,7 @@ module Simp::Rake
 
       desc <<-EOM
       Reset git configs for supermodule
+
         - ensure that the 'upstream' remote is present in the supermodule
       EOM
       task :reset do
@@ -563,6 +593,7 @@ module Simp::Rake
 
       desc <<-EOM
       Display submodules
+
         * :source - source of submodule information.  Can be:
              'gitmodules' - use .gitmodules
              'gitconfig'  - use supermodule's .git/config
@@ -596,6 +627,7 @@ module Simp::Rake
 
       desc <<-EOM
       Display submodule discrepencies (abcences marked w/'x') between:
+
          M = .gitmodules
          C = .git/config
          I =  index
