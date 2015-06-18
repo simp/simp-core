@@ -30,7 +30,7 @@ module Simp
       # execute shell commands with ability to dry run or accept a hash of
       # mocked { cmd => string output } results
       def exec_sh( cmd, verbose=false, _fake_cmds={} )
-        puts "  == %x: #{cmd}" if (verbose || $VERBOSE )
+        puts "  == %x: #{cmd}" if (verbose || $VERBOSE || ENV['VERBOSE'] )
         %x(#{cmd})
       end
 
@@ -215,7 +215,7 @@ module Simp
           end
         end
 
-        branch_master = 'master' unless branch_master
+        branch_master        = 'master' unless branch_master
         target_branch_master = 'master' unless target_branch_master
 
         result        = false
@@ -238,8 +238,14 @@ module Simp
         if !branches.empty?
           other_result = find_best_branch(branches, target_branch)
           if result && other_result
-            if (Gem::Version.new(other_result.gsub(branch_master, MASTER_BRANCH_VERSION)) >
-                 Gem::Version.new(result))
+
+            # strip "simp-" before comparing versions
+            other_result_version_num = other_result.gsub(branch_master, MASTER_BRANCH_VERSION)
+            other_result_version_num.gsub!(/^simp-/,'')
+            result_version_num = result.gsub(/^simp-/,'')
+            
+            # if another result is better, use it
+            if (Gem::Version.new( other_result_version_num ) > Gem::Version.new(result_version_num))
               result = other_result
             end
           elsif !result && other_result
