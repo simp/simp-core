@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "facab960_1a34bf48",
+        "filename": "rakefiles/git.rake",
+        "patchSetId": 1
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2015-06-19T20:30:13Z",
+      "side": 1,
+      "message": "Whitespace!!!",
+      "revId": "a970c093f9609dd7b1cc573398c1497ee0f8fa44",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
