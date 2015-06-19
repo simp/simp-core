@@ -173,7 +173,8 @@ Passphrase: #{passphrase}
   end
 
   desc <<-EOM
-    Build the entire SIMP release
+    Build the entire SIMP release.
+
       Building this environment requires a working Mock setup (http://fedoraproject.org/wiki/Projects/Mock)
       * :chroot - The Mock chroot configuration to use. See the '--root' option in mock(1).
       * :docs - Build the docs. Set this to false if you wish to skip building the docs.
@@ -243,7 +244,8 @@ Passphrase: #{passphrase}
   end
 
   desc <<-EOM
-    Build the Puppet module RPMs
+    Build the Puppet module RPMs.
+
       This also builds the simp-mit RPM due to its location.
       Building this environment requires a working Mock setup (http://fedoraproject.org/wiki/Projects/Mock)
       * :chroot - The Mock chroot configuration to use. See the '--root' option in mock(1).
@@ -253,14 +255,15 @@ Passphrase: #{passphrase}
   end
 
   desc <<-EOM
-    Build simp config rubygem RPM
+    Build simp config rubygem RPM.
   EOM
   task :simp_cli,[:chroot] => [:prep,:mock_prep] do |t,args|
     build(args.chroot,@build_dirs[:simp_cli],t)
   end
 
   desc <<-EOM
-    Build the SIMP non-module RPMs
+    Build the SIMP non-module RPMs.
+
       Building this environment requires a working Mock setup (http://fedoraproject.org/wiki/Projects/Mock)
       * :chroot - The Mock chroot configuration to use. See the '--root' option in mock(1).
   EOM
@@ -269,7 +272,8 @@ Passphrase: #{passphrase}
   end
 
   desc <<-EOM
-    Build the SIMP documentation
+    Build the SIMP documentation.
+
       Building this environment requires a working Mock setup (http://fedoraproject.org/wiki/Projects/Mock)
       * :chroot - The Mock chroot configuration to use. See the '--root' option in mock(1).
   EOM
@@ -278,7 +282,8 @@ Passphrase: #{passphrase}
   end
 
   desc <<-EOM
-    Build the main SIMP RPM
+    Build the main SIMP RPM.
+
       Building this environment requires a working Mock setup (http://fedoraproject.org/wiki/Projects/Mock)
       * :chroot - The Mock chroot configuration to use. See the '--root' option in mock(1).
       * :snapshot_release - Will add a define to the Mock to set snapshot_release to current date and time.
@@ -316,6 +321,7 @@ Passphrase: #{passphrase}
 
   desc <<-EOM
     Check that RPMs are signed.
+
       Checks all RPM files in a directory to see if they are trusted.
         * :rpm_dir - A directory containing RPM files to check. Default #{BUILD_DIR}/SIMP
         * :key_dir - The path to the GPG keys you want to check the packages against. Default #{BUILD_DIR}/GPGKEYS
@@ -373,7 +379,8 @@ Passphrase: #{passphrase}
   end
 
   desc <<-EOM
-    Run repoclosure on rpm files
+    Run repoclosure on RPM files.
+
       Finds all rpm files in the target dir and all of its subdirectories, then
       reports which packages have unresolved dependencies. This needs to be run
       after rake tasks tar:build and unpack if operating on the base SIMP repo.
