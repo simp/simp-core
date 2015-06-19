@@ -540,7 +540,7 @@ module Simp::Rake
     def define_tasks
 
       desc <<-EOM
-      lists git remotes
+      List git remotes.
       EOM
       task :list_remotes, :with_urls do |_t, args|
         if args[:with_urls]
@@ -551,7 +551,7 @@ module Simp::Rake
       end
 
       desc <<-EOM
-      Reset git configs for supermodule
+      Reset git configs for supermodule.
 
         - ensure that the 'upstream' remote is present in the supermodule
       EOM
@@ -563,7 +563,7 @@ module Simp::Rake
 
     def define_submodule_tasks
       desc <<-EOM
-      This taske shall Un-jacketh all manner of submodule ailments
+      Un-jacketh all manner of submodule ailments.
 
       It will:
         - ensure that the 'upstream' remote is present in the supermodule
@@ -597,7 +597,7 @@ module Simp::Rake
 
 
       desc <<-EOM
-      Display submodules
+      Display submodules.
 
         * :source - source of submodule information.  Can be:
              'gitmodules' - use .gitmodules
@@ -631,7 +631,9 @@ module Simp::Rake
       end
 
       desc <<-EOM
-      Display submodule discrepencies (abcences marked w/'x') between:
+      Display submodule discrepencies.
+
+         Discrepencies (abcences marked w/'x') between:
 
          M = .gitmodules
          C = .git/config
@@ -643,7 +645,7 @@ module Simp::Rake
       end
 
       desc <<-EOM
-      UNSAFE: Unstage all submodules from the current repository
+      UNSAFE: Unstage all submodules from the repo.
 
       To continue with your submodules after this, you will want to run
       'rake git:submodules:reset'.
