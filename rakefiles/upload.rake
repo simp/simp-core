@@ -90,7 +90,11 @@ namespace :upload do
     return pkg_info
   end
 
-  desc "Get a list of modified packages from the given date or git identifier (tag, branch, or hash)"
+  desc <<-EOM
+    Get a list of modified packages.
+
+    The package list is created from the given date or git identifier (tag, branch, or hash)
+  EOM
   task :get_modified,[:start,:script_format] do |t,args|
     args.with_defaults(:script_format => false)
 

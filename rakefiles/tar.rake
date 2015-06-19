@@ -12,7 +12,8 @@ namespace :tar do
   ##############################################################################
 
   desc <<-EOM
-    Build the DVD tarball(s)
+    Build the DVD tarball(s).
+
       * :chroot - The mock chroot to use for pkg:build
       * :key - What key to use for signing the RPMs
       * :docs - Whether or not to build the documentation
