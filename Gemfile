@@ -37,7 +37,7 @@ gem 'coderay'
 gem 'puppet'
 gem 'puppet-lint'
 gem 'puppetlabs_spec_helper'
-gem 'simp-rake-helpers', simp_rake_helpers_opts
+gem 'simp-rake-helpers', '>=1.0.4'
 gem 'parallel'
 gem 'dotenv'
 gem 'ruby-progressbar'
