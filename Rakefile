@@ -22,7 +22,8 @@ SRC_DIR    = "#{BASEDIR}/src"
 DVD_SRC    = "#{SRC_DIR}/DVD"
 SPEC_DIR   = "#{SRC_DIR}/build"
 SPEC_FILES = FileList["#{SPEC_DIR}/*.spec"]
-TARGET_DISTS = ['RHEL','CentOS']
+# The first distribution is the default build...
+TARGET_DISTS = ['CentOS','RHEL']
 
 # NOTE: simp/rake and simp/rpm should be available as a gem.  However, if that
 # gem is not present, the git:submodules:reset task in git.rake should be
@@ -58,7 +59,8 @@ CLEAN.include(
 
 CLOBBER.include(
   DIST_DIR,
-  "#{BUILD_DIR}/build_keys/dev"
+  "#{BUILD_DIR}/build_keys/dev",
+  "#{BUILD_DIR}/yum_data/*/packages"
 )
 
 # This just abstracts the clean/clobber space in such a way that clobber can actally be used!
