@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "facab960_bb2d92aa",
+        "filename": "rakefiles/build.rake",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-06-22T19:24:51Z",
+      "side": 1,
+      "message": "trailing whitespace!",
+      "range": {
+        "startLine": 22,
+        "startChar": 59,
+        "endLine": 22,
+        "endChar": 60
+      },
+      "revId": "861d7278f87e6c174c091bf9aff3c918fa862eed",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "facab960_96126355",
+        "filename": "rakefiles/build.rake",
+        "patchSetId": 1
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-06-22T19:24:51Z",
+      "side": 1,
+      "message": "Clever clogs.",
+      "range": {
+        "startLine": 221,
+        "startChar": 8,
+        "endLine": 223,
+        "endChar": 11
+      },
+      "revId": "861d7278f87e6c174c091bf9aff3c918fa862eed",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "facab960_7615df3e",
+        "filename": "rakefiles/build.rake",
+        "patchSetId": 1
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-06-22T19:24:51Z",
+      "side": 1,
+      "message": "A suggestion: For now (pre-SIMP 6), we could set defaults for these values as well to help users along.",
+      "range": {
+        "startLine": 247,
+        "startChar": 22,
+        "endLine": 247,
+        "endChar": 37
+      },
+      "revId": "861d7278f87e6c174c091bf9aff3c918fa862eed",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
