@@ -76,7 +76,6 @@ cp puppet.conf %{buildroot}/%{prefix}/puppet.conf.rpmnew
 
 %defattr(0640,root,root,0750)
 %{prefix}/environments/simp/FakeCA
-%attr(0750,-,-) %{prefix}/environments/simp/FakeCA/CA
 %attr(0750,-,-) %{prefix}/environments/simp/FakeCA/clean.sh
 %attr(0750,-,-) %{prefix}/environments/simp/FakeCA/gencerts_common.sh
 %attr(0750,-,-) %{prefix}/environments/simp/FakeCA/gencerts_nopass.sh
