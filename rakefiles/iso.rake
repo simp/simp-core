@@ -19,19 +19,19 @@ namespace :iso do
       Find.find('.') do |path|
         Find.prune if exclude_dirs.include?(File.basename(path))
 
-        if File.basename(path) =~ /.*\.rpm/ then
+        if File.basename(path) =~ /.*\.rpm/
           # Get the package name from the RPM.
           # Note: an alternative method may be to just simply check the names
           # of the RPMs themselves instead of the names of the packages.
           pkg = nil
-          if use_hack then
+          if use_hack
             # The proper way (defined below) is way too slow, so this hack helps
             # speed up the process by reading the file directly. If the code is
             # not working, attempt this without using the hack, just be ready
             # to wait a long time for the code to complete.
             pkgname = File.basename(path).split('-').first
             File.open(path,'r').each_line do |line|
-              if encode_line(line) =~ /C\000(\S+\000)?(#{Regexp.escape(pkgname)}\S*)\000/ then
+              if encode_line(line) =~ /C\000(\S+\000)?(#{Regexp.escape(pkgname)}\S*)\000/
                 pkg = $2.split(/\000/).first
                 break
               end
@@ -41,7 +41,7 @@ namespace :iso do
             pkg = %x{rpm -qp --qf "%{NAME}" #{path} 2>/dev/null}.chomp
           end
 
-          if not exclude_pkgs.include?(pkg) then
+          unless exclude_pkgs.include?(pkg)
             rm(path)
             prune_count += 1
           end
@@ -49,13 +49,13 @@ namespace :iso do
       end
       $stderr.puts "Info: Pruned #{prune_count} packages from #{from_dir}"
 
-      if prune_count > 0 then
+      if prune_count > 0
         # Recreate the now-pruned repos
         basepath = '.'
-        if (File.basename(from_dir) =~ /^RHEL/) then
+        if (File.basename(from_dir) =~ /^RHEL/)
           # This covers old versions of RHEL that don't follow the new
           # way of doing things.
-          if not Dir.glob("Server/*.rpm").empty? then
+          unless Dir.glob("Server/*.rpm").empty?
             basepath = 'Server'
           end
         end
@@ -69,22 +69,24 @@ namespace :iso do
     end
   end # End of prune_packages
 
-  desc "Build the SIMP ISO(s).
+  desc <<-EOM
+Build the SIMP ISO(s).
  * :tarball - Path of the source tarball or directory containing the source
      tarballs.
  * :unpacked_dvds - Path of the directory containing the unpacked base OS
      directories. Default is the current directory.
  * :prune - Flag for whether unwanted packages should be pruned prior to
-     building the ISO. Default is true."
+     building the ISO. Default is true.
+     EOM
   task :build,[:tarball,:unpacked_dvds,:prune] do |t,args|
     args.with_defaults(:unpacked_dvds => "#{RUNDIR}", :prune => 'true')
 
-    if args.tarball.nil? then
-      fail "Error: You must specify a source tarball or tarball directory!"
+    if args.tarball.nil?
+      fail("Error: You must specify a source tarball or tarball directory!")
     else
       tarball = File.expand_path(args.tarball)
-      if not File.exist?(tarball) then
-        fail "Error: Could not find tarball at '#{tarball}'!"
+      unless File.exist?(tarball)
+        fail("Error: Could not find tarball at '#{tarball}'!")
       end
     end
 
@@ -98,8 +100,8 @@ namespace :iso do
       baseos = namepieces[2]
 
       iso_dirs = Dir.glob("#{File.expand_path(args.unpacked_dvds)}/#{baseos}*")
-      if iso_dirs.empty? then
-        fail "Error: No unpacked DVD directories found for '#{baseos}'"
+      if iso_dirs.empty?
+        fail("Error: No unpacked DVD directories found for '#{baseos}'")
       end
 
       # Process each unpacked base OS ISO directory found
@@ -113,31 +115,31 @@ namespace :iso do
         require 'puppet/util/inifile'
 
         file = "#{dir}/.treeinfo"
-        File.file? file or error( "ERROR: no file '#{file}'")
+        error("ERROR: no file '#{file}'") unless File.file?(file)
 
-        ini = Puppet::Util::IniConfig::PhysicalFile.new( file )
+        ini = Puppet::Util::IniConfig::PhysicalFile.new(file)
         ini.read
         sections = ini.sections.map{ |s| s.name }
 
         # NOTE: RHEL7 discs claim [general] section is deprecated.
-        if sections.include? 'general'
-          h = Hash[ ini.get_section( 'general' ).entries ]
-          arch      = h.fetch( 'arch',    arch ).strip
-          baseosver = h.fetch( 'version', baseosver ).strip
-          baseosver += '.0' if baseosver.count('.') < 1
+        if sections.include?('general')
+          h = Hash[ ini.get_section('general').entries ]
+          arch      = h.fetch('arch', arch).strip
+          baseosver = h.fetch('version', baseosver).strip
+          baseosver += '.0' if (baseosver.count('.') < 1)
         end
         # ------------------------------------
 
         # Skip if SIMP version doesn't match target base OS version
-        next if not vermap[simpver.split('.').first].eql?(baseosver.split('.').first)
+        next unless vermap[simpver.split('.').first].eql?(baseosver.split('.').first)
 
         mkrepo = baseosver.split('.').first == '5' ? 'createrepo -s sha -p' : 'createrepo -p'
 
         SIMP_DVD_DIRS.each do |clean_dir|
-          if File.directory?("#{dir}/#{clean_dir}") then
+          if File.directory?("#{dir}/#{clean_dir}")
             rm_rf("#{dir}/#{clean_dir}")
-          elsif File.file?("#{dir}/#{clean_dir}") then
-            fail "Error: #{dir}/#{clean_dir} is a file, expecting directory!"
+          elsif File.file?("#{dir}/#{clean_dir}")
+            fail("Error: #{dir}/#{clean_dir} is a file, expecting directory!")
           end
         end
 
@@ -147,7 +149,7 @@ namespace :iso do
         rescue
           # Does not matter if the command fails
         end
-        if args.prune.casecmp("false") != 0 and File.exist?("#{dir}/#{baseosver.split('.').first}-simp_pkglist.txt") then
+        if (args.prune.casecmp("false") != 0) && File.exist?("#{dir}/#{baseosver.split('.').first}-simp_pkglist.txt")
           exclude_pkgs = Array.new
           File.read("#{dir}/#{baseosver.split('.').first}-simp_pkglist.txt").each_line do |line|
             next if line =~ /^(\s+|#.*)$/
@@ -158,17 +160,52 @@ namespace :iso do
 
         # Add the SIMP code
         system("tar --no-same-permissions -C #{dir} -xzf #{tarball}")
+
         Dir.chdir("#{dir}/SIMP") do
+          # Add the SIMP Dependencies
+          simp_base_ver = simpver.split('-').first
+          simp_dep_src = %(SIMP#{simp_base_ver}_#{baseos}#{baseosver}_#{arch})
+          yum_dep_location = File.join(BUILD_DIR,'yum_data',simp_dep_src,'packages')
+
+          unless File.directory?(yum_dep_location)
+            fail("Could not find dependency directory at #{yum_dep_location}")
+          end
+
+          yum_dep_rpms = Dir.glob(%(#{yum_dep_location}/*.rpm))
+          if yum_dep_rpms.empty?
+            fail("Could not find any dependency RPMs at #{yum_dep_location}")
+          end
+
+          yum_dep_rpms.each do |rpm|
+            rpm_arch = rpm.split('.')[-2]
+
+            unless File.directory?(rpm_arch)
+              mkdir(rpm_arch)
+            end
+
+            # Just in case this is a symlink, broken, or some other nonsense.
+            target_file = File.join(rpm_arch,File.basename(rpm))
+            rm_f(target_file) if File.exist?(target_file)
+
+            cp(rpm,rpm_arch)
+          end
+
+          # Get everything set up properly...
           Dir.glob('*').each do |arch_dir|
-            next if not File.directory?(arch_dir) or arch_dir.eql?('noarch')
+            next if(
+              !File.directory?(arch_dir) ||
+              arch_dir.eql?('noarch') ||
+              arch_dir.eql?('GPGKEYS')
+            )
 
             Dir.chdir(arch_dir) do
               Find.find('../noarch') do |find_rpm|
-                if File.extname(find_rpm).eql?('.rpm') then
-                  ln_s(find_rpm,File.basename(find_rpm))
+                if File.extname(find_rpm).eql?('.rpm')
+                  ln_sf(find_rpm,File.basename(find_rpm))
                 end
               end
-              system("#{mkrepo} .") or fail "Error: Could not run createrepo in #{Dir.pwd}"
+
+              fail("Error: Could not run createrepo in #{Dir.pwd}") unless system(%(#{mkrepo} .))
             end
           end
         end
@@ -186,7 +223,7 @@ namespace :iso do
   desc <<-EOM
   Build the source ISO.
     Note: The process clobbers the temporary and built files, rebuilds the
-    tarball(s) and then packages the source ISO. Therefore it will take a
+    tarball(s) and packages the source ISO. Therefore it will take a
     while.
       * :key - The GPG key to sign the RPMs with. Defaults to 'prod'.
       * :chroot - An optional Mock Chroot. If this is passed, the tar:build task will be called.
@@ -194,8 +231,8 @@ namespace :iso do
   task :src,[:key,:chroot] do |t,args|
     args.with_defaults(:key => 'prod')
 
-    if Dir.glob("#{DVD_DIR}/*.gz").empty? and not args.chroot then
-      fail "Error: Could not find compiled source tarballs, please pass a chroot."
+    if Dir.glob("#{DVD_DIR}/*.gz").empty? && !args.chroot
+      fail("Error: Could not find compiled source tarballs, please pass a chroot.")
     end
 
     Rake::Task['tar:build'].invoke(args.chroot) if args.chroot
