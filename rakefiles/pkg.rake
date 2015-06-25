@@ -117,7 +117,7 @@ namespace :pkg do
 
       Dir.chdir('dev') {
         Dir.glob('*').each do |todel|
-          rm(todel)
+          rm_rf(todel)
         end
 
         expire_date = (DateTime.now + 14)
