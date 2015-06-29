@@ -7,6 +7,14 @@ namespace :tar do
 
   directory "#{DVD_DIR}/staging"
 
+  def get_simp_version
+    simp_rpm = Dir.glob("#{BASEDIR}/build/SIMP/RPMS/*/simp-[0-9]*.rpm").max_by {|f| File.mtime(f)}
+    fail("Could not find simp main RPM in output directory!") unless simp_rpm
+    simp_version = File.basename(simp_rpm).gsub(".noarch.rpm","").gsub("simp-","")
+
+    return simp_version
+  end
+
   ##############################################################################
   # Main tasks
   ##############################################################################
@@ -57,18 +65,6 @@ namespace :tar do
         end
       end
 
-      # Then the static RPMs
-      (
-        Dir.glob("#{BUILD_DIR}/Ext_#{dist}/RPMS/*") +
-        Dir.glob("#{BUILD_DIR}/Ext_Common/RPMS/*")
-      ).each do |dir|
-        basetarget = "#{destdir}/#{File.basename(dir)}"
-        if not File.directory?(basetarget) then
-          mkdir(basetarget)
-        end
-        cp(Dir.glob("#{dir}/*.rpm"),basetarget)
-      end
-
       if args.docs.casecmp('true') == 0 then
         # Finally, the PDF docs if they exist.
         pdfs = Dir.glob("#{SRC_DIR}/doc/pdf/*")
@@ -105,9 +101,7 @@ namespace :tar do
     #Seeing race conditions when this is parallelized.
     TARGET_DISTS.each do |dist|
       base_dir = "#{DVD_DIR}/#{dist}/staging"
-      dvd_info = Dir.glob("#{BASEDIR}/build/SIMP/RPMS/*/simp-[0-9]*.rpm").max_by {|f| File.mtime(f)}
-      base_name = File.basename(dvd_info).gsub(".noarch.rpm","").gsub("simp-","")
-      dvd_name = [ 'SIMP', 'DVD', dist, base_name ]
+      dvd_name = [ 'SIMP', 'DVD', dist, get_simp_version ]
       dvd_tarball = "#{dvd_name.join('-')}.tar.gz"
       Dir.chdir(base_dir) do
         sh %{tar --owner 0 --group 0 --exclude-vcs --mode=u=rwX,g=rX,o=rX -cpzf "../#{dvd_tarball}" ./*}
