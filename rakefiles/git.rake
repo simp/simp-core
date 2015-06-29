@@ -243,7 +243,7 @@ module Simp
             other_result_version_num = other_result.gsub(branch_master, MASTER_BRANCH_VERSION)
             other_result_version_num.gsub!(/^simp-/,'')
             result_version_num = result.gsub(/^simp-/,'')
-            
+
             # if another result is better, use it
             if (Gem::Version.new( other_result_version_num ) > Gem::Version.new(result_version_num))
               result = other_result
