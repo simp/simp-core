@@ -32,7 +32,7 @@ namespace :pkg do
       ],
       :doc => "#{SRC_DIR}/doc",
       :simp_cli => "#{SRC_DIR}/rubygems/simp-cli",
-      :simp => "#{SRC_DIR}"
+      :simp => "#{SRC_DIR}",
     }
 
     @pkg_dirs = {
@@ -117,7 +117,7 @@ namespace :pkg do
 
       Dir.chdir('dev') {
         Dir.glob('*').each do |todel|
-          rm(todel)
+          rm_rf(todel)
         end
 
         expire_date = (DateTime.now + 14)
@@ -533,7 +533,7 @@ protect=1
               end
             end
           else
-           puts "Warning: #{Simp::RPM.get_info(Dir.glob('build/*.spec').first)[:name]} is not \
+            puts "Warning: #{Simp::RPM.get_info(Dir.glob('build/*.spec').first)[:name]} is not \
 valid against SIMP version #{SIMP_VERSION.gsub("%{?snapshot_release}","")} and will not be built."
           end
         else
