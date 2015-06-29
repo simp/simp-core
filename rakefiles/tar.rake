@@ -9,6 +9,7 @@ namespace :tar do
 
   def get_simp_version
     simp_rpm = Dir.glob("#{BASEDIR}/build/SIMP/RPMS/*/simp-[0-9]*.rpm").max_by {|f| File.mtime(f)}
+    fail("Could not find simp main RPM in output directory!") unless simp_rpm
     simp_version = File.basename(simp_rpm).gsub(".noarch.rpm","").gsub("simp-","")
 
     return simp_version
