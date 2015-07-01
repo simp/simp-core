@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "9ad9bd40_eb76efd7",
+        "filename": "rakefiles/submodule.rake",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1005193
+      },
+      "writtenOn": "2015-07-01T18:52:43Z",
+      "side": 1,
+      "message": "I love ruby shortcuts!",
+      "range": {
+        "startLine": 10,
+        "startChar": 50,
+        "endLine": 10,
+        "endChar": 51
+      },
+      "revId": "7cb49256e77475c25c929dfe225413f1e56b77ac",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_2b9377fb",
+        "filename": "rakefiles/submodule.rake",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1005193
+      },
+      "writtenOn": "2015-07-01T18:52:43Z",
+      "side": 1,
+      "message": "Why are we prepending an empty string to our list of submodules?",
+      "range": {
+        "startLine": 13,
+        "startChar": 67,
+        "endLine": 13,
+        "endChar": 78
+      },
+      "revId": "7cb49256e77475c25c929dfe225413f1e56b77ac",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9ad9bd40_cbd68bc5",
         "filename": "rakefiles/submodule.rake",
         "patchSetId": 1
@@ -30,6 +76,29 @@
       "writtenOn": "2015-07-01T18:39:35Z",
       "side": 1,
       "message": "This shouldn\u0027t be printed out, should it?",
+      "revId": "7cb49256e77475c25c929dfe225413f1e56b77ac",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_2baa9719",
+        "filename": "rakefiles/submodule.rake",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1005193
+      },
+      "writtenOn": "2015-07-01T18:52:43Z",
+      "side": 1,
+      "message": "If this is all you\u0027re using FileUtils for you could substitute in Dir.chdir(moddir).",
+      "range": {
+        "startLine": 20,
+        "startChar": 6,
+        "endLine": 20,
+        "endChar": 26
+      },
       "revId": "7cb49256e77475c25c929dfe225413f1e56b77ac",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": false
