@@ -7,6 +7,63 @@ class SIMPBuildException < Exception
 end
 
 namespace :build do
+  desc <<-EOM
+  Run bundle at every level of the project.
+
+  This taks runs 'bundle' at each level of the Git subproject tree as well as the top level.
+
+  The intent is to ensure that the entire development space is up to date when starting work.
+
+  Arguments:
+    * :action => The action that you with bundle to take. Default => 'install'
+    * :verbose => Enable verbose reporting. Default => 'false'
+  EOM
+
+  task :bundle, [:action, :verbose] do |t, args|
+    args.with_defaults(:action => 'install')
+    args.with_defaults(:verbose => 'false')
+
+    verbose = args.verbose == 'false' ? false : true
+
+    # Grab all currently tracked submodules.
+    $modules = (Simp::Git.submodules_in_gitmodules.keys).sort.uniq.unshift('.')
+
+    basedir = pwd()
+    failed_mods = Parallel.map(
+      $modules,
+      :in_processes => 1,
+      :progress => t.name
+    ) do |mod|
+
+      status = true
+      moddir = File.join(basedir,mod)
+
+      next unless File.exists?(File.join(moddir,'Gemfile'))
+
+      puts "\n#{mod}\n" if verbose
+      Dir.chdir(moddir) do
+
+        if File.exist?('Gemfile.lock')
+          puts "Cleaning Gemfile.lock from #{mod}" if verbose
+          rm('Gemfile.lock')
+        end
+
+        # Any ruby code that opens a subshell will automatically use the current Bundler environment.
+        # Clean env will give bundler the environment present before Bundler is activated.
+        Bundler.with_clean_env do
+          out = %x(bundle #{args.action} 2>&1)
+          status = $?.success?
+          puts out if verbose
+        end
+
+        mod unless status
+      end
+    end
+
+    failed_mods.compact!
+    warn %(The following modules failed bundle #{args.action}:\n  * #{failed_mods.sort.join("\n  *")})
+  end
+
   namespace :yum do
     @base_dir = File.join(BUILD_DIR,'yum_data')
     @build_arch = 'x86_64'
