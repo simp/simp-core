@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ad9bd40_cbd68bc5",
+        "filename": "rakefiles/submodule.rake",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2015-07-01T18:39:35Z",
+      "side": 1,
+      "message": "You need to check for a Gemfile before running \u0027bundle\u0027. If you don\u0027t have one, you\u0027ll get a failure.\n\nTechnically .gemfile works too but it\u0027s deprecated.",
+      "revId": "7cb49256e77475c25c929dfe225413f1e56b77ac",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_8b656347",
+        "filename": "rakefiles/submodule.rake",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2015-07-01T18:39:35Z",
+      "side": 1,
+      "message": "This shouldn\u0027t be printed out, should it?",
+      "revId": "7cb49256e77475c25c929dfe225413f1e56b77ac",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_cb5f6b71",
+        "filename": "rakefiles/submodule.rake",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2015-07-01T18:39:35Z",
+      "side": 1,
+      "message": "I wouldn\u0027t print this either. Just run the command and return only the modules that fail.\n\nUse Parallel here but don\u0027t let it run more than one at a time. This way you can get a progress bar.",
+      "revId": "7cb49256e77475c25c929dfe225413f1e56b77ac",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
