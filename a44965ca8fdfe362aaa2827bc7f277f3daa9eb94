@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ad9bd40_264bae5a",
+        "filename": "rakefiles/submodule.rake",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2015-07-01T19:28:46Z",
+      "side": 1,
+      "message": "Don\u0027t kill it, run through as many as possible and collect the ones that fail.\n\nPrint any failures after everything is done.",
+      "revId": "a44965ca8fdfe362aaa2827bc7f277f3daa9eb94",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
