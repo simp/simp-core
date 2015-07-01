@@ -51,7 +51,7 @@
 	url = git://github.com/simp/pupmod-simp-logrotate
 [submodule "src/puppet/modules/logstash"]
 	path = src/puppet/modules/logstash
-	url = git://github.com/simp/pupmod-simp-logstash
+	url = git://github.com/simp/puppet-logstash
 [submodule "src/puppet/modules/mcafee"]
 	path = src/puppet/modules/mcafee
 	url = git://github.com/simp/pupmod-simp-mcafee
