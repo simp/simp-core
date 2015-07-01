@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ad9bd40_9763cab0",
+        "filename": "rakefiles/build.rake",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-07-01T02:01:11Z",
+      "side": 1,
+      "message": "here be whitespace!\n\n\n\n\n\n\n\n\n(yarr.)",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 2
+      },
+      "revId": "011db873036b4878da8f47c181635092f3dd83a0",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
