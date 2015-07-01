@@ -61,8 +61,6 @@ ganglia-gmond-3.7.1-1.el6.x86_64:
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/ganglia-gmond-3.7.1-1.el6.x86_64.rpm
 ganglia-gmond-python-3.7.1-1.el6.x86_64:
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/ganglia-gmond-python-3.7.1-1.el6.x86_64.rpm
-ganglia-web-3.6.2-1.el6.x86_64:
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/ganglia-web-3.6.2-1.el6.x86_64.rpm
 globus-callout-3.13-2.el6.x86_64:
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-callout-3.13-2.el6.x86_64.rpm
 globus-common-15.29-1.el6.x86_64:
@@ -91,6 +89,8 @@ gpxe-bootimgs-0.9.7-6.12.el6.noarch:
   :source: http://mirrors.advancedhosters.com/centos/6.6/os/x86_64/Packages/gpxe-bootimgs-0.9.7-6.12.el6.noarch.rpm
 gpxe-roms-qemu-0.9.7-6.12.el6.noarch:
   :source: http://mirrors.advancedhosters.com/centos/6.6/os/x86_64/Packages/gpxe-roms-qemu-0.9.7-6.12.el6.noarch.rpm
+gweb-2.1.8-1.noarch:
+  :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/6/ext/x86_64/gweb-2.1.8-1.noarch.rpm
 hmaccalc-0.9.12-2.el6.x86_64:
   :source: http://mirrors.advancedhosters.com/centos/6.6/os/x86_64/Packages/hmaccalc-0.9.12-2.el6.x86_64.rpm
 incron-0.5.9-1.el6.x86_64:
@@ -143,12 +143,6 @@ mcollective-iptables-common-3.0.1-1.noarch:
   :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-iptables-common-3.0.1-1.noarch.rpm
 mcollective-logstash-audit-2.0.0-1.noarch:
   :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-logstash-audit-2.0.0-1.noarch.rpm
-mcollective-nettest-agent-3.0.3-1.noarch:
-  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-nettest-agent-3.0.3-1.noarch.rpm
-mcollective-nettest-client-3.0.3-1.noarch:
-  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-nettest-client-3.0.3-1.noarch.rpm
-mcollective-nettest-common-3.0.3-1.noarch:
-  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-nettest-common-3.0.3-1.noarch.rpm
 mcollective-nrpe-agent-3.0.2-1.noarch:
   :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-nrpe-agent-3.0.2-1.noarch.rpm
 mcollective-nrpe-client-3.0.2-1.noarch:
@@ -237,6 +231,8 @@ puppetserver-1.0.2-1.el6.noarch:
   :source: http://yum.puppetlabs.com/el/6/products/x86_64/puppetserver-1.0.2-1.el6.noarch.rpm
 python-argparse-1.2.1-2.el6.noarch:
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/python-argparse-1.2.1-2.el6.noarch.rpm
+python-backports-1.0-3.el6.x86_64:
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/python-backports-1.0-3.el6.x86_64.rpm
 python-backports-ssl_match_hostname-3.4.0.2-4.el6.noarch:
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/python-backports-ssl_match_hostname-3.4.0.2-4.el6.noarch.rpm
 python-elasticsearch-1.0.0-1.el6.noarch:
@@ -279,8 +275,6 @@ ruby-ldap-0.9.7-10.el6.x86_64:
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/ruby-ldap-0.9.7-10.el6.x86_64.rpm
 ruby-mysql-2.8.2-1.el6.x86_64:
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/ruby-mysql-2.8.2-1.el6.x86_64.rpm
-ruby-rdoc-1.8.7.374-4.el6_6.x86_64:
-  :source: http://centos.mirror.constant.com/6.6/updates/x86_64/Packages/ruby-rdoc-1.8.7.374-4.el6_6.x86_64.rpm
 ruby-rgen-0.6.5-2.el6.noarch:
   :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/ruby-rgen-0.6.5-2.el6.noarch.rpm
 ruby-shadow-2.2.0-2.el6.x86_64:
@@ -295,6 +289,8 @@ rubygem-fastthread-1.0.7-1.el6.x86_64:
   :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/rubygem-fastthread-1.0.7-1.el6.x86_64.rpm
 rubygem-ffi-1.4.0-2.el6.x86_64:
   :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/rubygem-ffi-1.4.0-2.el6.x86_64.rpm
+rubygem-highline-1.6.11-1.noarch:
+  :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/6/ext/x86_64/rubygem-highline-1.6.11-1.noarch.rpm
 rubygem-hpricot-0.8.6-1.el6.x86_64:
   :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/rubygem-hpricot-0.8.6-1.el6.x86_64.rpm
 rubygem-json-1.5.5-3.el6.x86_64:
@@ -315,10 +311,10 @@ rubygem-puppet-lint-1.1.0-1.el6.noarch:
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/rubygem-puppet-lint-1.1.0-1.el6.noarch.rpm
 rubygem-rack-1.0.1-2.el6.noarch:
   :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/rubygem-rack-1.0.1-2.el6.noarch.rpm
-rubygem-rake-compiler-0.9.3-1.el6.noarch:
-  :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/rubygem-rake-compiler-0.9.3-1.el6.noarch.rpm
-rubygem-rake-compiler-doc-0.7.0-2.el6.noarch:
-  :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/rubygem-rake-compiler-doc-0.7.0-2.el6.noarch.rpm
+rubygem-rake-compiler-0.9.3-2.el6.noarch:
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/rubygem-rake-compiler-0.9.3-2.el6.noarch.rpm
+rubygem-rake-compiler-doc-0.9.3-2.el6.noarch:
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/rubygem-rake-compiler-doc-0.9.3-2.el6.noarch.rpm
 rubygem-rdiscount-1.6.8-1.el6.x86_64:
   :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/rubygem-rdiscount-1.6.8-1.el6.x86_64.rpm
 rubygem-ronn-0.7.3-1.el6.noarch:
