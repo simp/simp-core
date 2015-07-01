@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ad9bd40_26ad6e89",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-07-01T21:30:30Z",
+      "side": 1,
+      "message": "#close doesn\u0027t take arguments; use an extra #comment line for this.",
+      "range": {
+        "startLine": 12,
+        "startChar": 15,
+        "endLine": 12,
+        "endChar": 40
+      },
+      "revId": "7aa0c5602372b1d00bbb3a62c9ff07a67df2ffb6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_46aa7271",
+        "filename": "rakefiles/submodule.rake",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-07-01T21:30:30Z",
+      "side": 1,
+      "message": "Small \"%q()\" is preferred if not interpolating variables.",
+      "range": {
+        "startLine": 11,
+        "startChar": 12,
+        "endLine": 11,
+        "endChar": 13
+      },
+      "revId": "7aa0c5602372b1d00bbb3a62c9ff07a67df2ffb6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_06a06a8f",
+        "filename": "rakefiles/submodule.rake",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-07-01T21:30:30Z",
+      "side": 1,
+      "message": "Optional ruby pedantry: convention is to use parentheses [e.g., \"%x(bundle)\"] for simple % blocks.  \n\nAn older convention was to use curly braces (e.g., \"%x{bundle}\").",
+      "range": {
+        "startLine": 32,
+        "startChar": 16,
+        "endLine": 32,
+        "endChar": 17
+      },
+      "revId": "7aa0c5602372b1d00bbb3a62c9ff07a67df2ffb6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_e6a2a699",
+        "filename": "rakefiles/submodule.rake",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-07-01T21:30:30Z",
+      "side": 1,
+      "message": "I suggest using \"warn\" instead of \"puts\" for warning messages (See: http://apidock.com/ruby/Kernel/warn).  You get free STDERR output and some libraries can add special coloring.",
+      "range": {
+        "startLine": 39,
+        "startChar": 4,
+        "endLine": 39,
+        "endChar": 8
+      },
+      "revId": "7aa0c5602372b1d00bbb3a62c9ff07a67df2ffb6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
