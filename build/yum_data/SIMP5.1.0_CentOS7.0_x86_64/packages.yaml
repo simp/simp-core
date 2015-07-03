@@ -3,20 +3,48 @@ activemq-5.9.1-2.el7.noarch:
   :source: http://yum.puppetlabs.com/el/7/dependencies/x86_64/activemq-5.9.1-2.el7.noarch.rpm
 activemq-info-provider-5.9.1-2.el7.noarch:
   :source: http://yum.puppetlabs.com/el/7/dependencies/x86_64/activemq-info-provider-5.9.1-2.el7.noarch.rpm
+boost-regex-1.53.0-23.el7.x86_64:
+  :source: http://mirror.cogentco.com/pub/linux/centos/7.1.1503/os/x86_64/Packages/boost-regex-1.53.0-23.el7.x86_64.rpm
 cfacter-0.3.0-1.el7.x86_64:
   :source: http://yum.puppetlabs.com/el/7/products/x86_64/cfacter-0.3.0-1.el7.x86_64.rpm
 chkrootkit-0.50-4el7.x86_64:
   :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/7/ext/x86_64/chkrootkit-0.50-4el7.x86_64.rpm
 clamav-0.98.7-1.el7.x86_64:
   :source: http://lug.mtu.edu/epel/7/x86_64/c/clamav-0.98.7-1.el7.x86_64.rpm
+clamav-data-0.98.7-1.el7.noarch:
+  :source: http://lug.mtu.edu/epel/7/x86_64/c/clamav-data-0.98.7-1.el7.noarch.rpm
+clamav-data-empty-0.98.7-1.el7.noarch:
+  :source: http://lug.mtu.edu/epel/7/x86_64/c/clamav-data-empty-0.98.7-1.el7.noarch.rpm
+clamav-devel-0.98.7-1.el7.x86_64:
+  :source: http://lug.mtu.edu/epel/7/x86_64/c/clamav-devel-0.98.7-1.el7.x86_64.rpm
+clamav-filesystem-0.98.7-1.el7.noarch:
+  :source: http://lug.mtu.edu/epel/7/x86_64/c/clamav-filesystem-0.98.7-1.el7.noarch.rpm
+clamav-lib-0.98.7-1.el7.x86_64:
+  :source: http://lug.mtu.edu/epel/7/x86_64/c/clamav-lib-0.98.7-1.el7.x86_64.rpm
+clamav-scanner-0.98.7-1.el7.noarch:
+  :source: http://lug.mtu.edu/epel/7/x86_64/c/clamav-scanner-0.98.7-1.el7.noarch.rpm
+clamav-scanner-systemd-0.98.7-1.el7.noarch:
+  :source: http://lug.mtu.edu/epel/7/x86_64/c/clamav-scanner-systemd-0.98.7-1.el7.noarch.rpm
+clamav-scanner-sysvinit-0.98.7-1.el7.noarch:
+  :source: http://lug.mtu.edu/epel/7/x86_64/c/clamav-scanner-sysvinit-0.98.7-1.el7.noarch.rpm
+clamav-server-0.98.7-1.el7.x86_64:
+  :source: http://lug.mtu.edu/epel/7/x86_64/c/clamav-server-0.98.7-1.el7.x86_64.rpm
+clamav-server-systemd-0.98.7-1.el7.noarch:
+  :source: http://lug.mtu.edu/epel/7/x86_64/c/clamav-server-systemd-0.98.7-1.el7.noarch.rpm
+clamav-server-sysvinit-0.98.7-1.el7.noarch:
+  :source: http://lug.mtu.edu/epel/7/x86_64/c/clamav-server-sysvinit-0.98.7-1.el7.noarch.rpm
+clamav-update-0.98.7-1.el7.x86_64:
+  :source: http://lug.mtu.edu/epel/7/x86_64/c/clamav-update-0.98.7-1.el7.x86_64.rpm
+ctags-5.8-13.el7.x86_64:
+  :source: http://mirror.cogentco.com/pub/linux/centos/7.1.1503/os/x86_64/Packages/ctags-5.8-13.el7.x86_64.rpm
 elasticsearch-1.3.2.noarch:
   :source: https://download.elasticsearch.org/elasticsearch/elasticsearch/packages/centos/elasticsearch-1.3.2.noarch.rpm
 elasticsearch-curator-1.1.1-0el7.noarch:
   :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/7/ext/x86_64/elasticsearch-curator-1.1.1-0el7.noarch.rpm
 es2unix-1.6.1-0el7.noarch:
   :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/7/ext/x86_64/es2unix-1.6.1-0el7.noarch.rpm
-etcd-2.0.11-0.SIMP.x86_64:
-  :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/7/ext/x86_64/etcd-2.0.11-0.SIMP.x86_64.rpm
+etcd-2.0.11-0.SIMP.el7.x86_64:
+  :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/7/ext/x86_64/etcd-2.0.11-0.SIMP.el7.x86_64.rpm
 facter-2.4.1-1.el7.x86_64:
   :source: http://yum.puppetlabs.com/el/7/products/x86_64/facter-2.4.1-1.el7.x86_64.rpm
 facter-2.4.4-1.el7.x86_64:
@@ -27,6 +55,8 @@ incron-0.5.10-8.el7.x86_64:
   :source: http://lug.mtu.edu/epel/7/x86_64/i/incron-0.5.10-8.el7.x86_64.rpm
 kibana-3.1.0.SIMP-0.noarch:
   :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/7/ext/x86_64/kibana-3.1.0.SIMP-0.noarch.rpm
+libarchive-devel-3.1.2-7.el7.x86_64:
+  :source: http://mirror.cogentco.com/pub/linux/centos/7.1.1503/os/x86_64/Packages/libarchive-devel-3.1.2-7.el7.x86_64.rpm
 libconfuse-2.7-7.el7.x86_64:
   :source: http://lug.mtu.edu/epel/7/x86_64/l/libconfuse-2.7-7.el7.x86_64.rpm
 libev-4.15-3.el7.x86_64:
@@ -45,6 +75,8 @@ libsepol-2.1.9-3.el7.x86_64:
   :source: http://mirror.metrocast.net/centos/7.1.1503/os/x86_64/Packages/libsepol-2.1.9-3.el7.x86_64.rpm
 libsepol-static-2.1.9-3.el7.x86_64:
   :source: http://mirror.metrocast.net/centos/7.1.1503/os/x86_64/Packages/libsepol-static-2.1.9-3.el7.x86_64.rpm
+libyaml-0.1.4-11.el7_0.x86_64:
+  :source: http://mirror.cogentco.com/pub/linux/centos/7.1.1503/os/x86_64/Packages/libyaml-0.1.4-11.el7_0.x86_64.rpm
 logstash-1.4.2-1_2c0f5a1.noarch:
   :source: https://download.elasticsearch.org/logstash/logstash/packages/centos/logstash-1.4.2-1_2c0f5a1.noarch.rpm
 logstash-contrib-1.4.2-1_efd53ef.noarch:
@@ -205,6 +237,8 @@ rubygem-deep_merge-1.0.0-2.el7.noarch:
   :source: http://yum.puppetlabs.com/el/7/dependencies/x86_64/rubygem-deep_merge-1.0.0-2.el7.noarch.rpm
 rubygem-ffi-1.4.0-2.el7.x86_64:
   :source: http://yum.puppetlabs.com/el/7/dependencies/x86_64/rubygem-ffi-1.4.0-2.el7.x86_64.rpm
+rubygem-highline-1.6.11-5.el7.noarch:
+  :source: http://lug.mtu.edu/epel/7/x86_64/r/rubygem-highline-1.6.11-5.el7.noarch.rpm
 rubygem-net-ping-1.6.2-1.el7.noarch:
   :source: http://yum.puppetlabs.com/el/7/dependencies/x86_64/rubygem-net-ping-1.6.2-1.el7.noarch.rpm
 rubygem-puppet-lint-1.1.0-1.el7.noarch:
@@ -223,5 +257,7 @@ simp-lastbind-2.4.23-0.x86_64:
   :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/7/ext/x86_64/simp-lastbind-2.4.23-0.x86_64.rpm
 simp-ppolicy-check-password-2.4.39-0el7.x86_64:
   :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/7/ext/x86_64/simp-ppolicy-check-password-2.4.39-0el7.x86_64.rpm
+source-highlight-3.1.6-6.el7.x86_64:
+  :source: http://mirror.cogentco.com/pub/linux/centos/7.1.1503/os/x86_64/Packages/source-highlight-3.1.6-6.el7.x86_64.rpm
 sudosh2-1.0.2-2el7.x86_64:
   :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/7/ext/x86_64/sudosh2-1.0.2-2el7.x86_64.rpm
