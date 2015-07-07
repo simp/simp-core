@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ad9bd40_47e9707f",
+        "filename": "rakefiles/pkg.rake",
+        "patchSetId": 1
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-07-07T14:02:19Z",
+      "side": 1,
+      "message": "fancy. ;P",
+      "range": {
+        "startLine": 315,
+        "startChar": 6,
+        "endLine": 315,
+        "endChar": 12
+      },
+      "revId": "fac8dbb5dc8495cb20db86224bef40b292d2520d",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
