@@ -130,10 +130,9 @@ namespace :pkg do
 %echo
 %echo This key will expire on #{expire_date}
 %echo
-Key-Type: DSA
+Key-Type: RSA
 Key-Length: 2048
-Subkey-Type: ELG-E
-Subkey-Length: 2048
+Key-Usage: sign
 Name-Real: SIMP Development
 Name-Comment: Development key #{now}
 Name-Email: #{dev_email}
@@ -313,7 +312,7 @@ Passphrase: #{passphrase}
       :progress => t.name
     ) do |rpm|
       rpminfo = %x{rpm -qip #{rpm} 2>/dev/null}.split("\n")
-      if not rpminfo.grep(/Signature\s+:\s+\(none\)/).empty?
+      unless rpminfo.grep(/Signature\s+:\s+\(none\)/).empty?
         Simp::RPM.signrpm(rpm,"#{BUILD_DIR}/build_keys/#{args.key}")
       end
     end
