@@ -949,6 +949,7 @@ rrdtool
 rrdtool-perl
 rsync
 rsyslog
+rsyslog-gnutls
 rt61pci-firmware
 rt73usb-firmware
 ruby
