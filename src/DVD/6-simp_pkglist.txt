@@ -301,6 +301,7 @@ gpg-pubkey
 gpgme
 gpm
 gpm-libs
+gpxe-roms-qemu
 grep
 groff
 grub
@@ -994,6 +995,7 @@ samba-common
 samba-winbind
 samba-winbind-clients
 samba4-libs
+scap-security-guide
 screen
 sed
 selinux-policy
@@ -1065,6 +1067,8 @@ time
 tk
 tmpwatch
 tokyocabinet
+tpm-tools
+trousers
 ttmkfdir
 tuned
 tzdata
