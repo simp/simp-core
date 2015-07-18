@@ -1,0 +1,4 @@
+[simp-ext]
+name=simp-ext
+baseurl=https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/7/ext/x86_64
+enabled=1
