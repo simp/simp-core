@@ -38,7 +38,7 @@ clamav-update-0.98.7-1.el7.x86_64:
 ctags-5.8-13.el7.x86_64:
   :source: http://mirror.cogentco.com/pub/linux/centos/7.1.1503/os/x86_64/Packages/ctags-5.8-13.el7.x86_64.rpm
 elasticsearch-1.3.2.noarch:
-  :source: https://download.elasticsearch.org/elasticsearch/elasticsearch/packages/centos/elasticsearch-1.3.2.noarch.rpm
+  :source: https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.3.2.noarch.rpm
 elasticsearch-curator-1.1.1-0el7.noarch:
   :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/7/ext/x86_64/elasticsearch-curator-1.1.1-0el7.noarch.rpm
 es2unix-1.6.1-0el7.noarch:
