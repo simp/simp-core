@@ -67,20 +67,37 @@ namespace :build do
         @have_yumdownloader = true
       end
 
+      source = nil
+
       puts("Looking up: #{rpm}")
-      source = %x(yumdownloader -c #{yum_conf} --urls #{rpm} 2>/dev/null ).split("\n")
-
-      source = source.grep(/(#{@build_arch}|noarch)\.rpm$/)
-
-      if source.size > 1
-        raise(SIMPBuildException,"More than one file found")
-      end
+      sources = %x(yumdownloader -c #{yum_conf} --urls #{rpm} 2>/dev/null )
 
       unless $?.success?
         raise(SIMPBuildException,"Could not find a download source")
       end
 
-      return source.first
+      sources = sources.split("\n").grep(%r(\.rpm$))
+
+      if sources.empty?
+        raise(SIMPBuildException,'No Sources found')
+      else
+        native_sources = sources.grep(%r((#{@build_arch}|noarch)\.rpm$))
+
+        # One entry, one success
+        if native_sources.size == 1
+          source = native_sources.first
+        # More than one entry is no good.
+        elsif native_sources.size > 1
+          raise(SIMPBuildException,'More than one file found')
+        # The only entry found was for a non-native architecure
+        # This means that someone specified the arch explicitly at the
+        # command line and we should take it.
+        else
+          source = sources.first
+        end
+      end
+
+      return source
     end
 
     # Snag an RPM via YUM.
@@ -97,14 +114,39 @@ namespace :build do
         full_pkg = source.split('/').last
         unless File.exist?(full_pkg)
           puts("Downloading: #{full_pkg}")
-          %x(curl -L --max-redirs 10 -s -O -k #{source})
+          %x(curl -L --max-redirs 10 -s -o "#{full_pkg}" -k "#{source}")
+
           unless $?.success?
             raise(SIMPBuildException,"Could not download")
           end
+
+          validate_rpm(full_pkg)
         end
       end
 
       return source
+    end
+
+    # Check to see if an RPM is actually a valid RPM
+    # Optionally remove any invalid RPMS.
+    #
+    # Returns true if the rm is valid raises a SIMPBuildException otherwise
+    def validate_rpm(rpm, clean=true)
+      # Check to see if what we got is actually valid
+      %x(rpm -K --nosignature "#{rpm}" 2>&1 > /dev/null)
+
+      unless $?.success?
+        errmsg = "RPM '#{rpm}' is invalid"
+
+        if clean
+          errmsg += ', removing'
+          FileUtils.rm(rpm)
+        end
+
+        raise(SIMPBuildException,errmsg)
+      end
+
+      true
     end
 
     # Create the YUM config file
@@ -218,7 +260,16 @@ namespace :build do
 
         failed_updates = {}
 
-        # Let's go ahead and grab everything that we know the source for first!
+        # Kill any pre-existing invalid packages that might be hanging around
+        downloaded_packages.each do |package|
+          begin
+            validate_rpm(%(packages/#{package}.rpm))
+          rescue SIMPBuildException => e
+            failed_updates[package] = e
+          end
+        end
+
+        # Let's go ahead and grab everything that we know the source for
         (known_packages - downloaded_packages).sort.each do |package|
           begin
             # Do we have a valid external source?

@@ -190,23 +190,24 @@ Build the SIMP ISO(s).
             cp(rpm,rpm_arch)
           end
 
+          fail("Could not find architecture '#{arch}' in the SIMP distribution") unless File.directory?(arch)
           # Get everything set up properly...
-          Dir.glob('*').each do |arch_dir|
-            next if(
-              !File.directory?(arch_dir) ||
-              arch_dir.eql?('noarch') ||
-              arch_dir.eql?('GPGKEYS')
-            )
+          Dir.chdir(arch) do
+            Dir.glob('../*') do |rpm_dir|
+              # Don't dive into ourselves
+              next if File.basename(rpm_dir) == arch
 
-            Dir.chdir(arch_dir) do
-              Find.find('../noarch') do |find_rpm|
-                if File.extname(find_rpm).eql?('.rpm')
-                  ln_sf(find_rpm,File.basename(find_rpm))
+              Dir.glob(%(#{rpm_dir}/*.rpm)) do |source_rpm|
+                link_target = File.basename(source_rpm)
+                if File.exist?(source_rpm) && File.exist?(link_target)
+                  next if Pathname.new(source_rpm).realpath == Pathname.new(link_target).realpath
                 end
-              end
 
-              fail("Error: Could not run createrepo in #{Dir.pwd}") unless system(%(#{mkrepo} .))
+                ln_sf(source_rpm,link_target)
+              end
             end
+
+            fail("Error: Could not run createrepo in #{Dir.pwd}") unless system(%(#{mkrepo} .))
           end
         end
 
