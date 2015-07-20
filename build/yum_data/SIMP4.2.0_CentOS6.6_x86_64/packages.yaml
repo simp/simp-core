@@ -42,7 +42,7 @@ dracut-fips-004-356.el6_6.2.noarch:
 dracut-kernel-004-356.el6_6.2.noarch:
   :source: http://centos.mirror.constant.com/6.6/updates/x86_64/Packages/dracut-kernel-004-356.el6_6.2.noarch.rpm
 elasticsearch-1.3.2.noarch:
-  :source: https://download.elasticsearch.org/elasticsearch/elasticsearch/packages/centos/elasticsearch-1.3.2.noarch.rpm
+  :source: https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.3.2.noarch.rpm
 elasticsearch-curator-1.1.1-0.el6.noarch:
   :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/6/ext/x86_64/elasticsearch-curator-1.1.1-0.el6.noarch.rpm
 es2unix-1.6.1-0.el6.noarch:
@@ -55,16 +55,16 @@ freeradius-ldap-2.1.12-6.el6.x86_64:
   :source: http://linux.cc.lehigh.edu/centos/6.6/os/x86_64/Packages/freeradius-ldap-2.1.12-6.el6.x86_64.rpm
 freeradius-utils-2.1.12-6.el6.x86_64:
   :source: http://linux.cc.lehigh.edu/centos/6.6/os/x86_64/Packages/freeradius-utils-2.1.12-6.el6.x86_64.rpm
-ganglia-3.7.1-1.el6.x86_64:
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/ganglia-3.7.1-1.el6.x86_64.rpm
-ganglia-devel-3.7.1-1.el6.x86_64:
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/ganglia-devel-3.7.1-1.el6.x86_64.rpm
-ganglia-gmetad-3.7.1-1.el6.x86_64:
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/ganglia-gmetad-3.7.1-1.el6.x86_64.rpm
-ganglia-gmond-3.7.1-1.el6.x86_64:
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/ganglia-gmond-3.7.1-1.el6.x86_64.rpm
-ganglia-gmond-python-3.7.1-1.el6.x86_64:
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/ganglia-gmond-python-3.7.1-1.el6.x86_64.rpm
+ganglia-3.7.1-2.el6.x86_64:
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/ganglia-3.7.1-2.el6.x86_64.rpm
+ganglia-devel-3.7.1-2.el6.x86_64:
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/ganglia-devel-3.7.1-2.el6.x86_64.rpm
+ganglia-gmetad-3.7.1-2.el6.x86_64:
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/ganglia-gmetad-3.7.1-2.el6.x86_64.rpm
+ganglia-gmond-3.7.1-2.el6.x86_64:
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/ganglia-gmond-3.7.1-2.el6.x86_64.rpm
+ganglia-gmond-python-3.7.1-2.el6.x86_64:
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/ganglia-gmond-python-3.7.1-2.el6.x86_64.rpm
 glibc-2.12-1.149.el6_6.9.i686:
   :source: http://mirror.es.its.nyu.edu/centos/6.6/updates/x86_64/Packages/glibc-2.12-1.149.el6_6.9.i686.rpm
 glibc-2.12-1.149.el6_6.9.x86_64:
@@ -83,8 +83,8 @@ glibc-utils-2.12-1.149.el6_6.9.x86_64:
   :source: http://mirror.es.its.nyu.edu/centos/6.6/updates/x86_64/Packages/glibc-utils-2.12-1.149.el6_6.9.x86_64.rpm
 globus-callout-3.13-2.el6.x86_64:
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-callout-3.13-2.el6.x86_64.rpm
-globus-common-15.29-1.el6.x86_64:
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-common-15.29-1.el6.x86_64.rpm
+globus-common-15.30-1.el6.x86_64:
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-common-15.30-1.el6.x86_64.rpm
 globus-gsi-callback-5.7-1.el6.x86_64:
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-gsi-callback-5.7-1.el6.x86_64.rpm
 globus-gsi-cert-utils-9.10-2.el6.x86_64:
@@ -101,8 +101,8 @@ globus-gsi-sysconfig-6.8-2.el6.x86_64:
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-gsi-sysconfig-6.8-2.el6.x86_64.rpm
 globus-gss-assist-10.13-2.el6.x86_64:
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-gss-assist-10.13-2.el6.x86_64.rpm
-globus-gssapi-gsi-11.18-1.el6.x86_64:
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-gssapi-gsi-11.18-1.el6.x86_64.rpm
+globus-gssapi-gsi-11.19-1.el6.x86_64:
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-gssapi-gsi-11.19-1.el6.x86_64.rpm
 globus-openssl-module-4.6-2.el6.x86_64:
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-openssl-module-4.6-2.el6.x86_64.rpm
 gpxe-bootimgs-0.9.7-6.12.el6.noarch:
