@@ -1404,6 +1404,7 @@ sudo
 sudosh2
 symlinks
 sysfsutils
+syslinux
 sysstat
 system-config-firewall-base
 system-gnome-theme
