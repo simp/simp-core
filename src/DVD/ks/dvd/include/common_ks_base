@@ -87,6 +87,7 @@ elinks
 mkisofs
 openldap-servers
 simp
+syslinux-tftpboot
 
 # In case of broken repo, these should be installed.
 hdparm
