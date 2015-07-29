@@ -56,7 +56,7 @@ for dir in '/srv/www/yum/SIMP' '/var/www/yum/SIMP'; do
   new_key_list=`mktemp --suffix=.simp_gpgkeys`
 
   find "${dir}/GPGKEYS" -name "RPM-GPG-KEY*" -maxdepth 1 -printf "%f\n" | sort -u > $old_key_list
-  find "%{prefix}/GPGKEYS" -name "RPM-GPG-KEY*" -maxdepth 1 -printf "%f\n" | sort -u > $new_key_list
+  find "%{prefix}" -name "RPM-GPG-KEY*" -maxdepth 1 -printf "%f\n" | sort -u > $new_key_list
 
   for file in `comm -23 $old_key_list $new_key_list`; do
     if [ -f "${dir}/GPGKEYS/${file}" ]; then
