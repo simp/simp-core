@@ -379,8 +379,8 @@ simp-hiera-1.3.4-3.el6.noarch:
   :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/6/ext/x86_64/simp-hiera-1.3.4-3.el6.noarch.rpm
 simp-lastbind-2.4.23-0.x86_64:
   :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/6/ext/x86_64/simp-lastbind-2.4.23-0.x86_64.rpm
-simp-ppolicy-check-password-2.4.23-2.el6.x86_64:
-  :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/6/ext/x86_64/simp-ppolicy-check-password-2.4.23-2.el6.x86_64.rpm
+simp-ppolicy-check-password-2.4.39-0.el6.x86_64:
+  :source: https://dl.bintray.com/simp/4.2.X/simp-ppolicy-check-password-2.4.39-0.el6.x86_64.rpm
 sudosh2-1.0.2-2.el6.x86_64:
   :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/6/ext/x86_64/sudosh2-1.0.2-2.el6.x86_64.rpm
 syslinux-tftpboot-4.04-3.el6.noarch:
