@@ -122,7 +122,7 @@ namespace :pkg do
 
         expire_date = (DateTime.now + 14)
         now = Time.now.to_i.to_s
-        dev_email = 'simp@development.key'
+        dev_email = 'gatekeeper@simp.development.key'
         passphrase = SecureRandom.base64(500)
 
         gpg_infile = <<-EOM
@@ -131,7 +131,7 @@ namespace :pkg do
 %echo This key will expire on #{expire_date}
 %echo
 Key-Type: RSA
-Key-Length: 2048
+Key-Length: 4096
 Key-Usage: sign
 Name-Real: SIMP Development
 Name-Comment: Development key #{now}
