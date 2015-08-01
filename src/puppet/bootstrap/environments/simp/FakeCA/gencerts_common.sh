@@ -23,7 +23,8 @@ create_ca () {
     if [ $batch -eq 0 ]; then
       if [ ! -f 'CA_batch' ]; then
         sed -e 's/^REQ=\(.*\) req\(.*\)"/REQ=\1 req \2 -batch -passout file:cacertkey"/' $CA_src | \
-          sed -e 's/^CA=\(.*\) ca\(.*\)"/CA=\1 ca \2 -passin file:cacertkey"/' > 'CA_batch'
+          sed -e 's/^CA=\(.*\) ca\(.*\)"/CA=\1 ca \2 -passin file:cacertkey"/' | \
+          sed -e 's/read FILE/#read FILE/' > 'CA_batch'
 
         chmod +x 'CA_batch'
       fi
