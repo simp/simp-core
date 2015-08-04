@@ -26,6 +26,5 @@ puppetdb::master::puppet_service_name : 'puppetserver'
 classes :
   - 'simp::server'
   - 'simp::puppetdb'
-  - 'simp::ldap_server'
   - 'simp::yum_server'
   - 'simp::kickstart_server'
