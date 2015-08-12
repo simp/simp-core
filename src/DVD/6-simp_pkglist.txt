@@ -439,6 +439,7 @@ javassist
 javassist-javadoc
 jline
 jpackage-utils
+json-c
 kabi-yum-plugins
 kbd
 kbd-misc
@@ -537,6 +538,7 @@ liberation-mono-fonts
 liberation-sans-fonts
 liberation-serif-fonts
 libertas-usb8388-firmware
+libestr
 libevent
 libexif
 libffi
@@ -949,8 +951,8 @@ rpmdevtools
 rrdtool
 rrdtool-perl
 rsync
-rsyslog
-rsyslog-gnutls
+rsyslog7
+rsyslog7-gnutls
 rt61pci-firmware
 rt73usb-firmware
 ruby
