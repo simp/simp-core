@@ -46,7 +46,7 @@ cp RPM-GPG-KEY* %{buildroot}/%{prefix}
 
 for dir in '/srv/www/yum/SIMP' '/var/www/yum/SIMP'; do
   if [ -d $dir ]; then
-    mkdir -p -m 0755 "${dir}/GPGKEYS"
+    mkdir -p -m 0750 "${dir}/GPGKEYS"
   fi
   cp %{prefix}/RPM-GPG-KEY* "${dir}/GPGKEYS"
 
@@ -71,6 +71,25 @@ for dir in '/srv/www/yum/SIMP' '/var/www/yum/SIMP'; do
   if [ -f $new_key_list ]; then
     rm -f $new_key_list
   fi
+
+  # Link system GPG keys into SIMP repo
+  if [ `facter operatingsystem` == 'CentOS' ]; then
+    search_string='.*CentOS-6|.*CentOS-Security.*'
+  elif [ `facter operatingsystem` == 'RedHat' ]; then
+    search_string='.*redhat.*release.*'
+  else
+    search_string=''
+  fi
+  if [ -n "$search_string" ]; then
+    for file in `find /etc/pki/rpm-gpg/ -regextype posix-extended -regex ${search_string}`; do
+      cp ${file} ${dir}/GPGKEYS
+    done
+  fi
+
+  # Ensure GPG permissions
+  chown -R root:apache ${dir}/GPGKEYS/
+  find ${dir}/GPGKEYS/ -type f -exec chmod 640 {} +
+
 done
 
 %postun
@@ -78,7 +97,7 @@ done
 
 for dir in '/srv/www/yum/SIMP' '/var/www/yum/SIMP'; do
   if [ -d "${dir}/GPGKEYS" ]; then
-    find -P "${dir}/GPGKEYS" -xdev -xautofs -delete
+    find -P "${dir}/GPGKEYS/" -type f -xdev -xautofs -delete
   fi
 done
 
