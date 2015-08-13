@@ -127,7 +127,7 @@ namespace :build do
       source = nil
 
       puts("Looking up: #{rpm}")
-      sources = %x(yumdownloader -c #{yum_conf} --urls #{rpm} 2>/dev/null )
+      sources = %x(yumdownloader -c #{yum_conf} --urls #{File.basename(rpm,'.rpm')} 2>/dev/null )
 
       unless $?.success?
         raise(SIMPBuildException,"Could not find a download source")
@@ -177,7 +177,12 @@ namespace :build do
             raise(SIMPBuildException,"Could not download")
           end
 
-          validate_rpm(full_pkg)
+          begin
+            validate_rpm(full_pkg)
+          rescue SIMPBuildException
+            rm(full_pkg) if File.exist?(full_pkg)
+            raise(SIMPBuildException,"#{rpm} could not be downloaded")
+          end
         end
       end
 
@@ -258,22 +263,40 @@ namespace :build do
     end
 
     def get_known_packages(target_dir=Dir.pwd)
-      known_packages_hash = {}
+      known_package_hash = {}
 
       Dir.chdir(target_dir) do
         if File.exist?('packages.yaml')
-          known_packages_hash = YAML::load_file('packages.yaml')
+          known_package_hash = YAML::load_file('packages.yaml')
         end
       end
 
-      return known_packages_hash
+      unless known_package_hash.empty?
+        unless known_package_hash.first.last[:rpm_name]
+          # Convert from Legacy
+          # This is imperfect since we can't accurately determine the RPM sort
+          # name but the code should straighten everything out since we rewrite
+          # the entire file based on what has been downloaded.
+          new_package_hash = known_package_hash.dup
+
+          known_package_hash.each_key { |k|
+            new_package_hash[k][:rpm_name] = k
+          }
+
+          known_package_hash = new_package_hash
+        end
+      end
+
+      return known_package_hash
     end
 
     def get_downloaded_packages(target_dir=Dir.pwd)
-      downloaded_packages = []
+      downloaded_packages = {}
 
       Dir.chdir(target_dir) do
-        downloaded_packages = Dir.glob('packages/*.rpm').map{|x| File.basename(x,'.rpm')}
+        Dir.glob('packages/*.rpm').each do |pkg|
+          downloaded_packages[Simp::RPM.get_info(pkg)[:name]] = { :rpm_name => File.basename(pkg) }
+        end
       end
 
       return downloaded_packages
@@ -301,10 +324,19 @@ namespace :build do
 
         yum_conf = generate_yum_conf
 
-        known_packages_hash = get_known_packages
+        known_package_hash = get_known_packages
+        downloaded_package_hash = get_downloaded_packages
 
-        known_packages = known_packages_hash.keys
-        downloaded_packages = get_downloaded_packages
+        # This holds packages for which we could not find a source.
+        unknown_package_hash = {}
+
+        known_packages = known_package_hash.keys.collect{ |pkg|
+          pkg = known_package_hash[pkg][:rpm_name]
+        }.compact
+
+        downloaded_packages = downloaded_package_hash.keys.collect{ |pkg|
+          pkg = downloaded_package_hash[pkg][:rpm_name]
+        }.compact
 
         if known_packages.empty? && downloaded_packages.empty?
           fail <<-EOM
@@ -318,50 +350,93 @@ namespace :build do
         failed_updates = {}
 
         # Kill any pre-existing invalid packages that might be hanging around
-        downloaded_packages.each do |package|
+        downloaded_packages.dup.each do |package|
           begin
-            validate_rpm(%(packages/#{package}.rpm))
+            validate_rpm(%(packages/#{package}))
           rescue SIMPBuildException => e
+            rm(%(packages/#{package})) if File.exist?(%(packages/#{package}))
+            downloaded_packages.delete(package)
             failed_updates[package] = e
           end
         end
 
         # Let's go ahead and grab everything that we know the source for
-        (known_packages - downloaded_packages).sort.each do |package|
+        (known_packages - downloaded_packages).sort.each do |package_to_download|
           begin
             # Do we have a valid external source?
-            if known_packages_hash[package][:source] =~ /^[a-z]+:\/\//
-              download_rpm(package,yum_conf,known_packages_hash[package][:source])
+            package_source = known_package_hash.find{|k,h| h[:rpm_name] == package_to_download}.last[:source]
+            if package_source && (package_source =~ %r(^[a-z]+://))
+              download_rpm(package_to_download,yum_conf,package_source)
             else
               # If you get here, then you'll need to have an internal mirror of the
               # repositories in question. This covers things like private RPMs as
               # well as Commercial RPMs from Red Hat.
-              download_rpm(package,yum_conf)
+              download_rpm(package_to_download,yum_conf)
             end
           rescue SIMPBuildException => e
-            failed_updates[package] = e
+            base_package_name = known_package_hash.find{|k,h| h[:rpm_name] == package_to_download}.first
+            updated_package = update_rpm(base_package_name,yum_conf,true)
+
+            if updated_package
+              updated_package_rpm_name = updated_package[base_package_name][:rpm_name]
+
+              # We just got a new one! Replace the old one.
+              puts "Updating: #{package_to_download} with #{updated_package_rpm_name}"
+
+              # We now know about this
+              downloaded_packages.delete(package_to_download)
+              downloaded_package_hash.merge!(updated_package)
+              known_package_hash.merge!(updated_package)
+              known_packages << updated_package_rpm_name
+            else
+              failed_updates[package_to_download] = e
+            end
           end
         end
 
         # Now, let's update the known_packages data structure for anything that's
         # new!
         (downloaded_packages - known_packages).each do |package|
-          begin
-            known_packages_hash[package] = { :source => get_rpm_source(package,yum_conf) }
-          rescue SIMPBuildException => e
-            failed_updates[package] = e
+          downloaded_package_hash.keys.each do |key|
+            if downloaded_package_hash[key][:rpm_name] == package
+              begin
+                rpm_source = get_rpm_source(package,yum_conf)
+                known_package_hash[key] = downloaded_package_hash[key]
+                known_package_hash[key][:source] = rpm_source
+              rescue SIMPBuildException => e
+                unknown_package_hash[key] = {} unless unknown_package_hash[key]
+                unknown_package_hash[key][:rpm_name] = package
+                failed_updates[package] = e
+              end
+              break
+            end
           end
         end
 
         # OK! In theory, we're done with all of this nonsense! Let's update the
         # YAML file.
         File.open('packages.yaml','w') do |fh|
-          # Just want a sorted hash without all the garbage
           sorted_packages = {}
-          known_packages_hash.keys.sort.each do |k|
-            sorted_packages[k] = known_packages_hash[k]
+          known_package_hash.keys.sort.each do |k|
+            # Make sure we don't capture any legacy malformed info
+            if known_package_hash[k][:rpm_name][-4..-1] == '.rpm'
+              sorted_packages[k] = known_package_hash[k]
+            end
           end
           fh.puts(sorted_packages.to_yaml)
+        end
+
+        if unknown_package_hash.empty?
+          rm('unkown_packages.yaml') if File.exist?('unknown_packages.yaml')
+        else
+          # Next, let's freshen up the unknown packages reference file
+          File.open('unknown_packages.yaml','w') do |fh|
+            sorted_packages = {}
+            unknown_package_hash.keys.sort.each do |k|
+              sorted_packages[k] = unknown_package_hash[k]
+            end
+            fh.puts(sorted_packages.to_yaml)
+          end
         end
 
         # Now, let's tell the user what went wrong.
@@ -373,6 +448,59 @@ namespace :build do
           end
         end
       end
+    end
+
+    # Downloads a packge into the *current working directory*
+    #
+    # Will create a directory called 'obsolete' and move any old packages into
+    # that location if a newer one is found.
+    #
+    # Arguments:
+    #   * pkg     => The name of the package to download. YUM supported globs
+    #                are allowed.
+    #   * verbose => If true, identify potential actions of note.
+    #
+    # Returns a hash of the new package information if found.
+    #
+    def update_rpm(pkg,yum_conf,verbose=false)
+      updated_pkg = nil
+
+      begin
+        new_pkg_source = download_rpm(pkg, yum_conf)
+        new_pkg = new_pkg_source.split('/').last
+
+        Dir.chdir('packages') do
+          new_pkg_info = Simp::RPM.new(new_pkg)
+
+          # Find any old packages and move them into the 'obsolete' directory.
+          Dir.glob("#{new_pkg_info.basename}*.rpm").each do |old_pkg|
+            old_pkg_info = Simp::RPM.new(old_pkg)
+            # Don't obsolete yourself!
+            next unless new_pkg_info.basename == old_pkg_info.basename
+
+            %x(rpmdev-vercmp #{new_pkg_info.full_version} #{old_pkg_info.full_version})
+            exit_status = $?.exitstatus
+            if exit_status == 11
+              mkdir('obsolete') unless File.directory?('obsolete')
+
+              puts("Retiring #{old_pkg}") if verbose
+
+              mv(old_pkg,'obsolete')
+            end
+          end
+
+          updated_pkg = {
+            new_pkg_info.basename => {
+              :source => new_pkg_source,
+              :rpm_name => new_pkg
+            }
+          }
+        end
+      rescue SIMPBuildException => e
+        puts("Failed to update #{pkg} -> #{e}") if verbose
+      end
+
+      updated_pkg
     end
 
     ##############################################################################
@@ -465,10 +593,11 @@ namespace :build do
 
       target_dir = get_target_dir(args)
 
-      known_packages_hash = get_known_packages(target_dir)
+      known_package_hash = get_known_packages(target_dir)
+      downloaded_package_hash = get_downloaded_packages(target_dir)
 
-      known_packages = known_packages_hash.keys
-      downloaded_packages = get_downloaded_packages(target_dir)
+      known_packages = known_package_hash.keys.compact
+      downloaded_packages = downloaded_package_hash.keys.compact
 
       known_not_downloaded = (known_packages - downloaded_packages).sort
       unless known_not_downloaded.empty?
@@ -486,7 +615,7 @@ namespace :build do
 
         puts ("=== Pacakges Downloaded not Recorded ===")
         downloaded_not_known.each do |package|
-          puts "  ~ #{package}"
+          puts "  ~ #{downloaded_package_hash[package][:rpm_name]}"
         end
       end
 
@@ -544,30 +673,7 @@ namespace :build do
       Dir.chdir(get_target_dir(args)) do
         pkgs.each do |pkg|
           # Pull down the RPM
-          begin
-            new_pkg = download_rpm(pkg, generate_yum_conf).split('/').last
-
-            Dir.chdir('packages') do
-              new_pkg_info = Simp::RPM.new(new_pkg)
-
-              # Find any old packages and move them into the 'obsolete' directory.
-              Dir.glob("#{new_pkg_info.basename}*.rpm").each do |old_pkg|
-                old_pkg_info = Simp::RPM.new(old_pkg)
-                next unless new_pkg_info.basename == old_pkg_info.basename
-
-                %x(rpmdev-vercmp #{new_pkg_info.full_version} #{old_pkg_info.full_version})
-                if $?.exitstatus == 11
-                  mkdir('obsolete') unless File.directory?('obsolete')
-
-                  puts("Retiring #{old_pkg}")
-
-                  mv(old_pkg,'obsolete')
-                end
-              end
-            end
-          rescue SIMPBuildException => e
-            puts("Failed to download #{pkg} -> #{e}")
-          end
+          update_rpm(pkg,generate_yum_conf,true)
         end
       end
     end
