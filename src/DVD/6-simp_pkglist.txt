@@ -752,6 +752,7 @@ openldap-clients
 openldap-devel
 openldap-servers
 openscap
+openscap-scanner
 openscap-utils
 opensp
 openssh
@@ -915,6 +916,7 @@ radiusclient-ng
 rarian
 rarian-compat
 raries necessary to run Ruby
+rdma
 readahead
 readline
 redhat-bookmarks
@@ -1095,6 +1097,7 @@ util-linux-ng
 vconfig
 vim-common
 vim-enhanced
+vim-filesystem
 vim-minimal
 virt-what
 vlock

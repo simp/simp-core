@@ -98,24 +98,6 @@ ganglia-gmond:
 ganglia-gmond-python:
   :rpm_name: ganglia-gmond-python-3.7.1-2.el6.x86_64.rpm
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/ganglia-gmond-python-3.7.1-2.el6.x86_64.rpm
-glibc:
-  :rpm_name: glibc-2.12-1.166.el6_7.1.x86_64.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/updates/x86_64/Packages/glibc-2.12-1.166.el6_7.1.x86_64.rpm
-glibc-common:
-  :rpm_name: glibc-common-2.12-1.166.el6_7.1.x86_64.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/updates/x86_64/Packages/glibc-common-2.12-1.166.el6_7.1.x86_64.rpm
-glibc-devel:
-  :rpm_name: glibc-devel-2.12-1.166.el6_7.1.x86_64.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/updates/x86_64/Packages/glibc-devel-2.12-1.166.el6_7.1.x86_64.rpm
-glibc-headers:
-  :rpm_name: glibc-headers-2.12-1.166.el6_7.1.x86_64.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/updates/x86_64/Packages/glibc-headers-2.12-1.166.el6_7.1.x86_64.rpm
-glibc-static:
-  :rpm_name: glibc-static-2.12-1.166.el6_7.1.x86_64.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/updates/x86_64/Packages/glibc-static-2.12-1.166.el6_7.1.x86_64.rpm
-glibc-utils:
-  :rpm_name: glibc-utils-2.12-1.166.el6_7.1.x86_64.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/updates/x86_64/Packages/glibc-utils-2.12-1.166.el6_7.1.x86_64.rpm
 globus-callout:
   :rpm_name: globus-callout-3.13-2.el6.x86_64.rpm
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-callout-3.13-2.el6.x86_64.rpm
@@ -296,9 +278,6 @@ mrepo:
 mysql-connector-python:
   :rpm_name: mysql-connector-python-1.1.6-1.el6.noarch.rpm
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/mysql-connector-python-1.1.6-1.el6.noarch.rpm
-nscd:
-  :rpm_name: nscd-2.12-1.166.el6_7.1.x86_64.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/updates/x86_64/Packages/nscd-2.12-1.166.el6_7.1.x86_64.rpm
 nspr:
   :rpm_name: nspr-4.10.8-1.el6_6.x86_64.rpm
   :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/os/x86_64/Packages/nspr-4.10.8-1.el6_6.x86_64.rpm
