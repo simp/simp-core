@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ad9bd40_74465b7c",
+        "filename": "build/GPGKEYS/build/simp-gpgkeys.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2015-08-14T02:40:26Z",
+      "side": 1,
+      "message": "This needs to go back to 755",
+      "revId": "4b068de3b1c2b5d469417575efc0b28983805bea",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_94603f02",
+        "filename": "build/GPGKEYS/build/simp-gpgkeys.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2015-08-14T02:40:26Z",
+      "side": 1,
+      "message": "This shouldn\u0027t be bound to the specific number. Regex it out if you want to catch digits.",
+      "revId": "4b068de3b1c2b5d469417575efc0b28983805bea",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
