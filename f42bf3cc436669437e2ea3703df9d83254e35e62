@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ad9bd40_d4564729",
+        "filename": "build/GPGKEYS/build/simp-gpgkeys.spec",
+        "patchSetId": 4
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2015-08-14T02:41:20Z",
+      "side": 1,
+      "message": "Change to 755",
+      "revId": "f42bf3cc436669437e2ea3703df9d83254e35e62",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_f4518b30",
+        "filename": "build/GPGKEYS/build/simp-gpgkeys.spec",
+        "patchSetId": 4
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2015-08-14T02:41:20Z",
+      "side": 1,
+      "message": "Regex the digit here. Should be the same as for 5.X for when we merge them.",
+      "revId": "f42bf3cc436669437e2ea3703df9d83254e35e62",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
