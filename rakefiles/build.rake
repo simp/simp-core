@@ -427,7 +427,7 @@ namespace :build do
         end
 
         if unknown_package_hash.empty?
-          rm('unkown_packages.yaml') if File.exist?('unknown_packages.yaml')
+          rm('unknown_packages.yaml') if File.exist?('unknown_packages.yaml')
         else
           # Next, let's freshen up the unknown packages reference file
           File.open('unknown_packages.yaml','w') do |fh|
