@@ -74,7 +74,7 @@ for dir in '/srv/www/yum/SIMP' '/var/www/yum/SIMP'; do
 
   # Link system GPG keys into SIMP repo
   if [ `facter operatingsystem` == 'CentOS' ]; then
-    search_string='.*CentOS-[[:digit]]'
+    search_string='.*CentOS-[[:digit:]]'
   elif [ `facter operatingsystem` == 'RedHat' ]; then
     search_string='.*redhat.*release.*'
   else
