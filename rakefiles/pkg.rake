@@ -148,7 +148,7 @@ Passphrase: #{passphrase}
         gpg_agent_script = <<-EOM
 #!/bin/sh
 
-gpg-agent --daemon --pinentry-program /usr/bin/pinentry-curses < /dev/null &
+gpg-agent --homedir=#{Dir.pwd} --batch --daemon --pinentry-program /usr/bin/pinentry-curses < /dev/null &
         EOM
 
         File.open('gengpgkey','w'){ |fh| fh.puts(gpg_infile) }
@@ -156,18 +156,41 @@ gpg-agent --daemon --pinentry-program /usr/bin/pinentry-curses < /dev/null &
         chmod(0755,'run_gpg_agent')
 
         gpg_agent_pid = nil
-        begin
-          gpg_agent_info = %x(./run_gpg_agent).split(';').first.split('=').last.split(':')
-          gpg_agent_socket = gpg_agent_info[0]
-          gpg_agent_pid = gpg_agent_info[1].strip.to_i
+        gpg_agent_socket = nil
 
-          ln_s(gpg_agent_socket,%(#{Dir.pwd}/#{File.basename(gpg_agent_socket)}))
+        if File.exist?(%(#{ENV['HOME']}/.gnupg/S.gpg-agent))
+          gpg_agent_socket = %(#{ENV['HOME']}/.gnupg/S.gpg-agent)
+        end
+
+        begin
+          unless gpg_agent_socket
+            gpg_agent_output = %x(./run_gpg_agent).strip
+
+            if gpg_agent_output.empty?
+              # This is a working version of gpg-agent, that means we need to
+              # connect to it to figure out what's going on
+
+              gpg_agent_socket = %x(#{Dir.pwd}/S.gpg-agent)
+              gpg_agent_pid_info = %x(gpg-agent --homedir=#{Dir.pwd} /get serverpid).strip
+              gpg_agent_pid_info =~ %r(\[(\d+)\])
+              gpg_agent_pid = $1
+            else
+              # Are we running a broken version of the gpg-agent? If so, we'll
+              # get back info on the command line.
+
+              gpg_agent_info = gpg_agent_output.split(';').first.split('=').last.split(':')
+              gpg_agent_socket = gpg_agent_info[0]
+              gpg_agent_pid = gpg_agent_info[1].strip.to_i
+
+              ln_s(gpg_agent_socket,%(#{Dir.pwd}/#{File.basename(gpg_agent_socket)}))
+            end
+          end
 
           sh %{gpg --homedir=#{Dir.pwd} --batch --gen-key gengpgkey}
           sh %{gpg --homedir=#{Dir.pwd} --armor --export #{dev_email} > RPM-GPG-KEY-SIMP-Dev}
         ensure
           begin
-            rm('S.gpg-agent') if File.exist?('S.gpg-agent')
+            rm('S.gpg-agent') if File.symlink?('S.gpg-agent')
 
             if gpg_agent_pid
               Process.kill(0,gpg_agent_pid)
