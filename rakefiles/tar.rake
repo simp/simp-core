@@ -82,7 +82,7 @@ namespace :tar do
 
           Dir.mktmpdir { |dir|
             Dir.chdir(dir) do
-              %x{rpm2cpio #{simp_doc_rpm} | cpio -u --quiet --warning none -ivd ./usr/share/doc/simp-*/pdf/SIMP-*-SIMP_Documentation-*.pdf 2>&1 > /dev/null}
+              %x{rpm2cpio #{simp_doc_rpm} | cpio -u --quiet --warning none -ivd ./usr/share/doc/simp-*/pdf/SIMP*.pdf 2>&1 > /dev/null}
               pdf_docs = Dir.glob("usr/share/doc/simp-*/pdf/*.pdf")
 
               if pdf_docs.empty? then
