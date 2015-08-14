@@ -113,19 +113,35 @@ namespace :pkg do
       end
 
       mkdir('dev') unless File.directory?('dev')
-      chmod(0750,'dev')
+      chmod(0700,'dev')
 
       Dir.chdir('dev') {
-        Dir.glob('*').each do |todel|
-          rm_rf(todel)
+        dev_email = 'gatekeeper@simp.development.key'
+        current_key = `gpg --homedir=#{Dir.pwd} --list-keys #{dev_email} 2>/dev/null`
+        days_left = 0
+        if !current_key.empty?
+          lasts_until = current_key.lines.first.strip.split("\s").last.delete(']')
+          days_left = (Date.parse(lasts_until) - DateTime.now).to_i
         end
 
-        expire_date = (DateTime.now + 14)
-        now = Time.now.to_i.to_s
-        dev_email = 'gatekeeper@simp.development.key'
-        passphrase = SecureRandom.base64(500)
+        if (days_left < 3 and days_left > 0)
+          puts "WARNING: GPG dev key will expire in #{days_left} days."
+        else
+          puts "GPG dev key is still valid. Won't recreate."
+        end
 
-        gpg_infile = <<-EOM
+        if days_left == 0
+
+          Dir.glob('*').each do |todel|
+            rm_rf(todel)
+          end
+
+          expire_date = (DateTime.now + 14)
+          now = Time.now.to_i.to_s
+          dev_email = 'gatekeeper@simp.development.key'
+          passphrase = SecureRandom.base64(500)
+
+          gpg_infile = <<-EOM
 %echo Generating Development GPG Key
 %echo
 %echo This key will expire on #{expire_date}
@@ -143,12 +159,65 @@ Passphrase: #{passphrase}
 # The following creates the key, so we can print "Done!" afterwards
 %commit
 %echo New GPG Development Key Created
-        EOM
+          EOM
 
-        File.open('gengpgkey','w'){ |fh| fh.puts(gpg_infile) }
+          gpg_agent_script = <<-EOM
+#!/bin/sh
 
-        sh %{gpg --homedir=#{Dir.pwd} --batch --gen-key gengpgkey}
-        sh %{gpg --homedir=#{Dir.pwd} --armor --export #{dev_email} > RPM-GPG-KEY-SIMP-Dev}
+gpg-agent --homedir=#{Dir.pwd} --batch --daemon --pinentry-program /usr/bin/pinentry-curses < /dev/null &
+          EOM
+
+          File.open('gengpgkey','w'){ |fh| fh.puts(gpg_infile) }
+          File.open('run_gpg_agent','w'){ |fh| fh.puts(gpg_agent_script) }
+          chmod(0755,'run_gpg_agent')
+
+          gpg_agent_pid = nil
+          gpg_agent_socket = nil
+
+          if File.exist?(%(#{ENV['HOME']}/.gnupg/S.gpg-agent))
+            gpg_agent_socket = %(#{ENV['HOME']}/.gnupg/S.gpg-agent)
+            gpg_agent_socket = %(#{ENV['HOME']}/.gnupg/S.gpg-agent)
+          end
+
+          begin
+            unless gpg_agent_socket
+              gpg_agent_output = %x(./run_gpg_agent).strip
+
+              if gpg_agent_output.empty?
+                # This is a working version of gpg-agent, that means we need to
+                # connect to it to figure out what's going on
+
+                gpg_agent_socket = %x(#{Dir.pwd}/S.gpg-agent)
+                gpg_agent_pid_info = %x(gpg-agent --homedir=#{Dir.pwd} /get serverpid).strip
+                gpg_agent_pid_info =~ %r(\[(\d+)\])
+                gpg_agent_pid = $1
+              else
+                # Are we running a broken version of the gpg-agent? If so, we'll
+                # get back info on the command line.
+
+                gpg_agent_info = gpg_agent_output.split(';').first.split('=').last.split(':')
+                gpg_agent_socket = gpg_agent_info[0]
+                gpg_agent_pid = gpg_agent_info[1].strip.to_i
+
+                ln_s(gpg_agent_socket,%(#{Dir.pwd}/#{File.basename(gpg_agent_socket)}))
+              end
+            end
+
+            sh %{gpg --homedir=#{Dir.pwd} --batch --gen-key gengpgkey}
+            sh %{gpg --homedir=#{Dir.pwd} --armor --export #{dev_email} > RPM-GPG-KEY-SIMP-Dev}
+          ensure
+            begin
+              rm('S.gpg-agent') if File.symlink?('S.gpg-agent')
+
+              if gpg_agent_pid
+                Process.kill(0,gpg_agent_pid)
+                Process.kill(15,gpg_agent_pid)
+              end
+              rescue Errno::ESRCH
+              # Not Running, Nothing to do!
+            end
+          end
+        end
       }
 
       Dir.chdir(args.key) {
@@ -311,7 +380,10 @@ Passphrase: #{passphrase}
       :in_processes => get_cpu_limit,
       :progress => t.name
     ) do |rpm|
-      Simp::RPM.signrpm(rpm,"#{BUILD_DIR}/build_keys/#{args.key}")
+      rpminfo = %x{rpm -qip #{rpm} 2>/dev/null}.split("\n")
+      unless rpminfo.grep(/Signature\s+:\s+\(none\)/).empty?
+        Simp::RPM.signrpm(rpm,"#{BUILD_DIR}/build_keys/#{args.key}")
+      end
     end
   end
 
