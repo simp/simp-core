@@ -113,7 +113,7 @@ namespace :pkg do
       end
 
       mkdir('dev') unless File.directory?('dev')
-      chmod(0750,'dev')
+      chmod(0700,'dev')
 
       Dir.chdir('dev') {
         Dir.glob('*').each do |todel|
@@ -145,10 +145,38 @@ Passphrase: #{passphrase}
 %echo New GPG Development Key Created
         EOM
 
-        File.open('gengpgkey','w'){ |fh| fh.puts(gpg_infile) }
+        gpg_agent_script = <<-EOM
+#!/bin/sh
 
-        sh %{gpg --homedir=#{Dir.pwd} --batch --gen-key gengpgkey}
-        sh %{gpg --homedir=#{Dir.pwd} --armor --export #{dev_email} > RPM-GPG-KEY-SIMP-Dev}
+gpg-agent --daemon --pinentry-program /usr/bin/pinentry-curses < /dev/null &
+        EOM
+
+        File.open('gengpgkey','w'){ |fh| fh.puts(gpg_infile) }
+        File.open('run_gpg_agent','w'){ |fh| fh.puts(gpg_agent_script) }
+        chmod(0755,'run_gpg_agent')
+
+        gpg_agent_pid = nil
+        begin
+          gpg_agent_info = %x(./run_gpg_agent).split(';').first.split('=').last.split(':')
+          gpg_agent_socket = gpg_agent_info[0]
+          gpg_agent_pid = gpg_agent_info[1].strip.to_i
+
+          ln_s(gpg_agent_socket,%(#{Dir.pwd}/#{File.basename(gpg_agent_socket)}))
+
+          sh %{gpg --homedir=#{Dir.pwd} --batch --gen-key gengpgkey}
+          sh %{gpg --homedir=#{Dir.pwd} --armor --export #{dev_email} > RPM-GPG-KEY-SIMP-Dev}
+        ensure
+          begin
+            rm('S.gpg-agent') if File.exist?('S.gpg-agent')
+
+            if gpg_agent_pid
+              Process.kill(0,gpg_agent_pid)
+              Process.kill(15,gpg_agent_pid)
+            end
+          rescue Errno::ESRCH
+            # Not Running, Nothing to do!
+          end
+        end
       }
 
       Dir.chdir(args.key) {
