@@ -82,6 +82,7 @@ vlock
 mutt
 subversion
 -sysklogd
+-rsyslog
 rsyslog7
 lsof
 vim-enhanced
