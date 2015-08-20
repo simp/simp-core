@@ -161,6 +161,30 @@ java-1.7.0-openjdk-devel:
 java-1.7.0-openjdk-src:
   :rpm_name: java-1.7.0-openjdk-src-1.7.0.85-2.6.1.3.el6_6.x86_64.rpm
   :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/updates/x86_64/Packages/java-1.7.0-openjdk-src-1.7.0.85-2.6.1.3.el6_6.x86_64.rpm
+kernel:
+  :rpm_name: kernel-2.6.32-573.3.1.el6.x86_64.rpm
+  :source: http://mirrors.advancedhosters.com/centos/6.7/updates/x86_64/Packages/kernel-2.6.32-573.3.1.el6.x86_64.rpm
+kernel-abi-whitelists:
+  :rpm_name: kernel-abi-whitelists-2.6.32-573.3.1.el6.noarch.rpm
+  :source: http://mirrors.advancedhosters.com/centos/6.7/updates/x86_64/Packages/kernel-abi-whitelists-2.6.32-573.3.1.el6.noarch.rpm
+kernel-debug:
+  :rpm_name: kernel-debug-2.6.32-573.3.1.el6.x86_64.rpm
+  :source: http://mirrors.advancedhosters.com/centos/6.7/updates/x86_64/Packages/kernel-debug-2.6.32-573.3.1.el6.x86_64.rpm
+kernel-debug-devel:
+  :rpm_name: kernel-debug-devel-2.6.32-573.3.1.el6.x86_64.rpm
+  :source: http://mirror.solarvps.com/centos/6.7/updates/x86_64/Packages/kernel-debug-devel-2.6.32-573.3.1.el6.x86_64.rpm
+kernel-devel:
+  :rpm_name: kernel-devel-2.6.32-573.3.1.el6.x86_64.rpm
+  :source: http://mirrors.advancedhosters.com/centos/6.7/updates/x86_64/Packages/kernel-devel-2.6.32-573.3.1.el6.x86_64.rpm
+kernel-doc:
+  :rpm_name: kernel-doc-2.6.32-573.3.1.el6.noarch.rpm
+  :source: http://mirrors.advancedhosters.com/centos/6.7/updates/x86_64/Packages/kernel-doc-2.6.32-573.3.1.el6.noarch.rpm
+kernel-firmware:
+  :rpm_name: kernel-firmware-2.6.32-573.3.1.el6.noarch.rpm
+  :source: http://mirrors.advancedhosters.com/centos/6.7/updates/x86_64/Packages/kernel-firmware-2.6.32-573.3.1.el6.noarch.rpm
+kernel-headers:
+  :rpm_name: kernel-headers-2.6.32-573.3.1.el6.x86_64.rpm
+  :source: http://mirrors.advancedhosters.com/centos/6.7/updates/x86_64/Packages/kernel-headers-2.6.32-573.3.1.el6.x86_64.rpm
 kibana:
   :rpm_name: kibana-3.1.0.SIMP-0.noarch.rpm
   :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/6/ext/x86_64/kibana-3.1.0.SIMP-0.noarch.rpm
