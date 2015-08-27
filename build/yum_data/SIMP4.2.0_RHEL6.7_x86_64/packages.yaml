@@ -1,7 +1,7 @@
 ---
 BackupPC:
   :rpm_name: BackupPC-3.2.1-10.SIMP.4.el6.x86_64.rpm
-  :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/6/ext/x86_64/BackupPC-3.2.1-10.SIMP.4.el6.x86_64.rpm
+  :source: https://dl.bintray.com/simp/4.2.X-Ext/BackupPC-3.2.1-10.SIMP.4.el6.x86_64.rpm
 activemq:
   :rpm_name: activemq-5.9.1-2.el6.noarch.rpm
   :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/activemq-5.9.1-2.el6.noarch.rpm
@@ -22,31 +22,31 @@ bitmap-miscfixed-fonts:
   :source: Red Hat Optional Repository
 chkrootkit:
   :rpm_name: chkrootkit-0.49-9.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/chkrootkit-0.49-9.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/chkrootkit-0.49-9.el6.x86_64.rpm
 clamav:
   :rpm_name: clamav-0.98.7-1.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/clamav-0.98.7-1.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/clamav-0.98.7-1.el6.x86_64.rpm
 clamav-db:
   :rpm_name: clamav-db-0.98.7-1.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/clamav-db-0.98.7-1.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/clamav-db-0.98.7-1.el6.x86_64.rpm
 clamav-devel:
   :rpm_name: clamav-devel-0.98.7-1.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/clamav-devel-0.98.7-1.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/clamav-devel-0.98.7-1.el6.x86_64.rpm
 clamav-milter:
   :rpm_name: clamav-milter-0.98.7-1.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/clamav-milter-0.98.7-1.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/clamav-milter-0.98.7-1.el6.x86_64.rpm
 clamav-unofficial-sigs:
   :rpm_name: clamav-unofficial-sigs-3.7.1-7.el6.noarch.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/clamav-unofficial-sigs-3.7.1-7.el6.noarch.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/clamav-unofficial-sigs-3.7.1-7.el6.noarch.rpm
 clamd:
   :rpm_name: clamd-0.98.7-1.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/clamd-0.98.7-1.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/clamd-0.98.7-1.el6.x86_64.rpm
 clamsmtp:
   :rpm_name: clamsmtp-1.10-6.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/clamsmtp-1.10-6.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/clamsmtp-1.10-6.el6.x86_64.rpm
 clamz:
   :rpm_name: clamz-0.5-0.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/clamz-0.5-0.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/clamz-0.5-0.el6.x86_64.rpm
 dejavu-lgc-sans-fonts:
   :rpm_name: dejavu-lgc-sans-fonts-2.33-1.el6.noarch.rpm
   :source: Red Hat Base Repository
@@ -67,16 +67,16 @@ elasticsearch:
   :source: https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.3.2.noarch.rpm
 elasticsearch-curator:
   :rpm_name: elasticsearch-curator-1.1.1-0.el6.noarch.rpm
-  :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/6/ext/x86_64/elasticsearch-curator-1.1.1-0.el6.noarch.rpm
+  :source: https://dl.bintray.com/simp/4.2.X-Ext/elasticsearch-curator-1.1.1-0.el6.noarch.rpm
 es2unix:
   :rpm_name: es2unix-1.6.1-0.el6.noarch.rpm
-  :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/6/ext/x86_64/es2unix-1.6.1-0.el6.noarch.rpm
+  :source: https://dl.bintray.com/simp/4.2.X-Ext/es2unix-1.6.1-0.el6.noarch.rpm
 facter:
   :rpm_name: facter-2.4.1-1.el6.x86_64.rpm
   :source: http://yum.puppetlabs.com/el/6/products/x86_64/facter-2.4.1-1.el6.x86_64.rpm
 fping:
   :rpm_name: fping-2.4b2-10.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/fping-2.4b2-10.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/fping-2.4b2-10.el6.x86_64.rpm
 freeradius-ldap:
   :rpm_name: freeradius-ldap-2.2.6-4.el6.x86_64.rpm
   :source: Red Hat Base Repository
@@ -85,19 +85,19 @@ freeradius-utils:
   :source: Red Hat Base Repository
 ganglia:
   :rpm_name: ganglia-3.7.1-2.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/ganglia-3.7.1-2.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/ganglia-3.7.1-2.el6.x86_64.rpm
 ganglia-devel:
   :rpm_name: ganglia-devel-3.7.1-2.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/ganglia-devel-3.7.1-2.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/ganglia-devel-3.7.1-2.el6.x86_64.rpm
 ganglia-gmetad:
   :rpm_name: ganglia-gmetad-3.7.1-2.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/ganglia-gmetad-3.7.1-2.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/ganglia-gmetad-3.7.1-2.el6.x86_64.rpm
 ganglia-gmond:
   :rpm_name: ganglia-gmond-3.7.1-2.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/ganglia-gmond-3.7.1-2.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/ganglia-gmond-3.7.1-2.el6.x86_64.rpm
 ganglia-gmond-python:
   :rpm_name: ganglia-gmond-python-3.7.1-2.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/ganglia-gmond-python-3.7.1-2.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/ganglia-gmond-python-3.7.1-2.el6.x86_64.rpm
 glibc:
   :rpm_name: glibc-2.12-1.166.el6_7.1.x86_64.rpm
   :source: Red Hat Updates Repository
@@ -118,40 +118,40 @@ glibc-utils:
   :source: Red Hat Updates Repository
 globus-callout:
   :rpm_name: globus-callout-3.13-2.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-callout-3.13-2.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/globus-callout-3.13-2.el6.x86_64.rpm
 globus-common:
   :rpm_name: globus-common-15.30-1.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-common-15.30-1.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/globus-common-15.30-1.el6.x86_64.rpm
 globus-gsi-callback:
   :rpm_name: globus-gsi-callback-5.8-1.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-gsi-callback-5.8-1.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/globus-gsi-callback-5.8-1.el6.x86_64.rpm
 globus-gsi-cert-utils:
   :rpm_name: globus-gsi-cert-utils-9.11-1.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-gsi-cert-utils-9.11-1.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/globus-gsi-cert-utils-9.11-1.el6.x86_64.rpm
 globus-gsi-credential:
   :rpm_name: globus-gsi-credential-7.9-1.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-gsi-credential-7.9-1.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/globus-gsi-credential-7.9-1.el6.x86_64.rpm
 globus-gsi-openssl-error:
   :rpm_name: globus-gsi-openssl-error-3.5-2.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-gsi-openssl-error-3.5-2.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/globus-gsi-openssl-error-3.5-2.el6.x86_64.rpm
 globus-gsi-proxy-core:
   :rpm_name: globus-gsi-proxy-core-7.7-2.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-gsi-proxy-core-7.7-2.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/globus-gsi-proxy-core-7.7-2.el6.x86_64.rpm
 globus-gsi-proxy-ssl:
   :rpm_name: globus-gsi-proxy-ssl-5.7-2.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-gsi-proxy-ssl-5.7-2.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/globus-gsi-proxy-ssl-5.7-2.el6.x86_64.rpm
 globus-gsi-sysconfig:
   :rpm_name: globus-gsi-sysconfig-6.8-2.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-gsi-sysconfig-6.8-2.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/globus-gsi-sysconfig-6.8-2.el6.x86_64.rpm
 globus-gss-assist:
   :rpm_name: globus-gss-assist-10.14-1.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-gss-assist-10.14-1.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/globus-gss-assist-10.14-1.el6.x86_64.rpm
 globus-gssapi-gsi:
   :rpm_name: globus-gssapi-gsi-11.19-1.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-gssapi-gsi-11.19-1.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/globus-gssapi-gsi-11.19-1.el6.x86_64.rpm
 globus-openssl-module:
   :rpm_name: globus-openssl-module-4.6-2.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-openssl-module-4.6-2.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/globus-openssl-module-4.6-2.el6.x86_64.rpm
 gpxe-bootimgs:
   :rpm_name: gpxe-bootimgs-0.9.7-6.14.el6.noarch.rpm
   :source: Red Hat Base Repository
@@ -160,13 +160,13 @@ gpxe-roms-qemu:
   :source: Red Hat Base Repository
 gweb:
   :rpm_name: gweb-2.1.8-1.noarch.rpm
-  :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/6/ext/x86_64/gweb-2.1.8-1.noarch.rpm
+  :source: https://dl.bintray.com/simp/4.2.X-Ext/gweb-2.1.8-1.noarch.rpm
 hmaccalc:
   :rpm_name: hmaccalc-0.9.12-2.el6.x86_64.rpm
   :source: Red Hat Base Repository
 incron:
   :rpm_name: incron-0.5.9-1.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/incron-0.5.9-1.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/incron-0.5.9-1.el6.x86_64.rpm
 java-1.7.0-openjdk:
   :rpm_name: java-1.7.0-openjdk-1.7.0.85-2.6.1.3.el6_7.x86_64.rpm
   :source: Red Hat Updates Repository
@@ -205,37 +205,37 @@ kernel-headers:
   :source: Red Hat Updates Repository
 kibana:
   :rpm_name: kibana-3.1.0.SIMP-0.noarch.rpm
-  :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/6/ext/x86_64/kibana-3.1.0.SIMP-0.noarch.rpm
+  :source: https://dl.bintray.com/simp/4.2.X-Ext/kibana-3.1.0.SIMP-0.noarch.rpm
 lcgdm-libs:
   :rpm_name: lcgdm-libs-1.8.9-2.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/lcgdm-libs-1.8.9-2.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/lcgdm-libs-1.8.9-2.el6.x86_64.rpm
 leiningen:
   :rpm_name: leiningen-2.0.0-0.2preview10.el6.noarch.rpm
   :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/leiningen-2.0.0-0.2preview10.el6.noarch.rpm
 lfc-libs:
   :rpm_name: lfc-libs-1.8.9-2.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/lfc-libs-1.8.9-2.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/lfc-libs-1.8.9-2.el6.x86_64.rpm
 lfc-python:
   :rpm_name: lfc-python-1.8.9-2.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/lfc-python-1.8.9-2.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/lfc-python-1.8.9-2.el6.x86_64.rpm
 libconfuse:
   :rpm_name: libconfuse-2.7-4.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/libconfuse-2.7-4.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/libconfuse-2.7-4.el6.x86_64.rpm
 libconfuse-devel:
   :rpm_name: libconfuse-devel-2.7-4.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/libconfuse-devel-2.7-4.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/libconfuse-devel-2.7-4.el6.x86_64.rpm
 libev:
   :rpm_name: libev-4.03-3.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/libev-4.03-3.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/libev-4.03-3.el6.x86_64.rpm
 libselinux-ruby:
   :rpm_name: libselinux-ruby-2.0.94-5.8.el6.x86_64.rpm
   :source: Red Hat Base Repository
 libyaml:
   :rpm_name: libyaml-0.1.4-2.el6.x86_64.rpm
-  :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/6/ext/x86_64/libyaml-0.1.4-2.el6.x86_64.rpm
+  :source: https://dl.bintray.com/simp/4.2.X-Ext/libyaml-0.1.4-2.el6.x86_64.rpm
 libyaml-devel:
   :rpm_name: libyaml-devel-0.1.4-2.el6.x86_64.rpm
-  :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/6/ext/x86_64/libyaml-devel-0.1.4-2.el6.x86_64.rpm
+  :source: https://dl.bintray.com/simp/4.2.X-Ext/libyaml-devel-0.1.4-2.el6.x86_64.rpm
 logstash:
   :rpm_name: logstash-1.4.2-1_2c0f5a1.noarch.rpm
   :source: https://download.elasticsearch.org/logstash/logstash/packages/centos/logstash-1.4.2-1_2c0f5a1.noarch.rpm
@@ -244,13 +244,13 @@ logstash-contrib:
   :source: https://download.elastic.co/logstash/logstash/packages/centos/logstash-contrib-1.4.2-1_efd53ef.noarch.rpm
 mcollective:
   :rpm_name: mcollective-2.2.3-1.SIMP.1.el6.noarch.rpm
-  :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/6/ext/x86_64/mcollective-2.2.3-1.SIMP.1.el6.noarch.rpm
+  :source: https://dl.bintray.com/simp/4.2.X-Ext/mcollective-2.2.3-1.SIMP.1.el6.noarch.rpm
 mcollective-client:
   :rpm_name: mcollective-client-2.2.3-1.SIMP.1.el6.noarch.rpm
-  :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/6/ext/x86_64/mcollective-client-2.2.3-1.SIMP.1.el6.noarch.rpm
+  :source: https://dl.bintray.com/simp/4.2.X-Ext/mcollective-client-2.2.3-1.SIMP.1.el6.noarch.rpm
 mcollective-common:
   :rpm_name: mcollective-common-2.2.3-1.SIMP.1.el6.noarch.rpm
-  :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/6/ext/x86_64/mcollective-common-2.2.3-1.SIMP.1.el6.noarch.rpm
+  :source: https://dl.bintray.com/simp/4.2.X-Ext/mcollective-common-2.2.3-1.SIMP.1.el6.noarch.rpm
 mcollective-facter-facts:
   :rpm_name: mcollective-facter-facts-1.0.0-1.noarch.rpm
   :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-facter-facts-1.0.0-1.noarch.rpm
@@ -316,10 +316,10 @@ mcollective-sysctl-data:
   :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-sysctl-data-2.0.0-1.noarch.rpm
 mrepo:
   :rpm_name: mrepo-0.8.7-2.el6.noarch.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/mrepo-0.8.7-2.el6.noarch.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/mrepo-0.8.7-2.el6.noarch.rpm
 mysql-connector-python:
   :rpm_name: mysql-connector-python-1.1.6-1.el6.noarch.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/mysql-connector-python-1.1.6-1.el6.noarch.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/mysql-connector-python-1.1.6-1.el6.noarch.rpm
 nscd:
   :rpm_name: nscd-2.12-1.166.el6_7.1.x86_64.rpm
   :source: Red Hat Updates Repository
@@ -352,31 +352,31 @@ openssl-devel:
   :source: Red Hat Base Repository
 pdsh:
   :rpm_name: pdsh-2.28-0.x86_64.rpm
-  :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/6/ext/x86_64/pdsh-2.28-0.x86_64.rpm
+  :source: https://dl.bintray.com/simp/4.2.X-Ext/pdsh-2.28-0.x86_64.rpm
 pdsh-mod-dshgroup:
   :rpm_name: pdsh-mod-dshgroup-2.28-0.x86_64.rpm
-  :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/6/ext/x86_64/pdsh-mod-dshgroup-2.28-0.x86_64.rpm
+  :source: https://dl.bintray.com/simp/4.2.X-Ext/pdsh-mod-dshgroup-2.28-0.x86_64.rpm
 pdsh-mod-machines:
   :rpm_name: pdsh-mod-machines-2.28-0.x86_64.rpm
-  :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/6/ext/x86_64/pdsh-mod-machines-2.28-0.x86_64.rpm
+  :source: https://dl.bintray.com/simp/4.2.X-Ext/pdsh-mod-machines-2.28-0.x86_64.rpm
 pdsh-mod-netgroup:
   :rpm_name: pdsh-mod-netgroup-2.28-0.x86_64.rpm
-  :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/6/ext/x86_64/pdsh-mod-netgroup-2.28-0.x86_64.rpm
+  :source: https://dl.bintray.com/simp/4.2.X-Ext/pdsh-mod-netgroup-2.28-0.x86_64.rpm
 pdsh-rcmd-exec:
   :rpm_name: pdsh-rcmd-exec-2.28-0.x86_64.rpm
-  :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/6/ext/x86_64/pdsh-rcmd-exec-2.28-0.x86_64.rpm
+  :source: https://dl.bintray.com/simp/4.2.X-Ext/pdsh-rcmd-exec-2.28-0.x86_64.rpm
 pdsh-rcmd-ssh:
   :rpm_name: pdsh-rcmd-ssh-2.28-0.x86_64.rpm
-  :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/6/ext/x86_64/pdsh-rcmd-ssh-2.28-0.x86_64.rpm
+  :source: https://dl.bintray.com/simp/4.2.X-Ext/pdsh-rcmd-ssh-2.28-0.x86_64.rpm
 perl-Archive-Zip:
   :rpm_name: perl-Archive-Zip-1.30-2.el6.noarch.rpm
   :source: Red Hat Base Repository
 perl-Crypt-DES:
   :rpm_name: perl-Crypt-DES-2.05-9.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/perl-Crypt-DES-2.05-9.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/perl-Crypt-DES-2.05-9.el6.x86_64.rpm
 perl-DateTime-Format-DateParse:
   :rpm_name: perl-DateTime-Format-DateParse-0.05-4.el6.noarch.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/perl-DateTime-Format-DateParse-0.05-4.el6.noarch.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/perl-DateTime-Format-DateParse-0.05-4.el6.noarch.rpm
 perl-DateTime-Format-Mail:
   :rpm_name: perl-DateTime-Format-Mail-0.3001-6.el6.noarch.rpm
   :source: Red Hat Base Repository
@@ -385,25 +385,25 @@ perl-DateTime-Format-W3CDTF:
   :source: Red Hat Base Repository
 perl-File-RsyncP:
   :rpm_name: perl-File-RsyncP-0.72-1.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/perl-File-RsyncP-0.72-1.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/perl-File-RsyncP-0.72-1.el6.x86_64.rpm
 perl-Math-Calc-Units:
   :rpm_name: perl-Math-Calc-Units-1.07-6.el6.noarch.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/perl-Math-Calc-Units-1.07-6.el6.noarch.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/perl-Math-Calc-Units-1.07-6.el6.noarch.rpm
 perl-Nagios-Plugin:
   :rpm_name: perl-Nagios-Plugin-0.35-1.el6.noarch.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/perl-Nagios-Plugin-0.35-1.el6.noarch.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/perl-Nagios-Plugin-0.35-1.el6.noarch.rpm
 perl-Net-FTP-AutoReconnect:
   :rpm_name: perl-Net-FTP-AutoReconnect-0.3-3.el6.noarch.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/perl-Net-FTP-AutoReconnect-0.3-3.el6.noarch.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/perl-Net-FTP-AutoReconnect-0.3-3.el6.noarch.rpm
 perl-Net-FTP-RetrHandle:
   :rpm_name: perl-Net-FTP-RetrHandle-0.2-3.el6.noarch.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/perl-Net-FTP-RetrHandle-0.2-3.el6.noarch.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/perl-Net-FTP-RetrHandle-0.2-3.el6.noarch.rpm
 perl-Net-SNMP:
   :rpm_name: perl-Net-SNMP-5.2.0-4.el6.noarch.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/perl-Net-SNMP-5.2.0-4.el6.noarch.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/perl-Net-SNMP-5.2.0-4.el6.noarch.rpm
 perl-Sort-Versions:
   :rpm_name: perl-Sort-Versions-1.5-12.el6.noarch.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/perl-Sort-Versions-1.5-12.el6.noarch.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/perl-Sort-Versions-1.5-12.el6.noarch.rpm
 perl-Time-modules:
   :rpm_name: perl-Time-modules-2006.0814-5.el6.noarch.rpm
   :source: Red Hat Base Repository
@@ -412,7 +412,7 @@ perl-XML-RSS:
   :source: Red Hat Base Repository
 pssh:
   :rpm_name: pssh-2.3.1-5.el6.noarch.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/pssh-2.3.1-5.el6.noarch.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/pssh-2.3.1-5.el6.noarch.rpm
 puppet:
   :rpm_name: puppet-3.7.4-1.el6.noarch.rpm
   :source: http://yum.puppetlabs.com/el/6/products/x86_64/puppet-3.7.4-1.el6.noarch.rpm
@@ -430,52 +430,52 @@ puppetdb-terminus:
   :source: http://yum.puppetlabs.com/el/6/products/x86_64/puppetdb-terminus-2.3.2-1.el6.noarch.rpm
 puppetlabs-stdlib:
   :rpm_name: puppetlabs-stdlib-4.5.1-2.20150121git7a91f20.el6.noarch.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/puppetlabs-stdlib-4.5.1-2.20150121git7a91f20.el6.noarch.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/puppetlabs-stdlib-4.5.1-2.20150121git7a91f20.el6.noarch.rpm
 puppetserver:
   :rpm_name: puppetserver-1.0.2-1.el6.noarch.rpm
   :source: http://yum.puppetlabs.com/el/6/products/x86_64/puppetserver-1.0.2-1.el6.noarch.rpm
 python-argparse:
   :rpm_name: python-argparse-1.2.1-2.el6.noarch.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/python-argparse-1.2.1-2.el6.noarch.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/python-argparse-1.2.1-2.el6.noarch.rpm
 python-backports:
   :rpm_name: python-backports-1.0-3.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/python-backports-1.0-3.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/python-backports-1.0-3.el6.x86_64.rpm
 python-backports-ssl_match_hostname:
   :rpm_name: python-backports-ssl_match_hostname-3.4.0.2-4.el6.noarch.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/python-backports-ssl_match_hostname-3.4.0.2-4.el6.noarch.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/python-backports-ssl_match_hostname-3.4.0.2-4.el6.noarch.rpm
 python-elasticsearch:
   :rpm_name: python-elasticsearch-1.2.0-0.el6.noarch.rpm
-  :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/6/ext/x86_64/python-elasticsearch-1.2.0-0.el6.noarch.rpm
+  :source: https://dl.bintray.com/simp/4.2.X-Ext/python-elasticsearch-1.2.0-0.el6.noarch.rpm
 python-importlib:
   :rpm_name: python-importlib-1.0.2-1.el6.noarch.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/python-importlib-1.0.2-1.el6.noarch.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/python-importlib-1.0.2-1.el6.noarch.rpm
 python-ordereddict:
   :rpm_name: python-ordereddict-1.1-2.el6.noarch.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/python-ordereddict-1.1-2.el6.noarch.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/python-ordereddict-1.1-2.el6.noarch.rpm
 python-pyes:
   :rpm_name: python-pyes-0.20.1-0.el6.noarch.rpm
-  :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/6/ext/x86_64/python-pyes-0.20.1-0.el6.noarch.rpm
+  :source: https://dl.bintray.com/simp/4.2.X-Ext/python-pyes-0.20.1-0.el6.noarch.rpm
 python-pyro:
   :rpm_name: python-pyro-4.14-2.el6.noarch.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/python-pyro-4.14-2.el6.noarch.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/python-pyro-4.14-2.el6.noarch.rpm
 python-redis:
   :rpm_name: python-redis-2.0.0-1.el6.noarch.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/python-redis-2.0.0-1.el6.noarch.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/python-redis-2.0.0-1.el6.noarch.rpm
 python-six:
   :rpm_name: python-six-1.9.0-2.el6.noarch.rpm
   :source: Red Hat Base Repository
 python-unittest2:
   :rpm_name: python-unittest2-0.5.1-3.el6.noarch.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/python-unittest2-0.5.1-3.el6.noarch.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/python-unittest2-0.5.1-3.el6.noarch.rpm
 python-urllib3:
   :rpm_name: python-urllib3-1.5-7.el6.noarch.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/python-urllib3-1.5-7.el6.noarch.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/python-urllib3-1.5-7.el6.noarch.rpm
 qstat:
   :rpm_name: qstat-2.11-9.20080912svn311.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/qstat-2.11-9.20080912svn311.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/qstat-2.11-9.20080912svn311.el6.x86_64.rpm
 radiusclient-ng:
   :rpm_name: radiusclient-ng-0.5.6-5.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/radiusclient-ng-0.5.6-5.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/radiusclient-ng-0.5.6-5.el6.x86_64.rpm
 razor-server:
   :rpm_name: razor-server-0.14.1-1.el6.noarch.rpm
   :source: http://yum.puppetlabs.com/el/6/products/x86_64/razor-server-0.14.1-1.el6.noarch.rpm
@@ -487,7 +487,7 @@ rlwrap:
   :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/rlwrap-0.37-3.el6.x86_64.rpm
 rrdtool:
   :rpm_name: rrdtool-1.4.4-0.20.el6.x86_64.rpm
-  :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/6/ext/x86_64/rrdtool-1.4.4-0.20.el6.x86_64.rpm
+  :source: https://dl.bintray.com/simp/4.2.X-Ext/rrdtool-1.4.4-0.20.el6.x86_64.rpm
 ruby-augeas:
   :rpm_name: ruby-augeas-0.4.1-3.el6.x86_64.rpm
   :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/ruby-augeas-0.4.1-3.el6.x86_64.rpm
@@ -496,10 +496,10 @@ ruby-json:
   :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/ruby-json-1.5.5-3.el6.x86_64.rpm
 ruby-ldap:
   :rpm_name: ruby-ldap-0.9.7-10.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/ruby-ldap-0.9.7-10.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/ruby-ldap-0.9.7-10.el6.x86_64.rpm
 ruby-mysql:
   :rpm_name: ruby-mysql-2.8.2-1.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/ruby-mysql-2.8.2-1.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/ruby-mysql-2.8.2-1.el6.x86_64.rpm
 ruby-rgen:
   :rpm_name: ruby-rgen-0.6.5-2.el6.noarch.rpm
   :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/ruby-rgen-0.6.5-2.el6.noarch.rpm
@@ -523,7 +523,7 @@ rubygem-ffi:
   :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/rubygem-ffi-1.4.0-2.el6.x86_64.rpm
 rubygem-highline:
   :rpm_name: rubygem-highline-1.6.11-1.noarch.rpm
-  :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/6/ext/x86_64/rubygem-highline-1.6.11-1.noarch.rpm
+  :source: https://dl.bintray.com/simp/4.2.X-Ext/rubygem-highline-1.6.11-1.noarch.rpm
 rubygem-hpricot:
   :rpm_name: rubygem-hpricot-0.8.6-1.el6.x86_64.rpm
   :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/rubygem-hpricot-0.8.6-1.el6.x86_64.rpm
@@ -550,16 +550,16 @@ rubygem-net-ping-doc:
   :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/rubygem-net-ping-doc-1.5.3-4.el6.noarch.rpm
 rubygem-puppet-lint:
   :rpm_name: rubygem-puppet-lint-1.1.0-1.el6.noarch.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/rubygem-puppet-lint-1.1.0-1.el6.noarch.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/rubygem-puppet-lint-1.1.0-1.el6.noarch.rpm
 rubygem-rack:
   :rpm_name: rubygem-rack-1.0.1-2.el6.noarch.rpm
   :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/rubygem-rack-1.0.1-2.el6.noarch.rpm
 rubygem-rake-compiler:
   :rpm_name: rubygem-rake-compiler-0.9.3-2.el6.noarch.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/rubygem-rake-compiler-0.9.3-2.el6.noarch.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/rubygem-rake-compiler-0.9.3-2.el6.noarch.rpm
 rubygem-rake-compiler-doc:
   :rpm_name: rubygem-rake-compiler-doc-0.9.3-2.el6.noarch.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/rubygem-rake-compiler-doc-0.9.3-2.el6.noarch.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/rubygem-rake-compiler-doc-0.9.3-2.el6.noarch.rpm
 rubygem-rdiscount:
   :rpm_name: rubygem-rdiscount-1.6.8-1.el6.x86_64.rpm
   :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/rubygem-rdiscount-1.6.8-1.el6.x86_64.rpm
@@ -577,16 +577,16 @@ scap-security-guide:
   :source: Red Hat Base Repository
 simp-hiera:
   :rpm_name: simp-hiera-1.3.4-3.el6.noarch.rpm
-  :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/6/ext/x86_64/simp-hiera-1.3.4-3.el6.noarch.rpm
+  :source: https://dl.bintray.com/simp/4.2.X-Ext/simp-hiera-1.3.4-3.el6.noarch.rpm
 simp-lastbind:
   :rpm_name: simp-lastbind-2.4.23-0.x86_64.rpm
-  :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/6/ext/x86_64/simp-lastbind-2.4.23-0.x86_64.rpm
+  :source: https://dl.bintray.com/simp/4.2.X-Ext/simp-lastbind-2.4.23-0.x86_64.rpm
 simp-ppolicy-check-password:
   :rpm_name: simp-ppolicy-check-password-2.4.39-0.el6.x86_64.rpm
-  :source: https://dl.bintray.com/simp/4.2.X/simp-ppolicy-check-password-2.4.39-0.el6.x86_64.rpm
+  :source: https://dl.bintray.com/simp/4.2.X-Ext/simp-ppolicy-check-password-2.4.39-0.el6.x86_64.rpm
 sudosh2:
   :rpm_name: sudosh2-1.0.2-2.el6.x86_64.rpm
-  :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/6/ext/x86_64/sudosh2-1.0.2-2.el6.x86_64.rpm
+  :source: https://dl.bintray.com/simp/4.2.X-Ext/sudosh2-1.0.2-2.el6.x86_64.rpm
 syslinux-tftpboot:
   :rpm_name: syslinux-tftpboot-4.04-3.el6.noarch.rpm
   :source: Red Hat Base Repository
@@ -598,4 +598,4 @@ trousers:
   :source: Red Hat Base Repository
 voms:
   :rpm_name: voms-2.0.12-3.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/voms-2.0.12-3.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/voms-2.0.12-3.el6.x86_64.rpm

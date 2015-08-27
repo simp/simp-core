@@ -1,7 +1,7 @@
+[simp-base]
+name=simp-base
+baseurl=https://dl.bintray.com/simp/4.2.X
+
 [simp-ext]
 name=simp-ext
-baseurl=https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/6/ext/x86_64
-
-[simp-bintray]
-name=simp-bintray
-baseurl=https://dl.bintray.com/simp/4.2.X
+baseurl=https://dl.bintray.com/simp/4.2.X-Ext
