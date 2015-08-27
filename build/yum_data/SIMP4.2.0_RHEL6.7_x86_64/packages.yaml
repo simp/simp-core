@@ -49,19 +49,19 @@ clamz:
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/clamz-0.5-0.el6.x86_64.rpm
 dejavu-lgc-sans-fonts:
   :rpm_name: dejavu-lgc-sans-fonts-2.33-1.el6.noarch.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/os/x86_64/Packages/dejavu-lgc-sans-fonts-2.33-1.el6.noarch.rpm
+  :source: Red Hat Base Repository
 dejavu-lgc-serif-fonts:
   :rpm_name: dejavu-lgc-serif-fonts-2.33-1.el6.noarch.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/os/x86_64/Packages/dejavu-lgc-serif-fonts-2.33-1.el6.noarch.rpm
+  :source: Red Hat Base Repository
 dracut:
   :rpm_name: dracut-004-388.el6.noarch.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/os/x86_64/Packages/dracut-004-388.el6.noarch.rpm
+  :source: Red Hat Base Repository
 dracut-fips:
   :rpm_name: dracut-fips-004-388.el6.noarch.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/os/x86_64/Packages/dracut-fips-004-388.el6.noarch.rpm
+  :source: Red Hat Base Repository
 dracut-kernel:
   :rpm_name: dracut-kernel-004-388.el6.noarch.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/os/x86_64/Packages/dracut-kernel-004-388.el6.noarch.rpm
+  :source: Red Hat Base Repository
 elasticsearch:
   :rpm_name: elasticsearch-1.3.2.noarch.rpm
   :source: https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.3.2.noarch.rpm
@@ -79,10 +79,10 @@ fping:
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/fping-2.4b2-10.el6.x86_64.rpm
 freeradius-ldap:
   :rpm_name: freeradius-ldap-2.2.6-4.el6.x86_64.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/os/x86_64/Packages/freeradius-ldap-2.2.6-4.el6.x86_64.rpm
+  :source: Red Hat Base Repository
 freeradius-utils:
   :rpm_name: freeradius-utils-2.2.6-4.el6.x86_64.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/os/x86_64/Packages/freeradius-utils-2.2.6-4.el6.x86_64.rpm
+  :source: Red Hat Base Repository
 ganglia:
   :rpm_name: ganglia-3.7.1-2.el6.x86_64.rpm
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/ganglia-3.7.1-2.el6.x86_64.rpm
@@ -100,22 +100,22 @@ ganglia-gmond-python:
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/ganglia-gmond-python-3.7.1-2.el6.x86_64.rpm
 glibc:
   :rpm_name: glibc-2.12-1.166.el6_7.1.x86_64.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/updates/x86_64/Packages/glibc-2.12-1.166.el6_7.1.x86_64.rpm
+  :source: Red Hat Updates Repository
 glibc-common:
   :rpm_name: glibc-common-2.12-1.166.el6_7.1.x86_64.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/updates/x86_64/Packages/glibc-common-2.12-1.166.el6_7.1.x86_64.rpm
+  :source: Red Hat Updates Repository
 glibc-devel:
   :rpm_name: glibc-devel-2.12-1.166.el6_7.1.x86_64.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/updates/x86_64/Packages/glibc-devel-2.12-1.166.el6_7.1.x86_64.rpm
+  :source: Red Hat Updates Repository
 glibc-headers:
   :rpm_name: glibc-headers-2.12-1.166.el6_7.1.x86_64.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/updates/x86_64/Packages/glibc-headers-2.12-1.166.el6_7.1.x86_64.rpm
+  :source: Red Hat Updates Repository
 glibc-static:
   :rpm_name: glibc-static-2.12-1.166.el6_7.1.x86_64.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/updates/x86_64/Packages/glibc-static-2.12-1.166.el6_7.1.x86_64.rpm
+  :source: Red Hat Updates Repository
 glibc-utils:
   :rpm_name: glibc-utils-2.12-1.166.el6_7.1.x86_64.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/updates/x86_64/Packages/glibc-utils-2.12-1.166.el6_7.1.x86_64.rpm
+  :source: Red Hat Updates Repository
 globus-callout:
   :rpm_name: globus-callout-3.13-2.el6.x86_64.rpm
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-callout-3.13-2.el6.x86_64.rpm
@@ -154,31 +154,55 @@ globus-openssl-module:
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-openssl-module-4.6-2.el6.x86_64.rpm
 gpxe-bootimgs:
   :rpm_name: gpxe-bootimgs-0.9.7-6.14.el6.noarch.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/os/x86_64/Packages/gpxe-bootimgs-0.9.7-6.14.el6.noarch.rpm
+  :source: Red Hat Base Repository
 gpxe-roms-qemu:
   :rpm_name: gpxe-roms-qemu-0.9.7-6.14.el6.noarch.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/os/x86_64/Packages/gpxe-roms-qemu-0.9.7-6.14.el6.noarch.rpm
+  :source: Red Hat Base Repository
 gweb:
   :rpm_name: gweb-2.1.8-1.noarch.rpm
   :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/6/ext/x86_64/gweb-2.1.8-1.noarch.rpm
 hmaccalc:
   :rpm_name: hmaccalc-0.9.12-2.el6.x86_64.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/os/x86_64/Packages/hmaccalc-0.9.12-2.el6.x86_64.rpm
+  :source: Red Hat Base Repository
 incron:
   :rpm_name: incron-0.5.9-1.el6.x86_64.rpm
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/incron-0.5.9-1.el6.x86_64.rpm
 java-1.7.0-openjdk:
-  :rpm_name: java-1.7.0-openjdk-1.7.0.85-2.6.1.3.el6_6.x86_64.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/updates/x86_64/Packages/java-1.7.0-openjdk-1.7.0.85-2.6.1.3.el6_6.x86_64.rpm
+  :rpm_name: java-1.7.0-openjdk-1.7.0.85-2.6.1.3.el6_7.x86_64.rpm
+  :source: Red Hat Updates Repository
 java-1.7.0-openjdk-demo:
-  :rpm_name: java-1.7.0-openjdk-demo-1.7.0.85-2.6.1.3.el6_6.x86_64.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/updates/x86_64/Packages/java-1.7.0-openjdk-demo-1.7.0.85-2.6.1.3.el6_6.x86_64.rpm
+  :rpm_name: java-1.7.0-openjdk-demo-1.7.0.85-2.6.1.3.el6_7.x86_64.rpm
+  :source: Red Hat Updates Repository
 java-1.7.0-openjdk-devel:
-  :rpm_name: java-1.7.0-openjdk-devel-1.7.0.85-2.6.1.3.el6_6.x86_64.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/updates/x86_64/Packages/java-1.7.0-openjdk-devel-1.7.0.85-2.6.1.3.el6_6.x86_64.rpm
+  :rpm_name: java-1.7.0-openjdk-devel-1.7.0.85-2.6.1.3.el6_7.x86_64.rpm
+  :source: Red Hat Updates Repository
 java-1.7.0-openjdk-src:
-  :rpm_name: java-1.7.0-openjdk-src-1.7.0.85-2.6.1.3.el6_6.x86_64.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/updates/x86_64/Packages/java-1.7.0-openjdk-src-1.7.0.85-2.6.1.3.el6_6.x86_64.rpm
+  :rpm_name: java-1.7.0-openjdk-src-1.7.0.85-2.6.1.3.el6_7.x86_64.rpm
+  :source: Red Hat Updates Repository
+kernel:
+  :rpm_name: kernel-2.6.32-573.3.1.el6.x86_64.rpm
+  :source: Red Hat Updates Repository
+kernel-abi-whitelists:
+  :rpm_name: kernel-abi-whitelists-2.6.32-573.3.1.el6.noarch.rpm
+  :source: Red Hat Updates Repository
+kernel-debug:
+  :rpm_name: kernel-debug-2.6.32-573.3.1.el6.x86_64.rpm
+  :source: Red Hat Updates Repository
+kernel-debug-devel:
+  :rpm_name: kernel-debug-devel-2.6.32-573.3.1.el6.x86_64.rpm
+  :source: Red Hat Updates Repository
+kernel-devel:
+  :rpm_name: kernel-devel-2.6.32-573.3.1.el6.x86_64.rpm
+  :source: Red Hat Updates Repository
+kernel-doc:
+  :rpm_name: kernel-doc-2.6.32-573.3.1.el6.noarch.rpm
+  :source: Red Hat Updates Repository
+kernel-firmware:
+  :rpm_name: kernel-firmware-2.6.32-573.3.1.el6.noarch.rpm
+  :source: Red Hat Updates Repository
+kernel-headers:
+  :rpm_name: kernel-headers-2.6.32-573.3.1.el6.x86_64.rpm
+  :source: Red Hat Updates Repository
 kibana:
   :rpm_name: kibana-3.1.0.SIMP-0.noarch.rpm
   :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/6/ext/x86_64/kibana-3.1.0.SIMP-0.noarch.rpm
@@ -205,7 +229,7 @@ libev:
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/libev-4.03-3.el6.x86_64.rpm
 libselinux-ruby:
   :rpm_name: libselinux-ruby-2.0.94-5.8.el6.x86_64.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/os/x86_64/Packages/libselinux-ruby-2.0.94-5.8.el6.x86_64.rpm
+  :source: Red Hat Base Repository
 libyaml:
   :rpm_name: libyaml-0.1.4-2.el6.x86_64.rpm
   :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/6/ext/x86_64/libyaml-0.1.4-2.el6.x86_64.rpm
@@ -298,34 +322,34 @@ mysql-connector-python:
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/mysql-connector-python-1.1.6-1.el6.noarch.rpm
 nscd:
   :rpm_name: nscd-2.12-1.166.el6_7.1.x86_64.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/updates/x86_64/Packages/nscd-2.12-1.166.el6_7.1.x86_64.rpm
+  :source: Red Hat Updates Repository
 nspr:
   :rpm_name: nspr-4.10.8-1.el6_6.x86_64.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/os/x86_64/Packages/nspr-4.10.8-1.el6_6.x86_64.rpm
+  :source: Red Hat Base Repository
 nss:
   :rpm_name: nss-3.19.1-3.el6_6.x86_64.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/updates/x86_64/Packages/nss-3.19.1-3.el6_6.x86_64.rpm
+  :source: Red Hat Updates Repository
 nss-softokn:
   :rpm_name: nss-softokn-3.14.3-22.el6_6.x86_64.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/os/x86_64/Packages/nss-softokn-3.14.3-22.el6_6.x86_64.rpm
+  :source: Red Hat Base Repository
 nss-softokn-freebl:
   :rpm_name: nss-softokn-freebl-3.14.3-22.el6_6.x86_64.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/os/x86_64/Packages/nss-softokn-freebl-3.14.3-22.el6_6.x86_64.rpm
+  :source: Red Hat Base Repository
 nss-sysinit:
   :rpm_name: nss-sysinit-3.19.1-3.el6_6.x86_64.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/updates/x86_64/Packages/nss-sysinit-3.19.1-3.el6_6.x86_64.rpm
+  :source: Red Hat Updates Repository
 nss-tools:
   :rpm_name: nss-tools-3.19.1-3.el6_6.x86_64.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/updates/x86_64/Packages/nss-tools-3.19.1-3.el6_6.x86_64.rpm
+  :source: Red Hat Updates Repository
 nss-util:
   :rpm_name: nss-util-3.19.1-1.el6_6.x86_64.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/updates/x86_64/Packages/nss-util-3.19.1-1.el6_6.x86_64.rpm
+  :source: Red Hat Updates Repository
 openssl:
   :rpm_name: openssl-1.0.1e-42.el6.x86_64.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/os/x86_64/Packages/openssl-1.0.1e-42.el6.x86_64.rpm
+  :source: Red Hat Base Repository
 openssl-devel:
   :rpm_name: openssl-devel-1.0.1e-42.el6.x86_64.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/os/x86_64/Packages/openssl-devel-1.0.1e-42.el6.x86_64.rpm
+  :source: Red Hat Base Repository
 pdsh:
   :rpm_name: pdsh-2.28-0.x86_64.rpm
   :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/6/ext/x86_64/pdsh-2.28-0.x86_64.rpm
@@ -346,7 +370,7 @@ pdsh-rcmd-ssh:
   :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/6/ext/x86_64/pdsh-rcmd-ssh-2.28-0.x86_64.rpm
 perl-Archive-Zip:
   :rpm_name: perl-Archive-Zip-1.30-2.el6.noarch.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/os/x86_64/Packages/perl-Archive-Zip-1.30-2.el6.noarch.rpm
+  :source: Red Hat Base Repository
 perl-Crypt-DES:
   :rpm_name: perl-Crypt-DES-2.05-9.el6.x86_64.rpm
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/perl-Crypt-DES-2.05-9.el6.x86_64.rpm
@@ -355,10 +379,10 @@ perl-DateTime-Format-DateParse:
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/perl-DateTime-Format-DateParse-0.05-4.el6.noarch.rpm
 perl-DateTime-Format-Mail:
   :rpm_name: perl-DateTime-Format-Mail-0.3001-6.el6.noarch.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/os/x86_64/Packages/perl-DateTime-Format-Mail-0.3001-6.el6.noarch.rpm
+  :source: Red Hat Base Repository
 perl-DateTime-Format-W3CDTF:
   :rpm_name: perl-DateTime-Format-W3CDTF-0.04-8.el6.noarch.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/os/x86_64/Packages/perl-DateTime-Format-W3CDTF-0.04-8.el6.noarch.rpm
+  :source: Red Hat Base Repository
 perl-File-RsyncP:
   :rpm_name: perl-File-RsyncP-0.72-1.el6.x86_64.rpm
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/perl-File-RsyncP-0.72-1.el6.x86_64.rpm
@@ -382,10 +406,10 @@ perl-Sort-Versions:
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/perl-Sort-Versions-1.5-12.el6.noarch.rpm
 perl-Time-modules:
   :rpm_name: perl-Time-modules-2006.0814-5.el6.noarch.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/os/x86_64/Packages/perl-Time-modules-2006.0814-5.el6.noarch.rpm
+  :source: Red Hat Base Repository
 perl-XML-RSS:
   :rpm_name: perl-XML-RSS-1.45-2.el6.noarch.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/os/x86_64/Packages/perl-XML-RSS-1.45-2.el6.noarch.rpm
+  :source: Red Hat Base Repository
 pssh:
   :rpm_name: pssh-2.3.1-5.el6.noarch.rpm
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/pssh-2.3.1-5.el6.noarch.rpm
@@ -439,7 +463,7 @@ python-redis:
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/python-redis-2.0.0-1.el6.noarch.rpm
 python-six:
   :rpm_name: python-six-1.9.0-2.el6.noarch.rpm
-  :source: http://mirror.cc.columbia.edu/pub/linux/centos/6.7/os/x86_64/Packages/python-six-1.9.0-2.el6.noarch.rpm
+  :source: Red Hat Base Repository
 python-unittest2:
   :rpm_name: python-unittest2-0.5.1-3.el6.noarch.rpm
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/python-unittest2-0.5.1-3.el6.noarch.rpm
@@ -550,7 +574,7 @@ rubygem-stomp-doc:
   :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/rubygem-stomp-doc-1.3.2-1.el6.noarch.rpm
 scap-security-guide:
   :rpm_name: scap-security-guide-0.1.21-3.el6.noarch.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/os/x86_64/Packages/scap-security-guide-0.1.21-3.el6.noarch.rpm
+  :source: Red Hat Base Repository
 simp-hiera:
   :rpm_name: simp-hiera-1.3.4-3.el6.noarch.rpm
   :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/6/ext/x86_64/simp-hiera-1.3.4-3.el6.noarch.rpm
@@ -565,13 +589,13 @@ sudosh2:
   :source: https://sourceforge.net/projects/sys-integrity-mgmt-platform/files/yum/el/6/ext/x86_64/sudosh2-1.0.2-2.el6.x86_64.rpm
 syslinux-tftpboot:
   :rpm_name: syslinux-tftpboot-4.04-3.el6.noarch.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/os/x86_64/Packages/syslinux-tftpboot-4.04-3.el6.noarch.rpm
+  :source: Red Hat Base Repository
 tanukiwrapper:
   :rpm_name: tanukiwrapper-3.5.9-1.el6.x86_64.rpm
   :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/tanukiwrapper-3.5.9-1.el6.x86_64.rpm
 trousers:
   :rpm_name: trousers-0.3.13-2.el6.x86_64.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/os/x86_64/Packages/trousers-0.3.13-2.el6.x86_64.rpm
+  :source: Red Hat Base Repository
 voms:
   :rpm_name: voms-2.0.12-3.el6.x86_64.rpm
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/voms-2.0.12-3.el6.x86_64.rpm

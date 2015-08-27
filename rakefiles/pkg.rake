@@ -361,7 +361,7 @@ gpg-agent --homedir=#{Dir.pwd} --batch --daemon --pinentry-program /usr/bin/pine
   end
 
   desc "Sign the RPMs."
-  task :signrpms,[:key,:rpm_dir] => [:prep,:mock_prep,:force] do |t,args|
+  task :signrpms,[:key,:rpm_dir,:force] => [:prep,:mock_prep] do |t,args|
     args.with_defaults(:key => 'dev')
     args.with_defaults(:rpm_dir => "#{BUILD_DIR}/SIMP/*RPMS")
     args.with_default(:force => false)
