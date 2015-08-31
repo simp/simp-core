@@ -93,7 +93,3 @@ You should now have an environment where you can develop. Run `rake -T` or
 `rake -D` to see what options are available.
 
 Have fun!
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/simp/simp-core/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
