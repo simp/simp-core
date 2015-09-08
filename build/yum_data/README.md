@@ -44,6 +44,13 @@ This file contains a hash of the following form:
    source: 'http://the_full_download_location'
 ```
 
+#### aux_packages/
+
+A directory of packages that will be included in your build.
+
+This can be used to include arbitrary RPMs in your ISO build. Take care not to
+push past the limits of the single installation ISO.
+
 #### packages/
 
 The actual packages for the given build.
