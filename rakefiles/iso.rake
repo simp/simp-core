@@ -171,9 +171,17 @@ Build the SIMP ISO(s).
             fail("Could not find dependency directory at #{yum_dep_location}")
           end
 
-          yum_dep_rpms = Dir.glob(%(#{yum_dep_location}/*.rpm))
+          yum_dep_rpms = Dir.glob(File.join(yum_dep_location,'*.rpm'))
           if yum_dep_rpms.empty?
             fail("Could not find any dependency RPMs at #{yum_dep_location}")
+          end
+
+          # Add any one-off RPMs that you might want to add to your own build
+          # These are *not* checked to make sure that they actually match your
+          # environment
+          aux_packages = File.join(BUILD_DIR,'yum_data',simp_dep_src,'aux_packages')
+          if File.directory?(aux_packages)
+            yum_dep_rpms += Dir.glob(File.join(aux_packages,'*.rpm'))
           end
 
           yum_dep_rpms.each do |rpm|
