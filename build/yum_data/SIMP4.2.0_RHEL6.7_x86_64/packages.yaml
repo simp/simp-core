@@ -44,9 +44,6 @@ clamd:
 clamsmtp:
   :rpm_name: clamsmtp-1.10-6.el6.x86_64.rpm
   :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/clamsmtp-1.10-6.el6.x86_64.rpm
-clamz:
-  :rpm_name: clamz-0.5-0.el6.x86_64.rpm
-  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/clamz-0.5-0.el6.x86_64.rpm
 dejavu-lgc-sans-fonts:
   :rpm_name: dejavu-lgc-sans-fonts-2.33-1.el6.noarch.rpm
   :source: Red Hat Base Repository
@@ -144,11 +141,11 @@ globus-gsi-sysconfig:
   :rpm_name: globus-gsi-sysconfig-6.8-2.el6.x86_64.rpm
   :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/globus-gsi-sysconfig-6.8-2.el6.x86_64.rpm
 globus-gss-assist:
-  :rpm_name: globus-gss-assist-10.14-1.el6.x86_64.rpm
-  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/globus-gss-assist-10.14-1.el6.x86_64.rpm
+  :rpm_name: globus-gss-assist-10.15-1.el6.x86_64.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-gss-assist-10.15-1.el6.x86_64.rpm
 globus-gssapi-gsi:
-  :rpm_name: globus-gssapi-gsi-11.19-1.el6.x86_64.rpm
-  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/globus-gssapi-gsi-11.19-1.el6.x86_64.rpm
+  :rpm_name: globus-gssapi-gsi-11.20-1.el6.x86_64.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-gssapi-gsi-11.20-1.el6.x86_64.rpm
 globus-openssl-module:
   :rpm_name: globus-openssl-module-4.6-2.el6.x86_64.rpm
   :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/globus-openssl-module-4.6-2.el6.x86_64.rpm
@@ -218,6 +215,9 @@ lfc-libs:
 lfc-python:
   :rpm_name: lfc-python-1.8.9-2.el6.x86_64.rpm
   :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/lfc-python-1.8.9-2.el6.x86_64.rpm
+libarchive-devel:
+  :rpm_name: libarchive-devel-2.8.3-4.el6_2.x86_64.rpm
+  :source: Red Hat Optional Repository
 libconfuse:
   :rpm_name: libconfuse-2.7-4.el6.x86_64.rpm
   :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/libconfuse-2.7-4.el6.x86_64.rpm
@@ -389,9 +389,6 @@ perl-File-RsyncP:
 perl-Math-Calc-Units:
   :rpm_name: perl-Math-Calc-Units-1.07-6.el6.noarch.rpm
   :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/perl-Math-Calc-Units-1.07-6.el6.noarch.rpm
-perl-Nagios-Plugin:
-  :rpm_name: perl-Nagios-Plugin-0.35-1.el6.noarch.rpm
-  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/perl-Nagios-Plugin-0.35-1.el6.noarch.rpm
 perl-Net-FTP-AutoReconnect:
   :rpm_name: perl-Net-FTP-AutoReconnect-0.3-3.el6.noarch.rpm
   :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/perl-Net-FTP-AutoReconnect-0.3-3.el6.noarch.rpm
@@ -554,6 +551,9 @@ rubygem-puppet-lint:
 rubygem-rack:
   :rpm_name: rubygem-rack-1.0.1-2.el6.noarch.rpm
   :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/rubygem-rack-1.0.1-2.el6.noarch.rpm
+rubygem-rake:
+  :rpm_name: rubygem-rake-0.8.7-2.1.el6.noarch.rpm
+  :source: http://mirror.netdepot.com/centos/6.7/os/x86_64/Packages/rubygem-rake-0.8.7-2.1.el6.noarch.rpm
 rubygem-rake-compiler:
   :rpm_name: rubygem-rake-compiler-0.9.3-2.el6.noarch.rpm
   :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/rubygem-rake-compiler-0.9.3-2.el6.noarch.rpm
@@ -575,6 +575,9 @@ rubygem-stomp-doc:
 scap-security-guide:
   :rpm_name: scap-security-guide-0.1.21-3.el6.noarch.rpm
   :source: Red Hat Base Repository
+sendmail-milter:
+  :rpm_name: sendmail-milter-8.14.4-9.el6.x86_64.rpm
+  :source: http://mirror.netdepot.com/centos/6.7/os/x86_64/Packages/sendmail-milter-8.14.4-9.el6.x86_64.rpm
 simp-hiera:
   :rpm_name: simp-hiera-1.3.4-3.el6.noarch.rpm
   :source: https://dl.bintray.com/simp/4.2.X-Ext/simp-hiera-1.3.4-3.el6.noarch.rpm
