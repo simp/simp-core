@@ -104,15 +104,24 @@ glibc-common:
 glibc-devel:
   :rpm_name: glibc-devel-2.12-1.166.el6_7.1.x86_64.rpm
   :source: Red Hat Updates Repository
+glibc-devel_i686:
+  :rpm_name: glibc-devel-2.12-1.166.el6_7.1.i686.rpm
+  :source: Red Hat Updates Repository
 glibc-headers:
   :rpm_name: glibc-headers-2.12-1.166.el6_7.1.x86_64.rpm
   :source: Red Hat Updates Repository
 glibc-static:
   :rpm_name: glibc-static-2.12-1.166.el6_7.1.x86_64.rpm
   :source: Red Hat Updates Repository
+glibc-static_i686:
+  :rpm_name: glibc-static-2.12-1.166.el6_7.1.i686.rpm
+  :source: Red Hat Updates Repository
 glibc-utils:
   :rpm_name: glibc-utils-2.12-1.166.el6_7.1.x86_64.rpm
   :source: Red Hat Updates Repository
+glibc_i686:
+  :rpm_name: glibc-2.12-1.166.el6_7.1.i686.rpm
+  :source: Red Hat Update Repository
 globus-callout:
   :rpm_name: globus-callout-3.13-2.el6.x86_64.rpm
   :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/globus-callout-3.13-2.el6.x86_64.rpm
