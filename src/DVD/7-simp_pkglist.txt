@@ -247,6 +247,7 @@ dos2unix
 dosfstools
 dotconf
 dracut
+dracut-fips
 dracut-config-rescue
 dracut-kernel
 dracut-network
@@ -445,6 +446,7 @@ harfbuzz-icu
 hdparm
 hesiod
 hicolor-icon-theme
+hmaccalc
 hostname
 httpcomponents-client
 httpcomponents-core
