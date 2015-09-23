@@ -167,6 +167,9 @@ gpxe-roms-qemu:
 gweb:
   :rpm_name: gweb-2.1.8-1.noarch.rpm
   :source: https://dl.bintray.com/simp/4.2.X-Ext/gweb-2.1.8-1.noarch.rpm
+haveged:
+  :rpm_name: haveged-1.9.1-2.el6.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/6/x86_64/haveged-1.9.1-2.el6.x86_64.rpm
 hmaccalc:
   :rpm_name: hmaccalc-0.9.12-2.el6.x86_64.rpm
   :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/os/x86_64/Packages/hmaccalc-0.9.12-2.el6.x86_64.rpm

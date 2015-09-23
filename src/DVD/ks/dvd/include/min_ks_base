@@ -38,6 +38,9 @@ coolkey
 cpuspeed
 cryptsetup-luks
 dhclient
+# dracut
+dracut-fips
+fipscheck
 gnupg
 irqbalance
 krb5-workstation

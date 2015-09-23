@@ -175,6 +175,8 @@ dosfstools
 dracut
 dracut-fips
 dracut-kernel
+dracut-network
+dracut-config-rescue
 e2fsprogs
 e2fsprogs-libs
 ecj
