@@ -438,8 +438,8 @@ puppetlabs-stdlib:
   :rpm_name: puppetlabs-stdlib-4.5.1-2.20150121git7a91f20.el6.noarch.rpm
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/puppetlabs-stdlib-4.5.1-2.20150121git7a91f20.el6.noarch.rpm
 puppetserver:
-  :rpm_name: puppetserver-1.0.2-1.el6.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/6/products/x86_64/puppetserver-1.0.2-1.el6.noarch.rpm
+  :rpm_name: puppetserver-1.1.1-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/puppetserver-1.1.1-1.el6.noarch.rpm
 python-argparse:
   :rpm_name: python-argparse-1.2.1-2.el6.noarch.rpm
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/python-argparse-1.2.1-2.el6.noarch.rpm
