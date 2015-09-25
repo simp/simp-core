@@ -56,6 +56,9 @@ dracut:
 dracut-fips:
   :rpm_name: dracut-fips-004-388.el6.noarch.rpm
   :source: Red Hat Base Repository
+dracut-fips-aesni:
+  :rpm_name: dracut-fips-004-388.el6.noarch.rpm
+  :source: Red Hat Optional Repository
 dracut-kernel:
   :rpm_name: dracut-kernel-004-388.el6.noarch.rpm
   :source: Red Hat Base Repository
