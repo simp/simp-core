@@ -124,13 +124,10 @@ namespace :pkg do
           days_left = (Date.parse(lasts_until) - DateTime.now).to_i
         end
 
-        if (days_left < 3 and days_left > 0)
-          puts "WARNING: GPG dev key will expire in #{days_left} days."
+        if days_left > 0
+          puts "GPG key will expire in #{days_left} days." 
         else
-          puts "GPG dev key is still valid. Won't recreate."
-        end
-
-        if days_left == 0
+          puts "Generating new GPG key"
 
           Dir.glob('*').each do |todel|
             rm_rf(todel)
@@ -361,7 +358,7 @@ gpg-agent --homedir=#{Dir.pwd} --batch --daemon --pinentry-program /usr/bin/pine
   end
 
   desc "Sign the RPMs."
-  task :signrpms,[:key,:rpm_dir,:force] => [:prep,:mock_prep] do |t,args|
+  task :signrpms,[:key,:rpm_dir,:force] => [:prep,:key_prep,:mock_prep] do |t,args|
     args.with_defaults(:key => 'dev')
     args.with_defaults(:rpm_dir => "#{BUILD_DIR}/SIMP/*RPMS")
     args.with_default(:force => false)
