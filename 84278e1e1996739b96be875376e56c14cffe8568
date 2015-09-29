@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1ae5cdf2_bde85b11",
+        "filename": "src/DVD/ks/netpuppet.cfg",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-09-29T18:10:59Z",
+      "side": 1,
+      "message": "trailing whitespace",
+      "range": {
+        "startLine": 5,
+        "startChar": 1,
+        "endLine": 5,
+        "endChar": 2
+      },
+      "revId": "84278e1e1996739b96be875376e56c14cffe8568",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ae5cdf2_dd728748",
+        "filename": "src/DVD/ks/pupclient_x86_64.cfg",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-09-29T18:10:59Z",
+      "side": 1,
+      "message": "(applause)",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 83
+      },
+      "revId": "84278e1e1996739b96be875376e56c14cffe8568",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ae5cdf2_3d9b6b68",
+        "filename": "src/DVD/ks/pupclient_x86_64.cfg",
+        "patchSetId": 3
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-09-29T18:10:59Z",
+      "side": 1,
+      "message": "I\u0027m not crazy about the \"comment out this and uncomment that to get these features to work\" across severals sections in the kickstart, but it is serviceable.",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 11
+      },
+      "revId": "84278e1e1996739b96be875376e56c14cffe8568",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
