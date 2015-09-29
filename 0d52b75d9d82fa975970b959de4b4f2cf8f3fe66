@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1ae5cdf2_7dd25301",
+        "filename": "src/DVD/ks/pupclient_x86_64.cfg",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-09-29T18:12:23Z",
+      "side": 1,
+      "message": "I\u0027m not crazy about the \"comment out this and uncomment that to get these features to work\" across several sections in the kickstart, but it is serviceable.",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 11
+      },
+      "revId": "0d52b75d9d82fa975970b959de4b4f2cf8f3fe66",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
