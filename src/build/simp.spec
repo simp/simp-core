@@ -1,7 +1,7 @@
 Summary: SIMP Full Install
 Name: simp
 Version: 5.1.0
-Release: Beta%{?snapshot_release}
+Release: RC1%{?snapshot_release}
 License: Apache License, Version 2.0
 Group: Applications/System
 Source: %{name}-%{version}-%{release}.tar.gz
@@ -72,6 +72,10 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Tue Sep 29 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.1.0-RC1
+- Bump for RC1
+- FIPS mode now fully active out of the box!
+
 * Tue Apr 28 2015 Nick Markowski <nmarkowski@kewycorp.com> - 5.1.0-Beta
 - Incorporated new simp-config! Deleted old simp config. Pkg rake task
   now accepts multiple spec files in build/; will determine which spec
