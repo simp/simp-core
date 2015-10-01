@@ -444,14 +444,14 @@ puppetserver:
   :rpm_name: puppetserver-1.1.1-1.el6.noarch.rpm
   :source: http://yum.puppetlabs.com/el/6/products/x86_64/puppetserver-1.1.1-1.el6.noarch.rpm
 python-argparse:
-  :rpm_name: python-argparse-1.2.1-2.el6.noarch.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/python-argparse-1.2.1-2.el6.noarch.rpm
+  :source: http://mirror.5ninesolutions.com/centos/6.7/os/x86_64/Packages/python-argparse-1.2.1-2.1.el6.noarch.rpm
+  :rpm_name: python-argparse-1.2.1-2.1.el6.noarch.rpm
 python-backports:
   :rpm_name: python-backports-1.0-3.el6.x86_64.rpm
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/python-backports-1.0-3.el6.x86_64.rpm
 python-backports-ssl_match_hostname:
-  :rpm_name: python-backports-ssl_match_hostname-3.4.0.2-4.el6.noarch.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/python-backports-ssl_match_hostname-3.4.0.2-4.el6.noarch.rpm
+  :source: http://mirror.5ninesolutions.com/centos/6.7/os/x86_64/Packages/python-backports-ssl_match_hostname-3.4.0.2-2.el6.noarch.rpm
+  :rpm_name: python-backports-ssl_match_hostname-3.4.0.2-2.el6.noarch.rpm
 python-elasticsearch:
   :rpm_name: python-elasticsearch-1.2.0-0.el6.noarch.rpm
   :source: https://dl.bintray.com/simp/4.2.X-Ext/python-elasticsearch-1.2.0-0.el6.noarch.rpm
@@ -477,8 +477,8 @@ python-unittest2:
   :rpm_name: python-unittest2-0.5.1-3.el6.noarch.rpm
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/python-unittest2-0.5.1-3.el6.noarch.rpm
 python-urllib3:
-  :rpm_name: python-urllib3-1.5-7.el6.noarch.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/python-urllib3-1.5-7.el6.noarch.rpm
+  :source: http://mirrors.tripadvisor.com/centos/6.7/os/x86_64/Packages/python-urllib3-1.10.2-1.el6.noarch.rpm
+  :rpm_name: python-urllib3-1.10.2-1.el6.noarch.rpm
 qstat:
   :rpm_name: qstat-2.11-9.20080912svn311.el6.x86_64.rpm
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/qstat-2.11-9.20080912svn311.el6.x86_64.rpm
