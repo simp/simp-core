@@ -432,11 +432,11 @@ puppet-server:
   :rpm_name: puppet-server-3.7.4-1.el6.noarch.rpm
   :source: http://yum.puppetlabs.com/el/6/products/x86_64/puppet-server-3.7.4-1.el6.noarch.rpm
 puppetdb:
-  :rpm_name: puppetdb-2.3.2-1.el6.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/6/products/x86_64/puppetdb-2.3.2-1.el6.noarch.rpm
+  :rpm_name: puppetdb-2.3.8-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/puppetdb-2.3.8-1.el6.noarch.rpm
 puppetdb-terminus:
-  :rpm_name: puppetdb-terminus-2.3.2-1.el6.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/6/products/x86_64/puppetdb-terminus-2.3.2-1.el6.noarch.rpm
+  :rpm_name: puppetdb-terminus-2.3.8-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/puppetdb-terminus-2.3.8-1.el6.noarch.rpm
 puppetlabs-stdlib:
   :rpm_name: puppetlabs-stdlib-4.5.1-2.20150121git7a91f20.el6.noarch.rpm
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/puppetlabs-stdlib-4.5.1-2.20150121git7a91f20.el6.noarch.rpm
