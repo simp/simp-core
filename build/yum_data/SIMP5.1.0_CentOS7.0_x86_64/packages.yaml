@@ -267,11 +267,11 @@ puppet-server:
   :rpm_name: puppet-server-3.8.1-1.el7.noarch.rpm
   :source: http://yum.puppetlabs.com/el/7/products/x86_64/puppet-server-3.8.1-1.el7.noarch.rpm
 puppetdb:
-  :rpm_name: puppetdb-2.3.5-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/puppetdb-2.3.5-1.el7.noarch.rpm
+  :rpm_name: puppetdb-2.3.8-1.el7.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/7/products/x86_64/puppetdb-2.3.8-1.el7.noarch.rpm
 puppetdb-terminus:
-  :rpm_name: puppetdb-terminus-2.3.5-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/puppetdb-terminus-2.3.5-1.el7.noarch.rpm
+  :rpm_name: puppetdb-terminus-2.3.8-1.el7.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/7/products/x86_64/puppetdb-terminus-2.3.8-1.el7.noarch.rpm
 puppetlabs-release:
   :rpm_name: puppetlabs-release-7-11.noarch.rpm
   :source: http://yum.puppetlabs.com/el/7/products/x86_64/puppetlabs-release-7-11.noarch.rpm
