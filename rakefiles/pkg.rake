@@ -196,7 +196,9 @@ gpg-agent --homedir=#{Dir.pwd} --batch --daemon --pinentry-program /usr/bin/pine
                 gpg_agent_socket = gpg_agent_info[0]
                 gpg_agent_pid = gpg_agent_info[1].strip.to_i
 
-                ln_s(gpg_agent_socket,%(#{Dir.pwd}/#{File.basename(gpg_agent_socket)}))
+                if not File.exist? (%(#{Dir.pwd}/#{File.basename(gpg_agent_socket)})) then
+                  ln_s(gpg_agent_socket,%(#{Dir.pwd}/#{File.basename(gpg_agent_socket)}))
+                end
               end
             end
 
