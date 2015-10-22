@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ab29df4_8879ecfe",
+        "filename": "src/puppet/bootstrap/environments/simp/hieradata/hosts/puppet.your.domain.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2015-10-22T17:59:10Z",
+      "side": 1,
+      "message": "Why are we doing this?",
+      "revId": "0ee5deececc96cad49ccc83158c7a907bc32d696",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
