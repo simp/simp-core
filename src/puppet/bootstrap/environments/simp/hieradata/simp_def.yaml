@@ -123,3 +123,11 @@ simp::yum::servers :
 
 # Management of Specific Classes
 common::runlevel : '3'
+# SSH Server can be configured to use strong ciphers only.  This can 
+# prevent it from allowing less secure clients from connecting via ssh.
+# The default is to include all approved ciphers but should be
+# updated to include only strong ciphers once your remote clients
+# have been updated.  
+# false : include all allowed ciphers
+# true : include only the stronger ciphers
+ssh::server::use_strong_ciphers_only : false
