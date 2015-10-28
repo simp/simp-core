@@ -1,12 +1,13 @@
 Summary: GPGKEYS
 Name: simp-gpgkeys
 Version: 2.0.0
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: Public Domain
 Group: Applications/System
 Source: %{name}-%{version}-2.tar.gz
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Buildarch: noarch
+Requires: facter
 
 Prefix: %{_datadir}/simp/GPGKEYS
 
@@ -45,7 +46,7 @@ cp RPM-GPG-KEY* %{buildroot}/%{prefix}
 # If we're a SIMP server, place the keys into the appropriate web directory
 
 for dir in '/srv/www/yum/SIMP' '/var/www/yum/SIMP'; do
-  if [ -d $dir ]; then
+  if [ ! -d $dir ]; then
     mkdir -p -m 0755 "${dir}/GPGKEYS"
   fi
   cp %{prefix}/RPM-GPG-KEY* "${dir}/GPGKEYS"
@@ -74,7 +75,7 @@ for dir in '/srv/www/yum/SIMP' '/var/www/yum/SIMP'; do
 
   # Link system GPG keys into SIMP repo
   if [ `facter operatingsystem` == 'CentOS' ]; then
-    search_string='.*CentOS-[[:digit:]]|.*CentOS-Security.*'
+    search_string='.*CentOS-[[:digit:]]'
   elif [ `facter operatingsystem` == 'RedHat' ]; then
     search_string='.*redhat.*release.*'
   else
@@ -87,7 +88,7 @@ for dir in '/srv/www/yum/SIMP' '/var/www/yum/SIMP'; do
   fi
 
   # Ensure GPG permissions
-  chown -R root:apache ${dir}/GPGKEYS/
+  chown -R root:48 ${dir}/GPGKEYS/
   find ${dir}/GPGKEYS/ -type f -exec chmod 640 {} +
 
 done
@@ -102,6 +103,9 @@ for dir in '/srv/www/yum/SIMP' '/var/www/yum/SIMP'; do
 done
 
 %changelog
+* Tue Oct 27 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 2.0.0-3
+- Fixed some logic bugs in the %postinstall script
+
 * Tue Jul 28 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 2.0.0-2
 - Now install the GPG keys to /usr/share/simp/GPGKEYS and /etc/pki/rpm-gpg
 - Copy the keys into the SIMP default web dirs if they exist and be sure to
