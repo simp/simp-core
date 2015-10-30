@@ -123,3 +123,11 @@ simp::yum::servers :
 
 # Management of Specific Classes
 common::runlevel : '3'
+# Configuration item use_strong_ciphers_only is used by the ssh server module
+# to determine what ciphers to configure for use by the SSH server. 
+# It is defaulted to false to ease the set up of the system.  
+# Once your system is initialized and you have you clients configured to 
+# use strong ciphers you should change this value to true. 
+# false : include all allowed ciphers (default in simp module)
+# true : include only the stronger ciphers
+ssh::server::use_strong_ciphers_only : false
