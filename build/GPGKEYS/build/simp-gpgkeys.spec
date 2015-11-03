@@ -4,7 +4,7 @@ Version: 2.0.0
 Release: 3%{?dist}
 License: Public Domain
 Group: Applications/System
-Source: %{name}-%{version}-2.tar.gz
+Source: %{name}-%{version}-3.tar.gz
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Buildarch: noarch
 Requires: facter
