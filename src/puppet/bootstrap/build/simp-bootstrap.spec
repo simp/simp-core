@@ -1,7 +1,7 @@
 Summary: SIMP Bootstrap
 Name: simp-bootstrap
 Version: 4.2.0
-Release: 2
+Release: 3
 License: Apache License 2.0
 Group: Applications/System
 Source: %{name}-%{version}-%{release}.tar.gz
@@ -270,6 +270,15 @@ else
   fi
 fi
 
+# Link yum and ks
+for dir in 'yum' 'ks'; do
+  if [ -d "/var/www/${dir}" ]; then
+    echo "Warning: /var/www/${dir} exists, not linking to /srv/www/${dir}";
+  else
+    ln -s "/srv/www/${dir}" "/var/www/${dir}";
+  fi
+done
+
 sed -i "s|baseurl=file:///srv/www/yum/SIMP/\?$|baseurl=file:///srv/www/yum/SIMP/$arch|" /etc/yum.repos.d/*.repo
 
 # Set up the simp directory environment
@@ -291,6 +300,10 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Thu Nov 05 2015 Nick Markowski <nmarkowski@keywcorp.com> - 4.2.0-3
+- Symlink /srv/www/yum|ks to /var/www.  This used to happen post kickstart
+  but users need this functionality when not installing from the ISO.
+
 * Tue Jun 09 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 4.2.0-2
 - Made some minor fixes to prepare for public release.
 - Added a global Exec default for the command path.
