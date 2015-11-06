@@ -216,17 +216,17 @@ kibana:
   :rpm_name: kibana-3.1.0.SIMP-0.noarch.rpm
   :source: https://dl.bintray.com/simp/4.2.X-Ext/kibana-3.1.0.SIMP-0.noarch.rpm
 lcgdm-libs:
-  :rpm_name: lcgdm-libs-1.8.9-2.el6.x86_64.rpm
-  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/lcgdm-libs-1.8.9-2.el6.x86_64.rpm
+  :rpm_name: lcgdm-libs-1.8.10-1.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/lcgdm-libs-1.8.10-1.el6.x86_64.rpm
 leiningen:
   :rpm_name: leiningen-2.0.0-0.2preview10.el6.noarch.rpm
   :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/leiningen-2.0.0-0.2preview10.el6.noarch.rpm
 lfc-libs:
-  :rpm_name: lfc-libs-1.8.9-2.el6.x86_64.rpm
-  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/lfc-libs-1.8.9-2.el6.x86_64.rpm
+  :rpm_name: lfc-libs-1.8.10-1.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/lfc-libs-1.8.10-1.el6.x86_64.rpm
 lfc-python:
-  :rpm_name: lfc-python-1.8.9-2.el6.x86_64.rpm
-  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/lfc-python-1.8.9-2.el6.x86_64.rpm
+  :rpm_name: lfc-python-1.8.10-1.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/lfc-python-1.8.10-1.el6.x86_64.rpm
 libarchive-devel:
   :rpm_name: libarchive-devel-2.8.3-4.el6_2.x86_64.rpm
   :source: Red Hat Optional Repository
@@ -263,9 +263,6 @@ mcollective-client:
 mcollective-common:
   :rpm_name: mcollective-common-2.2.3-1.SIMP.1.el6.noarch.rpm
   :source: https://dl.bintray.com/simp/4.2.X-Ext/mcollective-common-2.2.3-1.SIMP.1.el6.noarch.rpm
-mcollective-facter-facts:
-  :rpm_name: mcollective-facter-facts-1.0.0-1.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-facter-facts-1.0.0-1.noarch.rpm
 mcollective-filemgr-agent:
   :rpm_name: mcollective-filemgr-agent-1.0.1-1.noarch.rpm
   :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-filemgr-agent-1.0.1-1.noarch.rpm
