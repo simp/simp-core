@@ -1,7 +1,7 @@
 Summary: SIMP Utils
 Name: simp-utils
 Version: 5.0.0
-Release: 7
+Release: 8
 License: Apache License, Version 2.0
 Group: Applications/System
 Source: %{name}-%{version}-%{release}.tar.gz
@@ -48,7 +48,9 @@ chmod -R u=rwX,g=rX,o=rX %{buildroot}/usr/share/man
 /usr/local/sbin/puppetlast
 /usr/local/sbin/gen-ldap-update
 /usr/local/sbin/updaterepos
+/usr/local/sbin/hiera_upgrade
 /usr/share/simp
+%exclude /usr/share/simp/upgrade_scripts
 %attr(0750,-,-) /usr/share/simp/upgrade_scripts
 %doc /usr/share/man/*/*
 
@@ -59,6 +61,10 @@ chmod -R u=rwX,g=rX,o=rX %{buildroot}/usr/share/man
 # Post uninstall stuff
 
 %changelog
+* Thu Nov 05 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.0.0-8
+- Added a 'hiera_upgrade' script that moves away from the SIMP patched one to
+  the use of the 'alias' function.
+
 * Tue Apr 28 2015 Nick Markowski <nmarkowski@keywcorp.com> - 5.0.0-7
 - Removed old simp config from site_ruby.
 
@@ -289,7 +295,7 @@ chmod -R u=rwX,g=rX,o=rX %{buildroot}/usr/share/man
 - Added options to 'simp check' to check for unscoped function calls and
 global resource defaults
 
-* Thu Nov 20 2010 Maintenance - 1.0-3
+* Sat Nov 20 2010 Maintenance - 1.0-3
 - The 'simp config' utility now configures the keydist directory for the server.
 - The 'simp bootstrap' utility has been added to be run after 'simp config'.
 - The 'simp config' command now fully configures the Apache YUM repository.

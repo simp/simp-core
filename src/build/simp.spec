@@ -1,7 +1,7 @@
 Summary: SIMP Full Install
 Name: simp
 Version: 5.1.0
-Release: RC1%{?snapshot_release}
+Release: RC1.1446834077%{?snapshot_release}
 License: Apache License, Version 2.0
 Group: Applications/System
 Source: %{name}-%{version}-%{release}.tar.gz
@@ -11,33 +11,34 @@ Requires: createrepo
 Requires: lsb
 Requires: puppetserver >= 1.0.0
 Requires: facter > 1:2.4.0
-Requires: simp-hiera >= 1.3.2-2
+Requires: hiera >= 3.0.2
 Requires: puppetlabs-stdlib
 Requires: httpd >= 2.2
+Obsoletes: simp-hiera <= 3.0.1
 #Begin AUTOGEN
 #End AUTOGEN
 
-Prefix: /etc/puppet
+Prefix: %{_sysconfdir}/puppet
 
 %description
 Stub for installing everything needed for a full SIMP system
 
 %prep
-%setup
+%setup -q
 
 %build
 
 %install
-mkdir -p %{buildroot}/etc/simp
-echo "%{version}-%{release}" > %{buildroot}/etc/simp/simp.version
-chmod u=rwX,g=rX,o=rX -R %{buildroot}/etc/simp
+mkdir -p %{buildroot}%{_sysconfdir}/simp
+echo "%{version}-%{release}" > %{buildroot}%{_sysconfdir}/simp/simp.version
+chmod u=rwX,g=rX,o=rX -R %{buildroot}%{_sysconfdir}/simp
 
 %clean
 [ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
-/etc/simp/simp.version
+%{_sysconfdir}/simp/simp.version
 
 %post
 # Post installation stuff
@@ -46,16 +47,20 @@ if [ -f %{prefix}/autosign.conf ]; then
   chmod 644 %{prefix}/autosign.conf;
 fi
 
-if [ -x '/usr/local/sbin/puppetserver_clear_environment_cache' ]; then
-  /usr/local/sbin/puppetserver_clear_environment_cache
+if [ -f '%{_usr}/local/sbin/hiera_upgrade' ]; then
+  %{_usr}/local/sbin/hiera_upgrade || true
 fi
 
-if [ -x '/usr/local/sbin/puppetserver_reload' ]; then
-  /usr/local/sbin/puppetserver_reload
+if [ -x '%{_usr}/local/sbin/puppetserver_clear_environment_cache' ]; then
+  %{_usr}/local/sbin/puppetserver_clear_environment_cache
 fi
 
-rpm_link_target="/var/www/yum/`facter operatingsystem`/`facter lsbmajdistrelease`"
-rpm_link="/var/www/yum/`facter operatingsystem`/`facter lsbdistrelease`"
+if [ -x '%{_usr}/local/sbin/puppetserver_reload' ]; then
+  %{_usr}/local/sbin/puppetserver_reload
+fi
+
+rpm_link_target="%{_var}/www/yum/`facter operatingsystem`/`facter operatingsystemmajrelease`"
+rpm_link="%{_var}/www/yum/`facter operatingsystem`/`facter operatingsystemrelease`"
 rpm_dir="$rpm_link/`facter hardwaremodel`/Updates"
 
 umask 022;
@@ -72,6 +77,12 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Fri Oct 06 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.1.0-RC1.1446834077
+- Upgraded to Hiera 3 from Puppet Labs
+- Incorporated a migration script for updating from the old simp-hiera
+- Replaced facter calls to 'lsb*' with 'operatingsystem*' in the 'post' section
+  of the RPM
+
 * Tue Sep 29 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.1.0-RC1
 - Bump for RC1
 - FIPS mode now fully active out of the box!
@@ -103,7 +114,7 @@ fi
 
 * Fri Dec 05 2014 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.0.0-1
 - Update to the first release of 5.0.0 patching several bugs
-- Updated changelog in regards to GUI and /var/tmp noexec issues
+- Updated changelog in regards to GUI and %{_var}/tmp noexec issues
 - Added patches for POODLE and Shellshock
 - Added GPG keys for RHEL/EPEL/CentOS 7
 - Fixed the puppet cron job
@@ -121,7 +132,7 @@ fi
 - Releases now only include modules that have been verified to work.
 
 * Mon Jul 21 2014 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.0.0-Beta
-- Updated to use /var instead of /srv for most data.
+- Updated to use %{_var} instead of /srv for most data.
 
 * Fri Jun 27 2014 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.0.0-Alpha
 - Added a dependency on the new passenger-service package and removed the
@@ -159,7 +170,7 @@ fi
 * Tue Sep 24 2013 Trevor Vaughan <tvaughan@onyxpoint.com> - 4.0.5-1
 - Major changes:
   - Added ability to not automaticaly restart the network
-  - Updated to use new passenger temp directory of /var/run/passenger.
+  - Updated to use new passenger temp directory of %{_var}/run/passenger.
   - Updated rsync to default to contimeout instead of I/O timeout.
 
 * Thu Sep 12 2013 Trevor Vaughan <tvaughan@onyxpoint.com> - 4.0.5-0
@@ -257,7 +268,7 @@ fi
 - Added a file /etc/simp/simp.version that contains the version from
   this RPM for distribution to the clients.
 - Added requires for ruby-ldap and rubygem-hiera to simp-mit
-- Moved MIT libraries to /usr/share/simp/tests/modules/mit_common
+- Moved MIT libraries to %{_usr}/share/simp/tests/modules/mit_common
 - Updated the PuppetUtils in MIT library to offer more puppet functionality
 - Added 'disable_agent' and 'enable_agent' steps to the MIT common
   library.
@@ -325,7 +336,7 @@ fi
 
 * Mon Jan 03 2011 Maintenance 1.3.0-RC1
 - First release candidate of 1.3.0
-- Added useful LDIFs to /usr/share/doc/simp-<version>/ldifs.
+- Added useful LDIFs to %{_usr}/share/doc/simp-<version>/ldifs.
 
 * Wed Jun 23 2010 Trevor Vaughan <tvaughan@onyxpoint.com> - 1.3.0-alpha
 - Initial release of 1.3.0
@@ -340,7 +351,7 @@ fi
 - Documentation updates.
 
 * Mon May 10 2010 Trevor Vaughan <tvaughan@onyxpoint.com> - 1.2.6-4
-- Added a 'if' statement to the %post section to preclude inappropriate failure
+- Added a 'if' statement to the 'post 'section to preclude inappropriate failure
   messages if httpd can't restart for some reason.
 
 * Mon Apr 27 2010 Trevor Vaughan <tvaughan@onyxpoint.com> - 1.2.6-3
