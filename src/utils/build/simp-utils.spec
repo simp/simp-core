@@ -1,7 +1,7 @@
 Summary: SIMP Utils
 Name: simp-utils
 Version: 4.1.0
-Release: 12
+Release: 13
 License: Apache License, Version 2.0
 Group: Applications/System
 Source: %{name}-%{version}-%{release}.tar.gz
@@ -59,6 +59,10 @@ chmod -R u=rwX,g=rX,o=rX %{buildroot}/usr/share/man
 # Post uninstall stuff
 
 %changelog
+* Thu Nov 05 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 4.0.0-13
+- Added a 'hiera_upgrade' script that moves away from the SIMP patched one to
+  the use of the 'alias' function.
+
 * Wed Apr 29 2015 Nick Markowski <nmarkowski@keywcorp.com> - 4.1.0-12
 - Removed old simp config from site_ruby.
 
