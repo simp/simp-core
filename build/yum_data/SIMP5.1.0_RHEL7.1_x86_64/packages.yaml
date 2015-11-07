@@ -368,9 +368,9 @@ rubygem-stomp-doc:
 scap-security-guide:
   :rpm_name: scap-security-guide-0.1.19-2.el7.noarch.rpm
   :source: Red Hat Updates Repository
-simp-hiera:
-  :rpm_name: simp-hiera-1.3.3-1.el7.noarch.rpm
-  :source: https://dl.bintray.com/simp/5.1.X-Ext/simp-hiera-1.3.3-1.el7.noarch.rpm
+hiera:
+  :rpm_name: hiera-3.0.2-1.el7.noarch.rpm
+  :source: https://dl.bintray.com/simp/5.1.X/hiera-3.0.2-1.el7.noarch.rpm
 simp-lastbind:
   :rpm_name: simp-lastbind-2.4.23-0.x86_64.rpm
   :source: https://dl.bintray.com/simp/5.1.X-Ext/simp-lastbind-2.4.23-0.x86_64.rpm
