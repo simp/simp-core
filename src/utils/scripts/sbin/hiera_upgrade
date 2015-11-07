@@ -1,0 +1,98 @@
+#!/usr/bin/env ruby
+
+# This script is intended to assist users in upgrading from the SIMP fork of
+# Hiera to the latest Puppet Labs supported release.
+#
+# By default this will only upgrade the 'simp' environment as distributed by
+# simp-bootstrap
+#
+# You can set the environment variable HIERA_UPGRADE to a hieradata path to
+# run this script on a directory of your choosing.
+
+hieradata_path = ENV['HIERA_UPGRADE']
+
+hieradata_path = %(#{%x(puppet config print environmentpath).strip}/simp) unless hieradata_path
+
+canary_file = File.join(hieradata_path,'.simp_migrated')
+if File.exist?(canary_file)
+  exit 0
+end
+
+unless File.directory?(hieradata_path)
+  $stderr.puts(%(Error: Directory '#{hieradata_path}' does not exist))
+  exit 1
+end
+
+require 'find'
+require 'yaml'
+require 'fileutils'
+
+def backup_data(src_dir)
+  # Back everything up
+
+  backup_path = src_dir + '.simp_hiera_upgrade.bak.' + Time.now.strftime('%Y_%m_%d_%s')
+
+  puts %(Making backup at #{backup_path})
+
+  FileUtils.cp_r(src_dir, backup_path)
+end
+
+# Hold all hiera array and hash keys from every file for reference
+hiera_keys = []
+
+# Some basic tracking
+converted_variables = 0
+
+phases = [
+  'Gathering Keys',
+  'Converting Variables'
+]
+
+phases.each do |phase|
+  data_backed_up = false
+  puts %(In phase "#{phase}")
+
+  Find.find(hieradata_path) do |path|
+    next unless (File.file?(path) && (path.split('.').last == 'yaml'))
+
+    file_content = IO.read(path)
+    tmp_data = YAML.load(file_content)
+
+    if phase == 'Gathering Keys'
+      # We only want things that are Hashes or Arrays
+      mappable_keys = tmp_data.select{|k,v| v.is_a?(Hash) || v.is_a?(Array)}.map{|x| x.first}
+      hiera_keys += mappable_keys
+      hiera_keys = hiera_keys.flatten.uniq
+    end
+
+    if phase == 'Converting Variables'
+      content_changed = false
+
+      hiera_keys.each do |key|
+        convert_from = %(%{hiera('#{key}')})
+        convert_to = %(%{alias('#{key}')})
+
+        if file_content.include?(convert_from)
+          unless data_backed_up
+            backup_data(hieradata_path)
+            data_backed_up = true
+          end
+
+          content_changed = true
+          file_content.gsub!(convert_from, convert_to)
+
+          puts %(Converted '#{key}' in #{path})
+          converted_variables += 1
+        end
+      end
+
+      if content_changed
+        File.open(path,'w').puts(file_content)
+      end
+    end
+  end
+end
+
+puts %(Found #{converted_variables} variables to convert)
+
+FileUtils.touch(canary_file)
