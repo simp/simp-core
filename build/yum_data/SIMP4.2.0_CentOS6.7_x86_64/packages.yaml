@@ -170,6 +170,9 @@ gweb:
 haveged:
   :rpm_name: haveged-1.9.1-2.el6.x86_64.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/haveged-1.9.1-2.el6.x86_64.rpm
+hiera:
+  :source: https://dl.bintray.com/simp/4.2.X/hiera-3.0.2-1.el6.noarch.rpm
+  :rpm_name: hiera-3.0.2-1.el6.noarch.rpm
 hmaccalc:
   :rpm_name: hmaccalc-0.9.12-2.el6.x86_64.rpm
   :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.7/os/x86_64/Packages/hmaccalc-0.9.12-2.el6.x86_64.rpm
@@ -587,9 +590,6 @@ scap-security-guide:
 sendmail-milter:
   :rpm_name: sendmail-milter-8.14.4-9.el6.x86_64.rpm
   :source: http://mirror.netdepot.com/centos/6.7/os/x86_64/Packages/sendmail-milter-8.14.4-9.el6.x86_64.rpm
-simp-hiera:
-  :rpm_name: simp-hiera-1.3.4-3.el6.noarch.rpm
-  :source: https://dl.bintray.com/simp/4.2.X-Ext/simp-hiera-1.3.4-3.el6.noarch.rpm
 simp-lastbind:
   :rpm_name: simp-lastbind-2.4.23-0.x86_64.rpm
   :source: https://dl.bintray.com/simp/4.2.X-Ext/simp-lastbind-2.4.23-0.x86_64.rpm
