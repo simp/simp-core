@@ -59,6 +59,10 @@ chmod -R u=rwX,g=rX,o=rX %{buildroot}/usr/share/man
 # Post uninstall stuff
 
 %changelog
+* Thu Nov 05 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.0.0-8
+- Added a 'hiera_upgrade' script that moves away from the SIMP patched one to
+  the use of the 'alias' function.
+
 * Tue Apr 28 2015 Nick Markowski <nmarkowski@keywcorp.com> - 5.0.0-7
 - Removed old simp config from site_ruby.
 
