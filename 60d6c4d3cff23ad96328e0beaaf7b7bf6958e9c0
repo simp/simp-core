@@ -36,6 +36,23 @@
     },
     {
       "key": {
+        "uuid": "7ac7a964_513793b0",
+        "filename": "src/utils/scripts/sbin/hiera_upgrade",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1005194
+      },
+      "writtenOn": "2015-11-09T18:16:15Z",
+      "side": 1,
+      "message": "require \u0027fileutils\u0027",
+      "revId": "60d6c4d3cff23ad96328e0beaaf7b7bf6958e9c0",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7ac7a964_31e4d73a",
         "filename": "src/utils/scripts/sbin/hiera_upgrade",
         "patchSetId": 1
