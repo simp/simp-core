@@ -224,7 +224,8 @@ arch=`uname -p`;
 version=`/usr/bin/facter lsbdistrelease 2> /dev/null`;
 majversion=`/usr/bin/facter lsbmajdistrelease 2> /dev/null`;
 os=`/usr/bin/facter operatingsystem 2> /dev/null`;
-base="/srv/www/yum/$os";
+www_dir="/var/www/yum";
+base="${www_dir}/${os}";
 
 if [ -d $base ] && [ ! -h $base/$majversion ]; then
   if [ -f $base/$majversion/$arch/.treeinfo ]; then
@@ -238,9 +239,9 @@ if [ -d $base ] && [ ! -h $base/$majversion ]; then
 fi
 
 # Check to see if the 'SIMP' repo is on the system and correct.
-if [ -d /srv/www/yum/SIMP ]; then
-  cd /srv/www/yum/SIMP;
-  if [ -d /srv/www/yum/SIMP/repodata ]; then
+if [ -d "${www_dir}/SIMP" ]; then
+  cd "${www_dir}/SIMP}";
+  if [ -d "${www_dir}/SIMP/repodata" ]; then
     rm -rf repodata;
   fi
 
@@ -263,14 +264,14 @@ if [ -d /srv/www/yum/SIMP ]; then
     )
   fi
 else
-  if [ ! -d /srv/www/yum/SIMP ]; then
-    echo "Warning: Could not find /srv/www/yum/SIMP on this system, you will need";
+  if [ ! -d "${www_dir}/SIMP" ]; then
+    echo "Warning: Could not find ${www_dir}/SIMP on this system, you will need";
     echo "  to ensure that your 'SIMP' repository has repodata in i386 and";
     echo "  x86_64 as well as having symlinked noarch to both."
   fi
 fi
 
-sed -i "s|baseurl=file:///srv/www/yum/SIMP/\?$|baseurl=file:///srv/www/yum/SIMP/$arch|" /etc/yum.repos.d/*.repo
+sed -i "s|baseurl=file://${www_dir}/SIMP/\?$|baseurl=file://${www_dir}/SIMP/$arch|" /etc/yum.repos.d/*.repo
 
 # Set up the simp directory environment
 envdir='%{prefix}/environments/simp';
@@ -291,6 +292,10 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Mon Nov 09 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.2.1-2
+- Fixed a regression that reverted the 'post' section of the RPM to using
+  /srv/www instead of /var/www.
+
 * Tue Jun 09 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.2.1-1
 - Made some minor fixes to prepare for public release.
 - Added a global Exec default for the command path.
