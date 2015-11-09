@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7ac7a964_d1400338",
+        "filename": "src/utils/build/simp-utils.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1005194
+      },
+      "writtenOn": "2015-11-09T17:38:44Z",
+      "side": 1,
+      "message": "declare /usr/local/sbin/hiera_upgrade",
+      "revId": "60d6c4d3cff23ad96328e0beaaf7b7bf6958e9c0",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
