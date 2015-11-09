@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "7ac7a964_71a00ff5",
+        "filename": "src/build/simp.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1005194
+      },
+      "writtenOn": "2015-11-09T17:50:56Z",
+      "side": 1,
+      "message": "Obsoletes: simp-hiera",
+      "revId": "191dc0f55970d5813c80aa936a2b97a872b2e564",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7ac7a964_7179ef92",
         "filename": "src/utils/build/simp-utils.spec",
         "patchSetId": 1
