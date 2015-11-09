@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7ac7a964_514a3384",
+        "filename": "src/utils/scripts/sbin/hiera_upgrade",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1005194
+      },
+      "writtenOn": "2015-11-09T20:10:20Z",
+      "side": 1,
+      "message": "See 4.2 comments.",
+      "revId": "e1b5897e800211bc358bd1d3cc683a68435db6c7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
