@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7ac7a964_5fb6ae3e",
+        "filename": "src/DVD/ks/dvd/auto.cfg",
+        "patchSetId": 1
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1005194
+      },
+      "writtenOn": "2015-11-12T19:18:55Z",
+      "side": 1,
+      "message": "no line?",
+      "range": {
+        "startLine": 250,
+        "startChar": 3,
+        "endLine": 250,
+        "endChar": 27
+      },
+      "revId": "8fc07251b4f2936e31f8be1f7b405e7abf49cbbe",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7ac7a964_bf7c2274",
+        "filename": "src/DVD/ks/dvd/min.cfg",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1005194
+      },
+      "writtenOn": "2015-11-12T19:18:55Z",
+      "side": 1,
+      "message": "here, too?",
+      "range": {
+        "startLine": 51,
+        "startChar": 4,
+        "endLine": 51,
+        "endChar": 27
+      },
+      "revId": "8fc07251b4f2936e31f8be1f7b405e7abf49cbbe",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
