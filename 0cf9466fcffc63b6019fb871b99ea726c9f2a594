@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7ac7a964_dfd63ec5",
+        "filename": "src/DVD/ks/dvd/include/common_ks_base",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-11-12T21:35:51Z",
+      "side": 1,
+      "message": "(yuno) fips\u003d1?",
+      "range": {
+        "startLine": 5,
+        "startChar": 56,
+        "endLine": 5,
+        "endChar": 57
+      },
+      "revId": "0cf9466fcffc63b6019fb871b99ea726c9f2a594",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
