@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7ac7a964_7f9b6ac9",
+        "filename": "src/DVD/ks/dvd/auto.cfg",
+        "patchSetId": 1
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1005194
+      },
+      "writtenOn": "2015-11-12T19:15:49Z",
+      "side": 1,
+      "message": "ws",
+      "revId": "fe140d8c4436f5598846fab228fccab771f4bd75",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
