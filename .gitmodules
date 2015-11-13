@@ -19,9 +19,6 @@
 [submodule "src/puppet/modules/clamav"]
 	path = src/puppet/modules/clamav
 	url = git://github.com/simp/pupmod-simp-clamav
-[submodule "src/puppet/modules/common"]
-	path = src/puppet/modules/common
-	url = git://github.com/simp/pupmod-simp-common
 [submodule "src/puppet/modules/concat"]
 	path = src/puppet/modules/concat
 	url = git://github.com/simp/pupmod-simp-concat
@@ -34,9 +31,6 @@
 [submodule "src/puppet/modules/freeradius"]
 	path = src/puppet/modules/freeradius
 	url = git://github.com/simp/pupmod-simp-freeradius
-[submodule "src/puppet/modules/functions"]
-	path = src/puppet/modules/functions
-	url = git://github.com/simp/pupmod-simp-functions
 [submodule "src/puppet/modules/iptables"]
 	path = src/puppet/modules/iptables
 	url = git://github.com/simp/pupmod-simp-iptables
@@ -247,3 +241,6 @@
 [submodule "src/rubygems/simp-cli"]
 	path = src/rubygems/simp-cli
 	url = git://github.com/simp/rubygem-simp-cli
+[submodule "src/puppet/modules/simplib"]
+	path = src/puppet/modules/simplib
+	url = https://github.com/simp/pupmod-simp-simplib
