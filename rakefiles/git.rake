@@ -564,6 +564,28 @@ module Simp::Rake
       task :reset do
         Simp::Git.reset
       end
+
+      desc <<-EOM
+      Print out the git log of all components and submodules in descending
+      order from the passed reference.
+      EOM
+      task :log,[:ref] do |t,args|
+        unless args.ref
+          $stderr.puts('You must pass a top level reference to start from')
+        end
+
+        date = %x(git log --pretty=format:%aD #{args.ref}^..#{args.ref})
+        unless $?.success?
+          $stderr.puts("Invalid ref '#{args.ref}' provided")
+          exit 1
+        end
+
+        git_log_command = %(git log --reverse --stat --since="#{date}")
+
+        puts 'At the top level'
+        sh(git_log_command)
+        sh(%(git submodule foreach 'read; #{git_log_command}; read'))
+      end
     end
 
 
