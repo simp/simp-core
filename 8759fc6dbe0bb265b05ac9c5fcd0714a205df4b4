@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7ac7a964_9d520bdc",
+        "filename": ".gitmodules",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-11-13T20:17:46Z",
+      "side": 1,
+      "message": "Might as well take out common",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 47
+      },
+      "revId": "8759fc6dbe0bb265b05ac9c5fcd0714a205df4b4",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7ac7a964_bd5ee7e7",
+        "filename": ".gitmodules",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-11-13T20:17:46Z",
+      "side": 1,
+      "message": "Might as well take out functions",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 50
+      },
+      "revId": "8759fc6dbe0bb265b05ac9c5fcd0714a205df4b4",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
