@@ -576,7 +576,7 @@ protect=1
       Dir.chdir(dir) do
         if File.exist?('Rakefile')
           # Read the package metadata file and proceed accordingly.
-          module_metadata = default_metadata
+          module_metadata = default_metadata.dup
           if File.exist?('build/package_metadata.yaml')
             module_metadata.merge!(YAML.load(File.read('build/package_metadata.yaml')))
           end
