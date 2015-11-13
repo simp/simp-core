@@ -22,26 +22,26 @@ classes:
   # Virus scanning.
   - 'clamav'
   # Ensuring reasonably sane defaults for both at and common.
-  - 'common::at'
-  - 'common::cron'
-  - 'common::chkrootkit'
-  - 'common::etc_default::nss'
-  - 'common::etc_default::useradd'
-  - 'common::host_conf'
-  - 'common::incron'
-  - 'common::issue'
-  - 'common::libuser_conf'
-  - 'common::login_defs'
-  - 'common::localusers'
-  - 'common::modprobe_blacklist'
-  - 'common::nsswitch'
-  - 'common::prelink'
-  - 'common::profile_settings'
-  - 'common::resolv'
-  - 'common::secure_mountpoints'
-  - 'common::sysconfig::init'
-  - 'common::sysctl'
-  - 'common::timezone'
+  - 'simplib::at'
+  - 'simplib::cron'
+  - 'simplib::chkrootkit'
+  - 'simplib::etc_default::nss'
+  - 'simplib::etc_default::useradd'
+  - 'simplib::host_conf'
+  - 'simplib::incron'
+  - 'simplib::issue'
+  - 'simplib::libuser_conf'
+  - 'simplib::login_defs'
+  - 'simplib::localusers'
+  - 'simplib::modprobe_blacklist'
+  - 'simplib::nsswitch'
+  - 'simplib::prelink'
+  - 'simplib::profile_settings'
+  - 'simplib::resolv'
+  - 'simplib::secure_mountpoints'
+  - 'simplib::sysconfig::init'
+  - 'simplib::sysctl'
+  - 'simplib::timezone'
   - 'ntpd'
   # Set up the access.conf basics, allow root locally and deny
   # everyone else from everywhere by default.
@@ -64,7 +64,7 @@ classes:
   # technically optional.
   - 'simp::base_services'
   # This sets up an update schedule.
-  # You should set variables under the common::yum_schedule namespace to
+  # You should set variables under the simplib::yum_schedule namespace to
   # disable updates from specific repositories.
   - 'simp::yum'
   # Set up the SSH server and client.
