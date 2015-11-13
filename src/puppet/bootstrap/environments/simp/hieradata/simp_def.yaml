@@ -122,4 +122,4 @@ simp::yum::servers :
   - "%{hiera('puppet::server')}"
 
 # Management of Specific Classes
-common::runlevel : '3'
+simplib::runlevel : '3'
