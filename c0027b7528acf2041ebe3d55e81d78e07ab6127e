@@ -45,6 +45,23 @@
       "revId": "c0027b7528acf2041ebe3d55e81d78e07ab6127e",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7ac7a964_3df9f7c8",
+        "filename": "rakefiles/pkg.rake",
+        "patchSetId": 1
+      },
+      "lineNbr": 579,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-11-13T20:23:50Z",
+      "side": 1,
+      "message": "Should this also be updated in 4.2.X?",
+      "revId": "c0027b7528acf2041ebe3d55e81d78e07ab6127e",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
     }
   ]
 }
