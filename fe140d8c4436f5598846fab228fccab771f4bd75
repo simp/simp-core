@@ -37,6 +37,29 @@
     },
     {
       "key": {
+        "uuid": "7ac7a964_b9b9a5eb",
+        "filename": "src/DVD/ks/dvd/auto.cfg",
+        "patchSetId": 1
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-11-13T04:30:01Z",
+      "side": 1,
+      "message": "trailing whitespace",
+      "range": {
+        "startLine": 198,
+        "startChar": 4,
+        "endLine": 198,
+        "endChar": 6
+      },
+      "revId": "fe140d8c4436f5598846fab228fccab771f4bd75",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7ac7a964_ffae9ae6",
         "filename": "src/DVD/ks/dvd/min.cfg",
         "patchSetId": 1
