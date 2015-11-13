@@ -175,6 +175,9 @@
 [submodule "src/puppet/modules/simp"]
 	path = src/puppet/modules/simp
 	url = git://github.com/simp/pupmod-simp-simp
+[submodule "src/puppet/modules/simplib"]
+	path = src/puppet/modules/simplib
+	url = git://github.com/simp/pupmod-simp-simplib
 [submodule "src/puppet/modules/gpasswd"]
 	path = src/puppet/modules/gpasswd
 	url = git://github.com/simp/puppet-gpasswd
