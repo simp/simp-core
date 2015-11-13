@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7ac7a964_5a9cfc69",
+        "filename": "src/DVD/ks/dvd/auto.cfg",
+        "patchSetId": 1
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2015-11-13T01:49:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7ac7a964_7f9b6ac9",
+      "revId": "fe140d8c4436f5598846fab228fccab771f4bd75",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7ac7a964_ffae9ae6",
         "filename": "src/DVD/ks/dvd/min.cfg",
         "patchSetId": 1
@@ -36,6 +54,24 @@
         "endLine": 62,
         "endChar": 27
       },
+      "revId": "fe140d8c4436f5598846fab228fccab771f4bd75",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7ac7a964_7a88d822",
+        "filename": "src/DVD/ks/dvd/min.cfg",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2015-11-13T01:49:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7ac7a964_ffae9ae6",
       "revId": "fe140d8c4436f5598846fab228fccab771f4bd75",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": false
