@@ -247,3 +247,6 @@
 [submodule "src/rubygems/simp-cli"]
 	path = src/rubygems/simp-cli
 	url = git://github.com/simp/rubygem-simp-cli
+[submodule "src/puppet/modules/simplib"]
+	path = src/puppet/modules/simplib
+	url = https://github.com/simp/pupmod-simp-simplib
