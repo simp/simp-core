@@ -1,0 +1,138 @@
+#!/usr/bin/env ruby
+
+# This script is intended to assist users in upgrading their modules and hieradata
+# from the using `common` and `functions` module.
+#
+# Run the script with the --help option for usage infromation.
+
+require 'find'
+require 'yaml'
+require 'fileutils'
+require 'optparse'
+
+def first_checks( path )
+  canary_file = File.join(path,'.simp_migrated')
+  if File.exist?(canary_file)
+    exit 0
+  end
+
+  unless File.directory?(path)
+    $stderr.puts(%(Error: Directory '#{path}' does not exist))
+    exit 1
+  end
+end
+
+# Back up a file
+def backup_data(src_file)
+  backup_path = src_file + '.simplib_migration.bak.' + Time.now.strftime('%Y_%m_%d_%s')
+  puts %Q(Making backup at #{backup_path})
+  FileUtils.cp_r(src_file, backup_path)
+end
+
+
+# Convert the right things (and don't convert the wrong things).
+def conversion_gsub( string, type )
+  # puppet matching
+  string.gsub( /(?<first>.*)(common|functions)(?<last>.*)/ ) do |c|
+    match = $~.dup
+    sub   = "#{match['first']}simplib#{match['last']}"
+    if match['last'] =~ /^\p{Alnum}/                # don't change 'commonly'
+      c
+    elsif match['first'] =~ /=>|\p{Alnum}(::)?$/    # don't change 'foo::common',
+      c                                             # 'uncommon', or attributes
+    elsif type == 'yaml'
+      # hieradata .yaml files have a special case when the match is inside a
+      # `classes:` array.  In these cases, another dose of conversion_gsub is
+      # necessary to apply the correct substitution.
+      in_classes=false;
+      match.pre_match.split(/\n/).reverse.each do |x|
+        break unless x=~/^(\s*-\s|classes:\s*$)/
+        in_classes=true if x =~ /^classes:\s*$/
+      end
+      in_classes ? conversion_gsub(c, type ) : sub
+    else
+      sub
+    end
+  end
+end
+
+def migrate_paths( paths, apply_changes = false )
+  converted = []
+  paths.each{ |path| first_checks( path ) }
+  paths.uniq.each do |working_path|
+    Find.find(working_path) do |file|
+      type = file.split('.').last
+      next unless type =~  /^(yaml|pp|erb)$/ #TODO: test erb
+      next if File.directory? file
+      next if file =~ %r(\B.git/)
+      file_content = IO.read(file)
+      new_content = conversion_gsub( file_content.dup, type )
+
+      if new_content != file_content
+        converted << file
+        if apply_changes
+          puts "Migrating '#{file}'"
+          backup_data(file)
+          File.open(file,'w'){ |f| f.write new_content }
+        else
+          puts '='*80 + "\nfile\n" + "="*80
+          puts new_content
+        end
+      end
+    end
+  end
+
+  puts
+  puts '-'*80
+  if !apply_changes
+    puts  "THIS WAS A DRY RUN."
+    puts  "Nothing was changed (but #{converted.size} files would have been)."
+    puts  "To apply the changes you have just previewed, use the `--apply` option."
+    puts  "(see --help for details)"
+  else
+    puts %Q(MIGRATION COMPLETE.  Migrated #{converted.size} files!)
+  end
+  puts '-'*80
+  puts "AFFECTED FILES:"
+  converted.each{ |file| puts file }
+  puts '-'*80
+end
+
+
+# CLI
+# ------------------------------------------------------------------------------
+options = {
+  :paths         => ENV.fetch('UPGRADE_PATHS','').split(','),
+  :apply_changes => ENV.fetch('SIMP_apply_changes', 'no') == 'yes',
+}
+
+if options[:paths].empty?
+  options[:paths] = [%(#{%x(puppet config print environmentpath).strip}/simp)]
+end
+
+parser = OptionParser.new do|opts|
+  opts.banner = "Usage: #{$0} [PATH...]"
+  opts.separator ""
+
+  opts.on('-a', '--apply', 'apply the changes') do |name|
+    options[:apply_changes] = true
+  end
+
+  opts.on('-h', '--help', 'displays this message') do
+    puts opts
+    exit
+  end
+
+  opts.separator ""
+  opts.separator "If no PATH(s) are specified, this will only upgrade the 'simp' environment as"
+  opts.separator "distributed by simp-bootstrap."
+  opts.separator ""
+  opts.separator "If no options are given, this tool is currently configured ad the following:"
+  opts.separator "  APPLY CHANGES: #{options[:apply_changes]}"
+  opts.separator "  UPGRADE PATHS:"
+  options[:paths].each{ |path| opts.separator "    - #{path}" }
+  opts.separator ""
+end
+
+parser.parse!
+migrate_paths( options[:paths], options[:apply_changes] )
