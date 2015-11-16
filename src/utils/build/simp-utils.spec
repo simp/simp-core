@@ -49,6 +49,7 @@ chmod -R u=rwX,g=rX,o=rX %{buildroot}/usr/share/man
 /usr/local/sbin/gen-ldap-update
 /usr/local/sbin/updaterepos
 /usr/local/sbin/hiera_upgrade
+/usr/local/sbin/migrate_to_simplib
 /usr/share/simp
 %exclude /usr/share/simp/upgrade_scripts
 %attr(0750,-,-) /usr/share/simp/upgrade_scripts
