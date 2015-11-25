@@ -1397,6 +1397,7 @@ sssd-krb5
 sssd-krb5-common
 sssd-ldap
 sssd-proxy
+sssd-tools
 star
 startup-notification
 stunnel
