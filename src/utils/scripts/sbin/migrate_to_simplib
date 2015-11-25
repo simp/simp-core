@@ -3,7 +3,7 @@
 # This script is intended to assist users in upgrading their modules and hieradata
 # from the using `common` and `functions` module.
 #
-# Run the script with the --help option for usage infromation.
+# Run the script with the --help option for usage information.
 
 require 'find'
 require 'yaml'
@@ -29,30 +29,44 @@ def backup_data(src_file)
   FileUtils.cp_r(src_file, backup_path)
 end
 
-
-# Convert the right things (and don't convert the wrong things).
-def conversion_gsub( string, type )
+#convert the right things (and don't convert the wrong things).
+def conversion_gsub(string)
   # puppet matching
-  string.gsub( /(?<first>.*)(common|functions)(?<last>.*)/ ) do |c|
-    match = $~.dup
-    sub   = "#{match['first']}simplib#{match['last']}"
-    if match['last'] =~ /^\p{Alnum}/                # don't change 'commonly'
-      c
-    elsif match['first'] =~ /=>|\p{Alnum}(::)?$/    # don't change 'foo::common',
-      c                                             # 'uncommon', or attributes
-    elsif type == 'yaml'
-      # hieradata .yaml files have a special case when the match is inside a
-      # `classes:` array.  In these cases, another dose of conversion_gsub is
-      # necessary to apply the correct substitution.
-      in_classes=false;
-      match.pre_match.split(/\n/).reverse.each do |x|
-        break unless x=~/^(\s*-\s|classes:\s*$)/
-        in_classes=true if x =~ /^classes:\s*$/
+  string.gsub( /(.*)(common|functions)(.*)/ ) do |c|
+    result = []
+
+    c.each_line do |line|
+      partitioned_line = line.partition(/common|functions/)
+      match_first = partitioned_line.first
+      match_last = partitioned_line.last
+  
+      sub = "#{match_first}simplib#{match_last}"
+  
+      if match_last =~ /^\w/
+        # Don't change "commonly" or "common_fu"
+         result << line
+      elsif ((match_first.empty? || match_first =~ /\s+$/) && (match_last.empty? || match_last =~ /^(\s+|([.,;\/\-]))/))
+        # Skip any bare word occurrences (comments, etc...)
+        # This may also skip malformed code
+        result << line
+      elsif match_first =~ /=>|([[:alnum:]_](::)?|[.,;\/\-_])$/
+        # Don't change:
+        # 'foo::common'
+        # 'my_common::foo'
+        # functions
+        # attributes
+         result << line
+      else
+        result << sub
       end
-      in_classes ? conversion_gsub(c, type ) : sub
-    else
-      sub
     end
+
+    # Explicitly take care of any RHS variables being called
+    result.map!{|x|
+      x = x.gsub(/(=>\s+.*?\$.*?)(common|functions)::/,'\1simplib::')
+    }
+
+    result.empty? ? c : result.join("\n")
   end
 end
 
@@ -61,12 +75,14 @@ def migrate_paths( paths, apply_changes = false )
   paths.each{ |path| first_checks( path ) }
   paths.uniq.each do |working_path|
     Find.find(working_path) do |file|
-      type = file.split('.').last
-      next unless type =~  /^(yaml|pp|erb)$/ #TODO: test erb
+      # Ignore all 'dot' files
+      Find.prune if File.basename(file)[0].chr == '.'
+
+      next unless file.split('.').last =~ /^(yaml|pp|erb)$/
       next if File.directory? file
-      next if file =~ %r(\B.git/)
+
       file_content = IO.read(file)
-      new_content = conversion_gsub( file_content.dup, type )
+      new_content = conversion_gsub( file_content.dup )
 
       if new_content != file_content
         converted << file
@@ -127,7 +143,7 @@ parser = OptionParser.new do|opts|
   opts.separator "If no PATH(s) are specified, this will only upgrade the 'simp' environment as"
   opts.separator "distributed by simp-bootstrap."
   opts.separator ""
-  opts.separator "If no options are given, this tool is currently configured ad the following:"
+  opts.separator "If no options are given, this tool is currently configured as follows:"
   opts.separator "  APPLY CHANGES: #{options[:apply_changes]}"
   opts.separator "  UPGRADE PATHS:"
   options[:paths].each{ |path| opts.separator "    - #{path}" }
