@@ -41,6 +41,7 @@ gem 'simp-rake-helpers', '>=1.0.11'
 gem 'parallel'
 gem 'dotenv'
 gem 'ruby-progressbar'
+gem 'librarian-puppet-pr328'
 
 # nice-to-have gems (for debugging)
 group :debug do
