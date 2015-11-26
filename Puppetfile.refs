@@ -1,0 +1,368 @@
+# refs recorded for SIMP release 4.2.0-0
+
+forge 'https://forgeapi.puppetlabs.com'
+
+mod 'simp_doc',
+  :git => 'git://github.com/simp/simp-doc',
+  :ref => 'b96dc66db7ab77ea8acb14ae1a4c57794d6244ec',
+  :path => './src/doc'
+
+mod 'simp_rsync',
+  :git => 'git://github.com/simp/simp-rsync',
+  :ref => '1520dc0d97829e12d2d3ea0914a1bc6dc9435fff',
+  :path => './src/rsync'
+
+mod 'rubygems-simp-cli',
+  :git => 'git://github.com/simp/rubygem-simp-cli',
+  :ref => '207cdb970ad02259fec07a8c034da56bfd05cb0a',
+  :path => './src/rubygems/simp-cli'
+
+mod 'rubygems-simp-rake-helpers',
+  :git => 'git://github.com/simp/rubygem-simp-rake-helpers',
+  :ref => '04d69ced7c1b0ee111e072638c6da4a732942c08',
+  :path => './src/rubygems/simp-rake-helpers'
+
+mod 'simp-acpid',
+  :git => 'git://github.com/simp/pupmod-simp-acpid',
+  :ref => '7d5ffb7159afaaf8a27dfc9d08c43540898121d5'
+
+mod 'simp-activemq',
+  :git => 'git://github.com/simp/pupmod-simp-activemq',
+  :ref => '0192e6919d17bfff3a38b9fdc1ee9185ef6d65b1'
+
+mod 'simp-aide',
+  :git => 'git://github.com/simp/pupmod-simp-aide',
+  :ref => 'ba30f500fb7ffce025f9c80229b98ce11cb110ef'
+
+mod 'simp-apache',
+  :git => 'git://github.com/simp/pupmod-simp-apache',
+  :ref => '58fa532e54d623970f8a315f1c071d65c459e9ca'
+
+mod 'simp-auditd',
+  :git => 'git://github.com/simp/pupmod-simp-auditd',
+  :ref => '3d2595451c12319a093b355c646c71f49c5060c5'
+
+mod 'simp-augeasproviders',
+  :git => 'git://github.com/simp/augeasproviders',
+  :ref => '5813ab82ba9adc7272f1780b9bdb176ac50987aa'
+
+mod 'simp-augeasproviders_apache',
+  :git => 'git://github.com/simp/augeasproviders_apache',
+  :ref => 'fd31e7332fc164e9ed14812531cc1bfd1fd0571e'
+
+mod 'simp-augeasproviders_base',
+  :git => 'git://github.com/simp/augeasproviders_base',
+  :ref => '5c38730f1099c823e45bf55434b37066ed981948'
+
+mod 'simp-augeasproviders_core',
+  :git => 'git://github.com/simp/augeasproviders_core',
+  :ref => '5ccde88a4e95de0b33bb7a9052aa0a7a63cde08f'
+
+mod 'simp-augeasproviders_grub',
+  :git => 'git://github.com/simp/augeasproviders_grub',
+  :ref => 'c6681d6c2b991c1c7fdc6eb38841627820c7f175'
+
+mod 'simp-augeasproviders_mounttab',
+  :git => 'git://github.com/simp/augeasproviders_mounttab',
+  :ref => 'e43627ba1dba50161117e5ab0ac203a05a90596c'
+
+mod 'simp-augeasproviders_nagios',
+  :git => 'git://github.com/simp/augeasproviders_nagios',
+  :ref => '2c7d49638ec39469a1003e7d325f7f38d6648d55'
+
+mod 'simp-augeasproviders_pam',
+  :git => 'git://github.com/simp/augeasproviders_pam',
+  :ref => '3837cb601afaca5cae9be467a88d03289d1e61bd'
+
+mod 'simp-augeasproviders_postgresql',
+  :git => 'git://github.com/simp/augeasproviders_postgresql',
+  :ref => '957bbdc5b5ca1a016c934c964420e32858b755a2'
+
+mod 'simp-augeasproviders_puppet',
+  :git => 'git://github.com/simp/augeasproviders_puppet',
+  :ref => '6e1582f3687fc99c773891a4a64935aa985c2004'
+
+mod 'simp-augeasproviders_shellvar',
+  :git => 'git://github.com/simp/augeasproviders_shellvar',
+  :ref => 'd332a6de6b43ba3e5e64f1fa855eb4f5666042dc'
+
+mod 'simp-augeasproviders_ssh',
+  :git => 'git://github.com/simp/augeasproviders_ssh',
+  :ref => '79a33d5b8dcb0051006822ea8214c8b016ed0cf2'
+
+mod 'simp-augeasproviders_sysctl',
+  :git => 'git://github.com/simp/augeasproviders_sysctl',
+  :ref => '1bdad66a72bb0a7a556cd10c57457dfa9908656f'
+
+mod 'simp-autofs',
+  :git => 'git://github.com/simp/pupmod-simp-autofs',
+  :ref => 'fe82a8858c14613aa5f4b6bb607f3ac56cf41f40'
+
+mod 'simp-backuppc',
+  :git => 'git://github.com/simp/pupmod-simp-backuppc',
+  :ref => '7b58e2254dcfa277b84258966aa14ebff90e4458'
+
+mod 'simp-cgroups',
+  :git => 'git://github.com/simp/pupmod-simp-cgroups',
+  :ref => '2867cdb86cb6033345076e8733350ceac67ebe61'
+
+mod 'simp-clamav',
+  :git => 'git://github.com/simp/pupmod-simp-clamav',
+  :ref => '175272798ff52acbe7dcd1cb7842fb9a29db37c2'
+
+mod 'simp-concat',
+  :git => 'git://github.com/simp/pupmod-simp-concat',
+  :ref => '148e368649ca1f86b562392015c16d3a68e8ea39'
+
+mod 'simp-datacat',
+  :git => 'git://github.com/simp/puppet-datacat',
+  :ref => '2a4d19093cce94c4ab75033ac5422458c3fc1c0c'
+
+mod 'simp-dhcp',
+  :git => 'git://github.com/simp/pupmod-simp-dhcp',
+  :ref => 'b58152e3c0894bdff5270ad983f426b1517fbff9'
+
+mod 'simp-elasticsearch',
+  :git => 'git://github.com/simp/puppet-elasticsearch',
+  :ref => 'e923d23b77f79355ca615d605a9f4e94ac78a315'
+
+mod 'simp-freeradius',
+  :git => 'git://github.com/simp/pupmod-simp-freeradius',
+  :ref => '1a6fc04b288fbb9245de79726c4ad2d546a5afc7'
+
+mod 'simp-ganglia',
+  :git => 'git://github.com/simp/pupmod-simp-ganglia',
+  :ref => 'f991b4fdbd436b85001f51de8971e4ac8e7f45dc'
+
+mod 'simp-gfs2',
+  :git => 'git://github.com/simp/pupmod-simp-gfs2',
+  :ref => '9629c2905148a637a457d099d07af13c33cf981d'
+
+mod 'simp-gpasswd',
+  :git => 'git://github.com/simp/puppet-gpasswd',
+  :ref => '68bc6fbb9d1b6e4cedbc84df2f40517819d14d28'
+
+mod 'simp-inifile',
+  :git => 'git://github.com/simp/puppetlabs-inifile',
+  :ref => '821bad1cccfac9c9a46917d6b304d6a99878d60e'
+
+mod 'simp-iptables',
+  :git => 'git://github.com/simp/pupmod-simp-iptables',
+  :ref => 'c3c285bb016af42eb8d6064e2c0ac37eb5f70735'
+
+mod 'simp-java',
+  :git => 'git://github.com/simp/puppetlabs-java',
+  :ref => 'd32802e712566abfcbe856479958f72c670891b9'
+
+mod 'simp-java_ks',
+  :git => 'git://github.com/simp/puppetlabs-java_ks',
+  :ref => 'fc27f094a3e1247937ec1b7fcf784ca6ee0dce3a'
+
+mod 'simp-jenkins',
+  :git => 'git://github.com/simp/pupmod-simp-jenkins',
+  :ref => '34a04976ea0ae4b00c5b732348c6ddec725a675c'
+
+mod 'simp-kibana',
+  :git => 'git://github.com/simp/pupmod-simp-kibana',
+  :ref => 'f4163fee22714f5f86cc6f7b23388cc269c3f172'
+
+mod 'simp-krb5',
+  :git => 'git://github.com/simp/pupmod-simp-krb5',
+  :ref => 'df44d53c3f0af7a1094ffc63e7cc1e365907fcd8'
+
+mod 'simp-libvirt',
+  :git => 'git://github.com/simp/pupmod-simp-libvirt',
+  :ref => 'c30b56e6d9394e867dd32371750543cf071d96db'
+
+mod 'simp-logrotate',
+  :git => 'git://github.com/simp/pupmod-simp-logrotate',
+  :ref => 'cd0ddf53f6923ec836cdd0274470771d47d0ccb7'
+
+mod 'simp-logstash',
+  :git => 'git://github.com/simp/puppet-logstash',
+  :ref => '9e95519fb97f3382daa3e096a752515c3075b654'
+
+mod 'simp-mcafee',
+  :git => 'git://github.com/simp/pupmod-simp-mcafee',
+  :ref => '1bfb163a80e22729410beba4349a468ed2e007d1'
+
+mod 'simp-mcollective',
+  :git => 'git://github.com/simp/pupmod-simp-mcollective',
+  :ref => '51b72616871d46230bbda8dea44339d47428bf6c'
+
+mod 'simp-memcached',
+  :git => 'git://github.com/simp/puppet-memcached',
+  :ref => '066dbbf7c2e50aaf37acdec765e4cc84eebe2ebd'
+
+mod 'simp-mozilla',
+  :git => 'git://github.com/simp/pupmod-simp-mozilla',
+  :ref => '53a7c864a7001d86ef5a1bf983ca8e9515cd7b39'
+
+mod 'simp-multipathd',
+  :git => 'git://github.com/simp/pupmod-simp-multipathd',
+  :ref => '4e406ac68f9ac28f305939fa83ef0846a0f07fa1'
+
+mod 'simp-mysql',
+  :git => 'git://github.com/simp/puppetlabs-mysql',
+  :ref => '0701aa404ce36905426157b65472b0be243d2d24'
+
+mod 'simp-named',
+  :git => 'git://github.com/simp/pupmod-simp-named',
+  :ref => '06d835595a89798ee7d610796418970e89f392ae'
+
+mod 'simp-network',
+  :git => 'git://github.com/simp/pupmod-simp-network',
+  :ref => '0d64e947f90c9fb1ea07e693f4620d78eba2d992'
+
+mod 'simp-nfs',
+  :git => 'git://github.com/simp/pupmod-simp-nfs',
+  :ref => '533e38087767782c1b2a04b48ba1428829c4b313'
+
+mod 'simp-nscd',
+  :git => 'git://github.com/simp/pupmod-simp-nscd',
+  :ref => '1b51b382d421abb3895939237438b247f17cd222'
+
+mod 'simp-ntpd',
+  :git => 'git://github.com/simp/pupmod-simp-ntpd',
+  :ref => '9e025efbf58683e4e46f74ce7967bf39e15908b4'
+
+mod 'simp-oddjob',
+  :git => 'git://github.com/simp/pupmod-simp-oddjob',
+  :ref => '09db628593364006e249a8424789dedd03a2c066'
+
+mod 'simp-openldap',
+  :git => 'git://github.com/simp/pupmod-simp-openldap',
+  :ref => '1e8b8c731d8a3b51022edcd3612daf352ce7bd3b'
+
+mod 'simp-openscap',
+  :git => 'git://github.com/simp/pupmod-simp-openscap',
+  :ref => '0ca34cd1b9f4975668747980d30b43b9eb46abe4'
+
+mod 'simp-pam',
+  :git => 'git://github.com/simp/pupmod-simp-pam',
+  :ref => '98ba112c7637e464778ad1f6e3515f5a804271d0'
+
+mod 'simp-pki',
+  :git => 'git://github.com/simp/pupmod-simp-pki',
+  :ref => 'bd130eae92158f0bb9466b84371071d36cbabd72'
+
+mod 'simp-polkit',
+  :git => 'git://github.com/simp/pupmod-simp-polkit',
+  :ref => '9535c0c4d39a5d410eae037934f0f5c61791f180'
+
+mod 'simp-postfix',
+  :git => 'git://github.com/simp/pupmod-simp-postfix',
+  :ref => 'ff3ab74de2d9e65f8ec576e6beb14128623f2901'
+
+mod 'simp-postgresql',
+  :git => 'git://github.com/simp/puppetlabs-postgresql',
+  :ref => '06b31e750349b884ef6221b37fdb77c5e8093142'
+
+mod 'simp-pupmod',
+  :git => 'git://github.com/simp/pupmod-simp-pupmod',
+  :ref => '569505f2bdd3d9419569619efdae558fa084d103'
+
+mod 'simp-puppetdb',
+  :git => 'git://github.com/simp/puppetlabs-puppetdb',
+  :ref => '2fdaacaf0ef575a635f78f8b9bdfb606cb36213f'
+
+mod 'simp-puppetlabs_apache',
+  :git => 'git://github.com/simp/puppetlabs-apache',
+  :ref => '8c2a381b9e70b8093c18e4225e393edc1f63f489'
+
+mod 'simp-rsync',
+  :git => 'git://github.com/simp/pupmod-simp-rsync',
+  :ref => '8ad5c02b32154abc169a48a4d9675966ad744872'
+
+mod 'simp-rsyslog',
+  :git => 'git://github.com/simp/pupmod-simp-rsyslog',
+  :ref => '7acfec72f0a97d7090a17529f6d0f4be8e94bbd4'
+
+mod 'simp-selinux',
+  :git => 'git://github.com/simp/pupmod-simp-selinux',
+  :ref => '06338e06cc9786a8ac56954c84d2db1596656fe9'
+
+mod 'simp-simp',
+  :git => 'git://github.com/simp/pupmod-simp-simp',
+  :ref => '6e0eaa9f77dfba9f38024c6c80cd67757d1f1028'
+
+mod 'simp-simplib',
+  :git => 'git://github.com/simp/pupmod-simp-simplib',
+  :ref => '2d34c6449130182495f288c5b0d3333a5da35512'
+
+mod 'simp-site',
+  :git => 'git://github.com/simp/pupmod-simp-site',
+  :ref => 'b842b6ecf587fbd80ced249d96e1d9b9bcacd637'
+
+mod 'simp-snmpd',
+  :git => 'git://github.com/simp/pupmod-simp-snmpd',
+  :ref => '01a86ef7620c9946758d8001f444c102fa16bc44'
+
+mod 'simp-ssh',
+  :git => 'git://github.com/simp/pupmod-simp-ssh',
+  :ref => '8df25c8af0c252b5648a6b74020f47fb2d93bb1d'
+
+mod 'simp-sssd',
+  :git => 'git://github.com/simp/pupmod-simp-sssd',
+  :ref => 'e58a5c90078abdcfdb61aa61e6195368c2fb8ede'
+
+mod 'simp-stdlib',
+  :git => 'git://github.com/simp/puppetlabs-stdlib',
+  :ref => '6aec7aa283c0d281fce4c51a12d033b416adab27'
+
+mod 'simp-stunnel',
+  :git => 'git://github.com/simp/pupmod-simp-stunnel',
+  :ref => '5068902a45f0875e8c5e3ae18ea5ff29102c9230'
+
+mod 'simp-sudo',
+  :git => 'git://github.com/simp/pupmod-simp-sudo',
+  :ref => '8ff46f3dafc4ef7198dacc6cad9fe7501547cd30'
+
+mod 'simp-sudosh',
+  :git => 'git://github.com/simp/pupmod-simp-sudosh',
+  :ref => 'd9fd0664ffc26f1913cf85934103fe55c673b2de'
+
+mod 'simp-svckill',
+  :git => 'git://github.com/simp/pupmod-simp-svckill',
+  :ref => '37c2afd9f1ef5155462125fb86b7b2cae3ebff37'
+
+mod 'simp-sysctl',
+  :git => 'git://github.com/simp/pupmod-simp-sysctl',
+  :ref => 'ba20ee55f70c399824b17625c58993fd320b906c'
+
+mod 'simp-tcpwrappers',
+  :git => 'git://github.com/simp/pupmod-simp-tcpwrappers',
+  :ref => '17891f10ed2d1ca27fea2373180933ebe11c1b99'
+
+mod 'simp-tftpboot',
+  :git => 'git://github.com/simp/pupmod-simp-tftpboot',
+  :ref => '054c0c524840ce66d3a92994217d46599efbd3cb'
+
+mod 'simp-tpm',
+  :git => 'git://github.com/simp/pupmod-simp-tpm',
+  :ref => 'fa9a536980d8a12f35ecd0a77d4e35df9b4b6352'
+
+mod 'simp-upstart',
+  :git => 'git://github.com/simp/pupmod-simp-upstart',
+  :ref => '1ed0bc5155f3fd33282855473698aeb176801260'
+
+mod 'simp-vnc',
+  :git => 'git://github.com/simp/pupmod-simp-vnc',
+  :ref => '0d1660fd20814f83fd95338ed15edd7d26cf701a'
+
+mod 'simp-vsftpd',
+  :git => 'git://github.com/simp/pupmod-simp-vsftpd',
+  :ref => '39cccf7c530121c8374f313722bb77898b40d20a'
+
+mod 'simp-windowmanager',
+  :git => 'git://github.com/simp/pupmod-simp-windowmanager',
+  :ref => '751d28c54ed92c3f04cda9aa4df68f7f029aee0b'
+
+mod 'simp-xinetd',
+  :git => 'git://github.com/simp/pupmod-simp-xinetd',
+  :ref => '1956084cf3c131e6eb1af9dc3ac94f385cf5db38'
+
+mod 'simp-xwindows',
+  :git => 'git://github.com/simp/pupmod-simp-xwindows',
+  :ref => 'e45f5e81e94fe4b29f98ca57c43388bb1a8e3f30'
+
