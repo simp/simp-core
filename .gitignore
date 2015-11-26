@@ -1,3 +1,9 @@
 Gemfile.lock
 build/build_keys/*
 build/yum_data/*/packages
+Puppetfile.lock
+src/puppet/modules
+src/rubygems
+src/doc
+src/rsync
+/.tmp
