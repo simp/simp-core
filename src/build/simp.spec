@@ -1,7 +1,7 @@
 Summary: SIMP Full Install
 Name: simp
 Version: 4.2.0
-Release: RC1.1446834077%{?snapshot_release}
+Release: 0%{?snapshot_release}
 License: Apache License, Version 2.0
 Group: Applications/System
 Source: %{name}-%{version}-%{release}.tar.gz
@@ -77,7 +77,7 @@ fi
 # Post uninstall stuff
 
 %changelog
-* Fri Oct 06 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 4.2.0-RC1.1446834077
+* Thu Nov 26 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 4.2.0-0
 - Upgraded to Hiera 3 from Puppet Labs
 - Incorporated a migration script for updating from the old simp-hiera
 - Replaced facter calls to 'lsb*' with 'operatingsystem*' in the 'post' section
