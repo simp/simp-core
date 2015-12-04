@@ -1,7 +1,7 @@
 Summary: SIMP Bootstrap
 Name: simp-bootstrap
 Version: 5.2.1
-Release: 1
+Release: 3
 License: Apache License 2.0
 Group: Applications/System
 Source: %{name}-%{version}-%{release}.tar.gz
@@ -23,7 +23,7 @@ Obsoletes: simp_config
 Obsoletes: simp-config
 Buildarch: noarch
 
-Prefix: /etc/puppet
+Prefix: %{_sysconfdir}/puppet
 
 %description
 
@@ -292,6 +292,9 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Fri Dec 04 2015 Chris Tessmer <chris.tessmer@onyxpoint.com> - 5.2.1-3
+- Migrated from 'common::' to 'simplib::'
+
 * Mon Nov 09 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.2.1-2
 - Fixed a regression that reverted the 'post' section of the RPM to using
   /srv/www instead of /var/www.
