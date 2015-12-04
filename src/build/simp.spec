@@ -1,7 +1,7 @@
 Summary: SIMP Full Install
 Name: simp
 Version: 5.1.0
-Release: 0%{?snapshot_release}
+Release: 1%{?snapshot_release}
 License: Apache License, Version 2.0
 Group: Applications/System
 Source: %{name}-%{version}-%{release}.tar.gz
@@ -77,6 +77,11 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Fri Dec 04 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.1.0-1
+- Included missing documentation updates
+- Fixed the simp-bootstrap version update which missed the common -> simplib
+  transition.
+
 * Thu Nov 26 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.1.0-0
 - Upgraded to Hiera 3 from Puppet Labs
 - Incorporated a migration script for updating from the old simp-hiera
