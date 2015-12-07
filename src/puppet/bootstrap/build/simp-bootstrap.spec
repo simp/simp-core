@@ -129,7 +129,7 @@ if [ $? -ne 0 ]; then
 fi
 
 # Update all instances of the log_server(string) to log_servers(array)
-for x in `find %{prefix}/hieradata -type f -name "*.yaml"`; do
+for x in `find %{prefix}/environments/simp/hieradata -type f -name "*.yaml"`; do
   sed -i "s/^[[:space:]]*log_server[[:space:]]*:[[:space:]]*\(.\+\)/log_servers :\n  - \1/" "$x"
 done
 
