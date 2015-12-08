@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ac4a560_acd213d0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1005194
+      },
+      "writtenOn": "2015-12-08T00:25:24Z",
+      "side": 1,
+      "message": "Should be in parentheses",
+      "revId": "0ecf0eb4594d18ffc8213c1ba97c61d73afb9184",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5ac4a560_6cc8fb22",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1005194
+      },
+      "writtenOn": "2015-12-08T00:25:24Z",
+      "side": 1,
+      "message": "Left justify the comments",
+      "revId": "0ecf0eb4594d18ffc8213c1ba97c61d73afb9184",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5ac4a560_8ccb971d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1005194
+      },
+      "writtenOn": "2015-12-08T00:25:24Z",
+      "side": 1,
+      "message": "Should probably not reference other branches which don\u0027t effect the changes made in this branch.",
+      "revId": "0ecf0eb4594d18ffc8213c1ba97c61d73afb9184",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
