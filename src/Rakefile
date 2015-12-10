@@ -49,6 +49,11 @@ class SrcPkg < Simp::Rake::Pkg
     reqstatements = []
 
     if generate then
+      content = File.read(autoreq_file).strip
+      if !content || content.empty?
+        raise "Error: The '#{autoreq_file}' file is empty!"
+      end
+
       File.read(autoreq_file).each_line do |req|
         req.strip!
         next if req.empty? or req =~ /\s*#/
