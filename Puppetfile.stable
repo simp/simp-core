@@ -4,12 +4,12 @@ forge 'https://forgeapi.puppetlabs.com'
 
 mod 'simp_doc',
   :git => 'git://github.com/simp/simp-doc',
-  :ref => 'b96dc66db7ab77ea8acb14ae1a4c57794d6244ec',
+  :ref => '536842ad4d3f51ec7229d8483fd91054e9865f1c',
   :path => './src/doc'
 
 mod 'simp_rsync',
   :git => 'git://github.com/simp/simp-rsync',
-  :ref => '1520dc0d97829e12d2d3ea0914a1bc6dc9435fff',
+  :ref => '0e549ac9cf306644c1ef1a8a51b34e818001cefe',
   :path => './src/rsync'
 
 mod 'rubygems-simp-cli',
