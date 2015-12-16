@@ -1,10 +1,10 @@
-# refs recorded for SIMP release 4.2.0-0
+# refs recorded for SIMP release 4.2.0-1
 
 forge 'https://forgeapi.puppetlabs.com'
 
 mod 'simp_doc',
   :git => 'git://github.com/simp/simp-doc',
-  :ref => '536842ad4d3f51ec7229d8483fd91054e9865f1c',
+  :ref => '8cd735484da6e2a7a9f69fce1996b23670e4b915',
   :path => './src/doc'
 
 mod 'simp_rsync',
@@ -288,7 +288,7 @@ mod 'simp-simp',
 
 mod 'simp-simplib',
   :git => 'git://github.com/simp/pupmod-simp-simplib',
-  :ref => '2d34c6449130182495f288c5b0d3333a5da35512'
+  :ref => '446928360ea287f61034ad370be8c44608b4d5f4'
 
 mod 'simp-site',
   :git => 'git://github.com/simp/pupmod-simp-site',

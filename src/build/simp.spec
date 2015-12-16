@@ -1,7 +1,7 @@
 Summary: SIMP Full Install
 Name: simp
 Version: 4.2.0
-Release: 0%{?snapshot_release}
+Release: 1%{?snapshot_release}
 License: Apache License, Version 2.0
 Group: Applications/System
 Source: %{name}-%{version}-%{release}.tar.gz
@@ -77,6 +77,10 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Wed Dec 16 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 4.2.0-1
+- Fix for missing password change in the ISO build
+- Update to fix CCE-4241-6
+
 * Thu Nov 26 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 4.2.0-0
 - Upgraded to Hiera 3 from Puppet Labs
 - Incorporated a migration script for updating from the old simp-hiera
