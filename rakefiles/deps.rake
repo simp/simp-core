@@ -59,7 +59,7 @@ namespace :deps do
     args.with_defaults(:method => 'tracking')
     FileUtils.ln_s( "Puppetfile.#{args[:method]}", 'Puppetfile', :force => true )
     Bundler.with_clean_env do
-      sh 'bundle exec librarian-puppet-pr328 install --use-forge=false --verbose'
+      sh 'bundle exec librarian-puppet-pr328 install --use-forge=false'
     end
     FileUtils.remove_entry_secure "Puppetfile"
   end

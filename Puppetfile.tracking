@@ -3,11 +3,11 @@ forge 'https://forgeapi.puppetlabs.com'
 # Build Repositories
 mod 'simp_doc',
   :git  => 'https://github.com/simp/simp-doc',
-  :ref  => 'simp-4.2.X',
+  :ref  => 'simp-5.1.X',
   :path => './src/doc'
 mod 'simp_rsync',
   :git  => 'https://github.com/simp/simp-rsync',
-  :ref => 'simp-4.2.X',
+  :ref => 'simp-5.1.X',
   :path => './src/rsync'
 mod 'rubygems-simp-cli',
   :git  => 'https://github.com/simp/rubygem-simp-cli',
