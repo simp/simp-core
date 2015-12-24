@@ -2,7 +2,6 @@
 
 require 'simp/rake'
 include Simp::Rake
-
 class SIMPBuildException < Exception
 end
 
@@ -19,35 +18,37 @@ namespace :build do
     * :verbose => Enable verbose reporting. Default => 'false'
   EOM
 
-  task :bundle, [:action, :verbose] do |t, args|
+  task :bundle, [:action, :verbose, :method] do |t, args|
     args.with_defaults(:action => 'install')
     args.with_defaults(:verbose => 'false')
+    args.with_defaults(:method => 'tracking')
 
     verbose = args.verbose == 'false' ? false : true
 
     # Grab all currently tracked submodules.
-    $modules = (Simp::Git.submodules_in_gitmodules.keys).sort.uniq.unshift('.')
+    fake_lp = FakeLibrarian.new("Puppetfile.#{args[:method]}")
+    $modules     = fake_lp.modules
+    mod_list =  []
+    fake_lp.each_module do |environment,name, path|
+        if Dir.exists?(path)
+            mod_list.push(path)
+        end
+    end
 
-    basedir = pwd()
     failed_mods = Parallel.map(
-      $modules,
+      mod_list,
       :in_processes => 1,
       :progress => t.name
     ) do |mod|
 
       status = true
-      moddir = File.join(basedir,mod)
-
-      next unless File.exists?(File.join(moddir,'Gemfile'))
-
+      next unless File.exists?(File.join(mod,'Gemfile'))
       puts "\n#{mod}\n" if verbose
-      Dir.chdir(moddir) do
-
+      Dir.chdir(mod) do
         if File.exist?('Gemfile.lock')
           puts "Cleaning Gemfile.lock from #{mod}" if verbose
           rm('Gemfile.lock')
         end
-
         # Any ruby code that opens a subshell will automatically use the current Bundler environment.
         # Clean env will give bundler the environment present before Bundler is activated.
         Bundler.with_clean_env do
@@ -55,7 +56,6 @@ namespace :build do
           status = $?.success?
           puts out if verbose
         end
-
         mod unless status
       end
     end
