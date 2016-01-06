@@ -141,7 +141,7 @@ mod 'simp-logrotate',
   :ref => 'master'
 mod 'simp-logstash',
   :git => 'git://github.com/simp/puppet-logstash',
-  :ref => 'master'
+  :ref => 'simp-master'
 mod 'simp-mcafee',
   :git => 'git://github.com/simp/pupmod-simp-mcafee',
   :ref => 'master'
