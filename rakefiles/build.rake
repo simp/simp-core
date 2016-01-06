@@ -19,30 +19,32 @@ namespace :build do
     * :verbose => Enable verbose reporting. Default => 'false'
   EOM
 
-  task :bundle, [:action, :verbose] do |t, args|
+  task :bundle, [:action, :verbose, :method] do |t, args|
     args.with_defaults(:action => 'install')
     args.with_defaults(:verbose => 'false')
+    args.with_defaults(:method => 'tracking')
 
     verbose = args.verbose == 'false' ? false : true
 
     # Grab all currently tracked submodules.
-    $modules = (Simp::Git.submodules_in_gitmodules.keys).sort.uniq.unshift('.')
+    fake_lp = FakeLibrarian.new("Puppetfile.#{args[:method]}")
+    $modules     = fake_lp.modules
+    mod_list =  []
+    fake_lp.each_module do |environment,name, path|
+      if Dir.exists?(path)
+        mod_list.push(path)
+     end
+   end
 
-    basedir = pwd()
     failed_mods = Parallel.map(
-      $modules,
+      mod_list,
       :in_processes => 1,
       :progress => t.name
     ) do |mod|
 
       status = true
-      moddir = File.join(basedir,mod)
-
-      next unless File.exists?(File.join(moddir,'Gemfile'))
-
       puts "\n#{mod}\n" if verbose
-      Dir.chdir(moddir) do
-
+      Dir.chdir(mod) do
         if File.exist?('Gemfile.lock')
           puts "Cleaning Gemfile.lock from #{mod}" if verbose
           rm('Gemfile.lock')
