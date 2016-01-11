@@ -119,10 +119,10 @@ options = Hash.new
 opts = OptionParser.new do |opts|
   opts.banner = "Usage: #{$0} [options] /path/to/dvd/to/unpack"
 
-  if File.directory?('/srv/www/yum')
-    options[:dest] = '/srv/www/yum'
-  elsif File.directory?('/var/www/yum')
+  if File.directory?('/var/www/yum')
     options[:dest] = '/var/www/yum'
+  elsif File.directory?('/srv/www/yum')
+    options[:dest] = '/srv/www/yum'
   end
 
   opts.on("-d", "--dest DIR", "The DVD extraction target directory.",
