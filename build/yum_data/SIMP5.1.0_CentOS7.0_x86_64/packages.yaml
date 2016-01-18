@@ -93,8 +93,8 @@ haveged:
   :rpm_name: haveged-1.9.1-1.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/h/haveged-1.9.1-1.el7.x86_64.rpm
 hiera:
-  :rpm_name: hiera-3.0.2-1.el7.noarch.rpm
-  :source: https://dl.bintray.com/simp/5.1.X/hiera-3.0.2-1.el7.noarch.rpm
+  :rpm_name: hiera-3.0.5-1.el7.noarch.rpm
+  :source: https://dl.bintray.com/simp/5.1.X/hiera-3.0.5-1.el7.noarch.rpm
 hmaccalc:
   :rpm_name: hmaccalc-0.9.13-4.el7.x86_64.rpm
   :source: http://mirror.ash.fastserv.com/pub/linux/centos/7.1.1503/os/x86_64/Packages/hmaccalc-0.9.13-4.el7.x86_64.rpm
