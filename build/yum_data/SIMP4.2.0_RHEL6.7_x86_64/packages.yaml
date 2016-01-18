@@ -588,8 +588,8 @@ sendmail-milter:
   :rpm_name: sendmail-milter-8.14.4-9.el6.x86_64.rpm
   :source: http://mirror.netdepot.com/centos/6.7/os/x86_64/Packages/sendmail-milter-8.14.4-9.el6.x86_64.rpm
 hiera:
-  :rpm_name: hiera-3.0.2-1.el6.noarch.rpm
-  :source: https://dl.bintray.com/simp/4.2.X-Ext/hiera-3.0.2-1.el6.noarch.rpm
+  :rpm_name: hiera-3.0.5-1.el6.noarch.rpm
+  :source: https://dl.bintray.com/simp/4.2.X/hiera-3.0.5-1.el6.noarch.rpm
 simp-lastbind:
   :rpm_name: simp-lastbind-2.4.23-0.x86_64.rpm
   :source: https://dl.bintray.com/simp/4.2.X-Ext/simp-lastbind-2.4.23-0.x86_64.rpm
