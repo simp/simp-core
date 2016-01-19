@@ -1,4 +1,7 @@
 ---
+adwaita-icon-theme:
+  :source: http://centos.vwtonline.net/centos/7.2.1511/os/x86_64/Packages/adwaita-icon-theme-3.14.1-1.el7.noarch.rpm
+  :rpm_name: adwaita-icon-theme.noarch
 activemq:
   :source: http://yum.puppetlabs.com/el/7/dependencies/x86_64/activemq-5.9.1-2.el7.noarch.rpm
   :rpm_name: activemq-5.9.1-2.el7.noarch.rpm
