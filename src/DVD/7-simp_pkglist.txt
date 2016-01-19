@@ -9,7 +9,6 @@
 #
 # rpm -qa --qf "%{NAME}\n" | sort -u
 #
-
 ConsoleKit
 ConsoleKit-libs
 ConsoleKit-x11
@@ -40,6 +39,7 @@ acpid
 adwaita-cursor-theme
 adwaita-gtk2-theme
 adwaita-gtk3-theme
+adwaita-icon-theme
 aether-api
 aether-connector-wagon
 aether-impl
@@ -115,6 +115,7 @@ bitmap-lucida-typewriter-fonts
 bitmap-miscfixed-fonts
 bluez
 bluez-libs
+boost-regex
 boost-system
 boost-thread
 bridge-utils
@@ -126,7 +127,6 @@ bzip2-libs
 c-ares
 ca-certificates
 cairo
-cairo-devel
 cairo-gobject
 cal10n
 caribou
@@ -165,6 +165,9 @@ color-filesystem
 colord
 colord-gtk
 colord-libs
+compat-libcogl-pango12
+compat-libcogl12
+compat-libcolord1
 compat-libstdc++-296
 compat-libstdc++-33
 compat-readline5
@@ -189,6 +192,7 @@ cryptsetup
 cryptsetup-libs
 cryptsetup-luks
 cryptsetup-luks-libs
+ctags
 cups
 cups-client
 cups-filesystem
@@ -247,9 +251,10 @@ dos2unix
 dosfstools
 dotconf
 dracut
+dracut-config-generic
+dracut-config-rescue
 dracut-fips
 dracut-fips-aesni
-dracut-config-rescue
 dracut-kernel
 dracut-network
 dwz
@@ -334,6 +339,8 @@ gdm
 gdm-libs
 genisoimage
 geoclue
+geoclue2
+geocode-glib
 geronimo-annotation
 geronimo-jms
 gettext
@@ -408,6 +415,7 @@ gpm
 gpm-libs
 graphite2
 grep
+grilo
 groff
 groff-base
 grub
@@ -427,7 +435,6 @@ gstreamer1-plugins-base
 gstreamer1-plugins-good
 gtk-doc
 gtk2
-gtk2-devel
 gtk2-engines
 gtk3
 guava
@@ -572,6 +579,8 @@ kernel
 kernel-abi-whitelists
 kernel-firmware
 kernel-headers
+kernel-tools
+kernel-tools-libs
 kexec-tools
 keyutils
 keyutils-libs
@@ -675,6 +684,7 @@ libdv
 libdvdnav
 libdvdread
 libedit
+libepoxy
 liberation-fonts-common
 liberation-mono-fonts
 liberation-sans-fonts
@@ -684,6 +694,7 @@ libertas-sd8787-firmware
 libertas-usb8388-firmware
 libestr
 libev
+libevdev
 libevent
 libexif
 libffi
@@ -707,6 +718,7 @@ libgnomekbd
 libgnomeui
 libgomp
 libgpg-error
+libgrilo
 libgsf
 libgssglue
 libgtop2
@@ -736,6 +748,7 @@ libldb
 liblouis
 liblouis-python
 libmcpp
+libmediaart
 libmng
 libmnl
 libmodman
@@ -790,6 +803,7 @@ libshout
 libsmbclient
 libsndfile
 libsoup
+libsrtp
 libss
 libssh2
 libsss_idmap
@@ -843,10 +857,13 @@ libxklavier
 libxml2
 libxml2-devel
 libxml2-python
+libxshmfence
 libxslt
+libyaml
 libzip
 linux-firmware
 linuxconsoletools
+lksctp-tools
 lm_sensors-libs
 log4cxx
 log4j
@@ -878,9 +895,7 @@ mesa-dri-filesystem
 mesa-dri1-drivers
 mesa-filesystem
 mesa-libEGL
-mesa-libEGL-devel
 mesa-libGL
-mesa-libGL-devel
 mesa-libGLU
 mesa-libgbm
 mesa-libglapi
@@ -899,6 +914,7 @@ modcluster
 module-init-tools
 mozilla-filesystem
 mozjs17
+mozjs24
 mpfr
 mtdev
 mtools
@@ -967,6 +983,7 @@ openscap-scanner
 openscap-utils
 opensp
 openssh
+openssh-askpass
 openssh-clients
 openssh-ldap
 openssh-server
@@ -986,7 +1003,6 @@ pam_ldap
 pam_passwdqc
 pam_pkcs11
 pango
-pango-devel
 parted
 passwd
 patch
@@ -1219,6 +1235,7 @@ python-ldap
 python-libs
 python-lxml
 python-memcached
+python-perf
 python-pycurl
 python-pyro
 python-pyudev
@@ -1229,6 +1246,7 @@ python-simplejson
 python-six
 python-slip
 python-slip-dbus
+python-sss
 python-sssdconfig
 python-suds
 python-urlgrabber
@@ -1342,13 +1360,18 @@ rubygem-treetop
 rubygems
 sabayon-apply
 samba-client
+samba-client-libs
 samba-common
+samba-common-libs
+samba-common-tools
 samba-libs
 samba-winbind
 samba-winbind-clients
 samba-winbind-modules
 samba4-libs
 sbc
+scap-security-guide
+scap-workbench
 screen
 sed
 selinux-policy
@@ -1478,10 +1501,13 @@ vim-common
 vim-enhanced
 vim-filesystem
 vim-minimal
+vino
 virt-what
 vlock
 vsftpd
 vte
+vte-profile
+vte291
 vte3
 wavpack
 webkitgtk3
@@ -1496,6 +1522,7 @@ xbean
 xcb-util
 xcb-util-image
 xcb-util-keysyms
+xcb-util-renderutil
 xcb-util-wm
 xdg-utils
 xerces-c

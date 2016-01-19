@@ -5,9 +5,6 @@ activemq:
 activemq-info-provider:
   :rpm_name: activemq-info-provider-5.9.1-2.el7.noarch.rpm
   :source: http://yum.puppetlabs.com/el/7/dependencies/x86_64/activemq-info-provider-5.9.1-2.el7.noarch.rpm
-boost-regex:
-  :rpm_name: boost-regex-1.53.0-23.el7.x86_64.rpm
-  :source: http://mirrors.advancedhosters.com/centos/7.1.1503/os/x86_64/Packages/boost-regex-1.53.0-23.el7.x86_64.rpm
 cfacter:
   :rpm_name: cfacter-0.3.0-1.el7.x86_64.rpm
   :source: http://yum.puppetlabs.com/el/7/products/x86_64/cfacter-0.3.0-1.el7.x86_64.rpm
@@ -53,24 +50,6 @@ clamav-server-sysvinit:
 clamav-update:
   :rpm_name: clamav-update-0.98.7-1.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/c/clamav-update-0.98.7-1.el7.x86_64.rpm
-ctags:
-  :rpm_name: ctags-5.8-13.el7.x86_64.rpm
-  :source: http://mirrors.advancedhosters.com/centos/7.1.1503/os/x86_64/Packages/ctags-5.8-13.el7.x86_64.rpm
-dracut:
-  :rpm_name: dracut-033-241.el7_1.5.x86_64.rpm
-  :source: http://mirrors.advancedhosters.com/centos/7.1.1503/updates/x86_64/Packages/dracut-033-241.el7_1.5.x86_64.rpm
-dracut-config-rescue:
-  :rpm_name: dracut-config-rescue-033-241.el7_1.5.x86_64.rpm
-  :source: http://mirrors.advancedhosters.com/centos/7.1.1503/updates/x86_64/Packages/dracut-config-rescue-033-241.el7_1.5.x86_64.rpm
-dracut-fips:
-  :rpm_name: dracut-fips-033-241.el7_1.5.x86_64.rpm
-  :source: http://mirrors.advancedhosters.com/centos/7.1.1503/updates/x86_64/Packages/dracut-fips-033-241.el7_1.5.x86_64.rpm
-dracut-fips-aesni:
-  :rpm_name: dracut-fips-aesni-033-241.el7_1.5.x86_64.rpm
-  :source: http://mirrors.advancedhosters.com/centos/7.1.1503/updates/x86_64/Packages/dracut-fips-aesni-033-241.el7_1.5.x86_64.rpm
-dracut-network:
-  :rpm_name: dracut-network-033-241.el7_1.5.x86_64.rpm
-  :source: http://mirrors.advancedhosters.com/centos/7.1.1503/updates/x86_64/Packages/dracut-network-033-241.el7_1.5.x86_64.rpm
 elasticsearch:
   :rpm_name: elasticsearch-1.3.2.noarch.rpm
   :source: https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.3.2.noarch.rpm
@@ -95,21 +74,15 @@ haveged:
 hiera:
   :rpm_name: hiera-3.0.5-1.el7.noarch.rpm
   :source: https://dl.bintray.com/simp/5.1.X/hiera-3.0.5-1.el7.noarch.rpm
-hmaccalc:
-  :rpm_name: hmaccalc-0.9.13-4.el7.x86_64.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/7.1.1503/os/x86_64/Packages/hmaccalc-0.9.13-4.el7.x86_64.rpm
 incron:
   :rpm_name: incron-0.5.10-8.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/i/incron-0.5.10-8.el7.x86_64.rpm
-kernel:
-  :rpm_name: kernel-3.10.0-229.14.1.el7.x86_64.rpm
-  :source: http://mirrors.advancedhosters.com/centos/7.1.1503/updates/x86_64/Packages/kernel-3.10.0-229.14.1.el7.x86_64.rpm
 kibana:
   :rpm_name: kibana-3.1.0.SIMP-0.noarch.rpm
   :source: https://dl.bintray.com/simp/5.1.X-Ext/kibana-3.1.0.SIMP-0.noarch.rpm
 libarchive-devel:
   :rpm_name: libarchive-devel-3.1.2-7.el7.x86_64.rpm
-  :source: http://mirrors.advancedhosters.com/centos/7.1.1503/os/x86_64/Packages/libarchive-devel-3.1.2-7.el7.x86_64.rpm
+  :source: http://mirror.steadfast.net/centos/7.2.1511/os/x86_64/Packages/libarchive-devel-3.1.2-7.el7.x86_64.rpm
 libconfuse:
   :rpm_name: libconfuse-2.7-7.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/l/libconfuse-2.7-7.el7.x86_64.rpm
@@ -118,31 +91,16 @@ libev:
   :source: http://lug.mtu.edu/epel/7/x86_64/l/libev-4.15-3.el7.x86_64.rpm
 libselinux:
   :rpm_name: libselinux-2.2.2-6.el7.x86_64.rpm
-  :source: http://mirrors.advancedhosters.com/centos/7.1.1503/os/x86_64/Packages/libselinux-2.2.2-6.el7.x86_64.rpm
-libselinux-python:
-  :rpm_name: libselinux-python-2.2.2-6.el7.x86_64.rpm
-  :source: http://mirrors.advancedhosters.com/centos/7.1.1503/os/x86_64/Packages/libselinux-python-2.2.2-6.el7.x86_64.rpm
+  :source: http://mirror.steadfast.net/centos/7.2.1511/os/x86_64/Packages/libselinux-2.2.2-6.el7.x86_64.rpm
 libselinux-ruby:
   :rpm_name: libselinux-ruby-2.2.2-6.el7.x86_64.rpm
-  :source: http://mirrors.advancedhosters.com/centos/7.1.1503/os/x86_64/Packages/libselinux-ruby-2.2.2-6.el7.x86_64.rpm
+  :source: http://mirror.steadfast.net/centos/7.2.1511/os/x86_64/Packages/libselinux-ruby-2.2.2-6.el7.x86_64.rpm
 libselinux-static:
   :rpm_name: libselinux-static-2.2.2-6.el7.x86_64.rpm
-  :source: http://mirrors.advancedhosters.com/centos/7.1.1503/os/x86_64/Packages/libselinux-static-2.2.2-6.el7.x86_64.rpm
-libselinux-utils:
-  :rpm_name: libselinux-utils-2.2.2-6.el7.x86_64.rpm
-  :source: http://mirrors.advancedhosters.com/centos/7.1.1503/os/x86_64/Packages/libselinux-utils-2.2.2-6.el7.x86_64.rpm
-libsepol:
-  :rpm_name: libsepol-2.1.9-3.el7.x86_64.rpm
-  :source: http://mirrors.advancedhosters.com/centos/7.1.1503/os/x86_64/Packages/libsepol-2.1.9-3.el7.x86_64.rpm
+  :source: http://mirror.steadfast.net/centos/7.2.1511/os/x86_64/Packages/libselinux-static-2.2.2-6.el7.x86_64.rpm
 libsepol-static:
   :rpm_name: libsepol-static-2.1.9-3.el7.x86_64.rpm
-  :source: http://mirrors.advancedhosters.com/centos/7.1.1503/os/x86_64/Packages/libsepol-static-2.1.9-3.el7.x86_64.rpm
-libyaml:
-  :rpm_name: libyaml-0.1.4-11.el7_0.x86_64.rpm
-  :source: http://mirrors.advancedhosters.com/centos/7.1.1503/os/x86_64/Packages/libyaml-0.1.4-11.el7_0.x86_64.rpm
-linux-firmware:
-  :rpm_name: linux-firmware-20140911-0.1.git365e80c.el7.noarch.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/7.1.1503/os/x86_64/Packages/linux-firmware-20140911-0.1.git365e80c.el7.noarch.rpm
+  :source: http://mirror.steadfast.net/centos/7.2.1511/os/x86_64/Packages/libsepol-static-2.1.9-3.el7.x86_64.rpm
 logstash:
   :rpm_name: logstash-1.4.2-1_2c0f5a1.noarch.rpm
   :source: https://download.elasticsearch.org/logstash/logstash/packages/centos/logstash-1.4.2-1_2c0f5a1.noarch.rpm
@@ -299,9 +257,6 @@ razor-server:
 razor-torquebox:
   :rpm_name: razor-torquebox-3.1.1.9-1.el7.noarch.rpm
   :source: http://yum.puppetlabs.com/el/7/products/x86_64/razor-torquebox-3.1.1.9-1.el7.noarch.rpm
-rrdtool:
-  :rpm_name: rrdtool-1.4.8-8.el7.x86_64.rpm
-  :source: http://mirrors.advancedhosters.com/centos/7.1.1503/os/x86_64/Packages/rrdtool-1.4.8-8.el7.x86_64.rpm
 ruby-augeas:
   :rpm_name: ruby-augeas-0.4.1-3.el7.x86_64.rpm
   :source: http://yum.puppetlabs.com/el/7/dependencies/x86_64/ruby-augeas-0.4.1-3.el7.x86_64.rpm
@@ -329,6 +284,9 @@ rubygem-net-ping:
 rubygem-puppet-lint:
   :rpm_name: rubygem-puppet-lint-1.1.0-1.el7.noarch.rpm
   :source: http://yum.puppetlabs.com/el/7/dependencies/x86_64/rubygem-puppet-lint-1.1.0-1.el7.noarch.rpm
+rubygem-rake:
+  :rpm_name: rubygem-rake-0.9.6-25.el7_1.noarch.rpm
+  :source: http://mirrors.advancedhosters.com/centos/7.2.1511/os/x86_64/Packages/rubygem-rake-0.9.6-25.el7_1.noarch.rpm
 rubygem-rake-compiler:
   :rpm_name: rubygem-rake-compiler-0.9.3-1.el7.noarch.rpm
   :source: http://yum.puppetlabs.com/el/7/dependencies/x86_64/rubygem-rake-compiler-0.9.3-1.el7.noarch.rpm
@@ -338,21 +296,15 @@ rubygem-stomp:
 rubygem-stomp-doc:
   :source: http://lug.mtu.edu/epel/7/x86_64/r/rubygem-stomp-doc-1.3.4-2.el7.noarch.rpm
   :rpm_name: rubygem-stomp-doc-1.3.4-2.el7.noarch.rpm
-scap-security-guide:
-  :rpm_name: scap-security-guide-0.1.19-2.el7.noarch.rpm
-  :source: http://mirrors.advancedhosters.com/centos/7.1.1503/os/x86_64/Packages/scap-security-guide-0.1.19-2.el7.noarch.rpm
 simp-lastbind:
   :rpm_name: simp-lastbind-2.4.23-0.x86_64.rpm
   :source: https://dl.bintray.com/simp/5.1.X-Ext/simp-lastbind-2.4.23-0.x86_64.rpm
 simp-ppolicy-check-password:
   :rpm_name: simp-ppolicy-check-password-2.4.39-0el7.x86_64.rpm
   :source: https://dl.bintray.com/simp/5.1.X-Ext/simp-ppolicy-check-password-2.4.39-0el7.x86_64.rpm
-source-highlight:
-  :rpm_name: source-highlight-3.1.6-6.el7.x86_64.rpm
-  :source: http://mirrors.advancedhosters.com/centos/7.1.1503/os/x86_64/Packages/source-highlight-3.1.6-6.el7.x86_64.rpm
 sudosh2:
   :rpm_name: sudosh2-1.0.2-2el7.x86_64.rpm
   :source: https://dl.bintray.com/simp/5.1.X-Ext/sudosh2-1.0.2-2el7.x86_64.rpm
 syslinux-tftpboot:
   :rpm_name: syslinux-tftpboot-4.05-12.el7.x86_64.rpm
-  :source: http://mirrors.advancedhosters.com/centos/7.1.1503/os/x86_64/Packages/syslinux-tftpboot-4.05-12.el7.x86_64.rpm
+  :source: http://mirror.steadfast.net/centos/7.2.1511/os/x86_64/Packages/syslinux-tftpboot-4.05-12.el7.x86_64.rpm
