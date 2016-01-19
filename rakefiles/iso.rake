@@ -115,7 +115,7 @@ Build the SIMP ISO(s).
         require 'puppet/util/inifile'
 
         file = "#{dir}/.treeinfo"
-        error("ERROR: no file '#{file}'") unless File.file?(file)
+        fail("ERROR: no file '#{file}'") unless File.file?(file)
 
         ini = Puppet::Util::IniConfig::PhysicalFile.new(file)
         ini.read
@@ -145,13 +145,18 @@ Build the SIMP ISO(s).
 
         # Prune unwanted packages
         begin
+
           system("tar --no-same-permissions -C #{dir} -xzf #{tarball} *simp_pkglist.txt")
         rescue
           # Does not matter if the command fails
         end
-        if (args.prune.casecmp("false") != 0) && File.exist?("#{dir}/#{baseosver.split('.').first}-simp_pkglist.txt")
+        pkglist_file = ENV.fetch(
+                                 'SIMP_PKGLIST_FILE',
+                                  File.join(dir,"#{baseosver.split('.').first}-simp_pkglist.txt")
+                                )
+        if (args.prune.casecmp("false") != 0) && File.exist?(pkglist_file)
           exclude_pkgs = Array.new
-          File.read("#{dir}/#{baseosver.split('.').first}-simp_pkglist.txt").each_line do |line|
+          File.read(pkglist_file).each_line do |line|
             next if line =~ /^(\s+|#.*)$/
             exclude_pkgs.push(line.chomp)
           end
