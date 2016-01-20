@@ -1,13 +1,13 @@
 ---
-adwaita-icon-theme:
-  :source: http://centos.vwtonline.net/centos/7.2.1511/os/x86_64/Packages/adwaita-icon-theme-3.14.1-1.el7.noarch.rpm
-  :rpm_name: adwaita-icon-theme.noarch
 activemq:
   :source: http://yum.puppetlabs.com/el/7/dependencies/x86_64/activemq-5.9.1-2.el7.noarch.rpm
   :rpm_name: activemq-5.9.1-2.el7.noarch.rpm
 activemq-info-provider:
   :rpm_name: activemq-info-provider-5.9.1-2.el7.noarch.rpm
   :source: http://yum.puppetlabs.com/el/7/dependencies/x86_64/activemq-info-provider-5.9.1-2.el7.noarch.rpm
+adwaita-icon-theme:
+  :rpm_name: adwaita-icon-theme-3.14.1-1.el7.noarch.rpm
+  :source: http://mirrors.centos.webair.com/centos/7.2.1511/os/x86_64/Packages/adwaita-icon-theme-3.14.1-1.el7.noarch.rpm
 boost-regex:
   :source: http://centos.vwtonline.net/centos/7.2.1511/os/x86_64/Packages/boost-regex-1.53.0-25.el7.x86_64.rpm
   :rpm_name: boost-regex-1.53.0-25.el7.x86_64.rpm
@@ -56,6 +56,15 @@ clamav-server-sysvinit:
 clamav-update:
   :rpm_name: clamav-update-0.98.7-1.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/c/clamav-update-0.98.7-1.el7.x86_64.rpm
+compat-libcogl-pango12:
+  :rpm_name: compat-libcogl-pango12-1.14.0-3.el7.x86_64.rpm
+  :source: http://mirrors.centos.webair.com/centos/7.2.1511/os/x86_64/Packages/compat-libcogl-pango12-1.14.0-3.el7.x86_64.rpm
+compat-libcogl12:
+  :rpm_name: compat-libcogl12-1.14.0-3.el7.i686.rpm
+  :source: http://mirrors.centos.webair.com/centos/7.2.1511/os/x86_64/Packages/compat-libcogl12-1.14.0-3.el7.i686.rpm
+compat-libcolord1:
+  :rpm_name: compat-libcolord1-1.0.4-1.el7.x86_64.rpm
+  :source: http://mirrors.centos.webair.com/centos/7.2.1511/os/x86_64/Packages/compat-libcolord1-1.0.4-1.el7.x86_64.rpm
 ctags:
   :source: http://centos.vwtonline.net/centos/7.2.1511/os/x86_64/Packages/ctags-5.8-13.el7.x86_64.rpm
   :rpm_name: ctags-5.8-13.el7.x86_64.rpm
@@ -89,6 +98,15 @@ etcd:
 facter:
   :rpm_name: facter-2.4.4-1.el7.x86_64.rpm
   :source: http://yum.puppetlabs.com/el/7/products/x86_64/facter-2.4.4-1.el7.x86_64.rpm
+geoclue2:
+  :rpm_name: geoclue2-2.1.10-2.el7.x86_64.rpm
+  :source: http://mirrors.centos.webair.com/centos/7.2.1511/os/x86_64/Packages/geoclue2-2.1.10-2.el7.x86_64.rpm
+geocode-glib:
+  :rpm_name: geocode-glib-3.14.0-2.el7.x86_64.rpm
+  :source: http://mirrors.centos.webair.com/centos/7.2.1511/os/x86_64/Packages/geocode-glib-3.14.0-2.el7.x86_64.rpm
+grilo:
+  :rpm_name: grilo-0.2.12-2.el7.i686.rpm
+  :source: http://mirrors.centos.webair.com/centos/7.2.1511/os/x86_64/Packages/grilo-0.2.12-2.el7.i686.rpm
 gweb:
   :rpm_name: gweb-2.1.8-1.noarch.rpm
   :source: https://dl.bintray.com/simp/5.1.X-Ext/gweb-2.1.8-1.noarch.rpm
@@ -116,9 +134,18 @@ libarchive-devel:
 libconfuse:
   :rpm_name: libconfuse-2.7-7.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/l/libconfuse-2.7-7.el7.x86_64.rpm
+libepoxy:
+  :rpm_name: libepoxy-1.2-2.el7.x86_64.rpm
+  :source: http://mirrors.centos.webair.com/centos/7.2.1511/os/x86_64/Packages/libepoxy-1.2-2.el7.x86_64.rpm
 libev:
   :rpm_name: libev-4.15-3.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/l/libev-4.15-3.el7.x86_64.rpm
+libevdev:
+  :rpm_name: libevdev-1.4.1-1.el7.i686.rpm
+  :source: http://mirrors.centos.webair.com/centos/7.2.1511/os/x86_64/Packages/libevdev-1.4.1-1.el7.i686.rpm
+libmediaart:
+  :rpm_name: libmediaart-0.7.0-1.el7.x86_64.rpm
+  :source: http://mirrors.centos.webair.com/centos/7.2.1511/os/x86_64/Packages/libmediaart-0.7.0-1.el7.x86_64.rpm
 libselinux:
   :source: http://centos.vwtonline.net/centos/7.2.1511/os/x86_64/Packages/libselinux-2.2.2-6.el7.x86_64.rpm
   :rpm_name: libselinux-2.2.2-6.el7.x86_64.rpm
@@ -140,12 +167,24 @@ libsepol:
 libsepol-static:
   :source: http://centos.vwtonline.net/centos/7.2.1511/os/x86_64/Packages/libsepol-static-2.1.9-3.el7.x86_64.rpm
   :rpm_name: libsepol-static-2.1.9-3.el7.x86_64.rpm
+libsrtp:
+  :rpm_name: libsrtp-1.4.4-10.20101004cvs.el7.i686.rpm
+  :source: http://mirrors.centos.webair.com/centos/7.2.1511/os/x86_64/Packages/libsrtp-1.4.4-10.20101004cvs.el7.i686.rpm
+libwbclient:
+  :rpm_name: libwbclient-4.2.3-11.el7_2.x86_64.rpm
+  :source: http://mirror.compevo.com/centos/7.2.1511/updates/x86_64/Packages/libwbclient-4.2.3-11.el7_2.x86_64.rpm
+libxshmfence:
+  :rpm_name: libxshmfence-1.2-1.el7.i686.rpm
+  :source: http://mirrors.centos.webair.com/centos/7.2.1511/os/x86_64/Packages/libxshmfence-1.2-1.el7.i686.rpm
 libyaml:
   :source: http://centos.vwtonline.net/centos/7.2.1511/os/x86_64/Packages/libyaml-0.1.4-11.el7_0.x86_64.rpm
   :rpm_name: libyaml-0.1.4-11.el7_0.x86_64.rpm
 linux-firmware:
   :source: http://centos.vwtonline.net/centos/7.2.1511/os/x86_64/Packages/linux-firmware-20150904-43.git6ebf5d5.el7.noarch.rpm
   :rpm_name: linux-firmware-20150904-43.git6ebf5d5.el7.noarch.rpm
+lksctp-tools:
+  :rpm_name: lksctp-tools-1.0.13-3.el7.i686.rpm
+  :source: http://mirrors.centos.webair.com/centos/7.2.1511/os/x86_64/Packages/lksctp-tools-1.0.13-3.el7.i686.rpm
 logstash:
   :rpm_name: logstash-1.4.2-1_2c0f5a1.noarch.rpm
   :source: https://download.elasticsearch.org/logstash/logstash/packages/centos/logstash-1.4.2-1_2c0f5a1.noarch.rpm
@@ -242,6 +281,9 @@ mcollective-sshkey-security:
 mcollective-sysctl-data:
   :rpm_name: mcollective-sysctl-data-2.0.1-1.el7.noarch.rpm
   :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-sysctl-data-2.0.1-1.el7.noarch.rpm
+mozjs24:
+  :rpm_name: mozjs24-24.2.0-6.el7.i686.rpm
+  :source: http://mirrors.centos.webair.com/centos/7.2.1511/os/x86_64/Packages/mozjs24-24.2.0-6.el7.i686.rpm
 pdsh:
   :rpm_name: pdsh-2.29-1el7.x86_64.rpm
   :source: https://dl.bintray.com/simp/5.1.X-Ext/pdsh-2.29-1el7.x86_64.rpm
@@ -263,6 +305,9 @@ pdsh-rcmd-exec:
 pdsh-rcmd-ssh:
   :rpm_name: pdsh-rcmd-ssh-2.29-1el7.x86_64.rpm
   :source: https://dl.bintray.com/simp/5.1.X-Ext/pdsh-rcmd-ssh-2.29-1el7.x86_64.rpm
+pkgconfig:
+  :rpm_name: pkgconfig-0.27.1-4.el7.i686.rpm
+  :source: http://mirrors.centos.webair.com/centos/7.2.1511/os/x86_64/Packages/pkgconfig-0.27.1-4.el7.i686.rpm
 pssh:
   :rpm_name: pssh-2.3.1.SIMP-5.el7.noarch.rpm
   :source: https://dl.bintray.com/simp/5.1.X-Ext/pssh-2.3.1.SIMP-5.el7.noarch.rpm
@@ -287,12 +332,18 @@ puppetserver:
 python-elasticsearch:
   :rpm_name: python-elasticsearch-1.2.0-0.el7.centos.noarch.rpm
   :source: https://dl.bintray.com/simp/5.1.X-Ext/python-elasticsearch-1.2.0-0.el7.centos.noarch.rpm
+python-perf:
+  :rpm_name: python-perf-3.10.0-327.4.4.el7.x86_64.rpm
+  :source: http://mirror.millry.co/CentOS/7.2.1511/updates/x86_64/Packages/python-perf-3.10.0-327.4.4.el7.x86_64.rpm
 python-redis:
   :rpm_name: python-redis-2.10.3-1.el7.noarch.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/p/python-redis-2.10.3-1.el7.noarch.rpm
 python-simplejson:
   :rpm_name: python-simplejson-3.3.3-1.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/p/python-simplejson-3.3.3-1.el7.x86_64.rpm
+python-sss:
+  :rpm_name: python-sss-1.13.0-40.el7_2.1.x86_64.rpm
+  :source: http://mirror.millry.co/CentOS/7.2.1511/updates/x86_64/Packages/python-sss-1.13.0-40.el7_2.1.x86_64.rpm
 python-unittest2:
   :rpm_name: python-unittest2-0.5.1-6.el7.noarch.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/p/python-unittest2-0.5.1-6.el7.noarch.rpm
@@ -341,6 +392,21 @@ rubygem-stomp:
 rubygem-stomp-doc:
   :source: http://lug.mtu.edu/epel/7/x86_64/r/rubygem-stomp-doc-1.3.4-2.el7.noarch.rpm
   :rpm_name: rubygem-stomp-doc-1.3.4-2.el7.noarch.rpm
+samba-client-libs:
+  :rpm_name: samba-client-libs-4.2.3-11.el7_2.x86_64.rpm
+  :source: http://mirror.millry.co/CentOS/7.2.1511/updates/x86_64/Packages/samba-client-libs-4.2.3-11.el7_2.x86_64.rpm
+samba-common:
+  :rpm_name: samba-common-4.2.3-11.el7_2.noarch.rpm
+  :source: http://mirror.compevo.com/centos/7.2.1511/updates/x86_64/Packages/samba-common-4.2.3-11.el7_2.noarch.rpm
+samba-common-libs:
+  :rpm_name: samba-common-libs-4.2.3-11.el7_2.x86_64.rpm
+  :source: http://mirror.millry.co/CentOS/7.2.1511/updates/x86_64/Packages/samba-common-libs-4.2.3-11.el7_2.x86_64.rpm
+samba-common-tools:
+  :rpm_name: samba-common-tools-4.2.3-11.el7_2.x86_64.rpm
+  :source: http://mirror.compevo.com/centos/7.2.1511/updates/x86_64/Packages/samba-common-tools-4.2.3-11.el7_2.x86_64.rpm
+samba-libs:
+  :rpm_name: samba-libs-4.2.3-11.el7_2.x86_64.rpm
+  :source: http://mirror.compevo.com/centos/7.2.1511/updates/x86_64/Packages/samba-libs-4.2.3-11.el7_2.x86_64.rpm
 scap-security-guide:
   :source: http://centos.vwtonline.net/centos/7.2.1511/os/x86_64/Packages/scap-security-guide-0.1.25-3.el7.centos.0.1.noarch.rpm
   :rpm_name: scap-security-guide-0.1.25-3.el7.centos.0.1.noarch.rpm
@@ -353,9 +419,24 @@ simp-ppolicy-check-password:
 source-highlight:
   :source: http://centos.vwtonline.net/centos/7.2.1511/os/x86_64/Packages/source-highlight-3.1.6-6.el7.x86_64.rpm
   :rpm_name: source-highlight-3.1.6-6.el7.x86_64.rpm
+sssd-common:
+  :rpm_name: sssd-common-1.13.0-40.el7_2.1.x86_64.rpm
+  :source: http://mirror.compevo.com/centos/7.2.1511/updates/x86_64/Packages/sssd-common-1.13.0-40.el7_2.1.x86_64.rpm
 sudosh2:
   :rpm_name: sudosh2-1.0.2-2el7.x86_64.rpm
   :source: https://dl.bintray.com/simp/5.1.X-Ext/sudosh2-1.0.2-2el7.x86_64.rpm
 syslinux-tftpboot:
   :source: http://centos.vwtonline.net/centos/7.2.1511/os/x86_64/Packages/syslinux-tftpboot-4.05-12.el7.x86_64.rpm
   :rpm_name: syslinux-tftpboot-4.05-12.el7.x86_64.rpm
+vino:
+  :rpm_name: vino-3.14.2-1.el7.x86_64.rpm
+  :source: http://mirrors.centos.webair.com/centos/7.2.1511/os/x86_64/Packages/vino-3.14.2-1.el7.x86_64.rpm
+vte-profile:
+  :rpm_name: vte-profile-0.38.3-2.el7.x86_64.rpm
+  :source: http://mirrors.centos.webair.com/centos/7.2.1511/os/x86_64/Packages/vte-profile-0.38.3-2.el7.x86_64.rpm
+vte291:
+  :rpm_name: vte291-0.38.3-2.el7.i686.rpm
+  :source: http://mirrors.centos.webair.com/centos/7.2.1511/os/x86_64/Packages/vte291-0.38.3-2.el7.i686.rpm
+xcb-util-renderutil:
+  :rpm_name: xcb-util-renderutil-0.3.9-3.el7.x86_64.rpm
+  :source: http://mirrors.centos.webair.com/centos/7.2.1511/os/x86_64/Packages/xcb-util-renderutil-0.3.9-3.el7.x86_64.rpm
