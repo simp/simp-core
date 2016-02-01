@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa81d914_b0894e28",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-02-01T21:47:01Z",
+      "side": 1,
+      "message": "The first line of a commit message should be 50 characters or less (example at https://simp-project.atlassian.net/wiki/display/SD/Contributing+to+SIMP)",
+      "range": {
+        "startLine": 7,
+        "startChar": 72,
+        "endLine": 7,
+        "endChar": 84
+      },
+      "revId": "475366319a011e4909e7268625e87b3688f65d89",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa81d914_d093224d",
+        "filename": "src/puppet/bootstrap/environments/simp/manifests/site.pp",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-02-01T21:47:01Z",
+      "side": 1,
+      "message": "Should this be `$::compliance_profile` to make the top-scope resolution in hiera unambiguous?",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 19
+      },
+      "revId": "475366319a011e4909e7268625e87b3688f65d89",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa81d914_f083c601",
+        "filename": "src/puppet/bootstrap/environments/simp/manifests/site.pp",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-02-01T21:47:01Z",
+      "side": 1,
+      "message": "It looks like an additional single quote is needed at the end of this line to prevent syntax errors.",
+      "revId": "475366319a011e4909e7268625e87b3688f65d89",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa81d914_109e9a56",
+        "filename": "src/puppet/bootstrap/hiera.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-02-01T21:47:01Z",
+      "side": 1,
+      "message": "Should this be top-scoped (currently set in site.pp)?",
+      "range": {
+        "startLine": 19,
+        "startChar": 27,
+        "endLine": 19,
+        "endChar": 45
+      },
+      "revId": "475366319a011e4909e7268625e87b3688f65d89",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
