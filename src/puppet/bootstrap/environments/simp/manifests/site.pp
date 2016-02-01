@@ -23,4 +23,7 @@ Exec {
   ]
 }
 
+# Added to map simp to NIST 800-53 Rev4
+$compliance_profile = 'nist_800_53_rev4'
+
 hiera_include('classes')

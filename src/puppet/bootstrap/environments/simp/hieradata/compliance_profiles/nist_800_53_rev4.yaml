@@ -1,0 +1,55 @@
+# This profile maps applicable parameters to NIST 800-53 Rev 4
+# auditd module
+compliance::nist_800_53_rev4::auditd::root_audit_level :
+  'identifier' : ['AC-6(9)','AU-2(a)','AU-2(b)','AU-2(c)','AU-2(d)','AU-2(4)','AU-12(a)','AU-12(c)']
+  'value' : 'basic'
+compliance::nist_800_53_rev4::auditd::at_boot :
+  'identifier' : ['AU-14(1)','AU-1(b)','AU-2(a)','AU-2(c)','AU-2(d)','AU-10']
+  'value' : true
+compliance::nist_800_53_rev4::auditd::to_syslog :
+  'identifier' :  ['AU-3(2)','AU-4(1)','AU-9']
+  'value' : true
+compliance::nist_800_53_rev4::auditd::package_name :
+  'identifier' : ['AU-3','AU-8(b)','AU-12(a)','AU-12(b)','AU-12(c)','AU-12(2)']
+  'value' : 'audit'
+compliance::nist_800_53_rev4::auditd::service_name::enabled :
+  'identifier' : ['AU-8(b)','AU-12(a)','AU-12(b)','AU-12(c)','AU-12(2)']
+  'value'      : true
+compliance::nist_800_53_rev4::auditd::enable_auditing :
+  'identifier' : ['AU-8(b)','AU-12(a)','AU-12(b)','AU-12(c)','AU-12(2)']
+  'value' : true
+compliance::nist_800_53_rev4::auditd::num_logs :
+  'identifier' : ['AU-4','AU-11']
+  'value' : '5'
+  'notes' : 'This value can be different than 5 but should be justified.'
+compliance::nist_800_53_rev4::auditd::max_log_file :
+  'identifier' : ['AU-4','AU-11']
+  'value' : '24'
+  'notes' : 'This value can be different than 24 but should be justified.'
+compliance::nist_800_53_rev4::auditd::space_left_action :
+  'identifier' : ['AU-4','AU-5(a)','AU-11']
+  'value' : 'SYSLOG'
+  'notes' : 'This value can be changed if there is a more ideal notification method for your systems'
+compliance::nist_800_53_rev4::auditd::admin_space_left :
+  'identifier' : ['AU-4','AU-5(b)','AU-11']
+  'value' : '50'
+compliance::nist_800_53_rev4::auditd::admin_space_left_action :
+  'identifier' : ['AU-4','AU-5(b)','AU-11']
+  'value' : 'SUSPEND'
+compliance::nist_800_53_rev4::auditd::disk_full_action :
+  'identifier' : ['AU-4','AU-5(b)','AU-11']
+  'value' : 'SUSPEND'
+compliance::nist_800_53_rev4::auditd::disk_error_action :
+  'identifier' : ['AU-4','AU-5(b)','AU-11']
+  'value' : 'SUSPEND'
+compliance::nist_800_53_rev4::auditd::admin_space_left_action :
+  'identifier' : ['AU-4','AU-5(b)','AU-11']
+  'value' : 'SUSPEND'
+# For now just check that the simp profile is applied
+compliance::nist_800_53_rev4::auditd::default_audit_profile :
+  'identifier' : ['AU-2(a)','AU-2(c)','AU-2(d)','AC-6(9)','AU-12(a)','AU-12(c)']
+  'value' : 'simp'
+  'notes' : 'The SIMP profile applies a base set of audit rules that adhere to guidance from several sources'
+compliance::nist_800_53_rev4::auditd::failure_mode :
+  'identifier' : 'AU-5(b)'
+  'value' : '2'
