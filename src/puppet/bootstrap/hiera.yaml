@@ -16,6 +16,7 @@
   - '%{::operatingsystem}'
   - 'hostgroups/%{::hostgroup}'
   - 'default'
+  - 'compliance_profiles/%{compliance_profile}'
   - 'simp_classes'
   - 'simp_def'
   - 'simp/%{module_name}/default'
