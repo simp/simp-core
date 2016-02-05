@@ -8,19 +8,24 @@ desc "Unpack an ISO. Unpacks either a RHEL or CentOS ISO into
  * :targetdir - The parent directory for the to-be-created directory
    containing the unpacked ISO. Defaults to the current directory.
  * :isoinfo - The isoinfo executable to use to extract stuff from the ISO.
-   Defaults to 'isoinfo'."
-task :unpack,[:iso_path, :merge, :targetdir, :isoinfo] do |t,args|
+   Defaults to 'isoinfo'.
+ * :version - optional override for the <version> number (e.g., '7.0' instead of '7')
+
+"
+task :unpack,[:iso_path, :merge, :targetdir, :isoinfo, :version] do |t,args|
   args.with_defaults(
-    :iso_path => '',
-    :isoinfo   => 'isoinfo',
-    :targetdir => Dir.pwd,
-    :merge     => false
+    :iso_path   => '',
+    :isoinfo    => 'isoinfo',
+    :targetdir  => Dir.pwd,
+    :merge      => false,
+    :version => false,
   )
 
-  iso_path = args.iso_path
-  iso_info = which(args.isoinfo)
-  targetdir = args.targetdir
-  merge = args.merge
+  iso_path   = args.iso_path
+  iso_info   = which(args.isoinfo)
+  targetdir  = args.targetdir
+  merge      = args.merge
+  version = args.version
 
   # Checking for valid arguments
   File.exist?(args.iso_path) or
@@ -38,14 +43,14 @@ task :unpack,[:iso_path, :merge, :targetdir, :isoinfo] do |t,args|
     #   rhel-server-<version>-<arch>-<whatever>
     'rhel' => {
       'baseos'  => 'RHEL',
-      'version' => pieces[2],
+      'version' => version || pieces[2],
       'arch'    => pieces[3]
     },
     # CentOS structure as provided from the CentOS website:
     #   CentOS-<version>-<arch>-<whatever>
     'CentOS' => {
       'baseos'  => 'CentOS',
-      'version' => pieces[1],
+      'version' => version || pieces[1],
       'arch'    => pieces[2]
     }
   }
