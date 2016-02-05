@@ -91,9 +91,6 @@ mod 'simp-dhcp',
 mod 'simp-elasticsearch',
   :git => 'https://github.com/simp/puppet-elasticsearch',
   :ref => 'simp-master'
-mod 'simp-foreman',
-  :git => 'https://github.com/simp/pupmod-simp-foreman',
-  :ref => 'master'
 mod 'simp-freeradius',
   :git => 'https://github.com/simp/pupmod-simp-freeradius',
   :ref => 'master'

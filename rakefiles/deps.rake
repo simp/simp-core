@@ -133,6 +133,7 @@ namespace :deps do
   EOM
   task :status, [:method] do |t,args|
     args.with_defaults(:method => 'tracking')
+    @dirty_repos = nil
 
     fake_lp = FakeLibrarian.new("Puppetfile.#{args[:method]}")
     mods_with_changes = {}
@@ -157,9 +158,12 @@ namespace :deps do
 
     if mods_with_changes.empty?
       puts "No repositories have changes."
+      @dirty_repos = false
     else
       puts "The following repositories have changes:"
       puts mods_with_changes.map{|k,v| "  + #{k} => #{v}"}.join("\n")
+
+      @dirty_repos = true
     end
 
     unknown_mods = fake_lp.unknown_modules

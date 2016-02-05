@@ -99,6 +99,7 @@ namespace :tar do
     end
 
     #Seeing race conditions when this is parallelized.
+    @simp_tarballs = {}
     TARGET_DISTS.each do |dist|
       base_dir = "#{DVD_DIR}/#{dist}/staging"
       dvd_name = [ 'SIMP', 'DVD', dist, get_simp_version ]
@@ -109,6 +110,7 @@ namespace :tar do
       end
 
       puts "Package DVD: #{DVD_DIR}/#{dvd_tarball}"
+      @simp_tarballs[dist] = "#{DVD_DIR}/#{dvd_tarball}"
       rm_rf(base_dir)
     end
   end
