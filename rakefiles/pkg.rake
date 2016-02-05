@@ -125,7 +125,7 @@ namespace :pkg do
         end
 
         if days_left > 0
-          puts "GPG key will expire in #{days_left} days." 
+          puts "GPG key will expire in #{days_left} days."
         else
           puts "Generating new GPG key"
 
@@ -518,32 +518,39 @@ protect=1
         end
       end
 
-      Dir.chdir(temp_pkg_dir) {
+      Dir.chdir(temp_pkg_dir) do
         repo_files = []
         Dir.glob('repos/*').each do |repo|
           if File.directory?(repo)
-            Dir.chdir(repo) {
-              sh %{createrepo .}
-            }
+            Dir.chdir(repo) { sh %{createrepo .} }
 
             repo_name = File.basename(repo)
             repo_path = File.expand_path(repo)
             conf_file = "#{temp_pkg_dir}/#{repo_name}.conf"
 
-            File.open(conf_file,'w') { |file|
+            File.open(conf_file,'w') do |file|
               file.write(ERB.new(yum_repo_template,nil,'-').result(binding))
-            }
+            end
 
             repo_files << conf_file
           end
         end
 
-        File.open('yum.conf', 'w') { |file|
+        File.open('yum.conf', 'w') do |file|
           file.write(ERB.new(yum_conf_template,nil,'-').result(binding))
-        }
+        end
 
-        sh %{repoclosure -c repodata -n -t -r base -l lookaside -c yum.conf}
-      }
+        cmd = 'repoclosure -c repodata -n -t -r base -l lookaside -c yum.conf'
+
+        if ENV['SIMP_BUILD_verbose'] == 'yes'
+          puts
+          puts '-'*80
+          puts "#### RUNNING: `#{cmd}`"
+          puts "     in path '#{Dir.pwd}'"
+          puts '-'*80
+        end
+        sh cmd
+      end
     ensure
       remove_entry_secure temp_pkg_dir
     end
