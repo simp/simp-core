@@ -101,7 +101,7 @@ Build the SIMP ISO(s).
 
       iso_dirs = Dir.glob("#{File.expand_path(args.unpacked_dvds)}/#{baseos}*")
       if iso_dirs.empty?
-        fail("Error: No unpacked DVD directories found for '#{baseos}'")
+        fail("Error: No unpacked DVD directories found for '#{baseos}' under '#{File.expand_path(args.unpacked_dvds)}'")
       end
 
       # Process each unpacked base OS ISO directory found
@@ -153,6 +153,15 @@ Build the SIMP ISO(s).
                                  'SIMP_PKGLIST_FILE',
                                   File.join(dir,"#{baseosver.split('.').first}-simp_pkglist.txt")
                                 )
+        puts
+        puts '-'*80
+        puts "### Pruning packages not in file '#{pkglist_file}'"
+        puts
+        puts '   (override this with `SIMP_PKGLIST_FILE=<file>`)'
+        puts
+###        puts '-'*80
+###        puts
+
         if (args.prune.casecmp("false") != 0) && File.exist?(pkglist_file)
           exclude_pkgs = Array.new
           File.read(pkglist_file).each_line do |line|
@@ -228,7 +237,8 @@ Build the SIMP ISO(s).
 
         # Do some sane chmod'ing and build ISO
         system("chmod -fR u+rwX,g+rX,o=g #{dir}")
-        system("mkisofs -uid 0 -gid 0 -o SIMP-#{simpver}-#{baseos}-#{baseosver}-#{arch}.iso -b isolinux/isolinux.bin -c boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -r -m TRANS.TBL #{dir}")
+        @simp_output_iso = "SIMP-#{simpver}-#{baseos}-#{baseosver}-#{arch}.iso"
+        system("mkisofs -uid 0 -gid 0 -o #{@simp_output_iso} -b isolinux/isolinux.bin -c boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -r -m TRANS.TBL #{dir}")
       end
     end # End of tarfiles loop
   end
