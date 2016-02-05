@@ -1,24 +1,11 @@
-# Gemfile for bundler (gem install bundler)
+# Variables:
 #
-# To update all gem dependencies:
-#
-#   bundle
-#
-# To build a tar ball:
-#   bundle exec rake tar:build[epel-6-x86_64]
-# ruby=2.1
+# SIMP_GEM_SERVERS | a space/comma delimited list of rubygem servers
+# PUPPET_VERSION   | specifies the version of the puppet gem to load
+puppetversion = ENV.key?('PUPPET_VERSION') ? "#{ENV['PUPPET_VERSION']}" : ['~>3']
+gem_sources   = ENV.key?('SIMP_GEM_SERVERS') ? ENV['SIMP_GEM_SERVERS'].split(/[, ]+/) : ['https://rubygems.org']
 
-
-# Allow a comma or space-delimited list of gem servers
-if simp_gem_server =  ENV.fetch( 'SIMP_GEM_SERVERS', false )
-  simp_gem_server.split( / |,/ ).each{ |gem_server|
-    source gem_server
-  }
-else
-  # watch the name, or RVM will flip out
-  source 'https://rubygems.org'
-end
-
+gem_sources.each { |gem_source| source gem_source }
 
 # In offline CI environments, the only copy of simp-rake-helpers will be in the
 # local source tree.  Unless the SIMP_NO_LOCAL_RAKE_HELPERS environment variable
@@ -34,10 +21,11 @@ end
 gem 'bundler'
 gem 'rake'
 gem 'coderay'
-gem 'puppet'
+gem 'puppet', puppetversion
 gem 'puppet-lint'
 gem 'puppetlabs_spec_helper'
-gem 'simp-rake-helpers', '>=1.0.11'
+gem 'simp-rake-helpers', '>=1.0.13'
+gem 'simp-build-helpers', '>=0.1.0'
 gem 'parallel'
 gem 'dotenv'
 gem 'ruby-progressbar'
