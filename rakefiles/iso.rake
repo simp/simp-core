@@ -101,7 +101,7 @@ Build the SIMP ISO(s).
 
       iso_dirs = Dir.glob("#{File.expand_path(args.unpacked_dvds)}/#{baseos}*")
       if iso_dirs.empty?
-        fail("Error: No unpacked DVD directories found for '#{baseos}'")
+        fail("Error: No unpacked DVD directories found for '#{baseos}' under '#{File.expand_path(args.unpacked_dvds)}'")
       end
 
       # Process each unpacked base OS ISO directory found
