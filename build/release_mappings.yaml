@@ -1,5 +1,49 @@
 ---
+# This file houses the *officially supported* SIMP release combinations
+# Other build combinations may work, but unexpected issues may arise.
 simp_releases:
+  4.2.X:
+    flavors:
+      CentOS:
+        isos:
+          - name:     'CentOS-6.7-x86_64-bin-DVD1.iso'
+            size:     3895459840
+            checksum: 'c0c1a05d3d74fb093c6232003da4b22b0680f59d3b2fa2cb7da736bc40b3f2c5'
+          - name:     'CentOS-6.7-x86_64-bin-DVD2.iso'
+            size:     2154524672
+            checksum: 'f973ac2453af9815d2db944f3c7383bb3061b6b0c12fb58dadf843e1cad67ab6'
+        build_command: 'bundle exec rake build:auto[4.2.X,/path/to/CentOS-6.7/DVDs]'
+        mock:          'epel-6-x86_64'
+        os_version:   '6.7'
+      RedHat:
+        isos:
+          - name:     'rhel-server-6.7-x86_64-dvd.iso'
+            size:     3841982464
+            checksum: '0e0acb2a544f4d58f10292144161f40439734c6e98b13ba8c595372b20354bc5'
+        build_command: 'bundle exec rake build:auto[4.2.X,rhel-server-6.7-x86_64-dvd.iso]'
+        mock:          'epel-6-x86_64'
+        os_version:   '6.7'
+  4.2.0-1:
+    flavors:
+      CentOS:
+        isos:
+          - name:     'CentOS-6.7-x86_64-bin-DVD1.iso'
+            size:     3895459840
+            checksum: 'c0c1a05d3d74fb093c6232003da4b22b0680f59d3b2fa2cb7da736bc40b3f2c5'
+          - name:     'CentOS-6.7-x86_64-bin-DVD2.iso'
+            size:     2154524672
+            checksum: 'f973ac2453af9815d2db944f3c7383bb3061b6b0c12fb58dadf843e1cad67ab6'
+        build_command: 'bundle exec rake build:auto[4.2.X,/path/to/CentOS-6.7/DVDs]'
+        mock:          'epel-6-x86_64'
+        os_version:   '6.7'
+      RedHat:
+        isos:
+          - name:     'rhel-server-6.7-x86_64-dvd.iso'
+            size:     3841982464
+            checksum: '0e0acb2a544f4d58f10292144161f40439734c6e98b13ba8c595372b20354bc5'
+        build_command: 'bundle exec rake build:auto[4.2.0-1,rhel-server-6.7-x86_64-dvd.iso]'
+        mock:          'epel-6-x86_64'
+        os_version:   '6.7'
   5.1.X:
     flavors:
       CentOS:
@@ -25,7 +69,15 @@ simp_releases:
           - name:     'CentOS-7-x86_64-DVD-1503-01.iso'
             size:     4310695936
             checksum: '85bcf62462fb678adc0cec159bf8b39ab5515404bc3828c432f743a1b0b30157'
-        build_command: 'bundle exec rake <something-or-other>[CentOS-7-x86_64-DVD-1503-01.iso]'
+        build_command: 'bundle exec rake bulid:auto[5.1.0-2,CentOS-7-x86_64-DVD-1503-01.iso]'
         mock:          'epel-7-x86_64'
-        os_version:   '7.1'
+        os_version:   '7.0'
+      RedHat:
+        isos:
+          - name:     'rhel-server-7.2-x86_64-dvd.iso'
+            size:     4043309056
+            checksum: '03f3a0291634335f6995534d829bd21ffaa0d000004dfeb1b2fb81052d64a4d5'
+        build_command: 'bundle exec rake build:auto[5.1.0-2,RedHat-7-x86_64-DVD-1511.iso]'
+        mock:          'epel-7-x86_64'
+        os_version:   '7.2'
 
