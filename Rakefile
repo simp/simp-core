@@ -54,7 +54,8 @@ CLEAN.include(
   "#{DIST_DIR}/*",
   ".discinfo",
   DVD_DIR,
-  "#{BUILD_DIR}/SIMP"
+  "#{BUILD_DIR}/SIMP",
+  "#{BASEDIR}/SIMP_ISO*"
 )
 
 CLOBBER.include(
