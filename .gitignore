@@ -8,5 +8,4 @@ src/doc
 src/rsync
 /.tmp
 .*.sw?
-SIMP_ISO
-SIMP_ISO_STAGING
+SIMP_ISO*
