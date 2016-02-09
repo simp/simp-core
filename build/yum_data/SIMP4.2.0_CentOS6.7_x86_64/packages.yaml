@@ -24,23 +24,23 @@ chkrootkit:
   :rpm_name: chkrootkit-0.49-9.el6.x86_64.rpm
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/chkrootkit-0.49-9.el6.x86_64.rpm
 clamav:
-  :rpm_name: clamav-0.98.7-1.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/clamav-0.98.7-1.el6.x86_64.rpm
+  :source: http://mirror.compevo.com/epel/6/x86_64/clamav-0.99-3.el6.x86_64.rpm
+  :rpm_name: clamav-0.99-3.el6.x86_64.rpm
 clamav-db:
-  :rpm_name: clamav-db-0.98.7-1.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/clamav-db-0.98.7-1.el6.x86_64.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/clamav-db-0.99-3.el6.x86_64.rpm
+  :rpm_name: clamav-db-0.99-3.el6.x86_64.rpm
 clamav-devel:
-  :rpm_name: clamav-devel-0.98.7-1.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/clamav-devel-0.98.7-1.el6.x86_64.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/clamav-devel-0.99-3.el6.x86_64.rpm
+  :rpm_name: clamav-devel-0.99-3.el6.x86_64.rpm
 clamav-milter:
-  :rpm_name: clamav-milter-0.98.7-1.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/clamav-milter-0.98.7-1.el6.x86_64.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/clamav-milter-0.99-3.el6.x86_64.rpm
+  :rpm_name: clamav-milter-0.99-3.el6.x86_64.rpm
 clamav-unofficial-sigs:
   :rpm_name: clamav-unofficial-sigs-3.7.1-7.el6.noarch.rpm
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/clamav-unofficial-sigs-3.7.1-7.el6.noarch.rpm
 clamd:
-  :rpm_name: clamd-0.98.7-1.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/clamd-0.98.7-1.el6.x86_64.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/clamd-0.99-3.el6.x86_64.rpm
+  :rpm_name: clamd-0.99-3.el6.x86_64.rpm
 clamsmtp:
   :rpm_name: clamsmtp-1.10-6.el6.x86_64.rpm
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/clamsmtp-1.10-6.el6.x86_64.rpm
@@ -126,8 +126,8 @@ globus-callout:
   :rpm_name: globus-callout-3.13-2.el6.x86_64.rpm
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-callout-3.13-2.el6.x86_64.rpm
 globus-common:
-  :rpm_name: globus-common-15.30-1.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-common-15.30-1.el6.x86_64.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-common-16.0-1.el6.x86_64.rpm
+  :rpm_name: globus-common-16.0-1.el6.x86_64.rpm
 globus-gsi-callback:
   :rpm_name: globus-gsi-callback-5.8-1.el6.x86_64.rpm
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-gsi-callback-5.8-1.el6.x86_64.rpm
@@ -141,20 +141,20 @@ globus-gsi-openssl-error:
   :rpm_name: globus-gsi-openssl-error-3.5-2.el6.x86_64.rpm
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-gsi-openssl-error-3.5-2.el6.x86_64.rpm
 globus-gsi-proxy-core:
-  :rpm_name: globus-gsi-proxy-core-7.7-2.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-gsi-proxy-core-7.7-2.el6.x86_64.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64//globus-gsi-proxy-core-7.9-1.el6.x86_64.rpm
+  :rpm_name: globus-gsi-proxy-core-7.9-1.el6.x86_64.rpm
 globus-gsi-proxy-ssl:
   :rpm_name: globus-gsi-proxy-ssl-5.7-2.el6.x86_64.rpm
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-gsi-proxy-ssl-5.7-2.el6.x86_64.rpm
 globus-gsi-sysconfig:
-  :rpm_name: globus-gsi-sysconfig-6.8-2.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-gsi-sysconfig-6.8-2.el6.x86_64.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-gsi-sysconfig-6.9-1.el6.x86_64.rpm
+  :rpm_name: globus-gsi-sysconfig-6.9-1.el6.x86_64.rpm
 globus-gss-assist:
   :rpm_name: globus-gss-assist-10.15-1.el6.x86_64.rpm
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-gss-assist-10.15-1.el6.x86_64.rpm
 globus-gssapi-gsi:
-  :rpm_name: globus-gssapi-gsi-11.22-1.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-gssapi-gsi-11.22-1.el6.x86_64.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-gssapi-gsi-11.25-1.el6.x86_64.rpm
+  :rpm_name: globus-gssapi-gsi-11.25-1.el6.x86_64.rpm
 globus-openssl-module:
   :rpm_name: globus-openssl-module-4.6-2.el6.x86_64.rpm
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-openssl-module-4.6-2.el6.x86_64.rpm
@@ -267,35 +267,35 @@ mcollective-common:
   :rpm_name: mcollective-common-2.2.3-1.SIMP.1.el6.noarch.rpm
   :source: https://dl.bintray.com/simp/4.2.X-Ext/mcollective-common-2.2.3-1.SIMP.1.el6.noarch.rpm
 mcollective-filemgr-agent:
-  :rpm_name: mcollective-filemgr-agent-1.0.1-1.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-filemgr-agent-1.0.1-1.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-filemgr-agent-1.1.0-1.el6.noarch.rpm
+  :rpm_name: mcollective-filemgr-agent-1.1.0-1.el6.noarch.rpm
 mcollective-filemgr-client:
-  :rpm_name: mcollective-filemgr-client-1.0.1-1.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-filemgr-client-1.0.1-1.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-filemgr-client-1.1.0-1.el6.noarch.rpm
+  :rpm_name: mcollective-filemgr-client-1.1.0-1.el6.noarch.rpm
 mcollective-filemgr-common:
-  :rpm_name: mcollective-filemgr-common-1.0.1-1.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-filemgr-common-1.0.1-1.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-filemgr-common-1.1.0-1.el6.noarch.rpm
+  :rpm_name: mcollective-filemgr-common-1.1.0-1.el6.noarch.rpm
 mcollective-iptables-agent:
-  :rpm_name: mcollective-iptables-agent-3.0.1-1.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-iptables-agent-3.0.1-1.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-iptables-agent-3.0.2-1.el6.noarch.rpm
+  :rpm_name: mcollective-iptables-agent-3.0.2-1.el6.noarch.rpm
 mcollective-iptables-client:
-  :rpm_name: mcollective-iptables-client-3.0.1-1.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-iptables-client-3.0.1-1.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-iptables-client-3.0.2-1.el6.noarch.rpm
+  :rpm_name: mcollective-iptables-client-3.0.2-1.el6.noarch.rpm
 mcollective-iptables-common:
-  :rpm_name: mcollective-iptables-common-3.0.1-1.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-iptables-common-3.0.1-1.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-iptables-common-3.0.2-1.el6.noarch.rpm
+  :rpm_name: mcollective-iptables-common-3.0.2-1.el6.noarch.rpm
 mcollective-logstash-audit:
   :rpm_name: mcollective-logstash-audit-2.0.0-1.noarch.rpm
   :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-logstash-audit-2.0.0-1.noarch.rpm
 mcollective-nrpe-agent:
-  :rpm_name: mcollective-nrpe-agent-3.0.2-1.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-nrpe-agent-3.0.2-1.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-nrpe-agent-3.1.0-1.el6.noarch.rpm
+  :rpm_name: mcollective-nrpe-agent-3.1.0-1.el6.noarch.rpm
 mcollective-nrpe-client:
-  :rpm_name: mcollective-nrpe-client-3.0.2-1.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-nrpe-client-3.0.2-1.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-nrpe-client-3.1.0-1.el6.noarch.rpm
+  :rpm_name: mcollective-nrpe-client-3.1.0-1.el6.noarch.rpm
 mcollective-nrpe-common:
-  :rpm_name: mcollective-nrpe-common-3.0.2-1.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-nrpe-common-3.0.2-1.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-nrpe-common-3.1.0-1.el6.noarch.rpm
+  :rpm_name: mcollective-nrpe-common-3.1.0-1.el6.noarch.rpm
 mcollective-package-agent:
   :rpm_name: mcollective-package-agent-4.3.0-1.el6.noarch.rpm
   :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-package-agent-4.3.0-1.el6.noarch.rpm
@@ -324,8 +324,8 @@ mcollective-service-common:
   :rpm_name: mcollective-service-common-3.1.2-1.noarch.rpm
   :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-service-common-3.1.2-1.noarch.rpm
 mcollective-sysctl-data:
-  :rpm_name: mcollective-sysctl-data-2.0.0-1.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-sysctl-data-2.0.0-1.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-sysctl-data-2.0.1-1.el6.noarch.rpm
+  :rpm_name: mcollective-sysctl-data-2.0.1-1.el6.noarch.rpm
 mrepo:
   :rpm_name: mrepo-0.8.7-2.el6.noarch.rpm
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/mrepo-0.8.7-2.el6.noarch.rpm
