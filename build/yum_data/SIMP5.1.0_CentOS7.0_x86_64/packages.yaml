@@ -63,8 +63,8 @@ etcd:
   :rpm_name: etcd-2.0.11-0.SIMP.el7.x86_64.rpm
   :source: https://dl.bintray.com/simp/5.1.X-Ext/etcd-2.0.11-0.SIMP.el7.x86_64.rpm
 facter:
-  :rpm_name: facter-2.4.4-1.el7.x86_64.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/facter-2.4.4-1.el7.x86_64.rpm
+  :rpm_name: facter-2.4.6-1.el7.x86_64.rpm
+  :source: http://yum.puppetlabs.com/el/7/products/x86_64/facter-2.4.6-1.el7.x86_64.rpm
 gweb:
   :rpm_name: gweb-2.1.8-1.noarch.rpm
   :source: https://dl.bintray.com/simp/5.1.X-Ext/gweb-2.1.8-1.noarch.rpm
@@ -120,14 +120,14 @@ mcollective-common:
   :rpm_name: mcollective-common-2.8.4-1.el7.noarch.rpm
   :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-common-2.8.4-1.el7.noarch.rpm
 mcollective-filemgr-agent:
-  :rpm_name: mcollective-filemgr-agent-1.0.2-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-filemgr-agent-1.0.2-1.el7.noarch.rpm
+  :rpm_name: mcollective-filemgr-agent-1.1.0-1.el7.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-filemgr-agent-1.1.0-1.el7.noarch.rpm
 mcollective-filemgr-client:
-  :rpm_name: mcollective-filemgr-client-1.0.2-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-filemgr-client-1.0.2-1.el7.noarch.rpm
+  :rpm_name: mcollective-filemgr-client-1.1.0-1.el7.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-filemgr-client-1.1.0-1.el7.noarch.rpm
 mcollective-filemgr-common:
-  :rpm_name: mcollective-filemgr-common-1.0.2-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-filemgr-common-1.0.2-1.el7.noarch.rpm
+  :rpm_name: mcollective-filemgr-common-1.1.0-1.el7.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-filemgr-common-1.1.0-1.el7.noarch.rpm
 mcollective-iptables-agent:
   :rpm_name: mcollective-iptables-agent-3.0.2-1.el7.noarch.rpm
   :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-iptables-agent-3.0.2-1.el7.noarch.rpm
@@ -223,10 +223,7 @@ pssh:
   :source: https://dl.bintray.com/simp/5.1.X-Ext/pssh-2.3.1.SIMP-5.el7.noarch.rpm
 puppet:
   :rpm_name: puppet-3.8.1-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/puppet-3.8.1-1.el7.noarch.rpm
-puppet-server:
-  :rpm_name: puppet-server-3.8.1-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/puppet-server-3.8.1-1.el7.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/7/products/x86_64/puppet-3.8.6-1.el7.noarch.rpm
 puppetdb:
   :rpm_name: puppetdb-2.3.8-1.el7.noarch.rpm
   :source: http://yum.puppetlabs.com/el/7/products/x86_64/puppetdb-2.3.8-1.el7.noarch.rpm
@@ -237,8 +234,8 @@ puppetlabs-release:
   :rpm_name: puppetlabs-release-7-11.noarch.rpm
   :source: http://yum.puppetlabs.com/el/7/products/x86_64/puppetlabs-release-7-11.noarch.rpm
 puppetserver:
-  :rpm_name: puppetserver-1.1.1-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/puppetserver-1.1.1-1.el7.noarch.rpm
+  :rpm_name: puppetserver-1.1.3-1.el7.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/7/products/x86_64/puppetserver-1.1.3-1.el7.noarch.rpm
 python-elasticsearch:
   :rpm_name: python-elasticsearch-1.2.0-0.el7.centos.noarch.rpm
   :source: https://dl.bintray.com/simp/5.1.X-Ext/python-elasticsearch-1.2.0-0.el7.centos.noarch.rpm
@@ -249,14 +246,14 @@ python-simplejson:
   :rpm_name: python-simplejson-3.3.3-1.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/p/python-simplejson-3.3.3-1.el7.x86_64.rpm
 python-unittest2:
-  :rpm_name: python-unittest2-0.5.1-6.el7.noarch.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/p/python-unittest2-0.5.1-6.el7.noarch.rpm
+  :rpm_name: python-unittest2-1.1.0-4.el7.noarch.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/p/python-unittest2-1.1.0-4.el7.noarch.rpm
 razor-server:
-  :rpm_name: razor-server-1.0.1-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/razor-server-1.0.1-1.el7.noarch.rpm
+  :rpm_name: razor-server-1.1.0-1.el7.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/7/products/x86_64/razor-server-1.1.0-1.el7.noarch.rpm
 razor-torquebox:
-  :rpm_name: razor-torquebox-3.1.1.9-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/razor-torquebox-3.1.1.9-1.el7.noarch.rpm
+  :rpm_name: razor-torquebox-3.1.1.10-1.el7.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/7/products/x86_64/razor-torquebox-3.1.1.10-1.el7.noarch.rpm
 ruby-augeas:
   :rpm_name: ruby-augeas-0.4.1-3.el7.x86_64.rpm
   :source: http://yum.puppetlabs.com/el/7/dependencies/x86_64/ruby-augeas-0.4.1-3.el7.x86_64.rpm
