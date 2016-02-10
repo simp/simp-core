@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa81d914_b72f6487",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-02-10T19:31:26Z",
+      "side": 1,
+      "message": "Missing topic (probably \"Update ISO RPMs to latest versions?\")",
+      "revId": "6f6933a1e3a1846c6cd6e7aa88e95ba2e095b6aa",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa81d914_f7547c00",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-02-10T19:31:26Z",
+      "side": 1,
+      "message": "\"separate\"",
+      "range": {
+        "startLine": 11,
+        "startChar": 14,
+        "endLine": 11,
+        "endChar": 15
+      },
+      "revId": "6f6933a1e3a1846c6cd6e7aa88e95ba2e095b6aa",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa81d914_d74f7869",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-02-10T19:31:26Z",
+      "side": 1,
+      "message": "(As long as there is one for #5.1.X,) might be good to include a #comment in here to mention this updates the 4.2.X branch.",
+      "revId": "6f6933a1e3a1846c6cd6e7aa88e95ba2e095b6aa",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
