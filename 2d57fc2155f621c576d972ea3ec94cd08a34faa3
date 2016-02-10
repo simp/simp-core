@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa81d914_573c68c8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-02-10T19:28:24Z",
+      "side": 1,
+      "message": "Missing topic (probably \"Update ISO RPMs to latest versions?\")",
+      "revId": "2d57fc2155f621c576d972ea3ec94cd08a34faa3",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
