@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da86d52c_5e8331cc",
+        "filename": "Puppetfile.tracking",
+        "patchSetId": 2
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-02-17T02:32:23Z",
+      "side": 1,
+      "message": "Should we add this to the github `simp/` org?",
+      "range": {
+        "startLine": 260,
+        "startChar": 30,
+        "endLine": 260,
+        "endChar": 44
+      },
+      "revId": "4fbf1864ced92e3e5dad947ebfdfd7101767b552",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
