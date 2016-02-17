@@ -43,7 +43,6 @@ classes:
   - 'simplib::sysctl'
   - 'simplib::timezone'
   - 'ntpd'
-  - 'openldap::pam'
   # Set up the access.conf basics, allow root locally and deny
   # everyone else from everywhere by default.
   - 'pam::access'
