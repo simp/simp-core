@@ -267,35 +267,35 @@ mcollective-common:
   :rpm_name: mcollective-common-2.2.3-1.SIMP.1.el6.noarch.rpm
   :source: https://dl.bintray.com/simp/4.2.X-Ext/mcollective-common-2.2.3-1.SIMP.1.el6.noarch.rpm
 mcollective-filemgr-agent:
-  :rpm_name: mcollective-filemgr-agent-1.0.1-1.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-filemgr-agent-1.0.1-1.noarch.rpm
+  :rpm_name: mcollective-filemgr-agent-1.1.0-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-filemgr-agent-1.1.0-1.el6.noarch.rpm
 mcollective-filemgr-client:
-  :rpm_name: mcollective-filemgr-client-1.0.1-1.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-filemgr-client-1.0.1-1.noarch.rpm
+  :rpm_name: mcollective-filemgr-client-1.1.0-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-filemgr-client-1.1.0-1.el6.noarch.rpm
 mcollective-filemgr-common:
-  :rpm_name: mcollective-filemgr-common-1.0.1-1.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-filemgr-common-1.0.1-1.noarch.rpm
+  :rpm_name: mcollective-filemgr-common-1.1.0-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-filemgr-common-1.1.0-1.el6.noarch.rpm
 mcollective-iptables-agent:
-  :rpm_name: mcollective-iptables-agent-3.0.1-1.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-iptables-agent-3.0.1-1.noarch.rpm
+  :rpm_name: mcollective-iptables-agent-3.0.2-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-iptables-agent-3.0.2-1.el6.noarch.rpm
 mcollective-iptables-client:
-  :rpm_name: mcollective-iptables-client-3.0.1-1.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-iptables-client-3.0.1-1.noarch.rpm
+  :rpm_name: mcollective-iptables-client-3.0.2-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-iptables-client-3.0.2-1.el6.noarch.rpm
 mcollective-iptables-common:
-  :rpm_name: mcollective-iptables-common-3.0.1-1.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-iptables-common-3.0.1-1.noarch.rpm
+  :rpm_name: mcollective-iptables-common-3.0.2-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-iptables-common-3.0.2-1.el6.noarch.rpm
 mcollective-logstash-audit:
   :rpm_name: mcollective-logstash-audit-2.0.0-1.noarch.rpm
   :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-logstash-audit-2.0.0-1.noarch.rpm
 mcollective-nrpe-agent:
-  :rpm_name: mcollective-nrpe-agent-3.0.2-1.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-nrpe-agent-3.0.2-1.noarch.rpm
+  :rpm_name: mcollective-nrpe-agent-3.1.0-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-nrpe-agent-3.1.0-1.el6.noarch.rpm
 mcollective-nrpe-client:
-  :rpm_name: mcollective-nrpe-client-3.0.2-1.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-nrpe-client-3.0.2-1.noarch.rpm
+  :rpm_name: mcollective-nrpe-client-3.1.0-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-nrpe-client-3.1.0-1.el6.noarch.rpm
 mcollective-nrpe-common:
-  :rpm_name: mcollective-nrpe-common-3.0.2-1.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-nrpe-common-3.0.2-1.noarch.rpm
+  :rpm_name: mcollective-nrpe-common-3.1.0-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-nrpe-common-3.1.0-1.el6.noarch.rpm
 mcollective-package-agent:
   :rpm_name: mcollective-package-agent-4.3.0-1.el6.noarch.rpm
   :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-package-agent-4.3.0-1.el6.noarch.rpm
@@ -324,8 +324,8 @@ mcollective-service-common:
   :rpm_name: mcollective-service-common-3.1.2-1.noarch.rpm
   :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-service-common-3.1.2-1.noarch.rpm
 mcollective-sysctl-data:
-  :rpm_name: mcollective-sysctl-data-2.0.0-1.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-sysctl-data-2.0.0-1.noarch.rpm
+  :rpm_name: mcollective-sysctl-data-2.0.1-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-sysctl-data-2.0.1-1.el6.noarch.rpm
 mrepo:
   :rpm_name: mrepo-0.8.7-2.el6.noarch.rpm
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/mrepo-0.8.7-2.el6.noarch.rpm
