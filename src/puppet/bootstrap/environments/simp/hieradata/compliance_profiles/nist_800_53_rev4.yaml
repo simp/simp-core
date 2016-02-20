@@ -1,4 +1,5 @@
 # This profile maps applicable parameters to NIST 800-53 Rev 4
+
 # auditd module
 compliance::nist_800_53_rev4::auditd::root_audit_level :
   'identifier' : ['AC-6(9)','AU-2(a)','AU-2(b)','AU-2(c)','AU-2(d)','AU-2(4)','AU-12(a)','AU-12(c)']
@@ -9,6 +10,7 @@ compliance::nist_800_53_rev4::auditd::at_boot :
 compliance::nist_800_53_rev4::auditd::to_syslog :
   'identifier' :  ['AU-3(2)','AU-4(1)','AU-9']
   'value' : true
+  'notes' : 'Sending audit logs to syslog *might* by a bandwidth problem in some instances.  Otherwise, it should NOT be turned off'
 compliance::nist_800_53_rev4::auditd::package_name :
   'identifier' : ['AU-3','AU-8(b)','AU-12(a)','AU-12(b)','AU-12(c)','AU-12(2)']
   'value' : 'audit'
@@ -65,7 +67,7 @@ compliance::nist_800_53_rev4::aide::rotate_logs :
   'identifier' : ['SI-7','SI-7(1)','SI-7(2)','SI-7(3)','SI-7(8)']
   'value' : true
 compliance::nist_800_53_rev4::aide::to_syslog :
-  'identifier' : ['SI-7','SI-7(1)','SI-7(2)','SI-7(3)','SI-7(8)']
+  'identifier' :  ['AU-3(2)','AU-4(1)','AU-9']
   'value' : true
 compliance::nist_800_53_rev4::aide::use_auditd :
   'identifier' :  ['AU-3(2)','AU-4(1)','AU-9']
@@ -96,3 +98,471 @@ compliance::nist_800_53_rev4::clamav::schedule_scan :
   'identifier' : 'SI-3(c)'
   'value' : true
   'notes' : 'If ClamAV is not used, alternate malicious code detection software should be implemented'
+
+#iptables
+compliance::nist_800_53_rev4::iptables::authoritative :
+  'identifier' : ['AC-4','CM-7(b)']
+  'value' : true
+compliance::nist_800_53_rev4::iptables::optimize_rules :
+  'identifier' : 'AC-4'
+  'value' : true
+compliance::nist_800_53_rev4::iptables::ignore :
+  'identifier' : 'AC-4'
+  'value' : []
+compliance::nist_800_53_rev4::iptables::enable_default_rules :
+  'identifier' : ['AC-4','CM-7(b)']
+  'value' : true
+  'notes' : 'If the SIMP default rules are modified, the running rules should be viewed to ensure they allow a minimal set inbound flows'
+compliance::nist_800_53_rev4::iptables::enable_scanblock :
+  'identifier' : ['AC-4','IR-4']
+  'value' : false
+  'notes' : 'This is turned off by default for SIMP as writing rules *could* cause unintended behaviour'
+compliance::nist_800_53_rev4::iptables::prevent_localhost_spoofing :
+  'identifier' : 'AC-4'
+  'value' : true
+compliance::nist_800_53_rev4::iptables::disable :
+  'identifier' : 'AC-4'
+  'value' : false
+
+# simp module
+compliance::nist_800_53_rev4::simp::enable_filebucketing :
+  'identifier' : ['SI-2(a)','SI-6(a)','SI-6(b)','SI-7','SI-7(1)']
+  'value' : true
+compliance::nist_800_53_rev4::simp::admin::passwordless_admin_sudo :
+  'identifier' : ['IA-1(a)(1)','IA-1(b)(1)']
+  'value' : true
+  'notes' : 'Passwordless sudo for the administrators group is part of a larger default account management strategy in SIMP.  Setting this to false might not be a bad thing as long as the implementation can explain their account strategy'
+compliance::nist_800_53_rev4::simp::admin::passwordless_auditor_sudo :
+  'identifier' : ['IA-1(a)(1)','IA-1(b)(1)']
+  'value' : true
+  'notes' : 'Passwordless sudo for the administrators group is part of a larger default account management strategy in SIMP.  Setting this to false might not be a bad thing as long as the implementation can explain their account strategy'
+compliance::nist_800_53_rev4::simp::admin::force_sudosh :
+  'identifier' : ['AC-6(9)','AU-14','AU-14(2)']
+  'value' : true
+compliance::nist_800_53_rev4::simp::server::allow_simp_user :
+  'identifier' : ['IA-1(a)(1)','IA-1(b)(1)']
+  'value' : true
+  'notes' : 'Passwordless sudo for the administrators group is part of a larger default account management strategy in SIMP.  Setting this to false might not be a bad thing as long as the implementation can explain their account strategy'
+compliance::nist_800_53_rev4::simp::server::enable_rsync_shares:
+  'identifier' : ['CM-2(2)','CM-4(3)']
+  'value' : true
+compliance::nist_800_53_rev4::simp::yum::enable_auto_updates :
+  'identifier' : ['CM-3(3)','CM-11(b)','SI-2(c)']
+  'value' : true
+  'notes' : 'For this control to be fully applied, updated packages need to be applied to the configured yum repos'
+compliance::nist_800_53_rev4::simp::nfs::stock::export_home::sec :
+  'identifier' : 'IA-2'
+  'value' : 'none:sys'
+compliance::nist_800_53_rev4::simp::rsyslog::stock::security_relevant_logs :
+  'identifier' : ['AU-2(a)','AU-2(d)','AU-3(2)','AU-14']
+  'value' : "if $programname == 'sudosh' or $programname == 'yum' or $syslogfacility-text == 'cron' or $syslogfacility-text == 'authpriv' or $syslogfacility-text == 'local5' or $syslogfacility-text == 'local6' or $syslogfacility-text == 'local7' or $syslogpriority-text == 'emerg' or ( $syslogfacility-text == 'kern' and $msg startswith 'IPT:' ) then"
+  'notes' : 'If the default security relevant logs are changed, they should be justified, especially if fewer than the SIMP default are configured'
+compliance::nist_800_53_rev4::simp::rsyslog::stock::log_server::rotate_period :
+  'identifier' : ['AU-4','AU-11']
+  'value' : 'weekly'
+  'notes' : 'This value can vary according to storage capacity of a log server'
+compliance::nist_800_53_rev4::simp::rsyslog::stock::log_server::rotate :
+  'identifier' : ['AU-4','AU-11']
+  'value' : '122'
+  'notes' : 'This value can vary according to storage capacity of a log server'
+compliance::nist_800_53_rev4::simp::rsyslog::stock::log_server::size :
+  'identifier' : ['AU-4','AU-11']
+  'value' : '2'
+  'notes' : 'This value can vary according to storage capacity of a log server'
+compliance::nist_800_53_rev4::simp::rsyslog::stock::log_server::use_iptables :
+  'identifier' : ['AC-4','AC-6']
+  'value' : true
+compliance::nist_800_53_rev4::simp::rsyslog::stock::log_server::forward::log_transport :
+  'identifier' : 'SI-13'
+  'value' : 'tcp'
+  'notes' : 'The use of UDP should be justified'
+compliance::nist_800_53_rev4::simp::server::rsync_shares::use_stunnel :
+  'identifier' : ['SC-8', 'SC-8(1)','SC-8(2)','SC-13','SC-23']
+  'value' : true
+compliance::nist_800_53_rev4::simp::sssd::client::use_ldap :
+  'identifier' : 'IA-2'
+  'value' : true
+compliance::nist_800_53_rev4::simp::sssd::client::use_autofs :
+  'identifier' : 'IA-2'
+  'value' : true
+compliance::nist_800_53_rev4::simp::sssd::client::use_sudo :
+  'identifier' : ['AC-6(9)','AU-14','AU-14(2)']
+  'value' : true
+compliance::nist_800_53_rev4::simp::sssd::client::use_ssh :
+  'identifier' : ['SC-8', 'SC-8(1)','SC-8(2)','SC-13','SC-23']
+  'value' : true
+compliance::nist_800_53_rev4::simp::sssd::client::enumerate_users :
+  'identifier' : 'IA-2'
+  'value' : false
+compliance::nist_800_53_rev4::simp::sssd::client::min_id :
+  'identifier' : 'IA-2'
+  'value' : '501'
+
+#simplib
+compliance::nist_800_53_rev4::simplib::user_umask :
+  'identifier' : ['AC-2','AC-2(4)','AC-6']
+  'value' : '0077'
+compliance::nist_800_53_rev4::simplib::daemon_umask :
+  'identifier' : ['AC-2','AC-2(4)','AC-6']
+  'value' : '0027'
+compliance::nist_800_53_rev4::simplib::core_dump :
+  'identifier' : ['CP-12','SI-11']
+  'value' : false
+compliance::nist_800_53_rev4::simplib::max_logins :
+  'identifier' : 'AC-10'
+  'value' : '10'
+  'notes' : 'Setting this number higher than 10 should be justified'
+compliance::nist_800_53_rev4::simplib::ftpusers_min :
+  'identifier' : ['AC-10','IA-2']
+  'value' : '500'
+compliance::nist_800_53_rev4::simplib::disable_rc_local :
+  'identifier' : 'CM-6'
+  'value' : true
+  'notes' : 'If rc.local is enabled in EL7, it should be justified and documented'
+compliance::nist_800_53_rev4::simplib::disable_hosts_equiv :
+  'identifier' : ['CM-6','SC-8']
+  'value' : true
+compliance::nist_800_53_rev4::simplib::shells :
+  'identifier' : ['CM-6','CM-7']
+  'value' : ['/bin/sh','/bin/zsh','/bin/bash','/sbin/nologin']
+  'notes' : 'Adding or removing shells may not be a bad thing.  Any changes to the SIMP default should be justified'
+compliance::nist_800_53_rev4::simplib::securetty :
+  'identifier' : ['IA-2(1)','AC-1(1)']
+  'value' : ['console','tty1','tty2','tty3','tty4','tty5','tty6','ttyS0','ttyS1']
+  'notes' : 'This list can actually be reduced in many cases.  This is a list that the SIMP team feels might be needed for most systems'
+compliance::nist_800_53_rev4::simplib::manage_tmp_perms :
+  'identifier' : ['AC-3','CM-7']
+  'value' : true
+compliance::nist_800_53_rev4::simplib::manage_root_perms :
+  'identifier' : ['AC-3','CM-7']
+  'value' : true
+compliance::nist_800_53_rev4::simplib::use_fips :
+  'identifier' : ['AC-3','AC-17A(2)','IA-7','SC-13']
+  'value' : true
+compliance::nist_800_53_rev4::simplib::use_fips_aesni :
+  'identifier' : ['AC-3','AC-17A(2)','IA-7','SC-13']
+  'value' : true
+compliance::nist_800_53_rev4::simplib::runlevel :
+  'identifier' : 'CM-7'
+  'value' : '3'
+  'notes' : 'A run level other than 3 should be justified'
+compliance::nist_800_53_rev4::simplib::proc_hidepid :
+  'identifier' : ['AC-3','AC-6']
+  'value' : '2'
+compliance::nist_800_53_rev4::simplib::chkrootkit::destination :
+  'identifier' : 'SI-3(a)'
+  'value' : 'syslog'
+compliance::nist_800_53_rev4::simplib::cron::use_rsync :
+  'identifier' : 'CM-2(2)'
+  'value' : true
+compliance::nist_800_53_rev4::simplib::host_conf::spoof :
+  'identifier' : 'SC-20'
+  'value' : 'warn'
+  'notes' : 'This only helps with "Secure Name/Address Resolution" but does not alone meet that control'
+compliance::nist_800_53_rev4::simplib::issue::source :
+  'identifier' : 'AC-8'
+  'value' : 'puppet:///modules/simplib/etc/issue'
+  'notes' : 'The actual content should be manually validated to determine if it matches the need of the implementation'
+compliance::nist_800_53_rev4::simplib::issue::source :
+  'identifier' : 'AC-8'
+  'value' : 'puppet:///modules/simplib/etc/issue'
+compliance::nist_800_53_rev4::simplib::libuser_conf::defaults_create_modules :
+  'identifier' : 'IA-1'
+  'value' : ['files','shadow']
+compliance::nist_800_53_rev4::simplib::libuser_conf::defaults_crypt_style :
+  'identifier' : ['IA-5(c)','IA-5(h)']
+  'value' : 'sha512'
+compliance::nist_800_53_rev4::simplib::libuser_conf::defaults_hash_rounds_min :
+  'identifier' : ['IA-5(c)','IA-5(h)']
+  'value' : ''
+compliance::nist_800_53_rev4::simplib::libuser_conf::defaults_hash_rounds_max :
+  'identifier' : ['IA-5(c)','IA-5(h)']
+  'value' : ''
+compliance::nist_800_53_rev4::simplib::libuser_conf::defaults_modules :
+  'identifier' : 'IA-1'
+  'value' : ['files','shadow']
+compliance::nist_800_53_rev4::simplib::libuser_conf::defaults_skeleton :
+  'identifier' : 'IA-1'
+  'value' : ''
+compliance::nist_800_53_rev4::simplib::libuser_conf::import_login_defs :
+  'identifier' : 'IA-1'
+  'value' : '/etc/login.defs'
+compliance::nist_800_53_rev4::simplib::libuser_conf::import_default_useradd :
+  'identifier' : 'IA-1'
+  'value' : '/etc/default/useradd'
+compliance::nist_800_53_rev4::simplib::libuser_conf::userdefaults :
+  'identifier' : 'IA-2'
+  'value' : "LU_USERNAME = %n\nLU_GIDNUMBER = %u"
+compliance::nist_800_53_rev4::simplib::libuser_conf::groupdefaults :
+  'identifier' : 'IA-2'
+  'value' : 'LU_GROUPNAME = %n'
+compliance::nist_800_53_rev4::simplib::login_defs::chfn_auth :
+  'identifier' : 'IA-1'
+  'value' : false
+compliance::nist_800_53_rev4::simplib::login_defs::chfn_restrict :
+  'identifier' : ['AC-1','IA-1']
+  'value' : 'frwh'
+compliance::nist_800_53_rev4::simplib::login_defs::chsh_auth :
+  'identifier' : 'IA-1'
+  'value' : false
+compliance::nist_800_53_rev4::simplib::login_defs::console :
+  'identifier' : 'AC-6(5)'
+  'value' : []
+  'notes' : 'SIMP restricts root console with other mechanisms.  Adding devices here only enhances security'
+compliance::nist_800_53_rev4::simplib::login_defs::console_groups :
+  'identifier' : 'AC-6(5)'
+  'value' : []
+  'notes' : 'SIMP restricts root console with other mechanisms.  Adding devices here only enhances security'
+compliance::nist_800_53_rev4::simplib::login_defs::create_home :
+  'identifier' : 'AC-3'
+  'value' : true
+compliance::nist_800_53_rev4::simplib::login_defs::default_home :
+  'identifier' : 'AC-3'
+  'value' : false
+compliance::nist_800_53_rev4::simplib::login_defs::encrypt_method :
+  'identifier' : ['IA-5(c)','IA-5(h)']
+  'value' : 'SHA512'
+compliance::nist_800_53_rev4::simplib::login_defs::fail_delay :
+  'identifier' : ['AC-7','IA-11']
+  'value' : '4'
+compliance::nist_800_53_rev4::simplib::login_defs::faillog_enab :
+  'identifier' : 'AU-2'
+  'value' : true
+compliance::nist_800_53_rev4::simplib::login_defs::gid_max :
+  'identifier' : 'IA-1'
+  'value' : '500000'
+compliance::nist_800_53_rev4::simplib::login_defs::gid_min :
+  'identifier' : 'IA-1'
+  'value' : '500'
+compliance::nist_800_53_rev4::simplib::login_defs::issue_file :
+  'identifier' : 'AC-8'
+  'value' : '/etc/issue'
+compliance::nist_800_53_rev4::simplib::login_defs::lastlog_enab :
+  'identifier' : ['AC-9','AC-9(1)','AC-9(2)']
+  'value' : true
+compliance::nist_800_53_rev4::simplib::login_defs::log_ok_logins :
+  'identifier' : ['AC-9','AC-9(1)','AC-9(2)']
+  'value' : true
+compliance::nist_800_53_rev4::simplib::login_defs::log_unkfail_enab :
+  'identifier' : 'AU-2'
+  'value' : true
+compliance::nist_800_53_rev4::simplib::login_defs::login_retries :
+  'identifier' : 'AC-12'
+  'value' : '3'
+compliance::nist_800_53_rev4::simplib::login_defs::login_timeout :
+  'identifier' : 'AC-12'
+  'value' : '60'
+compliance::nist_800_53_rev4::simplib::login_defs::obscure_checks_enab :
+  'identifier' : 'IA-5'
+  'value' : true
+compliance::nist_800_53_rev4::simplib::login_defs::pass_always_warn :
+  'identifier' : 'IA-1'
+  'value' : true
+compliance::nist_800_53_rev4::simplib::login_defs::pass_change_tries :
+  'identifier' : 'AC-12'
+  'value' : '3'
+compliance::nist_800_53_rev4::simplib::login_defs::log_unkfail_enab :
+  'identifier' : 'AU-2'
+  'value' : true
+compliance::nist_800_53_rev4::simplib::login_defs::pass_max_days :
+  'identifier' : ['IA-5(f)','IA-5(1)(d)']
+  'value' : '180'
+compliance::nist_800_53_rev4::simplib::login_defs::pass_min_days :
+  'identifier' : ['IA-5(f)','IA-5(1)(d)']
+  'value' : '1'
+compliance::nist_800_53_rev4::simplib::login_defs::pass_warn_age :
+  'identifier' : ['IA-5(f)','IA-5(1)(d)']
+  'value' : '14'
+compliance::nist_800_53_rev4::simplib::login_defs::pass_max_len :
+  'identifier' : ['IA-5(c)','IA-5(1)(d)']
+  'value' : ''
+  'notes' : 'A value assigned here might conflict with other complexity settings'
+compliance::nist_800_53_rev4::simplib::login_defs::pass_min_len :
+  'identifier' : ['IA-5(c)','IA-5(1)(d)']
+  'value' : '14'
+compliance::nist_800_53_rev4::simplib::login_defs::porttime_checks_enab :
+  'identifier' : 'IA-1'
+  'value' : true
+compliance::nist_800_53_rev4::simplib::login_defs::sha_crypt_min_rounds :
+  'identifier' : ['IA-5(c)','IA-5(h)']
+  'value' : '5000'
+compliance::nist_800_53_rev4::simplib::login_defs::sha_crypt_max_rounds :
+  'identifier' : ['IA-5(c)','IA-5(h)']
+  'value' : '10000'
+compliance::nist_800_53_rev4::simplib::login_defs::su_name :
+  'identifier' : 'IA-1'
+  'value' : 'su'
+compliance::nist_800_53_rev4::simplib::login_defs::syslog_sg_enab :
+  'identifier' :  ['AU-2','AU-3']
+  'value' : true
+compliance::nist_800_53_rev4::simplib::login_defs::syslog_su_enab :
+  'identifier' :  ['AU-2','AU-3']
+  'value' : true
+compliance::nist_800_53_rev4::simplib::login_defs::uid_max :
+  'identifier' : 'IA-1'
+  'value' : '1000000'
+compliance::nist_800_53_rev4::simplib::login_defs::umask :
+  'identifier' : ['AC-2','AC-2(4)','AC-6']
+  'value' : '007'
+compliance::nist_800_53_rev4::simplib::modprobe_blacklist::enable :
+  'identifier' : 'CM-7'
+  'value' : true
+compliance::nist_800_53_rev4::simplib::modprobe_blacklist::blacklist :
+  'identifier' : 'CM-7'
+  'value' : ['bluetooth','cramfs','dccp','dccp_ipv4','dccp_ipv6','freevxfs','hfs','hfsplus','ieee1394','jffs2','net-pf-31','rds','sctp','squashfs','tipc','udf','usb-storage']
+compliance::nist_800_53_rev4::simplib::modprobe_blacklist::blacklist_method :
+  'identifier' : 'CM-7'
+  'value' : '/bin/true'
+compliance::nist_800_53_rev4::simplib::nsswitch::passwd :
+  'identifier' : 'IA-1'
+  'value' : ['files']
+  'notes' : 'This is part of the overall SIMP authentication architecture. Different implementations can be used but should be justified'
+compliance::nist_800_53_rev4::simplib::nsswitch::shadow :
+  'identifier' : 'IA-1'
+  'value' : ['files']
+  'notes' : 'This is part of the overall SIMP authentication architecture. Different implementations can be used but should be justified'
+compliance::nist_800_53_rev4::simplib::nsswitch::group :
+  'identifier' : 'IA-1'
+  'value' : ['files']
+  'notes' : 'This is part of the overall SIMP authentication architecture. Different implementations can be used but should be justified'
+compliance::nist_800_53_rev4::simplib::nsswitch::hosts :
+  'identifier' : 'IA-1'
+  'value' : ['files','dns']
+  'notes' : 'This is part of the overall SIMP authentication architecture. Different implementations can be used but should be justified'
+compliance::nist_800_53_rev4::simplib::nsswitch::bootparams :
+  'identifier' : 'IA-1'
+  'value' : ['nisplus [NOTFOUND=return]','files']
+  'notes' : 'This is part of the overall SIMP authentication architecture. Different implementations can be used but should be justified'
+compliance::nist_800_53_rev4::simplib::nsswitch::netgroup :
+  'identifier' : 'IA-1'
+  'value' : ['files']
+  'notes' : 'This is part of the overall SIMP authentication architecture. Different implementations can be used but should be justified'
+compliance::nist_800_53_rev4::simplib::nsswitch::publickey :
+  'identifier' : 'IA-1'
+  'value' : ['nisplus']
+  'notes' : 'This is part of the overall SIMP authentication architecture. Different implementations can be used but should be justified'
+compliance::nist_800_53_rev4::simplib::nsswitch::automount :
+  'identifier' : 'IA-1'
+  'value' : ['files','nisplus']
+  'notes' : 'This is part of the overall SIMP authentication architecture. Different implementations can be used but should be justified'
+compliance::nist_800_53_rev4::simplib::nsswitch::aliases :
+  'identifier' : 'IA-1'
+  'value' : ['files','nisplus']
+  'notes' : 'This is part of the overall SIMP authentication architecture. Different implementations can be used but should be justified'
+compliance::nist_800_53_rev4::simplib::nsswitch::use_ldap :
+  'identifier' : 'IA-1'
+  'value' : true
+  'notes' : 'This is part of the overall SIMP authentication architecture. Different implementations can be used but should be justified'
+compliance::nist_800_53_rev4::simplib::nsswitch::use_sssd :
+  'identifier' : 'IA-1'
+  'value' : true
+  'notes' : 'This is part of the overall SIMP authentication architecture. Different implementations can be used but should be justified'
+compliance::nist_800_53_rev4::simplib::prelink::enable :
+  'identifier' : 'CM-7'
+  'value' : false
+compliance::nist_800_53_rev4::simplib::profile_settings::session_timeout :
+  'identifier' : ['AC-11','AC-12']
+  'value' : '15'
+compliance::nist_800_53_rev4::simplib::profile_settings::umask :
+  'identifier' : ['AC-2','AC-2(4)','AC-6']
+  'value' : '0077'
+compliance::nist_800_53_rev4::simplib::profile_settings::mesg :
+  'identifier' : 'AC-6'
+  'value' : false
+compliance::nist_800_53_rev4::simplib::profile_settings::user_whitelist :
+  'identifier' : 'IA-1'
+  'value' : []
+  'notes' : 'Any user in this list should be justified'
+compliance::nist_800_53_rev4::simplib::profile_settings::prepend :
+  'identifier' : 'IA-1'
+  'value' : {}
+compliance::nist_800_53_rev4::simplib::profile_settings::append :
+  'identifier' : 'IA-1'
+  'value' : {}
+compliance::nist_800_53_rev4::simplib::secure_mountpoints::secure_tmp_mounts :
+  'identifier' : ['AC-3','CM-7']
+  'value' : true
+compliance::nist_800_53_rev4::simplib::secure_mountpoints::tmp_opts :
+  'identifier' : ['AC-3','CM-7']
+  'value' : ['noexec','nodev','nosuid']
+compliance::nist_800_53_rev4::simplib::secure_mountpoints::var_tmp_opts :
+  'identifier' : ['AC-3','CM-7']
+  'value' : ['noexec','nodev','nosuid']
+compliance::nist_800_53_rev4::simplib::secure_mountpoints::dev_shm_opts :
+  'identifier' : ['AC-3','CM-7']
+  'value' : ['noexec','nodev','nosuid']
+compliance::nist_800_53_rev4::simplib::sysconfig::init::single_user_login :
+  'identifier' : ['IA-2(1)','AC-1(1)']
+  'value' : '/sbin/sulogin'
+compliance::nist_800_53_rev4::simplib::sysctl::fs__suid_dumpable :
+  'identifier' : ['CP-12','SI-11']
+  'value' : '0'
+compliance::nist_800_53_rev4::simplib::sysctl::kernel__dmesg_restrict :
+  'identifier' : 'AC-6'
+  'value' : '1'
+compliance::nist_800_53_rev4::simplib::sysctl::kernel__exec_shield :
+  'identifier' : 'AC-6'
+  'value' : '1'
+compliance::nist_800_53_rev4::simplib::sysctl::kernel__randomize_va_space :
+  'identifier' : 'SC-30(2)'
+  'value' : '2'
+compliance::nist_800_53_rev4::simplib::sysctl::net__ipv4__conf__all__accept_redirects :
+  'identifier' : ['AC-4','CM-7','SC-5']
+  'value' : '0'
+compliance::nist_800_53_rev4::simplib::sysctl::net__ipv4__conf__all__accept_source_route :
+  'identifier' : ['AC-4','CM-7','SC-5']
+  'value' : '0'
+compliance::nist_800_53_rev4::simplib::sysctl::net__ipv4__conf__all__log_martians :
+  'identifier' : ['AC-3(10)','AU-2','SC-5']
+  'value' : '1'
+compliance::nist_800_53_rev4::simplib::sysctl::net__ipv4__conf__all__rp_filter :
+  'identifier' : ['AC-4','CM-7','SC-5']
+  'value' : '1'
+compliance::nist_800_53_rev4::simplib::sysctl::net__ipv4__conf__all__secure_redirects :
+  'identifier' : ['AC-4','CM-7','SC-5']
+  'value' : '0'
+compliance::nist_800_53_rev4::simplib::sysctl::net__ipv4__conf__all__send_redirects :
+  'identifier' : ['AC-4','CM-7','SC-5']
+  'value' : '0'
+compliance::nist_800_53_rev4::simplib::sysctl::net__ipv4__conf__default__accept_redirects :
+  'identifier' : ['AC-4','CM-7','SC-5']
+  'value' : '0'
+compliance::nist_800_53_rev4::simplib::sysctl::net__ipv4__icmp_echo_ignore_broadcasts :
+  'identifier' : ['AC-4','CM-7','SC-5']
+  'value' : '1'
+compliance::nist_800_53_rev4::simplib::sysctl::net__ipv4__icmp_ignore_bogus_error_responses :
+  'identifier' : ['AC-4','CM-7','SC-5']
+  'value' : '1'
+compliance::nist_800_53_rev4::simplib::sysctl::net__ipv4__tcp_syncookies :
+  'identifier' : ['AC-4','CM-7','SC-5']
+  'value' : '1'
+compliance::nist_800_53_rev4::simplib::sysctl::net__ipv6__conf__default__accept_ra :
+  'identifier' : 'CM-7'
+  'value' : '0'
+compliance::nist_800_53_rev4::simplib::sysctl::net__ipv6__conf__default__accept_ra_defrtr :
+  'identifier' : 'CM-7'
+  'value' : '0'
+compliance::nist_800_53_rev4::simplib::sysctl::net__ipv6__conf__default__accept_ra_pinfo :
+  'identifier' : 'CM-7'
+  'value' : '0'
+compliance::nist_800_53_rev4::simplib::sysctl::net__ipv6__conf__default__accept_ra_rtr_pref :
+  'identifier' : 'CM-7'
+  'value' : '0'
+compliance::nist_800_53_rev4::simplib::sysctl::net__ipv6__conf__default__accept_redirects :
+  'identifier' : 'CM-7'
+  'value' : '0'
+compliance::nist_800_53_rev4::simplib::sysctl::net__ipv6__conf__default__autoconf :
+  'identifier' : 'CM-7'
+  'value' : '0'
+compliance::nist_800_53_rev4::simplib::sysctl::net__ipv6__conf__default__dad_transmits :
+  'identifier' : 'CM-7'
+  'value' : '0'
+compliance::nist_800_53_rev4::simplib::sysctl::net__ipv6__conf__default__max_addresses :
+  'identifier' : 'CM-7'
+  'value' : '1'
+compliance::nist_800_53_rev4::simplib::sysctl::net__ipv6__conf__default__router_solicitations :
+  'identifier' : 'CM-7'
+  'value' : '0'
+compliance::nist_800_53_rev4::simplib::yum_schedule::repos :
+  'identifier' : ['CM-3(3)','CM-11(b)','SI-2(c)']
+  'value' : ['all']
