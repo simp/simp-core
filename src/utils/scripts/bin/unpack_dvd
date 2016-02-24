@@ -119,10 +119,10 @@ options = Hash.new
 opts = OptionParser.new do |opts|
   opts.banner = "Usage: #{$0} [options] /path/to/dvd/to/unpack"
 
-  if File.directory?('/srv/www/yum')
-    options[:dest] = '/srv/www/yum'
-  elsif File.directory?('/var/www/yum')
+  if File.directory?('/var/www/yum')
     options[:dest] = '/var/www/yum'
+  elsif File.directory?('/srv/www/yum')
+    options[:dest] = '/srv/www/yum'
   end
 
   opts.on("-d", "--dest DIR", "The DVD extraction target directory.",
@@ -139,10 +139,13 @@ end
 
 opts.parse!
 
+# Option checking
 if not ARGV.length > 0 then
   $stderr.puts("Error: You must pass the path to an ISO to unpack\n\n#{opts}")
   exit 1
 end
+fail("Could not find a SIMP default output directory and no --dest option provided") unless options[:dest]
+fail("Destination directory does not exist") if not File.directory?(options[:dest])
 
 discattrs = {
   :family => nil,
@@ -150,9 +153,6 @@ discattrs = {
   :arch => nil,
   :path => nil
 }
-
-# Option checking
-fail("Could not find a SIMP default output directory and no --dest option provided") unless options[:dest]
 
 discattrs[:path] = ARGV.first
 if not File.readable?(discattrs[:path]) then
