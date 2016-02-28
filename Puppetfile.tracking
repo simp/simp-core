@@ -277,3 +277,6 @@ mod 'simp-xinetd',
 mod 'simp-xwindows',
   :git => 'git://github.com/simp/pupmod-simp-xwindows',
   :ref => 'master'
+mod 'onyxpoint-compliance',
+  :git => 'https://github.com/trevor-vaughan/pupmod-compliance',
+  :ref => 'master'
