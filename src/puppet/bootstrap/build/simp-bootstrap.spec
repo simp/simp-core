@@ -1,7 +1,7 @@
 Summary: SIMP Bootstrap
 Name: simp-bootstrap
 Version: 4.2.0
-Release: 3
+Release: 4
 License: Apache License 2.0
 Group: Applications/System
 Source: %{name}-%{version}-%{release}.tar.gz
@@ -42,6 +42,7 @@ using a default 'simp' Puppet Environment.
 mkdir -p %{buildroot}/%{prefix}/environments/simp/hieradata/hostgroups
 mkdir -p %{buildroot}/%{prefix}/environments/simp/modules
 mkdir -p %{buildroot}/%{prefix}/environments/simp/simp_autofiles
+mkdir -p %{buildroot}/%{prefix}/environments/simp/hieradata/compliance_profiles
 
 # Now install the files.
 cp -r environments %{buildroot}/%{prefix}
@@ -73,6 +74,7 @@ cp puppet.conf %{buildroot}/%{prefix}/puppet.conf.rpmnew
 %config(noreplace) %{prefix}/puppet.conf.rpmnew
 %config(noreplace) %{prefix}/environments/simp/FakeCA/togen
 %config(noreplace) %{prefix}/environments/simp/FakeCA/usergen
+%config(noreplace) %{prefix}/environments/simp/hieradata/compliance_profiles/nist_800_53_rev4.yaml
 
 %defattr(0640,root,root,0750)
 %{prefix}/environments/simp/FakeCA
@@ -300,6 +302,9 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Fri Feb 26 2016 Ralph Wright <ralph.wright@onyxpoint.com> - 4.2.0-4
+- Added suppport for compliance module
+
 * Thu Nov 05 2015 Nick Markowski <nmarkowski@keywcorp.com> - 4.2.0-3
 - Symlink /srv/www/yum|ks to /var/www.  This used to happen post kickstart
   but users need this functionality when not installing from the ISO.
