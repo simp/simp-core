@@ -1,5 +1,8 @@
 # This profile maps applicable parameters to NIST 800-53 Rev 4
 
+# Added to handle %{ within a string
+global::percent_sign: '%'
+
 # auditd module
 compliance::nist_800_53_rev4::auditd::root_audit_level :
   'identifier' : ['AC-6(9)','AU-2(a)','AU-2(b)','AU-2(c)','AU-2(d)','AU-2(4)','AU-12(a)','AU-12(c)']
@@ -8,7 +11,7 @@ compliance::nist_800_53_rev4::auditd::at_boot :
   'identifier' : ['AU-14(1)','AU-1(b)','AU-2(a)','AU-2(c)','AU-2(d)','AU-10']
   'value' : true
 compliance::nist_800_53_rev4::auditd::to_syslog :
-  'identifier' :  ['AU-3(2)','AU-4(1)','AU-9']
+  'identifier' : ['AU-3(2)','AU-4(1)','AU-9']
   'value' : true
   'notes' : 'Sending audit logs to syslog *might* by a bandwidth problem in some instances.  Otherwise, it should NOT be turned off'
 compliance::nist_800_53_rev4::auditd::package_name :
@@ -69,7 +72,7 @@ compliance::nist_800_53_rev4::aide::rotate_logs :
 compliance::nist_800_53_rev4::aide::to_syslog :
   'value' : true
 compliance::nist_800_53_rev4::aide::use_auditd :
-  'identifier' :  ['AU-3(2)','AU-4(1)','AU-9']
+  'identifier' : ['AU-3(2)','AU-4(1)','AU-9']
   'value' : true
 compliance::nist_800_53_rev4::aide::logrotate::rotate_period :
   'identifier' : ['AU-4','AU-5(b)','AU-11']
@@ -392,10 +395,10 @@ compliance::nist_800_53_rev4::simplib::login_defs::su_name :
   'identifier' : 'IA-1'
   'value' : 'su'
 compliance::nist_800_53_rev4::simplib::login_defs::syslog_sg_enab :
-  'identifier' :  ['AU-2','AU-3']
+  'identifier' : ['AU-2','AU-3']
   'value' : true
 compliance::nist_800_53_rev4::simplib::login_defs::syslog_su_enab :
-  'identifier' :  ['AU-2','AU-3']
+  'identifier' : ['AU-2','AU-3']
   'value' : true
 compliance::nist_800_53_rev4::simplib::login_defs::uid_max :
   'identifier' : 'IA-1'
@@ -454,7 +457,7 @@ compliance::nist_800_53_rev4::simplib::nsswitch::use_ldap :
   'notes' : 'This is part of the overall SIMP authentication architecture. Different implementations can be used but should be justified'
 compliance::nist_800_53_rev4::simplib::nsswitch::use_sssd :
   'identifier' : 'IA-1'
-  'value' : true
+  'value' : false
   'notes' : 'This is part of the overall SIMP authentication architecture. Different implementations can be used but should be justified'
 compliance::nist_800_53_rev4::simplib::prelink::enable :
   'identifier' : 'CM-7'
@@ -601,7 +604,7 @@ compliance::nist_800_53_rev4::openldap::pam::start_tls :
   'identifier' : ['SC-8', 'SC-8(1)','SC-8(2)','SC-23']
   'value' : true
 compliance::nist_800_53_rev4::openldap::pam::use_auditd :
-  'identifier' :  ['AU-3(2)','AU-4(1)','AU-9']
+  'identifier' : ['AU-3(2)','AU-4(1)','AU-9']
   'value' : true
 compliance::nist_800_53_rev4::openldap::pam::bind_policy :
   'identifier' : 'IA-1'
@@ -640,7 +643,7 @@ compliance::nist_800_53_rev4::openldap::server::use_tcpwrappers :
   'identifier' : 'AC-4'
   'value' : true
 compliance::nist_800_53_rev4::openldap::server::conf::audit_to_syslog :
-  'identifier' :  ['AU-3(2)','AU-4(1)','AU-9']
+  'identifier' : ['AU-3(2)','AU-4(1)','AU-9']
   'value' : true
 compliance::nist_800_53_rev4::openldap::server::conf::auditlog :
   'identifier' : 'AU-3'
@@ -876,7 +879,7 @@ compliance::nist_800_53_rev4::pupmod::vardir :
   'identifier' : 'CM-6'
   'value' : '/var/lib/puppet'
 compliance::nist_800_53_rev4::pupmod::syslogfacility :
-  'identifier' :  ['AU-3(2)','AU-4(1)','AU-9']
+  'identifier' : ['AU-3(2)','AU-4(1)','AU-9']
   'value' : 'local6'
 compliance::nist_800_53_rev4::pupmod::master::bind_address :
   'identifier' : 'CM-7'
@@ -897,7 +900,7 @@ compliance::nist_800_53_rev4::pupmod::master::ssl_protocols :
   'identifier' : ['SC-8', 'SC-8(1)','SC-8(2)','SC-23']
   'value' : ['TLSv1','TLSv1.1','TLSv1.2']
 compliance::nist_800_53_rev4::pupmod::master::log_to_syslog :
-  'identifier' :  ['AU-3(2)','AU-4(1)','AU-9']
+  'identifier' : ['AU-3(2)','AU-4(1)','AU-9']
   'value' : true
 compliance::nist_800_53_rev4::pupmod::master::syslog_message_format :
   'identifier' : 'AU-2'
@@ -1014,7 +1017,7 @@ compliance::nist_800_53_rev4::ssh::server::conf::enable_fallback_ciphers :
   'identifier' : ['SC-8(1)','SC-8(2)','SC-23']
   'value' : true
 compliance::nist_800_53_rev4::ssh::server::conf::syslogfacility :
-  'identifier' :  ['AU-3(2)','AU-4(1)','AU-9']
+  'identifier' : ['AU-3(2)','AU-4(1)','AU-9']
   'value' : 'AUTHPRIV'
 compliance::nist_800_53_rev4::ssh::server::conf::gssapiauthentication :
   'identifier' : ['SC-8(1)','SC-8(2)','SC-23']
@@ -1037,3 +1040,201 @@ compliance::nist_800_53_rev4::ssh::server::conf::x11forwarding :
 compliance::nist_800_53_rev4::ssh::server::conf::use_tcpwrappers :
   'identifier' : 'AC-4'
   'value' : true
+
+# sssd
+compliance::nist_800_53_rev4::sssd::services :
+  'identifier' : 'IA-1'
+  'value' : ['nss','pam','ssh','sudo']
+compliance::nist_800_53_rev4::sssd::enable_auditd :
+  'identifier' : ['AU-3(2)','AU-4(1)','AU-9']
+  'value' : true
+compliance::nist_800_53_rev4::sssd::enable_pki :
+  'identifier' : ['SC-8(1)','SC-8(2)','SC-23']
+  'value' : true
+compliance::nist_800_53_rev4::sssd::use_simp_pki :
+  'identifier' : ['SC-8(1)','SC-8(2)','SC-23']
+  'value' : true
+compliance::nist_800_53_rev4::sssd::cert_source :
+  'identifier' : ['SC-8(1)','SC-8(2)','SC-23']
+  'value' : '/etc/sssd/pki'
+compliance::nist_800_53_rev4::sssd::install::install_user_tools :
+  'identifier' : 'IA-1'
+  'value' : true
+compliance::nist_800_53_rev4::sssd::service::pam::offline_failed_login_attempts :
+  'identifier' : 'AC-12'
+  'value' : '3'
+compliance::nist_800_53_rev4::sssd::service::pam::offline_failed_login_delay :
+  'identifier' : 'AC-7(b)'
+  'value' : '5'
+compliance::nist_800_53_rev4::sssd::service::pam::pam_id_timeout :
+  'identifier' : 'AC-7(b)'
+  'value' : '5'
+compliance::nist_800_53_rev4::sssd::service::pam::pam_pwd_expiration_warning :
+  'identifier' : 'IA-5(1)(d)'
+  'value' : '7'
+compliance::nist_800_53_rev4::sssd::service::ssh::ssh_hash_known_hosts :
+  'identifier' : ['IA-5(c)','IA-5(h)']
+  'value' : true
+compliance::nist_800_53_rev4::sssd::provider::ldap::ldap_chpass_updates_last_change :
+  'identifier' : 'IA-5(1)(d)'
+  'value' : true
+
+# stunnel
+compliance::nist_800_53_rev4::stunnel::chroot :
+  'identifier' : 'AC-6'
+  'value' : '/var/stunnel'
+compliance::nist_800_53_rev4::stunnel::setuid :
+  'identifier' : 'AC-6'
+  'value' : 'stunnel'
+compliance::nist_800_53_rev4::stunnel::setgid :
+  'identifier' : 'AC-6'
+  'value' : 'stunnel'
+compliance::nist_800_53_rev4::stunnel::syslog :
+  'identifier' : ['AU-3(2)','AU-4(1)','AU-9']
+  'value' : true
+compliance::nist_800_53_rev4::stunnel::add::ca_path :
+  'identifier' : ['SC-8', 'SC-8(1)','SC-8(2)','SC-23']
+  'value' : '/etc/pki/cacerts'
+compliance::nist_800_53_rev4::stunnel::add::ciphers :
+  'identifier' : ['SC-8', 'SC-8(1)','SC-8(2)','SC-23']
+  'value' : ['HIGH','-SSLv2']
+compliance::nist_800_53_rev4::stunnel::add::use_iptables :
+  'identifier' : 'AC-4'
+  'value' : true
+
+# tpm
+compliance::nist_800_53_rev4::tpm::ima::enable :
+  'identifier' : ['AC-25','SI-7(9)']
+  'value' : true
+compliance::nist_800_53_rev4::tpm::ima::mount_dir :
+  'identifier' : ['AC-25','SI-7(9)']
+  'value' : '/sys/kernel/security'
+compliance::nist_800_53_rev4::tpm::ima::ima_audit :
+  'identifier' : ['AC-25','SI-7(9)']
+  'value' : true
+compliance::nist_800_53_rev4::tpm::ima::ima_tcb :
+  'identifier' : ['AC-25','SI-7(9)']
+  'value' : true
+
+# upstart
+compliance::nist_800_53_rev4::upstart::disable_ctrl_alt_del :
+  'identifier' : 'AC-6'
+  'value' : true
+
+# vsftpd
+compliance::nist_800_53_rev4::vsftpd::manage_user :
+  'identifier' : ['AC-6','IA-2']
+  'value' : true
+compliance::nist_800_53_rev4::vsftpd::manage_group :
+  'identifier' : ['AC-6','IA-2']
+  'value' : true
+compliance::nist_800_53_rev4::vsftpd::ssl_enable :
+  'identifier' : ['SC-8', 'SC-8(1)','SC-8(2)','SC-23']
+  'value' : true
+compliance::nist_800_53_rev4::vsftpd::require_ssl_reuse :
+  'identifier' : ['SC-8', 'SC-8(1)','SC-8(2)','SC-23']
+  'value' : true
+compliance::nist_800_53_rev4::vsftpd::userlist_enable :
+  'identifier' : ['AC-6','IA-2']
+  'value' : true
+compliance::nist_800_53_rev4::vsftpd::validate_cert :
+  'identifier' : ['SC-8', 'SC-8(1)','SC-8(2)','SC-23']
+  'value' : true
+compliance::nist_800_53_rev4::vsftpd::vsftpd_user :
+  'identifier' : ['AC-6','IA-2']
+  'value' : 'ftp'
+compliance::nist_800_53_rev4::vsftpd::config::force_local_data_ssl :
+  'identifier' : ['SC-8', 'SC-8(1)','SC-8(2)','SC-23']
+  'value' : true
+compliance::nist_800_53_rev4::vsftpd::config::force_local_logins_ssl :
+  'identifier' : ['SC-8', 'SC-8(1)','SC-8(2)','SC-23']
+  'value' : true
+compliance::nist_800_53_rev4::vsftpd::config::ssl_ciphers :
+  'identifier' : ['SC-8', 'SC-8(1)','SC-8(2)','SC-23']
+  'value' : ['HIGH']
+compliance::nist_800_53_rev4::vsftpd::config::ssl_tlsv1 :
+  'identifier' : ['SC-8', 'SC-8(1)','SC-8(2)','SC-23']
+  'value' : true
+compliance::nist_800_53_rev4::vsftpd::config::banner_file :
+  'identifier' : 'AC-8'
+  'value' : '/etc/issue.net'
+compliance::nist_800_53_rev4::vsftpd::config::local_umask :
+  'identifier' : ['AC-2','AC-2(4)','AC-6']
+  'value' : '022'
+compliance::nist_800_53_rev4::vsftpd::config::syslog_enable :
+  'identifier' : ['AU-3(2)','AU-4(1)','AU-9']
+  'value' : true
+
+# windowmanager
+compliance::nist_800_53_rev4::windowmanager::gnome::include_sec :
+  'identifier' : 'AC-6'
+  'value' : true
+
+# xinetd
+compliance::nist_800_53_rev4::xinetd::log_type :
+  'identifier' : ['AU-3(2)','AU-4(1)','AU-9']
+  'value' : 'SYSLOG authpriv'
+compliance::nist_800_53_rev4::xinetd::banner :
+  'identifier' : 'AC-8'
+  'value' : '/etc/issue.net'
+
+# apache
+compliance::nist_800_53_rev4::apache::ssl :
+  'identifier' : ['SC-8', 'SC-8(1)','SC-8(2)','SC-23']
+  'value' : true
+compliance::nist_800_53_rev4::apache::conf::user :
+  'identifier' : 'AC-6'
+  'value' : 'apache'
+compliance::nist_800_53_rev4::apache::conf::group :
+  'identifier' : 'AC-6'
+  'value' : 'apache'
+compliance::nist_800_53_rev4::apache::ssl::ssl_protocols :
+  'identifier' : ['SC-8', 'SC-8(1)','SC-8(2)','SC-23']
+  'value' : ['TLSv1','TLSv1.1','TLSv1.2']
+compliance::nist_800_53_rev4::apache::conf::logfacility :
+  'identifier' : ['AU-3(2)','AU-4(1)','AU-9']
+  'value' : 'local6'
+compliance::nist_800_53_rev4::apache::conf::rsyslog_target :
+  'identifier' : ['AU-3(2)','AU-4(1)','AU-9']
+  'value' : '/var/log/httpd'
+compliance::nist_800_53_rev4::apache::ssl::ssl_honor_cipher_order :
+  'identifier' : ['SC-8', 'SC-8(1)','SC-8(2)','SC-23']
+  'value' : 'on'
+compliance::nist_800_53_rev4::apache::ssl::sslverifyclient :
+  'identifier' : ['SC-8', 'SC-8(1)','SC-8(2)','SC-23']
+  'value' : 'require'
+compliance::nist_800_53_rev4::apache::ssl::sslverifydepth :
+  'identifier' : ['SC-8', 'SC-8(1)','SC-8(2)','SC-23']
+  'value' : '10'
+compliance::nist_800_53_rev4::apache::ssl::sslcacertificatepath :
+  'identifier' : ['SC-8', 'SC-8(1)','SC-8(2)','SC-23']
+  'value' : '/etc/httpd/conf/pki/cacerts'
+compliance::nist_800_53_rev4::apache::ssl::enable_iptables :
+  'identifier' : 'AC-4'
+  'value' : true
+compliance::nist_800_53_rev4::apache::ssl::use_simp_pki :
+  'identifier' : ['SC-8', 'SC-8(1)','SC-8(2)','SC-23']
+  'value' : true
+compliance::nist_800_53_rev4::apache::ssl::logformat :
+  'identifier' : 'AC-6'
+  'value' : "%t %h %{hiera('global::percent_sign')}{SSL_CLIENT_S_DN_CN}x %{hiera('global::percent_sign')}{SSL_PROTOCOL}x %{hiera('global::percent_sign')}{SSL_CIPHER}x \x5c\x22%r\x5c\x22 %b %s"
+compliance::nist_800_53_rev4::apache::conf::logformat :
+  'identifier' : 'AC-6'
+  'value' : "%h %l %u %t \x5c\x22%r\x5c\x22 %>s %b \x5c\x22%{hiera('global::percent_sign')}{Referer}i\x5c\x22 \x5c\x22%{hiera('global::percent_sign')}{User-Agent}i\x5c\x22"
+
+# autofs
+compliance::nist_800_53_rev4::autofs::ldap_auth_conf_file :
+  'identifier' : 'IA-1'
+  'value' : '/etc/autofs_ldap_auth.conf'
+compliance::nist_800_53_rev4::autofs::ldap_auth::usetls :
+  'identifier' : ['SC-8', 'SC-8(1)','SC-8(2)','SC-23']
+  'value' : 'yes'
+compliance::nist_800_53_rev4::autofs::ldap_auth::tlsrequired :
+  'identifier' : ['SC-8', 'SC-8(1)','SC-8(2)','SC-23']
+  'value' : 'yes'
+compliance::nist_800_53_rev4::autofs::ldap_auth::authrequired :
+  'identifier' : 'IA-2'
+  'value' : 'yes'
+compliance::nist_800_53_rev4::autofs::ldap_auth::authtype :
+  'identifier' : 'IA-2'
+  'value' : 'LOGIN'
