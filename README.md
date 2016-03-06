@@ -1,5 +1,11 @@
 ## SIMP Core
 
+### meaningless update
+This section was added as a nonsensical update to test CI triggers.  Woot.  Woot.
+
+### the rest
+
+
 This is the 4.2 series of the [SIMP](https://github.com/NationalSecurityAgency/SIMP) supermodule.
 
 
