@@ -236,7 +236,7 @@ namespace :build do
     puts
 
     iso = File.join(output_dir,output_file)
-    FileUtils.mkdir_p output_dir, :verbose => verbose
+    FileUtils.mkdir_p File.dirname(iso), :verbose => verbose
     FileUtils.mv(@simp_output_iso, iso, :verbose => verbose)
 
     # write vars.json for packer build
