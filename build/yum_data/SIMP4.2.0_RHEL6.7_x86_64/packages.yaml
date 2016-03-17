@@ -72,8 +72,8 @@ es2unix:
   :rpm_name: es2unix-1.6.1-0.el6.noarch.rpm
   :source: https://dl.bintray.com/simp/4.2.X-Ext/es2unix-1.6.1-0.el6.noarch.rpm
 facter:
-  :rpm_name: facter-2.4.1-1.el6.x86_64.rpm
-  :source: http://yum.puppetlabs.com/el/6/products/x86_64/facter-2.4.1-1.el6.x86_64.rpm
+  :rpm_name: facter-2.4.6-1.el6.x86_64.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/facter-2.4.6-1.el6.x86_64.rpm
 fping:
   :rpm_name: fping-2.4b2-10.el6.x86_64.rpm
   :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/fping-2.4b2-10.el6.x86_64.rpm
@@ -255,11 +255,11 @@ logstash-contrib:
   :rpm_name: logstash-contrib-1.4.2-1_efd53ef.noarch.rpm
   :source: https://download.elastic.co/logstash/logstash/packages/centos/logstash-contrib-1.4.2-1_efd53ef.noarch.rpm
 mcollective:
-  :rpm_name: mcollective-2.2.3-1.SIMP.1.el6.noarch.rpm
-  :source: https://dl.bintray.com/simp/4.2.X-Ext/mcollective-2.2.3-1.SIMP.1.el6.noarch.rpm
+  :rpm_name: mcollective-2.8.4-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-2.8.4-1.el6.noarch.rpm
 mcollective-client:
-  :rpm_name: mcollective-client-2.2.3-1.SIMP.1.el6.noarch.rpm
-  :source: https://dl.bintray.com/simp/4.2.X-Ext/mcollective-client-2.2.3-1.SIMP.1.el6.noarch.rpm
+  :rpm_name: mcollective-client-2.8.4-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-client-2.8.4-1.el6.noarch.rpm
 mcollective-common:
   :rpm_name: mcollective-common-2.2.3-1.SIMP.1.el6.noarch.rpm
   :source: https://dl.bintray.com/simp/4.2.X-Ext/mcollective-common-2.2.3-1.SIMP.1.el6.noarch.rpm
@@ -477,11 +477,11 @@ radiusclient-ng:
   :rpm_name: radiusclient-ng-0.5.6-5.el6.x86_64.rpm
   :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/radiusclient-ng-0.5.6-5.el6.x86_64.rpm
 razor-server:
-  :rpm_name: razor-server-0.14.1-1.el6.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/6/products/x86_64/razor-server-0.14.1-1.el6.noarch.rpm
+  :rpm_name: razor-server-1.2.0-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/razor-server-1.2.0-1.el6.noarch.rpm
 razor-torquebox:
-  :rpm_name: razor-torquebox-3.0.1-1.el6.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/6/products/x86_64/razor-torquebox-3.0.1-1.el6.noarch.rpm
+  :rpm_name: razor-torquebox-3.1.1.10-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/razor-torquebox-3.1.1.10-1.el6.noarch.rpm
 rlwrap:
   :rpm_name: rlwrap-0.37-3.el6.x86_64.rpm
   :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/rlwrap-0.37-3.el6.x86_64.rpm
