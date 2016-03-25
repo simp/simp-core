@@ -5,6 +5,9 @@ activemq:
 activemq-info-provider:
   :rpm_name: activemq-info-provider-5.9.1-2.el7.noarch.rpm
   :source: http://yum.puppetlabs.com/el/7/dependencies/x86_64/activemq-info-provider-5.9.1-2.el7.noarch.rpm
+apr-util-ldap:
+  :rpm_name: apr-util-ldap-1.5.2-6.el7.x86_64.rpm
+  :source: http://mirror.dattobackup.com/CentOS/7.2.1511/os/x86_64/Packages/apr-util-ldap-1.5.2-6.el7.x86_64.rpm
 cfacter:
   :rpm_name: cfacter-0.3.0-1.el7.x86_64.rpm
   :source: http://yum.puppetlabs.com/el/7/products/x86_64/cfacter-0.3.0-1.el7.x86_64.rpm
