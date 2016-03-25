@@ -94,6 +94,9 @@ mod 'simp-elasticsearch',
 mod 'simp-freeradius',
   :git => 'https://github.com/simp/pupmod-simp-freeradius',
   :ref => 'master'
+mod 'simp-ganglia',
+  :git => 'https://github.com/simp/pupmod-simp-ganglia',
+  :ref => 'master'
 mod 'simp-gpasswd',
   :git => 'https://github.com/simp/puppet-gpasswd',
   :ref => 'simp-master'
