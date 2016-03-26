@@ -1,7 +1,7 @@
 Summary: SIMP Full Install
 Name: simp
 Version: 5.1.0
-Release: 2%{?snapshot_release}
+Release: 3%{?snapshot_release}
 License: Apache License, Version 2.0
 Group: Applications/System
 Source: %{name}-%{version}-%{release}.tar.gz
@@ -77,6 +77,9 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Sat Mar 26 2016 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.1.0-3
+- Release 5.1.0-3
+
 * Fri Dec 04 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.1.0-2
 - Update to properly include the dependencies in the main simp RPM
 
