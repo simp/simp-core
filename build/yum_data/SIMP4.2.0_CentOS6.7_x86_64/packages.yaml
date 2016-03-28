@@ -264,8 +264,8 @@ mcollective-client:
   :rpm_name: mcollective-client-2.8.4-1.el6.noarch.rpm
   :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-client-2.8.4-1.el6.noarch.rpm
 mcollective-common:
-  :rpm_name: mcollective-common-2.2.3-1.SIMP.1.el6.noarch.rpm
-  :source: https://dl.bintray.com/simp/4.2.X/mcollective-common-2.2.3-1.SIMP.1.el6.noarch.rpm
+  :rpm_name: mcollective-common-2.8.4-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-common-2.8.4-1.el6.noarch.rpm
 mcollective-filemgr-agent:
   :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-filemgr-agent-1.1.0-1.el6.noarch.rpm
   :rpm_name: mcollective-filemgr-agent-1.1.0-1.el6.noarch.rpm
