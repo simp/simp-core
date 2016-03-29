@@ -203,6 +203,9 @@ mcollective-sysctl-data:
 mod_ldap:
   :rpm_name: mod_ldap-2.4.6-40.el7.centos.x86_64.rpm
   :source: http://mirror.cogentco.com/pub/linux/centos/7.2.1511/os/x86_64/Packages/mod_ldap-2.4.6-40.el7.centos.x86_64.rpm
+openssh-ldap:
+  :rpm_name: openssh-ldap-6.6.1p1-22.el7.x86_64.rpm
+  :source: http://mirror.cogentco.com/pub/linux/centos/7.2.1511/os/x86_64/Packages/openssh-ldap-6.6.1p1-22.el7.x86_64.rpm
 pdsh:
   :rpm_name: pdsh-2.29-1el7.x86_64.rpm
   :source: https://dl.bintray.com/simp/5.1.X-Ext/pdsh-2.29-1el7.x86_64.rpm
