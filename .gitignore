@@ -1,5 +1,6 @@
 .*.sw?
 /.tmp
+/.r10k_cache
 Gemfile.lock
 Puppetfile.lock
 SIMP_ISO
