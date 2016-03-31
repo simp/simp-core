@@ -24,12 +24,11 @@ gem 'coderay'
 gem 'puppet', puppetversion
 gem 'puppet-lint'
 gem 'puppetlabs_spec_helper'
-gem 'simp-rake-helpers', '~>1.1'
+gem 'simp-rake-helpers', '~>2.0'
 gem 'simp-build-helpers', '>=0.1.0'
 gem 'parallel'
 gem 'dotenv'
 gem 'ruby-progressbar'
-gem 'librarian-puppet-pr328', '>=2.2.3'
 
 # nice-to-have gems (for debugging)
 group :debug do
