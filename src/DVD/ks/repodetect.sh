@@ -45,8 +45,8 @@ if [ -z $yum_server ] || [ $yum_server == 'local' ]; then
   uri_header="file:///mnt/source"
   local_header="$uri_header/SIMP/$arch"
 else
-  uri_header="http://$yum_server/yum/$type/$version/$arch";
-  local_header="http://$yum_server/yum/SIMP/$arch";
+  uri_header="https://$yum_server/yum/$type/$version/$arch";
+  local_header="https://$yum_server/yum/SIMP/$arch";
 fi
 
 if [ "$type" == 'RedHat' ]; then
