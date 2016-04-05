@@ -5,6 +5,7 @@ Puppetfile.lock
 SIMP_ISO
 SIMP_ISO_STAGING
 build/DVD_Overlay
+build/GPGKEYS/.dropped_keys
 build/GPGKEYS/dist
 build/SIMP
 build/build_keys/*
