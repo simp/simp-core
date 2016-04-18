@@ -420,6 +420,7 @@ groff
 groff-base
 grub
 grub2
+grub2-efi
 grub2-tools
 grubby
 gsettings-desktop-schemas
@@ -912,6 +913,7 @@ mod_session
 mod_ssl
 modcluster
 module-init-tools
+mokutil
 mozilla-filesystem
 mozjs17
 mozjs24
@@ -1385,6 +1387,7 @@ sg3_utils-libs
 sgml-common
 shadow-utils
 shared-mime-info
+shim
 simp
 simp-doc
 simp-ppolicy-check-password
