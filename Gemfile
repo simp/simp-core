@@ -29,6 +29,7 @@ gem 'simp-build-helpers', '>=0.1.0'
 gem 'parallel'
 gem 'dotenv'
 gem 'ruby-progressbar'
+gem 'google-api-client', '0.9.4'
 
 # nice-to-have gems (for debugging)
 group :debug do
