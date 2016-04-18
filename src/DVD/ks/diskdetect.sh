@@ -50,23 +50,24 @@ simp_opt=`awk -F "simp_opt=" '{print $2}' /proc/cmdline | cut -f1 -d' '`
 if [ "$simp_opt" != "prompt" ]; then
   cat << EOF > /tmp/part-include
 clearpart --all --initlabel --drives=${DISK}
-part /boot --fstype ext4 --size=1024 --ondisk ${DISK} --asprimary --fsoptions=nosuid,nodev
+part /boot/efi --fstype=efi --size=200 --ondisk ${DISK} --asprimary
+part /boot --fstype=ext4 --size=1024 --ondisk ${DISK} --asprimary --fsoptions=nosuid,nodev
 part pv.01 --size=1 --grow --ondisk ${DISK}
 volgroup VolGroup00 pv.01
-logvol swap --fstype swap --name=SwapVol --vgname=VolGroup00 --size=1024
-logvol / --fstype ext4 --name=RootVol --vgname=VolGroup00 --size=4096
-logvol /tmp --fstype ext4 --name=TmpVol --vgname=VolGroup00 --size=2048 --fsoptions=nosuid,noexec,nodev
-logvol /home --fstype ext4 --name=HomeVol --vgname=VolGroup00 --size=1024 --fsoptions=nosuid,noexec,nodev
-logvol /var/log --fstype ext4 --name=VarLogVol --vgname=VolGroup00 --size=4096 --fsoptions=nosuid,noexec,nodev
-logvol /var/log/audit --fstype ext4 --name=VarLogAuditVol --vgname=VolGroup00 --size=1024 --fsoptions=nosuid,noexec,nodev
+logvol swap --fstype=swap --name=SwapVol --vgname=VolGroup00 --size=1024
+logvol / --fstype=ext4 --name=RootVol --vgname=VolGroup00 --size=4096
+logvol /tmp --fstype=ext4 --name=TmpVol --vgname=VolGroup00 --size=2048 --fsoptions=nosuid,noexec,nodev
+logvol /home --fstype=ext4 --name=HomeVol --vgname=VolGroup00 --size=1024 --fsoptions=nosuid,noexec,nodev
+logvol /var/log --fstype=ext4 --name=VarLogVol --vgname=VolGroup00 --size=4096 --fsoptions=nosuid,noexec,nodev
+logvol /var/log/audit --fstype=ext4 --name=VarLogAuditVol --vgname=VolGroup00 --size=1024 --fsoptions=nosuid,noexec,nodev
 EOF
 
-  if [ "$simp_opt" == "bigvar" ]; then
-    echo "logvol /srv --fstype ext4 --name=SrvVol --vgname=VolGroup00 --size=3072 --fsoptions=nosuid,nodev" >> /tmp/part-include
-    echo "logvol /var --fstype ext4 --name=VarVol --vgname=VolGroup00 --size=1024 --grow" >> /tmp/part-include
+  if [ "$simp_opt" == "bigsrv" ]; then
+    echo "logvol /srv --fstype=ext4 --name=SrvVol --vgname=VolGroup00 --size=1024 --fsoptions=nosuid,nodev --grow" >> /tmp/part-include
+    echo "logvol /var --fstype=ext4 --name=VarVol --vgname=VolGroup00 --size=4096" >> /tmp/part-include
   else
-    echo "logvol /srv --fstype ext4 --name=SrvVol --vgname=VolGroup00 --size=1024 --grow --fsoptions=nosuid,nodev" >> /tmp/part-include
-    echo "logvol /var --fstype ext4 --name=VarVol --vgname=VolGroup00 --size=3072" >> /tmp/part-include
+    echo "logvol /srv --fstype=ext4 --name=SrvVol --vgname=VolGroup00 --size=4096 --fsoptions=nosuid,nodev" >> /tmp/part-include
+    echo "logvol /var --fstype=ext4 --name=VarVol --vgname=VolGroup00 --size=1024 --grow" >> /tmp/part-include
   fi
 
 fi
