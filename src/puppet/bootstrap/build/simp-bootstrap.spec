@@ -1,7 +1,7 @@
 Summary: SIMP Bootstrap
 Name: simp-bootstrap
 Version: 5.2.1
-Release: 4
+Release: 5
 License: Apache License 2.0
 Group: Applications/System
 Source: %{name}-%{version}-%{release}.tar.gz
@@ -14,6 +14,7 @@ Requires: simp-rsync >= 5.0.0-3
 Requires: simp-utils >= 5.0.0-5
 Requires: rubygem(simp-cli) >= 1.0.0-0
 Requires: openssl
+Requires: sudo
 Requires(post): coreutils
 Requires(post): glibc-common
 Requires(post): pam
@@ -294,6 +295,9 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Mon Apr 25 2016 Chris Tessmer <chris.tessmer@onyxpoint.com> - 5.2.1-5
+- Required 'sudo' to resolve ordering race that overwrote '/etc/sudoers'.
+
 * Fri Jan 29 2016 Ralph Wright <ralph.wright@onyxpoint.com> - 5.2.1-4
 - Added suppport for compliance module
 
