@@ -2,7 +2,7 @@
 # to your hosts.
 #
 # The format is:
-# [!|+|-]<fqdn-regex>,<username>,<uid>,<gid>,[<homedir>],<password/MD5 hash>
+# [!|+|-]<fqdn-regex>,<username>,<uid>,<gid>,[<homedir>],<password/SHA hash>
 #
 # If you add a '!' to the beginning of an entry, the user will have its
 # password expiration set so that it never expires.
@@ -22,6 +22,10 @@
 #
 # 'homedir' is the optional home directory of the user.  If nothing is
 # specified, then the system default will be used.
+#
+# 'password' is preferrably a crypt-style SHA512 hash.  Generate with:
+#   `ruby -r 'digest/sha2' -e 'puts "password".crypt("$6$" + rand(36**8).to_s(36))'`
+# NOTE the password MUST follow the system password policy!
 #
 # The *first* entry in the file will be used.
 #
