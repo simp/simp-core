@@ -1,7 +1,7 @@
 Summary: SIMP Bootstrap
 Name: simp-bootstrap
 Version: 4.2.0
-Release: 4
+Release: 5
 License: Apache License 2.0
 Group: Applications/System
 Source: %{name}-%{version}-%{release}.tar.gz
@@ -12,6 +12,7 @@ Requires: pupmod-pki >= 4.1.0-3
 Requires: createrepo
 Requires: simp-rsync >= 4.2.0-0
 Requires: simp-utils >= 4.1.0-10
+Requires: sudo
 Requires: rubygem(simp-cli) >= 1.0.0-0
 Requires: openssl
 Requires(post): coreutils
@@ -302,6 +303,9 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Mon Apr 25 2016 Chris Tessmer <chris.tessmer@onyxpoint.com> - 4.2.0-5
+- require 'sudo' to resolve ordering race
+
 * Fri Feb 26 2016 Ralph Wright <ralph.wright@onyxpoint.com> - 4.2.0-4
 - Added suppport for compliance module
 
@@ -355,7 +359,7 @@ fi
 - Removed the hiera_config script from post, since this is taken care of by the
   new upgrade script
 
-* Mon Jul 12 2014 Trevor Vaughan <tvaughan@onyxpoint.com> - 4.1.0-4
+* Mon Jul 14 2014 Trevor Vaughan <tvaughan@onyxpoint.com> - 4.1.0-4
 - Added the top level hiera variable rsync::base which points to the
   default rsync base directory on the rsync server.
 
@@ -402,7 +406,7 @@ fi
 - Removed the auditd rsync service from the puppet server since we
   haven't served that out for quite a while.
 
-* Tue Oct 06 2013 Trevor Vaughan <tvaughan@onyxpoint.com> - 3.0.0-1
+* Tue Oct 08 2013 Trevor Vaughan <tvaughan@onyxpoint.com> - 3.0.0-1
 - Moved /etc/puppet/manifests/hiera to /etc/puppet/hieradata to match the rest
   of the world.
 - Modified the 'fqdn' lookup in hiera.yaml to be 'clientcert'.
@@ -471,14 +475,14 @@ fi
 - Modified calls to pupmod::* functions to use the new parameterized
   classes instead of the previous defines.
 
-* Mon Jul 25 2012 Maintenance
+* Wed Jul 25 2012 Maintenance
 2.0.2-3
 - Edited the post section so the baseurls of the repofiles would
   add the architecture to the path when it did not already exist.
 - Now prune the /etc/ssh/ssh_known_hosts file if you have Puppet
   collecting all of your keys.
 
-* Wed Jun 28 2012 Maintenance
+* Thu Jun 28 2012 Maintenance
 2.0.2-2
 - Ensure that the simp_def.csv is not overwritten on update.
 - Edited the post section so the baseurls of the repofiles would not
@@ -692,7 +696,7 @@ fi
   difference.
 - Added a rsync share for the 'snmp' space for the new module.
 
-* Tue Oct 08 2009 Maintenance
+* Thu Oct 08 2009 Maintenance
 0.3-6
 - Now include 'vmware::client' by default.  The class was written to only apply
   to vmware systems by default, so this will not affect any other types of host
