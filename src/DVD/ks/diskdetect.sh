@@ -42,6 +42,27 @@ done
 
 touch /tmp/part-include
 
+# To automatically decrypt your system, the cryptfile needs to be located in an
+# unencrypted portion of the system. This is *not* secure but does allow users
+# to go in later and change the password without needing to reformat their
+# systems.
+
+# For EL6
+if [ ! -d /boot ]; then
+  mkdir /boot
+fi
+
+grep -q simp_disk_crypt /proc/cmdline || grep -q simp_crypt_disk /proc/cmdline
+encrypt=$?
+
+if [ $encrypt -eq 0 ]; then
+  python -c 'import sys; import random; import string; sys.stdout.write("".join(random.choice(string.lowercase+string.uppercase+string.digits) for i in range(1024)))' > /boot/disk_creds
+
+  passphrase=`cat /boot/disk_creds`
+
+  echo $DISK > /boot/crypt_disk
+fi
+
 # This parses out some command line options generally only used by the
 # DVD, but available to PXE clients as well.
 
@@ -52,7 +73,17 @@ if [ "$simp_opt" != "prompt" ]; then
 clearpart --all --initlabel --drives=${DISK}
 part /boot/efi --fstype=efi --size=200 --ondisk ${DISK} --asprimary
 part /boot --fstype=ext4 --size=1024 --ondisk ${DISK} --asprimary --fsoptions=nosuid,nodev
-part pv.01 --size=1 --grow --ondisk ${DISK}
+EOF
+
+  if [ $encrypt -eq 0 ]; then
+    echo "part pv.01 --size=1 --grow --ondisk ${DISK} --encrypted --cipher=aes-cbc-essiv:sha256 --passphrase=${passphrase}" >> /tmp/part-include
+  else
+    echo "part pv.01 --size=1 --grow --ondisk ${DISK}" >> /tmp/part-include
+  fi
+fi
+
+if [ "$simp_opt" != "prompt" ]; then
+  cat << EOF >> /tmp/part-include
 volgroup VolGroup00 pv.01
 logvol swap --fstype=swap --name=SwapVol --vgname=VolGroup00 --size=1024
 logvol / --fstype=xfs --name=RootVol --vgname=VolGroup00 --size=4096
@@ -69,5 +100,4 @@ EOF
     echo "logvol /srv --fstype=xfs --name=SrvVol --vgname=VolGroup00 --size=4096 --fsoptions=nosuid,nodev" >> /tmp/part-include
     echo "logvol /var --fstype=xfs --name=VarVol --vgname=VolGroup00 --size=1024 --grow" >> /tmp/part-include
   fi
-
 fi
