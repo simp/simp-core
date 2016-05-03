@@ -203,10 +203,13 @@ if [ -f /etc/security/groupaccess.conf ]; then
     echo "simp" >> /etc/security/groupaccess.conf;
   fi
 fi
+
+# Permit `simp` user full non-tty sudo access before running `simp bootstrap`
 grep -q "^simp" /etc/sudoers;
 if [ $? -ne 0 ]; then
     echo -e 'simp\t\tALL=(ALL)\t/bin/su' >> /etc/sudoers;
 fi
+echo 'Defaults !requiretty' >> /etc/sudoers
 
 getent group wheel | grep -q simp
 if [ $? -ne 0 ]; then
