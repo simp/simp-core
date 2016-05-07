@@ -168,8 +168,8 @@ gweb:
   :rpm_name: gweb-2.1.8-1.noarch.rpm
   :source: https://dl.bintray.com/simp/4.2.X-Ext/gweb-2.1.8-1.noarch.rpm
 haveged:
+  :source: http://mirror.sfo12.us.leaseweb.net/epel/6/x86_64/haveged-1.9.1-2.el6.x86_64.rpm
   :rpm_name: haveged-1.9.1-2.el6.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/6/x86_64/haveged-1.9.1-2.el6.x86_64.rpm
 hiera:
   :source: https://dl.bintray.com/simp/4.2.X/hiera-3.0.5-1.el6.noarch.rpm
   :rpm_name: hiera-3.0.5-1.el6.noarch.rpm
