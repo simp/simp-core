@@ -57,7 +57,7 @@ cp puppet.conf %{buildroot}/%{prefix}/puppet.conf.rpmnew
 
 %files
 %defattr(0640,root,puppet,0750)
-%{prefix}/environments
+%{prefix}/environments/simp
 %config(noreplace) %attr(0660,-,-) %{prefix}/environments/simp/localusers
 %attr(0750,puppet,puppet) %{prefix}/environments/simp/simp_autofiles
 %config(noreplace) %{prefix}/auth.conf.simp
