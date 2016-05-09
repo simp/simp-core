@@ -138,6 +138,10 @@ mod 'simp-inifile',
   :git => 'https://github.com/simp/puppetlabs-inifile',
   :ref => 'simp-master'
 
+mod 'ipsec_tunnel',
+  :git => 'https://github.com/simp/simp-ipsec_tunnel',
+  :ref => 'master'
+
 mod 'simp-iptables',
   :git => 'https://github.com/simp/pupmod-simp-iptables',
   :ref => 'master'

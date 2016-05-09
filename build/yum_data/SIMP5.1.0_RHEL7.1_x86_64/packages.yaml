@@ -104,6 +104,9 @@ libconfuse:
 libev:
   :rpm_name: libev-4.15-3.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/l/libev-4.15-3.el7.x86_64.rpm
+libreswan:
+  :rpm_name:  libreswan-3.17-1.el7_2.x86_64.rpm
+  :source: http://download.libreswan.org/binaries/rhel/7/x86_64/libreswan-3.17-1.el7_2.x86_64.rpm
 libselinux:
   :rpm_name: libselinux-2.2.2-6.el7.x86_64.rpm
   :source: Red Hat Updates Repository
