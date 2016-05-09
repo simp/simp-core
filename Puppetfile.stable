@@ -136,6 +136,10 @@ mod 'simp-inifile',
   :git => 'https://github.com/simp/puppetlabs-inifile',
   :ref => '821bad1cccfac9c9a46917d6b304d6a99878d60e'
 
+mod 'ipsec_tunnel',
+  :git => 'https://github.com/simp/simp-ipsec_tunnel',
+  :ref => 'master'
+
 mod 'simp-iptables',
   :git => 'https://github.com/simp/pupmod-simp-iptables',
   :ref => '893e645994108c18ed2d45fe295ce0d79e25def5'
