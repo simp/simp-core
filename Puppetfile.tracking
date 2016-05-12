@@ -4,7 +4,7 @@ moduledir 'src'
 
 mod 'simp-doc',
   :git => 'https://github.com/simp/simp-doc',
-  :ref => 'simp-4.2.X'
+  :ref => 'master'
 
 mod 'simp-rsync',
   :git => 'https://github.com/simp/simp-rsync',
