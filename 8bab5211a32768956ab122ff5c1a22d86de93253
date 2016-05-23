@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_118816c4",
+        "filename": "src/puppet/bootstrap/environments/simp/hieradata/hosts/puppet.your.domain.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1005194
+      },
+      "writtenOn": "2016-05-23T19:07:29Z",
+      "side": 1,
+      "message": "See 5.1.X comments",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 42
+      },
+      "revId": "8bab5211a32768956ab122ff5c1a22d86de93253",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
