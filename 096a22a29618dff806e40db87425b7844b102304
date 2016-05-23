@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_719e4208",
+        "filename": "src/puppet/bootstrap/environments/simp/hieradata/hosts/puppet.your.domain.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1005194
+      },
+      "writtenOn": "2016-05-23T19:06:46Z",
+      "side": 1,
+      "message": "I believe a safer security posture is to require ssl verification globally in ssl conf but explicitly disable it when it is not feasible (as is the case with /var/www/ks).  SIMP-1034 modifies the ks conf file, conf.d/ks.conf, to do exactly that. A simple template change could be added for yum as well.",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 36
+      },
+      "revId": "096a22a29618dff806e40db87425b7844b102304",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
