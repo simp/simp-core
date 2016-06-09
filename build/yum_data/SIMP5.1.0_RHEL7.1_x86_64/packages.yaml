@@ -104,6 +104,9 @@ libconfuse:
 libev:
   :rpm_name: libev-4.15-3.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/l/libev-4.15-3.el7.x86_64.rpm
+libevent:
+  :rpm_name: libevent-2.0.21-4.el7.x86_64.rpm
+  :source: Red Hat Updates Repository
 libselinux:
   :rpm_name: libselinux-2.2.2-6.el7.x86_64.rpm
   :source: Red Hat Updates Repository
@@ -368,3 +371,6 @@ sudosh2:
 syslinux-tftpboot:
   :rpm_name: syslinux-tftpboot-4.05-12.el7.x86_64.rpm
   :source: Red Hat Optional Repository
+unbound:
+  :rpm_name: unbound-libs-1.4.20-26.el7.x86_64.rpm
+  :source: Red Hat Base Repository
