@@ -138,6 +138,7 @@ mod 'simp-inifile',
   :git => 'https://github.com/simp/puppetlabs-inifile',
   :ref => 'simp-master'
 
+
 mod 'simp-iptables',
   :git => 'https://github.com/simp/pupmod-simp-iptables',
   :ref => 'master'
@@ -156,6 +157,10 @@ mod 'simp-kibana',
 
 mod 'simp-libvirt',
   :git => 'https://github.com/simp/pupmod-simp-libvirt',
+  :ref => 'master'
+
+mod 'simp-libreswan',
+  :git => 'https://github.com/simp/pupmod-simp-libreswan',
   :ref => 'master'
 
 mod 'simp-logrotate',
