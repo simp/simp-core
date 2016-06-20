@@ -1,10 +1,18 @@
 ---
 # This must be a copy of at least 'client_nets' from simp_def.yaml if
 # you want this to cover your base YUM repo services.
-# The fact that you can't include other arrays from Hiera is
-# registered in the Puppet Labs JIRA as HI-183.
+
+# We don't enable non-TLS connections by default. All SIMP services should now
+# be able to use TLS for all connections.
+apache::ssl::client_nets: "%{alias('client_nets')}"
+
+# We disable the SSL client validation for the Kickstart server. There is no
+# way to validate a default image without embedding a certificate in the image
+# and we are not going to modify the core kickstart image from the vendor.
 #
-apache::conf::allowroot : "%{alias('client_nets')}"
+# Since this system is, by default, only a kickstart/YUM server with Apache,
+# this will not adversely affect the security posture of the system.
+apache::ssl::sslverifyclient: 'none'
 
 rsync::server : '127.0.0.1'
 
