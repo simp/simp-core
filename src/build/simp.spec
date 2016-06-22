@@ -77,6 +77,9 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Wed Jun 22 2016 Nick Markowski <nmarkowski@keywcorp.com> - 4.2.0-3.Alpha
+- simp/puppet-haveged is now part of the module stack.
+
 * Tue Apr 05 2016 Trevor Vaughan <tvaughan@onyxpoint.com> - 4.2.0-3.Alpha
 - Preparing for the next release cycle
 
