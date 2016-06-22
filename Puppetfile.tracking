@@ -134,6 +134,10 @@ mod 'simp-gpasswd',
   :git => 'https://github.com/simp/puppet-gpasswd',
   :ref => 'simp-master'
 
+mod 'simp-haveged',
+  :git => 'https://github.com/simp/puppet-haveged',
+  :ref => 'simp-master'
+
 mod 'simp-inifile',
   :git => 'https://github.com/simp/puppetlabs-inifile',
   :ref => 'simp-master'
