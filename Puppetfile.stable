@@ -132,6 +132,10 @@ mod 'simp-gpasswd',
   :git => 'https://github.com/simp/puppet-gpasswd',
   :ref => '68bc6fbb9d1b6e4cedbc84df2f40517819d14d28'
 
+mod 'simp-haveged',
+  :git => 'https://github.com/simp/puppet-haveged',
+  :ref => '67235c93c6d840639e3bfeab95d81494608b41cb'
+
 mod 'simp-inifile',
   :git => 'https://github.com/simp/puppetlabs-inifile',
   :ref => '821bad1cccfac9c9a46917d6b304d6a99878d60e'
