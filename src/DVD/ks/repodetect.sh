@@ -51,16 +51,16 @@ fi
 
 if [ "$type" == 'RedHat' ]; then
   cat << EOF > /tmp/repo-include
-repo --name="HighAvailability" --baseurl="$uri_header/HighAvailability"
-repo --name="LoadBalancer" --baseurl="$uri_header/LoadBalancer"
-repo --name="ResilientStorage" --baseurl="$uri_header/ResilientStorage"
-repo --name="ScalableFileSystme" --baseurl="$uri_header/ScalableFileSystem"
-repo --name="Server" --baseurl="$uri_header/Server"
-repo --name="Local" --baseurl="$local_header"
+repo --name="HighAvailability" --baseurl="$uri_header/HighAvailability" --noverifyssl
+repo --name="LoadBalancer" --baseurl="$uri_header/LoadBalancer" --noverifyssl
+repo --name="ResilientStorage" --baseurl="$uri_header/ResilientStorage" --noverifyssl
+repo --name="ScalableFileSystme" --baseurl="$uri_header/ScalableFileSystem" --noverifyssl
+repo --name="Server" --baseurl="$uri_header/Server" --noverifyssl
+repo --name="Local" --baseurl="$local_header" --noverifyssl
 EOF
 elif [ "$type" == 'CentOS' ]; then
   cat << EOF > /tmp/repo-include
-repo --name="Server" --baseurl="$uri_header"
-repo --name="Local" --baseurl="$local_header"
+repo --name="Server" --baseurl="$uri_header" --noverifyssl
+repo --name="Local" --baseurl="$local_header" --noverifyssl
 EOF
 fi
