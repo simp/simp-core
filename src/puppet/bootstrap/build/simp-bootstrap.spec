@@ -1,7 +1,7 @@
 Summary: SIMP Bootstrap
 Name: simp-bootstrap
-Version: 5.2.1
-Release: 5
+Version: 5.3.0
+Release: 0
 License: Apache License 2.0
 Group: Applications/System
 Source: %{name}-%{version}-%{release}.tar.gz
@@ -58,11 +58,13 @@ cp puppet.conf %{buildroot}/%{prefix}/puppet.conf.rpmnew
 %files
 %defattr(0640,root,puppet,0750)
 %{prefix}/environments/simp
+%dir %{prefix}/environments/simp/site_files
 %config(noreplace) %attr(0660,-,-) %{prefix}/environments/simp/localusers
 %attr(0750,puppet,puppet) %{prefix}/environments/simp/simp_autofiles
 %config(noreplace) %{prefix}/auth.conf.simp
 %config(noreplace) %{prefix}/autosign.conf
 %config(noreplace) %{prefix}/hiera.yaml
+%config(noreplace) %{prefix}/environments/simp/environment.conf
 %config(noreplace) %{prefix}/environments/simp/hieradata/RedHat/6.yaml
 %config(noreplace) %{prefix}/environments/simp/hieradata/hosts/puppet.your.domain.yaml
 %config(noreplace) %{prefix}/environments/simp/hieradata/simp/logstash/default.yaml
@@ -298,6 +300,12 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Thu Jul 07 2016 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.3.0-0
+- Moved to semantic versioning
+- Added support for a 'site_files' module path in the primary 'simp'
+  environment for modules like krb5 and pki that have files in them that should
+  not be managed by r10k or code manager.
+
 * Mon Apr 25 2016 Chris Tessmer <chris.tessmer@onyxpoint.com> - 5.2.1-5
 - Required 'sudo' to resolve ordering race that overwrote '/etc/sudoers'.
 
