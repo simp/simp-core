@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_157850c3",
+        "filename": "build/yum_data/SIMP5.1.0_RHEL7.1_x86_64/packages.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-07-07T14:03:37Z",
+      "side": 1,
+      "message": "Don\u0027t you need the libreswan package in here?\n\nAlso, check to make sure clamav matches what\u0027s in CentOS since that one got updated.",
+      "revId": "56b534e512e44dc2b0c9a44ffa02c79868757507",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
