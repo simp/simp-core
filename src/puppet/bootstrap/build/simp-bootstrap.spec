@@ -1,7 +1,7 @@
 Summary: SIMP Bootstrap
 Name: simp-bootstrap
-Version: 4.2.0
-Release: 5
+Version: 4.3.0
+Release: 0
 License: Apache License 2.0
 Group: Applications/System
 Source: %{name}-%{version}-%{release}.tar.gz
@@ -24,7 +24,7 @@ Obsoletes: simp_config
 Obsoletes: simp-config
 Buildarch: noarch
 
-Prefix: /etc/puppet
+Prefix: #{_sysconfdir}/puppet
 
 %description
 
@@ -58,11 +58,13 @@ cp puppet.conf %{buildroot}/%{prefix}/puppet.conf.rpmnew
 %files
 %defattr(0640,root,puppet,0750)
 %{prefix}/environments/simp
+%dir %{prefix}/environments/simp/site_files
 %config(noreplace) %attr(0660,-,-) %{prefix}/environments/simp/localusers
 %attr(0750,puppet,puppet) %{prefix}/environments/simp/simp_autofiles
 %config(noreplace) %{prefix}/auth.conf.simp
 %config(noreplace) %{prefix}/autosign.conf
 %config(noreplace) %{prefix}/hiera.yaml
+%config(noreplace) %{prefix}/environments/environment.conf
 %config(noreplace) %{prefix}/environments/simp/hieradata/RedHat/6.yaml
 %config(noreplace) %{prefix}/environments/simp/hieradata/hosts/puppet.your.domain.yaml
 %config(noreplace) %{prefix}/environments/simp/hieradata/simp/logstash/default.yaml
@@ -230,7 +232,8 @@ arch=`uname -p`;
 version=`/usr/bin/facter lsbdistrelease 2> /dev/null`;
 majversion=`/usr/bin/facter lsbmajdistrelease 2> /dev/null`;
 os=`/usr/bin/facter operatingsystem 2> /dev/null`;
-base="/srv/www/yum/$os";
+www_dir="/srv/www/yum";
+base="${www_dir}/${os}";
 
 if [ -d $base ] && [ ! -h $base/$majversion ]; then
   if [ -f $base/$majversion/$arch/.treeinfo ]; then
@@ -244,9 +247,9 @@ if [ -d $base ] && [ ! -h $base/$majversion ]; then
 fi
 
 # Check to see if the 'SIMP' repo is on the system and correct.
-if [ -d /srv/www/yum/SIMP ]; then
-  cd /srv/www/yum/SIMP;
-  if [ -d /srv/www/yum/SIMP/repodata ]; then
+if [ -d "${www_dir}/SIMP" ]; then
+  cd "${www_dir}/SIMP";
+  if [ -d "${www_dir}/SIMP/repodata" ]; then
     rm -rf repodata;
   fi
 
@@ -269,8 +272,8 @@ if [ -d /srv/www/yum/SIMP ]; then
     )
   fi
 else
-  if [ ! -d /srv/www/yum/SIMP ]; then
-    echo "Warning: Could not find /srv/www/yum/SIMP on this system, you will need";
+  if [ ! -d "${www_dir}/SIMP" ]; then
+    echo "Warning: Could not find ${www_dir}/SIMP on this system, you will need";
     echo "  to ensure that your 'SIMP' repository has repodata in i386 and";
     echo "  x86_64 as well as having symlinked noarch to both."
   fi
@@ -285,7 +288,7 @@ for dir in 'yum' 'ks'; do
   fi
 done
 
-sed -i "s|baseurl=file:///srv/www/yum/SIMP/\?$|baseurl=file:///srv/www/yum/SIMP/$arch|" /etc/yum.repos.d/*.repo
+sed -i "s|baseurl=file://${www_dir}/SIMP/\?$|baseurl=file://${www_dir}/SIMP/$arch|" /etc/yum.repos.d/*.repo
 
 # Set up the simp directory environment
 envdir='%{prefix}/environments/simp';
@@ -306,6 +309,12 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Thu Jul 07 2016 Trevor Vaughan <tvaughan@onyxpoint.com> - 4.3.0-0
+- Moved to semantic versioning
+- Added support for a 'site_files' module path in the primary 'simp'
+  environment for modules like krb5 and pki that have files in them that should
+  not be managed by r10k or code manager.
+
 * Mon Apr 25 2016 Chris Tessmer <chris.tessmer@onyxpoint.com> - 4.2.0-5
 - require 'sudo' to resolve ordering race
 
