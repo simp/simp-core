@@ -1,0 +1,8 @@
+# This directory houses SIMP-specific files that may be auto-generated at
+# runtime.
+#
+# Please take care when modifying anything in this directory as it may severely
+# impact your system!
+#
+# The purpose of this is to eliminate all dynamic materials from the main SIMP
+# repo so that users can easily manage their systems with r10k.
