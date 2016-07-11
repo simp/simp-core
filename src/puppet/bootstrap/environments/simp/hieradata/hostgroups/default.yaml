@@ -1,0 +1,11 @@
+---
+
+# This is the default hostgroup hiera file
+# Any parameters added here will be applied to every system as defined by the
+# hostgroup variable
+#
+# See `manifests/site.pp` for an example use case for the hostgroup variable.
+#
+# Hiera crashes if there are empty files, so
+# please remove the following line if you use this file
+this_is_another_example_key : 'that does nothing'
