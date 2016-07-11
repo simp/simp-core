@@ -77,6 +77,10 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Mon Jul 11 2016 Nick Miller <nick.miller@onyxpoint.com> - 5.1.0-4.Alpha
+- Added a default hostgroup value
+- Added a default `hieradata/default.yaml` and `hieradata/hostgroups/default.yaml`
+
 * Wed Jun 22 2016 Nick Markowski <nmarkowski@keywcorp.com> - 5.1.0-4.Alpha
 - simp/puppet-haveged is now included in the module stack.
 
