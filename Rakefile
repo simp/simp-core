@@ -1,5 +1,9 @@
 #!/usr/bin/rake -T
 
+require 'simp/rake/pupmod/helpers'
+
+Simp::Rake::Beaker.new(File.dirname(__FILE__))
+
 begin
   require 'simp/rake/build/helpers'
   BASEDIR    = File.dirname(__FILE__)
