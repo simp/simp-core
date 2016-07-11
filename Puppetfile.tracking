@@ -16,10 +16,6 @@ mod 'rubygem-simp_cli',
   :git => 'https://github.com/simp/rubygem-simp-cli',
   :ref => 'master'
 
-mod 'rubygem-simp_rake_helpers',
-  :git => 'https://github.com/simp/rubygem-simp-rake-helpers',
-  :ref => 'master'
-
 moduledir 'src/puppet/modules'
 
 mod 'simp-acpid',

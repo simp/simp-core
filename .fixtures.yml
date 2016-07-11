@@ -1,0 +1,4 @@
+---
+fixtures:
+  repositories:
+    simp: "git://github.com/simp/pupmod-simp-simp"
