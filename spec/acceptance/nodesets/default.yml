@@ -1,0 +1,28 @@
+HOSTS:
+  el7-build-server:
+    roles:
+      - server
+      - default
+      - master
+      - build_server
+    platform: el-7-x86_64
+    image: centos:7
+    hypervisor: docker
+    docker_image_commands:
+      - 'yum -y install openssl'
+      - 'yum -y install rsync'
+      - 'ln -sf /bin/true /usr/bin/systemctl'
+    docker_cmd: '/sbin/sshd; tail -f /dev/null'
+    yum_repos:
+      epel:
+        mirrorlist: 'https://mirrors.fedoraproject.org/mirrorlist?repo=epel-7&arch=$basearch&country=us'
+        gpgkeys:
+          - https://getfedora.org/static/352C64E5.txt
+
+CONFIG:
+  log_level: verbose
+  type: foss
+
+ssh:
+  password: root
+  auth_methods: ['password']
