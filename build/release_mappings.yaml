@@ -6,15 +6,15 @@ simp_releases:
     flavors:
       CentOS:
         isos:
-          - name:     'CentOS-6.7-x86_64-bin-DVD1.iso'
-            size:     3895459840
-            checksum: 'c0c1a05d3d74fb093c6232003da4b22b0680f59d3b2fa2cb7da736bc40b3f2c5'
-          - name:     'CentOS-6.7-x86_64-bin-DVD2.iso'
-            size:     2154524672
-            checksum: 'f973ac2453af9815d2db944f3c7383bb3061b6b0c12fb58dadf843e1cad67ab6'
-        build_command: 'bundle exec rake build:auto[4.2.X,/path/to/CentOS-6.7/DVDs]'
+          - name:     'CentOS-6.8-x86_64-bin-DVD1.iso'
+            size:     3916431360
+            checksum: '1dda55622614a8b43b448a72f87d6cb7f79de1eff49ee8c5881a7d9db28d4e35'
+          - name:     'CentOS-6.8-x86_64-bin-DVD2.iso'
+            size:     2220693504
+            checksum: '0aba869427b4ce04e100d72744daf7fea1f7be2e4be56b658095bd9e99e04e6d'
+        build_command: 'bundle exec rake build:auto[4.2.X,/path/to/CentOS-6.8/DVDs]'
         mock:          'epel-6-x86_64'
-        os_version:   '6.7'
+        os_version:   '6.8'
       RedHat:
         isos:
           - name:     'rhel-server-6.7-x86_64-dvd.iso'
