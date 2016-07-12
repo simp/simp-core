@@ -77,6 +77,12 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Tue Jul 12 2016 Nick Markowski <nmarkowski@keywcorp.com> - 4.2.0-3.Alpha
+- Updated for CentOS 6.8:
+-  Do not prune list
+-  Packages.yaml
+-  Release mapping
+
 * Mon Jul 11 2016 Nick Miller <nick.miller@onyxpoint.com> - 4.2.0-3.Alpha
 - Added a default hostgroup value
 - Added a default `hieradata/default.yaml` and `hieradata/hostgroups/default.yaml`
