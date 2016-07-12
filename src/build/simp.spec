@@ -77,6 +77,9 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Tue Jul 12 2016 Nick Markowski <nmarkowski@keywcorp.com> - 4.1.0-3.Alpha
+- Updated the do not prune list and packages.yaml file for CentOS 6.8.
+
 * Wed Jun 22 2016 Nick Markowski <nmarkowski@keywcorp.com> - 4.2.0-3.Alpha
 - simp/puppet-haveged is now part of the module stack.
 
