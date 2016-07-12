@@ -106,6 +106,7 @@ cman
 compat-libstdc++-296
 compat-libstdc++-33
 compat-readline5
+compat-xcb-util
 comps-extras
 control-center
 control-center-filesystem
@@ -543,7 +544,9 @@ liberation-serif-fonts
 libertas-usb8388-firmware
 libestr
 libevent
+libevdev
 libexif
+libepoxy
 libffi
 libfontenc
 libfprint
@@ -588,6 +591,7 @@ libnetfilter_conntrack
 libnfnetlink
 libnih
 libnl
+libnl3
 libnotify
 libogg
 liboil
@@ -652,12 +656,15 @@ libwmf-lite
 libwnck
 libxcb
 libxcb-devel
+libxcb-doc
 libxkbfile
 libxklavier
 libxml2
 libxml2-devel
 libxml2-python
 libxslt
+libxshmfence
+lksctp-tools
 lm_sensors
 lm_sensors-libs
 logrotate
@@ -686,6 +693,7 @@ mesa-libEGL
 mesa-libGL
 mesa-libGLU
 mesa-libgbm
+mesa-libxatracker
 mesa-private-llvm
 metacity
 microcode_ctl
@@ -899,6 +907,7 @@ python-pyro
 python-redis
 python-rhsm
 python-simplejson
+python-sss
 python-sssdconfig
 python-suds
 python-unittest2
@@ -1117,6 +1126,7 @@ xcb-util
 xcb-util-image
 xcb-util-keysyms
 xcb-util-wm
+xcb-util-renderutil
 xdg-utils
 xinetd
 xkeyboard-config
