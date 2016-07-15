@@ -77,6 +77,9 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Fri Jul 15 2016 Nick Markowski <nmarkowski@keywcorp.com> - 4.2.0-3.Alpha
+- Updated release mapping for RedHat 6.8
+
 * Tue Jul 12 2016 Nick Markowski <nmarkowski@keywcorp.com> - 4.2.0-3.Alpha
 - Updated for CentOS 6.8:
 -  Do not prune list
