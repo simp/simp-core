@@ -1,5 +1,7 @@
 .*.sw?
+/.r10k_cache
 /.tmp
+/.vagrant
 Gemfile.lock
 Puppetfile.lock
 SIMP_ISO
@@ -10,6 +12,8 @@ build/GPGKEYS/dist
 build/SIMP
 build/build_keys/*
 build/yum_data/*/packages
+log
+spec/fixtures
 src/build/autorequires
 src/dist
 src/doc
