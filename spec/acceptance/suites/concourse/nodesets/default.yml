@@ -1,0 +1,34 @@
+HOSTS:
+  el7-ci-server:
+    roles:
+      - default
+      - master
+      - concourse
+      - concourse_atc
+    platform: el-7-x86_64
+    box: puppetlabs/centos-7.0-64-nocm
+    box_url: https://vagrantcloud.com/puppetlabs/boxes/centos-7.0-64-nocm
+    hypervisor: vagrant
+    yum_repos:
+      epel:
+        mirrorlist: 'https://mirrors.fedoraproject.org/mirrorlist?repo=epel-7&arch=$basearch&country=us'
+        gpgkeys:
+          - https://getfedora.org/static/352C64E5.txt
+
+  el7-ci-worker:
+    roles:
+      - concourse
+      - concourse_worker
+    platform: el-7-x86_64
+    box: puppetlabs/centos-7.0-64-nocm
+    box_url: https://vagrantcloud.com/puppetlabs/boxes/centos-7.0-64-nocm
+    hypervisor: vagrant
+    yum_repos:
+      epel:
+        mirrorlist: 'https://mirrors.fedoraproject.org/mirrorlist?repo=epel-7&arch=$basearch&country=us'
+        gpgkeys:
+          - https://getfedora.org/static/352C64E5.txt
+CONFIG:
+  log_level: verbose
+  type: foss
+  vagrant_memsize: 1024
