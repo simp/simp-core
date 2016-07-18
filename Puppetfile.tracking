@@ -146,7 +146,7 @@ mod 'simp-clamav',
   :git => 'https://github.com/simp/pupmod-simp-clamav',
   :ref => 'master'
 
-mod 'simp-concat',
+mod 'simp-simpcat',
   :git => 'https://github.com/simp/pupmod-simp-concat',
   :ref => 'master'
 
@@ -178,8 +178,8 @@ mod 'simp-jenkins',
   :git => 'https://github.com/simp/pupmod-simp-jenkins',
   :ref => 'master'
 
-mod 'simp-kibana',
-  :git => 'https://github.com/simp/pupmod-simp-kibana',
+mod 'simp-krb5',
+  :git => 'https://github.com/simp/pupmod-simp-krb5',
   :ref => 'master'
 
 mod 'simp-libvirt',
