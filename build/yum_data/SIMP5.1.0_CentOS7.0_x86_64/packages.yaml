@@ -92,6 +92,12 @@ libconfuse:
 libev:
   :rpm_name: libev-4.15-3.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/l/libev-4.15-3.el7.x86_64.rpm
+libevent:
+  :rpm_name: libevent-2.0.21-4.el7.x86_64.rpm
+  :source: http://mirror.centos.org/centos-7/7.2.1511/os/x86_64/Packages/libevent-2.0.21-4.el7.x86_64.rpm
+libreswan:
+  :rpm_name: libreswan-3.15-5.el7_1.x86_64.rpm
+  :source: http://mirror.centos.org/centos-7/7.2.1511/updates/x86_64/Packages/libreswan-3.15-5.el7_1.x86_64.rpm
 libselinux:
   :rpm_name: libselinux-2.2.2-6.el7.x86_64.rpm
   :source: http://mirror.steadfast.net/centos/7.2.1511/os/x86_64/Packages/libselinux-2.2.2-6.el7.x86_64.rpm
@@ -320,3 +326,6 @@ sudosh2:
 syslinux-tftpboot:
   :rpm_name: syslinux-tftpboot-4.05-12.el7.x86_64.rpm
   :source: http://mirror.steadfast.net/centos/7.2.1511/os/x86_64/Packages/syslinux-tftpboot-4.05-12.el7.x86_64.rpm
+unbound-libs:
+  :rpm_name: unbound-libs-1.4.20-26.el7.x86_64.rpm
+  :source: http://mirror.centos.org/centos-7/7.2.1511/os/x86_64/Packages/unbound-libs-1.4.20-26.el7.x86_64.rpm

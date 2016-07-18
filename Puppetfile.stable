@@ -156,6 +156,10 @@ mod 'simp-kibana',
   :git => 'https://github.com/simp/pupmod-simp-kibana',
   :ref => '275ee292b2e9eda627b422e13fbdddbf262e1bc9'
 
+mod 'simp-libreswan',
+  :git => 'https://github.com/simp/pupmod-simp-libreswan',
+  :ref => 'de0d205ce840246522c8caf3e25cd0b8f3bcf6a5'
+
 mod 'simp-libvirt',
   :git => 'https://github.com/simp/pupmod-simp-libvirt',
   :ref => 'c30b56e6d9394e867dd32371750543cf071d96db'
