@@ -540,11 +540,11 @@ rubygem-mustache:
   :rpm_name: rubygem-mustache-0.99.4-1.el6.noarch.rpm
   :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/rubygem-mustache-0.99.4-1.el6.noarch.rpm
 rubygem-net-ldap:
-  :rpm_name: rubygem-net-ldap-0.2.2-4.el6.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/rubygem-net-ldap-0.2.2-4.el6.noarch.rpm
+  :rpm_name: rubygem-net-ldap-0.6.1-2.el6.1.noarch.rpm
+  :source: https://dl.fedoraproject.org/pub/epel/6/x86_64/rubygem-net-ldap-0.6.1-2.el6.1.noarch.rpm
 rubygem-net-ldap-doc:
-  :rpm_name: rubygem-net-ldap-doc-0.2.2-4.el6.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/rubygem-net-ldap-doc-0.2.2-4.el6.noarch.rpm
+  :rpm_name: rubygem-net-ldap-doc-0.6.1-2.el6.1.noarch.rpm
+  :source: https://dl.fedoraproject.org/pub/epel/6/x86_64/rubygem-net-ldap-doc-0.6.1-2.el6.1.noarch.rpm
 rubygem-net-ping:
   :rpm_name: rubygem-net-ping-1.6.2-1.el6.noarch.rpm
   :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/rubygem-net-ping-1.6.2-1.el6.noarch.rpm
