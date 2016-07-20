@@ -18,6 +18,10 @@ mod 'rubygem-simp_cli',
 
 moduledir 'src/puppet/modules'
 
+mod 'bfraser-grafana',
+  :git => 'https://github.com/simp/puppet-grafana',
+  :ref => 'simp-master'
+
 mod 'elasticsearch-elasticsearch',
   :git => 'https://github.com/simp/puppet-elasticsearch',
   :ref => 'simp-master'
@@ -300,6 +304,10 @@ mod 'simp-simp',
 
 mod 'simp-simp_elasticsearch',
   :git => 'https://github.com/simp/pupmod-simp-simp_elasticsearch',
+  :ref => 'master'
+
+mod 'simp-simp_grafana',
+  :git => 'https://github.com/simp/pupmod-simp-simp_grafana',
   :ref => 'master'
 
 mod 'simp-simp_logstash',
