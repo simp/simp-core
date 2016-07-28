@@ -21,6 +21,5 @@ modified at kickstart time to rearrange /srv or /var.
 
 Values:
 
-  'big'    => Grow /srv to fill all available space
-  'ws'     => Workstation mode, grow /srv to fill all available space
+  'big'    => Grow /var to fill all available space
   'bigsrv' => Grow /srv to fill all available space instead of /var
