@@ -93,11 +93,11 @@ logvol /var/log --fstype=ext4 --name=VarLogVol --vgname=VolGroup00 --size=4096 -
 logvol /var/log/audit --fstype=ext4 --name=VarLogAuditVol --vgname=VolGroup00 --size=1024 --fsoptions=nosuid,noexec,nodev
 EOF
 
-  if [ "$simp_opt" == "bigsrv" ]; then
-    echo "logvol /srv --fstype=ext4 --name=SrvVol --vgname=VolGroup00 --size=1024 --fsoptions=nosuid,nodev --grow" >> /tmp/part-include
-    echo "logvol /var --fstype=ext4 --name=VarVol --vgname=VolGroup00 --size=4096" >> /tmp/part-include
-  else
+  if [ "$simp_opt" == "bigvar" ]; then
     echo "logvol /srv --fstype=ext4 --name=SrvVol --vgname=VolGroup00 --size=4096 --fsoptions=nosuid,nodev" >> /tmp/part-include
     echo "logvol /var --fstype=ext4 --name=VarVol --vgname=VolGroup00 --size=1024 --grow" >> /tmp/part-include
+  else
+    echo "logvol /srv --fstype=ext4 --name=SrvVol --vgname=VolGroup00 --size=1024 --fsoptions=nosuid,nodev --grow" >> /tmp/part-include
+    echo "logvol /var --fstype=ext4 --name=VarVol --vgname=VolGroup00 --size=4096" >> /tmp/part-include
   fi
 fi
