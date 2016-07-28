@@ -1,20 +1,18 @@
 HOSTS:
-  el7-build-server:
+  el6-build-server:
     roles:
       - build_server
-    platform: el-7-x86_64
+    platform: el-6-x86_64
     hypervisor: docker
-    image: centos:7
-    docker_cmd: '/sbin/sshd; tail -f /dev/null'
+    image: centos:6
     docker_image_commands:
       - 'yum install -y openssl'
       - 'yum install -y epel-release'
-      - 'ln -sf /bin/true /usr/bin/systemctl'
       - "echo 'Defaults:build_user !requiretty' >> /etc/sudoers"
       - "echo 'build_user ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers"
       - 'useradd -b /home -m -c "Build User" -s /bin/bash -U build_user'
       # simp build-deps
-      - 'yum install -y rpm-build augeas-devel createrepo genisoimage git gnupg2 libicu-devel libxml2 libxml2-devel libxslt libxslt-devel mock rpmdevtools clamav clamav-update which'
+      - 'yum install -y rpm-build augeas-devel createrepo genisoimage git gnupg2 libicu-devel libxml2 libxml2-devel libxslt libxslt-devel mock rpmdevtools clamav which'
       - 'usermod -a -G mock build_user'
       # rvm build-deps
       - 'yum install -y libyaml-devel glibc-headers autoconf gcc-c++ glibc-devel readline-devel libffi-devel openssl-devel automake libtool bison sqlite-devel'
@@ -23,6 +21,7 @@ HOSTS:
       - 'runuser build_user -l -c "rvm use --default 2.1"'
       - 'runuser build_user -l -c "rvm all do gem install bundler"'
       - 'runuser build_user -l -c "rvm use default; gem install --no-ri --no-rdoc simp-rake-helpers"'
+      - 'runuser build_user -l -c "rvm use default; gem install --no-ri --no-rdoc rake"'
       - 'runuser build_user -l -c "rvm use default; gem install --no-ri --no-rdoc json"'
       - 'runuser build_user -l -c "rvm use default; gem install --no-ri --no-rdoc charlock_holmes"'
       - 'runuser build_user -l -c "rvm use default; gem install --no-ri --no-rdoc posix-spawn"'
