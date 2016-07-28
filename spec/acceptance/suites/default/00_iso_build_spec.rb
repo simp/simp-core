@@ -2,12 +2,18 @@ require 'spec_helper_acceptance'
 
 test_name 'iso build'
 
-unless ENV['SIMP_BEAKER_iso_dir']
-  fail('Error: You must specify the ISO directory with SIMP_BEAKER_iso_dir')
+sys_iso_dir = File.expand_path(File.join(fixtures_path, 'ISO'))
+
+if ENV['SIMP_BEAKER_iso_dir']
+  sys_iso_dir = File.expand_path(ENV['SIMP_BEAKER_iso_dir'])
 end
 
-unless File.directory?(ENV['SIMP_BEAKER_iso_dir'])
-  fail('Error: The SIMP_BEAKER_iso_dir could be be read')
+unless File.directory?(sys_iso_dir)
+  fail(%(Error: The ISO directory '#{sys_iso_dir}' could not be read))
+end
+
+if Dir.glob(File.join(sys_iso_dir, '*.iso')).empty?
+  fail(%(Error: The ISO directory '#{sys_iso_dir}' contains no ISO images))
 end
 
 describe 'iso build' do
@@ -15,7 +21,7 @@ describe 'iso build' do
 
     let(:source_repo) { 'https://github.com/simp/simp-core' }
 
-    let(:iso_dir) { ENV['SIMP_BEAKER_iso_dir'] }
+    let(:iso_dir) { sys_iso_dir }
 
     # We need a normal user for running mock
     let(:build_user) { 'build_user' }
@@ -41,70 +47,76 @@ describe 'iso build' do
 
     hosts.each do |host|
 
-      it 'should add the build user to the system' do
-        on(host, %(useradd -b /home -m -c 'Build User' -s /bin/bash -U #{build_user}))
-        on(host, %(echo 'Defaults:#{build_user} !requiretty' >> /etc/sudoers))
-        on(host, %(echo '#{build_user} ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers))
-        on(host, %(#{run_cmd} "ls"))
-      end
+      unless host[:hypervisor] == 'docker'
+        it 'should add the build user to the system' do
+          on(host, %(useradd -b /home -m -c 'Build User' -s /bin/bash -U #{build_user}))
+          on(host, %(echo 'Defaults:#{build_user} !requiretty' >> /etc/sudoers))
+          on(host, %(echo '#{build_user} ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers))
+          on(host, %(#{run_cmd} "ls"))
+        end
 
-      it 'should have the ISOs' do
-        scp_to(host, "#{iso_dir}", '/ISO')
-      end
+        it 'should have all the required packages' do
+          required_packages = [
+            'util-linux',
+            'mock',
+            'augeas-devel',
+            'createrepo',
+            'genisoimage',
+            'git',
+            'libicu-devel',
+            'libxml2',
+            'libxml2-devel',
+            'libxslt',
+            'libxslt-devel',
+            'rpmdevtools',
+            'gcc',
+            'gcc-c++',
+            'ruby-devel',
+            'rpm-build',
+            'rpm-devel'
+          ]
 
-      it 'should have all the required packages' do
-        required_packages = [
-          'util-linux',
-          'mock',
-          'augeas-devel',
-          'createrepo',
-          'genisoimage',
-          'git',
-          'libicu-devel',
-          'libxml2',
-          'libxml2-devel',
-          'libxslt',
-          'libxslt-devel',
-          'rpmdevtools',
-          'gcc',
-          'gcc-c++',
-          'ruby-devel',
-          'rpm-build',
-          'rpm-devel'
-        ]
+          os = fact_on(host, 'operatingsystem')
+          os_version = fact_on(host, 'operatingsystemmajrelease')
 
-        os = fact_on(host, 'operatingsystem')
-        os_version = fact_on(host, 'operatingsystemmajrelease')
+          if ['CentOS','RedHat'].include?(os)
+            required_packages << 'gnupg2'
 
-        if ['CentOS','RedHat'].include?(os)
-          required_packages << 'gnupg2'
+            if os_version.to_i > 6
+              required_packages << 'clamav-update'
+            else
+              required_packages << 'clamav'
+            end
+          end
 
-          if os_version.to_i > 6
+          if ['Fedora'].include?(os)
+            required_packages << 'gnupg'
             required_packages << 'clamav-update'
-          else
-            required_packages << 'clamav'
+          end
+
+          required_packages.each do |pkg|
+            host.install_package(pkg)
           end
         end
 
-        if ['Fedora'].include?(os)
-          required_packages << 'gnupg'
-          required_packages << 'clamav-update'
+        it 'should add the user to the "mock" group' do
+          on(host, %(usermod -a -G mock #{build_user}))
         end
 
-        required_packages.each do |pkg|
-          host.install_package(pkg)
+        it 'should install RVM' do
+          on(host, %(#{run_cmd} "gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3"))
+          on(host, %(#{run_cmd} "curl -sSL https://get.rvm.io | bash -s stable --ruby=2.1"))
+          on(host, %(#{run_cmd} "rvm use --default 2.1"))
+          on(host, %(#{run_cmd} "rvm all do gem install bundler"))
         end
       end
 
-      it 'should add the user to the "mock" group' do
-        on(host, %(usermod -a -G mock #{build_user}))
-      end
-
-      it 'should install RVM' do
-        on(host, %(#{run_cmd} "gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3"))
-        on(host, %(#{run_cmd} "curl -sSL https://get.rvm.io | bash -s stable --ruby=2.1"))
-        on(host, %(#{run_cmd} "rvm use --default 2.1"))
-        on(host, %(#{run_cmd} "rvm all do gem install bundler"))
+      it 'should have the ISOs' do
+        if host[:hypervisor] == 'docker'
+          %x(docker cp #{iso_dir} #{host[:docker_container].id}:/)
+        else
+          scp_to(host, "#{iso_dir}", '/ISO')
+        end
       end
 
       it 'should clone the main repos' do
@@ -132,7 +144,13 @@ describe 'iso build' do
             # We only need one...
             target_file = File.join(target_dir, file)
             unless (File.exist?(target_file) && (File.size(target_file) != 0))
-              scp_from(host, File.join(iso_dir, file), target_dir)
+              src_file = File.join(iso_dir, file)
+
+              if host[:hypervisor] == 'docker'
+                %x(docker cp #{host[:docker_container].id}:#{src_file} #{target_dir})
+              else
+                scp_from(host, src_file, target_dir)
+              end
             end
           end
         end
