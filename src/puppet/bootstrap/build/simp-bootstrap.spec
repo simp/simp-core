@@ -67,12 +67,14 @@ cp puppet.conf %{buildroot}/%{prefix}/puppet.conf.rpmnew
 %config(noreplace) %{prefix}/environments/simp/environment.conf
 %config(noreplace) %{prefix}/environments/simp/hieradata/RedHat/6.yaml
 %config(noreplace) %{prefix}/environments/simp/hieradata/hosts/puppet.your.domain.yaml
+%config(noreplace) %{prefix}/environments/simp/hieradata/hostgroups/default.yaml
 %config(noreplace) %{prefix}/environments/simp/hieradata/simp/logstash/default.yaml
 %config(noreplace) %{prefix}/environments/simp/hieradata/simp/pam/default.yaml
 %config(noreplace) %{prefix}/environments/simp/hieradata/simp/simp/default.yaml
 %config(noreplace) %{prefix}/environments/simp/hieradata/simp/mcollective/default.yaml
 %config(noreplace) %{prefix}/environments/simp/hieradata/simp_classes.yaml
 %config(noreplace) %{prefix}/environments/simp/hieradata/simp_def.yaml
+%config(noreplace) %{prefix}/environments/simp/hieradata/default.yaml
 %config(noreplace) %{prefix}/environments/simp/manifests/site.pp
 %config(noreplace) %{prefix}/puppet.conf.rpmnew
 %config(noreplace) %{prefix}/environments/simp/FakeCA/togen
