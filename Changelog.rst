@@ -1,4 +1,4 @@
-SIMP 5.1.0-3
+SIMP 5.2.0-0
 ============
 
 Changelog
@@ -14,103 +14,205 @@ Changelog
 
   PageBreak
 
-SIMP 5.1.0-3
+SIMP 5.2.0-0
 
-**Package**: 5.1.0-3
+**Package**: 5.2.0-0
 
 This release is known to work with:
 
   * RHEL 7.2 x86_64
   * CentOS 7.0 1511 x86_64
 
-This is a **backwards compatible** release in the 5.X series of SIMP.
+This update is backwards compatible for the SIMP core functionality but does
+contain breaking changes in some of the optional modules.
 
-Manual Changes Requred for Legacy Upgrades
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Please read this CHANGELOG thoroughly if you are using the following
+components:
 
-* Bugs in the `simplib::secure_mountpoints` class (formerly
-  `common::secure_mountpoints`)
+  * NFS
+  * KRB5
+  * MCollective
+  * ELK
 
-.. note::
+SIMP 6 is Coming
+^^^^^^^^^^^^^^^^
+
+Due to Puppet 3.X going `EOL`_ in December of 2016, the SIMP stack will be
+releasing SIMP 6 as the next major release that supports Puppet 4 and the All
+in One installer. The SIMP numbering scheme will be moving to, a Semantic
+Versioning 2.0.0 compliant, 6.0.0 and will support all operating systems under
+that numbering scheme henceforth.
+
+Manual Changes Requred for Pre-5.1.0 Upgrades
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* Bugs in the ``simplib::secure_mountpoints`` class (formerly
+  ``common::secure_mountpoints``)
+
+.. NOTE::
     This only affects you if you did not have a separate partition for /tmp!
 
-* There were issues in the secure_mountpoints class that caused /tmp and
-  /var/tmp to be mounted against the root filesystem. While the new code
-  addresses this, it cannot determine if your system has been modified
+* There were issues in the ``secure_mountpoints`` class that caused ``/tmp``
+  and ``/var/tmp`` to be mounted against the root filesystem. While the new
+  code addresses this, it cannot determine if your system has been modified
   incorrectly in the past.
 
 * To fix the issue, you need to do the following:
-  - Unmount /var/tmp (may take multiple unmounts)
-  - Unmount /tmp (may take multiple unmounts)
-  - Remove the 'bind' entries for /tmp and /var/tmp from /etc/fstab
-  - Run **puppet** with the new code in place
+  - Unmount ``/var/tmp`` (may take multiple unmounts)
+  - Unmount ``/tmp`` (may take multiple unmounts)
+  - Remove the ``'bind'`` entries for ``/tmp`` and ``/var/tmp`` from
+    ``/etc/fstab``
+  - Run ``puppet`` with the new code in place
+
+SSSD
+""""
+
+.. WARNING::
+  SSSD enforces password strength at **login** time! This means that, should
+  you have **old** passwords that do not meet the present password policy on
+  the host, you will not be able to authenticate with your old password!
 
 Deprecations
 ^^^^^^^^^^^^
 
-* The `simp-sysctl` module will be deprecated in the `5.2.0` release of SIMP.
-  Current users should migrate to using the `augeasproviders_sysctl` module
-  provided with SIMP going forward.
+* The ``simp-sysctl`` module will be deprecated in the ``6.0.0`` release of
+  SIMP.  Current users should migrate to using the ``augeasproviders_sysctl``
+  module provided with SIMP going forward.
+
+Breaking Changes
+^^^^^^^^^^^^^^^^
+
+NFS
+"""
+
+NFS now supports full integration with Kerberos via the SIMP KRB5 module, or an
+external KRB5 resource of your choice.
+
+Please take time to look at the updated NFS profile code in the `simp puppet module`_
+as well as the new `acceptance tests for the NFS puppet module`_ for a full
+understanding of the new features.
+
+.. NOTE::
+  The system should not enable the KRB5 and Stunnel options simultaneously
+
+.. WARNING::
+  Bugs discovered during acceptance testing found long standing issues in the
+  NFS module that required API breaking changes to remedy. Please carefully
+  validate your use of the NFS module as well as your Hiera data.
+
+KRB5
+""""
+
+The KRB5 module has been **completely rewritten** to support the entire KRB5
+stack, including setting up a KDC and auto-creating and distributing keytabs to
+all nodes that are known via keydist. Please see the `krb5 module documentation`_
+and the `Enable Kerberos`_ HOWTO for details.
+
+MCollective
+"""""""""""
+
+The `MCollective`_ module has been updated from the upstream repositories and the
+``simp::mcollective`` profile has been updated, per new acceptance tests, to
+ensure that MCollective works out of the box. Very little input is now required
+to add MCollective to your environment. All usernames and passwords are
+randomly generated and you will need to pull the usage passwords out of the
+system for your users to be able to connect to ActiveMQ and send commands. The
+`simp mcollective acceptance test`_ provides an excellent full stack example of
+using the new module.
+
+See ``simp passgen --help`` for usage information.
+
+ELK
+"""
+
+The Elasticsearch, Logstash, and Kibana components have been updated to support
+Elasticsearch and Logstash 2.3. Kibana has been replaced by Grafana for inbuilt
+LDAP and multi-tenant support.
+
+Please see the new `Elasticsearch, Logstash, and Grafana` documentation for
+usage information.
 
 Significant Updates
 ^^^^^^^^^^^^^^^^^^^
 
-NSCD Replaced with SSSD
-"""""""""""""""""""""""
+HAVEGED Installed by Default
+""""""""""""""""""""""""""""
 
-After a **long** wait, all of the bugs that we discovered in SSSD have been fixed!
-Therefore, we have moved to using SSSD as our primary form of caching against
-our LDAP server. If you do not use LDAP, SSSD will not be installed by default.
+Particularly affecting Virtual Machines, the volume of cryptographic operations
+that the SIMP system performs by default was causing system entropy to run low
+on a regular basis. To fix this, we have incorporated the
+`HArdware Volatile Entropy Gathering and Expansion Daemon`_. The ``haveged``
+process will use a hardware RNG if present so no risk to hardware generated
+entropy is present. We understand that any PRNG system will not effect true
+Cryptographic entropy. Please read the document linked above and see the online
+discussion around the suitability of HAVEGED if you have concerns.
 
-This only applies to systems EL6.7 or EL7+, if you have updated SSSD on a
-system earlier than EL6.7, then you will need to set `use_sssd` to `true` in
-Hiera.
+.. note::
+  There is also now a new global catalyst ``use_haveged`` which is enabled by
+  default on SIMP systems. If you set this to ``false`` in Hiera, HAVEGED will
+  be disabled on your system(s).
 
-.. NOTE::
-  In the future, support for NSCD will be removed as SSSD is the recommended
-  system.
+ISO Auto-Boot is Now Disabled
+"""""""""""""""""""""""""""""
 
-NIST 800-53 Compliance Mapping
-""""""""""""""""""""""""""""""
+You must now explicitly select an entry when booting the SIMP ISO. There were
+too many instances of the ISO being left mounted and performing a constant
+re-install loop without this change.
 
-This release adds the ability to map all class and define variables into policy
-components and validate that mapping at compile time. Our initial mapping is
-against the NIST 800-53r4 and is present in this release.
+HTTPS Kickstarts
+""""""""""""""""
 
-For more information, see `pupmod_simp_compliance_markup`_ for more
-information.
+The system now encourages the use of HTTPS kickstarts **by default** to ensure
+that any potentially sensitive data is protected in transit.
+
+Client validation is not configured in this case since the SIMP project does
+not dictate how you kickstart your system.
+
+See the `Configuring the Clients`_ section of the SIMP User Guide for
+instructions.
+
+UEFI Boot
+"""""""""
+
+The system now supports UEFI booting from the SIMP ISO. This provides better
+support for newer systems as well as the foundation for Trusted Boot.
+
+
+Full Disk Encryption (FDE)
+""""""""""""""""""""""""""
+
+SIMP now provides Full Disk Encryption capabilities directly from the ISO build
+and within the supplied kickstart files. Please read the documentation on this
+capability as found in the `Disk Encryption`_ section of the SIMP Installation
+Guide.
+
+.. WARNING::
+  The default FDE setup ensures that your systems will automatically boot
+  without intervention. For better protection, please read the documentation
+  referenced above so that you understand the ramfications of this behavior.
 
 Puppet 4 Support
 """"""""""""""""
 
-We have started explicit testing of our modules against `Puppet 4`_. Puppet 3.8 is
-slated for `EOL`_ in December 2016 and we plan to move to the `AIO`_ installer in the
-next major release of SIMP.
+All of our modules have been tested against `Puppet 4`_ and should work in a
+Puppet 4 system. SIMP will **natively** ship with Puppet 4 by the end of 2016.
 
-The Foreman
-"""""""""""
+IPSec Support via LibreSwan
+"""""""""""""""""""""""""""
 
-Support for `The Foreman`_ was included into SIMP core. We needed to create our
-own `simp-foreman` module which prevents the destruction of an existing Puppet
-environment. This is **not** installed as part of SIMP core but can be added.
-
-Move to Semantic Versioning 2.0.0
-"""""""""""""""""""""""""""""""""
-
-All of our components have officially moved to using `Semantic Versioning 2.0.0`_.
-This allows us to keep our Puppet Modules and RPMs inline with each other as
-well as behaving as the rest of the Puppet ecosystem. This does mean that you
-will see version numbers rapidly advancing over time and this should not be a
-cause for alarm.
+A `libreswan`_ module has been added to provide IPSec support to SIMP. We are
+awaiting the advent of X.509-based opportunistic IPSec to have a fully
+automated integrated trust system. Presently, half of the connection needs to
+know about the remote systems for a successful IPSec connection.
 
 Upgrade Guidance
 ^^^^^^^^^^^^^^^^
 
 Fully detailed upgrade guidance can be found in the **Upgrading SIMP** portion
-of the *User's Guide*.
+of the `SIMP User Guide`_.
 
 .. WARNING::
-  You must have at least **2.2GB** of **free** RAM on your system to upgrade to
+  You must have at least **2.4GB** of **free** RAM on your system to upgrade to
   this release.
 
 .. NOTE::
@@ -125,290 +227,363 @@ CVEs Addressed
 RPM Updates
 ^^^^^^^^^^^
 
-+----------------------------+-------------+-------------+
-| Package                    | Old Version | New Version |
-+============================+=============+=============+
-| clamav                     | 0.98.7-1    | 0.99-2      |
-+----------------------------+-------------+-------------+
-| clamav-data                | 0.98.7-1    | 0.99-2      |
-+----------------------------+-------------+-------------+
-| clamav-data-empty          | 0.98.7-1    | 0.99-2      |
-+----------------------------+-------------+-------------+
-| clamav-devel               | 0.98.7-1    | 0.99-2      |
-+----------------------------+-------------+-------------+
-| clamav-filesystem          | 0.98.7-1    | 0.99-2      |
-+----------------------------+-------------+-------------+
-| clamav-scanner             | 0.98.7-1    | 0.99-2      |
-+----------------------------+-------------+-------------+
-| clamav-sysvinit            | 0.98.7-1    | 0.99-2      |
-+----------------------------+-------------+-------------+
-| clamav-server              | 0.98.7-1    | 0.99-2      |
-+----------------------------+-------------+-------------+
-| clamav-server-systemd      | 0.98.7-1    | 0.99-2      |
-+----------------------------+-------------+-------------+
-| clamav-server-sysvinit     | 0.98.7-1    | 0.99-2      |
-+----------------------------+-------------+-------------+
-| clamav-server-update       | 0.98.7-1    | 0.99-2      |
-+----------------------------+-------------+-------------+
-| facter                     | 2.4.4-1     | 2.4.6-1     |
-+----------------------------+-------------+-------------+
-| hiera                      | 3.0.2-1     | 3.0.5-1     |
-+----------------------------+-------------+-------------+
-| mcollective-filemgr-agent  | 1.0.2-1     | 1.1.0-1     |
-+----------------------------+-------------+-------------+
-| mcollective-filemgr-client | 1.0.2-1     | 1.1.0-1     |
-+----------------------------+-------------+-------------+
-| mcollective-filemgr-common | 1.0.2-1     | 1.1.0-1     |
-+----------------------------+-------------+-------------+
-| puppet                     | 3.8.1-1     | 3.8.6-1     |
-+----------------------------+-------------+-------------+
-| puppet-server              | 3.8.1-1     | N/A         |
-+----------------------------+-------------+-------------+
-| puppetserver               | 1.1.1-1     | 1.1.3-1     |
-+----------------------------+-------------+-------------+
-| python-linecache2          | N/A         | 1.2.0-0     |
-+----------------------------+-------------+-------------+
-| python-traceback2          | N/A         | 1.4.0-2     |
-+----------------------------+-------------+-------------+
-| razor-server               | 1.0.1-1     | 1.1.0-1     |
-+----------------------------+-------------+-------------+
-| razor-torquebox            | 3.1.1.9-1   | 3.1.1.10-1  |
-+----------------------------+-------------+-------------+
-| rubygem-rake               | N/A         | 0.9.6-25    |
-+----------------------------+-------------+-------------+
++------------------------+-------------+-------------+
+| Package                | Old Version | New Version |
++========================+=============+=============+
+| clamav                 | 0.99-2      | 0.99.2-1    |
++------------------------+-------------+-------------+
+| clamav-data            | 0.99-2      | 0.99.2-1    |
++------------------------+-------------+-------------+
+| clamav-data-empty      | 0.99-2      | 0.99.2-1    |
++------------------------+-------------+-------------+
+| clamav-devel           | 0.99-2      | 0.99.2-1    |
++------------------------+-------------+-------------+
+| clamav-filesystem      | 0.99-2      | 0.99.2-1    |
++------------------------+-------------+-------------+
+| clamav-scanner         | 0.99-2      | 0.99.2-1    |
++------------------------+-------------+-------------+
+| clamav-sysvinit        | 0.99-2      | 0.99.2-1    |
++------------------------+-------------+-------------+
+| clamav-server          | 0.99-2      | 0.99.2-1    |
++------------------------+-------------+-------------+
+| clamav-server-systemd  | 0.99-2      | 0.99.2-1    |
++------------------------+-------------+-------------+
+| clamav-server-sysvinit | 0.99-2      | 0.99.2-1    |
++------------------------+-------------+-------------+
+| clamav-server-update   | 0.99-2      | 0.99.2-1    |
++------------------------+-------------+-------------+
+| rubygem-stomp          | 1.3.4-2     | 1.3.5-1     |
++------------------------+-------------+-------------+
+| rubygem-stomp-doc      | 1.3.4-2     | 1.3.5-1     |
++------------------------+-------------+-------------+
+| unbound-libs           | none        | 1.4.20-26   |
++------------------------+-------------+-------------+
+| libevent               | none        | 2.0.21-4    |
++------------------------+-------------+-------------+
+| libreswan              | none        | 3.15-5      |
++------------------------+-------------+-------------+
+
+Deprecations
+^^^^^^^^^^^^
+
+* pupmod-simp-kibana
+
+  * Replaced by pupmod-simp-grafana
+
+* pupmod-simp-elasticsearch
+
+  * Replaced by pupmod-simp-simp_elasticsearch
+
+* pupmod-simp-logstash
+
+  * Replaced by pupmod-simp-simp_logstash
 
 Fixed Bugs
 ^^^^^^^^^^
 
-pupmod-simp-activemq
-""""""""""""""""""""
+pupmod-simp-apche
+"""""""""""""""""
 
-* Updated `activemq` to the latest release.
-* Removed the `tanukiwrapper` dependency.
-
-pupmod-simp-apache
-""""""""""""""""""
-
-* Fixed ordering issues that were discovered when testing the `foreman` module.
+* Fix ``munge_httpd_networks`` to work properly with Ruby >= 1.9
+* Ensure that non-SIMP PKI certificates are copied recursively
+* Add an explicit **default deny** to the apache_limits() function
 
 pupmod-simp-auditd
 """"""""""""""""""
 
-* Fixed an issue where `add_rules` did not disable itself if
-  `$::auditd::enable_auditing` was set to `false`.
+* Fix the default audit locations for `wtmp` and `btmp` in the audit rules
+* Ensure that audit file locations themselves can be dynamically audited
+* Added an audit rule for `renameat` to comply with `CCE-26651-0`_
 
 pupmod-simp-freeradius
 """"""""""""""""""""""
 
-* Moved all `2` and `3` paths to `v2` and `v3` paths respectively since the
-  original paths were not `Puppet 4`_ safe.
+* Fixed scoping issues with variables
+* Updated the code to work around incompatibilities with integers in class
+  names
 
-pupmod-simp-ganglia
-"""""""""""""""""""
+pupmod-simp-iptables
+""""""""""""""""""""
 
-* Fixed several minor bugs found during `Puppet 4`_ testing.
+* Removed the custom type warning in IPTables when used with Puppet 4
+* Fixed a regex rule in Ruby 1.8 (EL6) that caused some rules to be dropped
+  silently
+* Changed the default provider for iptables services to 'redhat' because the
+  Puppet default was not functional
+
+pupmod-simp-named
+"""""""""""""""""
+
+* Created work-around for https://bugzilla.redhat.com/show_bug.cgi?id=1278082
+* Added a named::install class and fixed the ordering across the board
 
 pupmod-simp-nfs
 """""""""""""""
 
-* Ensure that the NFS exports template can handle `ANY` and `all` since these
-  can be used in `client_nets` for use with `iptables`.
-* Added a temporary class `nfs::lvm2` to ensure that the `lvm2` package is
-  updated to the latest version since the `nfs-utils` rpm requires it but has a
-  `broken dependency`_.
-* Fixed `Puppet 4`_ support.
-
-pupmod-simp-nscd
-""""""""""""""""
-
-* Replaced remaining `lsb*` variables.
-* Fixed a race condition between `service nscd restart` and
-  `service nscd reload`
+* Several breaking changes were made
+* Stunnel and KRB5 should not be used at the same time
+* Removed the ``create_home_dirs`` cron job and migrated it to the
+  pupmod-simp-simp module
 
 pupmod-simp-openldap
 """"""""""""""""""""
 
-* Fixed several ordering and variable issues discovered when testing for
-  `Puppet 4`_
-* Fixed numerous issues with nslcd
-* Now copy the system certificates to `/etc/nslcd.d` for instances that wish to
-  use their own certificates.
+* Fixed certificate location references in the ``pam_ldap`` configuration file
+* Removed the dependency on the ``ruby-ldap`` package
+* Ensure that ``Exec[bootstrap_ldap]`` is idempotent
+* Ensure that TLS support can be toggled in the ``openldap::client`` class
+* Change minimum number of character classes in pass word to **3** from **4**
+  per STIG
+* Change maximum number of consecutive characters from a given character class
+  to **2** from **disabled** per STIG
 
 pupmod-simp-pki
 """""""""""""""
 
-* Removed the `simip5.test.vm` key which was leftover testing garbage.
+* Removed the custom type warning in ``simp::pki`` when used with Puppet 4
+* Fixed permissions flapping in ``pki_cert_sync``
 
 pupmod-simp-pupmod
 """"""""""""""""""
 
-* Fixed logic errors found when testing `Puppet 4`_
-* Configuration changes now notify `Service['puppetmaster']` instead of the
-  more efficient `Exec`. This prevents a race condition where the service is
-  restarted and the Exec fires before the service has fully restarted.
-* Fixed the `puppetserver_*` helper scripts that surfaced due to changes in the
-  HTTP responses from the Puppet Server.
-* Ensure that the `Service` configuration directory can be changed.
+* Ensure that the ``use_iptables`` global catalyst is honored
+* Limited the Java heap size used by the Puppetserver to not exceed 12G of RAM
+  due to a bug in Trapperkeeper. This will be lifted once we move to Puppet 4
 
-pupmod-simp-rsyslog
-"""""""""""""""""""
+pupmod-simp-rsync
+"""""""""""""""""
 
-* Fixed issues found during `Puppet 4`_ testing.
+* Changed the default provider for iptables services to 'redhat' because the
+  Puppet default was not functional
+* Ensure that the ``client_nets`` global catalyst is properly honored
 
 pupmod-simp-simp
 """"""""""""""""
 
-* Fixed numerous issues found when testing against `Puppet 4`_.
-* Fixed the `nfs_server` default in the `home_client` class which had the
-  potential to break automounting.
+* Set svckill to ignore ``quotaon`` and ``messagebus`` by default
+
+pupmod-simp-simpcat
+"""""""""""""""""""
+
+* Ensure that the **client** ``vardir`` is used instead of the server variable
 
 pupmod-simp-simplib
 """""""""""""""""""
 
-* Confined all facts that break Puppet on Windows.
-* Removed `simplib::os_bugfixes` because...it never worked anyway.
-* Fixed the `ipv6_enabled` fact to not break if IPv6 is already disabled.
-  - Thanks to `Klaas Demter`_ for this patch.
-* Fixed issues with the `localusers` function where it was having issues when
-  used with Ruby >= 1.9
-
-pupmod-simp-ssh
-"""""""""""""""
-
-* Fixed issues with `Puppet 4`_ compilation
-  - Thanks to `Carl Caum`_ from `Puppet Labs`_ for this fix.
+* Remove the custom type warnings from ``ftpusers``, ``reboot_notify``, and
+  ``script_umask``
+* Fixed an ``nsswitch`` edge case that conflicted with ``sssd``
+* Added the ``gdm_version`` fact from the ``xwindows`` module
+* Ensure that ``tmpwatch`` installed on EL6 systems
 
 pupmod-simp-sssd
 """"""""""""""""
 
-* Ensure that the `sssd` client libraries are installed even if you're not
-  running the `sssd` daemon.
-* Removed the erroneous `ldap_chpass_updates_last_change` variable and
-  re-normalized the module on the `ldap_chpass_update_last_change` variable.
+* Ensure that the LDAP default certificates are set if using TLS and LDAP
 
 pupmod-simp-stunnel
 """""""""""""""""""
 
-* Fixed ordering issues in the module.
-* Removed the public and private PKI certificates from the chroot jail for
-  better system security. This will not remove them on existing systems, it
-  will simply not place them there on new installations.
+* Ensure that all global catalysts are disabled when appropriate
+* The chroot'd PKI certificates were not ordered correctly against the ``pki``
+  module when in use
+
+pupmod-simp-svckill
+"""""""""""""""""""
+
+* Remove the custom type warnings from the custom type
+* ``svckill::ignore`` should not include ``svckill`` by default
+
+pupmod-simp-upstart
+"""""""""""""""""""
+
+* Ensure that the ``job.erb`` file kept all hash keys ordered
 
 simp-cli
 """"""""
 
-* Fixed a bug where pre-placed X.509 certificates would be removed when running
-  `simp config`. Custom certificates can now be used out of the box.
-
-simp-core
-"""""""""
-
-* Connections to the remote YUM server were disabled by default on the initial
-  Puppet server. This prevents issues with bootstrap ordering when not
-  installing via ISO.
-* Fixed the `unpack_dvd` script to properly check for non-existent directories
-  before unpacking the ISO images.
-* Fixed a bug where the Hiera `use_ldap` variable was not effective due to
-  openldap::pam being included in the Hiera class list.
-
-simp-doc
-""""""""
-
-* Spelling errors were corrected.
-* The PXE boot section was corrected.
-* Directory paths were fixed throughout the document.
-* The Security Conop tables were fixed.
-
-DVD
-"""
-* Fixed a few typos in the `auto.cfg` file.
+* Ensure that ``simp passgen`` can use the correct path by default
+* Fixed several issues in the ``simp`` command with command line parsing
 
 New Features
 ^^^^^^^^^^^^
 
-pupmod-onyxpoint-compliance
-"""""""""""""""""""""""""""
+pupmod-bfraser-grafana
+""""""""""""""""""""""
 
-* The first cut of the compliance mapper module. Will be replaced by a SIMP
-  native version in the next release.
+* Initial import of the Grafana module into the SIMP ecosystem
 
-pupmod-simp-augeasproviders_grub
-""""""""""""""""""""""""""""""""
-
-* Imported the latest version of the upstream `augeasproviders_grub` module.
-* Added the ability to fully manage GRUB menu entries in both GRUB 2 and GRUB
-  Legacy.
-
-pupmod-simp-augeasproviders_sysctl
+pupmod-elasticsearch-elasticsearch
 """"""""""""""""""""""""""""""""""
 
-* Added the ability to fail silently in the case that a running sysctl item
-  cannot be manipulated. This is important in cases such as NFS where the
-  appropriate module may not be loaded until it is actually used for the first
-  time.
+* Updated to the 0.11.0 version of the upstream module
 
-pupmod-simp-java_ks
+pupmod-elasticsearch-logstash
+"""""""""""""""""""""""""""""
+
+* Updated to the 0.6.4 version of the upstream module
+
+pupmod-puppetlabs-inifile
+"""""""""""""""""""""""""
+
+* Updated to the 1.5.0 upstream module
+
+pupmod-richardc-datacat
+"""""""""""""""""""""""
+
+* Update to version 0.6.2
+
+pupmod-simp-apache
+""""""""""""""""""
+
+* Add explicit `haveged`_ support
+
+pupmod-simp-bootstrap
+"""""""""""""""""""""
+
+* Documented the 'hostgroup' Hiera usage in the 'hieradata' directory
+* Recommendation for SHA512 password hashes to be generated for 'localusers'
+* Added a 'site_files' directory in the 'simp' environment that will be used
+  for all generated files and is intended to be excluded from management by
+  r10k or Code Manager. This may need to be moved again in SIMP 6.
+
+pupmod-simp-elasticsearch
+"""""""""""""""""""""""""
+
+* First release of the rewritten SIMP Elasticsearch component profile to be
+  used in conjunction with the pupmod-elasticsearch-elasticsearch module
+
+pupmod-simp-grafana
 """""""""""""""""""
 
-* Updated the module to the latest upstream version to support FIPS mode.
+* Initial release of the SIMP Grafana component profile
+
+pupmod-simp-haveged
+"""""""""""""""""""
+
+* First release of the SIMP HAVEGED module which is a fork of the
+  moding/haveged module
+
+pupmod-simp-krb5
+""""""""""""""""
+
+* Full module update
+* Supports auto-creation of KRB5 keytabs for all systems
+* Added a native type ``krb5kdc_auto_keytabs`` to autogenerate keytabs from the
+  SIMP resident PKI certificates
+
+pupmod-simp-libreswan
+"""""""""""""""""""""
+
+* First release of a module for managing `libreswan`_ and IPSEC support
+
+pupmod-simp-logstash
+""""""""""""""""""""
+
+* First release of the rewritten SIMP Logstash component profile to be used in
+  conjunction with the pupmod-elasticsearch-logstash module.
 
 pupmod-simp-mcollective
 """""""""""""""""""""""
 
-* Updated the mcollective from the upstream `voxpupuli/puppet-mcollective`_
-  module.
-* Enabled `authorization plugin`_ support as a new default.
+* Our fork of the upstream MCollective module was updated to version 2.3.2
 
-pupmod-simp-openldap
-""""""""""""""""""""
+pupmod-simp-named
+"""""""""""""""""
 
-* Fixed the `default.ldif` template to modify the password setting defaults.
-  This will **not** affect a running LDAP server.
-* Ensure that `use_simp_pki` is now treated as a global catalyst.
-* Added support for using external (non-SIMP) certificates.
+* Users can modify the chroot path in named-chroot.service
+* Added a named::install class and fixed the ordering across the board
 
-pupmod-simp-pki
+pupmod-simp-nfs
 """""""""""""""
 
-* Allow the PKI content source to be modified so that you have a choice of
-  where to pull your certificates.
-  - Thanks to `Carl Caum`_ from `Puppet Labs`_ for this patch.
+* Incorporated KRB5 support (optional)
+* Fixed numerous logic errors and typos during acceptance testing
 
-pupmod-simp-rsyslog
+pupmod-simp-pam
+"""""""""""""""
+
+* Added support for `pam_tty_audit`_
+
+
+pupmod-simp-postfix
 """""""""""""""""""
 
-* Ensure that `use_simp_pki` is now treated as a global catalyst.
-* Added support for using templates when sending to remote targets.
-* Ensure that all module artifacts are now packaged with the RPM.
+* Added `haveged`_ for entropy generation
 
-pupmod-simp-simplib
+pupmod-simp-pupmod
+""""""""""""""""""
+
+* Added `haveged`_ for entropy generation
+
+pupmod-simp-selinux
 """""""""""""""""""
 
-* Added a `to_string()` function.
-* Added a `to_integer()` function.
-* Ensure that `use_simp_pki` is now treated as a global catalyst.
+* Ensure that ``policycoreutils-python`` is installed by default
+
+pupmod-simp-simp
+""""""""""""""""
+
+* Ensure that ``SSLVerifyClient`` can be controlled in ``ks.conf``
+* Use HTTPS YUM repos by default
+* Added the ``create_home_dirs`` script that used to be in the ``nfs`` module
 
 pupmod-simp-ssh
 """""""""""""""
 
-* Ensure that `use_simp_pki` is now treated as a global catalyst.
+* Added `haveged`_ for entropy generation
+* Ensure that ``semanage`` is used to handle non-standard ports
+* Added an ``openssh_version`` fact
+* Modified kex algorithm:
+
+  * No longer set kex prior to openssh v 5.7
+  * Curve25519 kex only set in openssh v 6.5+
+
 
 pupmod-simp-stunnel
 """""""""""""""""""
 
-* Ensure that `use_simp_pki` is now treated as a global catalyst.
+* Added `haveged`_ for entropy generation
 
-pupmod-simp-sysctl
-""""""""""""""""""
+pupmod-simp-windowmanager
+"""""""""""""""""""""""""
 
-* Migrate to using `augeasproviders_sysctl` for all sysctl activities.
-* This module will be deprecated in the next major release of SIMP.
+* Ensure that the login banner works in EL7
+* Add the ability to remove the login button in Gnome 3
+
+pupmod-simp-xwindows
+""""""""""""""""""""
+
+* Remove the ``gdm_version`` fact to be placed in ``simplib``
+
+simp-cli
+""""""""
+
+* Removed the deprecated ``simp check`` command
+
+simp-core
+"""""""""
+
+* Incorporated the ELG stack in the list of included modules
+* Added 'haveged' to the stack for persistent entropy
+* Enable HTTPS kickstarts by default
+* Fall back to unvalidated YUM HTTPS connections by default so that new systems
+  don't have to be bootstrapped with a trusted CA certificate. Our packages are
+  signed, so this should not be an issue.
 
 simp-doc
 """"""""
 
-* The documentation on setting up redundant LDAP servers was updated.
-* A section on using `The Foreman`_ with SIMP was added.
+* Full restructure of the documentation to be less confusing and more concise
+  for new users.
+
+DVD
+"""
+
+* Disable ISO auto-boot
+* Support UEFI Booting
+* Ensure that FIPS can be disabled at initial build
+* Provide an option for FDE directly from the ISO
 
 Known Bugs
 ^^^^^^^^^^
@@ -418,15 +593,15 @@ Known Bugs
   does *not* actually kill the service but is, instead, an error of the startup
   script and causes no damage to your system.
 
-.. _AIO: https://docs.puppetlabs.com/puppet/4.4/reference/whered_it_go.html
-.. _Carl Caum: https://github.com/ccaum
 .. _EOL: https://puppetlabs.com/misc/puppet-enterprise-lifecycle
-.. _Klaas Demter: https://github.com/Klaas-
-.. _Puppet Labs: https://puppetlabs.com/
-.. _Semantic Versioning 2.0.0: http://semver.org/spec/v2.0.0.html
-.. _The Foreman: http://theforeman.org/
-.. _authorization plugin: https://github.com/puppetlabs/mcollective-actionpolicy-auth
-.. _broken dependency: https://bugs.centos.org/view.php?id=10537
-.. _pupmod_simp_compliance_markup: https://github.com/simp/pupmod-simp-compliance_markup
+.. _simp puppet module: https://github.com/simp/pupmod-simp-simp/tree/master/manifests/nfs
+.. _acceptance test for the NFS puppet module: https://github.com/simp/pupmod-simp-nfs/tree/master/spec/acceptance/suites
+.. _krb5 module documentation: https://github.com/simp/pupmod-simp-krb5/blob/master/README.rst
+.. _simp mcollective acceptance test: https://github.com/simp/pupmod-simp-simp/blob/master/spec/acceptance/suites/default/01_mcollective_spec.rb
 .. _puppet 4: https://docs.puppetlabs.com/puppet/4.4/reference/
-.. _voxpupuli/puppet-mcollective: https://github.com/voxpupuli/puppet-mcollective
+.. _MCollective: https://docs.puppet.com/mcollective/
+.. _HArdware Volatile Entropy Gathering and Expansion Daemon: http://www.issihosts.com/haveged/ais31.html
+.. _haveged: http://www.issihosts.com/haveged/ais31.html
+.. _libreswan: https://libreswan.org/
+.. _CCE-26651-0: http://www.scaprepo.com/view.jsp?id=CCE-26651-0
+.. _pam_tty_audit: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Security_Guide/sec-Configuring_PAM_for_Auditing.html
