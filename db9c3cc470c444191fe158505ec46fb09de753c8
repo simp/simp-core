@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_4b7a4abb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-08-09T03:54:29Z",
+      "side": 1,
+      "message": "I don\u0027t see this very often.  Did you edit the file using  the GitHub editor?",
+      "range": {
+        "startLine": 4,
+        "startChar": 12,
+        "endLine": 4,
+        "endChar": 39
+      },
+      "revId": "db9c3cc470c444191fe158505ec46fb09de753c8",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_8badf232",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-08-09T03:54:29Z",
+      "side": 1,
+      "message": "The first line of the commit message should begin with an Issue name in parentheses [e.g., \"(SIMP-999)\"], followed by a summary of the change.  \n\nSee https://simp-project.atlassian.net/wiki/display/SD/Contributing+to+SIMP for more details.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 1
+      },
+      "revId": "db9c3cc470c444191fe158505ec46fb09de753c8",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_6ba86e20",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-08-09T03:54:29Z",
+      "side": 1,
+      "message": "Each commit message line line should be no longer than 72 characters.  \n\nSee https://simp-project.atlassian.net/wiki/display/SD/Contributing+to+SIMP for more details.",
+      "range": {
+        "startLine": 9,
+        "startChar": 72,
+        "endLine": 9,
+        "endChar": 97
+      },
+      "revId": "db9c3cc470c444191fe158505ec46fb09de753c8",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
