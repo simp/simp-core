@@ -456,8 +456,11 @@ keyutils
 keyutils-libs
 keyutils-libs-devel
 kpartx
+krb5-auth-dialog
 krb5-devel
 krb5-libs
+krb5-server
+krb5-server-ldap
 krb5-workstation
 lcms-libs
 less
