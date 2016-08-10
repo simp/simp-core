@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_d0b6fd87",
+        "filename": "Changelog.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1005194
+      },
+      "writtenOn": "2016-08-10T15:58:39Z",
+      "side": 1,
+      "message": "+a",
+      "revId": "29992205621e19ddce96b5b5ec5618e458346419",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
