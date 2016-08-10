@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_36708207",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-08-10T19:37:26Z",
+      "side": 1,
+      "message": "Lines after the 50-character topic sentence may extend to 72 characters (for an example, see step 4 of https://simp-project.atlassian.net/wiki/display/SD/Contributing+to+SIMP).\n\nIn the case of very trivial changes. it isn\u0027t always necessary to include further discussion beyond the first line.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 47
+      },
+      "revId": "d7621c705db15993765bcbb5c194be90a8a30c0f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_b68372ca",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-08-10T19:37:26Z",
+      "side": 1,
+      "message": "Jira directive don\u0027t use parentheses (for examples, see step 4 of https://simp-project.atlassian.net/wiki/display/SD/Contributing+to+SIMP)",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 11
+      },
+      "revId": "d7621c705db15993765bcbb5c194be90a8a30c0f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
