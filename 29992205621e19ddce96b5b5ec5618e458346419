@@ -134,6 +134,30 @@
     },
     {
       "key": {
+        "uuid": "baa041b7_f9032d0b",
+        "filename": "Changelog.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 487,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-08-10T20:23:38Z",
+      "side": 1,
+      "message": "\u003e already mentioned\n\nDisregard this review. \n\n`pupmod-simp-named` is mentioned in two different sections (Fixed Bugs vs New Features) with different bullets.  \n\nReference line 306.",
+      "parentUuid": "baa041b7_104fc592",
+      "range": {
+        "startLine": 483,
+        "startChar": 0,
+        "endLine": 487,
+        "endChar": 70
+      },
+      "revId": "29992205621e19ddce96b5b5ec5618e458346419",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa041b7_304c099d",
         "filename": "Changelog.rst",
         "patchSetId": 2
@@ -145,6 +169,30 @@
       "writtenOn": "2016-08-10T16:14:18Z",
       "side": 1,
       "message": "already mentioned",
+      "range": {
+        "startLine": 489,
+        "startChar": 0,
+        "endLine": 493,
+        "endChar": 65
+      },
+      "revId": "29992205621e19ddce96b5b5ec5618e458346419",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_79103d4e",
+        "filename": "Changelog.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-08-10T20:23:38Z",
+      "side": 1,
+      "message": "\u003e already mentioned\n\nDisregard this review. \n\n`pupmod-simp-nfs` is mentioned in two different sections (Fixed Bugs vs New Features) with different bullets.  \n\nHowever, it\u0027s not clear with \"Fixed numerous logic errors\" is a \"New Feature\" instead of a \"Fixed Bug\"\n\nReference line 312.",
+      "parentUuid": "baa041b7_304c099d",
       "range": {
         "startLine": 489,
         "startChar": 0,
@@ -180,6 +228,30 @@
     },
     {
       "key": {
+        "uuid": "baa041b7_b920059b",
+        "filename": "Changelog.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 521,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-08-10T20:23:38Z",
+      "side": 1,
+      "message": "\u003e already mentioned\n\nDisregard this review. \n\n`pupmod-simp-simp` is mentioned in two different sections (Fixed Bugs vs New Features) with different bullets.  \n\nReference line 352.",
+      "parentUuid": "baa041b7_905bd553",
+      "range": {
+        "startLine": 516,
+        "startChar": 0,
+        "endLine": 521,
+        "endChar": 77
+      },
+      "revId": "29992205621e19ddce96b5b5ec5618e458346419",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa041b7_9022b5b7",
         "filename": "Changelog.rst",
         "patchSetId": 2
@@ -191,6 +263,30 @@
       "writtenOn": "2016-08-10T16:14:18Z",
       "side": 1,
       "message": "lowercase",
+      "range": {
+        "startLine": 595,
+        "startChar": 5,
+        "endLine": 595,
+        "endChar": 6
+      },
+      "revId": "29992205621e19ddce96b5b5ec5618e458346419",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_f61c5a78",
+        "filename": "Changelog.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 595,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-08-10T20:23:38Z",
+      "side": 1,
+      "message": "\u003e lowercase\n\nDisregard this review (This is intentional―read all the uppercase letters like a word).",
+      "parentUuid": "baa041b7_9022b5b7",
       "range": {
         "startLine": 595,
         "startChar": 5,
