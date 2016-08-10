@@ -16,6 +16,190 @@
       "revId": "29992205621e19ddce96b5b5ec5618e458346419",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_d06ddd03",
+        "filename": "Changelog.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1005361
+      },
+      "writtenOn": "2016-08-10T16:14:18Z",
+      "side": 1,
+      "message": "apache",
+      "range": {
+        "startLine": 276,
+        "startChar": 12,
+        "endLine": 276,
+        "endChar": 17
+      },
+      "revId": "29992205621e19ddce96b5b5ec5618e458346419",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_9074f5ce",
+        "filename": "Changelog.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 433,
+      "author": {
+        "id": 1005361
+      },
+      "writtenOn": "2016-08-10T16:14:18Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 433,
+        "startChar": 0,
+        "endLine": 433,
+        "endChar": 7
+      },
+      "revId": "29992205621e19ddce96b5b5ec5618e458346419",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_707f31ab",
+        "filename": "Changelog.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 1005361
+      },
+      "writtenOn": "2016-08-10T16:14:18Z",
+      "side": 1,
+      "message": "isn\u0027t this pupmod-simp-simp_grafana?",
+      "range": {
+        "startLine": 448,
+        "startChar": 0,
+        "endLine": 448,
+        "endChar": 19
+      },
+      "revId": "29992205621e19ddce96b5b5ec5618e458346419",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_507aedba",
+        "filename": "Changelog.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 472,
+      "author": {
+        "id": 1005361
+      },
+      "writtenOn": "2016-08-10T16:14:18Z",
+      "side": 1,
+      "message": "isn\u0027t this pupmod-simp-simp_logstash?",
+      "range": {
+        "startLine": 472,
+        "startChar": 0,
+        "endLine": 472,
+        "endChar": 20
+      },
+      "revId": "29992205621e19ddce96b5b5ec5618e458346419",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_104fc592",
+        "filename": "Changelog.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 487,
+      "author": {
+        "id": 1005361
+      },
+      "writtenOn": "2016-08-10T16:14:18Z",
+      "side": 1,
+      "message": "already mentioned",
+      "range": {
+        "startLine": 483,
+        "startChar": 0,
+        "endLine": 487,
+        "endChar": 70
+      },
+      "revId": "29992205621e19ddce96b5b5ec5618e458346419",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_304c099d",
+        "filename": "Changelog.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 1005361
+      },
+      "writtenOn": "2016-08-10T16:14:18Z",
+      "side": 1,
+      "message": "already mentioned",
+      "range": {
+        "startLine": 489,
+        "startChar": 0,
+        "endLine": 493,
+        "endChar": 65
+      },
+      "revId": "29992205621e19ddce96b5b5ec5618e458346419",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_905bd553",
+        "filename": "Changelog.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 521,
+      "author": {
+        "id": 1005361
+      },
+      "writtenOn": "2016-08-10T16:14:18Z",
+      "side": 1,
+      "message": "already mentioned",
+      "range": {
+        "startLine": 516,
+        "startChar": 0,
+        "endLine": 521,
+        "endChar": 77
+      },
+      "revId": "29992205621e19ddce96b5b5ec5618e458346419",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_9022b5b7",
+        "filename": "Changelog.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 595,
+      "author": {
+        "id": 1005361
+      },
+      "writtenOn": "2016-08-10T16:14:18Z",
+      "side": 1,
+      "message": "lowercase",
+      "range": {
+        "startLine": 595,
+        "startChar": 5,
+        "endLine": 595,
+        "endChar": 6
+      },
+      "revId": "29992205621e19ddce96b5b5ec5618e458346419",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
     }
   ]
 }
