@@ -83,6 +83,7 @@ cp puppet.conf %{buildroot}/%{prefix}/puppet.conf.rpmnew
 %config(noreplace) %{prefix}/environments/simp/FakeCA/togen
 %config(noreplace) %{prefix}/environments/simp/FakeCA/usergen
 %config(noreplace) %{prefix}/environments/simp/hieradata/compliance_profiles/nist_800_53_rev4.yaml
+%config(noreplace) %{prefix}/environments/simp/hieradata/compliance_profiles/disa_stigs_EL7.yaml
 
 %defattr(0640,root,root,0750)
 %{prefix}/environments/simp/FakeCA
@@ -305,9 +306,12 @@ fi
 # Post uninstall stuff
 
 %changelog
-* Fri Aug 12 2016 Nick Miller <nick.miller@onyxpoint.com> - 4.3.1-0
+* Fri Aug 12 2016 Nick Miller <nick.miller@onyxpoint.com> - 5.3.1-0
 - Added keytab storage to site_files
 - Corrected site_files implementation to work with our krb5 implementation
+
+* Wed Aug 10 2016 Lisa Umberger <lisa.umberger@onyxpoint.com> - 5.3.1-0
+- Added a compliance profile for DISA STIG.
 
 * Thu Jul 07 2016 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.3.0-0
 - Moved to semantic versioning
