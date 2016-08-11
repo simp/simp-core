@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "baa041b7_65c1ae7f",
+        "filename": "src/puppet/bootstrap/build/simp-bootstrap.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1005194
+      },
+      "writtenOn": "2016-08-11T21:40:01Z",
+      "side": 1,
+      "message": "Unless it\u0027s part of a separate commit, these files don\u0027t exist",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 68
+      },
+      "revId": "931f45fb121db124feee155449ba5c5d879e0f6e",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa041b7_05d2e25b",
         "filename": "src/puppet/bootstrap/build/simp-bootstrap.spec",
         "patchSetId": 1
