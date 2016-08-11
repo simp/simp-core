@@ -27,7 +27,7 @@ This branch supports:
 ### Prerequisites
    - You must first:
      - [Set up your build environment](https://simp-project.atlassian.net/wiki/display/SD/Setting+up+your+build+environment)
-     - Download an appropriate source ISO to overlay (in this example
+     - Download an appropriate source ISO to overlay (in this example CentOS-7-x86_64-DVD-1511.iso)
      - If building the release tarballs from scratch:
         - ~70GB free in the mock root directory (generally this is `/var/lib/mock`)
 
