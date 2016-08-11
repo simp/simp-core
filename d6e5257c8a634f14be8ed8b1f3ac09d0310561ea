@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_ea990d20",
+        "filename": "README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-08-11T18:55:02Z",
+      "side": 1,
+      "message": "This should be the CentOS 6 ISO (see above)",
+      "revId": "d6e5257c8a634f14be8ed8b1f3ac09d0310561ea",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
