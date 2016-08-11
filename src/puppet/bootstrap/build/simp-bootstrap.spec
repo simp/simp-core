@@ -59,6 +59,9 @@ cp puppet.conf %{buildroot}/%{prefix}/puppet.conf.rpmnew
 %defattr(0640,root,puppet,0750)
 %{prefix}/environments/simp
 %dir %{prefix}/environments/simp/site_files
+%dir %{prefix}/environments/simp/site_files/krb5_files
+%dir %{prefix}/environments/simp/site_files/krb5_files/files
+%dir %{prefix}/environments/simp/site_files/krb5_files/files/keytabs
 %config(noreplace) %attr(0660,-,-) %{prefix}/environments/simp/localusers
 %attr(0750,puppet,puppet) %{prefix}/environments/simp/simp_autofiles
 %config(noreplace) %{prefix}/auth.conf.simp
