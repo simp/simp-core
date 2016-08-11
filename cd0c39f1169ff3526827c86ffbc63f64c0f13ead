@@ -1,0 +1,225 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_9c6f6f2a",
+        "filename": "src/puppet/bootstrap/environments/simp/hieradata/compliance_profiles/disa_stigs_EL6.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-08-11T11:37:11Z",
+      "side": 1,
+      "message": "Remove NOREF items after validation that they aren\u0027t being captured by some other text. This one should be implied *somewhere* even if it\u0027s by the ones below it.",
+      "revId": "cd0c39f1169ff3526827c86ffbc63f64c0f13ead",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_3c706307",
+        "filename": "src/puppet/bootstrap/environments/simp/hieradata/compliance_profiles/disa_stigs_EL6.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-08-11T11:37:11Z",
+      "side": 1,
+      "message": "Never SUSPEND, we need to just use SYSLOG and note that this is a deviation in order to keep the system running.\n\nThe default in the code should not be SUSPEND for these rules.",
+      "revId": "cd0c39f1169ff3526827c86ffbc63f64c0f13ead",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_1c623f3e",
+        "filename": "src/puppet/bootstrap/environments/simp/hieradata/compliance_profiles/disa_stigs_EL6.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-08-11T11:37:11Z",
+      "side": 1,
+      "message": "Remove Hard Tab",
+      "revId": "cd0c39f1169ff3526827c86ffbc63f64c0f13ead",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_9c564f5a",
+        "filename": "src/puppet/bootstrap/environments/simp/hieradata/compliance_profiles/disa_stigs_EL6.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-08-11T11:37:11Z",
+      "side": 1,
+      "message": "Fix single quotes inside single quotes",
+      "revId": "cd0c39f1169ff3526827c86ffbc63f64c0f13ead",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_5c4c47c7",
+        "filename": "src/puppet/bootstrap/environments/simp/hieradata/compliance_profiles/disa_stigs_EL6.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-08-11T11:37:11Z",
+      "side": 1,
+      "message": "Incorrect Array",
+      "revId": "cd0c39f1169ff3526827c86ffbc63f64c0f13ead",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_3c4743a4",
+        "filename": "src/puppet/bootstrap/environments/simp/hieradata/compliance_profiles/disa_stigs_EL6.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-08-11T11:37:11Z",
+      "side": 1,
+      "message": "Incorrect Array",
+      "revId": "cd0c39f1169ff3526827c86ffbc63f64c0f13ead",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_1cc91f26",
+        "filename": "src/puppet/bootstrap/environments/simp/hieradata/compliance_profiles/disa_stigs_EL6.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 463,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-08-11T11:37:11Z",
+      "side": 1,
+      "message": "Remove hard tab",
+      "revId": "cd0c39f1169ff3526827c86ffbc63f64c0f13ead",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_fccb1b1c",
+        "filename": "src/puppet/bootstrap/environments/simp/hieradata/compliance_profiles/disa_stigs_EL6.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-08-11T11:37:11Z",
+      "side": 1,
+      "message": "Incorrect Array",
+      "revId": "cd0c39f1169ff3526827c86ffbc63f64c0f13ead",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_dcce172c",
+        "filename": "src/puppet/bootstrap/environments/simp/hieradata/compliance_profiles/disa_stigs_EL6.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 595,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-08-11T11:37:11Z",
+      "side": 1,
+      "message": "Incorrect Array",
+      "revId": "cd0c39f1169ff3526827c86ffbc63f64c0f13ead",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_bcd113ce",
+        "filename": "src/puppet/bootstrap/environments/simp/hieradata/compliance_profiles/disa_stigs_EL6.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 598,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-08-11T11:37:11Z",
+      "side": 1,
+      "message": "Incorrect Array",
+      "revId": "cd0c39f1169ff3526827c86ffbc63f64c0f13ead",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_5ce327a4",
+        "filename": "src/puppet/bootstrap/environments/simp/hieradata/compliance_profiles/disa_stigs_EL6.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 697,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-08-11T11:37:11Z",
+      "side": 1,
+      "message": "Incorrect Array",
+      "revId": "cd0c39f1169ff3526827c86ffbc63f64c0f13ead",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_7cd82bef",
+        "filename": "src/puppet/bootstrap/environments/simp/hieradata/compliance_profiles/disa_stigs_EL6.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 700,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-08-11T11:37:11Z",
+      "side": 1,
+      "message": "Incorrect Array",
+      "revId": "cd0c39f1169ff3526827c86ffbc63f64c0f13ead",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_dce5f7a3",
+        "filename": "src/puppet/bootstrap/environments/simp/hieradata/compliance_profiles/disa_stigs_EL6.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 789,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-08-11T11:37:11Z",
+      "side": 1,
+      "message": "Incorrect Array",
+      "revId": "cd0c39f1169ff3526827c86ffbc63f64c0f13ead",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
