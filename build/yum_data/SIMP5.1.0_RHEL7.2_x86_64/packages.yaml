@@ -144,17 +144,17 @@ logstash-contrib:
   :rpm_name: logstash-contrib-1.4.2-1_efd53ef.noarch.rpm
   :source: https://download.elastic.co/logstash/logstash/packages/centos/logstash-contrib-1.4.2-1_efd53ef.noarch.rpm
 mcollective:
-  :rpm_name: mcollective-2.8.4-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-2.8.4-1.el7.noarch.rpm
+  :rpm_name: mcollective-2.8.9-1.el7.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-2.8.9-1.el7.noarch.rpm
 mcollective-actionpolicy-auth:
   :rpm_name: mcollective-actionpolicy-auth-2.1.0-1.el7.noarch.rpm
   :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-actionpolicy-auth-2.1.0-1.el7.noarch.rpm
 mcollective-client:
-  :rpm_name: mcollective-client-2.8.4-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-client-2.8.4-1.el7.noarch.rpm
+  :rpm_name: mcollective-client-2.8.9-1.el7.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-client-2.8.9-1.el7.noarch.rpm
 mcollective-common:
-  :rpm_name: mcollective-common-2.8.4-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-common-2.8.4-1.el7.noarch.rpm
+  :rpm_name: mcollective-common-2.8.9-1.el7.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-common-2.8.9-1.el7.noarch.rpm
 mcollective-filemgr-agent:
   :rpm_name: mcollective-filemgr-agent-1.1.0-1.el7.noarch.rpm
   :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-filemgr-agent-1.1.0-1.el7.noarch.rpm
@@ -201,14 +201,14 @@ mcollective-package-common:
   :rpm_name: mcollective-package-common-4.4.0-1.el7.noarch.rpm
   :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-package-common-4.4.0-1.el7.noarch.rpm
 mcollective-puppet-agent:
-  :rpm_name: mcollective-puppet-agent-1.10.0-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-puppet-agent-1.10.0-1.el7.noarch.rpm
+  :rpm_name: mcollective-puppet-agent-1.11.1-1.el7.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-puppet-agent-1.11.1-1.el7.noarch.rpm
 mcollective-puppet-client:
-  :rpm_name: mcollective-puppet-client-1.10.0-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-puppet-client-1.10.0-1.el7.noarch.rpm
+  :rpm_name: mcollective-puppet-client-1.11.1-1.el7.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-puppet-client-1.11.1-1.el7.noarch.rpm
 mcollective-puppet-common:
-  :rpm_name: mcollective-puppet-common-1.10.0-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-puppet-common-1.10.0-1.el7.noarch.rpm
+  :rpm_name: mcollective-puppet-common-1.11.1-1.el7.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-puppet-common-1.11.1-1.el7.noarch.rpm
 mcollective-service-agent:
   :rpm_name: mcollective-service-agent-3.1.3-1.el7.noarch.rpm
   :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-service-agent-3.1.3-1.el7.noarch.rpm
