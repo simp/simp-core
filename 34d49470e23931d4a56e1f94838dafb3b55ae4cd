@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_c01d0563",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-08-12T17:51:43Z",
+      "side": 1,
+      "message": "Speaking of commit authors...",
+      "range": {
+        "startLine": 3,
+        "startChar": 12,
+        "endLine": 3,
+        "endChar": 45
+      },
+      "revId": "34d49470e23931d4a56e1f94838dafb3b55ae4cd",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
