@@ -63,14 +63,11 @@ dracut-kernel:
   :rpm_name: dracut-kernel-004-388.el6.noarch.rpm
   :source: Red Hat Base Repository
 elasticsearch:
-  :rpm_name: elasticsearch-1.3.2.noarch.rpm
-  :source: https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.3.2.noarch.rpm
+  :rpm_name: elasticsearch-2.3.5.rpm
+  :source: https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/rpm/elasticsearch/2.3.5/elasticsearch-2.3.5.rpm
 elasticsearch-curator:
   :rpm_name: elasticsearch-curator-1.1.1-0.el6.noarch.rpm
   :source: https://dl.bintray.com/simp/4.2.X-Ext/elasticsearch-curator-1.1.1-0.el6.noarch.rpm
-es2unix:
-  :rpm_name: es2unix-1.6.1-0.el6.noarch.rpm
-  :source: https://dl.bintray.com/simp/4.2.X-Ext/es2unix-1.6.1-0.el6.noarch.rpm
 facter:
   :rpm_name: facter-2.4.6-1.el6.x86_64.rpm
   :source: http://yum.puppetlabs.com/el/6/products/x86_64/facter-2.4.6-1.el6.x86_64.rpm
@@ -161,6 +158,9 @@ globus-gssapi-gsi:
 globus-openssl-module:
   :rpm_name: globus-openssl-module-4.6-2.el6.x86_64.rpm
   :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/globus-openssl-module-4.6-2.el6.x86_64.rpm
+grafana:
+  :rpm_name: grafana-3.1.1-1470047149.x86_64.rpm
+  :source: https://packagecloud.io/grafana/stable/packages/el/6/grafana-3.1.1-1470047149.x86_64.rpm
 gpxe-bootimgs:
   :rpm_name: gpxe-bootimgs-0.9.7-6.14.el6.noarch.rpm
   :source: Red Hat Base Repository
@@ -212,9 +212,6 @@ kernel-firmware:
 kernel-headers:
   :rpm_name: kernel-headers-2.6.32-573.3.1.el6.x86_64.rpm
   :source: Red Hat Updates Repository
-kibana:
-  :rpm_name: kibana-3.1.0.SIMP-0.noarch.rpm
-  :source: https://dl.bintray.com/simp/4.2.X-Ext/kibana-3.1.0.SIMP-0.noarch.rpm
 lcgdm-libs:
   :rpm_name: lcgdm-libs-1.8.10-1.el6.x86_64.rpm
   :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/lcgdm-libs-1.8.10-1.el6.x86_64.rpm
@@ -249,11 +246,8 @@ libyaml-devel:
   :rpm_name: libyaml-devel-0.1.4-2.el6.x86_64.rpm
   :source: https://dl.bintray.com/simp/4.2.X-Ext/libyaml-devel-0.1.4-2.el6.x86_64.rpm
 logstash:
-  :rpm_name: logstash-1.4.2-1_2c0f5a1.noarch.rpm
-  :source: https://download.elasticsearch.org/logstash/logstash/packages/centos/logstash-1.4.2-1_2c0f5a1.noarch.rpm
-logstash-contrib:
-  :rpm_name: logstash-contrib-1.4.2-1_efd53ef.noarch.rpm
-  :source: https://download.elastic.co/logstash/logstash/packages/centos/logstash-contrib-1.4.2-1_efd53ef.noarch.rpm
+  :rpm_name: logstash-2.3.4-1.noarch.rpm
+  :source: https://download.elastic.co/logstash/logstash/packages/centos/logstash-2.3.4-1.noarch.rpm
 mcollective:
   :rpm_name: mcollective-2.8.9-1.el6.noarch.rpm
   :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-2.8.9-1.el6.noarch.rpm
