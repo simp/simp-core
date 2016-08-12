@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_80225d50",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-08-12T19:46:40Z",
+      "side": 1,
+      "message": "The git commit message should describe the patch (not the development workflow).  \n\nFor tiny fixes like this, a simple Jira comment might suffice:\n\n\n    (SIMP-1342) Bring 4.2.X README up-to-date\n\n    SIMP-1342 #close #comment Brought 4.2.X README up-to-date\n\n\nIf you\u0027d prefer to include a description block, then it\u0027s helpfule describe the situation without the patch, why this is a problem (if it isn\u0027t obvious), and how the patch fixes the problem:\n\n\n    (SIMP-1342) Bring 4.2.X README up-to-date\n\n    Without this patch, the simp-core README referred to outdated links and\n    EL versions.  The patch fixes the issue by bringing all EL versions to\n    `6.8`, future-proofing the BinTray tarball link, and correcting other\n    minor errors.\n\n\n    SIMP-1342 #close #comment Brought 4.2.X README up-to-date\n\n\n- A good template for commit message descriptions can be found in Puppet\u0027s contribution policy: https://github.com/puppetlabs/puppet/blob/master/CONTRIBUTING.md#making-changes\n- A starter SIMP commit message template can be found at https://simp-project.atlassian.net/wiki/display/SD/Contributing+to+SIMP",
+      "revId": "e3baaf26ccdee8d4112c6bb8768ff6c571d9109f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
