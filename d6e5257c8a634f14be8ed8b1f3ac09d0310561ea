@@ -65,6 +65,29 @@
     },
     {
       "key": {
+        "uuid": "baa041b7_a5269664",
+        "filename": "README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-08-12T00:27:45Z",
+      "side": 1,
+      "message": "This a blind link that will point to an obsolete .tar.gz unless we maintain this document quite regularly.  It might be more pragmatic to just link to the documentation for selecting and downloading tarballs.",
+      "range": {
+        "startLine": 43,
+        "startChar": 45,
+        "endLine": 43,
+        "endChar": 126
+      },
+      "revId": "d6e5257c8a634f14be8ed8b1f3ac09d0310561ea",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa041b7_6593eea3",
         "filename": "README.md",
         "patchSetId": 2
