@@ -15,8 +15,8 @@ This is the 4.2 series of the [SIMP](https://github.com/NationalSecurityAgency/S
 This branch supports:
   - [RHEL 6.8](https://access.redhat.com/downloads/)
   - CentOS 6.8
-    - [Disc 1](http://isoredirect.centos.org/centos/6.7/isos/x86_64/CentOS-6.7-x86_64-bin-DVD1.iso)
-    - [Disc 2](http://isoredirect.centos.org/centos/6.7/isos/x86_64/CentOS-6.7-x86_64-bin-DVD2.iso)
+    - [Disc 1](http://isoredirect.centos.org/centos/6.8/isos/x86_64/CentOS-6.8-x86_64-bin-DVD1.iso)
+    - [Disc 2](http://isoredirect.centos.org/centos/6.8/isos/x86_64/CentOS-6.8-x86_64-bin-DVD2.iso)
 
 
 ## Building the SIMP ISO
