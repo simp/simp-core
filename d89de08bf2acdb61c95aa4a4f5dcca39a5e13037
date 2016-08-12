@@ -1,0 +1,205 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_703e0ab9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-08-12T07:11:50Z",
+      "side": 1,
+      "message": "Please use the SIMP commit message format:\n\n    (SIMP-9999) Fix the broken thing [50 chars max]\n\n    Discussion about the fix (if needed) [each line: 72 chars max]\n\n    SIMP-9999 #comment Comment for the jira issue [72 chars max]\n\nFor more details, see https://simp-project.atlassian.net/wiki/display/SD/Contributing+to+SIMP",
+      "revId": "d89de08bf2acdb61c95aa4a4f5dcca39a5e13037",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_302d228f",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-08-12T07:11:50Z",
+      "side": 1,
+      "message": "6.7 → 6.8",
+      "range": {
+        "startLine": 16,
+        "startChar": 12,
+        "endLine": 16,
+        "endChar": 13
+      },
+      "revId": "d89de08bf2acdb61c95aa4a4f5dcca39a5e13037",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_104fbe6b",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-08-12T07:11:50Z",
+      "side": 1,
+      "message": "6.7 → 6.8",
+      "range": {
+        "startLine": 17,
+        "startChar": 13,
+        "endLine": 17,
+        "endChar": 14
+      },
+      "revId": "d89de08bf2acdb61c95aa4a4f5dcca39a5e13037",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_b020129b",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-08-12T07:11:50Z",
+      "side": 1,
+      "message": "6.7 → 6.8",
+      "range": {
+        "startLine": 18,
+        "startChar": 77,
+        "endLine": 18,
+        "endChar": 78
+      },
+      "revId": "d89de08bf2acdb61c95aa4a4f5dcca39a5e13037",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_d01dd662",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-08-12T07:11:50Z",
+      "side": 1,
+      "message": "6.7 → 6.8",
+      "range": {
+        "startLine": 19,
+        "startChar": 77,
+        "endLine": 19,
+        "endChar": 78
+      },
+      "revId": "d89de08bf2acdb61c95aa4a4f5dcca39a5e13037",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_1028de84",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-08-12T07:11:50Z",
+      "side": 1,
+      "message": "6.7 → 6.8",
+      "range": {
+        "startLine": 25,
+        "startChar": 74,
+        "endLine": 25,
+        "endChar": 75
+      },
+      "revId": "d89de08bf2acdb61c95aa4a4f5dcca39a5e13037",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_f02a1a7d",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-08-12T07:11:50Z",
+      "side": 1,
+      "message": "6.7 → 6.8",
+      "range": {
+        "startLine": 30,
+        "startChar": 79,
+        "endLine": 30,
+        "endChar": 80
+      },
+      "revId": "d89de08bf2acdb61c95aa4a4f5dcca39a5e13037",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_903ceec8",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-08-12T07:11:50Z",
+      "side": 1,
+      "message": "This a blind link that will point to an obsolete .tar.gz unless we maintain this document quite regularly. It might be more pragmatic to just link to the documentation for selecting and downloading tarballs.",
+      "range": {
+        "startLine": 43,
+        "startChar": 45,
+        "endLine": 43,
+        "endChar": 127
+      },
+      "revId": "d89de08bf2acdb61c95aa4a4f5dcca39a5e13037",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_5032e6f2",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-08-12T07:11:50Z",
+      "side": 1,
+      "message": "5.1.0 → 4.2.0",
+      "range": {
+        "startLine": 45,
+        "startChar": 96,
+        "endLine": 45,
+        "endChar": 101
+      },
+      "revId": "d89de08bf2acdb61c95aa4a4f5dcca39a5e13037",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
