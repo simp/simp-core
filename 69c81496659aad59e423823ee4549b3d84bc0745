@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_3d2dfaa7",
+        "filename": "README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-08-12T17:46:45Z",
+      "side": 1,
+      "message": "6.7 → 6.8",
+      "range": {
+        "startLine": 18,
+        "startChar": 75,
+        "endLine": 18,
+        "endChar": 78
+      },
+      "revId": "69c81496659aad59e423823ee4549b3d84bc0745",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_5d22feb9",
+        "filename": "README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-08-12T17:46:45Z",
+      "side": 1,
+      "message": "6.7 → 6.8",
+      "range": {
+        "startLine": 18,
+        "startChar": 52,
+        "endLine": 18,
+        "endChar": 55
+      },
+      "revId": "69c81496659aad59e423823ee4549b3d84bc0745",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_fd19d288",
+        "filename": "README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-08-12T17:46:45Z",
+      "side": 1,
+      "message": "6.7 → 6.8",
+      "range": {
+        "startLine": 19,
+        "startChar": 75,
+        "endLine": 19,
+        "endChar": 78
+      },
+      "revId": "69c81496659aad59e423823ee4549b3d84bc0745",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_1d28f695",
+        "filename": "README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-08-12T17:46:45Z",
+      "side": 1,
+      "message": "6.7 → 6.8",
+      "range": {
+        "startLine": 19,
+        "startChar": 52,
+        "endLine": 19,
+        "endChar": 55
+      },
+      "revId": "69c81496659aad59e423823ee4549b3d84bc0745",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
