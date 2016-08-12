@@ -1,6 +1,6 @@
 Summary: SIMP Bootstrap
 Name: simp-bootstrap
-Version: 5.3.1
+Version: 5.3.2
 Release: 0
 License: Apache License 2.0
 Group: Applications/System
@@ -301,11 +301,16 @@ fi
   fi
 )
 
+mkdir -p $envdir/site_files/krb5_files/files/keytabs
+
 %postun
 # Post uninstall stuff
 
 %changelog
-* Fri Aug 12 2016 Nick Miller <nick.miller@onyxpoint.com> - 4.3.1-0
+* Fri Aug 12 2016 Nick Miller <nick.miller@onyxpoint.com> - 5.3.2-0
+- Corrected and error in the spec file regarding the keytabs directory
+
+* Fri Aug 12 2016 Nick Miller <nick.miller@onyxpoint.com> - 5.3.1-0
 - Added keytab storage to site_files
 - Corrected site_files implementation to work with our krb5 implementation
 
