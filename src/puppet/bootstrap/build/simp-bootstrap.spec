@@ -1,6 +1,6 @@
 Summary: SIMP Bootstrap
 Name: simp-bootstrap
-Version: 5.3.0
+Version: 5.3.1
 Release: 0
 License: Apache License 2.0
 Group: Applications/System
@@ -59,6 +59,9 @@ cp puppet.conf %{buildroot}/%{prefix}/puppet.conf.rpmnew
 %defattr(0640,root,puppet,0750)
 %{prefix}/environments/simp
 %dir %{prefix}/environments/simp/site_files
+%dir %{prefix}/environments/simp/site_files/krb5_files
+%dir %{prefix}/environments/simp/site_files/krb5_files/files
+%dir %{prefix}/environments/simp/site_files/krb5_files/files/keytabs
 %config(noreplace) %attr(0660,-,-) %{prefix}/environments/simp/localusers
 %attr(0750,puppet,puppet) %{prefix}/environments/simp/simp_autofiles
 %config(noreplace) %{prefix}/auth.conf.simp
@@ -302,6 +305,10 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Fri Aug 12 2016 Nick Miller <nick.miller@onyxpoint.com> - 4.3.1-0
+- Added keytab storage to site_files
+- Corrected site_files implementation to work with our krb5 implementation
+
 * Thu Jul 07 2016 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.3.0-0
 - Moved to semantic versioning
 - Added support for a 'site_files' module path in the primary 'simp'
