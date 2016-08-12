@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "baa041b7_052e6242",
+        "filename": "src/puppet/bootstrap/build/simp-bootstrap.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-08-12T00:22:35Z",
+      "side": 1,
+      "message": "Bump it _good_.",
+      "parentUuid": "baa041b7_25e04625",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 14
+      },
+      "revId": "931f45fb121db124feee155449ba5c5d879e0f6e",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa041b7_65c1ae7f",
         "filename": "src/puppet/bootstrap/build/simp-bootstrap.spec",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2016-08-11T21:40:01Z",
       "side": 1,
       "message": "Unless it\u0027s part of a separate commit, these files don\u0027t exist",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 68
+      },
+      "revId": "931f45fb121db124feee155449ba5c5d879e0f6e",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_25fcc6b3",
+        "filename": "src/puppet/bootstrap/build/simp-bootstrap.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-08-12T00:22:35Z",
+      "side": 1,
+      "message": "\u003e Unless it\u0027s part of a separate commit, these files don\u0027t exist\n\nNo commit needed―these files are generated (and new with the krb5 update)",
+      "parentUuid": "baa041b7_65c1ae7f",
       "range": {
         "startLine": 62,
         "startChar": 0,
