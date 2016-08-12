@@ -6,8 +6,8 @@ activemq-info-provider:
   :rpm_name: activemq-info-provider-5.9.1-2.el7.noarch.rpm
   :source: http://yum.puppetlabs.com/el/7/dependencies/x86_64/activemq-info-provider-5.9.1-2.el7.noarch.rpm
 apr-util-ldap:
-  :source: http://denver.gaminghost.co/7.2.1511/os/x86_64/Packages/apr-util-ldap-1.5.2-6.el7.x86_64.rpm
   :rpm_name: apr-util-ldap-1.5.2-6.el7.x86_64.rpm
+  :source: http://denver.gaminghost.co/7.2.1511/os/x86_64/Packages/apr-util-ldap-1.5.2-6.el7.x86_64.rpm
 cfacter:
   :rpm_name: cfacter-0.3.0-1.el7.x86_64.rpm
   :source: http://yum.puppetlabs.com/el/7/products/x86_64/cfacter-0.3.0-1.el7.x86_64.rpm
@@ -54,20 +54,17 @@ clamav-update:
   :source: http://lug.mtu.edu/epel/7/x86_64/c/clamav-update-0.99.2-1.el7.x86_64.rpm
   :rpm_name: clamav-update-0.99.2-1.el7.x86_64.rpm
 elasticsearch:
-  :rpm_name: elasticsearch-1.3.2.noarch.rpm
-  :source: https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.3.2.noarch.rpm
+  :rpm_name: elasticsearch-2.3.5.rpm
+  :source: https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/rpm/elasticsearch/2.3.5/elasticsearch-2.3.5.rpm
 elasticsearch-curator:
   :rpm_name: elasticsearch-curator-1.1.1-0el7.noarch.rpm
   :source: https://dl.bintray.com/simp/5.1.X-Ext/elasticsearch-curator-1.1.1-0el7.noarch.rpm
-es2unix:
-  :rpm_name: es2unix-1.6.1-0el7.noarch.rpm
-  :source: https://dl.bintray.com/simp/5.1.X-Ext/es2unix-1.6.1-0el7.noarch.rpm
-etcd:
-  :rpm_name: etcd-2.0.11-0.SIMP.el7.x86_64.rpm
-  :source: https://dl.bintray.com/simp/5.1.X-Ext/etcd-2.0.11-0.SIMP.el7.x86_64.rpm
 facter:
   :rpm_name: facter-2.4.6-1.el7.x86_64.rpm
   :source: http://yum.puppetlabs.com/el/7/products/x86_64/facter-2.4.6-1.el7.x86_64.rpm
+grafana:
+  :rpm_name: grafana-3.1.1-1470047149.x86_64.rpm
+  :source: https://packagecloud.io/grafana/stable/packages/el/7/grafana-3.1.1-1470047149.x86_64.rpm
 gweb:
   :rpm_name: gweb-2.1.8-1.noarch.rpm
   :source: https://dl.bintray.com/simp/5.1.X-Ext/gweb-2.1.8-1.noarch.rpm
@@ -80,9 +77,6 @@ hiera:
 incron:
   :rpm_name: incron-0.5.10-8.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/i/incron-0.5.10-8.el7.x86_64.rpm
-kibana:
-  :rpm_name: kibana-3.1.0.SIMP-0.noarch.rpm
-  :source: https://dl.bintray.com/simp/5.1.X-Ext/kibana-3.1.0.SIMP-0.noarch.rpm
 libarchive-devel:
   :rpm_name: libarchive-devel-3.1.2-7.el7.x86_64.rpm
   :source: http://mirror.steadfast.net/centos/7.2.1511/os/x86_64/Packages/libarchive-devel-3.1.2-7.el7.x86_64.rpm
@@ -111,11 +105,8 @@ libsepol-static:
   :rpm_name: libsepol-static-2.1.9-3.el7.x86_64.rpm
   :source: http://mirror.steadfast.net/centos/7.2.1511/os/x86_64/Packages/libsepol-static-2.1.9-3.el7.x86_64.rpm
 logstash:
-  :rpm_name: logstash-1.4.2-1_2c0f5a1.noarch.rpm
-  :source: https://download.elasticsearch.org/logstash/logstash/packages/centos/logstash-1.4.2-1_2c0f5a1.noarch.rpm
-logstash-contrib:
-  :rpm_name: logstash-contrib-1.4.2-1_efd53ef.noarch.rpm
-  :source: https://download.elastic.co/logstash/logstash/packages/centos/logstash-contrib-1.4.2-1_efd53ef.noarch.rpm
+  :rpm_name: logstash-2.3.4-1.noarch.rpm
+  :source: https://download.elastic.co/logstash/logstash/packages/centos/logstash-2.3.4-1.noarch.rpm
 mcollective:
   :rpm_name: mcollective-2.8.9-1.el7.noarch.rpm
   :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-2.8.9-1.el7.noarch.rpm
