@@ -44,7 +44,7 @@ releasing SIMP 6 as the next major release.  Among major changes:
   * 6.0.0 and will support all operating systems under that numbering scheme
     henceforth.
 
-Manual Changes Requred for Pre-5.1.0 Upgrades
+Manual Changes Required for Pre-5.1.0 Upgrades
 ---------------------------------------------
 
 .. NOTE::
@@ -141,7 +141,7 @@ that the SIMP system performs by default was causing system entropy to run low
 on a regular basis. To fix this, we have incorporated the
 `HArdware Volatile Entropy Gathering and Expansion Daemon`_. The ``haveged``
 process will use a hardware RNG if present so no risk to hardware generated
-entropy is present. We understand that any PRNG system will not effect true
+entropy is present. We understand that any PRNG system will not affect true
 Cryptographic entropy. Please read the document linked above and see the online
 discussion around the suitability of HAVEGED if you have concerns.
 
@@ -187,7 +187,7 @@ capability as found in the :ref:`ig-disk-encryption` section of the
 .. WARNING::
   The default FDE setup ensures that your systems will automatically boot
   without intervention. For better protection, please read the documentation
-  referenced above so that you understand the ramfications of this behavior.
+  referenced above so that you understand the ramifications of this behavior.
 
 Puppet 4 Support
 ^^^^^^^^^^^^^^^^
@@ -580,8 +580,8 @@ simp-core
 * Added ``haveged`` to the stack for persistent entropy
 * Enable HTTPS kickstarts by default
 * Fall back to unvalidated YUM HTTPS connections by default so that new systems
-  don't have to be bootstrapped with a trusted CA certificate. Our packages are
-  signed, so this should not be an issue.
+  do not have to be bootstrapped with a trusted CA certificate. Our packages
+  are signed, so this should not be an issue.
 
 simp-doc
 ^^^^^^^^

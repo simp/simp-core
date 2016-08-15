@@ -1,0 +1,1 @@
+/var/simp(/.*)?     system_u:object_r:puppet_var_lib_t:s0
