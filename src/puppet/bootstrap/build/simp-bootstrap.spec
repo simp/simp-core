@@ -1,3 +1,9 @@
+%global selinux_policyver %(%{__sed} -e %'s,.*selinux-policy-\\([^/]*\\)/.*,\\1,' %/usr/share/selinux/devel/policyhelp 2>/dev/null || echo 0.0.0)
+%global selinux_variants targeted
+
+%define selinux_policy_short simp-bootstrap
+%define selinux_policy %{selinux_policy_short}.pp
+
 Summary: SIMP Bootstrap
 Name: simp-bootstrap
 Version: 5.3.1
@@ -6,6 +12,8 @@ License: Apache License 2.0
 Group: Applications/System
 Source: %{name}-%{version}-%{release}.tar.gz
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
+Requires: libselinux-utils
+Requires: policycoreutils
 Requires: puppet >= 3.6.0
 Requires: pupmod-simp >= 0.0.1
 Requires: pupmod-pki >= 4.1.0-3
@@ -18,6 +26,14 @@ Requires: sudo
 Requires(post): coreutils
 Requires(post): glibc-common
 Requires(post): pam
+Requires(post): libsemanage
+Requires(post): selinux-policy >= %{selinux_policyver}
+Requires(post): selinux-policy-targeted >= %{selinux_policyver}
+Requires(postun): policycoreutils
+BuildRequires: selinux-policy-targeted
+%if "%{?rhel}%{!?rhel:0}" > "6"
+BuildRequires: selinux-policy-devel
+%endif
 Provides: simp_bootstrap
 Obsoletes: simp_bootstrap
 Obsoletes: simp_config
@@ -35,6 +51,9 @@ using a default 'simp' Puppet Environment.
 %setup -q
 
 %build
+cd build/selinux
+  make -f %{_datadir}/selinux/devel/Makefile
+cd -
 
 %install
 [ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
@@ -44,6 +63,7 @@ mkdir -p %{buildroot}/%{prefix}/environments/simp/hieradata/hostgroups
 mkdir -p %{buildroot}/%{prefix}/environments/simp/modules
 mkdir -p %{buildroot}/%{prefix}/environments/simp/simp_autofiles
 mkdir -p %{buildroot}/%{prefix}/environments/simp/hieradata/compliance_profiles
+mkdir -p %{buildroot}/%{_var}/simp/environments/simp/site_files/krb5_files/files/keytabs
 
 # Now install the files.
 cp -r environments %{buildroot}/%{prefix}
@@ -52,18 +72,26 @@ cp autosign.conf %{buildroot}/%{prefix}
 cp hiera.yaml %{buildroot}/%{prefix}
 cp puppet.conf %{buildroot}/%{prefix}/puppet.conf.rpmnew
 
+cd build/selinux
+  install -p -m 644 -D %{selinux_policy} %{buildroot}/%{_datadir}/selinux/packages/%{selinux_policy}
+cd -
+
 %clean
 [ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
 
 %files
+%defattr(-,root,root)
+%{_datadir}/selinux/*/%{selinux_policy}
+
 %defattr(0640,root,puppet,0750)
 %{prefix}/environments/simp
 %dir %{prefix}/environments/simp/site_files
-%dir %{prefix}/environments/simp/site_files/krb5_files
-%dir %{prefix}/environments/simp/site_files/krb5_files/files
-%dir %{prefix}/environments/simp/site_files/krb5_files/files/keytabs
 %config(noreplace) %attr(0660,-,-) %{prefix}/environments/simp/localusers
 %attr(0750,puppet,puppet) %{prefix}/environments/simp/simp_autofiles
+%attr(0750,root,puppet) %{_var}/simp/environments/simp/site_files
+%attr(0750,root,puppet) %{_var}/simp/environments/simp/site_files/krb5_files
+%attr(0750,root,puppet) %{_var}/simp/environments/simp/site_files/krb5_files/files
+%attr(0750,root,puppet) %{_var}/simp/environments/simp/site_files/krb5_files/files/keytabs
 %config(noreplace) %{prefix}/auth.conf.simp
 %config(noreplace) %{prefix}/autosign.conf
 %config(noreplace) %{prefix}/hiera.yaml
@@ -83,7 +111,7 @@ cp puppet.conf %{buildroot}/%{prefix}/puppet.conf.rpmnew
 %config(noreplace) %{prefix}/environments/simp/FakeCA/togen
 %config(noreplace) %{prefix}/environments/simp/FakeCA/usergen
 %config(noreplace) %{prefix}/environments/simp/hieradata/compliance_profiles/nist_800_53_rev4.yaml
-%config(noreplace) %{prefix}/environments/simp/hieradata/compliance_profiles/disa_stigs_EL7.yaml
+%config(noreplace) %{prefix}/environments/simp/hieradata/compliance_profiles/disa_stig_el7.yaml
 
 %defattr(0640,root,root,0750)
 %{prefix}/environments/simp/FakeCA
@@ -93,6 +121,12 @@ cp puppet.conf %{buildroot}/%{prefix}/puppet.conf.rpmnew
 %attr(0750,-,-) %{prefix}/environments/simp/FakeCA/usergen_nopass.sh
 
 %post
+/usr/bin/semodule -n -i %{_datadir}/selinux/packages/%{selinux_policy}
+if /usr/sbin/selinuxenabled; then
+  /usr/sbin/load_policy
+  /sbin/fixfiles -R %{name} restore || :
+fi
+
 if [ "$1" == "2" ]; then
   # If we're upgrading be sure to whack the old puppetd cron job!
   puppet resource cron puppetd ensure=absent
@@ -146,12 +180,14 @@ done
 
 chmod 2770 %{prefix}/environments/simp
 
-(
-  cd %{prefix}/environments
-  if [ ! -d production ]; then
-    ln -s simp production
-  fi
-)
+for env in %{prefix}/environments /var/simp/environments; do
+  (
+    cd $env
+    if [ ! -d production ]; then
+      ln -s simp production
+    fi
+  )
+done
 
 chown root:puppet %{prefix};
 chgrp -R puppet %{prefix};
@@ -190,7 +226,7 @@ if [ $? -ne 0 ]; then
   if [ "$rootpw" != '*' ] && [ -n "$rootpw" ]; then
     groupadd -g 777 simp;
 
-    useradd -d /var/local/simp -g simp -m -p $rootpw -s /bin/bash -u 777 -K PASS_MAX_DAYS=90 -K PASS_MIN_DAYS=1 -K PASS_WARN_AGE=7 simp;
+    useradd -d %{_var}/local/simp -g simp -m -p $rootpw -s /bin/bash -u 777 -K PASS_MAX_DAYS=90 -K PASS_MIN_DAYS=1 -K PASS_WARN_AGE=7 simp;
     usermod -aG wheel simp;
 
     chage -d 0 simp;
@@ -229,7 +265,7 @@ fi
 /sbin/chkconfig --list puppetmaster >& /dev/null
 if [ $? -eq 0 ]; then
   /sbin/service puppetmaster stop;
-  /bin/rm /var/run/puppet/puppetmasterd.pid >& /dev/null;
+  /bin/rm %{_var}/run/puppet/puppetmasterd.pid >& /dev/null;
   /sbin/service puppetmaster start;
 fi
 
@@ -304,8 +340,19 @@ fi
 
 %postun
 # Post uninstall stuff
+if [ $1 -eq 0 ]; then
+  /usr/sbin/semodule -n -r %{selinux_policy_short}
+  if /usr/sbin/selinuxenabled; then
+    /usr/sbin/load_policy
+    /sbin/fixfiles -R %{name} restore || :
+  fi
+fi
 
 %changelog
+* Mon Aug 15 2016 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.3.1-0
+- Relocated the 'site_files' directory and created a custom selinux policy for
+  the included files.
+
 * Fri Aug 12 2016 Nick Miller <nick.miller@onyxpoint.com> - 5.3.1-0
 - Added keytab storage to site_files
 - Corrected site_files implementation to work with our krb5 implementation
