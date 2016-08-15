@@ -25,7 +25,7 @@ This release is known to work with:
 
 This is a **backwards compatible** release in the 4.X series of SIMP.
 
-Manual Changes Requred for Legacy Upgrades
+Manual Changes Required for Legacy Upgrades
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * Bugs in the `simplib::secure_mountpoints` class (formerly
