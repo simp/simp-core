@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_ec32420f",
+        "filename": "Changelog.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1005194
+      },
+      "writtenOn": "2016-08-15T22:07:13Z",
+      "side": 1,
+      "message": "reverted.",
+      "range": {
+        "startLine": 351,
+        "startChar": 0,
+        "endLine": 354,
+        "endChar": 37
+      },
+      "revId": "9c3a6feae24c4086fa5e5a15f5e4b68fc2c94313",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
