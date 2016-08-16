@@ -1,5 +1,0 @@
-[scl-ruby193]
-name=scl-ruby193
-baseurl=https://www.softwarecollections.org/repos/rhscl/ruby193/epel-6-x86_64/
-enabled=1
-gpgcheck=0
