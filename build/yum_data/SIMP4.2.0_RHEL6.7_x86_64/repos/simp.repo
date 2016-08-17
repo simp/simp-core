@@ -1,7 +1,0 @@
-[simp-base]
-name=simp-base
-baseurl=https://dl.bintray.com/simp/4.2.X
-
-[simp-ext]
-name=simp-ext
-baseurl=https://dl.bintray.com/simp/4.2.X-Ext
