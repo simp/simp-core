@@ -1,7 +1,7 @@
 Summary: SIMP Utils
 Name: simp-utils
-Version: 5.0.0
-Release: 8
+Version: 5.0.1
+Release: 1
 License: Apache License, Version 2.0
 Group: Applications/System
 Source: %{name}-%{version}-%{release}.tar.gz
@@ -62,6 +62,10 @@ chmod -R u=rwX,g=rX,o=rX %{buildroot}/usr/share/man
 # Post uninstall stuff
 
 %changelog
+* Thu Aug 25 2016 Liz Nemsick <lnemsick.simp@gmail.com> - 5.0.1-1
+  Removed man pages for simp utility, as simp command line provides
+  up-to-date usage.
+
 * Thu Nov 05 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.0.0-8
 - Added a 'hiera_upgrade' script that moves away from the SIMP patched one to
   the use of the 'alias' function.
