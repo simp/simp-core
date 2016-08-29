@@ -35,6 +35,30 @@ compliance::disa_stig_el7::auditd::default_audit_profile :
   'identifier' : ['RHEL-07-030240','SRG-OS-000239-GPOS-00089','SRG-OS-000241-GPOS-00090','SRG-OS-000241-GPOS-00091','CCI-001403']
   'value' : 'simp'
   'notes' : 'The SIMP profile applies a base set of audit rules that adhere to guidance from several sources'
+compliance::disa_stig_el7::auditd::config::audit_profiles::simp::audit_unsuccessful_file_operations :
+  'identifier' : ['SRG-OS-000064-GPOS-00033','SRG-OS-000392-GPOS-00172','SRG-OS-000458-GPOS-00203','RHEL-07-030420','RHEL-07-030750']
+  'value' : true
+compliance::disa_stig_el7::auditd::config::audit_profiles::simp::audit_permissions :
+  'identifier' : ['SRG-OS-000064-GPOS-00033','SRG-OS-000392-GPOS-00172','SRG-OS-000458-GPOS-00203','RHEL-07-030390','RHEL-07-030381','SRG-OS-000474-GPOS-00219','SRG-OS-000474-GPOS-00219','RHEL-07-030383','RHEL-07-030404','RHEL-07-030401','SRG-OS-000474-GPOS-00219','RHEL-07-030382','RHEL-07-030405','RHEL-07-030402','RHEL-07-030403','RHEL-07-030400']
+  'value' : true
+compliance::disa_stig_el7::auditd::config::audit_profiles::simp::audit_su_root_activity :
+  'identifier' : ['SRG-OS-000327-GPOS-00127','RHEL-07-030310']
+  'value' : true
+compliance::disa_stig_el7::auditd::config::audit_profiles::simp::audit_suid_sgid :
+  'identifier' : ['SRG-OS-000042-GPOS-00020','SRG-OS-000392-GPOS-00172','RHEL-07-030530']
+  'value' : true
+compliance::disa_stig_el7::auditd::config::audit_profiles::simp::audit_kernel_modules :
+  'identifier' : ['SRG-OS-000471-GPOS-00216','SRG-OS-000477','GPOS-00222','RHEL-07-030670']
+  'value' : true
+compliance::disa_stig_el7::auditd::config::audit_profiles::simp::audit_time :
+  'identifier' : ['SRG-OS-000255-GPOS-00096','CCI-001487']
+  'value' : true
+compliance::disa_stig_el7::auditd::config::audit_profiles::simp::audit_local_account :
+  'identifier' : [' RHEL-07-030710','SRG–OS–000004–GPOS–00004','SRG–OS–000239–GPOS–00089','SRG–OS–000241–GPOS–00090','SRG–OS–000241–GPOS–00091','SRG–OS–000303–GPOS–00120','SRG–OS–000476–GPOS–00221']
+  'value' : true
+compliance::disa_stig_el7::auditd::config::audit_profiles::simp::audit_login_files :
+  'identifier' : ['SRG-OS-000392-GPOS-00172','SRG-OS-000470-GPOS-00214','SRG-OS-000473-GPOS-00218','RHEL-07-030490']
+  'value' : true
 
 #aide
 compliance::disa_stig_el7::aide::enable :
