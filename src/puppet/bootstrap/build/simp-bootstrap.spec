@@ -6,7 +6,7 @@
 
 Summary: SIMP Bootstrap
 Name: simp-bootstrap
-Version: 5.3.1
+Version: 5.3.2
 Release: 0
 License: Apache License 2.0
 Group: Applications/System
@@ -347,6 +347,9 @@ if [ $1 -eq 0 ]; then
 fi
 
 %changelog
+* Thu Sep 01 2016 Ralph Wright <ralph.wright@onyxpoint.com> - 5.3.2-0
+- Modified compliance files to handle updated audit rules.
+
 * Mon Aug 15 2016 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.3.1-0
 - Relocated the 'site_files' directory and created a custom selinux policy for
   the included files.
