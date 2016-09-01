@@ -30,11 +30,31 @@ compliance::disa_stigs_el6::auditd::space_left_action :
 compliance::disa_stigs_el6::auditd::disk_full_action :
   'identifier' : ['RHEL-06-000510','SRG-OS-000047','CCI-000140']
   'value' : 'SUSPEND'
-# For now just check that the simp profile is applied
 compliance::disa_stigs_el6::auditd::default_audit_profile :
   'identifier' : ['RHEL-06-000154','SRG-OS-000037','CCI-000130']
   'value' : 'simp'
   'notes' : 'The SIMP profile applies a base set of audit rules that adhere to guidance from several sources'
+compliance::disa_stig_el6::auditd::config::audit_profiles::simp::audit_unsuccessful_file_operations :
+  'identifier' : ['SRG-OS-000064-GPOS-00033','SRG-OS-000392-GPOS-00172','SRG-OS-000458-GPOS-00203','RHEL-06-000197','CCI-000172']
+  'value' : true
+compliance::disa_stig_el6::auditd::config::audit_profiles::simp::audit_permissions :
+  'identifier' : ['SRG-OS-000064-GPOS-00033','SRG-OS-000392-GPOS-00172','SRG-OS-000458-GPOS-00203','SRG-OS-000474-GPOS-00219','SRG-OS-000474-GPOS-00219','SRG-OS-000474-GPOS-00219','RHEL-06-000184','CCI-000172','RHEL-06-000185','RHEL-06-000186','RHEL-06-000187','RHEL-06-000188','RHEL-06-000188','RHEL-06-000189','RHEL-06-000190','RHEL-06-000190','RHEL-06-000191','RHEL-06-000192','RHEL-06-000193','RHEL-06-000194','RHEL-06-000195','RHEL-06-000196']
+  'value' : true
+compliance::disa_stig_el6::auditd::config::audit_profiles::simp::audit_su_root_activity :
+  'identifier' : ['SRG-OS-000327-GPOS-00127','RHEL-06-000198','CCI-000040']
+  'value' : true
+compliance::disa_stig_el6::auditd::config::audit_profiles::simp::audit_suid_sgid :
+  'identifier' : ['SRG-OS-000042-GPOS-00020','SRG-OS-000392-GPOS-00172','RHEL-06-000199','CCI-000172']
+  'value' : true
+compliance::disa_stig_el6::auditd::config::audit_profiles::simp::audit_kernel_modules :
+  'identifier' : ['SRG-OS-000471-GPOS-00216','SRG-OS-000477','GPOS-00222','RHEL-06-000202','CCI-000172']
+  'value' : true
+compliance::disa_stig_el6::auditd::config::audit_profiles::simp::audit_time :
+  'identifier' : ['RHEL-06-000167','CCI-000169','RHEL-06-000169','RHEL-06-000171','RHEL-06-000173']
+  'value' : true
+compliance::disa_stig_el6::auditd::config::audit_profiles::simp::audit_local_account :
+  'identifier' : ['RHEL-06-000174','CCI-000018','RHEL-06-000175']
+  'value' : true
 
 #aide
 compliance::disa_stigs_el6::aide::enable :

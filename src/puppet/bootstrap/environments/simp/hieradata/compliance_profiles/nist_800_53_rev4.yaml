@@ -50,7 +50,6 @@ compliance::nist_800_53_rev4::auditd::disk_error_action :
 compliance::nist_800_53_rev4::auditd::admin_space_left_action :
   'identifier' : ['AU-4','AU-5(b)','AU-11']
   'value' : 'SUSPEND'
-# For now just check that the simp profile is applied
 compliance::nist_800_53_rev4::auditd::default_audit_profile :
   'identifier' : ['AU-2(a)','AU-2(c)','AU-2(d)','AC-6(9)','AU-12(a)','AU-12(c)']
   'value' : 'simp'
@@ -58,6 +57,90 @@ compliance::nist_800_53_rev4::auditd::default_audit_profile :
 compliance::nist_800_53_rev4::auditd::failure_mode :
   'identifier' : 'AU-5(b)'
   'value' : '2'
+compliance::nist_800_53_rev4::auditd::config::audit_profiles::simp::ignore_errors :
+  'identifier' : 'AU-2'
+  'value' : true
+compliance::nist_800_53_rev4::auditd::config::audit_profiles::simp::ignore_anonymous :
+  'identifier' : 'AU-2'
+  'value' : true
+compliance::nist_800_53_rev4::auditd::config::audit_profiles::simp::ignore_system_services :
+  'identifier' : 'AU-2'
+  'value' : true
+compliance::nist_800_53_rev4::auditd::config::audit_profiles::simp::audit_unsuccessful_file_operations :
+  'identifier' : 'AU-2'
+  'value' : true
+compliance::nist_800_53_rev4::auditd::config::audit_profiles::simp::audit_permissions :
+  'identifier' : 'AU-2'
+  'value' : true
+compliance::nist_800_53_rev4::auditd::config::audit_profiles::simp::audit_su_root_activity :
+  'identifier' : 'AU-2'
+  'value' : true
+compliance::nist_800_53_rev4::auditd::config::audit_profiles::simp::audit_suid_sgid :
+  'identifier' : 'AU-2'
+  'value' : true
+compliance::nist_800_53_rev4::auditd::config::audit_profiles::simp::audit_kernel_modules :
+  'identifier' : 'AU-2'
+  'value' : true
+compliance::nist_800_53_rev4::auditd::config::audit_profiles::simp::audit_time :
+  'identifier' : 'AU-2'
+  'value' : true
+compliance::nist_800_53_rev4::auditd::config::audit_profiles::simp::audit_locale :
+  'identifier' : 'AU-2'
+  'value' : true
+compliance::nist_800_53_rev4::auditd::config::audit_profiles::simp::audit_mount :
+  'identifier' : 'AU-2'
+  'value' : true
+compliance::nist_800_53_rev4::auditd::config::audit_profiles::simp::audit_umask :
+  'identifier' : 'AU-2'
+  'value' : false
+compliance::nist_800_53_rev4::auditd::config::audit_profiles::simp::audit_local_account :
+  'identifier' : 'AU-2'
+  'value' : true
+compliance::nist_800_53_rev4::auditd::config::audit_profiles::simp::audit_selinux_policy :
+  'identifier' : 'AU-2'
+  'value' : true
+compliance::nist_800_53_rev4::auditd::config::audit_profiles::simp::audit_login_files :
+  'identifier' : 'AU-2'
+  'value' : true
+compliance::nist_800_53_rev4::auditd::config::audit_profiles::simp::audit_session_files :
+  'identifier' : 'AU-2'
+  'value' : true
+compliance::nist_800_53_rev4::auditd::config::audit_profiles::simp::audit_sudoers :
+  'identifier' : 'AU-2'
+  'value' : true
+compliance::nist_800_53_rev4::auditd::config::audit_profiles::simp::audit_grub :
+  'identifier' : 'AU-2'
+  'value' : true
+compliance::nist_800_53_rev4::auditd::config::audit_profiles::simp::audit_cfg_sys :
+  'identifier' : 'AU-2'
+  'value' : true
+compliance::nist_800_53_rev4::auditd::config::audit_profiles::simp::audit_cfg_cron :
+  'identifier' : 'AU-2'
+  'value' : true
+compliance::nist_800_53_rev4::auditd::config::audit_profiles::simp::audit_cfg_shell :
+  'identifier' : 'AU-2'
+  'value' : true
+compliance::nist_800_53_rev4::auditd::config::audit_profiles::simp::audit_cfg_pam :
+  'identifier' : 'AU-2'
+  'value' : true
+compliance::nist_800_53_rev4::auditd::config::audit_profiles::simp::audit_cfg_security :
+  'identifier' : 'AU-2'
+  'value' : true
+compliance::nist_800_53_rev4::auditd::config::audit_profiles::simp::audit_cfg_services :
+  'identifier' : 'AU-2'
+  'value' : true
+compliance::nist_800_53_rev4::auditd::config::audit_profiles::simp::audit_cfg_xinetd :
+  'identifier' : 'AU-2'
+  'value' : true
+compliance::nist_800_53_rev4::auditd::config::audit_profiles::simp::audit_yum :
+  'identifier' : 'AU-2'
+  'value' : true
+compliance::nist_800_53_rev4::auditd::config::audit_profiles::simp::audit_ptrace :
+  'identifier' : 'AU-2'
+  'value' : true
+compliance::nist_800_53_rev4::auditd::config::audit_profiles::simp::audit_personality :
+  'identifier' : 'AU-2'
+  'value' : true
 
 #aide
 compliance::nist_800_53_rev4::aide::enable :
