@@ -45,7 +45,7 @@ releasing SIMP 6 as the next major release.  Among major changes:
     henceforth.
 
 Manual Changes Required for Pre-5.1.0 Upgrades
----------------------------------------------
+----------------------------------------------
 
 .. NOTE::
   This only affects you if you did not have a separate partition for ``/tmp``!
