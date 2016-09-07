@@ -241,10 +241,10 @@ RPM Updates
 -----------
 
 .. NOTE::
-The naming convention for Puppet module packages was re-codified from
-`pupmod-<module_name>` to `pupmod-<author>-<module_name>`.  This accounts for
-a large number of apparent deprecations and additions in this release's RPM
-Updates list.
+  The naming convention for Puppet module packages was re-codified from
+  `pupmod-<module_name>` to `pupmod-<author>-<module_name>`.  This accounts for
+  a large number of apparent deprecations and additions in this release's RPM
+  Updates list.
 
 +------------------------------------------------+-----------------+--------------------+
 | Package                                        | Old Version     | New Version        |

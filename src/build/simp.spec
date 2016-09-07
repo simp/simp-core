@@ -1,7 +1,7 @@
 Summary: SIMP Full Install
 Name: simp
-Version: 5.1.0
-Release: 4.Alpha%{?snapshot_release}
+Version: 5.2.0
+Release: 0%{?snapshot_release}
 License: Apache License, Version 2.0
 Group: Applications/System
 Source: %{name}-%{version}-%{release}.tar.gz
@@ -77,15 +77,11 @@ fi
 # Post uninstall stuff
 
 %changelog
-* Mon Jul 11 2016 Nick Miller <nick.miller@onyxpoint.com> - 5.1.0-4.Alpha
-- Added a default hostgroup value
-- Added a default `hieradata/default.yaml` and `hieradata/hostgroups/default.yaml`
-
-* Wed Jun 22 2016 Nick Markowski <nmarkowski@keywcorp.com> - 5.1.0-4.Alpha
-- simp/puppet-haveged is now included in the module stack.
-
-* Mon Apr 04 2016 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.1.0-4.Alpha
-- Preparing for the next release cycle
+* Tue Sep 06 2016 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.2.0-0
+- Release of 5.2.0-0
+  - Numerous bug fixes and enhancements, see the Changelog
+  - This *is* a breaking change, but centered around non-core modules,
+    particularly NFS
 
 * Sat Mar 26 2016 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.1.0-3
 - Release 5.1.0-3
