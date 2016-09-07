@@ -1,7 +1,7 @@
 Summary: SIMP Full Install
 Name: simp
-Version: 4.2.0
-Release: 3.Alpha%{?snapshot_release}
+Version: 4.3.0
+Release: 0%{?snapshot_release}
 License: Apache License, Version 2.0
 Group: Applications/System
 Source: %{name}-%{version}-%{release}.tar.gz
@@ -77,24 +77,17 @@ fi
 # Post uninstall stuff
 
 %changelog
-* Fri Jul 15 2016 Nick Markowski <nmarkowski@keywcorp.com> - 4.2.0-3.Alpha
-- Updated release mapping for RedHat 6.8
+* Tue Sep 06 2016 Trevor Vaughan <tvaughan@onyxpoint.com> - 4.3.0-0
+- Release of 4.3.0-0
+  - Numerous bug fixes and enhancements, see the Changelog
+  - This *is* a breaking change, but centered around non-core modules,
+    particularly NFS
 
-* Tue Jul 12 2016 Nick Markowski <nmarkowski@keywcorp.com> - 4.2.0-3.Alpha
-- Updated for CentOS 6.8:
+* Fri Jul 15 2016 Nick Markowski <nmarkowski@keywcorp.com> - 4.3.0-0
+- Updated release mapping for EL 6.8
 -  Do not prune list
 -  Packages.yaml
 -  Release mapping
-
-* Mon Jul 11 2016 Nick Miller <nick.miller@onyxpoint.com> - 4.2.0-3.Alpha
-- Added a default hostgroup value
-- Added a default `hieradata/default.yaml` and `hieradata/hostgroups/default.yaml`
-
-* Wed Jun 22 2016 Nick Markowski <nmarkowski@keywcorp.com> - 4.2.0-3.Alpha
-- simp/puppet-haveged is now part of the module stack.
-
-* Tue Apr 05 2016 Trevor Vaughan <tvaughan@onyxpoint.com> - 4.2.0-3.Alpha
-- Preparing for the next release cycle
 
 * Sat Mar 26 2016 Trevor Vaughan <tvaughan@onyxpoint.com> - 4.2.0-2
 - Release 4.2.0-2

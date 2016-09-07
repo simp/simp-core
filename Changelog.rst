@@ -1,4 +1,4 @@
-SIMP 4.2.1
+SIMP 4.3.0
 ==========
 
 .. raw:: pdf
@@ -46,7 +46,7 @@ releasing SIMP 6 as the next major release.  Among major changes:
     henceforth.
 
 Manual Changes Required for Pre-4.2.1 Upgrades
----------------------------------------------
+----------------------------------------------
 
 .. NOTE::
   This only affects you if you did not have a separate partition for ``/tmp``!
@@ -244,10 +244,10 @@ RPM Updates
 -----------
 
 .. NOTE::
-The naming convention for Puppet module packages was re-codified from
-`pupmod-<module_name>` to `pupmod-<author>-<module_name>`.  This accounts for
-a large number of apparent deprecations and additions in this release's RPM
-Updates list.
+  The naming convention for Puppet module packages was re-codified from
+  `pupmod-<module_name>` to `pupmod-<author>-<module_name>`.  This accounts for
+  a large number of apparent deprecations and additions in this release's RPM
+  Updates list.
 
 
 +------------------------------------------------+-----------------+------------------+
@@ -780,8 +780,8 @@ Updates list.
 | tzdata                                         | 2016d-1         | N/A              |
 +------------------------------------------------+-----------------+------------------+
 
-Deprecations
-------------
+RPM Deprecations
+----------------
 
 * pupmod-simp-kibana
 
