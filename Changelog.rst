@@ -241,10 +241,10 @@ RPM Updates
 -----------
 
 .. NOTE::
-The naming convention for Puppet module packages was re-codified from
-`pupmod-<module_name>` to `pupmod-<author>-<module_name>`.  This accounts for
-a large number of apparent deprecations and additions in this release's RPM
-Updates list.
+  The naming convention for Puppet module packages was re-codified from
+  `pupmod-<module_name>` to `pupmod-<author>-<module_name>`.  This accounts for
+  a large number of apparent deprecations and additions in this release's RPM
+  Updates list.
 
 +------------------------------------------------+-----------------+--------------------+
 | Package                                        | Old Version     | New Version        |
@@ -658,8 +658,8 @@ Updates list.
 | unbound-libs                                   | N/A             | 1.4.20-26          |
 +------------------------------------------------+-----------------+--------------------+
 
-Deprecations
-------------
+RPM Deprecations
+----------------
 
 * pupmod-simp-kibana
 
