@@ -18,7 +18,6 @@ end
 
 
 # mandatory gems
-gem 'simp-release-tools'
 gem 'bundler'
 gem 'rake'
 gem 'coderay'
