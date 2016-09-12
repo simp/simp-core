@@ -1,0 +1,399 @@
+#!/opt/puppetlabs/puppet/bin/ruby
+#
+# Purpose
+# -------
+#
+# This script is meant to be called by the %preun and %post sections of the
+# various SIMP Puppet module RPMs.
+#
+# The purpose of the script is to provide helper methods that correctly
+# scaffold the system in such a way that all SIMP Puppet Modules can be
+# installed via RPM to a single location and subsequently can be copied into
+# the standard SIMP installation location based on the version of Puppet that
+# is installed.
+#
+# Care is taken that, should the target directory be managed via 'git', this
+# script will do nothing to harm the managed installation in any way. This
+# ensures that the SIMP modules have maximum compatibility with the widest
+# possible range of Puppet module best practices for management while ensuring
+# that the RPM installations and upgrades can proceed in a seamless fashion
+# over time.
+#
+# Should the 'simp' environment not be found, the script will simply exit
+# without copying any files.
+#
+# Configuration
+# -------------
+#
+# A configuration file may be placed at /etc/simp/adapter_config.yaml. The
+# file must consist of proper YAML as demonstrated in the example below which
+# lists the default options.
+#
+# Any configuration options that are not understood will be ignored.
+#
+# ```yaml
+#   ---
+#   # Target directory
+#   # May be set to a fully qualified path or 'auto'
+#   # If set to 'auto', the directory will be determined from puppet itself
+#
+#   target_directory : 'auto'
+#
+#   # Copy the RPM data to the target directory
+#
+#   copy_rpm_data : false
+#
+# ```
+#
+
+require 'facter'
+require 'fileutils'
+require 'yaml'
+require 'optparse'
+require 'ostruct'
+require 'find'
+
+# Make sure we can find the Puppet executables
+ENV['PATH'] += ':/opt/puppetlabs/bin'
+
+# Get the Puppet configuration parameters currently in use
+def get_puppet_config
+  system_config = %x{puppet config print}
+
+  config_hash = Hash.new
+
+  system_config.each_line do |line|
+    k,v = line.split('=')
+    config_hash[k.strip] = v.strip
+  end
+
+  return config_hash
+end
+
+# A more friendly failure message
+def fail(msg)
+  $stderr.puts(msg)
+  exit(1)
+end
+
+# Determine whether the passed path is under management by git or svn
+def is_managed?(path)
+  # Short circuit if the directory is not present
+  return false unless File.directory?(path)
+
+  git = Facter::Core::Execution.which('git')
+  svn = Facter::Core::Execution.which('svn')
+
+  Dir.chdir(path) do
+    if git
+      %x{#{git} ls-files . --error-unmatch &> /dev/null}
+
+      return true if $?.success?
+    end
+
+    if svn
+      %x{#{svn} info &> /dev/null}
+
+      return true if $?.success?
+    end
+  end
+
+  return false
+end
+
+def parse_options
+  options = OpenStruct.new
+  options.config_file = '/etc/simp/adapter_config.yaml'
+  options.preserve = false
+  # These are not settable, but it's nice to have all this material in one place
+  options.puppet_user = @puppet_config['user']
+  options.puppet_group = @puppet_config['group']
+
+  all_opts = OptionParser.new do |opts|
+    opts.banner = "Usage: #{$0} [options]"
+
+    opts.separator ""
+
+    opts.on(
+      "--rpm_dir PATH",
+      "The directory into which the RPM source material is installed"
+    ) do |arg|
+      options.rpm_dir = arg.strip
+      options.module_name = File.basename(options.rpm_dir)
+    end
+
+    opts.on(
+      "--rpm_section SECTION",
+      "The section of the RPM from which the script is being called.",
+      "    Must be one of 'pre', 'post', 'preun', 'postun'"
+    ) do |arg|
+      options.rpm_section = arg.strip
+    end
+
+    opts.on(
+      "--rpm_status STATUS",
+      "The status code passed to the RPM section"
+    ) do |arg|
+      options.rpm_status = arg.strip
+    end
+
+    opts.on(
+      "-f CONFIG_FILE",
+      "--config CONFIG_FILE",
+      "The configuration file to use",
+      "    Default: #{options.config_file}"
+    ) do |arg|
+      options.config_file = arg.strip
+    end
+
+    opts.on(
+      "-p",
+      "--preserve",
+      "Preserve material in 'target_dir' that is not in 'rpm_dir'"
+    ) do |arg|
+      options.preserve = true
+    end
+
+    opts.on(
+      "-e",
+      "--enforce",
+      "If set, enforce the copy, regardless of the setting in the config file",
+      "    Default: false"
+    ) do |arg|
+      options.copy_rpm_data = true
+    end
+
+    opts.on(
+      "-t DIR",
+      "--target_dir DIR",
+      "The subdirectory of #{simp_target_dir('')}",
+      "into which to copy the materials.",
+      "    Default: #{simp_target_dir.gsub(/#{simp_target_dir('')}/,'')}"
+    ) do |arg|
+      options.target_dir = simp_target_dir(arg.strip)
+    end
+
+    opts.on(
+      "-h",
+      "--help",
+      "Help Message"
+    ) do
+      puts opts
+      exit(0)
+    end
+  end
+
+  begin
+    all_opts.parse!(ARGV)
+  rescue OptionParser::ParseError => e
+    puts e
+    puts all_opts
+    exit 1
+  end
+
+  validate_options(options, all_opts.to_s)
+
+  return options
+end
+
+# Process the config, validate the entries and do some munging
+# Return an options hash
+def process_config(config_file, options=OpenStruct.new)
+  # Defaults
+  config = {
+    'target_directory' => 'auto',
+    'copy_rpm_data'    => false
+  }
+
+  if File.exist?(config_file)
+    begin
+      system_config = YAML.load_file(config_file)
+      if system_config
+        config.merge!(system_config)
+      end
+    rescue
+      fail("Error: Config file '#{config_file}' could not be processed")
+    end
+  end
+
+  if options.copy_rpm_data.nil?
+    options.copy_rpm_data = (config['copy_rpm_data'].to_s == 'true')
+  end
+
+  if options.target_dir.nil? && config['target_directory']
+    if config['target_directory'] == 'auto'
+      options.target_dir = simp_target_dir
+    else
+      unless config['target_directory'][0].chr == '/'
+        fail("Error: 'target_directory' in '#{config_file}' must be an absolute path")
+      end
+
+      options.target_dir = config['target_directory'].strip
+    end
+  end
+
+  return options
+end
+
+def puppet_codedir
+  # Figure out where the Puppet code should go
+  # Puppet 4+
+  code_dir = @puppet_config['codedir']
+  if !code_dir || code_dir.empty?
+    code_dir = @puppet_config['confdir']
+  end
+
+  return code_dir
+end
+
+# Return the target installation directory
+def simp_target_dir(subdir=File.join('simp','modules'))
+  install_target = puppet_codedir
+
+  if install_target.empty?
+    fail('Error: Could not find a Puppet code directory for installation')
+  end
+
+  install_target = File.join(install_target,'environments', subdir)
+
+  return install_target
+end
+
+# Input Validation
+def validate_options(options, usage)
+
+  unless options.rpm_dir
+    fail("Error: 'rpm_dir' is required\n#{usage}")
+  end
+
+  unless options.rpm_status
+    fail("Error: 'rpm_status' is required\n#{usage}")
+  end
+
+  unless options.rpm_section
+    fail("Error: 'rpm_section' is required\n#{usage}")
+  end
+
+  valid_rpm_sections = ['pre','post','preun','postun']
+
+  unless valid_rpm_sections.include?(options.rpm_section)
+    fail("Error: 'rpm_section' must be one of '#{valid_rpm_sections.join("', '")}'\n#{usage}")
+  end
+
+  unless options.rpm_section == 'pre'
+    unless File.directory?(options.rpm_dir)
+      fail("Error: Could not find 'rpm_dir': '#{options.rpm_dir}'")
+    end
+  end
+
+  unless options.rpm_status =~ /^\d+$/
+    fail("Error: 'rpm_status' must be an integer\n#{usage}")
+  end
+
+  fail('Error: Could not determine puppet user') if options.puppet_user.empty?
+  fail('Error: Could not determine puppet group') if options.puppet_group.empty?
+end
+
+
+### Main Code
+
+@puppet_config = get_puppet_config
+options = parse_options
+options = process_config(options.config_file, options)
+
+# A list of modules that should never be touched once installed
+safe_modules = ['site']
+
+# If the target directory is managed, we're done
+unless is_managed?(File.join(options.target_dir, options.module_name)) || !options.copy_rpm_data
+
+  rsync = Facter::Core::Execution.which('rsync')
+  fail("Error: Could not find 'rsync' command!") unless rsync
+
+  # A regular installation or upgrade
+  if options.rpm_section == 'post'
+    if options.rpm_status == '2'
+      # Short circuit on upgrading safe modules, just don't touch them!
+      if safe_modules.include?(options.module_name)
+        if File.directory?(File.join(options.target_dir,options.module_name))
+          exit(0)
+        end
+      end
+    end
+
+    # Create the directories, with the proper mode, all the way down
+    dir_paths = options.target_dir.split(File::SEPARATOR).reject(&:empty?)
+    top_dir = File::SEPARATOR + dir_paths.shift
+    unless File.directory?(top_dir)
+      FileUtils.mkdir(top_dir, :mode => 0750)
+      FileUtils.chown('root', options.puppet_group, top_dir)
+    end
+
+    orig_dir = Dir.pwd
+    Dir.chdir(top_dir)
+    dir_paths.each do |dir|
+      unless File.directory?(dir)
+        FileUtils.mkdir(dir, :mode => 0750)
+        FileUtils.chown('root', options.puppet_group, dir)
+      end
+
+      Dir.chdir(dir)
+    end
+    Dir.chdir(orig_dir)
+
+    cmd = %(#{rsync} -a --force)
+
+    unless options.preserve
+     cmd += %( --delete)
+    end
+
+    cmd += %( #{options.rpm_dir} #{options.target_dir})
+    cmd += %( 2>&1)
+
+    output = %x{#{cmd}}
+    unless $?.success?
+      fail(%(Error: Copy of '#{options.module_name}' into '#{options.target_dir}' using '#{cmd}' failed with the following error:\n    #{output.gsub("\n","\n    ")}))
+    end
+
+    FileUtils.chown_R(nil, "#{options.puppet_group}", options.target_dir)
+  end
+
+  # A regular uninstall or downgrade
+  # This needs to happen *before* we uninstall since we need to compare with what's on disk
+  if options.rpm_section == 'preun' && options.rpm_status == '0'
+    # Play it safe, this needs to have at least 'environments/simp' in it!
+    if options.target_dir.split(File::SEPARATOR).reject(&:empty?).size < 3
+      fail("Error: Not removing directory '#{options.target_dir}' for safety")
+    else
+      unless safe_modules.include?(options.module_name)
+        # Find out what we have
+        ref_list = []
+        Dir.chdir(options.rpm_dir) do
+          Find.find('.').each do |file|
+            if File.symlink?(file)
+              ref_list << file
+              Find.prune
+            end
+
+            ref_list << file
+          end
+        end
+
+        # Delete from the bottom up to clear out the directories first
+        ref_list.reverse!
+        ref_list.map{|x| x.sub!(/^./, options.module_name)}
+
+        # Only delete items that are in the reference repo
+        Dir.chdir(options.target_dir) do
+          ref_list.each do |to_rm|
+            if File.directory?(to_rm)
+              FileUtils.rmdir(to_rm)
+            elsif File.exist?(to_rm)
+              FileUtils.rm_f(to_rm) if File.exist?(to_rm)
+            end
+          end
+        end
+      end
+    end
+  end
+end
