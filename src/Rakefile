@@ -3,93 +3,13 @@
 require 'rake/packagetask'
 require 'simp/rake'
 
-TIMESTAMP  = Time.now.strftime("%Y_%m_%d_%H%M%S")
+# Package Tasks
+Simp::Rake::Pkg.new(File.dirname(__FILE__))
 
-class SrcPkg < Simp::Rake::Pkg
-  def define_clean
-    manage_simp_deps(false)
-    super
+Rake::Task['pkg:tar'].clear
+
+namespace :pkg do
+  task :tar,[:chroot,:unique,:snapshot_release] => [:initialize_spec_info] do
+    # Nothing to do here!
   end
-
-  def define_autorequires
-    namespace :pkg do
-      task :autorequires do
-        FileUtils.touch('build/autorequires') unless File.exist?('build/autorequires')
-        manage_simp_deps
-      end
-    end
-  end
-
-  def define
-    define_autorequires
-    super
-
-    Rake::Task['pkg:tar'].enhance([:autorequires]) do
-      FileUtils.rm('build/autorequires')
-      FileUtils.touch('build/autorequires')
-    end
-  end
-
-  def define_pkg_srpm
-    super
-    namespace :pkg do
-      task :srpm do |t,args|
-        manage_simp_deps(false)
-      end
-    end
-  end
-
-
-  #  Update the simp.spec file with all of the current spec versions.
-  #  Set generate to false to clear the list (after building the
-  #  tarball).
-  def manage_simp_deps(generate = true)
-    autoreq_file = 'build/autorequires'
-
-    reqstatements = []
-
-    if generate then
-      content = File.read(autoreq_file).strip
-      if !content || content.empty?
-        raise "Error: The '#{autoreq_file}' file is empty!"
-      end
-
-      File.read(autoreq_file).each_line do |req|
-        req.strip!
-        next if req.empty? or req =~ /\s*#/
-
-        basename,version,release = req.split(' ')
-        reqstatements << ("Requires: #{basename} >= #{version}-#{release}")
-      end
-    end
-
-    reqstatements.sort!
-
-    tempfile = Tempfile.new(Time.now.to_i.to_s)
-    inautogen = false
-    File.open(spec_file).each do |line|
-      if line =~ /#Begin AUTOGEN/ then
-        tempfile.puts(line)
-        if generate then
-          tempfile.puts(reqstatements)
-        end
-        inautogen = true
-      elsif inautogen then
-        if line =~ /#End AUTOGEN/ then
-          tempfile.puts(line)
-          inautogen = false
-        else
-          next
-        end
-      else
-        tempfile.puts(line)
-      end
-    end.close
-    tempfile.close
-    FileUtils.mv(tempfile.path,spec_file)
-  end
-end
-
-SrcPkg.new(File.dirname(__FILE__)) do | t |
-  t.clean_list << "#{t.base_dir}/build/autorequires"
 end
