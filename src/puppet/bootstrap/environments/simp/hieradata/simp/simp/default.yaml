@@ -1,4 +1,0 @@
----
-sssd::domains :
-  - "LDAP"
-

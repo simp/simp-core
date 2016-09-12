@@ -1,13 +1,13 @@
 Summary: GPGKEYS
 Name: simp-gpgkeys
 Version: 2.0.0
-Release: 3%{?dist}
+Release: 4%{?dist}
 License: Public Domain
 Group: Applications/System
 Source: %{name}-%{version}-%{release}.tar.gz
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Buildarch: noarch
-Requires: facter
+Requires(post): facter
 
 Prefix: %{_datadir}/simp/GPGKEYS
 
@@ -46,6 +46,10 @@ cp RPM-GPG-KEY* %{buildroot}/%{prefix}
 # If we're a SIMP server, place the keys into the appropriate web directory
 
 for dir in '/srv/www/yum/SIMP' '/var/www/yum/SIMP'; do
+  if [ ! -d `dirname $dir` ]; then
+    continue
+  fi
+
   if [ ! -d $dir ]; then
     mkdir -p -m 0755 "${dir}/GPGKEYS"
   fi
@@ -74,9 +78,9 @@ for dir in '/srv/www/yum/SIMP' '/var/www/yum/SIMP'; do
   fi
 
   # Link system GPG keys into SIMP repo
-  if [ `facter operatingsystem` == 'CentOS' ]; then
+  if [ "`facter operatingsystem`" == 'CentOS' ]; then
     search_string='.*CentOS-[[:digit:]]'
-  elif [ `facter operatingsystem` == 'RedHat' ]; then
+  elif [ "`facter operatingsystem`" == 'RedHat' ]; then
     search_string='.*redhat.*release.*'
   else
     search_string=''
@@ -103,6 +107,9 @@ for dir in '/srv/www/yum/SIMP' '/var/www/yum/SIMP'; do
 done
 
 %changelog
+* Tue Sep 27 2016 Trevor Vaughan <tvaughan@onyxpoint.com> - 2.0.0-4
+- Ensure that 'facter' is available for us to use in the %post section
+
 * Tue Oct 27 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 2.0.0-3
 - Fixed some logic bugs in the %postinstall script
 
