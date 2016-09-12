@@ -6,7 +6,7 @@
   - 'yaml'
   - 'json'
 :hierarchy:
-  - 'hosts/%{::trusted["clientcert"]}'
+  - 'hosts/%{trusted.certname}'
   - 'hosts/%{::fqdn}'
   - 'hosts/%{::hostname}'
   - 'domains/%{::domain}'
@@ -25,6 +25,6 @@
 # # 1) Make sure the directory exists
 # # 2) Make sure the directory reflects the hierarchy
 :yaml:
-  :datadir: '/etc/puppet/environments/%{::environment}/hieradata'
+  :datadir: '/etc/puppetlabs/code/environments/%{::environment}/hieradata'
 :json:
-  :datadir: '/etc/puppet/environments/%{::environment}/hieradata'
+  :datadir: '/etc/puppetlabs/code/environments/%{::environment}/hieradata'

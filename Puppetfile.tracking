@@ -13,8 +13,8 @@ mod 'simp-rsync',
 moduledir 'src/rubygems'
 
 mod 'rubygem-simp_cli',
-  :git => 'https://github.com/simp/rubygem-simp-cli',
-  :ref => 'master'
+  :git => 'https://github.com/trevor-vaughan/rubygem-simp-cli',
+  :ref => 'SIMP-1542'
 
 moduledir 'src/puppet/modules'
 

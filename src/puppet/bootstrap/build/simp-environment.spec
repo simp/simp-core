@@ -1,28 +1,27 @@
 %global selinux_policyver %(%{__sed} -e %'s,.*selinux-policy-\\([^/]*\\)/.*,\\1,' %/usr/share/selinux/devel/policyhelp 2>/dev/null || echo 0.0.0)
 %global selinux_variants targeted
 
-%define selinux_policy_short simp-bootstrap
+%define selinux_policy_short simp-environment
 %define selinux_policy %{selinux_policy_short}.pp
 
-Summary: SIMP Bootstrap
-Name: simp-bootstrap
-Version: 5.3.2
-Release: 0
+Summary: The SIMP Environment Scaffold
+Name: simp-environment
+Version: 6.0.0
+Release: Alpha
 License: Apache License 2.0
 Group: Applications/System
 Source: %{name}-%{version}-%{release}.tar.gz
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Requires: libselinux-utils
 Requires: policycoreutils
-Requires: puppet >= 3.6.0
-Requires: pupmod-simp >= 0.0.1
-Requires: pupmod-pki >= 4.1.0-3
+Requires: pupmod-simp-simp >= 0.0.1
+Requires: pupmod-simp-pki >= 4.1.0-3
 Requires: createrepo
 Requires: simp-rsync >= 5.0.0-3
 Requires: simp-utils >= 5.0.0-5
 Requires: rubygem(simp-cli) >= 1.0.0-0
 Requires: openssl
-Requires: sudo
+Requires(pre,preun,post,postun): simp-adapter
 Requires(post): coreutils
 Requires(post): glibc-common
 Requires(post): pam
@@ -34,13 +33,15 @@ BuildRequires: selinux-policy-targeted
 %if "%{?rhel}%{!?rhel:0}" > "6"
 BuildRequires: selinux-policy-devel
 %endif
-Provides: simp_bootstrap
-Obsoletes: simp_bootstrap
-Obsoletes: simp_config
-Obsoletes: simp-config
+Provides: simp-bootstrap = %{version}-%{release}
+Provides: simp_bootstrap = %{version}-%{release}
+Obsoletes: simp-bootstrap < %{version}-%{release}
+Obsoletes: simp_bootstrap < %{version}-%{release}
+Obsoletes: simp_config < %{version}-%{release}
+Obsoletes: simp-config < %{version}-%{release}
 Buildarch: noarch
 
-Prefix: %{_sysconfdir}/puppet
+Prefix: /usr/share/simp/environments/simp
 
 %description
 
@@ -59,18 +60,13 @@ cd -
 [ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
 
 # Make your directories here.
-mkdir -p %{buildroot}/%{prefix}/environments/simp/hieradata/hostgroups
-mkdir -p %{buildroot}/%{prefix}/environments/simp/modules
-mkdir -p %{buildroot}/%{prefix}/environments/simp/simp_autofiles
-mkdir -p %{buildroot}/%{prefix}/environments/simp/hieradata/compliance_profiles
+mkdir -p %{buildroot}/%{prefix}/hieradata/hostgroups
+mkdir -p %{buildroot}/%{prefix}/simp_autofiles
+mkdir -p %{buildroot}/%{prefix}/hieradata/compliance_profiles
 mkdir -p %{buildroot}/%{_var}/simp/environments/simp/site_files/krb5_files/files/keytabs
 
 # Now install the files.
-cp -r environments %{buildroot}/%{prefix}
-cp auth.conf %{buildroot}/%{prefix}/auth.conf.simp
-cp autosign.conf %{buildroot}/%{prefix}
-cp hiera.yaml %{buildroot}/%{prefix}
-cp puppet.conf %{buildroot}/%{prefix}/puppet.conf.rpmnew
+cp -r environments/* %{buildroot}/`dirname %{prefix}`
 
 cd build/selinux
   install -p -m 644 -D %{selinux_policy} %{buildroot}/%{_datadir}/selinux/packages/%{selinux_policy}
@@ -81,43 +77,42 @@ cd -
 
 %files
 %defattr(0640,root,puppet,0750)
-%{prefix}/environments/simp
-%config(noreplace) %attr(0660,-,-) %{prefix}/environments/simp/localusers
-%attr(0750,puppet,puppet) %{prefix}/environments/simp/simp_autofiles
+%{prefix}
+%config(noreplace) %attr(0660,-,-) %{prefix}/localusers
+%attr(0750,puppet,puppet) %{prefix}/simp_autofiles
 %attr(0750,root,puppet) %{_var}/simp/environments/simp/site_files
 %attr(0750,root,puppet) %{_var}/simp/environments/simp/site_files/krb5_files
 %attr(0750,root,puppet) %{_var}/simp/environments/simp/site_files/krb5_files/files
 %attr(0750,root,puppet) %{_var}/simp/environments/simp/site_files/krb5_files/files/keytabs
-%config(noreplace) %{prefix}/auth.conf.simp
-%config(noreplace) %{prefix}/autosign.conf
-%config(noreplace) %{prefix}/hiera.yaml
-%config(noreplace) %{prefix}/environments/simp/environment.conf
-%config(noreplace) %{prefix}/environments/simp/hieradata/RedHat/6.yaml
-%config(noreplace) %{prefix}/environments/simp/hieradata/hosts/puppet.your.domain.yaml
-%config(noreplace) %{prefix}/environments/simp/hieradata/hostgroups/default.yaml
-%config(noreplace) %{prefix}/environments/simp/hieradata/simp/logstash/default.yaml
-%config(noreplace) %{prefix}/environments/simp/hieradata/simp/pam/default.yaml
-%config(noreplace) %{prefix}/environments/simp/hieradata/simp/simp/default.yaml
-%config(noreplace) %{prefix}/environments/simp/hieradata/simp/mcollective/default.yaml
-%config(noreplace) %{prefix}/environments/simp/hieradata/simp_classes.yaml
-%config(noreplace) %{prefix}/environments/simp/hieradata/simp_def.yaml
-%config(noreplace) %{prefix}/environments/simp/hieradata/default.yaml
-%config(noreplace) %{prefix}/environments/simp/manifests/site.pp
-%config(noreplace) %{prefix}/puppet.conf.rpmnew
-%config(noreplace) %{prefix}/environments/simp/FakeCA/togen
-%config(noreplace) %{prefix}/environments/simp/FakeCA/usergen
-%config(noreplace) %{prefix}/environments/simp/hieradata/compliance_profiles/nist_800_53_rev4.yaml
-%config(noreplace) %{prefix}/environments/simp/hieradata/compliance_profiles/disa_stig_el7.yaml
+%config(noreplace) %{prefix}/environment.conf
+%config(noreplace) %{prefix}/hieradata/RedHat/6.yaml
+%config(noreplace) %{prefix}/hieradata/hosts/puppet.your.domain.yaml
+%config(noreplace) %{prefix}/hieradata/hostgroups/default.yaml
+%config(noreplace) %{prefix}/hieradata/simp/logstash/default.yaml
+%config(noreplace) %{prefix}/hieradata/simp/pam/default.yaml
+%config(noreplace) %{prefix}/hieradata/simp/simp/default.yaml
+%config(noreplace) %{prefix}/hieradata/simp/mcollective/default.yaml
+%config(noreplace) %{prefix}/hieradata/simp_classes.yaml
+%config(noreplace) %{prefix}/hieradata/simp_def.yaml
+%config(noreplace) %{prefix}/hieradata/default.yaml
+%config(noreplace) %{prefix}/manifests/site.pp
+%config(noreplace) %{prefix}/FakeCA/togen
+%config(noreplace) %{prefix}/FakeCA/usergen
+%config(noreplace) %{prefix}/hieradata/compliance_profiles/nist_800_53_rev4.yaml
+%config(noreplace) %{prefix}/hieradata/compliance_profiles/disa_stig_el7.yaml
 
 %defattr(0640,root,root,0750)
 %{_datadir}/selinux/*/%{selinux_policy}
-%{prefix}/environments/simp/FakeCA
-%attr(0750,-,-) %{prefix}/environments/simp/FakeCA/clean.sh
-%attr(0750,-,-) %{prefix}/environments/simp/FakeCA/gencerts_common.sh
-%attr(0750,-,-) %{prefix}/environments/simp/FakeCA/gencerts_nopass.sh
-%attr(0750,-,-) %{prefix}/environments/simp/FakeCA/usergen_nopass.sh
+%{prefix}/FakeCA
+%attr(0750,-,-) %{prefix}/FakeCA/clean.sh
+%attr(0750,-,-) %{prefix}/FakeCA/gencerts_common.sh
+%attr(0750,-,-) %{prefix}/FakeCA/gencerts_nopass.sh
+%attr(0750,-,-) %{prefix}/FakeCA/usergen_nopass.sh
 
 %post
+PATH=/opt/puppetlabs/bin:$PATH
+export PATH
+
 /usr/sbin/semodule -n -i %{_datadir}/selinux/packages/%{selinux_policy}
 if /usr/sbin/selinuxenabled; then
   /usr/sbin/load_policy
@@ -125,146 +120,24 @@ if /usr/sbin/selinuxenabled; then
   /sbin/fixfiles restore %{_var}/simp || :
 fi
 
-if [ "$1" == "2" ]; then
-  # If we're upgrading be sure to whack the old puppetd cron job!
-  puppet resource cron puppetd ensure=absent
-fi
-
-# If upgrading we need to copy the required files that might have been used
-# cacertkey, demoCA, output, togen, usergen, working, from
-# %{prefix}/Config/FakeCA to %{prefix}/environments/simp/FakeCA
-for src in cacertkey demoCA output togen usergen working; do
-  if [ -e "%{prefix}/environments/simp/FakeCA/$src" ]; then
-    /bin/rm -rf "%{prefix}/environments/simp/FakeCA/$src"
-  fi
-
-  if [ -e "%{prefix}/Config/FakeCA/$src" ]; then
-    /bin/mv "%{prefix}/Config/FakeCA/$src" "%{prefix}/environments/simp/FakeCA"
-  fi
-
-  /bin/rm -rf "%{prefix}/Config/FakeCA"
-done
-
-
 # Ensure that the cacertkey has some random gibberish in it if it doesn't
 # exist.
-if [ ! -e "%{prefix}/environments/simp/FakeCA/cacertkey" ]; then
-  dd if=/dev/urandom count=24 bs=1 status=none | openssl enc -a -out "%{prefix}/environments/simp/FakeCA/cacertkey"
+if [ ! -e "%{prefix}/FakeCA/cacertkey" ]; then
+  dd if=/dev/urandom count=24 bs=1 status=none | openssl enc -a -out "%{prefix}/FakeCA/cacertkey"
 fi
 
-if [ ! -f %{prefix}/puppet.conf.simpbak ] && [ -f %{prefix}/puppet.conf ]; then
-  cat %{prefix}/puppet.conf >> %{prefix}/puppet.conf.simpbak
-### SIMP BACKUP ###
-## This is a backup made on upgrade to the new environments setup but kept for your reference. ##
-## If you do not need this file, please remove it from your system. ##
-## Otherwise, merge the entries carefully into the new puppet.conf file. ##
+chmod 2770 %{prefix}
 
-EOF
-  cat %{prefix}/puppet.conf >> %{prefix}/puppet.conf.simpbak
+codedir=`puppet config print codedir`
+if [ ! -d $codedir ]; then
+  codedir=`puppet config print confidr`
 fi
 
-# Also, make sure that the 'manifest' option is removed
-#       and ensure environmentpath:
-grep -w environmentpath %{prefix}/puppet.conf >& /dev/null
-if [ $? -ne 0 ]; then
-  sed -i '/manifests[[:space:]]*=.*/d' %{prefix}/puppet.conf
-  sed -i 's|\[main\]|\0\n    environmentpath = %{prefix}/environments|' %{prefix}/puppet.conf
-fi
-
-# Update all instances of the log_server(string) to log_servers(array)
-for x in `find %{prefix}/environments/simp/hieradata -type f -name "*.yaml"`; do
-  sed -i "s/^[[:space:]]*log_server[[:space:]]*:[[:space:]]*\(.\+\)/log_servers :\n  - \1/" "$x"
-done
-
-chmod 2770 %{prefix}/environments/simp
-
-for env in %{prefix}/environments /var/simp/environments; do
+if [ ! -a "${codedir}/production" ]; then
   (
-    cd $env
-    if [ ! -d production ]; then
-      ln -s simp production
-    fi
+    cd "${codedir}/production"
+    ln -s simp production
   )
-done
-
-chown root:puppet %{prefix};
-chgrp -R puppet %{prefix};
-chmod -R u+rwX,g+rX,o-rwx %{prefix};
-
-(
-  cd %{prefix}
-  if [ ! -f auth.conf.simpbak ] && [ -f auth.conf ]; then
-    cat << EOF > auth.conf.simpbak
-### SIMP BACKUP ###
-## This is a backup made on upgrade to the new environments setup but kept for your reference. ##
-## If you do not need this file, please remove it from your system. ##
-## Otherwise, merge the entries carefully into the new auth.conf file. ##
-
-EOF
-
-    cat auth.conf >> auth.conf.simpbak
-  fi
-
-  ln -sf auth.conf.simp auth.conf
-)
-
-getent passwd simp >& /dev/null;
-if [ $? -ne 0 ]; then
-  rootpw=`getent passwd root | cut -f2 -d":"`;
-  if [ "$rootpw" == "x" ]; then
-    rootpw=`getent shadow root | cut -f2 -d':'`;
-  fi
-
-  # If this statement is true, then we are trying to install this during a
-  # kickstart and should not try to create the simp user since the kickstart
-  # should do that.
-  #
-  # Additionally, we should not mess around with PAM if this is not a kickstart!
-
-  if [ "$rootpw" != '*' ] && [ -n "$rootpw" ]; then
-    groupadd -g 777 simp;
-
-    useradd -d %{_var}/local/simp -g simp -m -p $rootpw -s /bin/bash -u 777 -K PASS_MAX_DAYS=90 -K PASS_MIN_DAYS=1 -K PASS_WARN_AGE=7 simp;
-    usermod -aG wheel simp;
-
-    chage -d 0 simp;
-
-    pam_mod="password     requisite     pam_cracklib.so try_first_pass difok=4 retry=3 minlen=14 minclass=3 maxrepeat=2 maxsequence=4 dcredit=-1 ucredit=-1 lcredit=-1 ocredit=-1 gecoscheck reject_username enforce_for_root\n"
-    for auth_file in password system; do
-      # A double check to make sure we're not running this on a managed system...
-      if [ ! `grep -q 'Puppet' /etc/pam.d/${auth_file}-auth` ]; then
-        sed -i "s/\(password.*pam_unix.so.*\)/${pam_mod}\1/" /etc/pam.d/${auth_file}-auth
-      fi
-    done
-  fi
-fi
-
-if [ -f /etc/security/groupaccess.conf ]; then
-  grep -q "^simp" /etc/security/groupaccess.conf;
-  if [ $? -ne 0 ]; then
-    echo "simp" >> /etc/security/groupaccess.conf;
-  fi
-fi
-
-# Permit `simp` user full non-tty sudo access before running `simp bootstrap`
-grep -q "^simp" /etc/sudoers;
-if [ $? -ne 0 ]; then
-    echo -e 'simp\t\tALL=(ALL)\t/bin/su' >> /etc/sudoers;
-fi
-echo 'Defaults !requiretty' >> /etc/sudoers
-
-getent group wheel | grep -q simp
-if [ $? -ne 0 ]; then
-  # If for some reason simp isn't in the wheel group, try to add it again here.
-  usermod -aG wheel simp
-fi
-
-# TODO: this handles a legacy condition; constrain within the upgrade if block?
-/sbin/chkconfig --list puppetmaster >& /dev/null
-if [ $? -eq 0 ]; then
-  /sbin/service puppetmaster stop;
-  /bin/rm %{_var}/run/puppet/puppetmasterd.pid >& /dev/null;
-  /sbin/service puppetmaster start;
 fi
 
 # Switch things over to the new setup.
@@ -319,22 +192,18 @@ else
   fi
 fi
 
-sed -i "s|baseurl=file://${www_dir}/SIMP/\?$|baseurl=file://${www_dir}/SIMP/$arch|" /etc/yum.repos.d/*.repo
-
-# Set up the simp directory environment
-envdir='%{prefix}/environments/simp';
-
-if [ ! -d $envdir ]; then
-  mkdir -p $envdir;
-fi
-
+# Need to make sure our keydist stub is here prior to fully porting to the new
+# way of doing things.
 (
-  cd $envdir;
+  cd %{prefix}
 
   if [ ! -d 'keydist' ]; then
     ln -s modules/pki/files/keydist
   fi
 )
+
+# Needed for migrating the environment data into the codedir
+/usr/local/sbin/simp_rpm_helper --rpm_dir=%{prefix} --rpm_section='post' --rpm_status=$1 --preserve --target_dir='.'
 
 %postun
 # Post uninstall stuff
@@ -346,7 +215,15 @@ if [ $1 -eq 0 ]; then
   fi
 fi
 
+# Needed for cleaning up the data from codedir as appropriate
+/usr/local/sbin/simp_rpm_helper --rpm_dir=%{prefix} --rpm_section='postun' --rpm_status=$1 --preserve --target_dir='.'
+
 %changelog
+* Fri Sep 16 2016 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.0.0-Alpha
+- Changed the name to simp-environment
+- Ripped out all of the legacy materials
+- Upated to use the simp-adapter RPM helper
+
 * Thu Sep 01 2016 Ralph Wright <ralph.wright@onyxpoint.com> - 5.3.2-0
 - Modified compliance files to handle updated audit rules.
 
