@@ -1,0 +1,10 @@
+---
+# Target directory
+# May be set to a fully qualified path or 'auto'
+# If set to 'auto', the directory will be determined from puppet itself
+
+# target_directory : 'auto'
+
+# Copy the RPM data to the target directory
+
+# copy_rpm_data : false
