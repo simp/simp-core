@@ -1,0 +1,42 @@
+---
+# This must be a copy of at least 'client_nets' from simp_def.yaml if
+# you want this to cover your base YUM repo services.
+
+# We don't enable non-TLS connections by default. All SIMP services should now
+# be able to use TLS for all connections.
+simp_apache::conf::ssl::client_nets: "%{alias('client_nets')}"
+
+# We disable the SSL client validation for the Kickstart server. There is no
+# way to validate a default image without embedding a certificate in the image
+# and we are not going to modify the core kickstart image from the vendor.
+#
+# Since this system is, by default, only a kickstart/YUM server with Apache,
+# this will not adversely affect the security posture of the system.
+simp_apache::ssl::sslverifyclient: 'none'
+
+rsync::server : '127.0.0.1'
+
+# Disable hooking to the remote SIMP and OS repos so that the local filesystem is
+# always hit first.
+#
+# You should change this if using external yum repositories.
+#
+simp::yum::enable_simp_repos : false
+simp::yum::enable_os_repos : false
+
+# Enable PuppetDB on this system by default
+simp::server::enable_puppetdb : true
+
+# The service name of the Puppet Server service for use with PuppetDB
+#
+# TODO: This should probably be a Fact
+puppetdb::master::config::puppet_service_name : 'puppetserver'
+
+puppetdb::globals::version: 'latest'
+
+classes :
+  - 'simp::server'
+  - 'simp::puppetdb'
+  - 'simp::ldap_server'
+  - 'simp::yum_server'
+  - 'simp::kickstart_server'
