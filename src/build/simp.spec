@@ -1,7 +1,7 @@
 Summary: SIMP Full Install
 Name: simp
-Version: 5.2.0
-Release: 0%{?snapshot_release}
+Version: 6.0.0
+Release: Alpha%{?snapshot_release}
 License: Apache License, Version 2.0
 Group: Applications/System
 Source: %{name}-%{version}-%{release}.tar.gz
@@ -9,10 +9,7 @@ Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Buildarch: noarch
 Requires: createrepo
 Requires: lsb
-Requires: puppetserver >= 1.0.0
-Requires: facter > 1:2.4.0
-Requires: hiera >= 3.0.2
-Requires: puppetlabs-stdlib
+Requires: simp-adapter
 Requires: httpd >= 2.2
 Obsoletes: simp-hiera < 3.0.2
 #Begin AUTOGEN
@@ -77,6 +74,10 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Mon Sep 12 2016 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.0.0-Alpha
+- Alpha work for the 6.0.0 release
+  - Restructuring the RPM build sequence
+
 * Tue Sep 06 2016 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.2.0-0
 - Release of 5.2.0-0
   - Numerous bug fixes and enhancements, see the Changelog

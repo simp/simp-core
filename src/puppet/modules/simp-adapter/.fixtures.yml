@@ -1,0 +1,4 @@
+---
+fixtures:
+  symlinks:
+    garbage: "#{source_dir}/spec/fixtures/stub_modules/garbage"

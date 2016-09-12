@@ -1,0 +1,22 @@
+HOSTS:
+  el7:
+    roles:
+      - default
+      - server
+      - master
+    platform:   el-7-x86_64
+    box:        centos/7
+    hypervisor: vagrant
+    mock_chroot: epel-7-x86_64
+
+  el6:
+    platform:   el-6-x86_64
+    box:        centos/6
+    hypervisor: vagrant
+    mock_chroot: epel-6-x86_64
+
+CONFIG:
+  rpm_glob: 'simp-profile-[0-9]*'
+  log_level: verbose
+  type: pe
+  vagrant_memsize: 256

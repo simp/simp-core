@@ -1,0 +1,6 @@
+---
+fixtures:
+  repositories:
+    simp: "https://github.com/simp/pupmod-simp-simp"
+  symlinks:
+    acpid: "#{source_dir}"
