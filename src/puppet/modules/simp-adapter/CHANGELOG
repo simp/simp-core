@@ -1,0 +1,3 @@
+* Mon Sep 12 2016 Trevor Vaughan <tvaughan@onyxpoint.com> - 0.0.1-0
+  - Initial cut of the simp-adapter for mapping to different Puppet versions.
+
