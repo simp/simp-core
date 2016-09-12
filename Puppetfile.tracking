@@ -13,8 +13,8 @@ mod 'simp-rsync',
 moduledir 'src/rubygems'
 
 mod 'rubygem-simp_cli',
-  :git => 'https://github.com/simp/rubygem-simp-cli',
-  :ref => 'master'
+  :git => 'https://github.com/trevor-vaughan/rubygem-simp-cli',
+  :ref => 'SIMP-1542'
 
 moduledir 'src/puppet/modules'
 
@@ -90,6 +90,10 @@ mod 'onyxpoint-gpasswd',
   :git => 'https://github.com/simp/puppet-gpasswd',
   :ref => 'simp-master'
 
+mod 'puppetlabs-concat',
+  :git => 'https://github.com/simp/puppetlabs-concat',
+  :ref => 'simp-master'
+
 mod 'puppetlabs-inifile',
   :git => 'https://github.com/simp/puppetlabs-inifile',
   :ref => 'simp-master'
@@ -110,7 +114,7 @@ mod 'puppetlabs-postgresql',
   :git => 'https://github.com/simp/puppetlabs-postgresql',
   :ref => 'simp-master'
 
-mod 'puppetlabs-puppetlabs_apache',
+mod 'puppetlabs-apache',
   :git => 'https://github.com/simp/puppetlabs-apache',
   :ref => 'simp-master'
 
@@ -134,7 +138,7 @@ mod 'simp-aide',
   :git => 'https://github.com/simp/pupmod-simp-aide',
   :ref => 'master'
 
-mod 'simp-apache',
+mod 'simp-simp_apache',
   :git => 'https://github.com/simp/pupmod-simp-apache',
   :ref => 'master'
 
@@ -197,10 +201,6 @@ mod 'simp-libvirt',
 mod 'simp-logrotate',
   :git => 'https://github.com/simp/pupmod-simp-logrotate',
   :ref => 'master'
-
-mod 'simp-logstash',
-  :git => 'https://github.com/simp/puppet-logstash',
-  :ref => 'simp-master'
 
 mod 'simp-mcafee',
   :git => 'https://github.com/simp/pupmod-simp-mcafee',
