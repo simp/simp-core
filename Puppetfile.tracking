@@ -216,7 +216,7 @@ mod 'simp-mcafee',
 
 mod 'simp-mcollective',
   :git => 'https://github.com/simp/pupmod-simp-mcollective',
-  :ref => 'master'
+  :ref => 'simp-master'
 
 mod 'simp-memcached',
   :git => 'https://github.com/simp/puppet-memcached',
