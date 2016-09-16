@@ -1,6 +1,6 @@
 Summary: SIMP Full Install
 Name: simp
-Version: 4.3.0
+Version: 4.3.1
 Release: 0%{?snapshot_release}
 License: Apache License, Version 2.0
 Group: Applications/System
@@ -77,6 +77,10 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Mon Sep 26 2016 Nick Markowski <nmarkowski@keywcorp.com> - 4.3.1-0
+- Use correct version of simp-mcollective Puppet module. Puppetfile.tracking
+  and Puppetfile.stable pointed to an incorrect version.
+
 * Tue Sep 06 2016 Trevor Vaughan <tvaughan@onyxpoint.com> - 4.3.0-0
 - Release of 4.3.0-0
   - Numerous bug fixes and enhancements, see the Changelog
