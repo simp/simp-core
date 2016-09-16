@@ -206,7 +206,7 @@ mod 'pupmod-simp-mcafee',
 
 mod 'pupmod-simp-mcollective',
   :git => 'https://github.com/simp/pupmod-simp-mcollective'},
-  :ref => 'c5f52de139d66361852f86ac3e13f7b490cbf14b'}
+  :ref => 'ad99c2c6fb326ed317bc6e247a110fcce944e9d7'}
 
 mod 'pupmod-simp-mozilla',
   :git => 'https://github.com/simp/pupmod-simp-mozilla'},
