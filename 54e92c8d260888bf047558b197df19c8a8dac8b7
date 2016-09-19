@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "baa041b7_1b91b09a",
+        "filename": "src/build/simp.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-09-19T14:58:24Z",
+      "side": 1,
+      "message": "Eventually, but that\u0027s going to need to be a sweeping change.\n\n*Technically* this works across *all* environments already so we\u0027ll leave it as is for now.",
+      "parentUuid": "baa041b7_290311ba",
+      "revId": "54e92c8d260888bf047558b197df19c8a8dac8b7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa041b7_bbfe4403",
         "filename": "src/puppet/modules/simp-adapter/.fixtures.yml",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2016-09-16T21:02:38Z",
       "side": 1,
       "message": "would be nice if there was a comment indicating this is needed for the test framework, but not used.",
+      "revId": "54e92c8d260888bf047558b197df19c8a8dac8b7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_dbb8e813",
+        "filename": "src/puppet/modules/simp-adapter/.fixtures.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-09-19T14:58:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "baa041b7_bbfe4403",
       "revId": "54e92c8d260888bf047558b197df19c8a8dac8b7",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "baa041b7_bb3644b2",
+        "filename": "src/puppet/modules/simp-adapter/CONTRIBUTING.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-09-19T14:58:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "baa041b7_c91a657c",
+      "revId": "54e92c8d260888bf047558b197df19c8a8dac8b7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa041b7_a911615f",
         "filename": "src/puppet/modules/simp-adapter/CONTRIBUTING.md",
         "patchSetId": 1
@@ -64,6 +118,24 @@
       "writtenOn": "2016-09-16T21:02:38Z",
       "side": 1,
       "message": "Don\u0027t really have unit tests, but do have acceptance tests.... Can we generalize this boilerplate?",
+      "revId": "54e92c8d260888bf047558b197df19c8a8dac8b7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_9b3940a6",
+        "filename": "src/puppet/modules/simp-adapter/CONTRIBUTING.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-09-19T14:58:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "baa041b7_a911615f",
       "revId": "54e92c8d260888bf047558b197df19c8a8dac8b7",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "baa041b7_7b40bc07",
+        "filename": "src/puppet/modules/simp-adapter/CONTRIBUTING.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-09-19T14:58:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "baa041b7_89145d4d",
+      "revId": "54e92c8d260888bf047558b197df19c8a8dac8b7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa041b7_db2ea88b",
         "filename": "src/puppet/modules/simp-adapter/CONTRIBUTING.md",
         "patchSetId": 1
@@ -98,6 +188,24 @@
       "writtenOn": "2016-09-16T21:02:38Z",
       "side": 1,
       "message": "no rake acceptance task.  rake beaker",
+      "revId": "54e92c8d260888bf047558b197df19c8a8dac8b7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_5b43b813",
+        "filename": "src/puppet/modules/simp-adapter/CONTRIBUTING.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-09-19T14:58:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "baa041b7_db2ea88b",
       "revId": "54e92c8d260888bf047558b197df19c8a8dac8b7",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": false
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "baa041b7_1b465021",
+        "filename": "src/puppet/modules/simp-adapter/build/simp-adapter.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-09-19T14:58:24Z",
+      "side": 1,
+      "message": "Not yet....",
+      "parentUuid": "baa041b7_491bf51c",
+      "revId": "54e92c8d260888bf047558b197df19c8a8dac8b7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa041b7_89dfbd39",
         "filename": "src/puppet/modules/simp-adapter/build/simp-adapter.spec",
         "patchSetId": 1
@@ -132,6 +258,24 @@
       "writtenOn": "2016-09-16T21:02:38Z",
       "side": 1,
       "message": "Remove, as this is not necessary and introduces a circular dependency. Likewise remove in %package pe section.",
+      "revId": "54e92c8d260888bf047558b197df19c8a8dac8b7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_fb54ccca",
+        "filename": "src/puppet/modules/simp-adapter/build/simp-adapter.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-09-19T14:58:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "baa041b7_89dfbd39",
       "revId": "54e92c8d260888bf047558b197df19c8a8dac8b7",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": false
@@ -155,6 +299,24 @@
     },
     {
       "key": {
+        "uuid": "baa041b7_db4fc832",
+        "filename": "src/puppet/modules/simp-adapter/build/simp-adapter.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-09-19T14:58:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "baa041b7_c9d5c51b",
+      "revId": "54e92c8d260888bf047558b197df19c8a8dac8b7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa041b7_c9bca5dd",
         "filename": "src/puppet/modules/simp-adapter/build/simp-adapter.spec",
         "patchSetId": 1
@@ -166,6 +328,24 @@
       "writtenOn": "2016-09-16T21:02:38Z",
       "side": 1,
       "message": "Now called pe-client-tools",
+      "revId": "54e92c8d260888bf047558b197df19c8a8dac8b7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_bb5d24ee",
+        "filename": "src/puppet/modules/simp-adapter/build/simp-adapter.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-09-19T14:58:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "baa041b7_c9bca5dd",
       "revId": "54e92c8d260888bf047558b197df19c8a8dac8b7",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": false
@@ -189,6 +369,24 @@
     },
     {
       "key": {
+        "uuid": "baa041b7_9b6020a6",
+        "filename": "src/puppet/modules/simp-adapter/build/simp-adapter.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-09-19T14:58:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "baa041b7_6920f949",
+      "revId": "54e92c8d260888bf047558b197df19c8a8dac8b7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa041b7_a9aa8183",
         "filename": "src/puppet/modules/simp-adapter/build/simp-adapter.spec",
         "patchSetId": 1
@@ -200,6 +398,24 @@
       "writtenOn": "2016-09-16T21:02:38Z",
       "side": 1,
       "message": "Why have 2 different %files sections for the base package and the pe subpackage when they have the same content?",
+      "revId": "54e92c8d260888bf047558b197df19c8a8dac8b7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_7b579cca",
+        "filename": "src/puppet/modules/simp-adapter/build/simp-adapter.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-09-19T14:58:24Z",
+      "side": 1,
+      "message": "Because, when I didn\u0027t do it this way, it didn\u0027t work.",
+      "parentUuid": "baa041b7_a9aa8183",
       "revId": "54e92c8d260888bf047558b197df19c8a8dac8b7",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": false
@@ -223,6 +439,24 @@
     },
     {
       "key": {
+        "uuid": "baa041b7_3b72347d",
+        "filename": "src/puppet/modules/simp-adapter/spec/acceptance/nodesets/default.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-09-19T14:58:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "baa041b7_4907751d",
+      "revId": "54e92c8d260888bf047558b197df19c8a8dac8b7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa041b7_1b0e5032",
         "filename": "src/puppet/modules/simp-adapter/spec/acceptance/suites/default/00_basic_test_spec.rb",
         "patchSetId": 1
@@ -234,6 +468,24 @@
       "writtenOn": "2016-09-16T21:02:38Z",
       "side": 1,
       "message": "would like to see a test for the \u0027site\u0027 safe module",
+      "revId": "54e92c8d260888bf047558b197df19c8a8dac8b7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_94bead62",
+        "filename": "src/puppet/modules/simp-adapter/spec/acceptance/suites/default/00_basic_test_spec.rb",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-09-19T14:58:24Z",
+      "side": 1,
+      "message": "Adding this test.",
+      "parentUuid": "baa041b7_1b0e5032",
       "revId": "54e92c8d260888bf047558b197df19c8a8dac8b7",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": false
@@ -257,6 +509,24 @@
     },
     {
       "key": {
+        "uuid": "baa041b7_1b6d3099",
+        "filename": "src/puppet/modules/simp-adapter/spec/fixtures/test_module_rpms/simp.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-09-19T14:58:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "baa041b7_7b08bc28",
+      "revId": "54e92c8d260888bf047558b197df19c8a8dac8b7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa041b7_c98a651a",
         "filename": "src/puppet/modules/simp-adapter/src/conf/adapter_config.yaml",
         "patchSetId": 1
@@ -268,6 +538,24 @@
       "writtenOn": "2016-09-16T21:02:38Z",
       "side": 1,
       "message": "Needs comment \"Defaults to \u0027auto\u0027 when omitted\"",
+      "revId": "54e92c8d260888bf047558b197df19c8a8dac8b7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_fb6bac83",
+        "filename": "src/puppet/modules/simp-adapter/src/conf/adapter_config.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-09-19T14:58:24Z",
+      "side": 1,
+      "message": "This is true by convention",
+      "parentUuid": "baa041b7_c98a651a",
       "revId": "54e92c8d260888bf047558b197df19c8a8dac8b7",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": false
@@ -291,6 +579,24 @@
     },
     {
       "key": {
+        "uuid": "baa041b7_db66a8ba",
+        "filename": "src/puppet/modules/simp-adapter/src/conf/adapter_config.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-09-19T14:58:24Z",
+      "side": 1,
+      "message": "This is true by convention",
+      "parentUuid": "baa041b7_2976713e",
+      "revId": "54e92c8d260888bf047558b197df19c8a8dac8b7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa041b7_09728d11",
         "filename": "src/puppet/modules/simp-adapter/src/sbin/simp_rpm_helper",
         "patchSetId": 1
@@ -302,6 +608,24 @@
       "writtenOn": "2016-09-16T21:02:38Z",
       "side": 1,
       "message": "or \u0027svn\u0027",
+      "revId": "54e92c8d260888bf047558b197df19c8a8dac8b7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_9b0700c9",
+        "filename": "src/puppet/modules/simp-adapter/src/sbin/simp_rpm_helper",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-09-19T14:58:24Z",
+      "side": 1,
+      "message": "I want to discourage the use of \u0027svn\u0027 so much that I really don\u0027t want to mention it here.",
+      "parentUuid": "baa041b7_09728d11",
       "revId": "54e92c8d260888bf047558b197df19c8a8dac8b7",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": false
@@ -325,6 +649,24 @@
     },
     {
       "key": {
+        "uuid": "baa041b7_bb0404c6",
+        "filename": "src/puppet/modules/simp-adapter/src/sbin/simp_rpm_helper",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-09-19T14:58:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "baa041b7_09bf2dab",
+      "revId": "54e92c8d260888bf047558b197df19c8a8dac8b7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa041b7_69d119fb",
         "filename": "src/puppet/modules/simp-adapter/src/sbin/simp_rpm_helper",
         "patchSetId": 1
@@ -336,6 +678,24 @@
       "writtenOn": "2016-09-16T21:02:38Z",
       "side": 1,
       "message": "\"example below.  This example lists the default options, should the configuration file not exist, or any of the required tags be omitted from the YAML file\".",
+      "revId": "54e92c8d260888bf047558b197df19c8a8dac8b7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_7b0e7ce6",
+        "filename": "src/puppet/modules/simp-adapter/src/sbin/simp_rpm_helper",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-09-19T14:58:24Z",
+      "side": 1,
+      "message": "This is true by convention",
+      "parentUuid": "baa041b7_69d119fb",
       "revId": "54e92c8d260888bf047558b197df19c8a8dac8b7",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": false
@@ -359,6 +719,24 @@
     },
     {
       "key": {
+        "uuid": "baa041b7_5b117803",
+        "filename": "src/puppet/modules/simp-adapter/src/sbin/simp_rpm_helper",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-09-19T14:58:24Z",
+      "side": 1,
+      "message": "We can open an issue for a refactor if you like. This version works as implemented.",
+      "parentUuid": "baa041b7_09496db7",
+      "revId": "54e92c8d260888bf047558b197df19c8a8dac8b7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa041b7_e9c64915",
         "filename": "src/puppet/modules/simp-adapter/src/sbin/simp_rpm_helper",
         "patchSetId": 1
@@ -370,6 +748,24 @@
       "writtenOn": "2016-09-16T21:02:38Z",
       "side": 1,
       "message": "may want to check if it is accessible, as well, or Dir.chdir will raise Errno::EACCESS.",
+      "revId": "54e92c8d260888bf047558b197df19c8a8dac8b7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_3bf914c9",
+        "filename": "src/puppet/modules/simp-adapter/src/sbin/simp_rpm_helper",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-09-19T14:58:24Z",
+      "side": 1,
+      "message": "The script is run from RPM and expects to be run as root. If you\u0027re not root, not much of this is going to work anyway.",
+      "parentUuid": "baa041b7_e9c64915",
       "revId": "54e92c8d260888bf047558b197df19c8a8dac8b7",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": false
@@ -393,6 +789,24 @@
     },
     {
       "key": {
+        "uuid": "baa041b7_1bf410cd",
+        "filename": "src/puppet/modules/simp-adapter/src/sbin/simp_rpm_helper",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-09-19T14:58:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "baa041b7_69547953",
+      "revId": "54e92c8d260888bf047558b197df19c8a8dac8b7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa041b7_494f75be",
         "filename": "src/puppet/modules/simp-adapter/src/sbin/simp_rpm_helper",
         "patchSetId": 1
@@ -404,6 +818,24 @@
       "writtenOn": "2016-09-16T21:02:38Z",
       "side": 1,
       "message": "I\u0027m not keen on calling this status, as this is an argument passed to the RPM scriptlet, not really a status code.",
+      "revId": "54e92c8d260888bf047558b197df19c8a8dac8b7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_fb028cb3",
+        "filename": "src/puppet/modules/simp-adapter/src/sbin/simp_rpm_helper",
+        "patchSetId": 1
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-09-19T14:58:24Z",
+      "side": 1,
+      "message": "Suggestions welcome. It\u0027s a status of state of the system. I couldn\u0027t come up with a better name.",
+      "parentUuid": "baa041b7_494f75be",
       "revId": "54e92c8d260888bf047558b197df19c8a8dac8b7",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": false
@@ -427,6 +859,24 @@
     },
     {
       "key": {
+        "uuid": "baa041b7_dbfd88b2",
+        "filename": "src/puppet/modules/simp-adapter/src/sbin/simp_rpm_helper",
+        "patchSetId": 1
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-09-19T14:58:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "baa041b7_e99409e9",
+      "revId": "54e92c8d260888bf047558b197df19c8a8dac8b7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa041b7_c9c94527",
         "filename": "src/puppet/modules/simp-adapter/src/sbin/simp_rpm_helper",
         "patchSetId": 1
@@ -438,6 +888,24 @@
       "writtenOn": "2016-09-16T21:02:38Z",
       "side": 1,
       "message": "There are other OptionParser errors that can occur, so would be best to rescue OptionParser::ParseError, the base class for those errors.",
+      "revId": "54e92c8d260888bf047558b197df19c8a8dac8b7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_bb2be432",
+        "filename": "src/puppet/modules/simp-adapter/src/sbin/simp_rpm_helper",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-09-19T14:58:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "baa041b7_c9c94527",
       "revId": "54e92c8d260888bf047558b197df19c8a8dac8b7",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": false
@@ -461,6 +929,24 @@
     },
     {
       "key": {
+        "uuid": "baa041b7_9b2ee040",
+        "filename": "src/puppet/modules/simp-adapter/src/sbin/simp_rpm_helper",
+        "patchSetId": 1
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-09-19T14:58:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "baa041b7_c99705ea",
+      "revId": "54e92c8d260888bf047558b197df19c8a8dac8b7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa041b7_e9ed298f",
         "filename": "src/puppet/modules/simp-adapter/src/sbin/simp_rpm_helper",
         "patchSetId": 1
@@ -472,6 +958,24 @@
       "writtenOn": "2016-09-16T21:02:38Z",
       "side": 1,
       "message": "config[\u0027target_directory\u0027][0] or config[\u0027target_directory\u0027].chr will do the trick",
+      "revId": "54e92c8d260888bf047558b197df19c8a8dac8b7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_7b255c5a",
+        "filename": "src/puppet/modules/simp-adapter/src/sbin/simp_rpm_helper",
+        "patchSetId": 1
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-09-19T14:58:24Z",
+      "side": 1,
+      "message": "Didn\u0027t work in 1.8.7 so I\u0027m going to leave it in case of regression",
+      "parentUuid": "baa041b7_e9ed298f",
       "revId": "54e92c8d260888bf047558b197df19c8a8dac8b7",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": false
@@ -495,6 +999,24 @@
     },
     {
       "key": {
+        "uuid": "baa041b7_5b285833",
+        "filename": "src/puppet/modules/simp-adapter/src/sbin/simp_rpm_helper",
+        "patchSetId": 1
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-09-19T14:58:24Z",
+      "side": 1,
+      "message": "Yes",
+      "parentUuid": "baa041b7_49fd353a",
+      "revId": "54e92c8d260888bf047558b197df19c8a8dac8b7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa041b7_a99e0105",
         "filename": "src/puppet/modules/simp-adapter/src/sbin/simp_rpm_helper",
         "patchSetId": 1
@@ -506,6 +1028,24 @@
       "writtenOn": "2016-09-16T21:02:38Z",
       "side": 1,
       "message": "must be \u00270\u0027, \u00271\u0027, or \u00272\u0027, not just any digit",
+      "revId": "54e92c8d260888bf047558b197df19c8a8dac8b7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_3b20f448",
+        "filename": "src/puppet/modules/simp-adapter/src/sbin/simp_rpm_helper",
+        "patchSetId": 1
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-09-19T14:58:24Z",
+      "side": 1,
+      "message": "For now....we may use other digits as ways to extend this script further in the future. It just won\u0027t do anything if you give it something invalid.",
+      "parentUuid": "baa041b7_a99e0105",
       "revId": "54e92c8d260888bf047558b197df19c8a8dac8b7",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": false
