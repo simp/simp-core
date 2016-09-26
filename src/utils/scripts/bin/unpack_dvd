@@ -104,7 +104,7 @@ def update_yum_repo(repo)
     begin
       if Gem::Version.new(RUBY_VERSION) < Gem::Version.new('1.9')
         # Use Puppet to hack around the lack of symbolic modes in Ruby < 1.9
-        system(%{puppet resource file #{repo} recurse=true mode='g+srX' 2>&1 > /dev/null})
+        system(%{puppet resource file #{repo} recurse=true mode='g+srX' > /dev/null 2>&1})
       else
         FileUtils.chmod_R('g+srX',repo)
       end
