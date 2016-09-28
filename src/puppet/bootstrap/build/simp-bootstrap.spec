@@ -6,7 +6,7 @@
 
 Summary: SIMP Bootstrap
 Name: simp-bootstrap
-Version: 5.3.3
+Version: 5.3.4
 Release: 0
 License: Apache License 2.0
 Group: Applications/System
@@ -107,6 +107,8 @@ cd -
 %config(noreplace) %{prefix}/environments/simp/FakeCA/usergen
 %config(noreplace) %{prefix}/environments/simp/hieradata/compliance_profiles/nist_800_53_rev4.yaml
 %config(noreplace) %{prefix}/environments/simp/hieradata/compliance_profiles/disa_stig_el7.yaml
+%config(noreplace) %{prefix}/environments/simp/hieradata/compliance_profiles/iso_iec_27001.yaml
+%config(noreplace) %{prefix}/environments/simp/hieradata/compliance_profiles/nist_800_171.yaml
 
 %defattr(0640,root,root,0750)
 %{_datadir}/selinux/*/%{selinux_policy}
@@ -346,6 +348,9 @@ if [ $1 -eq 0 ]; then
 fi
 
 %changelog
+* Thu Oct 13 2016 Lisa Umberger <lisa.umberger@onyxpoint.com> - 5.3.4-0
+- Added NIST 800-171 and ISO/IEC 27001 compliance mappings.
+
 * Thu Sep 29 2016 Liz Nemsick <lnemsick.simp@gmail.com> - 5.3.3-0
 - Removed OBE  mcollective hieradata.
 
