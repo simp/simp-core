@@ -1,0 +1,1105 @@
+---
+global::percent_sign: "%"
+compliance::iso_iec_27001::auditd::to_syslog:
+    identifier:
+    - A.12.4.2
+    - A.12.4.3
+    - A.18.1.3
+    value: true
+    notes: Sending audit logs to syslog *might* by a bandwidth problem in some instances.  Otherwise, it should NOT be turned off
+compliance::iso_iec_27001::auditd::package_name:
+    identifier:
+    - A.12.4.1
+    value: audit
+compliance::iso_iec_27001::aide::use_auditd:
+    identifier:
+    - A.12.4.2
+    - A.12.4.3
+    - A.18.1.3
+    value: true
+compliance::iso_iec_27001::iptables::authoritative:
+    identifier:
+    - A.13.1.3
+    - A.13.2.1
+    - A.14.1.2
+    - A.14.1.3
+    value: true
+compliance::iso_iec_27001::iptables::optimize_rules:
+    identifier:
+    - A.13.1.3
+    - A.13.2.1
+    - A.14.1.2
+    - A.14.1.3
+    value: true
+compliance::iso_iec_27001::iptables::ignore:
+    identifier:
+    - A.13.1.3
+    - A.13.2.1
+    - A.14.1.2
+    - A.14.1.3
+    value: []
+compliance::iso_iec_27001::iptables::enable_default_rules:
+    identifier:
+    - A.13.1.3
+    - A.13.2.1
+    - A.14.1.2
+    - A.14.1.3
+    value: true
+    notes: If the SIMP default rules are modified, the running rules should be viewed to ensure they allow a minimal set inbound flows
+compliance::iso_iec_27001::iptables::enable_scanblock:
+    identifier:
+    - A.16.1.4
+    - A.16.1.5
+    - A.16.1.6
+    value: false
+    notes: This is turned off by default for SIMP as writing rules *could* cause unintended behaviour
+compliance::iso_iec_27001::iptables::prevent_localhost_spoofing:
+    identifier:
+    - A.13.1.3
+    - A.13.2.1
+    - A.14.1.2
+    - A.14.1.3
+    value: true
+compliance::iso_iec_27001::iptables::disable:
+    identifier:
+    - A.13.1.3
+    - A.13.2.1
+    - A.14.1.2
+    - A.14.1.3
+    value: false
+compliance::iso_iec_27001::simp::nfs::stock::export_home::sec:
+    identifier:
+    - A.9.2.1
+    value: none:sys
+compliance::iso_iec_27001::simp::rsyslog::stock::log_server::use_iptables:
+    identifier:
+    - A.9.1.2
+    - A.9.2.3
+    - A.9.4.4
+    - A.9.4.5
+    value: true
+compliance::iso_iec_27001::simp::server::rsync_shares::use_stunnel:
+    identifier:
+    - A.10.1.1
+    - A.14.1.2
+    - A.14.1.3
+    - A.18.1.5
+    value: true
+compliance::iso_iec_27001::simp::sssd::client::use_ldap:
+    identifier:
+    - A.9.2.1
+    value: true
+compliance::iso_iec_27001::simp::sssd::client::use_autofs:
+    identifier:
+    - A.9.2.1
+    value: true
+compliance::iso_iec_27001::simp::sssd::client::use_ssh:
+    identifier:
+    - A.10.1.1
+    - A.14.1.2
+    - A.14.1.3
+    - A.18.1.5
+    value: true
+compliance::iso_iec_27001::simp::sssd::client::enumerate_users:
+    identifier:
+    - A.9.2.1
+    value: false
+compliance::iso_iec_27001::simp::sssd::client::min_id:
+    identifier:
+    - A.9.2.1
+    value: '501'
+compliance::iso_iec_27001::simplib::user_umask:
+    identifier:
+    - A.9.1.2
+    - A.9.2.3
+    - A.9.4.4
+    - A.9.4.5
+    value: '0077'
+compliance::iso_iec_27001::simplib::daemon_umask:
+    identifier:
+    - A.9.1.2
+    - A.9.2.3
+    - A.9.4.4
+    - A.9.4.5
+    value: '0027'
+compliance::iso_iec_27001::simplib::ftpusers_min:
+    identifier:
+    - A.9.2.1
+    value: '500'
+compliance::iso_iec_27001::simplib::disable_hosts_equiv:
+    identifier:
+    - A.8.2.3
+    - A.13.1.1
+    - A.13.2.1
+    - A.13.2.3
+    - A.14.1.2
+    - A.14.1.3
+    value: true
+compliance::iso_iec_27001::simplib::shells:
+    identifier:
+    - A.12.5.1
+    value:
+    - "/bin/sh"
+    - "/bin/zsh"
+    - "/bin/bash"
+    - "/sbin/nologin"
+    notes: Adding or removing shells may not be a bad thing.  Any changes to the SIMP default should be justified
+compliance::iso_iec_27001::simplib::manage_tmp_perms:
+    identifier:
+    - A.12.5.1
+    value: true
+compliance::iso_iec_27001::simplib::manage_root_perms:
+    identifier:
+    - A.12.5.1
+    value: true
+compliance::iso_iec_27001::simplib::use_fips:
+    identifier:
+    - A.10.1.1
+    - A.14.1.2
+    - A.14.1.3
+    - A.18.1.5
+    value: true
+compliance::iso_iec_27001::simplib::use_fips_aesni:
+    identifier:
+    - A.10.1.1
+    - A.14.1.2
+    - A.14.1.3
+    - A.18.1.5
+    value: true
+compliance::iso_iec_27001::simplib::runlevel:
+    identifier:
+    - A.12.5.1
+    value: '3'
+    notes: A run level other than 3 should be justified
+compliance::iso_iec_27001::simplib::proc_hidepid:
+    identifier:
+    - A.9.1.2
+    - A.9.2.3
+    - A.9.4.4
+    - A.9.4.5
+    value: '2'
+compliance::iso_iec_27001::simplib::issue::source:
+    identifier:
+    - A.9.4.2
+    value: puppet:///modules/simplib/etc/issue
+compliance::iso_iec_27001::simplib::libuser_conf::userdefaults:
+    identifier:
+    - A.9.2.1
+    value: |-
+        LU_USERNAME = %n
+        LU_GIDNUMBER = %u
+compliance::iso_iec_27001::simplib::libuser_conf::groupdefaults:
+    identifier:
+    - A.9.2.1
+    value: LU_GROUPNAME = %n
+compliance::iso_iec_27001::simplib::login_defs::create_home:
+    identifier:
+    - A.6.2.2
+    - A.9.1.2
+    - A.9.4.1
+    - A.9.4.4
+    - A.9.4.5
+    - A.13.1.1
+    - A.14.1.2
+    - A.14.1.3
+    - A.18.1.3
+    value: true
+compliance::iso_iec_27001::simplib::login_defs::default_home:
+    identifier:
+    - A.6.2.2
+    - A.9.1.2
+    - A.9.4.1
+    - A.9.4.4
+    - A.9.4.5
+    - A.13.1.1
+    - A.14.1.2
+    - A.14.1.3
+    - A.18.1.3
+    value: false
+compliance::iso_iec_27001::simplib::login_defs::fail_delay:
+    identifier:
+    - A.9.4.2
+    value: '4'
+compliance::iso_iec_27001::simplib::login_defs::issue_file:
+    identifier:
+    - A.9.4.2
+    value: "/etc/issue"
+compliance::iso_iec_27001::simplib::login_defs::obscure_checks_enab:
+    identifier:
+    - A.9.2.1
+    - A.9.2.4
+    - A.9.3.1
+    - A.9.4.3
+    value: true
+compliance::iso_iec_27001::simplib::login_defs::syslog_sg_enab:
+    identifier:
+    - A.12.4.1
+    value: true
+compliance::iso_iec_27001::simplib::login_defs::syslog_su_enab:
+    identifier:
+    - A.12.4.1
+    value: true
+compliance::iso_iec_27001::simplib::login_defs::umask:
+    identifier:
+    - A.9.1.2
+    - A.9.2.3
+    - A.9.4.4
+    - A.9.4.5
+    value: '007'
+compliance::iso_iec_27001::simplib::modprobe_blacklist::enable:
+    identifier:
+    - A.12.5.1
+    value: true
+compliance::iso_iec_27001::simplib::modprobe_blacklist::blacklist:
+    identifier:
+    - A.12.5.1
+    value:
+    - bluetooth
+    - cramfs
+    - dccp
+    - dccp_ipv4
+    - dccp_ipv6
+    - freevxfs
+    - hfs
+    - hfsplus
+    - ieee1394
+    - jffs2
+    - net-pf-31
+    - rds
+    - sctp
+    - squashfs
+    - tipc
+    - udf
+    - usb-storage
+compliance::iso_iec_27001::simplib::modprobe_blacklist::blacklist_method:
+    identifier:
+    - A.12.5.1
+    value: "/bin/true"
+compliance::iso_iec_27001::simplib::prelink::enable:
+    identifier:
+    - A.12.5.1
+    value: false
+compliance::iso_iec_27001::simplib::profile_settings::session_timeout:
+    identifier:
+    - A.11.2.8
+    - A.11.2.9
+    value: '15'
+compliance::iso_iec_27001::simplib::profile_settings::umask:
+    identifier:
+    - A.9.1.2
+    - A.9.2.3
+    - A.9.4.4
+    - A.9.4.5
+    value: '0077'
+compliance::iso_iec_27001::simplib::profile_settings::mesg:
+    identifier:
+    - A.9.1.2
+    - A.9.2.3
+    - A.9.4.4
+    - A.9.4.5
+    value: false
+compliance::iso_iec_27001::simplib::secure_mountpoints::secure_tmp_mounts:
+    identifier:
+    - A.12.5.1
+    value: true
+compliance::iso_iec_27001::simplib::secure_mountpoints::tmp_opts:
+    identifier:
+    - A.12.5.1
+    value:
+    - noexec
+    - nodev
+    - nosuid
+compliance::iso_iec_27001::simplib::secure_mountpoints::var_tmp_opts:
+    identifier:
+    - A.12.5.1
+    value:
+    - noexec
+    - nodev
+    - nosuid
+compliance::iso_iec_27001::simplib::secure_mountpoints::dev_shm_opts:
+    identifier:
+    - A.12.5.1
+    value:
+    - noexec
+    - nodev
+    - nosuid
+compliance::iso_iec_27001::simplib::sysctl::kernel__dmesg_restrict:
+    identifier:
+    - A.9.1.2
+    - A.9.2.3
+    - A.9.4.4
+    - A.9.4.5
+    value: '1'
+compliance::iso_iec_27001::simplib::sysctl::kernel__exec_shield:
+    identifier:
+    - A.9.1.2
+    - A.9.2.3
+    - A.9.4.4
+    - A.9.4.5
+    value: '1'
+compliance::iso_iec_27001::simplib::sysctl::net__ipv4__conf__all__accept_redirects:
+    identifier:
+    - A.12.5.1
+    value: '0'
+compliance::iso_iec_27001::simplib::sysctl::net__ipv4__conf__all__accept_source_route:
+    identifier:
+    - A.12.5.1
+    value: '0'
+compliance::iso_iec_27001::simplib::sysctl::net__ipv4__conf__all__rp_filter:
+    identifier:
+    - A.12.5.1
+    value: '1'
+compliance::iso_iec_27001::simplib::sysctl::net__ipv4__conf__all__secure_redirects:
+    identifier:
+    - A.12.5.1
+    value: '0'
+compliance::iso_iec_27001::simplib::sysctl::net__ipv4__conf__all__send_redirects:
+    identifier:
+    - A.12.5.1
+    value: '0'
+compliance::iso_iec_27001::simplib::sysctl::net__ipv4__conf__default__accept_redirects:
+    identifier:
+    - A.12.5.1
+    value: '0'
+compliance::iso_iec_27001::simplib::sysctl::net__ipv4__icmp_echo_ignore_broadcasts:
+    identifier:
+    - A.12.5.1
+    value: '1'
+compliance::iso_iec_27001::simplib::sysctl::net__ipv4__icmp_ignore_bogus_error_responses:
+    identifier:
+    - A.12.5.1
+    value: '1'
+compliance::iso_iec_27001::simplib::sysctl::net__ipv4__tcp_syncookies:
+    identifier:
+    - A.12.5.1
+    value: '1'
+compliance::iso_iec_27001::simplib::sysctl::net__ipv6__conf__default__accept_ra:
+    identifier:
+    - A.12.5.1
+    value: '0'
+compliance::iso_iec_27001::simplib::sysctl::net__ipv6__conf__default__accept_ra_defrtr:
+    identifier:
+    - A.12.5.1
+    value: '0'
+compliance::iso_iec_27001::simplib::sysctl::net__ipv6__conf__default__accept_ra_pinfo:
+    identifier:
+    - A.12.5.1
+    value: '0'
+compliance::iso_iec_27001::simplib::sysctl::net__ipv6__conf__default__accept_ra_rtr_pref:
+    identifier:
+    - A.12.5.1
+    value: '0'
+compliance::iso_iec_27001::simplib::sysctl::net__ipv6__conf__default__accept_redirects:
+    identifier:
+    - A.12.5.1
+    value: '0'
+compliance::iso_iec_27001::simplib::sysctl::net__ipv6__conf__default__autoconf:
+    identifier:
+    - A.12.5.1
+    value: '0'
+compliance::iso_iec_27001::simplib::sysctl::net__ipv6__conf__default__dad_transmits:
+    identifier:
+    - A.12.5.1
+    value: '0'
+compliance::iso_iec_27001::simplib::sysctl::net__ipv6__conf__default__max_addresses:
+    identifier:
+    - A.12.5.1
+    value: '1'
+compliance::iso_iec_27001::simplib::sysctl::net__ipv6__conf__default__router_solicitations:
+    identifier:
+    - A.12.5.1
+    value: '0'
+compliance::iso_iec_27001::named::chroot_path:
+    identifier:
+    - A.9.1.2
+    - A.9.2.3
+    - A.9.4.4
+    - A.9.4.5
+    value: "/var/named/chroot"
+compliance::iso_iec_27001::named::bind_dns_rsync:
+    identifier:
+    - A.9.1.2
+    - A.9.2.3
+    - A.9.4.4
+    - A.9.4.5
+    value: default
+compliance::iso_iec_27001::named::service::chroot:
+    identifier:
+    - A.9.1.2
+    - A.9.2.3
+    - A.9.4.4
+    - A.9.4.5
+    value: false
+compliance::iso_iec_27001::ntpd::logconfig:
+    identifier:
+    - A.12.4.1
+    value:
+    - "=syncall"
+    - "+clockall"
+compliance::iso_iec_27001::openldap::client::tls_cacertdir:
+    identifier:
+    - A.8.2.3
+    - A.13.1.1
+    - A.13.2.1
+    - A.13.2.3
+    - A.14.1.2
+    - A.14.1.3
+    value: "/etc/pki/cacerts"
+compliance::iso_iec_27001::openldap::client::tls_reqcert:
+    identifier:
+    - A.8.2.3
+    - A.13.1.1
+    - A.13.2.1
+    - A.13.2.3
+    - A.14.1.2
+    - A.14.1.3
+    value: allow
+compliance::iso_iec_27001::openldap::pam::start_tls:
+    identifier:
+    - A.8.2.3
+    - A.13.1.1
+    - A.13.2.1
+    - A.13.2.3
+    - A.14.1.2
+    - A.14.1.3
+    value: true
+compliance::iso_iec_27001::openldap::pam::use_auditd:
+    identifier:
+    - A.12.4.2
+    - A.12.4.3
+    - A.18.1.3
+    value: true
+compliance::iso_iec_27001::openldap::pam::ssl:
+    identifier:
+    - A.8.2.3
+    - A.13.1.1
+    - A.13.2.1
+    - A.13.2.3
+    - A.14.1.2
+    - A.14.1.3
+    value: true
+compliance::iso_iec_27001::openldap::pam::tls_ciphers:
+    identifier:
+    - A.10.1.1
+    - A.14.1.2
+    - A.14.1.3
+    - A.18.1.5
+    value:
+    - HIGH
+    - "-SSLv2"
+compliance::iso_iec_27001::openldap::pam::validnames:
+    identifier:
+    - A.9.2.1
+    value: "/^[a-z0-9._@$()][a-z0-9._@$() \\~-]+[a-z0-9._@$()~-]$/i"
+compliance::iso_iec_27001::openldap::server::host_auth_user:
+    identifier:
+    - A.9.2.1
+    value: hostAuth
+compliance::iso_iec_27001::openldap::server::use_ppolicy:
+    identifier:
+    - A.9.2.1
+    - A.9.2.4
+    - A.9.3.1
+    - A.9.4.3
+    value: true
+compliance::iso_iec_27001::openldap::server::use_tcpwrappers:
+    identifier:
+    - A.13.1.3
+    - A.13.2.1
+    - A.14.1.2
+    - A.14.1.3
+    value: true
+compliance::iso_iec_27001::openldap::server::conf::audit_to_syslog:
+    identifier:
+    - A.12.4.2
+    - A.12.4.3
+    - A.18.1.3
+    value: true
+compliance::iso_iec_27001::openldap::server::conf::auditlog:
+    identifier:
+    - A.12.4.1
+    value: "/var/log/slapd.audit"
+compliance::iso_iec_27001::openldap::server::conf::bind_anon:
+    identifier:
+    - A.9.1.2
+    - A.9.2.3
+    - A.9.4.4
+    - A.9.4.5
+    value: false
+compliance::iso_iec_27001::openldap::server::conf::listen_ldaps:
+    identifier:
+    - A.10.1.1
+    - A.14.1.2
+    - A.14.1.3
+    - A.18.1.5
+    value: true
+compliance::iso_iec_27001::openldap::server::conf::slapd_logLevel:
+    identifier:
+    - A.12.4.1
+    value:
+    - stats
+    - acl
+    - sync
+compliance::iso_iec_27001::openldap::server::conf::security:
+    identifier:
+    - A.10.1.1
+    - A.14.1.2
+    - A.14.1.3
+    - A.18.1.5
+    value: ssf=256 tls=256 update_ssf=256 simple_bind=256 update_tls=256
+compliance::iso_iec_27001::openldap::server::conf::use_tls:
+    identifier:
+    - A.10.1.1
+    - A.14.1.2
+    - A.14.1.3
+    - A.18.1.5
+    value: true
+compliance::iso_iec_27001::openldap::server::conf::enable_iptables:
+    identifier:
+    - A.13.1.3
+    - A.13.2.1
+    - A.14.1.2
+    - A.14.1.3
+    value: true
+compliance::iso_iec_27001::openldap::server::conf::default_ldif::ppolicy_pwd_lockout:
+    identifier:
+    - A.9.4.2
+    value: true
+compliance::iso_iec_27001::openldap::server::conf::default_ldif::ppolicy_pwd_allow_user_change:
+    identifier:
+    - A.9.4.2
+    value: true
+compliance::iso_iec_27001::openldap::server::conf::default_ldif::ppolicy_pwd_safe_modify:
+    identifier:
+    - A.9.4.2
+    value: false
+compliance::iso_iec_27001::pam::cracklib_enforce_for_root:
+    identifier:
+    - A.9.2.1
+    - A.9.2.4
+    - A.9.3.1
+    - A.9.4.3
+    value: true
+compliance::iso_iec_27001::pam::display_account_lock:
+    identifier:
+    - A.9.4.2
+    value: false
+compliance::iso_iec_27001::pam::homedir_umask:
+    identifier:
+    - A.9.1.2
+    - A.9.2.3
+    - A.9.4.4
+    - A.9.4.5
+    value: '0077'
+compliance::iso_iec_27001::pki::enable_audit:
+    identifier:
+    - A.12.4.2
+    - A.12.4.3
+    - A.18.1.3
+    value: true
+compliance::iso_iec_27001::postfix::enable_server:
+    identifier:
+    - A.12.5.1
+    value: false
+compliance::iso_iec_27001::postfix::server::enable_iptables:
+    identifier:
+    - A.13.1.3
+    - A.13.2.1
+    - A.14.1.2
+    - A.14.1.3
+    value: true
+compliance::iso_iec_27001::postfix::server::enable_tls:
+    identifier:
+    - A.8.2.3
+    - A.13.1.1
+    - A.13.2.1
+    - A.13.2.3
+    - A.14.1.2
+    - A.14.1.3
+    value: true
+compliance::iso_iec_27001::postfix::server::enforce_tls:
+    identifier:
+    - A.8.2.3
+    - A.13.1.1
+    - A.13.2.1
+    - A.13.2.3
+    - A.14.1.2
+    - A.14.1.3
+    value: true
+compliance::iso_iec_27001::postfix::server::mandatory_ciphers:
+    identifier:
+    - A.8.2.3
+    - A.13.1.1
+    - A.13.2.1
+    - A.13.2.3
+    - A.14.1.2
+    - A.14.1.3
+    value: true
+compliance::iso_iec_27001::postfix::server::enable_simp_pki:
+    identifier:
+    - A.8.2.3
+    - A.13.1.1
+    - A.13.2.1
+    - A.13.2.3
+    - A.14.1.2
+    - A.14.1.3
+    value: true
+compliance::iso_iec_27001::pupmod::auditd_support:
+    identifier:
+    - A.12.4.2
+    - A.12.4.3
+    - A.18.1.3
+    value: true
+compliance::iso_iec_27001::pupmod::ca_crl_pull_interval:
+    identifier:
+    - A.8.2.3
+    - A.13.1.1
+    - A.13.2.1
+    - A.13.2.3
+    - A.14.1.2
+    - A.14.1.3
+    value: '2'
+compliance::iso_iec_27001::pupmod::logdir:
+    identifier:
+    - A.12.4.1
+    value: "/var/log/puppet"
+compliance::iso_iec_27001::pupmod::syslogfacility:
+    identifier:
+    - A.12.4.2
+    - A.12.4.3
+    - A.18.1.3
+    value: local6
+compliance::iso_iec_27001::pupmod::master::bind_address:
+    identifier:
+    - A.12.5.1
+    value: 0.0.0.0
+compliance::iso_iec_27001::pupmod::master::ca_bind_address:
+    identifier:
+    - A.12.5.1
+    value: 0.0.0.0
+compliance::iso_iec_27001::pupmod::master::use_iptables:
+    identifier:
+    - A.12.5.1
+    value: true
+compliance::iso_iec_27001::pupmod::master::ssl_protocols:
+    identifier:
+    - A.8.2.3
+    - A.13.1.1
+    - A.13.2.1
+    - A.13.2.3
+    - A.14.1.2
+    - A.14.1.3
+    value:
+    - TLSv1
+    - TLSv1.1
+    - TLSv1.2
+compliance::iso_iec_27001::pupmod::master::log_to_syslog:
+    identifier:
+    - A.12.4.2
+    - A.12.4.3
+    - A.18.1.3
+    value: true
+compliance::iso_iec_27001::rsync::server::use_stunnel:
+    identifier:
+    - A.8.2.3
+    - A.13.1.1
+    - A.13.2.1
+    - A.13.2.3
+    - A.14.1.2
+    - A.14.1.3
+    value: true
+compliance::iso_iec_27001::rsync::server::global::address:
+    identifier:
+    - A.12.5.1
+    value: 127.0.0.1
+compliance::iso_iec_27001::rsyslog::config::umask:
+    identifier:
+    - A.9.1.2
+    - A.9.2.3
+    - A.9.4.4
+    - A.9.4.5
+    value: '0027'
+compliance::iso_iec_27001::rsyslog::config::preserve_fqdn:
+    identifier:
+    - A.12.4.1
+    value: true
+compliance::iso_iec_27001::rsyslog::server::enable_tcpwrappers:
+    identifier:
+    - A.13.1.3
+    - A.13.2.1
+    - A.14.1.2
+    - A.14.1.3
+    value: true
+compliance::iso_iec_27001::ssh::enable_client:
+    identifier:
+    - A.6.2.1
+    - A.6.2.2
+    - A.13.1.1
+    - A.13.2.1
+    - A.14.1.2
+    value: true
+compliance::iso_iec_27001::ssh::client::add_default_entry:
+    identifier:
+    - A.8.2.3
+    - A.13.1.1
+    - A.13.2.1
+    - A.13.2.3
+    - A.14.1.2
+    - A.14.1.3
+    value: true
+    notes: If the default entry is not used, each of the values for the ssh client config should be evaluated
+compliance::iso_iec_27001::ssh::server::conf::banner:
+    identifier:
+    - A.9.4.2
+    value: "/etc/issue.net"
+compliance::iso_iec_27001::ssh::server::conf::syslogfacility:
+    identifier:
+    - A.12.4.2
+    - A.12.4.3
+    - A.18.1.3
+    value: AUTHPRIV
+compliance::iso_iec_27001::ssh::server::conf::usepam:
+    identifier:
+    - A.9.2.1
+    - A.9.2.4
+    - A.9.3.1
+    - A.9.4.3
+    value: true
+compliance::iso_iec_27001::ssh::server::conf::useprivilegeseparation:
+    identifier:
+    - A.9.1.2
+    - A.9.2.3
+    - A.9.4.4
+    - A.9.4.5
+    value: true
+compliance::iso_iec_27001::ssh::server::conf::x11forwarding:
+    identifier:
+    - A.12.5.1
+    value: false
+compliance::iso_iec_27001::ssh::server::conf::use_tcpwrappers:
+    identifier:
+    - A.13.1.3
+    - A.13.2.1
+    - A.14.1.2
+    - A.14.1.3
+    value: true
+compliance::iso_iec_27001::sssd::enable_auditd:
+    identifier:
+    - A.12.4.2
+    - A.12.4.3
+    - A.18.1.3
+    value: true
+compliance::iso_iec_27001::stunnel::chroot:
+    identifier:
+    - A.9.1.2
+    - A.9.2.3
+    - A.9.4.4
+    - A.9.4.5
+    value: "/var/stunnel"
+compliance::iso_iec_27001::stunnel::setuid:
+    identifier:
+    - A.9.1.2
+    - A.9.2.3
+    - A.9.4.4
+    - A.9.4.5
+    value: stunnel
+compliance::iso_iec_27001::stunnel::setgid:
+    identifier:
+    - A.9.1.2
+    - A.9.2.3
+    - A.9.4.4
+    - A.9.4.5
+    value: stunnel
+compliance::iso_iec_27001::stunnel::syslog:
+    identifier:
+    - A.12.4.2
+    - A.12.4.3
+    - A.18.1.3
+    value: true
+compliance::iso_iec_27001::stunnel::add::ca_path:
+    identifier:
+    - A.8.2.3
+    - A.13.1.1
+    - A.13.2.1
+    - A.13.2.3
+    - A.14.1.2
+    - A.14.1.3
+    value: "/etc/pki/cacerts"
+compliance::iso_iec_27001::stunnel::add::ciphers:
+    identifier:
+    - A.8.2.3
+    - A.13.1.1
+    - A.13.2.1
+    - A.13.2.3
+    - A.14.1.2
+    - A.14.1.3
+    value:
+    - HIGH
+    - "-SSLv2"
+compliance::iso_iec_27001::stunnel::add::use_iptables:
+    identifier:
+    - A.13.1.3
+    - A.13.2.1
+    - A.14.1.2
+    - A.14.1.3
+    value: true
+compliance::iso_iec_27001::upstart::disable_ctrl_alt_del:
+    identifier:
+    - A.9.1.2
+    - A.9.2.3
+    - A.9.4.4
+    - A.9.4.5
+    value: true
+compliance::iso_iec_27001::vsftpd::manage_user:
+    identifier:
+    - A.9.2.1
+    value: true
+compliance::iso_iec_27001::vsftpd::manage_group:
+    identifier:
+    - A.9.2.1
+    value: true
+compliance::iso_iec_27001::vsftpd::ssl_enable:
+    identifier:
+    - A.8.2.3
+    - A.13.1.1
+    - A.13.2.1
+    - A.13.2.3
+    - A.14.1.2
+    - A.14.1.3
+    value: true
+compliance::iso_iec_27001::vsftpd::require_ssl_reuse:
+    identifier:
+    - A.8.2.3
+    - A.13.1.1
+    - A.13.2.1
+    - A.13.2.3
+    - A.14.1.2
+    - A.14.1.3
+    value: true
+compliance::iso_iec_27001::vsftpd::userlist_enable:
+    identifier:
+    - A.9.2.1
+    value: true
+compliance::iso_iec_27001::vsftpd::validate_cert:
+    identifier:
+    - A.8.2.3
+    - A.13.1.1
+    - A.13.2.1
+    - A.13.2.3
+    - A.14.1.2
+    - A.14.1.3
+    value: true
+compliance::iso_iec_27001::vsftpd::vsftpd_user:
+    identifier:
+    - A.9.2.1
+    value: ftp
+compliance::iso_iec_27001::vsftpd::config::force_local_data_ssl:
+    identifier:
+    - A.8.2.3
+    - A.13.1.1
+    - A.13.2.1
+    - A.13.2.3
+    - A.14.1.2
+    - A.14.1.3
+    value: true
+compliance::iso_iec_27001::vsftpd::config::force_local_logins_ssl:
+    identifier:
+    - A.8.2.3
+    - A.13.1.1
+    - A.13.2.1
+    - A.13.2.3
+    - A.14.1.2
+    - A.14.1.3
+    value: true
+compliance::iso_iec_27001::vsftpd::config::ssl_ciphers:
+    identifier:
+    - A.8.2.3
+    - A.13.1.1
+    - A.13.2.1
+    - A.13.2.3
+    - A.14.1.2
+    - A.14.1.3
+    value:
+    - HIGH
+compliance::iso_iec_27001::vsftpd::config::ssl_tlsv1:
+    identifier:
+    - A.8.2.3
+    - A.13.1.1
+    - A.13.2.1
+    - A.13.2.3
+    - A.14.1.2
+    - A.14.1.3
+    value: true
+compliance::iso_iec_27001::vsftpd::config::banner_file:
+    identifier:
+    - A.9.4.2
+    value: "/etc/issue.net"
+compliance::iso_iec_27001::vsftpd::config::local_umask:
+    identifier:
+    - A.9.1.2
+    - A.9.2.3
+    - A.9.4.4
+    - A.9.4.5
+    value: '022'
+compliance::iso_iec_27001::vsftpd::config::syslog_enable:
+    identifier:
+    - A.12.4.2
+    - A.12.4.3
+    - A.18.1.3
+    value: true
+compliance::iso_iec_27001::windowmanager::gnome::include_sec:
+    identifier:
+    - A.9.1.2
+    - A.9.2.3
+    - A.9.4.4
+    - A.9.4.5
+    value: true
+compliance::iso_iec_27001::xinetd::log_type:
+    identifier:
+    - A.12.4.2
+    - A.12.4.3
+    - A.18.1.3
+    value: SYSLOG authpriv
+compliance::iso_iec_27001::xinetd::banner:
+    identifier:
+    - A.9.4.2
+    value: "/etc/issue.net"
+compliance::iso_iec_27001::apache::ssl:
+    identifier:
+    - A.8.2.3
+    - A.13.1.1
+    - A.13.2.1
+    - A.13.2.3
+    - A.14.1.2
+    - A.14.1.3
+    value: true
+compliance::iso_iec_27001::apache::conf::user:
+    identifier:
+    - A.9.1.2
+    - A.9.2.3
+    - A.9.4.4
+    - A.9.4.5
+    value: apache
+compliance::iso_iec_27001::apache::conf::group:
+    identifier:
+    - A.9.1.2
+    - A.9.2.3
+    - A.9.4.4
+    - A.9.4.5
+    value: apache
+compliance::iso_iec_27001::apache::ssl::ssl_protocols:
+    identifier:
+    - A.8.2.3
+    - A.13.1.1
+    - A.13.2.1
+    - A.13.2.3
+    - A.14.1.2
+    - A.14.1.3
+    value:
+    - TLSv1
+    - TLSv1.1
+    - TLSv1.2
+compliance::iso_iec_27001::apache::conf::logfacility:
+    identifier:
+    - A.12.4.2
+    - A.12.4.3
+    - A.18.1.3
+    value: local6
+compliance::iso_iec_27001::apache::conf::rsyslog_target:
+    identifier:
+    - A.12.4.2
+    - A.12.4.3
+    - A.18.1.3
+    value: "/var/log/httpd"
+compliance::iso_iec_27001::apache::ssl::ssl_honor_cipher_order:
+    identifier:
+    - A.8.2.3
+    - A.13.1.1
+    - A.13.2.1
+    - A.13.2.3
+    - A.14.1.2
+    - A.14.1.3
+    value: 'on'
+compliance::iso_iec_27001::apache::ssl::sslverifyclient:
+    identifier:
+    - A.8.2.3
+    - A.13.1.1
+    - A.13.2.1
+    - A.13.2.3
+    - A.14.1.2
+    - A.14.1.3
+    value: require
+compliance::iso_iec_27001::apache::ssl::sslverifydepth:
+    identifier:
+    - A.8.2.3
+    - A.13.1.1
+    - A.13.2.1
+    - A.13.2.3
+    - A.14.1.2
+    - A.14.1.3
+    value: '10'
+compliance::iso_iec_27001::apache::ssl::sslcacertificatepath:
+    identifier:
+    - A.8.2.3
+    - A.13.1.1
+    - A.13.2.1
+    - A.13.2.3
+    - A.14.1.2
+    - A.14.1.3
+    value: "/etc/httpd/conf/pki/cacerts"
+compliance::iso_iec_27001::apache::ssl::enable_iptables:
+    identifier:
+    - A.13.1.3
+    - A.13.2.1
+    - A.14.1.2
+    - A.14.1.3
+    value: true
+compliance::iso_iec_27001::apache::ssl::use_simp_pki:
+    identifier:
+    - A.8.2.3
+    - A.13.1.1
+    - A.13.2.1
+    - A.13.2.3
+    - A.14.1.2
+    - A.14.1.3
+    value: true
+compliance::iso_iec_27001::apache::ssl::logformat:
+    identifier:
+    - A.9.1.2
+    - A.9.2.3
+    - A.9.4.4
+    - A.9.4.5
+    value: '%t %h %{hiera(''global::percent_sign'')}{SSL_CLIENT_S_DN_CN}x %{hiera(''global::percent_sign'')}{SSL_PROTOCOL}x %{hiera(''global::percent_sign'')}{SSL_CIPHER}x \"%r\" %b %s'
+compliance::iso_iec_27001::apache::conf::logformat:
+    identifier:
+    - A.9.1.2
+    - A.9.2.3
+    - A.9.4.4
+    - A.9.4.5
+    value: '%h %l %u %t \"%r\" %>s %b \"%{hiera(''global::percent_sign'')}{Referer}i\" \"%{hiera(''global::percent_sign'')}{User-Agent}i\"'
+compliance::iso_iec_27001::autofs::ldap_auth::usetls:
+    identifier:
+    - A.8.2.3
+    - A.13.1.1
+    - A.13.2.1
+    - A.13.2.3
+    - A.14.1.2
+    - A.14.1.3
+    value: 'yes'
+compliance::iso_iec_27001::autofs::ldap_auth::tlsrequired:
+    identifier:
+    - A.8.2.3
+    - A.13.1.1
+    - A.13.2.1
+    - A.13.2.3
+    - A.14.1.2
+    - A.14.1.3
+    value: 'yes'
+compliance::iso_iec_27001::autofs::ldap_auth::authrequired:
+    identifier:
+    - A.9.2.1
+    value: 'yes'
+compliance::iso_iec_27001::autofs::ldap_auth::authtype:
+    identifier:
+    - A.9.2.1
+    value: LOGIN
