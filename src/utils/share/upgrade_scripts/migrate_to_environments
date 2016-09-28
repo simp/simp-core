@@ -73,21 +73,21 @@ begin
   Dir.chdir(backup_target) do
     FileUtils.mkdir('git_repo')
     Dir.chdir('git_repo') do
-      system(%{git init --bare 2>&1 > /dev/null})
+      system(%{git init --bare > /dev/null 2>&1})
     end
 
     Dir.chdir(puppet_dir) do
       if File.exist?('.git')
         FileUtils.mv('.git','.git.simpbak')
-        system(%{git add .git.simpbak 2>&1 > /dev/null})
+        system(%{git add .git.simpbak > /dev/null 2>&1})
         made_git_backup = true
       end
 
       system(%{getfacl -R . > #{backup_target}/etc_puppet.facl})
 
-      system(%{git init 2>&1 > /dev/null})
-      system(%{git add * 2>&1 > /dev/null})
-      system(%{git commit -m 'SIMP Migration Backup at #{Time.now}' 2>&1 >/dev/null})
+      system(%{git init > /dev/null 2>&1})
+      system(%{git add * > /dev/null 2>&1})
+      system(%{git commit -m 'SIMP Migration Backup at #{Time.now}' > /dev/null 2>&1})
       system(%{git remote add origin #{backup_target}/git_repo})
       system(%{git push origin master})
     end
