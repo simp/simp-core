@@ -1,0 +1,949 @@
+---
+global::percent_sign: "%"
+compliance::nist_800_171::auditd::root_audit_level:
+    identifier:
+    - 3.1.7
+    value: basic
+compliance::nist_800_171::auditd::to_syslog:
+    identifier:
+    - 3.3.8
+    value: true
+    notes: Sending audit logs to syslog *might* by a bandwidth problem in some instances.  Otherwise, it should NOT be turned off
+compliance::nist_800_171::auditd::package_name:
+    identifier:
+    - 3.3.1
+    - 3.3.2
+    value: audit
+compliance::nist_800_171::auditd::default_audit_profile:
+    identifier:
+    - 3.1.7
+    value: simp
+    notes: The SIMP profile applies a base set of audit rules that adhere to guidance from several sources
+compliance::nist_800_171::aide::use_auditd:
+    identifier:
+    - 3.3.8
+    value: true
+compliance::nist_800_171::iptables::authoritative:
+    identifier:
+    - 3.1.3
+    value: true
+compliance::nist_800_171::iptables::optimize_rules:
+    identifier:
+    - 3.1.3
+    value: true
+compliance::nist_800_171::iptables::ignore:
+    identifier:
+    - 3.1.3
+    value: []
+compliance::nist_800_171::iptables::enable_default_rules:
+    identifier:
+    - 3.1.3
+    value: true
+    notes: If the SIMP default rules are modified, the running rules should be viewed to ensure they allow a minimal set inbound flows
+compliance::nist_800_171::iptables::enable_scanblock:
+    identifier:
+    - 3.6.1
+    - 3.6.2
+    value: false
+    notes: This is turned off by default for SIMP as writing rules *could* cause unintended behaviour
+compliance::nist_800_171::iptables::prevent_localhost_spoofing:
+    identifier:
+    - 3.1.3
+    value: true
+compliance::nist_800_171::iptables::disable:
+    identifier:
+    - 3.1.3
+    value: false
+compliance::nist_800_171::simp::admin::force_sudosh:
+    identifier:
+    - 3.1.7
+    value: true
+compliance::nist_800_171::simp::nfs::stock::export_home::sec:
+    identifier:
+    - 3.5.1
+    - 3.5.2
+    value: none:sys
+compliance::nist_800_171::simp::rsyslog::stock::log_server::use_iptables:
+    identifier:
+    - 3.1.5
+    value: true
+compliance::nist_800_171::simp::server::rsync_shares::use_stunnel:
+    identifier:
+    - 3.13.15
+    value: true
+compliance::nist_800_171::simp::sssd::client::use_ldap:
+    identifier:
+    - 3.5.1
+    - 3.5.2
+    value: true
+compliance::nist_800_171::simp::sssd::client::use_autofs:
+    identifier:
+    - 3.5.1
+    - 3.5.2
+    value: true
+compliance::nist_800_171::simp::sssd::client::use_sudo:
+    identifier:
+    - 3.1.7
+    value: true
+compliance::nist_800_171::simp::sssd::client::use_ssh:
+    identifier:
+    - 3.13.15
+    value: true
+compliance::nist_800_171::simp::sssd::client::enumerate_users:
+    identifier:
+    - 3.5.1
+    - 3.5.2
+    value: false
+compliance::nist_800_171::simp::sssd::client::min_id:
+    identifier:
+    - 3.5.1
+    - 3.5.2
+    value: '501'
+compliance::nist_800_171::simplib::user_umask:
+    identifier:
+    - 3.1.5
+    value: '0077'
+compliance::nist_800_171::simplib::daemon_umask:
+    identifier:
+    - 3.1.5
+    value: '0027'
+compliance::nist_800_171::simplib::ftpusers_min:
+    identifier:
+    - 3.5.1
+    - 3.5.2
+    value: '500'
+compliance::nist_800_171::simplib::disable_rc_local:
+    identifier:
+    - 3.4.1
+    - 3.4.2
+    value: true
+    notes: If rc.local is enabled in EL7, it should be justified and documented
+compliance::nist_800_171::simplib::disable_hosts_equiv:
+    identifier:
+    - 3.13.8
+    value: true
+compliance::nist_800_171::simplib::shells:
+    identifier:
+    - 3.4.6
+    value:
+    - "/bin/sh"
+    - "/bin/zsh"
+    - "/bin/bash"
+    - "/sbin/nologin"
+    notes: Adding or removing shells may not be a bad thing.  Any changes to the SIMP default should be justified
+compliance::nist_800_171::simplib::securetty:
+    identifier:
+    - 3.5.3
+    value:
+    - console
+    - tty1
+    - tty2
+    - tty3
+    - tty4
+    - tty5
+    - tty6
+    - ttyS0
+    - ttyS1
+    notes: This list can actually be reduced in many cases.  This is a list that the SIMP team feels might be needed for most systems
+compliance::nist_800_171::simplib::manage_tmp_perms:
+    identifier:
+    - 3.4.6
+    value: true
+compliance::nist_800_171::simplib::manage_root_perms:
+    identifier:
+    - 3.4.6
+    value: true
+compliance::nist_800_171::simplib::use_fips:
+    identifier:
+    - 3.13.11
+    value: true
+compliance::nist_800_171::simplib::use_fips_aesni:
+    identifier:
+    - 3.13.11
+    value: true
+compliance::nist_800_171::simplib::runlevel:
+    identifier:
+    - 3.4.6
+    value: '3'
+    notes: A run level other than 3 should be justified
+compliance::nist_800_171::simplib::proc_hidepid:
+    identifier:
+    - 3.1.5
+    value: '2'
+compliance::nist_800_171::simplib::issue::source:
+    identifier:
+    - 3.1.9
+    value: puppet:///modules/simplib/etc/issue
+compliance::nist_800_171::simplib::libuser_conf::userdefaults:
+    identifier:
+    - 3.5.1
+    - 3.5.2
+    value: |-
+        LU_USERNAME = %n
+        LU_GIDNUMBER = %u
+compliance::nist_800_171::simplib::libuser_conf::groupdefaults:
+    identifier:
+    - 3.5.1
+    - 3.5.2
+    value: LU_GROUPNAME = %n
+compliance::nist_800_171::simplib::login_defs::console:
+    identifier:
+    - 3.1.5
+    value: []
+    notes: SIMP restricts root console with other mechanisms.  Adding devices here only enhances security
+compliance::nist_800_171::simplib::login_defs::console_groups:
+    identifier:
+    - 3.1.5
+    value: []
+    notes: SIMP restricts root console with other mechanisms.  Adding devices here only enhances security
+compliance::nist_800_171::simplib::login_defs::create_home:
+    identifier:
+    - 3.1.1
+    - 3.1.2
+    value: true
+compliance::nist_800_171::simplib::login_defs::default_home:
+    identifier:
+    - 3.1.1
+    - 3.1.2
+    value: false
+compliance::nist_800_171::simplib::login_defs::fail_delay:
+    identifier:
+    - 3.1.8
+    value: '4'
+compliance::nist_800_171::simplib::login_defs::faillog_enab:
+    identifier:
+    - 3.3.1
+    - 3.3.2
+    value: true
+compliance::nist_800_171::simplib::login_defs::issue_file:
+    identifier:
+    - 3.1.9
+    value: "/etc/issue"
+compliance::nist_800_171::simplib::login_defs::log_unkfail_enab:
+    identifier:
+    - 3.3.1
+    - 3.3.2
+    value: true
+compliance::nist_800_171::simplib::login_defs::login_retries:
+    identifier:
+    - 3.1.11
+    value: '3'
+compliance::nist_800_171::simplib::login_defs::login_timeout:
+    identifier:
+    - 3.1.11
+    value: '60'
+compliance::nist_800_171::simplib::login_defs::obscure_checks_enab:
+    identifier:
+    - 3.5.1
+    - 3.5.2
+    value: true
+compliance::nist_800_171::simplib::login_defs::pass_change_tries:
+    identifier:
+    - 3.1.11
+    value: '3'
+compliance::nist_800_171::simplib::login_defs::syslog_sg_enab:
+    identifier:
+    - 3.3.1
+    - 3.3.2
+    value: true
+compliance::nist_800_171::simplib::login_defs::syslog_su_enab:
+    identifier:
+    - 3.3.1
+    - 3.3.2
+    value: true
+compliance::nist_800_171::simplib::login_defs::umask:
+    identifier:
+    - 3.1.5
+    value: '007'
+compliance::nist_800_171::simplib::modprobe_blacklist::enable:
+    identifier:
+    - 3.4.6
+    value: true
+compliance::nist_800_171::simplib::modprobe_blacklist::blacklist:
+    identifier:
+    - 3.4.6
+    value:
+    - bluetooth
+    - cramfs
+    - dccp
+    - dccp_ipv4
+    - dccp_ipv6
+    - freevxfs
+    - hfs
+    - hfsplus
+    - ieee1394
+    - jffs2
+    - net-pf-31
+    - rds
+    - sctp
+    - squashfs
+    - tipc
+    - udf
+    - usb-storage
+compliance::nist_800_171::simplib::modprobe_blacklist::blacklist_method:
+    identifier:
+    - 3.4.6
+    value: "/bin/true"
+compliance::nist_800_171::simplib::prelink::enable:
+    identifier:
+    - 3.4.6
+    value: false
+compliance::nist_800_171::simplib::profile_settings::session_timeout:
+    identifier:
+    - 3.1.11
+    value: '15'
+compliance::nist_800_171::simplib::profile_settings::umask:
+    identifier:
+    - 3.1.5
+    value: '0077'
+compliance::nist_800_171::simplib::profile_settings::mesg:
+    identifier:
+    - 3.1.5
+    value: false
+compliance::nist_800_171::simplib::secure_mountpoints::secure_tmp_mounts:
+    identifier:
+    - 3.4.6
+    value: true
+compliance::nist_800_171::simplib::secure_mountpoints::tmp_opts:
+    identifier:
+    - 3.4.6
+    value:
+    - noexec
+    - nodev
+    - nosuid
+compliance::nist_800_171::simplib::secure_mountpoints::var_tmp_opts:
+    identifier:
+    - 3.4.6
+    value:
+    - noexec
+    - nodev
+    - nosuid
+compliance::nist_800_171::simplib::secure_mountpoints::dev_shm_opts:
+    identifier:
+    - 3.4.6
+    value:
+    - noexec
+    - nodev
+    - nosuid
+compliance::nist_800_171::simplib::sysconfig::init::single_user_login:
+    identifier:
+    - 3.5.3
+    value: "/sbin/sulogin"
+compliance::nist_800_171::simplib::sysctl::kernel__dmesg_restrict:
+    identifier:
+    - 3.1.5
+    value: '1'
+compliance::nist_800_171::simplib::sysctl::kernel__exec_shield:
+    identifier:
+    - 3.1.5
+    value: '1'
+compliance::nist_800_171::simplib::sysctl::net__ipv4__conf__all__accept_redirects:
+    identifier:
+    - 3.4.6
+    value: '0'
+compliance::nist_800_171::simplib::sysctl::net__ipv4__conf__all__accept_source_route:
+    identifier:
+    - 3.4.6
+    value: '0'
+compliance::nist_800_171::simplib::sysctl::net__ipv4__conf__all__log_martians:
+    identifier:
+    - 3.3.1
+    - 3.3.2
+    value: '1'
+compliance::nist_800_171::simplib::sysctl::net__ipv4__conf__all__rp_filter:
+    identifier:
+    - 3.4.6
+    value: '1'
+compliance::nist_800_171::simplib::sysctl::net__ipv4__conf__all__secure_redirects:
+    identifier:
+    - 3.4.6
+    value: '0'
+compliance::nist_800_171::simplib::sysctl::net__ipv4__conf__all__send_redirects:
+    identifier:
+    - 3.4.6
+    value: '0'
+compliance::nist_800_171::simplib::sysctl::net__ipv4__conf__default__accept_redirects:
+    identifier:
+    - 3.4.6
+    value: '0'
+compliance::nist_800_171::simplib::sysctl::net__ipv4__icmp_echo_ignore_broadcasts:
+    identifier:
+    - 3.4.6
+    value: '1'
+compliance::nist_800_171::simplib::sysctl::net__ipv4__icmp_ignore_bogus_error_responses:
+    identifier:
+    - 3.4.6
+    value: '1'
+compliance::nist_800_171::simplib::sysctl::net__ipv4__tcp_syncookies:
+    identifier:
+    - 3.4.6
+    value: '1'
+compliance::nist_800_171::simplib::sysctl::net__ipv6__conf__default__accept_ra:
+    identifier:
+    - 3.4.6
+    value: '0'
+compliance::nist_800_171::simplib::sysctl::net__ipv6__conf__default__accept_ra_defrtr:
+    identifier:
+    - 3.4.6
+    value: '0'
+compliance::nist_800_171::simplib::sysctl::net__ipv6__conf__default__accept_ra_pinfo:
+    identifier:
+    - 3.4.6
+    value: '0'
+compliance::nist_800_171::simplib::sysctl::net__ipv6__conf__default__accept_ra_rtr_pref:
+    identifier:
+    - 3.4.6
+    value: '0'
+compliance::nist_800_171::simplib::sysctl::net__ipv6__conf__default__accept_redirects:
+    identifier:
+    - 3.4.6
+    value: '0'
+compliance::nist_800_171::simplib::sysctl::net__ipv6__conf__default__autoconf:
+    identifier:
+    - 3.4.6
+    value: '0'
+compliance::nist_800_171::simplib::sysctl::net__ipv6__conf__default__dad_transmits:
+    identifier:
+    - 3.4.6
+    value: '0'
+compliance::nist_800_171::simplib::sysctl::net__ipv6__conf__default__max_addresses:
+    identifier:
+    - 3.4.6
+    value: '1'
+compliance::nist_800_171::simplib::sysctl::net__ipv6__conf__default__router_solicitations:
+    identifier:
+    - 3.4.6
+    value: '0'
+compliance::nist_800_171::named::chroot_path:
+    identifier:
+    - 3.1.5
+    value: "/var/named/chroot"
+compliance::nist_800_171::named::bind_dns_rsync:
+    identifier:
+    - 3.1.5
+    value: default
+compliance::nist_800_171::named::service::chroot:
+    identifier:
+    - 3.1.5
+    value: false
+compliance::nist_800_171::ntpd::logconfig:
+    identifier:
+    - 3.3.1
+    - 3.3.2
+    value:
+    - "=syncall"
+    - "+clockall"
+compliance::nist_800_171::openldap::client::tls_cacertdir:
+    identifier:
+    - 3.13.15
+    value: "/etc/pki/cacerts"
+compliance::nist_800_171::openldap::client::tls_reqcert:
+    identifier:
+    - 3.13.15
+    value: allow
+compliance::nist_800_171::openldap::pam::start_tls:
+    identifier:
+    - 3.13.15
+    value: true
+compliance::nist_800_171::openldap::pam::use_auditd:
+    identifier:
+    - 3.3.8
+    value: true
+compliance::nist_800_171::openldap::pam::ssl:
+    identifier:
+    - 3.13.15
+    value: true
+compliance::nist_800_171::openldap::pam::tls_ciphers:
+    identifier:
+    - 3.13.15
+    value:
+    - HIGH
+    - "-SSLv2"
+compliance::nist_800_171::openldap::pam::validnames:
+    identifier:
+    - 3.5.5
+    - 3.5.6
+    value: "/^[a-z0-9._@$()][a-z0-9._@$() \\~-]+[a-z0-9._@$()~-]$/i"
+compliance::nist_800_171::openldap::server::host_auth_user:
+    identifier:
+    - 3.5.1
+    - 3.5.2
+    value: hostAuth
+compliance::nist_800_171::openldap::server::use_ppolicy:
+    identifier:
+    - 3.5.1
+    - 3.5.2
+    value: true
+compliance::nist_800_171::openldap::server::use_tcpwrappers:
+    identifier:
+    - 3.1.3
+    value: true
+compliance::nist_800_171::openldap::server::conf::audit_to_syslog:
+    identifier:
+    - 3.3.8
+    value: true
+compliance::nist_800_171::openldap::server::conf::auditlog:
+    identifier:
+    - 3.3.1
+    - 3.3.2
+    value: "/var/log/slapd.audit"
+compliance::nist_800_171::openldap::server::conf::audit_transactions:
+    identifier:
+    - 3.3.1
+    - 3.3.2
+    value: true
+compliance::nist_800_171::openldap::server::conf::bind_anon:
+    identifier:
+    - 3.1.5
+    value: false
+compliance::nist_800_171::openldap::server::conf::listen_ldaps:
+    identifier:
+    - 3.13.15
+    value: true
+compliance::nist_800_171::openldap::server::conf::slapd_logLevel:
+    identifier:
+    - 3.3.1
+    - 3.3.2
+    value:
+    - stats
+    - acl
+    - sync
+compliance::nist_800_171::openldap::server::conf::security:
+    identifier:
+    - 3.13.15
+    value: ssf=256 tls=256 update_ssf=256 simple_bind=256 update_tls=256
+compliance::nist_800_171::openldap::server::conf::use_tls:
+    identifier:
+    - 3.13.15
+    value: true
+compliance::nist_800_171::openldap::server::conf::enable_iptables:
+    identifier:
+    - 3.1.3
+    value: true
+compliance::nist_800_171::openldap::server::conf::default_ldif::ppolicy_pwd_lockout:
+    identifier:
+    - 3.1.8
+    value: true
+compliance::nist_800_171::openldap::server::conf::default_ldif::ppolicy_pwd_allow_user_change:
+    identifier:
+    - 3.1.8
+    value: true
+compliance::nist_800_171::openldap::server::conf::default_ldif::ppolicy_pwd_safe_modify:
+    identifier:
+    - 3.1.8
+    value: false
+compliance::nist_800_171::pam::cracklib_enforce_for_root:
+    identifier:
+    - 3.5.1
+    - 3.5.2
+    value: true
+compliance::nist_800_171::pam::display_account_lock:
+    identifier:
+    - 3.1.8
+    value: false
+compliance::nist_800_171::pam::homedir_umask:
+    identifier:
+    - 3.1.5
+    value: '0077'
+compliance::nist_800_171::pki::enable_audit:
+    identifier:
+    - 3.3.8
+    value: true
+compliance::nist_800_171::postfix::enable_server:
+    identifier:
+    - 3.4.6
+    value: false
+compliance::nist_800_171::postfix::server::enable_iptables:
+    identifier:
+    - 3.1.3
+    value: true
+compliance::nist_800_171::postfix::server::enable_tls:
+    identifier:
+    - 3.13.15
+    value: true
+compliance::nist_800_171::postfix::server::enforce_tls:
+    identifier:
+    - 3.13.15
+    value: true
+compliance::nist_800_171::postfix::server::mandatory_ciphers:
+    identifier:
+    - 3.13.15
+    value: true
+compliance::nist_800_171::postfix::server::enable_simp_pki:
+    identifier:
+    - 3.13.15
+    value: true
+compliance::nist_800_171::pupmod::auditd_support:
+    identifier:
+    - 3.3.8
+    value: true
+compliance::nist_800_171::pupmod::ca_crl_pull_interval:
+    identifier:
+    - 3.13.15
+    value: '2'
+compliance::nist_800_171::pupmod::confdir:
+    identifier:
+    - 3.4.1
+    - 3.4.2
+    value: "/etc/puppet"
+compliance::nist_800_171::pupmod::daemonize:
+    identifier:
+    - 3.4.1
+    - 3.4.2
+    value: false
+compliance::nist_800_171::pupmod::environmentpath:
+    identifier:
+    - 3.4.1
+    - 3.4.2
+    value: "/etc/puppet/environments"
+compliance::nist_800_171::pupmod::logdir:
+    identifier:
+    - 3.3.1
+    - 3.3.2
+    value: "/var/log/puppet"
+compliance::nist_800_171::pupmod::vardir:
+    identifier:
+    - 3.4.1
+    - 3.4.2
+    value: "/var/lib/puppet"
+compliance::nist_800_171::pupmod::syslogfacility:
+    identifier:
+    - 3.3.8
+    value: local6
+compliance::nist_800_171::pupmod::master::bind_address:
+    identifier:
+    - 3.4.6
+    value: 0.0.0.0
+compliance::nist_800_171::pupmod::master::ca_bind_address:
+    identifier:
+    - 3.4.6
+    value: 0.0.0.0
+compliance::nist_800_171::pupmod::master::daemonize:
+    identifier:
+    - 3.4.1
+    - 3.4.2
+    value: true
+compliance::nist_800_171::pupmod::master::environmentpath:
+    identifier:
+    - 3.4.1
+    - 3.4.2
+    value: "/etc/puppet/environments"
+compliance::nist_800_171::pupmod::master::use_iptables:
+    identifier:
+    - 3.4.6
+    value: true
+compliance::nist_800_171::pupmod::master::ssl_protocols:
+    identifier:
+    - 3.13.15
+    value:
+    - TLSv1
+    - TLSv1.1
+    - TLSv1.2
+compliance::nist_800_171::pupmod::master::log_to_syslog:
+    identifier:
+    - 3.3.8
+    value: true
+compliance::nist_800_171::pupmod::master::syslog_message_format:
+    identifier:
+    - 3.3.1
+    - 3.3.2
+    value: "%logger[%thread]: %msg"
+compliance::nist_800_171::pupmod::master::sysconfig::java_max_memory:
+    identifier:
+    - 3.4.1
+    - 3.4.2
+    value: 80%
+compliance::nist_800_171::pupmod::master::sysconfig::java_max_perm_size:
+    identifier:
+    - 3.4.1
+    - 3.4.2
+    value: 256m
+compliance::nist_800_171::rsync::server::use_stunnel:
+    identifier:
+    - 3.13.15
+    value: true
+compliance::nist_800_171::rsync::server::global::address:
+    identifier:
+    - 3.4.6
+    value: 127.0.0.1
+compliance::nist_800_171::rsyslog::rule_dir:
+    identifier:
+    - 3.4.1
+    - 3.4.2
+    value: "/etc/rsyslog.simp.d"
+    notes: Changing this value will move the location of the default simp rules
+compliance::nist_800_171::rsyslog::config::umask:
+    identifier:
+    - 3.1.5
+    value: '0027'
+compliance::nist_800_171::rsyslog::config::preserve_fqdn:
+    identifier:
+    - 3.3.1
+    - 3.3.2
+    value: true
+compliance::nist_800_171::rsyslog::server::enable_tcpwrappers:
+    identifier:
+    - 3.1.3
+    value: true
+compliance::nist_800_171::ssh::enable_client:
+    identifier:
+    - 3.1.13
+    value: true
+compliance::nist_800_171::ssh::client::add_default_entry:
+    identifier:
+    - 3.13.15
+    value: true
+    notes: If the default entry is not used, each of the values for the ssh client config should be evaluated
+compliance::nist_800_171::ssh::server::use_system_pki:
+    identifier:
+    - 3.13.15
+    value: true
+compliance::nist_800_171::ssh::server::conf::authorizedkeysfile:
+    identifier:
+    - 3.13.15
+    value: "/etc/ssh/local_keys/%u"
+compliance::nist_800_171::ssh::server::conf::banner:
+    identifier:
+    - 3.1.9
+    value: "/etc/issue.net"
+compliance::nist_800_171::ssh::server::conf::challengeresponseauthentication:
+    identifier:
+    - 3.13.15
+    value: false
+compliance::nist_800_171::ssh::server::conf::enable_fallback_ciphers:
+    identifier:
+    - 3.13.15
+    value: true
+compliance::nist_800_171::ssh::server::conf::syslogfacility:
+    identifier:
+    - 3.3.8
+    value: AUTHPRIV
+compliance::nist_800_171::ssh::server::conf::gssapiauthentication:
+    identifier:
+    - 3.13.15
+    value: false
+compliance::nist_800_171::ssh::server::conf::permitrootlogin:
+    identifier:
+    - 3.1.5
+    value: false
+compliance::nist_800_171::ssh::server::conf::usepam:
+    identifier:
+    - 3.5.1
+    - 3.5.2
+    value: true
+compliance::nist_800_171::ssh::server::conf::useprivilegeseparation:
+    identifier:
+    - 3.1.5
+    value: true
+compliance::nist_800_171::ssh::server::conf::x11forwarding:
+    identifier:
+    - 3.4.6
+    value: false
+compliance::nist_800_171::ssh::server::conf::use_tcpwrappers:
+    identifier:
+    - 3.1.3
+    value: true
+compliance::nist_800_171::sssd::enable_auditd:
+    identifier:
+    - 3.3.8
+    value: true
+compliance::nist_800_171::sssd::enable_pki:
+    identifier:
+    - 3.13.15
+    value: true
+compliance::nist_800_171::sssd::use_simp_pki:
+    identifier:
+    - 3.13.15
+    value: true
+compliance::nist_800_171::sssd::cert_source:
+    identifier:
+    - 3.13.15
+    value: "/etc/sssd/pki"
+compliance::nist_800_171::sssd::service::pam::offline_failed_login_attempts:
+    identifier:
+    - 3.1.11
+    value: '3'
+compliance::nist_800_171::stunnel::chroot:
+    identifier:
+    - 3.1.5
+    value: "/var/stunnel"
+compliance::nist_800_171::stunnel::setuid:
+    identifier:
+    - 3.1.5
+    value: stunnel
+compliance::nist_800_171::stunnel::setgid:
+    identifier:
+    - 3.1.5
+    value: stunnel
+compliance::nist_800_171::stunnel::syslog:
+    identifier:
+    - 3.3.8
+    value: true
+compliance::nist_800_171::stunnel::add::ca_path:
+    identifier:
+    - 3.13.15
+    value: "/etc/pki/cacerts"
+compliance::nist_800_171::stunnel::add::ciphers:
+    identifier:
+    - 3.13.15
+    value:
+    - HIGH
+    - "-SSLv2"
+compliance::nist_800_171::stunnel::add::use_iptables:
+    identifier:
+    - 3.1.3
+    value: true
+compliance::nist_800_171::upstart::disable_ctrl_alt_del:
+    identifier:
+    - 3.1.5
+    value: true
+compliance::nist_800_171::vsftpd::manage_user:
+    identifier:
+    - 3.5.1
+    - 3.5.2
+    value: true
+compliance::nist_800_171::vsftpd::manage_group:
+    identifier:
+    - 3.5.1
+    - 3.5.2
+    value: true
+compliance::nist_800_171::vsftpd::ssl_enable:
+    identifier:
+    - 3.13.15
+    value: true
+compliance::nist_800_171::vsftpd::require_ssl_reuse:
+    identifier:
+    - 3.13.15
+    value: true
+compliance::nist_800_171::vsftpd::userlist_enable:
+    identifier:
+    - 3.5.1
+    - 3.5.2
+    value: true
+compliance::nist_800_171::vsftpd::validate_cert:
+    identifier:
+    - 3.13.15
+    value: true
+compliance::nist_800_171::vsftpd::vsftpd_user:
+    identifier:
+    - 3.5.1
+    - 3.5.2
+    value: ftp
+compliance::nist_800_171::vsftpd::config::force_local_data_ssl:
+    identifier:
+    - 3.13.15
+    value: true
+compliance::nist_800_171::vsftpd::config::force_local_logins_ssl:
+    identifier:
+    - 3.13.15
+    value: true
+compliance::nist_800_171::vsftpd::config::ssl_ciphers:
+    identifier:
+    - 3.13.15
+    value:
+    - HIGH
+compliance::nist_800_171::vsftpd::config::ssl_tlsv1:
+    identifier:
+    - 3.13.15
+    value: true
+compliance::nist_800_171::vsftpd::config::banner_file:
+    identifier:
+    - 3.1.9
+    value: "/etc/issue.net"
+compliance::nist_800_171::vsftpd::config::local_umask:
+    identifier:
+    - 3.1.5
+    value: '022'
+compliance::nist_800_171::vsftpd::config::syslog_enable:
+    identifier:
+    - 3.3.8
+    value: true
+compliance::nist_800_171::windowmanager::gnome::include_sec:
+    identifier:
+    - 3.1.5
+    value: true
+compliance::nist_800_171::xinetd::log_type:
+    identifier:
+    - 3.3.8
+    value: SYSLOG authpriv
+compliance::nist_800_171::xinetd::banner:
+    identifier:
+    - 3.1.9
+    value: "/etc/issue.net"
+compliance::nist_800_171::apache::ssl:
+    identifier:
+    - 3.13.15
+    value: true
+compliance::nist_800_171::apache::conf::user:
+    identifier:
+    - 3.1.5
+    value: apache
+compliance::nist_800_171::apache::conf::group:
+    identifier:
+    - 3.1.5
+    value: apache
+compliance::nist_800_171::apache::ssl::ssl_protocols:
+    identifier:
+    - 3.13.15
+    value:
+    - TLSv1
+    - TLSv1.1
+    - TLSv1.2
+compliance::nist_800_171::apache::conf::logfacility:
+    identifier:
+    - 3.3.8
+    value: local6
+compliance::nist_800_171::apache::conf::rsyslog_target:
+    identifier:
+    - 3.3.8
+    value: "/var/log/httpd"
+compliance::nist_800_171::apache::ssl::ssl_honor_cipher_order:
+    identifier:
+    - 3.13.15
+    value: 'on'
+compliance::nist_800_171::apache::ssl::sslverifyclient:
+    identifier:
+    - 3.13.15
+    value: require
+compliance::nist_800_171::apache::ssl::sslverifydepth:
+    identifier:
+    - 3.13.15
+    value: '10'
+compliance::nist_800_171::apache::ssl::sslcacertificatepath:
+    identifier:
+    - 3.13.15
+    value: "/etc/httpd/conf/pki/cacerts"
+compliance::nist_800_171::apache::ssl::enable_iptables:
+    identifier:
+    - 3.1.3
+    value: true
+compliance::nist_800_171::apache::ssl::use_simp_pki:
+    identifier:
+    - 3.13.15
+    value: true
+compliance::nist_800_171::apache::ssl::logformat:
+    identifier:
+    - 3.1.5
+    value: '%t %h %{hiera(''global::percent_sign'')}{SSL_CLIENT_S_DN_CN}x %{hiera(''global::percent_sign'')}{SSL_PROTOCOL}x %{hiera(''global::percent_sign'')}{SSL_CIPHER}x \"%r\" %b %s'
+compliance::nist_800_171::apache::conf::logformat:
+    identifier:
+    - 3.1.5
+    value: '%h %l %u %t \"%r\" %>s %b \"%{hiera(''global::percent_sign'')}{Referer}i\" \"%{hiera(''global::percent_sign'')}{User-Agent}i\"'
+compliance::nist_800_171::autofs::ldap_auth::usetls:
+    identifier:
+    - 3.13.15
+    value: 'yes'
+compliance::nist_800_171::autofs::ldap_auth::tlsrequired:
+    identifier:
+    - 3.13.15
+    value: 'yes'
+compliance::nist_800_171::autofs::ldap_auth::authrequired:
+    identifier:
+    - 3.5.1
+    - 3.5.2
+    value: 'yes'
+compliance::nist_800_171::autofs::ldap_auth::authtype:
+    identifier:
+    - 3.5.1
+    - 3.5.2
+    value: LOGIN
