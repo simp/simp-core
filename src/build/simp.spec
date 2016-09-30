@@ -4,6 +4,7 @@ Version: 6.0.0
 Release: Alpha%{?snapshot_release}
 License: Apache License, Version 2.0
 Group: Applications/System
+
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Buildarch: noarch
 Requires: createrepo
@@ -186,6 +187,10 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Tue Oct 25 2016 Nick Miller <nick.miller@onyxpoint.com> - 6.0.0-Alpha
+- Added i_version mount option to non-/var and non-/tmp partitions for IMA
+    measuring
+
 * Mon Sep 12 2016 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.0.0-Alpha
 - Alpha work for the 6.0.0 release
   - Restructuring the RPM build sequence
