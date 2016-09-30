@@ -77,6 +77,10 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Fri Sep 30 2016 Nick Miller <nick.miller@onyxpoint.com> - 5.2.0-0
+- Added i_versionm mount option to non-/var and non-/tmp partitions for IMA
+    measuring
+
 * Mon Sep 26 2016 Nick Markowski <nmarkowski@keywcorp.com> - 5.2.1-0
 - Use correct version of simp-mcollective Puppet module. Puppetfile.tracking
   and Puppetfile.stable pointed to an incorrect version.
