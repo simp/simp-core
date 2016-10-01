@@ -759,46 +759,46 @@ compliance::disa_stig_el7::xinetd::banner :
   'value' : '/etc/issue.net'
 
 # apache
-compliance::disa_stig_el7::apache::ssl :
+compliance::disa_stig_el7::simp_apache::ssl :
   'identifier' : ['RHEL-07-040030','SRG-OS-000066-GPOS-00034','CCI-000185']
   'value' : true
-compliance::disa_stig_el7::apache::conf::user :
+compliance::disa_stig_el7::simp_apache::conf::user :
   'identifier' : ['RHEL-07-020400','SRG-OS-000480-GPOS-00227','CCI-000366']
   'value' : 'apache'
-compliance::disa_stig_el7::apache::conf::group :
+compliance::disa_stig_el7::simp_apache::conf::group :
   'identifier' : ['RHEL-07-020410','SRG-OS-000480-GPOS-00227','CCI-000366']
   'value' : 'apache'
-compliance::disa_stig_el7::apache::ssl::ssl_protocols :
+compliance::disa_stig_el7::simp_apache::ssl::ssl_protocols :
   'identifier' : ['RHEL-07-040030','SRG-OS-000066-GPOS-00034','CCI-000185']
   'value' : ['TLSv1','TLSv1.1','TLSv1.2']
-compliance::disa_stig_el7::apache::conf::logfacility :
+compliance::disa_stig_el7::simp_apache::conf::logfacility :
   'identifier' : ['RHEL-07-030770','SRG-OS-000480-GPOS-00227','CCI-000366']
   'value' : 'local6'
-compliance::disa_stig_el7::apache::conf::rsyslog_target :
+compliance::disa_stig_el7::simp_apache::conf::rsyslog_target :
   'identifier' : ['RHEL-07-030010','SRG-OS-000038-GPOS-00016','CCI-000131','CCI-000126']
   'value' : '/var/log/httpd'
-compliance::disa_stig_el7::apache::ssl::ssl_honor_cipher_order :
+compliance::disa_stig_el7::simp_apache::ssl::ssl_honor_cipher_order :
   'identifier' : ['RHEL-07-040030','SRG-OS-000066-GPOS-00034','CCI-000185']
   'value' : 'on'
-compliance::disa_stig_el7::apache::ssl::sslverifyclient :
+compliance::disa_stig_el7::simp_apache::ssl::sslverifyclient :
   'identifier' : ['RHEL-07-040030','SRG-OS-000066-GPOS-00034','CCI-000185']
   'value' : 'require'
-compliance::disa_stig_el7::apache::ssl::sslverifydepth :
+compliance::disa_stig_el7::simp_apache::ssl::sslverifydepth :
   'identifier' : ['RHEL-07-040030','SRG-OS-000066-GPOS-00034','CCI-000185']
   'value' : '10'
-compliance::disa_stig_el7::apache::ssl::sslcacertificatepath :
+compliance::disa_stig_el7::simp_apache::ssl::sslcacertificatepath :
   'identifier' : ['RHEL-07-040030','SRG-OS-000066-GPOS-00034','CCI-000185']
   'value' : '/etc/httpd/conf/pki/cacerts'
-compliance::disa_stig_el7::apache::ssl::enable_iptables :
+compliance::disa_stig_el7::simp_apache::ssl::enable_iptables :
   'identifier' : ['RHEL-07-040920','SRG-OS-000480-GPOS-00227','CCI-000366']
   'value' : true
-compliance::disa_stig_el7::apache::ssl::use_simp_pki :
+compliance::disa_stig_el7::simp_apache::ssl::use_simp_pki :
   'identifier' : ['RHEL-07-040030','SRG-OS-000066-GPOS-00034','CCI-000185']
   'value' : true
-compliance::disa_stig_el7::apache::ssl::logformat :
+compliance::disa_stig_el7::simp_apache::ssl::logformat :
   'identifier' : ['RHEL-07-030010','SRG-OS-000038-GPOS-00016','CCI-000131','CCI-000126']
   'value' : "%t %h %{hiera('global::percent_sign')}{SSL_CLIENT_S_DN_CN}x %{hiera('global::percent_sign')}{SSL_PROTOCOL}x %{hiera('global::percent_sign')}{SSL_CIPHER}x \x5c\x22%r\x5c\x22 %b %s"
-compliance::disa_stig_el7::apache::conf::logformat :
+compliance::disa_stig_el7::simp_apache::conf::logformat :
   'identifier' : ['RHEL-07-030010','SRG-OS-000038-GPOS-00016','CCI-000131','CCI-000126']
   'value' : "%h %l %u %t \x5c\x22%r\x5c\x22 %>s %b \x5c\x22%{hiera('global::percent_sign')}{Referer}i\x5c\x22 \x5c\x22%{hiera('global::percent_sign')}{User-Agent}i\x5c\x22"
 

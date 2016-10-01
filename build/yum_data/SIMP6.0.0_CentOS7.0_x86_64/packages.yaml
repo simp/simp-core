@@ -224,18 +224,18 @@
   pdsh-rcmd-ssh:
     :rpm_name: pdsh-rcmd-ssh-2.29-1el7.x86_64.rpm
     :source: "https://dl.bintray.com/simp/5.1.X-Ext/pdsh-rcmd-ssh-2.29-1el7.x86_64.rpm"
-  pssh:
-    :rpm_name: pssh-2.3.1.SIMP-5.el7.noarch.rpm
-    :source: "https://dl.bintray.com/simp/5.1.X-Ext/pssh-2.3.1.SIMP-5.el7.noarch.rpm"
+  postgresql94:
+    :rpm_name: postgresql94-9.4.9-1PGDG.rhel7.x86_64.rpm
+    :source: "https://download.postgresql.org/pub/repos/yum/9.4/redhat/rhel-7-x86_64/postgresql94-9.4.9-1PGDG.rhel7.x86_64.rpm"
   postgresql94-libs:
     :rpm_name: postgresql94-libs-9.4.9-1PGDG.rhel7.x86_64.rpm
     :source: "https://download.postgresql.org/pub/repos/yum/9.4/redhat/rhel-7-x86_64/postgresql94-libs-9.4.9-1PGDG.rhel7.x86_64.rpm"
   postgresql94-server:
     :rpm_name: postgresql94-server-9.4.9-1PGDG.rhel7.x86_64.rpm
     :source: "https://download.postgresql.org/pub/repos/yum/9.4/redhat/rhel-7-x86_64/postgresql94-server-9.4.9-1PGDG.rhel7.x86_64.rpm"
-  postgresql94:
-    :rpm_name: postgresql94-9.4.9-1PGDG.rhel7.x86_64.rpm
-    :source: "https://download.postgresql.org/pub/repos/yum/9.4/redhat/rhel-7-x86_64/postgresql94-9.4.9-1PGDG.rhel7.x86_64.rpm"
+  pssh:
+    :rpm_name: pssh-2.3.1.SIMP-5.el7.noarch.rpm
+    :source: "https://dl.bintray.com/simp/5.1.X-Ext/pssh-2.3.1.SIMP-5.el7.noarch.rpm"
   puppet-agent:
     :rpm_name: puppet-agent-1.6.2-1.el7.x86_64.rpm
     :source: "http://yum.puppetlabs.com/el/7Server/PC1/x86_64/puppet-agent-1.6.2-1.el7.x86_64.rpm"

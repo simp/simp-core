@@ -110,7 +110,7 @@ mod 'puppetlabs-postgresql',
   :git => 'https://github.com/simp/puppetlabs-postgresql',
   :ref => 'simp-master'
 
-mod 'puppetlabs-puppetlabs_apache',
+mod 'puppetlabs-apache',
   :git => 'https://github.com/simp/puppetlabs-apache',
   :ref => 'simp-master'
 
@@ -134,7 +134,7 @@ mod 'simp-aide',
   :git => 'https://github.com/simp/pupmod-simp-aide',
   :ref => 'master'
 
-mod 'simp-apache',
+mod 'simp-simp_apache',
   :git => 'https://github.com/simp/pupmod-simp-apache',
   :ref => 'master'
 
@@ -197,10 +197,6 @@ mod 'simp-libvirt',
 mod 'simp-logrotate',
   :git => 'https://github.com/simp/pupmod-simp-logrotate',
   :ref => 'master'
-
-mod 'simp-logstash',
-  :git => 'https://github.com/simp/puppet-logstash',
-  :ref => 'simp-master'
 
 mod 'simp-mcafee',
   :git => 'https://github.com/simp/pupmod-simp-mcafee',

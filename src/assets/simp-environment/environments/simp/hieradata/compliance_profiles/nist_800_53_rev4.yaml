@@ -1262,46 +1262,46 @@ compliance::nist_800_53_rev4::xinetd::banner :
   'value' : '/etc/issue.net'
 
 # apache
-compliance::nist_800_53_rev4::apache::ssl :
+compliance::nist_800_53_rev4::simp_apache::ssl :
   'identifier' : ['SC-8', 'SC-8(1)','SC-8(2)','SC-23']
   'value' : true
-compliance::nist_800_53_rev4::apache::conf::user :
+compliance::nist_800_53_rev4::simp_apache::conf::user :
   'identifier' : 'AC-6'
   'value' : 'apache'
-compliance::nist_800_53_rev4::apache::conf::group :
+compliance::nist_800_53_rev4::simp_apache::conf::group :
   'identifier' : 'AC-6'
   'value' : 'apache'
-compliance::nist_800_53_rev4::apache::ssl::ssl_protocols :
+compliance::nist_800_53_rev4::simp_apache::ssl::ssl_protocols :
   'identifier' : ['SC-8', 'SC-8(1)','SC-8(2)','SC-23']
   'value' : ['TLSv1','TLSv1.1','TLSv1.2']
-compliance::nist_800_53_rev4::apache::conf::logfacility :
+compliance::nist_800_53_rev4::simp_apache::conf::logfacility :
   'identifier' : ['AU-3(2)','AU-4(1)','AU-9']
   'value' : 'local6'
-compliance::nist_800_53_rev4::apache::conf::rsyslog_target :
+compliance::nist_800_53_rev4::simp_apache::conf::rsyslog_target :
   'identifier' : ['AU-3(2)','AU-4(1)','AU-9']
   'value' : '/var/log/httpd'
-compliance::nist_800_53_rev4::apache::ssl::ssl_honor_cipher_order :
+compliance::nist_800_53_rev4::simp_apache::ssl::ssl_honor_cipher_order :
   'identifier' : ['SC-8', 'SC-8(1)','SC-8(2)','SC-23']
   'value' : 'on'
-compliance::nist_800_53_rev4::apache::ssl::sslverifyclient :
+compliance::nist_800_53_rev4::simp_apache::ssl::sslverifyclient :
   'identifier' : ['SC-8', 'SC-8(1)','SC-8(2)','SC-23']
   'value' : 'require'
-compliance::nist_800_53_rev4::apache::ssl::sslverifydepth :
+compliance::nist_800_53_rev4::simp_apache::ssl::sslverifydepth :
   'identifier' : ['SC-8', 'SC-8(1)','SC-8(2)','SC-23']
   'value' : '10'
-compliance::nist_800_53_rev4::apache::ssl::sslcacertificatepath :
+compliance::nist_800_53_rev4::simp_apache::ssl::sslcacertificatepath :
   'identifier' : ['SC-8', 'SC-8(1)','SC-8(2)','SC-23']
   'value' : '/etc/httpd/conf/pki/cacerts'
-compliance::nist_800_53_rev4::apache::ssl::enable_iptables :
+compliance::nist_800_53_rev4::simp_apache::ssl::enable_iptables :
   'identifier' : 'AC-4'
   'value' : true
-compliance::nist_800_53_rev4::apache::ssl::use_simp_pki :
+compliance::nist_800_53_rev4::simp_apache::ssl::use_simp_pki :
   'identifier' : ['SC-8', 'SC-8(1)','SC-8(2)','SC-23']
   'value' : true
-compliance::nist_800_53_rev4::apache::ssl::logformat :
+compliance::nist_800_53_rev4::simp_apache::ssl::logformat :
   'identifier' : 'AC-6'
   'value' : "%t %h %{hiera('global::percent_sign')}{SSL_CLIENT_S_DN_CN}x %{hiera('global::percent_sign')}{SSL_PROTOCOL}x %{hiera('global::percent_sign')}{SSL_CIPHER}x \x5c\x22%r\x5c\x22 %b %s"
-compliance::nist_800_53_rev4::apache::conf::logformat :
+compliance::nist_800_53_rev4::simp_apache::conf::logformat :
   'identifier' : 'AC-6'
   'value' : "%h %l %u %t \x5c\x22%r\x5c\x22 %>s %b \x5c\x22%{hiera('global::percent_sign')}{Referer}i\x5c\x22 \x5c\x22%{hiera('global::percent_sign')}{User-Agent}i\x5c\x22"
 

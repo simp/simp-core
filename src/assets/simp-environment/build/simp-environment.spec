@@ -88,10 +88,6 @@ cd -
 %config(noreplace) %{prefix}/hieradata/RedHat/6.yaml
 %config(noreplace) %{prefix}/hieradata/hosts/puppet.your.domain.yaml
 %config(noreplace) %{prefix}/hieradata/hostgroups/default.yaml
-%config(noreplace) %{prefix}/hieradata/simp/logstash/default.yaml
-%config(noreplace) %{prefix}/hieradata/simp/pam/default.yaml
-%config(noreplace) %{prefix}/hieradata/simp/simp/default.yaml
-%config(noreplace) %{prefix}/hieradata/simp/mcollective/default.yaml
 %config(noreplace) %{prefix}/hieradata/simp_classes.yaml
 %config(noreplace) %{prefix}/hieradata/simp_def.yaml
 %config(noreplace) %{prefix}/hieradata/default.yaml
