@@ -77,6 +77,10 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Fri Sep 30 2016 Nick Miller <nick.miller@onyxpoint.com> - 5.2.0-0
+- Added i_versionm mount option to non-/var and non-/tmp partitions for IMA
+    measuring
+
 * Tue Sep 06 2016 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.2.0-0
 - Release of 5.2.0-0
   - Numerous bug fixes and enhancements, see the Changelog
