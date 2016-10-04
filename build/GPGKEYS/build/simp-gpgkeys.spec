@@ -46,6 +46,10 @@ cp RPM-GPG-KEY* %{buildroot}/%{prefix}
 # If we're a SIMP server, place the keys into the appropriate web directory
 
 for dir in '/srv/www/yum/SIMP' '/var/www/yum/SIMP'; do
+  if [ ! -d `dirname $dir` ]; then
+    continue
+  fi
+
   if [ ! -d $dir ]; then
     mkdir -p -m 0755 "${dir}/GPGKEYS"
   fi

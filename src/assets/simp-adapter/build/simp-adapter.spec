@@ -16,6 +16,7 @@ Requires: rsync
 Requires(post): puppet
 Requires(post): puppetserver
 Requires(post): puppetdb
+Requires(post): procps-ng
 Requires: puppet-agent < 2.0.0
 Requires: puppet-agent >= 1.6.2
 Requires: puppet-client-tools < 2.0.0
@@ -35,6 +36,7 @@ Requires: rsync
 Requires(post): puppet
 Requires(post): puppetserver
 Requires(post): puppetdb
+Requires(post): procps-ng
 Requires: pe-puppet-agent < 2.0.0
 Requires: pe-puppet-agent >= 1.6.2
 Requires: pe-client-tools < 2.0.0
@@ -86,17 +88,70 @@ install -p -m 640 -D puppet_config/hiera.yaml %{buildroot}%{puppet_confdir}/hier
 %{puppet_confdir}/auth.conf.simp
 %{puppet_confdir}/hiera.yaml.simp
 
-%pretrans
+%post
+# Post installation stuff
+
+PATH=$PATH:/opt/puppetlabs/bin
+
 # This is here due to a bug in the Puppet Server RPM that does not properly
 # nail up the Puppet UID and GID to 52
+#
+# Unfortunately, we can't guarantee order in 'post', so we may have to munge up
+# the filesystem pretty hard
 
-# Add puppet group
-getent group puppet > /dev/null || groupadd -r -g 52 puppet || :
+puppet_uid=`id -u puppet 2>/dev/null`
+puppet_gid=`id -g puppet 2>/dev/null`
 
-# Add puppet user
-getent passwd puppet > /dev/null || \
-  useradd -r --uid 52 --gid puppet --home /opt/puppetlabs/server/data/puppetserver --shell $(which nologin) \
-    --comment "puppetserver daemon" puppet || :
+restart_puppetserver=0
+
+puppet_owned_dirs='/opt/puppetlabs /etc/puppetlabs /var/log'
+
+if [ -n $puppet_gid ]; then
+  if [ "$puppet_gid" != '52' ]; then
+
+    if `pgrep -f puppetserver &>/dev/null`; then
+      puppet resource service puppetserver stop || :
+      wait
+      restart_puppetserver=1
+    fi
+
+    groupmod -g 52 puppet || :
+
+    for dir in $puppet_owned_dirs; do
+      if [ -d $dir ]; then
+        find $dir -gid $puppet_gid -exec chgrp puppet {} \;
+      fi
+    done
+  fi
+else
+  # Add puppet group
+  groupadd -r -g 52 puppet || :
+fi
+
+if [ -n $puppet_uid ]; then
+  if [ "$puppet_uid" != '52' ]; then
+
+    if `pgrep -f puppetserver &>/dev/null`; then
+      puppet resource service puppetserver stop || :
+      wait
+      restart_puppetserver=1
+    fi
+
+    usermod -u 52 puppet || :
+
+    for dir in $puppet_owned_dirs; do
+      if [ -d $dir ]; then
+        find $dir -uid $puppet_uid -exec chown puppet {} \;
+      fi
+    done
+  fi
+else
+  # Add puppet user
+  useradd -r --uid 52 --gid puppet --home /opt/puppetlabs/server/data/puppetserver --shell $(which nologin) --comment "puppetserver daemon" puppet || :
+fi
+
+if [ $restart_puppetserver -eq 1 ]; then
+  puppet resource service puppetserver start
 fi
 
 # PuppetDB doesn't have a set user and group, but we really want to make sure
@@ -106,15 +161,8 @@ fi
 getent group puppetdb > /dev/null || groupadd -r puppetdb || :
 
 # Add puppet user
-getent passwd puppetdb > /dev/null || \
-  useradd -r --gid puppetdb --home /opt/puppetlabs/server/data/puppetdb --shell $(which nologin) \
-    --comment "puppetdb daemon" puppetdb || :
-fi
+getent passwd puppetdb > /dev/null || useradd -r --gid puppetdb --home /opt/puppetlabs/server/data/puppetdb --shell $(which nologin) --comment "puppetdb daemon" puppetdb || :
 
-%post
-# Post installation stuff
-
-PATH=$PATH:/opt/puppetlabs/bin
 
 puppet config set trusted_node_data true || :
 puppet config set digest_algorithm sha256 || :
