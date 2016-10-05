@@ -6,7 +6,7 @@
 
 Summary: SIMP Bootstrap
 Name: simp-bootstrap
-Version: 4.3.2
+Version: 4.3.3
 Release: 0
 License: Apache License 2.0
 Group: Applications/System
@@ -98,7 +98,6 @@ cd -
 %config(noreplace) %{prefix}/environments/simp/hieradata/simp/logstash/default.yaml
 %config(noreplace) %{prefix}/environments/simp/hieradata/simp/pam/default.yaml
 %config(noreplace) %{prefix}/environments/simp/hieradata/simp/simp/default.yaml
-%config(noreplace) %{prefix}/environments/simp/hieradata/simp/mcollective/default.yaml
 %config(noreplace) %{prefix}/environments/simp/hieradata/simp_classes.yaml
 %config(noreplace) %{prefix}/environments/simp/hieradata/simp_def.yaml
 %config(noreplace) %{prefix}/environments/simp/hieradata/default.yaml
@@ -356,6 +355,9 @@ if [ $1 -eq 0 ]; then
 fi
 
 %changelog
+* Wed Oct 05 2016 Liz Nemsick <lnemsick.simp@gmail.com> - 4.3.3-0
+- Removed OBE  mcollective hieradata.
+
 * Thu Sep 01 2016 Ralph Wright <ralph.wright@onyxpoint.com> - 4.3.2-0
 - Modified compliance files to handle updated audit rules.
 
