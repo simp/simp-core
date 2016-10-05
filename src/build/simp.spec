@@ -25,6 +25,7 @@ Requires: pupmod-herculesteam-augeasproviders_ssh >= 2.5.0-2016, pupmod-hercules
 Requires: pupmod-herculesteam-augeasproviders_sysctl >= 2.1.0-2016, pupmod-herculesteam-augeasproviders_sysctl < 3.0.0
 Requires: pupmod-onyxpoint-gpasswd >= 1.0.0-2016, pupmod-onyxpoint-gpasswd < 2.0.0
 Requires: pupmod-puppetlabs-apache >= 1.10.0-2016, pupmod-puppetlabs-apache < 2.0.0
+Requires: pupmod-puppetlabs-concat >= 2.2.0-2016, pupmod-puppetlabs-concat < 3.0.0
 Requires: pupmod-puppetlabs-inifile >= 1.5.0-2016, pupmod-puppetlabs-inifile < 2.0.0
 Requires: pupmod-puppetlabs-java >= 1.2.0-2016, pupmod-puppetlabs-java < 2.0.0
 Requires: pupmod-puppetlabs-java_ks >= 1.4.0-2016, pupmod-puppetlabs-java_ks < 2.0.0

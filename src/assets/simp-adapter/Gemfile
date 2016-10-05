@@ -26,7 +26,7 @@ group :test do
       # simp-rake-helpers and ruby 1.8.7 bomb Travis tests
       # TODO: fix upstream deps (parallel in simp-rake-helpers)
       RUBY_VERSION.sub(/\.\d+$/,'') != '1.8'
-    gem 'simp-rake-helpers'
+    gem 'simp-rake-helpers', '~>3.0', :git => 'https://github.com/trevor-vaughan/rubygem-simp-rake-helpers', :branch => 'SIMP-1537'
   end
 end
 

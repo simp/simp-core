@@ -32,10 +32,7 @@ simp::server::enable_puppetdb : true
 # TODO: This should probably be a Fact
 puppetdb::master::config::puppet_service_name : 'puppetserver'
 
-# The puppetdb version needs to be explicitly set, else 'present'
-# or 'latest' will bring in the latest puppetdb-termini package.
-#
-puppetdb::globals::version: '2.3.8-1.el7'
+puppetdb::globals::version: 'latest'
 
 classes :
   - 'simp::server'

@@ -25,7 +25,7 @@
 # Configuration
 # -------------
 #
-# A configuration file may be placed at /etc/simp/simp_adapter_config.yaml. The
+# A configuration file may be placed at /etc/simp/adapter_config.yaml. The
 # file must consist of proper YAML as demonstrated in the example below which
 # lists the default options.
 #
@@ -89,7 +89,7 @@ end
 
 def parse_options
   options = OpenStruct.new
-  options.config_file = '/etc/simp/simp_adapter_config.yaml'
+  options.config_file = '/etc/simp/adapter_config.yaml'
   options.preserve = false
   # These are not settable, but it's nice to have all this material in one place
   options.puppet_user = %x{puppet config print user}.strip
@@ -193,7 +193,10 @@ def process_config(config_file, options=OpenStruct.new)
 
   if File.exist?(config_file)
     begin
-      config.merge!(YAML.load_file(config_file))
+      system_config = YAML.load_file(config_file)
+      if system_config
+        config.merge!(system_config)
+      end
     rescue
       fail("Error: Config file '#{config_file}' could not be processed")
     end

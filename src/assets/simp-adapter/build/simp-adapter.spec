@@ -226,6 +226,8 @@ EOM
     if [ ! -f ${file} ] && [ -f "${file}.simpbak" ]; then
       ln -sf "${file}.simp" $file
     fi
+
+  chgrp puppet $file
   done
 )
 
