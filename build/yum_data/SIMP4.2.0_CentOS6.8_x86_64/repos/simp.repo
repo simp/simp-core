@@ -1,7 +1,21 @@
 [simp-base]
 name=simp-base
-baseurl=https://dl.bintray.com/simp/4.2.X
+baseurl=https://packagecloud.io/simp-project/4_X/el/6/$basearch
+gpgcheck=1
+enabled=1
+gpgkey=https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
+sslverify=1
+sslcacert=/etc/pki/tls/certs/ca-bundle.crt
+metadata_expire=300
 
 [simp-ext]
 name=simp-ext
-baseurl=https://dl.bintray.com/simp/4.2.X-Ext
+baseurl=https://packagecloud.io/simp-project/4_X_Dependencies/el/6/$basearch
+gpgcheck=1
+enabled=1
+gpgkey=https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
+       https://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs
+       https://getfedora.org/static/0608B895.txt
+sslverify=1
+sslcacert=/etc/pki/tls/certs/ca-bundle.crt
+metadata_expire=300
