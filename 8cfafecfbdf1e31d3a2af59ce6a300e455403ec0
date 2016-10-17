@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_83004e02",
+        "filename": "build/yum_data/SIMP5.1.0_CentOS7.0_x86_64/repos/simp.repo",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1005361
+      },
+      "writtenOn": "2016-10-17T21:26:35Z",
+      "side": 1,
+      "message": "do you need these? this looks like default config",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 19
+      },
+      "revId": "8cfafecfbdf1e31d3a2af59ce6a300e455403ec0",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
