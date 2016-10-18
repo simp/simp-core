@@ -1,6 +1,6 @@
 Summary: SIMP Full Install
 Name: simp
-Version: 5.2.1
+Version: 5.2.0
 Release: 0%{?snapshot_release}
 License: Apache License, Version 2.0
 Group: Applications/System
@@ -77,6 +77,10 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Tue Oct 18 2016 Nick Markowski <nmarkowski@keywcorp.com> - 5.2.0-0
+- Reverted version back to 5.2.0-0  The previous commit bumped the version
+  without a release (see release_mapper), which essentially broke the build.
+
 * Mon Sep 26 2016 Nick Markowski <nmarkowski@keywcorp.com> - 5.2.1-0
 - Use correct version of simp-mcollective Puppet module. Puppetfile.tracking
   and Puppetfile.stable pointed to an incorrect version.
