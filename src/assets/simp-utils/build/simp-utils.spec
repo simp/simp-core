@@ -1,7 +1,7 @@
 Summary: SIMP Utils
 Name: simp-utils
-Version: 5.0.1
-Release: 2
+Version: 6.0.0
+Release: 0
 License: Apache License, Version 2.0
 Group: Applications/System
 Source: %{name}-%{version}-%{release}.tar.gz
@@ -32,10 +32,8 @@ mkdir -p %{buildroot}/usr/local/sbin
 # Now install the files.
 cp -r share/* %{buildroot}/usr/share/simp
 cp -r scripts/* %{buildroot}/usr/local
-cp -r man %{buildroot}/usr/share
 
 chmod -R u=rwx,g=rx,o=rx %{buildroot}/usr/local/*bin
-chmod -R u=rwX,g=rX,o=rX %{buildroot}/usr/share/man
 
 %clean
 [ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
@@ -52,7 +50,6 @@ chmod -R u=rwX,g=rX,o=rX %{buildroot}/usr/share/man
 /usr/share/simp
 %exclude /usr/share/simp/upgrade_scripts
 %attr(0750,-,-) /usr/share/simp/upgrade_scripts
-%doc /usr/share/man/*/*
 
 %post
 # Post installation stuff
@@ -61,6 +58,15 @@ chmod -R u=rwX,g=rX,o=rX %{buildroot}/usr/share/man
 # Post uninstall stuff
 
 %changelog
+* Tue Nov 08 2016 Nick Miller <nick.miller@onyxpoint.com> - 6.0.0-0
+- puppetlast:
+  - Now uses the new PuppetDB nodes endpoint over http
+  - Gathers new information about the nodes, which can be now be sorted and
+    isolated by status and environment
+  - Expired nodes will no longer show up in the query
+  - Errors and exit scenarios will now be handled more gracefully
+  - Removed man page in favor of `puppetlast -h`
+
 * Wed Oct 26 2016 Nick Miller <nick.miller@onyxpoint.com> - 5.0.1-2
 - Removed the pssh dependency.
 - Updated the Puppet dependency to require Puppet 4.
