@@ -88,7 +88,7 @@ Requires: simp-environment >= 6.0.0-Alpha, simp-environment < 7.0.0
 Requires: simp-gpgkeys >= 2.0.0-4.el7.centos, simp-gpgkeys < 3.0.0
 Requires: simp-rsync >= 5.1.0-3.el7.centos, simp-rsync < 6.0.0
 Requires: simp-rsync-clamav >= 5.1.0-3.el7.centos, simp-rsync-clamav < 6.0.0
-Requires: simp-utils >= 5.0.1-1, simp-utils < 6.0.0
+Requires: simp-utils >= 6.0.0, simp-utils < 7.0.0
 
 Prefix: %{_sysconfdir}/puppet
 
