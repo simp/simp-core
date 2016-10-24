@@ -1,27 +1,29 @@
-#!/usr/bin/env ruby
+#!/opt/puppetlabs/puppet/bin/ruby
+#
+# puppetlast queries PuppetDB and returns a list of nodes and the last time the
+# Puppet Agent was run on them
 
+require "uri"
 require 'date'
+require 'puppet'
 require 'facter'
-require 'optparse'
 require 'ostruct'
-require 'puppet/application'
+require 'optparse'
+require "net/http"
 
-class Puppet::Application::Nodeinfo < Puppet::Application
-  run_mode :master
-
-  def parse_options
+class PuppetLast
+  def parse_options(args)
     @options = OpenStruct.new
     @options.expiration = 5
-    @options.config = '/etc/puppet/puppet.conf'
     @options.outtime = ''
     @options.hosts = []
     @options.pretty = false
-    @options.sort_by = :fqdn
+    @options.sort_by = :certname
     # This currently isn't settable...
     @options.round_to = '.02'
 
     opts = OptionParser.new do |opts|
-      opts.banner = "Usage: #{$0} [options]"
+      opts.banner = "Usage: #{File.basename(__FILE__)} [options]"
 
       opts.separator ""
 
@@ -36,15 +38,6 @@ class Puppet::Application::Nodeinfo < Puppet::Application
         else
           @options.expiration = exp.to_f.abs
         end
-      end
-
-      opts.on(
-        "-c",
-        "--config PATH",
-        "Read puppet configuration from PATH",
-        "Default: /etc/puppet/puppet.conf"
-      ) do |conf|
-        @options.config = conf
       end
 
       opts.on(
@@ -75,18 +68,10 @@ class Puppet::Application::Nodeinfo < Puppet::Application
       opts.on(
         "-s",
         "--sort-by SORT_OPTION",
-        [:nil, :fqdn, :time],
-        "Sort by a given attribute: 'nil' => unsorted, 'fqdn' => default, 'time' => last checkin"
+        [:nil, :certname, :time],
+        "Sort by a given attribute: 'nil' => unsorted, 'certname' => default, 'time' => last checkin"
       ) do |sort_by|
         @options.sort_by = sort_by
-      end
-
-      opts.on(
-        "-v",
-        "--verbose",
-        "Verbose Output: Discover expired hosts and other details"
-      ) do |verbose|
-        @options.verbose = true
       end
 
       opts.on(
@@ -95,16 +80,14 @@ class Puppet::Application::Nodeinfo < Puppet::Application
         "Help Message"
       ) do
         puts opts
-        exit
+        @options.help_requested = true
       end
     end
 
     begin
-      opts.parse!(ARGV)
-    rescue OptionParser::InvalidArgument => e
-      puts e
-      puts opts
-      exit 1
+      opts.parse!(args)
+    rescue OptionParser::ParseError => e
+      raise "ERROR #{e.message}\n#{opts.to_s}"
     end
 
     case @options.outtime.to_s
@@ -125,70 +108,81 @@ class Puppet::Application::Nodeinfo < Puppet::Application
     @options.expsecs = @options.expiration * 86400
   end
 
-  def setup
-    Puppet.initialize_settings(["--config #{@options.config}"])
-    Puppet::Util::Log.newdestination :console
-  end
+  # grabs info about a particular host from PuppetDB
+  def query_host(certname)
+    # TODO move to ssl
+    uri = URI("http://localhost:8138/pdb/query/v4/nodes/#{certname}")
 
-  def main
-    node_data = []
-
-    hosts = []
-    # We *should* be able to do this via the API but it's going away
-    # in Puppet 4 anyway :-(
-    `puppet cert list --all`.each_line do |ln|
-      if ln =~ /^\+\s+"(.*)"\s+/ then
-        next if $1 == 'puppet' or $1 == 'localhost'
-        hosts << $1
-      end
+    begin
+      data = JSON.parse(Net::HTTP.get(uri), :symbolize_names => true)
+    rescue Errno::ECONNREFUSED => e
+      err_msg = "ERROR: #{e}" +
+                "  Please make sure PuppetDB is running, this script is being run from" +
+                "  the PuppetDB host, and the port is correct"
+      raise err_msg
     end
 
-    # remove spurious hosts from list to check
-    @options.hosts.each{ |h|
-      if !hosts.include? h
-        warn( "WARNING: The host '#{h}' is unknown to puppet; skipping" ) if @options.verbose
-        @options.hosts.delete_at( @options.hosts.index( h ) )
-      end
-    }
+    if data.keys.include? :error then
+      err_msg = "ERROR: Could not retrieve node data for #{certname}" +
+                "  Server Said: #{data}"
+      raise err_msg
+    end
 
-    hosts.each do |client|
-      data = YAML.load(`curl -1 -s --key #{Puppet.settings[:hostprivkey].to_s} --cert #{Puppet.settings[:hostcert].to_s} -k -H "Accept: yaml" https://#{Puppet.settings[:server]}:#{Puppet.settings[:masterport]}/production/node/#{client}`)
+    data
+  end
 
-      if not data.is_a?(Puppet::Node) then
-        $stderr.puts "ERROR: Could not retrieve node data for #{client}"
-        $stderr.puts "  Server Said: #{data}"
-        next
-      end
+  # grabs info about all hosts in PuppetDB
+  def query_hosts
+    # TODO move to ssl
+    uri = URI('http://localhost:8138/pdb/query/v4/nodes')
 
-      if not data.facts then
-        if @options.verbose then
-          puts "WARNING: No data found for #{client}"
-          puts "  Please consider removing this host's certificates"
-        end
-        next
-      end
+    begin
+      data = JSON.parse(Net::HTTP.get(uri), :symbolize_names => true)
+    rescue Errno::ECONNREFUSED => e
+      err_msg = "ERROR: #{e}" +
+                "  Please make sure PuppetDB is running, this script is being run from" +
+                "  the PuppetDB host, and the port is correct"
+      raise err_msg
+    end
 
-      facts = data.facts.values
+    data
+  end
 
-      output = true
+  # take the PuppetDB scehema and transform it into useful info for us
+  def transform_hosts(hosts)
+    node_data = []
 
-      if !@options.hosts.empty? and @options.hosts.grep(/^#{facts["hostname"]}.*/).empty? then
-          output = false
-      end
-      last_checkin = Time.now - Time.parse(facts["_timestamp"].to_s)
+    hosts.each do |host|
+      last_checkin = Time.now - Time.parse(host[:catalog_timestamp])
       node_data << {
-        :expired => ( data.facts.expiration.nil? or ( Time.parse(data.facts.expiration.to_s) < Time.now ) ) ? true : false,
+        :expired      => host[:expired],
+        :certname     => host[:certname],
         :last_checkin => last_checkin,
         :formatted_checkin => sprintf("%#{@options.round_to}f",(last_checkin * @options.divisor).abs),
-        :hostname => facts["hostname"],
-        :fqdn => facts["fqdn"],
-        :domain => ( facts["domain"].nil? ) ? "domain.unknown" : facts["domain"],
-        :output => output
       }
     end
 
-    if @options.sort_by == :fqdn then
-      node_data = node_data.sort{ |a,b| [a[:domain],b[:hostname]] <=> [b[:domain],a[:hostname]] }
+    node_data
+  end
+
+
+  def main(args)
+    parse_options(args)
+    return 0 if @options.help_requested
+
+    if @options.hosts.empty? then
+      hostlist = query_hosts
+    else
+      hostlist = []
+      @options.hosts.each do |host|
+        hostlist << query_host(host)
+      end
+    end
+
+    node_data = transform_hosts(hostlist)
+
+    if @options.sort_by == :certname then
+      node_data = node_data.sort{ |a,b| a[:certname] <=> b[:certname] }
     elsif @options.sort_by == :time then
       node_data = node_data.sort{ |a,b| a[:last_checkin] <=> b[:last_checkin] }
     end
@@ -197,46 +191,61 @@ class Puppet::Application::Nodeinfo < Puppet::Application
     time_column_length = 0
     if @options.pretty then
       first_column_length = node_data.select{|x|
-        !x[:expired]
-      }.max {|a,b|
-        a[:fqdn].length <=> b[:fqdn].length
-      }[:fqdn].length
+          !x[:expired]
+        }.max {|a,b|
+          a[:certname].length <=> b[:certname].length
+        }[:certname].length
 
       time_column_length = node_data.select{|x|
-        !x[:expired]
-      }.max {|a,b|
-        a[:formatted_checkin].length <=> b[:formatted_checkin].length
-      }[:formatted_checkin].length
+          !x[:expired]
+        }.max {|a,b|
+          a[:formatted_checkin].length <=> b[:formatted_checkin].length
+        }[:formatted_checkin].length
 
     end
 
     node_data.each do |node|
-      if node[:output] and not node[:expired] then
+      if not node[:expired] then
         if ( node[:last_checkin] < 0 ) then
-          msg = "-#{first_column_length}s time issue: %-#{time_column_length}#{@options.round_to}f %s in the future\n"
+          msg = "-#{first_column_length}s time issue: %#{time_column_length}#{@options.round_to}f %s in the future\n"
         elsif ( node[:last_checkin] < @options.expsecs ) then
-          msg = "%-#{first_column_length}s checked in %-#{time_column_length}#{@options.round_to}f %s ago\n"
+          msg = "%-#{first_column_length}s checked in %#{time_column_length}#{@options.round_to}f %s ago\n"
         end
 
         if node[:last_checkin].to_s =~ /e/ then
-          puts "#{node[:fqdn]} outside the bounds of time and space"
+          puts "#{node[:certname]} outside the bounds of time and space"
         else
           printf(msg,
-            node[:fqdn],
+            node[:certname],
             node[:formatted_checkin],
             @options.outtime
           )
         end
       else
-        puts "#{node[:fqdn]} expired" if @options.verbose
+        puts "#{node[:certname]} expired" if @options.verbose
       end
     end
+    return 0
+  rescue SignalException =>e
+    if e.inspect == 'Interrupt'
+      $stderr.puts "\nProcessing interrupted! Exiting."
+    else
+      $stderr.puts "\nProcess received signal #{e.message}. Exiting!"
+      e.backtrace.first(10).each{|l| $stderr.puts l }
+    end
+    return 1
+  rescue RuntimeError =>e
+    $stderr.puts(e.message)
+    return 1
+  rescue => e
+    $stderr.puts("\n#{e.message}")
+    e.backtrace.first(10).each{|l| $stderr.puts l }
+    return 1
   end
-
-  private
-
-  @options
 
 end
 
-Puppet::Application::Nodeinfo.new.run
+if __FILE__ == $0
+  pl = PuppetLast.new
+  exit pl.main(ARGV)
+end
