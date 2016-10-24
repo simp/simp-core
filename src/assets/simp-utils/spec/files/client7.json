@@ -1,0 +1,17 @@
+{
+  "deactivated": null,
+  "latest_report_hash": null,
+  "facts_environment": "production",
+  "cached_catalog_status": null,
+  "report_environment": null,
+  "latest_report_corrective_change": null,
+  "catalog_environment": "production",
+  "facts_timestamp": "2016-10-23T15:30:52.840Z",
+  "latest_report_noop": null,
+  "expired": null,
+  "latest_report_noop_pending": null,
+  "report_timestamp": null,
+  "certname": "client7.test.net",
+  "catalog_timestamp": "2016-10-23T15:31:13.600Z",
+  "latest_report_status": null
+}
