@@ -27,15 +27,16 @@ simp::yum::enable_os_repos : false
 # Make this server a puppetserver
 pupmod::enable_puppet_master: true
 
-# Enable PuppetDB on this system by default
-simp::server::enable_puppetdb : true
-
 # The service name of the Puppet Server service for use with PuppetDB
 #
 # TODO: This should probably be a Fact
 puppetdb::master::config::puppet_service_name : 'puppetserver'
 
 puppetdb::globals::version: 'latest'
+
+# Let pupmod::master::base handle this.
+#
+puppetdb::master::config::restart_puppet: false
 
 classes :
   - 'simp::server'
