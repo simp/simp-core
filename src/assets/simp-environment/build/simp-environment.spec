@@ -215,6 +215,9 @@ fi
 /usr/local/sbin/simp_rpm_helper --rpm_dir=%{prefix} --rpm_section='postun' --rpm_status=$1 --preserve --target_dir='.'
 
 %changelog
+* Tue Oct 25 2016 Nick Markowski <nmarkowski@keywcorp.com> - 6.0.0-Alpha
+- Updated hieradata to reflect changes in puppetdb (SIMP-1450)
+
 * Fri Sep 16 2016 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.0.0-Alpha
 - Changed the name to simp-environment
 - Ripped out all of the legacy materials
