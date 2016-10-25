@@ -218,6 +218,9 @@ fi
 * Wed Nov 02 2016 Nick Markowski <nmarkowski@keywcorp.com> - 6.0.0-Alpha
 - Updated compliance maps to API 1.0.0 format
 
+* Tue Oct 25 2016 Nick Markowski <nmarkowski@keywcorp.com> - 6.0.0-Alpha
+- Updated hieradata to reflect changes in puppetdb (SIMP-1450)
+
 * Fri Sep 16 2016 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.0.0-Alpha
 - Changed the name to simp-environment
 - Ripped out all of the legacy materials
