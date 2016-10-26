@@ -156,10 +156,6 @@ mod 'pupmod-simp-dhcp',
   :git => 'https://github.com/simp/pupmod-simp-dhcp'},
   :ref => '7e0f9dc0b5e1114ab39efca1ee082f138226c7cb'}
 
-mod 'pupmod-simp-foreman',
-  :git => 'https://github.com/simp/pupmod-simp-foreman'},
-  :ref => 'a42210f237d7e68af1a740a46d38119cd13ff6e8'}
-
 mod 'pupmod-simp-freeradius',
   :git => 'https://github.com/simp/pupmod-simp-freeradius'},
   :ref => 'd6e0e3bc28742f58f15b3276d972529dd5db76e0'}

@@ -1,13 +1,12 @@
 Summary: SIMP Utils
 Name: simp-utils
 Version: 5.0.1
-Release: 1
+Release: 2
 License: Apache License, Version 2.0
 Group: Applications/System
 Source: %{name}-%{version}-%{release}.tar.gz
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
-Requires: puppet >= 2.6.4-1
-Requires: pssh >= 2.1.1-0
+Requires: puppet >= 4.0.0
 Requires: mkisofs
 Requires: yum-utils
 Provides: simp_utils
@@ -62,8 +61,12 @@ chmod -R u=rwX,g=rX,o=rX %{buildroot}/usr/share/man
 # Post uninstall stuff
 
 %changelog
+* Wed Oct 26 2016 Nick Miller <nick.miller@onyxpoint.com> - 5.0.1-2
+- Removed the pssh dependency.
+- Updated the Puppet dependency to require Puppet 4.
+
 * Thu Aug 25 2016 Liz Nemsick <lnemsick.simp@gmail.com> - 5.0.1-1
-  Removed man pages for simp utility, as simp command line provides
+- Removed man pages for simp utility, as simp command line provides
   up-to-date usage.
 
 * Thu Nov 05 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.0.0-8
