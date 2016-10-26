@@ -13,8 +13,8 @@ mod 'simp-rsync',
 moduledir 'src/rubygems'
 
 mod 'rubygem-simp_cli',
-  :git => 'https://github.com/trevor-vaughan/rubygem-simp-cli',
-  :ref => 'SIMP-1542'
+  :git => 'https://github.com/simp/rubygem-simp-cli',
+  :ref => 'master'
 
 moduledir 'src/puppet/modules'
 
@@ -160,10 +160,6 @@ mod 'simp-simpcat',
 
 mod 'simp-dhcp',
   :git => 'https://github.com/simp/pupmod-simp-dhcp',
-  :ref => 'master'
-
-mod 'simp-foreman',
-  :git => 'https://github.com/simp/pupmod-simp-foreman',
   :ref => 'master'
 
 mod 'simp-freeradius',
