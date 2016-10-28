@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_5a1795ee",
+        "filename": "src/assets/simp-utils/scripts/sbin/puppetlast",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1008746
+      },
+      "writtenOn": "2016-10-28T16:06:33Z",
+      "side": 1,
+      "message": "Is the fact this must be run on the PuppetDB host a change from the previous version?  If so, will this be a problem?",
+      "revId": "833413dc4060de4926481f7374b9623e86f2139c",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_da228554",
+        "filename": "src/assets/simp-utils/scripts/sbin/puppetlast",
+        "patchSetId": 2
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1008746
+      },
+      "writtenOn": "2016-10-28T16:06:33Z",
+      "side": 1,
+      "message": "The original code skipped unknown hosts.  Will this be a problem?",
+      "revId": "833413dc4060de4926481f7374b9623e86f2139c",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_1acd8dba",
+        "filename": "src/assets/simp-utils/scripts/sbin/puppetlast",
+        "patchSetId": 2
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1008746
+      },
+      "writtenOn": "2016-10-28T16:06:33Z",
+      "side": 1,
+      "message": "missing a percent: msg \u003d \u0027%-#{first_column_length}s time issue:...\nBug in original code.  Would be nice if we had a test for this?",
+      "revId": "833413dc4060de4926481f7374b9623e86f2139c",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_fad42920",
+        "filename": "src/assets/simp-utils/scripts/sbin/puppetlast",
+        "patchSetId": 2
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1008746
+      },
+      "writtenOn": "2016-10-28T16:06:33Z",
+      "side": 1,
+      "message": "There is no verbose option.  It was removed from the option lists.  Should it be reinstated?",
+      "revId": "833413dc4060de4926481f7374b9623e86f2139c",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_9ae4fd0e",
+        "filename": "src/assets/simp-utils/spec/scripts/sbin/puppetlast_spec.rb",
+        "patchSetId": 2
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1008746
+      },
+      "writtenOn": "2016-10-28T16:06:33Z",
+      "side": 1,
+      "message": "Why is this test commented out?",
+      "revId": "833413dc4060de4926481f7374b9623e86f2139c",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_1ab7cdf9",
+        "filename": "src/assets/simp-utils/spec/scripts/sbin/puppetlast_spec.rb",
+        "patchSetId": 2
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1008746
+      },
+      "writtenOn": "2016-10-28T16:06:33Z",
+      "side": 1,
+      "message": "I think it would be helpful to test the expired client logic, as the implementation has changed quite a bit.",
+      "revId": "833413dc4060de4926481f7374b9623e86f2139c",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_fabb09e3",
+        "filename": "src/assets/simp-utils/tests/puppetlast.rb",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1008746
+      },
+      "writtenOn": "2016-10-28T16:06:33Z",
+      "side": 1,
+      "message": "May be helpful to put a README in this directory explaining why this link is needed.",
+      "revId": "833413dc4060de4926481f7374b9623e86f2139c",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
