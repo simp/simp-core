@@ -86,18 +86,18 @@ if [ "$simp_opt" != "prompt" ]; then
   cat << EOF >> /tmp/part-include
 volgroup VolGroup00 pv.01
 logvol swap --fstype=swap --name=SwapVol --vgname=VolGroup00 --size=1024
-logvol / --fstype=ext4 --name=RootVol --vgname=VolGroup00 --size=4096 --fsoptions=i_version
+logvol / --fstype=ext4 --name=RootVol --vgname=VolGroup00 --size=4096 --fsoptions=iversion
 logvol /tmp --fstype=ext4 --name=TmpVol --vgname=VolGroup00 --size=2048 --fsoptions=nosuid,noexec,nodev
-logvol /home --fstype=ext4 --name=HomeVol --vgname=VolGroup00 --size=1024 --fsoptions=nosuid,noexec,nodev,i_version
+logvol /home --fstype=ext4 --name=HomeVol --vgname=VolGroup00 --size=1024 --fsoptions=nosuid,noexec,nodev,iversion
 logvol /var/log --fstype=ext4 --name=VarLogVol --vgname=VolGroup00 --size=4096 --fsoptions=nosuid,noexec,nodev
 logvol /var/log/audit --fstype=ext4 --name=VarLogAuditVol --vgname=VolGroup00 --size=1024 --fsoptions=nosuid,noexec,nodev
 EOF
 
   if [ "$simp_opt" == "bigvar" ]; then
-    echo "logvol /srv --fstype=ext4 --name=SrvVol --vgname=VolGroup00 --size=4096 --fsoptions=nosuid,nodev,i_version" >> /tmp/part-include
+    echo "logvol /srv --fstype=ext4 --name=SrvVol --vgname=VolGroup00 --size=4096 --fsoptions=nosuid,nodev,iversion" >> /tmp/part-include
     echo "logvol /var --fstype=ext4 --name=VarVol --vgname=VolGroup00 --size=1024 --grow" >> /tmp/part-include
   else
-    echo "logvol /srv --fstype=ext4 --name=SrvVol --vgname=VolGroup00 --size=1024 --fsoptions=nosuid,nodev,i_version --grow" >> /tmp/part-include
+    echo "logvol /srv --fstype=ext4 --name=SrvVol --vgname=VolGroup00 --size=1024 --fsoptions=nosuid,nodev,iversion --grow" >> /tmp/part-include
     echo "logvol /var --fstype=ext4 --name=VarVol --vgname=VolGroup00 --size=4096" >> /tmp/part-include
   fi
 fi
