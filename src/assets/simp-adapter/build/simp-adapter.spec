@@ -206,13 +206,19 @@ EOM
   # Only do permission fixes on a fresh install
   if [ $1 -eq 1 ]; then
     # Fix the permissions laid down by the puppetserver and puppetdb RPMs
-    for dir in code puppet pxp-agent; do
+    for dir in code puppet puppetserver pxp-agent; do
       if [ -d $dir ]; then
         chmod -R u+rwX,g+rX,g-w,o-rwx $dir
         chmod ug+st $dir
         chgrp -R puppet $dir
       fi
     done
+
+    if [ -d 'puppet/ssl' ]; then
+      chmod -R u+rwX,g+rX,g-w,o-rwx 'puppet/ssl'
+      chmod ug+st 'puppet/ssl'
+      chown -R puppet:puppet 'puppet/ssl'
+    fi
 
     if [ -d 'puppetdb' ]; then
       chmod -R u+rwX,g+rX,g-w,o-rwx 'puppetdb'
