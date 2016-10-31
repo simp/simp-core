@@ -11,7 +11,7 @@ gem 'coderay'
 gem 'puppet', ENV.fetch('PUPPET_VERSION',  '~>3')
 gem 'puppet-lint'
 gem 'puppetlabs_spec_helper'
-gem 'simp-rake-helpers',  ENV.fetch('SIMP_RAKE_HELPERS_VERSION', '~> 2.0')
+gem 'simp-rake-helpers', '~>3.0'
 gem 'simp-build-helpers', ENV.fetch('SIMP_BUILD_HELPERS_VERSION', '~> 0.1')
 gem 'parallel'
 gem 'dotenv'
