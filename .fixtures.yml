@@ -1,4 +1,4 @@
 ---
 fixtures:
-  repositories:
-    simp: "git://github.com/simp/pupmod-simp-simp"
+  symlinks:
+    garbage: "#{source_dir}/spec/fixtures/modules"
