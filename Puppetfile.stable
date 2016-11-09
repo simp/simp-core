@@ -164,6 +164,10 @@ mod 'simp-dhcp',
   :git => 'https://github.com/simp/pupmod-simp-dhcp',
   :ref => '7e0f9dc0b5e1114ab39efca1ee082f138226c7cb'
 
+mod 'simp-dirtycow',
+  :git => 'https://github.com/simp/pupmod-simp-dirtycow.git',
+  :ref => '4b7c61777486554ca02b003e67133a2e629245bc'
+
 mod 'simp-foreman',
   :git => 'https://github.com/simp/pupmod-simp-foreman',
   :ref => 'a42210f237d7e68af1a740a46d38119cd13ff6e8'
