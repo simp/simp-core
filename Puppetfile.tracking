@@ -158,6 +158,10 @@ mod 'simp-dhcp',
   :git => 'https://github.com/simp/pupmod-simp-dhcp',
   :ref => '5.X'
 
+mod 'simp-dirtycow',
+  :git => 'https://github.com/simp/pupmod-simp-dirtycow.git',
+  :ref => 'master'
+
 mod 'simp-foreman',
   :git => 'https://github.com/simp/pupmod-simp-foreman',
   :ref => '5.X'
@@ -181,6 +185,10 @@ mod 'simp-iptables',
 mod 'simp-jenkins',
   :git => 'https://github.com/simp/pupmod-simp-jenkins',
   :ref => '5.X'
+
+mod 'simp-journald',
+  :git => 'https://github.com/simp/pupmod-simp-journald.git',
+  :ref => 'simp-master'
 
 mod 'simp-krb5',
   :git => 'https://github.com/simp/pupmod-simp-krb5',

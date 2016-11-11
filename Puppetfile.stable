@@ -156,6 +156,10 @@ mod 'simp-dhcp',
   :git => 'https://github.com/simp/pupmod-simp-dhcp',
   :ref => '7e0f9dc0b5e1114ab39efca1ee082f138226c7cb'
 
+mod 'simp-dirtycow',
+  :git => 'https://github.com/simp/pupmod-simp-dirtycow.git',
+  :ref => '4b7c61777486554ca02b003e67133a2e629245bc'
+
 mod 'simp-foreman',
   :git => 'https://github.com/simp/pupmod-simp-foreman',
   :ref => 'a42210f237d7e68af1a740a46d38119cd13ff6e8'
@@ -179,6 +183,10 @@ mod 'simp-iptables',
 mod 'simp-jenkins',
   :git => 'https://github.com/simp/pupmod-simp-jenkins',
   :ref => 'a2cd576f707416128fb6c4e15dbd2a485941b43b'
+
+mod 'simp-journald',
+  :git => 'https://github.com/simp/pupmod-simp-journald.git',
+  :ref => '26e4c303fd7bd6c61db469cbc63616e82a6f425b'
 
 mod 'simp-krb5',
   :git => 'https://github.com/simp/pupmod-simp-krb5',
