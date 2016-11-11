@@ -77,13 +77,15 @@ fi
 # Post uninstall stuff
 
 %changelog
-* Fri Sep 30 2016 Nick Miller <nick.miller@onyxpoint.com> - 4.3.0-0
-- Added i_versionm mount option to non-/var and non-/tmp partitions for IMA
-    measuring
 
-* Mon Sep 26 2016 Nick Markowski <nmarkowski@keywcorp.com> - 4.3.1-0
+* Thu Nov 10 2016 Nick Markowski <nmarkowski@keywcorp.com> - 4.3.1-0
+- Added the simp-dirtycow module to the build
 - Use correct version of simp-mcollective Puppet module. Puppetfile.tracking
   and Puppetfile.stable pointed to an incorrect version.
+
+* Fri Sep 30 2016 Nick Miller <nick.miller@onyxpoint.com> - 4.3.1-0
+- Added i_versionm mount option to non-/var and non-/tmp partitions for IMA
+    measuring
 
 * Tue Sep 06 2016 Trevor Vaughan <tvaughan@onyxpoint.com> - 4.3.0-0
 - Release of 4.3.0-0
