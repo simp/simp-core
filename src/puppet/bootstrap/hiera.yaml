@@ -6,7 +6,7 @@
   - 'yaml'
   - 'json'
 :hierarchy:
-  - 'hosts/%{::trusted["clientcert"]}'
+  - 'hosts/%{::trusted["certname"]}'
   - 'hosts/%{::fqdn}'
   - 'hosts/%{::hostname}'
   - 'domains/%{::domain}'

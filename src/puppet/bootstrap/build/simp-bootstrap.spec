@@ -348,6 +348,9 @@ if [ $1 -eq 0 ]; then
 fi
 
 %changelog
+* Wed Nov 09 2016 Nick Markowski <nmarkowski@keywcorp.com> - 5.3.4-0
+- Hiera.yaml now uses trusted[certname] in place of trusted[clientcert]
+
 * Thu Oct 13 2016 Lisa Umberger <lisa.umberger@onyxpoint.com> - 5.3.4-0
 - Added NIST 800-171 and ISO/IEC 27001 compliance mappings.
 
