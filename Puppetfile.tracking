@@ -202,6 +202,10 @@ mod 'simp-krb5',
   :git => 'https://github.com/simp/pupmod-simp-krb5',
   :ref => '5.X'
 
+mod 'simp-libreswan',
+  :git => 'https://github.com/simp/pupmod-simp-libreswan',
+  :ref => '5.X'
+
 mod 'simp-libvirt',
   :git => 'https://github.com/simp/pupmod-simp-libvirt',
   :ref => '5.X'
