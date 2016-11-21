@@ -1477,6 +1477,8 @@ tokyocabinet
 tomcat-servlet-3.0-api
 totem-pl-parser
 tracker
+tpm-tools
+tpm-quote-tools
 trousers
 ttmkfdir
 tuned
