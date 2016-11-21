@@ -593,6 +593,9 @@
   tanukiwrapper:
     :rpm_name: tanukiwrapper-3.5.9-1.el6.x86_64.rpm
     :source: "http://yum.puppetlabs.com/el/6/dependencies/x86_64/tanukiwrapper-3.5.9-1.el6.x86_64.rpm"
+  tpm-tools-pkcs11:
+    :rpm_name: tpm-tools-pkcs11-1.3.4-2.el6.x86_64.rpm
+    :source: "http://mirror.netdepot.com/centos/6.8/os/x86_64/Packages/tpm-tools-pkcs11-1.3.4-2.el6.x86_64.rpm"
   trousers:
     :rpm_name: trousers-0.3.13-2.el6.x86_64.rpm
     :source: "http://mirror.ash.fastserv.com/pub/linux/centos/6.8/os/x86_64/Packages/trousers-0.3.13-2.el6.x86_64.rpm"
