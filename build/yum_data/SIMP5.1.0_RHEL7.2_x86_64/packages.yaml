@@ -227,6 +227,9 @@ mcollective-sysctl-data:
 mod_ldap:
   :rpm_name: mod_ldap-2.4.6-40.el7.x86_64.rpm
   :source: Red Hat Optional Repository
+opencryptoki-tpmtok:
+  :rpm_name: opencryptoki-tpmtok-3.2-4.1.el7.x86_64.rpm
+  :source: Red Hat Optional Repository
 openssh:
   :rpm_name: openssh-6.6.1p1-22.el7_1.x86_64.rpm
   :source: Red Hat Updates Repository
