@@ -761,6 +761,7 @@ openais
 openaislib
 opencrypto-tpmtok
 opencryptoki
+opencryptoki-libs
 openjade
 openjpeg-libs
 openldap
