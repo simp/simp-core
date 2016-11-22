@@ -977,6 +977,8 @@ oddjob
 oddjob-mkhomedir
 openais
 openaislib
+opencryptoki
+opencryptoki-tpmtok
 openjade
 openjpeg-libs
 openldap
@@ -1476,6 +1478,9 @@ tncfhh-utils
 tokyocabinet
 tomcat-servlet-3.0-api
 totem-pl-parser
+tpm-quote-tools
+tpm-tools
+tpm-tools-pkcs11
 tracker
 trousers
 ttmkfdir

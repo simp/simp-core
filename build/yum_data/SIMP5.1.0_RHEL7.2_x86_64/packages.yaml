@@ -371,6 +371,9 @@ sudosh2:
 syslinux-tftpboot:
   :rpm_name: syslinux-tftpboot-4.05-12.el7.x86_64.rpm
   :source: Red Hat Optional Repository
+tpm-tools-pkcs11:
+  :rpm_name: tpm-tools-pkcs11-1.3.8-6.el7.x86_64.rpm
+  :source: Red Hat Optional Repository
 unbound:
   :rpm_name: unbound-libs-1.4.20-26.el7.x86_64.rpm
   :source: Red Hat Base Repository
