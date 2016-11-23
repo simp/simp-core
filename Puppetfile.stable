@@ -186,7 +186,7 @@ mod 'simp-gfs2',
 
 mod 'simp-haveged',
   :git => 'https://github.com/simp/puppet-haveged',
-  :ref => 'f2b6b9994155018a1db138bf4b971a6bbe274216'
+  :ref => '8e102613db7181fde39b54481bc17a1640abf504'
 
 mod 'simp-iptables',
   :git => 'https://github.com/simp/pupmod-simp-iptables',
@@ -258,7 +258,7 @@ mod 'simp-oddjob',
 
 mod 'simp-openldap',
   :git => 'https://github.com/simp/pupmod-simp-openldap',
-  :ref => 'fd846e259f515adfda8067464946b49d723d4a72'
+  :ref => '89036f7e182de073cbba13834a58fa569b6589c4'
 
 mod 'simp-openscap',
   :git => 'https://github.com/simp/pupmod-simp-openscap',
@@ -366,7 +366,7 @@ mod 'simp-tftpboot',
 
 mod 'simp-tpm',
   :git => 'https://github.com/simp/pupmod-simp-tpm',
-  :ref => '846fbb5d41a4de8507d2deadfe9982bb27832dbd'
+  :ref => '36a43b474f9a5f8d7b2f72469d1d19bf9e7f5baf'
 
 mod 'simp-upstart',
   :git => 'https://github.com/simp/pupmod-simp-upstart',
