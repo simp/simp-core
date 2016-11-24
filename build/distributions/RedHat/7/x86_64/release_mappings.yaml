@@ -1,0 +1,44 @@
+---
+# This file houses the *officially supported* SIMP release combinations
+# Other build combinations may work, but unexpected issues may arise.
+simp_releases:
+  5.1.X:
+    flavors:
+      RedHat:
+        isos:
+          - name:     'rhel-server-7.2-x86_64-dvd.iso'
+            size:     4043309056
+            checksum: '03f3a0291634335f6995534d829bd21ffaa0d000004dfeb1b2fb81052d64a4d5'
+        build_command: 'bundle exec rake build:auto[5.1.X,RedHat-7-x86_64-DVD-1511.iso]'
+        mock:          'epel-7-x86_64'
+        os_version:   '7.2'
+  5.2.0-0:
+    flavors:
+      RedHat:
+        isos:
+          - name:     'rhel-server-7.2-x86_64-dvd.iso'
+            size:     4043309056
+            checksum: '03f3a0291634335f6995534d829bd21ffaa0d000004dfeb1b2fb81052d64a4d5'
+        build_command: 'bundle exec rake build:auto[5.1.X,RedHat-7-x86_64-DVD-1511.iso]'
+        mock:          'epel-7-x86_64'
+        os_version:   '7.2'
+  5.1.0-3:
+    flavors:
+      RedHat:
+        isos:
+          - name:     'rhel-server-7.2-x86_64-dvd.iso'
+            size:     4043309056
+            checksum: '03f3a0291634335f6995534d829bd21ffaa0d000004dfeb1b2fb81052d64a4d5'
+        build_command: 'bundle exec rake build:auto[5.1.X,RedHat-7-x86_64-DVD-1511.iso]'
+        mock:          'epel-7-x86_64'
+        os_version:   '7.2'
+  5.1.0-2:
+    flavors:
+      RedHat:
+        isos:
+          - name:     'rhel-server-7.2-x86_64-dvd.iso'
+            size:     4043309056
+            checksum: '03f3a0291634335f6995534d829bd21ffaa0d000004dfeb1b2fb81052d64a4d5'
+        build_command: 'bundle exec rake build:auto[5.1.0-2,RedHat-7-x86_64-DVD-1511.iso]'
+        mock:          'epel-7-x86_64'
+        os_version:   '7.2'

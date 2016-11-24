@@ -1,0 +1,50 @@
+# This file dictates the default build infrastructure for the supported SIMP operating systems.
+#
+# You can disable builds by setting 'build' to `false` in a given section.
+#
+# You can enable builds from the rake build infrastructure by passing the name
+# and, optionally, the version and architecture via the `SIMP_BUILD_distro`
+# environment variable. The segments may either be comma (','), or forward
+# slash ('/') delimited but MUST be in the order of 'distribution', 'version',
+# 'architecture'.
+#
+# Examples:
+#
+# # Build all CentOS releases
+# SIMP_BUILD_distro=CentOS rake build:auto[...]
+#
+# # Build all CentOS 6 releases
+# SIMP_BUILD_distro=CentOS,6 rake build:auto[...]
+#
+# # Build all CentOS 6 x86_64 releases
+# SIMP_BUILD_distro=CentOS,6,x86_64 rake build:auto[...]
+---
+'distributions':
+  'CentOS':
+    '6':
+      'build': false
+      'pkg_type': 'rpm'
+      'arch':
+        - 'x86_64'
+    '7':
+      'build': true
+      'pkg_type': 'rpm'
+      'arch':
+        - 'x86_64'
+  'RedHat':
+    '6':
+      'build': false
+      'pkg_type': 'rpm'
+      'arch':
+        - 'x86_64'
+    '7':
+      'build': false
+      'pkg_type': 'rpm'
+      'arch':
+        - 'x86_64'
+  'Fedora':
+    '24':
+      'build': false
+      'pkg_type': 'rpm'
+      'arch':
+        - 'x86_64'

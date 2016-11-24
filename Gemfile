@@ -24,12 +24,18 @@ gem 'coderay'
 gem 'puppet', puppetversion
 gem 'puppet-lint'
 gem 'puppetlabs_spec_helper'
-gem 'simp-rake-helpers', '~>3.0'
+gem 'simp-rake-helpers', '~>3.1'
 gem 'simp-build-helpers', '>=0.1.0'
 gem 'parallel'
 gem 'dotenv'
 gem 'ruby-progressbar'
 gem 'google-api-client', '0.9.4'
+
+group :system_tests do
+  gem 'beaker', :git => 'https://github.com/trevor-vaughan/beaker.git', :branch => 'BKR-931-2.51.0'
+  gem 'beaker-rspec'
+  gem 'simp-beaker-helpers', '>= 1.0.5'
+end
 
 # nice-to-have gems (for debugging)
 group :debug do

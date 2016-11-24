@@ -1,0 +1,5 @@
+**/SIMP_ISO_STAGING
+**/yum_data/packages
+**/yum_data/unknown_packages.yaml
+**/GPGKEYS/RPM-GPG-KEY-SIMP-Dev
+**/my_repos

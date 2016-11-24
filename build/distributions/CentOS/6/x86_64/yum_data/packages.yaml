@@ -1,0 +1,601 @@
+---
+BackupPC:
+  :rpm_name: BackupPC-3.2.1-10.SIMP.4.el6.x86_64.rpm
+  :source: https://dl.bintray.com/simp/4.2.X-Ext/BackupPC-3.2.1-10.SIMP.4.el6.x86_64.rpm
+activemq:
+  :rpm_name: activemq-5.9.1-2.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/activemq-5.9.1-2.el6.noarch.rpm
+activemq-info-provider:
+  :rpm_name: activemq-info-provider-5.9.1-2.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/activemq-info-provider-5.9.1-2.el6.noarch.rpm
+bitmap-console-fonts:
+  :rpm_name: bitmap-console-fonts-0.3-15.el6.noarch.rpm
+  :source: http://mirror.teklinks.com/centos/6.8/os/x86_64/Packages/bitmap-console-fonts-0.3-15.el6.noarch.rpm
+bitmap-fangsongti-fonts:
+  :rpm_name: bitmap-fangsongti-fonts-0.3-15.el6.noarch.rpm
+  :source: http://mirror.teklinks.com/centos/6.8/os/x86_64/Packages/bitmap-fangsongti-fonts-0.3-15.el6.noarch.rpm
+bitmap-fonts-compat:
+  :rpm_name: bitmap-fonts-compat-0.3-15.el6.noarch.rpm
+  :source: http://mirror.teklinks.com/centos/6.8/os/x86_64/Packages/bitmap-fonts-compat-0.3-15.el6.noarch.rpm
+bitmap-miscfixed-fonts:
+  :rpm_name: bitmap-miscfixed-fonts-0.3-15.el6.noarch.rpm
+  :source: http://mirror.teklinks.com/centos/6.8/os/x86_64/Packages/bitmap-miscfixed-fonts-0.3-15.el6.noarch.rpm
+chkrootkit:
+  :rpm_name: chkrootkit-0.49-9.el6.x86_64.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/chkrootkit-0.49-9.el6.x86_64.rpm
+clamav:
+  :rpm_name: clamav-0.99.2-1.el6.x86_64.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/clamav-0.99.2-1.el6.x86_64.rpm
+clamav-db:
+  :rpm_name: clamav-db-0.99.2-1.el6.x86_64.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/clamav-db-0.99.2-1.el6.x86_64.rpm
+clamav-devel:
+  :rpm_name: clamav-devel-0.99.2-1.el6.x86_64.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/clamav-devel-0.99.2-1.el6.x86_64.rpm
+clamav-milter:
+  :rpm_name: clamav-milter-0.99.2-1.el6.x86_64.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/clamav-milter-0.99.2-1.el6.x86_64.rpm
+clamav-unofficial-sigs:
+  :rpm_name: clamav-unofficial-sigs-3.7.1-7.el6.noarch.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/clamav-unofficial-sigs-3.7.1-7.el6.noarch.rpm
+clamd:
+  :rpm_name: clamd-0.99.2-1.el6.x86_64.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/clamd-0.99.2-1.el6.x86_64.rpm
+clamsmtp:
+  :rpm_name: clamsmtp-1.10-6.el6.x86_64.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/clamsmtp-1.10-6.el6.x86_64.rpm
+dejavu-lgc-sans-fonts:
+  :rpm_name: dejavu-lgc-sans-fonts-2.33-1.el6.noarch.rpm
+  :source: http://mirror.teklinks.com/centos/6.8/os/x86_64/Packages/dejavu-lgc-sans-fonts-2.33-1.el6.noarch.rpm
+dejavu-lgc-serif-fonts:
+  :rpm_name: dejavu-lgc-serif-fonts-2.33-1.el6.noarch.rpm
+  :source: http://mirror.teklinks.com/centos/6.8/os/x86_64/Packages/dejavu-lgc-serif-fonts-2.33-1.el6.noarch.rpm
+dracut:
+  :rpm_name: dracut-004-409.el6.noarch.rpm
+  :source: http://mirror.vcu.edu/pub/gnu_linux/centos/6.8/os/x86_64/Packages/dracut-004-409.el6.noarch.rpm
+dracut-fips:
+  :rpm_name: dracut-fips-004-409.el6.noarch.rpm
+  :source: http://mirror.vcu.edu/pub/gnu_linux/centos/6.8/os/x86_64/Packages/dracut-fips-004-409.el6.noarch.rpm
+dracut-kernel:
+  :rpm_name: dracut-kernel-004-409.el6.noarch.rpm
+  :source: http://mirror.vcu.edu/pub/gnu_linux/centos/6.8/os/x86_64/Packages/dracut-kernel-004-409.el6.noarch.rpm
+elasticsearch:
+  :rpm_name: elasticsearch-2.3.5.rpm
+  :source: https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/rpm/elasticsearch/2.3.5/elasticsearch-2.3.5.rpm
+elasticsearch-curator:
+  :rpm_name: elasticsearch-curator-1.1.1-0.el6.noarch.rpm
+  :source: https://dl.bintray.com/simp/4.2.X-Ext/elasticsearch-curator-1.1.1-0.el6.noarch.rpm
+facter:
+  :rpm_name: facter-2.4.6-1.el6.x86_64.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/facter-2.4.6-1.el6.x86_64.rpm
+fping:
+  :rpm_name: fping-2.4b2-10.el6.x86_64.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/fping-2.4b2-10.el6.x86_64.rpm
+freeradius-ldap:
+  :rpm_name: freeradius-ldap-2.2.6-6.el6_7.x86_64.rpm
+  :source: http://mirrors.gigenet.com/centos/6.8/os/x86_64/Packages/freeradius-ldap-2.2.6-6.el6_7.x86_64.rpm
+freeradius-utils:
+  :rpm_name: freeradius-utils-2.2.6-6.el6_7.x86_64.rpm
+  :source: http://mirrors.gigenet.com/centos/6.8/os/x86_64/Packages/freeradius-utils-2.2.6-6.el6_7.x86_64.rpm
+ganglia:
+  :rpm_name: ganglia-3.7.2-2.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/ganglia-3.7.2-2.el6.x86_64.rpm
+ganglia-devel:
+  :rpm_name: ganglia-devel-3.7.2-2.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/ganglia-devel-3.7.2-2.el6.x86_64.rpm
+ganglia-gmetad:
+  :rpm_name: ganglia-gmetad-3.7.2-2.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/ganglia-gmetad-3.7.2-2.el6.x86_64.rpm
+ganglia-gmond:
+  :rpm_name: ganglia-gmond-3.7.2-2.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/ganglia-gmond-3.7.2-2.el6.x86_64.rpm
+ganglia-gmond-python:
+  :rpm_name: ganglia-gmond-python-3.7.2-2.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/ganglia-gmond-python-3.7.2-2.el6.x86_64.rpm
+glib2-devel:
+  :rpm_name: glib2-devel-2.28.8-5.el6.x86_64.rpm
+  :source: http://mirrors.gigenet.com/centos/6.8/os/x86_64/Packages/glib2-devel-2.28.8-5.el6.x86_64.rpm
+glibc:
+  :rpm_name: glibc-2.12-1.192.el6.x86_64.rpm
+  :source: http://mirror.vcu.edu/pub/gnu_linux/centos/6.8/os/x86_64/Packages/glibc-2.12-1.192.el6.x86_64.rpm
+glibc-common:
+  :rpm_name: glibc-common-2.12-1.192.el6.x86_64.rpm
+  :source: http://mirror.vcu.edu/pub/gnu_linux/centos/6.8/os/x86_64/Packages/glibc-common-2.12-1.192.el6.x86_64.rpm
+glibc-devel:
+  :rpm_name: glibc-devel-2.12-1.192.el6.x86_64.rpm
+  :source: http://mirror.vcu.edu/pub/gnu_linux/centos/6.8/os/x86_64/Packages/glib2-devel-2.28.8-5.el6.x86_64.rpm
+glibc-devel_i686:
+  :rpm_name: glibc-devel-2.12-1.192.el6.i686.rpm
+  :source: http://mirror.vcu.edu/pub/gnu_linux/centos/6.8/os/x86_64/Packages/glib2-devel-2.28.8-5.el6.i686.rpm
+glibc-headers:
+  :rpm_name: glibc-headers-2.12-1.192.el6.x86_64.rpm
+  :source: http://mirror.vcu.edu/pub/gnu_linux/centos/6.8/os/x86_64/Packages/glibc-headers-2.12-1.192.el6.x86_64.rpm
+glibc-static:
+  :rpm_name: glibc-static-2.12-1.192.el6.x86_64.rpm
+  :source: http://mirror.vcu.edu/pub/gnu_linux/centos/6.8/os/x86_64/Packages/glibc-static-2.12-1.192.el6.x86_64.rpm
+glibc-static_i686:
+  :rpm_name: glibc-static-2.12-1.192.el6.i686.rpm
+  :source: http://mirror.vcu.edu/pub/gnu_linux/centos/6.8/os/x86_64/Packages/glibc-static-2.12-1.192.el6.i686.rpm
+glibc-utils:
+  :rpm_name: glibc-utils-2.12-1.192.el6.x86_64.rpm
+  :source: http://mirror.vcu.edu/pub/gnu_linux/centos/6.8/os/x86_64/Packages/glibc-utils-2.12-1.192.el6.x86_64.rpm
+glibc_i686:
+  :rpm_name: glibc-2.12-1.192.el6.i686.rpm
+  :source: http://mirror.vcu.edu/pub/gnu_linux/centos/6.8/os/x86_64/Packages/glibc-2.12-1.192.el6.i686.rpm
+globus-callout:
+  :rpm_name: globus-callout-3.14-1.el6.x86_64.rpm
+  :source: https://dl.fedoraproject.org/pub/epel/6/x86_64/globus-callout-3.14-1.el6.x86_64.rpm
+globus-common:
+  :rpm_name: globus-common-16.4-1.el6.x86_64.rpm
+  :source: https://dl.fedoraproject.org/pub/epel/6/x86_64/globus-common-16.4-1.el6.x86_64.rpm
+globus-gsi-callback:
+  :rpm_name: globus-gsi-callback-5.8-1.el6.x86_64.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-gsi-callback-5.8-1.el6.x86_64.rpm
+globus-gsi-cert-utils:
+  :rpm_name: globus-gsi-cert-utils-9.12-1.el6.x86_64.rpm
+  :source: https://dl.fedoraproject.org/pub/epel/6/x86_64/globus-gsi-cert-utils-9.12-1.el6.x86_64.rpm
+globus-gsi-credential:
+  :rpm_name: globus-gsi-credential-7.9-1.el6.x86_64.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-gsi-credential-7.9-1.el6.x86_64.rpm
+globus-gsi-openssl-error:
+  :rpm_name: globus-gsi-openssl-error-3.5-2.el6.x86_64.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-gsi-openssl-error-3.5-2.el6.x86_64.rpm
+globus-gsi-proxy-core:
+  :rpm_name: globus-gsi-proxy-core-7.9-1.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/globus-gsi-proxy-core-7.9-1.el6.x86_64.rpm
+globus-gsi-proxy-ssl:
+  :rpm_name: globus-gsi-proxy-ssl-5.8-1.el6.x86_64.rpm
+  :source: https://dl.fedoraproject.org/pub/epel/6/x86_64/globus-gsi-proxy-ssl-5.8-1.el6.x86_64.rpm
+globus-gsi-sysconfig:
+  :rpm_name: globus-gsi-sysconfig-6.9-1.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/globus-gsi-sysconfig-6.9-1.el6.x86_64.rpm
+globus-gss-assist:
+  :rpm_name: globus-gss-assist-10.15-1.el6.x86_64.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-gss-assist-10.15-1.el6.x86_64.rpm
+globus-gssapi-gsi:
+  :rpm_name: globus-gssapi-gsi-12.1-1.el6.x86_64.rpm
+  :source: https://dl.fedoraproject.org/pub/epel/6/x86_64/globus-gssapi-gsi-12.1-1.el6.x86_64.rpm
+globus-openssl-module:
+  :rpm_name: globus-openssl-module-4.6-2.el6.x86_64.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-openssl-module-4.6-2.el6.x86_64.rpm
+gpxe-bootimgs:
+  :rpm_name: gpxe-bootimgs-0.9.7-6.15.el6.noarch.rpm
+  :source: http://mirror.vcu.edu/pub/gnu_linux/centos/6.8/os/x86_64/Packages/gpxe-bootimgs-0.9.7-6.15.el6.noarch.rpm
+gpxe-roms-qemu:
+  :rpm_name: gpxe-roms-qemu-0.9.7-6.15.el6.noarch.rpm
+  :source: http://mirror.vcu.edu/pub/gnu_linux/centos/6.8/os/x86_64/Packages/gpxe-roms-qemu-0.9.7-6.15.el6.noarch.rpm
+grafana:
+  :rpm_name: grafana-3.1.1-1470047149.x86_64.rpm
+  :source: https://packagecloud.io/grafana/stable/el/6/x86_64/grafana-3.1.1-1470047149.x86_64.rpm
+gweb:
+  :rpm_name: gweb-2.1.8-1.noarch.rpm
+  :source: https://dl.bintray.com/simp/4.2.X-Ext/gweb-2.1.8-1.noarch.rpm
+haveged:
+  :rpm_name: haveged-1.9.1-2.el6.x86_64.rpm
+  :source: http://mirror.sfo12.us.leaseweb.net/epel/6/x86_64/haveged-1.9.1-2.el6.x86_64.rpm
+hiera:
+  :rpm_name: hiera-3.0.5-1.el6.noarch.rpm
+  :source: https://dl.bintray.com/simp/4.2.X/hiera-3.0.5-1.el6.noarch.rpm
+hmaccalc:
+  :rpm_name: hmaccalc-0.9.12-2.el6.x86_64.rpm
+  :source: http://mirror.teklinks.com/centos/6.8/os/x86_64/Packages/hmaccalc-0.9.12-2.el6.x86_64.rpm
+incron:
+  :rpm_name: incron-0.5.9-1.el6.x86_64.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/incron-0.5.9-1.el6.x86_64.rpm
+java-1.7.0-openjdk:
+  :rpm_name: java-1.7.0-openjdk-1.7.0.99-2.6.5.1.el6.x86_64.rpm
+  :source: http://mirror.vcu.edu/pub/gnu_linux/centos/6.8/os/x86_64/Packages/java-1.7.0-openjdk-1.7.0.99-2.6.5.1.el6.x86_64.rpm
+java-1.7.0-openjdk-demo:
+  :rpm_name: java-1.7.0-openjdk-demo-1.7.0.99-2.6.5.1.el6.x86_64.rpm
+  :source: http://mirror.vcu.edu/pub/gnu_linux/centos/6.8/os/x86_64/Packages/java-1.7.0-openjdk-demo-1.7.0.99-2.6.5.1.el6.x86_64.rpm
+java-1.7.0-openjdk-devel:
+  :rpm_name: java-1.7.0-openjdk-devel-1.7.0.99-2.6.5.1.el6.x86_64.rpm
+  :source: http://mirror.vcu.edu/pub/gnu_linux/centos/6.8/os/x86_64/Packages/java-1.7.0-openjdk-devel-1.7.0.99-2.6.5.1.el6.x86_64.rpm
+java-1.7.0-openjdk-src:
+  :rpm_name: java-1.7.0-openjdk-src-1.7.0.99-2.6.5.1.el6.x86_64.rpm
+  :source: http://mirror.vcu.edu/pub/gnu_linux/centos/6.8/os/x86_64/Packages/java-1.7.0-openjdk-src-1.7.0.99-2.6.5.1.el6.x86_64.rpm
+kernel:
+  :rpm_name: kernel-2.6.32-642.1.1.el6.x86_64.rpm
+  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.8/updates/x86_64/Packages/kernel-2.6.32-642.1.1.el6.x86_64.rpm
+kernel-abi-whitelists:
+  :rpm_name: kernel-abi-whitelists-2.6.32-642.1.1.el6.noarch.rpm
+  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.8/updates/x86_64/Packages/kernel-abi-whitelists-2.6.32-642.1.1.el6.noarch.rpm
+kernel-debug:
+  :rpm_name: kernel-debug-2.6.32-642.1.1.el6.x86_64.rpm
+  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.8/updates/x86_64/Packages/kernel-debug-2.6.32-642.1.1.el6.x86_64.rpm
+kernel-debug-devel:
+  :rpm_name: kernel-debug-devel-2.6.32-642.1.1.el6.x86_64.rpm
+  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.8/updates/x86_64/Packages/kernel-debug-devel-2.6.32-642.1.1.el6.x86_64.rpm
+kernel-devel:
+  :rpm_name: kernel-devel-2.6.32-642.1.1.el6.x86_64.rpm
+  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.8/updates/x86_64/Packages/kernel-devel-2.6.32-642.1.1.el6.x86_64.rpm
+kernel-doc:
+  :rpm_name: kernel-doc-2.6.32-642.1.1.el6.noarch.rpm
+  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.8/updates/x86_64/Packages/kernel-doc-2.6.32-642.1.1.el6.noarch.rpm
+kernel-firmware:
+  :rpm_name: kernel-firmware-2.6.32-642.1.1.el6.noarch.rpm
+  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.8/updates/x86_64/Packages/kernel-firmware-2.6.32-642.1.1.el6.noarch.rpm
+kernel-headers:
+  :rpm_name: kernel-headers-2.6.32-642.1.1.el6.x86_64.rpm
+  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.8/updates/x86_64/Packages/kernel-headers-2.6.32-642.1.1.el6.x86_64.rpm
+lcgdm-libs:
+  :rpm_name: lcgdm-libs-1.8.11-1.el6.x86_64.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/lcgdm-libs-1.8.11-1.el6.x86_64.rpm
+leiningen:
+  :rpm_name: leiningen-2.0.0-0.2preview10.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/leiningen-2.0.0-0.2preview10.el6.noarch.rpm
+lfc-libs:
+  :rpm_name: lfc-libs-1.8.11-1.el6.x86_64.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/lfc-libs-1.8.11-1.el6.x86_64.rpm
+lfc-python:
+  :rpm_name: lfc-python-1.8.11-1.el6.x86_64.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/lfc-python-1.8.11-1.el6.x86_64.rpm
+libarchive-devel:
+  :rpm_name: libarchive-devel-2.8.3-4.el6_2.x86_64.rpm
+  :source: http://mirror.netdepot.com/centos/6.8/os/x86_64/Packages/libarchive-devel-2.8.3-4.el6_2.x86_64.rpm
+libconfuse:
+  :rpm_name: libconfuse-2.7-4.el6.x86_64.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/libconfuse-2.7-4.el6.x86_64.rpm
+libconfuse-devel:
+  :rpm_name: libconfuse-devel-2.7-4.el6.x86_64.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/libconfuse-devel-2.7-4.el6.x86_64.rpm
+libev:
+  :rpm_name: libev-4.03-3.el6.x86_64.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/libev-4.03-3.el6.x86_64.rpm
+libselinux-ruby:
+  :rpm_name: libselinux-ruby-2.0.94-7.el6.x86_64.rpm
+  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.8/os/x86_64/Packages/libselinux-ruby-2.0.94-7.el6.x86_64.rpm
+libyaml:
+  :rpm_name: libyaml-0.1.4-2.el6.x86_64.rpm
+  :source: https://dl.bintray.com/simp/4.2.X-Ext/libyaml-0.1.4-2.el6.x86_64.rpm
+libyaml-devel:
+  :rpm_name: libyaml-devel-0.1.4-2.el6.x86_64.rpm
+  :source: https://dl.bintray.com/simp/4.2.X-Ext/libyaml-devel-0.1.4-2.el6.x86_64.rpm
+logstash:
+  :rpm_name: logstash-2.3.4-1.noarch.rpm
+  :source: https://download.elastic.co/logstash/logstash/packages/centos/logstash-2.3.4-1.noarch.rpm
+mcollective:
+  :rpm_name: mcollective-2.8.9-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-2.8.9-1.el6.noarch.rpm
+mcollective-client:
+  :rpm_name: mcollective-client-2.8.9-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-client-2.8.9-1.el6.noarch.rpm
+mcollective-common:
+  :rpm_name: mcollective-common-2.8.9-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-common-2.8.9-1.el6.noarch.rpm
+mcollective-filemgr-agent:
+  :rpm_name: mcollective-filemgr-agent-1.1.0-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-filemgr-agent-1.1.0-1.el6.noarch.rpm
+mcollective-filemgr-client:
+  :rpm_name: mcollective-filemgr-client-1.1.0-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-filemgr-client-1.1.0-1.el6.noarch.rpm
+mcollective-filemgr-common:
+  :rpm_name: mcollective-filemgr-common-1.1.0-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-filemgr-common-1.1.0-1.el6.noarch.rpm
+mcollective-iptables-agent:
+  :rpm_name: mcollective-iptables-agent-3.0.2-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-iptables-agent-3.0.2-1.el6.noarch.rpm
+mcollective-iptables-client:
+  :rpm_name: mcollective-iptables-client-3.0.2-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-iptables-client-3.0.2-1.el6.noarch.rpm
+mcollective-iptables-common:
+  :rpm_name: mcollective-iptables-common-3.0.2-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-iptables-common-3.0.2-1.el6.noarch.rpm
+mcollective-logstash-audit:
+  :rpm_name: mcollective-logstash-audit-2.0.0-1.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-logstash-audit-2.0.0-1.noarch.rpm
+mcollective-nrpe-agent:
+  :rpm_name: mcollective-nrpe-agent-3.1.0-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-nrpe-agent-3.1.0-1.el6.noarch.rpm
+mcollective-nrpe-client:
+  :rpm_name: mcollective-nrpe-client-3.1.0-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-nrpe-client-3.1.0-1.el6.noarch.rpm
+mcollective-nrpe-common:
+  :rpm_name: mcollective-nrpe-common-3.1.0-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-nrpe-common-3.1.0-1.el6.noarch.rpm
+mcollective-package-agent:
+  :rpm_name: mcollective-package-agent-4.3.0-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-package-agent-4.3.0-1.el6.noarch.rpm
+mcollective-package-client:
+  :rpm_name: mcollective-package-client-4.3.0-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-package-client-4.3.0-1.el6.noarch.rpm
+mcollective-package-common:
+  :rpm_name: mcollective-package-common-4.3.0-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-package-common-4.3.0-1.el6.noarch.rpm
+mcollective-puppet-agent:
+  :rpm_name: mcollective-puppet-agent-1.11.1-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-puppet-agent-1.11.1-1.el6.noarch.rpm
+mcollective-puppet-client:
+  :rpm_name: mcollective-puppet-client-1.11.1-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-puppet-client-1.11.1-1.el6.noarch.rpm
+mcollective-puppet-common:
+  :rpm_name: mcollective-puppet-common-1.11.1-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-puppet-common-1.11.1-1.el6.noarch.rpm
+mcollective-service-agent:
+  :rpm_name: mcollective-service-agent-3.1.2-1.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-service-agent-3.1.2-1.noarch.rpm
+mcollective-service-client:
+  :rpm_name: mcollective-service-client-3.1.2-1.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-service-client-3.1.2-1.noarch.rpm
+mcollective-service-common:
+  :rpm_name: mcollective-service-common-3.1.2-1.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-service-common-3.1.2-1.noarch.rpm
+mcollective-sysctl-data:
+  :rpm_name: mcollective-sysctl-data-2.0.1-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/mcollective-sysctl-data-2.0.1-1.el6.noarch.rpm
+mrepo:
+  :rpm_name: mrepo-0.8.7-2.el6.noarch.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/mrepo-0.8.7-2.el6.noarch.rpm
+mysql-connector-python:
+  :rpm_name: mysql-connector-python-1.1.6-1.el6.noarch.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/mysql-connector-python-1.1.6-1.el6.noarch.rpm
+nscd:
+  :rpm_name: nscd-2.12-1.192.el6.x86_64.rpm
+  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.8/os/x86_64/Packages/nscd-2.12-1.192.el6.x86_64.rpm
+nspr:
+  :rpm_name: nspr-4.11.0-1.el6.x86_64.rpm
+  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.8/os/x86_64/Packages/nspr-4.11.0-1.el6.x86_64.rpm
+nss:
+  :rpm_name: nss-3.21.0-8.el6.x86_64.rpm
+  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.8/os/x86_64/Packages/nss-3.21.0-8.el6.x86_64.rpm
+nss-softokn:
+  :rpm_name: nss-softokn-3.14.3-23.el6_7.x86_64.rpm
+  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.8/os/x86_64/Packages/nss-softokn-3.14.3-23.el6_7.x86_64.rpm
+nss-softokn-freebl:
+  :rpm_name: nss-softokn-freebl-3.14.3-23.el6_7.x86_64.rpm
+  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.8/os/x86_64/Packages/nss-softokn-freebl-3.14.3-23.el6_7.x86_64.rpm
+nss-sysinit:
+  :rpm_name: nss-sysinit-3.21.0-8.el6.x86_64.rpm
+  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.8/os/x86_64/Packages/nss-sysinit-3.21.0-8.el6.x86_64.rpm
+nss-tools:
+  :rpm_name: nss-tools-3.21.0-8.el6.x86_64.rpm
+  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.8/os/x86_64/Packages/nss-tools-3.21.0-8.el6.x86_64.rpm
+nss-util:
+  :rpm_name: nss-util-3.21.0-2.el6.x86_64.rpm
+  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.8/os/x86_64/Packages/nss-util-3.21.0-2.el6.x86_64.rpm
+openssl:
+  :rpm_name: openssl-1.0.1e-48.el6.x86_64.rpm
+  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.8/os/x86_64/Packages/openssl-1.0.1e-48.el6.x86_64.rpm
+openssl-devel:
+  :rpm_name: openssl-devel-1.0.1e-48.el6.x86_64.rpm
+  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.8/os/x86_64/Packages/openssl-devel-1.0.1e-48.el6.x86_64.rpm
+pdsh:
+  :rpm_name: pdsh-2.28-0.x86_64.rpm
+  :source: https://dl.bintray.com/simp/4.2.X-Ext/pdsh-2.28-0.x86_64.rpm
+pdsh-mod-dshgroup:
+  :rpm_name: pdsh-mod-dshgroup-2.28-0.x86_64.rpm
+  :source: https://dl.bintray.com/simp/4.2.X-Ext/pdsh-mod-dshgroup-2.28-0.x86_64.rpm
+pdsh-mod-machines:
+  :rpm_name: pdsh-mod-machines-2.28-0.x86_64.rpm
+  :source: https://dl.bintray.com/simp/4.2.X-Ext/pdsh-mod-machines-2.28-0.x86_64.rpm
+pdsh-mod-netgroup:
+  :rpm_name: pdsh-mod-netgroup-2.28-0.x86_64.rpm
+  :source: https://dl.bintray.com/simp/4.2.X-Ext/pdsh-mod-netgroup-2.28-0.x86_64.rpm
+pdsh-rcmd-exec:
+  :rpm_name: pdsh-rcmd-exec-2.28-0.x86_64.rpm
+  :source: https://dl.bintray.com/simp/4.2.X-Ext/pdsh-rcmd-exec-2.28-0.x86_64.rpm
+pdsh-rcmd-ssh:
+  :rpm_name: pdsh-rcmd-ssh-2.28-0.x86_64.rpm
+  :source: https://dl.bintray.com/simp/4.2.X-Ext/pdsh-rcmd-ssh-2.28-0.x86_64.rpm
+perl-Archive-Zip:
+  :rpm_name: perl-Archive-Zip-1.30-2.el6.noarch.rpm
+  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.8/os/x86_64/Packages/perl-Archive-Zip-1.30-2.el6.noarch.rpm
+perl-Crypt-DES:
+  :rpm_name: perl-Crypt-DES-2.05-9.el6.x86_64.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/perl-Crypt-DES-2.05-9.el6.x86_64.rpm
+perl-DateTime-Format-DateParse:
+  :rpm_name: perl-DateTime-Format-DateParse-0.05-4.el6.noarch.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/perl-DateTime-Format-DateParse-0.05-4.el6.noarch.rpm
+perl-DateTime-Format-Mail:
+  :rpm_name: perl-DateTime-Format-Mail-0.3001-6.el6.noarch.rpm
+  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.8/os/x86_64/Packages/perl-DateTime-Format-Mail-0.3001-6.el6.noarch.rpm
+perl-DateTime-Format-W3CDTF:
+  :rpm_name: perl-DateTime-Format-W3CDTF-0.04-8.el6.noarch.rpm
+  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.8/os/x86_64/Packages/perl-DateTime-Format-W3CDTF-0.04-8.el6.noarch.rpm
+perl-File-RsyncP:
+  :rpm_name: perl-File-RsyncP-0.72-1.el6.x86_64.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/perl-File-RsyncP-0.72-1.el6.x86_64.rpm
+perl-Math-Calc-Units:
+  :rpm_name: perl-Math-Calc-Units-1.07-6.el6.noarch.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/perl-Math-Calc-Units-1.07-6.el6.noarch.rpm
+perl-Net-FTP-AutoReconnect:
+  :rpm_name: perl-Net-FTP-AutoReconnect-0.3-3.el6.noarch.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/perl-Net-FTP-AutoReconnect-0.3-3.el6.noarch.rpm
+perl-Net-FTP-RetrHandle:
+  :rpm_name: perl-Net-FTP-RetrHandle-0.2-3.el6.noarch.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/perl-Net-FTP-RetrHandle-0.2-3.el6.noarch.rpm
+perl-Net-SNMP:
+  :rpm_name: perl-Net-SNMP-5.2.0-4.el6.noarch.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/perl-Net-SNMP-5.2.0-4.el6.noarch.rpm
+perl-Sort-Versions:
+  :rpm_name: perl-Sort-Versions-1.5-12.el6.noarch.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/perl-Sort-Versions-1.5-12.el6.noarch.rpm
+perl-Time-modules:
+  :rpm_name: perl-Time-modules-2006.0814-5.el6.noarch.rpm
+  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.8/os/x86_64/Packages/perl-Time-modules-2006.0814-5.el6.noarch.rpm
+perl-XML-RSS:
+  :rpm_name: perl-XML-RSS-1.45-2.el6.noarch.rpm
+  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.8/os/x86_64/Packages/perl-XML-RSS-1.45-2.el6.noarch.rpm
+pssh:
+  :rpm_name: pssh-2.3.1-5.el6.noarch.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/pssh-2.3.1-5.el6.noarch.rpm
+puppet:
+  :rpm_name: puppet-3.8.6-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/puppet-3.8.6-1.el6.noarch.rpm
+puppetdb:
+  :rpm_name: puppetdb-2.3.8-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/puppetdb-2.3.8-1.el6.noarch.rpm
+puppetdb-terminus:
+  :rpm_name: puppetdb-terminus-2.3.8-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/puppetdb-terminus-2.3.8-1.el6.noarch.rpm
+puppetlabs-stdlib:
+  :rpm_name: puppetlabs-stdlib-4.5.1-2.20150121git7a91f20.el6.noarch.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/puppetlabs-stdlib-4.5.1-2.20150121git7a91f20.el6.noarch.rpm
+puppetserver:
+  :rpm_name: puppetserver-1.1.3-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/puppetserver-1.1.3-1.el6.noarch.rpm
+python-argparse:
+  :rpm_name: python-argparse-1.2.1-2.1.el6.noarch.rpm
+  :source: http://mirror.5ninesolutions.com/centos/6.8/os/x86_64/Packages/python-argparse-1.2.1-2.1.el6.noarch.rpm
+python-backports:
+  :rpm_name: python-backports-1.0-3.el6.x86_64.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/python-backports-1.0-3.el6.x86_64.rpm
+python-backports-ssl_match_hostname:
+  :rpm_name: python-backports-ssl_match_hostname-3.4.0.2-2.el6.noarch.rpm
+  :source: http://mirror.5ninesolutions.com/centos/6.8/os/x86_64/Packages/python-backports-ssl_match_hostname-3.4.0.2-2.el6.noarch.rpm
+python-elasticsearch:
+  :rpm_name: python-elasticsearch-1.2.0-0.el6.noarch.rpm
+  :source: https://dl.bintray.com/simp/4.2.X-Ext/python-elasticsearch-1.2.0-0.el6.noarch.rpm
+python-importlib:
+  :rpm_name: python-importlib-1.0.2-1.el6.noarch.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/python-importlib-1.0.2-1.el6.noarch.rpm
+python-ordereddict:
+  :rpm_name: python-ordereddict-1.1-2.el6.noarch.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/python-ordereddict-1.1-2.el6.noarch.rpm
+python-pyes:
+  :rpm_name: python-pyes-0.20.1-0.el6.noarch.rpm
+  :source: https://dl.bintray.com/simp/4.2.X-Ext/python-pyes-0.20.1-0.el6.noarch.rpm
+python-pyro:
+  :rpm_name: python-pyro-4.14-2.el6.noarch.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/python-pyro-4.14-2.el6.noarch.rpm
+python-redis:
+  :rpm_name: python-redis-2.0.0-1.el6.noarch.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/python-redis-2.0.0-1.el6.noarch.rpm
+python-six:
+  :rpm_name: python-six-1.9.0-2.el6.noarch.rpm
+  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.8/os/x86_64/Packages/python-six-1.9.0-2.el6.noarch.rpm
+python-unittest2:
+  :rpm_name: python-unittest2-0.5.1-3.el6.noarch.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/python-unittest2-0.5.1-3.el6.noarch.rpm
+python-urllib3:
+  :rpm_name: python-urllib3-1.10.2-1.el6.noarch.rpm
+  :source: http://mirrors.tripadvisor.com/centos/6.8/os/x86_64/Packages/python-urllib3-1.10.2-1.el6.noarch.rpm
+qstat:
+  :rpm_name: qstat-2.11-9.20080912svn311.el6.x86_64.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/qstat-2.11-9.20080912svn311.el6.x86_64.rpm
+radiusclient-ng:
+  :rpm_name: radiusclient-ng-0.5.6-5.el6.x86_64.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/radiusclient-ng-0.5.6-5.el6.x86_64.rpm
+razor-server:
+  :rpm_name: razor-server-1.2.0-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/razor-server-1.2.0-1.el6.noarch.rpm
+razor-torquebox:
+  :rpm_name: razor-torquebox-3.1.1.10-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/razor-torquebox-3.1.1.10-1.el6.noarch.rpm
+rlwrap:
+  :rpm_name: rlwrap-0.37-3.el6.x86_64.rpm
+  :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/rlwrap-0.37-3.el6.x86_64.rpm
+rrdtool:
+  :rpm_name: rrdtool-1.4.4-0.20.el6.x86_64.rpm
+  :source: https://dl.bintray.com/simp/4.2.X-Ext/rrdtool-1.4.4-0.20.el6.x86_64.rpm
+ruby-augeas:
+  :rpm_name: ruby-augeas-0.4.1-3.el6.x86_64.rpm
+  :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/ruby-augeas-0.4.1-3.el6.x86_64.rpm
+ruby-json:
+  :rpm_name: ruby-json-1.5.5-3.el6.x86_64.rpm
+  :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/ruby-json-1.5.5-3.el6.x86_64.rpm
+ruby-mysql:
+  :rpm_name: ruby-mysql-2.8.2-1.el6.x86_64.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/ruby-mysql-2.8.2-1.el6.x86_64.rpm
+ruby-rgen:
+  :rpm_name: ruby-rgen-0.6.5-2.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/ruby-rgen-0.6.5-2.el6.noarch.rpm
+ruby-shadow:
+  :rpm_name: ruby-shadow-2.2.0-2.el6.x86_64.rpm
+  :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/ruby-shadow-2.2.0-2.el6.x86_64.rpm
+rubygem-activerecord:
+  :rpm_name: rubygem-activerecord-2.3.16-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/rubygem-activerecord-2.3.16-1.el6.noarch.rpm
+rubygem-activesupport:
+  :rpm_name: rubygem-activesupport-2.3.16-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/rubygem-activesupport-2.3.16-1.el6.noarch.rpm
+rubygem-deep_merge:
+  :rpm_name: rubygem-deep_merge-1.0.0-2.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/rubygem-deep_merge-1.0.0-2.el6.noarch.rpm
+rubygem-fastthread:
+  :rpm_name: rubygem-fastthread-1.0.7-1.el6.x86_64.rpm
+  :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/rubygem-fastthread-1.0.7-1.el6.x86_64.rpm
+rubygem-ffi:
+  :rpm_name: rubygem-ffi-1.4.0-2.el6.x86_64.rpm
+  :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/rubygem-ffi-1.4.0-2.el6.x86_64.rpm
+rubygem-highline:
+  :rpm_name: rubygem-highline-1.6.11-1.noarch.rpm
+  :source: https://dl.bintray.com/simp/4.2.X-Ext/rubygem-highline-1.6.11-1.noarch.rpm
+rubygem-hpricot:
+  :rpm_name: rubygem-hpricot-0.8.6-1.el6.x86_64.rpm
+  :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/rubygem-hpricot-0.8.6-1.el6.x86_64.rpm
+rubygem-json:
+  :rpm_name: rubygem-json-1.5.5-3.el6.x86_64.rpm
+  :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/rubygem-json-1.5.5-3.el6.x86_64.rpm
+rubygem-json-doc:
+  :rpm_name: rubygem-json-doc-1.5.5-3.el6.x86_64.rpm
+  :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/rubygem-json-doc-1.5.5-3.el6.x86_64.rpm
+rubygem-mustache:
+  :rpm_name: rubygem-mustache-0.99.4-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/rubygem-mustache-0.99.4-1.el6.noarch.rpm
+rubygem-net-ldap:
+  :rpm_name: rubygem-net-ldap-0.6.1-2.el6.1.noarch.rpm
+  :source: https://dl.fedoraproject.org/pub/epel/6/x86_64/rubygem-net-ldap-0.6.1-2.el6.1.noarch.rpm
+rubygem-net-ldap-doc:
+  :rpm_name: rubygem-net-ldap-doc-0.6.1-2.el6.1.noarch.rpm
+  :source: https://dl.fedoraproject.org/pub/epel/6/x86_64/rubygem-net-ldap-doc-0.6.1-2.el6.1.noarch.rpm
+rubygem-net-ping:
+  :rpm_name: rubygem-net-ping-1.6.2-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/rubygem-net-ping-1.6.2-1.el6.noarch.rpm
+rubygem-net-ping-doc:
+  :rpm_name: rubygem-net-ping-doc-1.5.3-4.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/rubygem-net-ping-doc-1.5.3-4.el6.noarch.rpm
+rubygem-puppet-lint:
+  :rpm_name: rubygem-puppet-lint-1.1.0-1.el6.noarch.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/rubygem-puppet-lint-1.1.0-1.el6.noarch.rpm
+rubygem-rack:
+  :rpm_name: rubygem-rack-1.0.1-2.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/rubygem-rack-1.0.1-2.el6.noarch.rpm
+rubygem-rake:
+  :rpm_name: rubygem-rake-0.8.7-2.1.el6.noarch.rpm
+  :source: http://mirror.netdepot.com/centos/6.8/os/x86_64/Packages/rubygem-rake-0.8.7-2.1.el6.noarch.rpm
+rubygem-rake-compiler:
+  :rpm_name: rubygem-rake-compiler-0.9.3-2.el6.noarch.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/rubygem-rake-compiler-0.9.3-2.el6.noarch.rpm
+rubygem-rake-compiler-doc:
+  :rpm_name: rubygem-rake-compiler-doc-0.9.3-2.el6.noarch.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/rubygem-rake-compiler-doc-0.9.3-2.el6.noarch.rpm
+rubygem-rdiscount:
+  :rpm_name: rubygem-rdiscount-1.6.8-1.el6.x86_64.rpm
+  :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/rubygem-rdiscount-1.6.8-1.el6.x86_64.rpm
+rubygem-ronn:
+  :rpm_name: rubygem-ronn-0.7.3-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/rubygem-ronn-0.7.3-1.el6.noarch.rpm
+rubygem-stomp:
+  :rpm_name: rubygem-stomp-1.3.2-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/rubygem-stomp-1.3.2-1.el6.noarch.rpm
+rubygem-stomp-doc:
+  :rpm_name: rubygem-stomp-doc-1.3.2-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/rubygem-stomp-doc-1.3.2-1.el6.noarch.rpm
+scap-security-guide:
+  :rpm_name: scap-security-guide-0.1.21-3.el6.noarch.rpm
+  :source: http://vault.centos.org/6.7/os/x86_64/Packages/scap-security-guide-0.1.21-3.el6.noarch.rpm
+sendmail-milter:
+  :rpm_name: sendmail-milter-8.14.4-9.el6.x86_64.rpm
+  :source: http://mirror.netdepot.com/centos/6.8/os/x86_64/Packages/sendmail-milter-8.14.4-9.el6.x86_64.rpm
+simp-lastbind:
+  :rpm_name: simp-lastbind-2.4.23-0.x86_64.rpm
+  :source: https://dl.bintray.com/simp/4.2.X-Ext/simp-lastbind-2.4.23-0.x86_64.rpm
+simp-ppolicy-check-password:
+  :rpm_name: simp-ppolicy-check-password-2.4.39-0.el6.x86_64.rpm
+  :source: https://dl.bintray.com/simp/4.2.X-Ext/simp-ppolicy-check-password-2.4.39-0.el6.x86_64.rpm
+sudosh2:
+  :rpm_name: sudosh2-1.0.2-2.el6.x86_64.rpm
+  :source: https://dl.bintray.com/simp/4.2.X-Ext/sudosh2-1.0.2-2.el6.x86_64.rpm
+syslinux-tftpboot:
+  :rpm_name: syslinux-tftpboot-4.04-3.el6.noarch.rpm
+  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.8/os/x86_64/Packages/syslinux-tftpboot-4.04-3.el6.noarch.rpm
+tanukiwrapper:
+  :rpm_name: tanukiwrapper-3.5.9-1.el6.x86_64.rpm
+  :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/tanukiwrapper-3.5.9-1.el6.x86_64.rpm
+trousers:
+  :rpm_name: trousers-0.3.13-2.el6.x86_64.rpm
+  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.8/os/x86_64/Packages/trousers-0.3.13-2.el6.x86_64.rpm
+voms:
+  :rpm_name: voms-2.0.13-1.el6.x86_64.rpm
+  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/voms-2.0.13-1.el6.x86_64.rpm
