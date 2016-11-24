@@ -1,0 +1,23 @@
+[simp-project_4_X]
+name=simp-project_4_X
+baseurl=https://packagecloud.io/simp-project/4_X/el/6/$basearch
+gpgcheck=1
+enabled=1
+gpgkey=https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
+
+[simp-project_4_X_dependencies]
+name=simp-project_4_X_dependencies
+baseurl=https://packagecloud.io/simp-project/4_X_Dependencies/el/6/$basearch
+gpgcheck=1
+enabled=1
+gpgkey=https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
+       https://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs
+       https://getfedora.org/static/0608B895.txt
+
+[simp-base]
+name=simp-base
+baseurl=https://dl.bintray.com/simp/4.2.X
+
+[simp-ext]
+name=simp-ext
+baseurl=https://dl.bintray.com/simp/4.2.X-Ext

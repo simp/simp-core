@@ -32,13 +32,13 @@ This branch supports:
 
 The minimum necessary command to build SIMP from scratch is:
 ```bash
-bundle exec rake build:auto[5.1.X,path/to/CentOS-7-x86_64-DVD-1511.iso]
+bundle exec rake build:auto[6.X,path/to/CentOS-7-x86_64-DVD-1511.iso]
 ```
 
 
 If building from published [release tarball](https://bintray.com/artifact/download/simp/Releases/SIMP-DVD-CentOS-5.1.0-2.tar.gz):
 ```bash
-bundle exec rake build:auto[5.1.X,path/to/CentOS-7-x86_64-DVD-1511.iso,path/to/SIMP-DVD-CentOS-5.1.0-2.tar.gz]
+bundle exec rake build:auto[6.X,path/to/CentOS-7-x86_64-DVD-1511.iso,path/to/SIMP-DVD-CentOS-6.0.0-0.tar.gz]
 ```
 
 

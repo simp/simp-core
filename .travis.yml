@@ -1,0 +1,29 @@
+---
+language: ruby
+sudo: false
+cache: bundler
+before_script:
+  - bundle
+bundler_args: --without development system_tests
+before_install: rm Gemfile.lock || true
+script:
+  - bundle exec rake spec
+notifications:
+  email: false
+rvm:
+  - 2.1.0
+  - 2.2.1
+env:
+  global:
+    - STRICT_VARIABLES=yes
+    - TRUSTED_NODE_DATA=yes
+  matrix:
+    - PUPPET_VERSION="~> 4.3.0"
+matrix:
+  fast_finish: true
+  allow_failures:
+    - rvm: 2.2.1
+
+  exclude:
+  - rvm: 2.2.1
+    env: PUPPET_VERSION="~> 4.3.0"

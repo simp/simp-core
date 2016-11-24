@@ -1,0 +1,20 @@
+[elasticsearch-2.x]
+name=Elasticsearch repository for 2.x packages
+baseurl=https://packages.elastic.co/elasticsearch/2.x/centos
+gpgcheck=1
+gpgkey=https://packages.elastic.co/GPG-KEY-elasticsearch
+enabled=1
+
+[logstash-2.3]
+name=Logstash repository for 2.3.x packages
+baseurl=https://packages.elastic.co/logstash/2.3/centos
+gpgcheck=1
+gpgkey=https://packages.elastic.co/GPG-KEY-elasticsearch
+enabled=1
+
+[grafana]
+name=grafana
+baseurl=https://packagecloud.io/grafana/stable/el/6/$basearch
+enabled=1
+gpgcheck=1
+gpgkey=https://grafanarel.s3.amazonaws.com/RPM-GPG-KEY-grafana
