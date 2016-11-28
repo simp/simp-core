@@ -170,6 +170,10 @@ mod 'simp-dirtycow',
   :git => 'https://github.com/simp/pupmod-simp-dirtycow.git',
   :ref => 'master'
 
+mod 'simp-dirtycow',
+  :git => 'https://github.com/simp/pupmod-simp-dirtycow.git',
+  :ref => 'master'
+
 mod 'simp-foreman',
   :git => 'https://github.com/simp/pupmod-simp-foreman',
   :ref => '5.X'
