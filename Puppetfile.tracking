@@ -120,7 +120,7 @@ mod 'puppetlabs-apache',
 
 mod 'puppetlabs-stdlib',
   :git => 'https://github.com/simp/puppetlabs-stdlib',
-  :ref => 'simp-master'
+  :ref => 'master'
 
 mod 'richardc-datacat',
   :git => 'https://github.com/simp/puppet-datacat',
