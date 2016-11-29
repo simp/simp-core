@@ -212,7 +212,7 @@ mod 'simp-mcafee',
 
 mod 'simp-mcollective',
   :git => 'https://github.com/simp/pupmod-simp-mcollective',
-  :ref => 'master'
+  :ref => 'simp-master'
 
 mod 'simp-mozilla',
   :git => 'https://github.com/simp/pupmod-simp-mozilla',
