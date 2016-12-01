@@ -16,7 +16,8 @@ Requires: rsync
 Requires(post): puppet
 Requires(post): puppetserver
 Requires(post): puppetdb
-Requires(post): procps-ng
+%{?el6:Requires(post): procps}
+%{?el7:Requires(post): procps-ng}
 Requires: puppet-agent < 2.0.0
 Requires: puppet-agent >= 1.6.2
 Requires: puppet-client-tools < 2.0.0
@@ -247,5 +248,8 @@ EOM
 )
 
 %changelog
+* Wed Nov 30 2016 Jeanne Greulich <jgreulich@onyxpoint.com> - 0.0.1-Alpha
+- Made requirement for pgrep in post dependant on the distribution.
+
 * Mon Sep 12 2016 Trevor Vaughan <tvaughan@onyxpoint.com> - 0.0.1-Alpha
   - First cut at the simp-adapter
