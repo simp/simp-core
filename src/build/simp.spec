@@ -117,7 +117,7 @@ Requires: pupmod-simp-simp_grafana >= 0.1.0-2016
 Requires: pupmod-simp-simp_logstash >= 2.0.0-2016
 Requires: pupmod-simp-vnc >= 4.1.0-2016
 Requires: pupmod-simp-vsftpd >= 5.0.6-2016
-Requires: pupmod-simp-windowmanager >= 4.1.2-2016
+Requires: pupmod-simp-gnome >= 6.0.0-2016
 Requires: pupmod-simp-xwindows >= 4.1.1-2016
 
 %description
