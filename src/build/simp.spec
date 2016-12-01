@@ -85,9 +85,9 @@ Requires: rubygem-simp-cli >= 1.0.21-0, rubygem-simp-cli < 2.0.0
 Requires: rubygem-simp-cli-doc >= 1.0.21-0, rubygem-simp-cli-doc < 2.0.0
 Requires: simp-adapter >= 0.0.1-0, simp-adapter < 1.0.0
 Requires: simp-environment >= 6.0.0-Alpha, simp-environment < 7.0.0
-Requires: simp-gpgkeys >= 2.0.0-4%{?dist}.noarch, simp-gpgkeys < 3.0.0
-Requires: simp-rsync >= 5.1.0-3%{?dist}.noarch, simp-rsync < 6.0.0
-Requires: simp-rsync-clamav >= 5.1.0-3%{?dist}.noarch, simp-rsync-clamav < 6.0.0
+Requires: simp-gpgkeys >= 2.0.0-3, simp-gpgkeys < 3.0.0
+Requires: simp-rsync >= 5.1.0-3, simp-rsync < 6.0.0
+Requires: simp-rsync-clamav >= 5.1.0-3, simp-rsync-clamav < 6.0.0
 Requires: simp-utils >= 6.0.0, simp-utils < 7.0.0
 
 Prefix: %{_sysconfdir}/puppet
