@@ -360,8 +360,8 @@ mod 'simp-vsftpd',
   :git => 'https://github.com/simp/pupmod-simp-vsftpd',
   :ref => '07ecc2acc92d99429607771854701680c61e3cdc'
 
-mod 'simp-gnome',
-  :git => 'https://github.com/simp/pupmod-simp-gnome',
+mod 'simp-windowmanager',
+  :git => 'https://github.com/simp/pupmod-simp-windowmanager',
   :ref => '2c3ab26ed74ff5174addf402c3549e40134fec46'
 
 mod 'simp-xinetd',
