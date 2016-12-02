@@ -1,0 +1,156 @@
+#!/usr/bin/env ruby
+
+require 'optparse'
+require 'csv'
+
+options = {:in => nil, :out => nil, :format => :yaml}
+
+OptionParser.new do |opts|
+  opts.banner = "Converts SIMP 4.0.X simp_def.csv to SIMP 4.1.X simp_def.yaml"
+
+  opts.on("--in FILE", "-i", "Input CSV file") do |v|
+    options[:in] = v
+  end
+
+  opts.on("--out FILE", "-o", "Output Hiera file") do |v|
+    options[:out] = v
+  end
+end.parse!
+
+if options[:in].nil? || options[:out].nil?
+  STDERR.puts "Please specify an input and output file with --in and --out"
+  exit 1
+end
+
+unless File.exist?(options[:in])
+  STDERR.puts "Cannot find input file #{options[:in]}"
+  exit 1
+end
+
+csvdata = CSV.read(options[:in])
+hieradata = {}
+
+csvdata.each do |d|
+  d = d.map{|item| item.to_s}
+
+  if d.size > 2
+    hieradata[d[0]] = d[1, d.size].flatten
+  else
+    hieradata[d[0]] = d[1]
+  end
+end
+
+to_yaml = {
+  'basedn'           => 'ldap::base_dn',
+  'client_nets'      => 'client_nets',
+  'dns_search'       => 'dns::search',
+  'dns_servers'      => 'dns::servers',
+  'ldap_bind_dn'     => 'ldap::bind_dn',
+  'ldap_bind_hash'   => 'ldap::bind_hash',
+  'ldap_bind_pw'     => 'ldap::bind_pw',
+  'ldap_master_uri'  => 'ldap::master',
+  'ldap_root_dn'     => 'ldap::root_dn',
+  'ldap_root_hash'   => 'ldap::root_hash',
+  'ldap_sync_dn'     => 'ldap::sync_dn',
+  'ldap_sync_hash'   => 'ldap::sync_hash',
+  'ldap_sync_passwd' => 'ldap::sync_pw',
+  'ldapuri'          => 'ldap::uri',
+  'log_server'       => 'log_server',
+  'ntp_servers'      => 'ntpd::servers',
+  'puppet_ca'        => 'puppet::ca',
+  'puppet_ca_port'   => 'puppet::ca_port',
+  'puppet_server'    => 'puppet::server',
+  'rsync_server'     => 'rsync::server',
+  'rsync_timeout'    => 'rsync::timeout',
+  'use_ldap'         => 'use_ldap',
+  'yum_server'       => 'simp::yum::servers',
+  'selinux::enable'  => 'selinux::ensure',
+  'use_auditd'       => 'use_auditd',
+  'use_iptables'     => 'use_iptables',
+  'common::runlevel::default' => 'common::runlevel::default'
+}
+
+case options[:format]
+when :yaml
+  require 'yaml'
+  fh = File.open(options[:out], "w")
+
+  fh.puts('---')
+
+  content = []
+  set_auditd, set_iptables, set_runlevel = true, true, true
+  File.read(options[:in]).each_line do |line|
+    next if line =~ /^\s*$/
+
+    if line =~ /^\s*#/ then
+      content << "#{line.strip}"
+      next
+    end
+
+    ln = CSV.parse(line).flatten
+
+    # Obtain the variable tag and map it to its new 4.1 yaml equivalent
+    newln = to_yaml[ln.shift]
+    next if newln.nil?        # If it's not mapped, it no longer exists in 4.1
+
+    # These 3 values *could* exist in simp_def, but may not.  If not, they need to default.
+    set_auditd = false if newln.eql?('use_auditd')
+    set_iptables = false if newln.eql?('use_iptables')
+    set_runlevel = false if newln.eql?('common::runlevel::default')
+
+    # Sort through the values paired with the tag above.  Leave booleans
+    # as true booleans.
+    ln.map!{|x|
+      if not ['true','false'].include?(x) then
+        x = "\"#{x}\""
+      else
+        x = x
+      end
+    } 
+
+    # If our values are one of the following, it needns to be in array form
+    if not ['client_nets', 'dns::search', 'dns::servers',
+            'ldap::uri', 'ntpd::servers', 'simp::yum::servers'].include?(newln) then
+      values = "#{ln.shift}"
+    else
+      values = "\n" + ln.map{|x| x = "    - #{x}"}.join("\n") # This only acconuts for arrays
+    end
+
+    # Put keys with values
+    content << "#{newln} : " + values
+
+    end
+
+  # These are 'those 3 values' from before which need to default if they're not set!
+  if set_auditd || set_iptables || set_runlevel
+    content << "
+#
+# WARNING! The values below did not exist in SIMP prior to 4.1, and were
+# auto-generated with default values.  Before applying hieradata to the system,
+# you may wish to change these values to suit your system's needs.
+#
+#"
+  end
+  if set_auditd
+    content << "
+# Whether or not to use auditd on this system.
+use_auditd : true"
+  end
+  if set_iptables
+    content << "
+# If there is code that calls the IPTables native type directly, this
+# option may not function properly. We are looking into solutions for
+# this issue.
+use_iptables : true"
+  end
+  if set_runlevel
+    content << "
+# Management of Specific Classes
+common::runlevel::default : '3'"
+  end
+
+  # Write it all out
+  fh.puts(content.join("\n"))
+  fh.close
+
+end
