@@ -1,0 +1,97 @@
+---
+language: ruby
+sudo: false
+cache: bundler
+before_script:
+  - bundle
+bundler_args: --without development system_tests
+before_install: rm Gemfile.lock || true
+script:
+  - bundle exec rake test
+notifications:
+  email: false
+rvm:
+  - 2.0.0
+  - 2.1.0
+  - 2.2.1
+  - 1.9.3
+env:
+  global:
+    - STRICT_VARIABLES=yes
+    - TRUSTED_NODE_DATA=yes
+  matrix:
+    - PUPPET_VERSION="~> 3.8.0"
+    - PUPPET_VERSION="~> 4.4.0"
+    - PUPPET_VERSION="~> 3.5.0"
+    - PUPPET_VERSION="~> 3.6.0"
+    - PUPPET_VERSION="~> 3.7.0"
+    - PUPPET_VERSION="~> 3.7.0" FUTURE_PARSER=yes
+    - PUPPET_VERSION="~> 3.8.0" FUTURE_PARSER=yes
+    - PUPPET_VERSION="~> 4.0.0"
+    - PUPPET_VERSION="~> 4.1.0"
+    - PUPPET_VERSION="~> 4.2.0"
+    - PUPPET_VERSION="~> 4.3.0"
+matrix:
+  fast_finish: true
+  allow_failures:
+    - rvm: 1.9.3
+    - rvm: 2.2.1
+    - env: PUPPET_VERSION="~> 3.5.0"
+    - env: PUPPET_VERSION="~> 3.6.0"
+    - env: PUPPET_VERSION="~> 3.7.0"
+    - env: PUPPET_VERSION="~> 3.7.0" FUTURE_PARSER=yes
+    - env: PUPPET_VERSION="~> 3.8.0" FUTURE_PARSER=yes
+    - env: PUPPET_VERSION="~> 4.0.0"
+    - env: PUPPET_VERSION="~> 4.1.0"
+    - env: PUPPET_VERSION="~> 4.2.0"
+    - env: PUPPET_VERSION="~> 4.3.0"
+
+
+  exclude:
+  # Ruby 1.9.3
+  - rvm: 1.9.3
+    env: PUPPET_VERSION="~> 3.5.0"
+  - rvm: 1.9.3
+    env: PUPPET_VERSION="~> 3.6.0"
+  - rvm: 1.9.3
+    env: PUPPET_VERSION="~> 3.7.0"
+  - rvm: 1.9.3
+    env: PUPPET_VERSION="~> 3.7.0" FUTURE_PARSER=yes
+  - rvm: 1.9.3
+    env: PUPPET_VERSION="~> 4.0.0"
+  - rvm: 1.9.3
+    env: PUPPET_VERSION="~> 4.1.0"
+  - rvm: 1.9.3
+    env: PUPPET_VERSION="~> 4.2.0"
+  - rvm: 1.9.3
+    env: PUPPET_VERSION="~> 4.3.0"
+
+  # Ruby 2.1.0
+  - rvm: 2.1.0
+    env: PUPPET_VERSION="~> 3.5.0"
+  - rvm: 2.1.0
+    env: PUPPET_VERSION="~> 3.6.0"
+  - rvm: 2.1.0
+    env: PUPPET_VERSION="~> 3.7.0"
+  - rvm: 2.1.0
+    env: PUPPET_VERSION="~> 3.7.0" FUTURE_PARSER=yes
+
+  # Ruby 2.2.1
+  - rvm: 2.2.1
+    env: PUPPET_VERSION="~> 3.5.0"
+  - rvm: 2.2.1
+    env: PUPPET_VERSION="~> 3.6.0"
+  - rvm: 2.2.1
+    env: PUPPET_VERSION="~> 3.7.0"
+  - rvm: 2.2.1
+    env: PUPPET_VERSION="~> 3.7.0" FUTURE_PARSER=yes
+  - rvm: 2.2.1
+    env: PUPPET_VERSION="~> 3.8.0"
+  - rvm: 2.2.1
+    env: PUPPET_VERSION="~> 4.0.0"
+  - rvm: 2.2.1
+    env: PUPPET_VERSION="~> 4.1.0"
+  - rvm: 2.2.1
+    env: PUPPET_VERSION="~> 4.2.0"
+  - rvm: 2.2.1
+    env: PUPPET_VERSION="~> 4.3.0"
