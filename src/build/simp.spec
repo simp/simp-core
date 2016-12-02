@@ -1,7 +1,7 @@
 Summary: SIMP Full Install
 Name: simp
 Version: 6.0.0
-Release: Alpha%{?snapshot_release}
+Release: Alpha%{?snapshot_release}%{?dist}
 License: Apache License, Version 2.0
 Group: Applications/System
 
@@ -85,9 +85,9 @@ Requires: rubygem-simp-cli >= 1.0.21-0, rubygem-simp-cli < 2.0.0
 Requires: rubygem-simp-cli-doc >= 1.0.21-0, rubygem-simp-cli-doc < 2.0.0
 Requires: simp-adapter >= 0.0.1-0, simp-adapter < 1.0.0
 Requires: simp-environment >= 6.0.0-Alpha, simp-environment < 7.0.0
-Requires: simp-gpgkeys >= 2.0.0-4.el7.centos, simp-gpgkeys < 3.0.0
-Requires: simp-rsync >= 5.1.0-3.el7.centos, simp-rsync < 6.0.0
-Requires: simp-rsync-clamav >= 5.1.0-3.el7.centos, simp-rsync-clamav < 6.0.0
+Requires: simp-gpgkeys >= 2.0.0-3, simp-gpgkeys < 3.0.0
+Requires: simp-rsync >= 5.1.0-3, simp-rsync < 6.0.0
+Requires: simp-rsync-clamav >= 5.1.0-3, simp-rsync-clamav < 6.0.0
 Requires: simp-utils >= 6.0.0, simp-utils < 7.0.0
 
 Prefix: %{_sysconfdir}/puppet
@@ -187,6 +187,9 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Wed Nov 30 2016 Jeanne Greulich <jgreulich@onyxpoint.com> - 6.0.0-Alpha
+- Changed hardcoded el7 version to dist variable.
+
 * Tue Oct 25 2016 Nick Miller <nick.miller@onyxpoint.com> - 6.0.0-Alpha
 - Added i_version mount option to non-/var and non-/tmp partitions for IMA
     measuring
