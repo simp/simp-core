@@ -2,13 +2,10 @@
 .yardoc
 dist
 /pkg
-spec/rp_env
 /spec/fixtures
+/spec/rp_env
 !/spec/hieradata/default.yaml
 !/spec/fixtures/site.pp
-!/spec/fixtures/stub_modules/
-!/spec/fixtures/test_module_rpms/
-!/spec/fixtures/dist
 /.rspec_system
 /.vagrant
 /.bundle
