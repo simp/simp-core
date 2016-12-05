@@ -132,7 +132,7 @@ fi
 if [ ! -a "${codedir}/environments/production" ]; then
   (
     cd "${codedir}/environments"
-    ln -s simp production
+    ln -s production simp
   )
 fi
 
