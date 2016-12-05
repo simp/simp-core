@@ -129,9 +129,9 @@ if [ ! -d $codedir ]; then
   codedir=`puppet config print confdir`
 fi
 
-if [ ! -a "${codedir}/production" ]; then
+if [ ! -a "${codedir}/environments/production" ]; then
   (
-    cd "${codedir}/production"
+    cd "${codedir}/environments"
     ln -s simp production
   )
 fi
