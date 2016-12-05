@@ -7,7 +7,7 @@
 Summary: The SIMP Environment Scaffold
 Name: simp-environment
 Version: 6.0.0
-Release: Alpha
+Release: Alpha2
 License: Apache License 2.0
 Group: Applications/System
 Source: %{name}-%{version}-%{release}.tar.gz
@@ -129,9 +129,9 @@ if [ ! -d $codedir ]; then
   codedir=`puppet config print confdir`
 fi
 
-if [ ! -a "${codedir}/production" ]; then
+if [ ! -a "${codedir}/environments/production" ]; then
   (
-    cd "${codedir}/production"
+    cd "${codedir}/environments"
     ln -s simp production
   )
 fi
