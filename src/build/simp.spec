@@ -75,7 +75,6 @@ Requires: pupmod-simp-stunnel >= 5.0.0, pupmod-simp-stunnel < 6.0.0
 Requires: pupmod-simp-sudo >= 5.0.0, pupmod-simp-sudo < 6.0.0
 Requires: pupmod-simp-sudosh >= 5.0.0-2016, pupmod-simp-sudosh < 6.0.0
 Requires: pupmod-simp-svckill >= 2.0.0, pupmod-simp-svckill < 3.0.0
-Requires: pupmod-simp-sysctl >= 5.0.0-2016, pupmod-simp-sysctl < 6.0.0
 Requires: pupmod-simp-tcpwrappers >= 5.0.0, pupmod-simp-tcpwrappers < 6.0.0
 Requires: pupmod-simp-tftpboot >= 5.0.0-2016, pupmod-simp-tftpboot < 6.0.0
 Requires: pupmod-simp-tpm >= 1.0.0-2016, pupmod-simp-tpm < 2.0.0

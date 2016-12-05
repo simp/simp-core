@@ -332,10 +332,6 @@ mod 'simp-svckill',
   :git => 'https://github.com/simp/pupmod-simp-svckill',
   :ref => 'b64aa7bc38402a44922c56508c0d9cbd42d11f94'
 
-mod 'simp-sysctl',
-  :git => 'https://github.com/simp/pupmod-simp-sysctl',
-  :ref => 'fd7fee7000de3cb8436aad81d3ec91610b804c88'
-
 mod 'simp-tcpwrappers',
   :git => 'https://github.com/simp/pupmod-simp-tcpwrappers',
   :ref => '18cd645cec646b67b7dfd3e21d3a677861680a64'

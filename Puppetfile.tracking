@@ -338,10 +338,6 @@ mod 'simp-svckill',
   :git => 'https://github.com/simp/pupmod-simp-svckill',
   :ref => 'master'
 
-mod 'simp-sysctl',
-  :git => 'https://github.com/simp/pupmod-simp-sysctl',
-  :ref => 'master'
-
 mod 'simp-tcpwrappers',
   :git => 'https://github.com/simp/pupmod-simp-tcpwrappers',
   :ref => 'master'
