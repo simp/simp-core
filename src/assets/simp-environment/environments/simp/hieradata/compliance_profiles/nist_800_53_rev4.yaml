@@ -2151,7 +2151,7 @@ compliance_map:
       - AC-6
       - IA-2
       value: ftp
-    windowmanager::gnome::include_sec:
+    gnome::enable_screensaver:
       identifiers:
       - AC-6
       value: true
