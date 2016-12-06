@@ -2,7 +2,7 @@
 
 Summary: SIMP Adapter for the AIO Puppet Installation
 Name: simp-adapter
-Version: 0.0.1
+Version: 0.0.2
 Release: 0
 License: Apache-2.0
 Group: Applications/System
@@ -33,20 +33,18 @@ Provides: simp-adapter = %{version}
 Summary: SIMP Adapter for the Puppet Enterprise Puppet Installation
 License: Apache-2.0
 Requires: rsync
-Requires(post): puppet
-Requires(post): puppetserver
-Requires(post): puppetdb
+Requires(post): puppet-agent
+Requires(post): pe-puppetserver
+Requires(post): pe-puppetdb
 Requires(post): procps-ng
-Requires: pe-puppet-agent < 2.0.0
-Requires: pe-puppet-agent >= 1.6.2
-Requires: pe-client-tools < 2.0.0
-Requires: pe-client-tools >= 1.1.0
+Requires: puppet-agent < 2.0.0
+Requires: puppet-agent >= 1.6.2
+Requires: pe-client-tools >= 15.0.0
 Requires: pe-puppetdb < 5.0.0
 Requires: pe-puppetdb >= 4.2.2
 Requires: pe-puppetdb-termini < 5.0.0
 Requires: pe-puppetdb-termini >= 4.2.2
-Requires: pe-puppetserver < 3.0.0
-Requires: pe-puppetserver >= 2.6.0
+Requires: pe-puppetserver >= 2015.0.0
 Provides: simp-adapter = %{version}
 
 %description
