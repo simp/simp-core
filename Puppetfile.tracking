@@ -178,6 +178,10 @@ mod 'simp-gdm',
   :git => 'https://github.com/simp/pupmod-simp-gdm',
   :ref => 'master'
 
+mod 'simp-gnome',
+  :git => 'https://github.com/simp/pupmod-simp-gnome',
+  :ref => 'master'
+
 mod 'simp-haveged',
   :git => 'https://github.com/simp/puppet-haveged',
   :ref => 'simp-master'
@@ -364,10 +368,6 @@ mod 'simp-vnc',
 
 mod 'simp-vsftpd',
   :git => 'https://github.com/simp/pupmod-simp-vsftpd',
-  :ref => 'master'
-
-mod 'simp-windowmanager',
-  :git => 'https://github.com/simp/pupmod-simp-windowmanager',
   :ref => 'master'
 
 mod 'simp-xinetd',

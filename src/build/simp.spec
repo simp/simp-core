@@ -104,6 +104,8 @@ Requires: pupmod-herculesteam-augeasproviders_nagios >= 2.0.1-2016
 Requires: pupmod-herculesteam-augeasproviders_pam >= 2.0.3-2016
 Requires: pupmod-puppetlabs-mysql >= 2.2.3-2016
 Requires: pupmod-simp-foreman >= 1.0.0
+Requires: pupmod-simp-gdm >= 6.0.0-2016
+Requires: pupmod-simp-gnome >= 6.0.0-2016
 Requires: pupmod-simp-jenkins >= 4.1.0-2016
 Requires: pupmod-simp-libreswan >= 0.1.1-2016
 Requires: pupmod-simp-libvirt >= 4.1.1-2016
@@ -116,8 +118,6 @@ Requires: pupmod-simp-simp_grafana >= 0.1.0-2016
 Requires: pupmod-simp-simp_logstash >= 2.0.0-2016
 Requires: pupmod-simp-vnc >= 4.1.0-2016
 Requires: pupmod-simp-vsftpd >= 5.0.6-2016
-Requires: pupmod-simp-windowmanager >= 4.1.2-2016
-Requires: pupmod-simp-gdm >= 6.0.0-2016
 
 %description
 Stub for installing everything needed for a full SIMP system
