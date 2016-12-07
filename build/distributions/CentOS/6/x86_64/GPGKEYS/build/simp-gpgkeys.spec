@@ -1,7 +1,7 @@
 Summary: GPGKEYS
 Name: simp-gpgkeys
 Version: 2.0.0
-Release: 3%{?dist}
+Release: 4%{?dist}
 License: Public Domain
 Group: Applications/System
 Source: %{name}-%{version}-%{release}.tar.gz

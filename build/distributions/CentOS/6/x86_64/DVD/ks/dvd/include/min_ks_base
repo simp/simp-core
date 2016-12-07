@@ -1,8 +1,10 @@
 authconfig --enableshadow --passalgo=sha512 --enablemd5
 network --bootproto=dhcp --nodns --hostname=puppet.change.me
+skipx
 rootpw --iscrypted $6$cKH4tleUAthZBrFM$ZnXngjlvHTDCJOJWZOcOWXH5UHR9v75XbkGzshrBaR8LC30Jkxf/KP4kIFrSFOMgxDmha/SuXv9I8N2C0RPV1.
-bootloader --location=mbr --driveorder=sda,hda --append="console=ttyS1,57600 console=tty0" --iscrypted --password=grub.pbkdf2.sha512.10000.D1E70A301431EAA903DAD8AC7E04B305ED44BE24FFA1898B4377E507DB76CB6126535EF74AF7EDDF89C7ECB4CFD80153A1DE2C0D42C148195D74C03CDFF10E55.432B399E4D4103CD3C37C24537F50E7B1A6CF23686B62B0AD0262B3485557B02AE12C3D0BA182531F22AE271375A5834BA9756FB08F07C163399475B0F459DCD
+bootloader --location=mbr --driveorder=sda,hda --append="console=ttyS1,57600 console=tty0" --iscrypted --password=$6$Y3AnAvsj52K3HOvh$s.BH/N1MzeTTk/5U/6C55FsG0839vCIj0RPmEaGMM4Sqz5i.VtW.RNPND1nXJKbthvUw9AKMRcNL/fucnSn/L1
 zerombr
+key --skip
 firewall --enabled --ssh
 firstboot --disable
 logging --level=info
@@ -17,57 +19,71 @@ clearpart --all --initlabel
 reboot
 
 %packages --nobase
--sendmail
--sysklogd
+redhat-lsb
+xorg-x11-xauth
 acl
-aide
-anacron
-audit
+rpm
+yum
 bzip2
-coolkey
 crontabs
+libutempter
+pciutils
+psacct
+quota
+tmpwatch
+vixie-cron
+amtu
+anacron
+coolkey
+cpuspeed
 cryptsetup-luks
 dhclient
 %include /tmp/dracut_packages
 fipscheck
-git
 gnupg
-iptables
-iptables-ipv6
 irqbalance
 krb5-workstation
 libaio
-libutempter
-logrotate
 logwatch
-lsof
-lsscsi
+logrotate
 mdadm
 microcode_ctl
-mutt
-net-snmp
-netlabel_tools
-ntp
+nss_db
 openssh-clients
 openssh-server
 pam_krb5
+pam_passwdqc
 pam_pkcs11
-pciutils
-psacct
-quota
-redhat-lsb
-rpm
-rsync
-rsyslog
+ntp
+readahead
 smartmontools
-sssd
 stunnel
-subversion
 sudo
-sysstat
 tcp_wrappers
-tmpwatch
 unzip
+usbutils
+vconfig
+wget
+which
+zip
+aide
+iptables
+iptables-ipv6
+netlabel_tools
+audit
+lsscsi
+net-snmp
+sysstat
+vlock
+mutt
+subversion
+-sysklogd
+rsyslog7
+lsof
+vim-enhanced
+-sendmail
+rsync
+elinks
 
 # In case of broken repo, these should be installed.
 hdparm
@@ -80,4 +96,3 @@ selinux-policy-targeted
 setserial
 sysfsutils
 udftools
-%end

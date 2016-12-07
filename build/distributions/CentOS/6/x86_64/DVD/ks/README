@@ -21,5 +21,5 @@ modified at kickstart time to rearrange /srv or /var.
 
 Values:
 
-  'big'    => Grow /var to fill all available space
-  'bigsrv' => Grow /srv to fill all available space instead of /var
+  'big'    => Grow /srv to fill all available space
+  'bigvar' => Grow /var to fill all available space instead of /srv

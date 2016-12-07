@@ -1,5 +1,4 @@
-# A list of packages required for the clean base
-# installation of the SIMP DVD
+# A list of packages required for the clean base installation of the SIMP DVD
 # based on RHEL/CentOS 6.
 #
 # This list is simply used to keep items in the base DVD so having extra
@@ -175,11 +174,11 @@ docbook-utils
 dos2unix
 dosfstools
 dracut
+dracut-config-rescue
 dracut-fips
 dracut-fips-aesni
 dracut-kernel
 dracut-network
-dracut-config-rescue
 e2fsprogs
 e2fsprogs-libs
 ecj
@@ -465,7 +464,6 @@ krb5-server-ldap
 krb5-workstation
 lcms-libs
 less
-ldns
 lfc-python
 lftp
 libICE
@@ -542,17 +540,16 @@ libdhash
 libdrm
 libdv
 libedit
+libepoxy
 liberation-fonts-common
 liberation-mono-fonts
 liberation-sans-fonts
 liberation-serif-fonts
 libertas-usb8388-firmware
 libestr
-libevent
-libevent2
 libevdev
+libevent
 libexif
-libepoxy
 libffi
 libfontenc
 libfprint
@@ -668,8 +665,8 @@ libxklavier
 libxml2
 libxml2-devel
 libxml2-python
-libxslt
 libxshmfence
+libxslt
 lksctp-tools
 lm_sensors
 lm_sensors-libs
@@ -762,6 +759,9 @@ oddjob
 oddjob-mkhomedir
 openais
 openaislib
+opencrypto-tpmtok
+opencryptoki
+opencryptoki-libs
 openjade
 openjpeg-libs
 openldap
@@ -880,7 +880,6 @@ postgresql-server
 ppl
 prelink
 procps
-procps-ng
 psacct
 psmisc
 pssh
@@ -1095,6 +1094,7 @@ tk
 tmpwatch
 tokyocabinet
 tpm-tools
+tpm-tools-pkcs11
 trousers
 ttmkfdir
 tuned
@@ -1132,8 +1132,8 @@ x86info
 xcb-util
 xcb-util-image
 xcb-util-keysyms
-xcb-util-wm
 xcb-util-renderutil
+xcb-util-wm
 xdg-utils
 xinetd
 xkeyboard-config

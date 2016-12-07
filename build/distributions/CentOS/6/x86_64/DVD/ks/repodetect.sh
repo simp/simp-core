@@ -10,6 +10,7 @@
 
 unknown="REPODETECT_UNKNOWN_OS_TYPE"
 type=$unknown
+osline=`dmesg -s 10485760 | grep '(Kernel Module GPG key)'`
 
 version=$1
 yum_server=$2
@@ -22,11 +23,11 @@ fi
 arch="i386"
 if [ `uname -m` == "x86_64" ]; then arch="x86_64"; fi
 
-grep -q 'Red Hat' /etc/redhat-release
+echo $osline | grep -q 'Red Hat, Inc.'
 if [ $? == 0 ]; then
   type="RedHat"
 else
-  grep -q 'CentOS' /etc/redhat-release
+  echo $osline | grep -q 'CentOS'
   if [ $? == 0 ]; then type="CentOS"; fi
 fi
 
@@ -41,7 +42,7 @@ if [ "$type" == "$unknown" ]; then
 fi
 
 if [ -z $yum_server ] || [ $yum_server == 'local' ]; then
-  uri_header="file:///mnt/install/repo"
+  uri_header="file:///mnt/source"
   local_header="$uri_header/SIMP/$arch"
 else
   uri_header="https://$yum_server/yum/$type/$version/$arch";
@@ -50,14 +51,16 @@ fi
 
 if [ "$type" == 'RedHat' ]; then
   cat << EOF > /tmp/repo-include
-repo --name="HighAvailability" --baseurl="$uri_header/addons/HighAvailability"
-repo --name="ResilientStorage" --baseurl="$uri_header/addons/ResilientStorage"
-repo --name="Base" --baseurl="$uri_header"
-repo --name="Local" --baseurl="$local_header"
+repo --name="HighAvailability" --baseurl="$uri_header/HighAvailability" --noverifyssl
+repo --name="LoadBalancer" --baseurl="$uri_header/LoadBalancer" --noverifyssl
+repo --name="ResilientStorage" --baseurl="$uri_header/ResilientStorage" --noverifyssl
+repo --name="ScalableFileSystme" --baseurl="$uri_header/ScalableFileSystem" --noverifyssl
+repo --name="Server" --baseurl="$uri_header/Server" --noverifyssl
+repo --name="Local" --baseurl="$local_header" --noverifyssl
 EOF
 elif [ "$type" == 'CentOS' ]; then
   cat << EOF > /tmp/repo-include
-repo --name="Server" --baseurl="$uri_header"
-repo --name="Local" --baseurl="$local_header"
+repo --name="Server" --baseurl="$uri_header" --noverifyssl
+repo --name="Local" --baseurl="$local_header" --noverifyssl
 EOF
 fi

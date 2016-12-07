@@ -8,7 +8,7 @@
     - You need at least 50GB of disk space for this to succeed.
     - Add the option 0asimp_disk_crypt07 to encrypt your disk.
 
- -  To auto-install SIMP with a large /var, type 0asimp-big <ENTER>07.
+ -  To auto-install SIMP with a large /srv, type 0asimp-big <ENTER>07.
     - This will erase your existing system!
     - Add the option 0asimp_disk_crypt07 to encrypt your disk.
 

@@ -1,0 +1,229 @@
+#!/usr/bin/env ruby
+require 'fileutils'
+require 'optparse'
+require 'socket'
+
+#  This is a script to assist with the upgrade from SIMP 4.0.X to 4.1.X
+#
+#  NOTE: Before running this script, it is required you do the following:
+#    - Fully disable Puppet.
+#    - Ensure access to extdata2hiera and simpdef2hiera scripts.  simpdef2hiera
+#      should be in the same directory as this script.
+#
+#  DO NOT kill this script at any point during operation and it is strongly
+#  recommended you do not run it twice.
+#
+#  The upgrade process:
+#
+#    1. Update Yum
+#      - Move /srv/www/Local/* to /srv/www/yum/SIMP, and symlink back to Local.
+#      - Copy the SIMP rpms into SIMP from the 4.1 distribution DVD.
+#      - Unpack the 4.1 distribution DVD fully.
+#      - Upgrade yum.
+#
+#    2. Migrate simp_def.csv to simp_def.yaml, then convert the rest of extdata to Hiera.
+#
+#    3. Modify puppet.conf and config.ru.
+#
+#    4. Create an apache conf file for the Local repo.
+#
+#    5. Optionally recursively replace extlookup with hiera in /etc/puppet/modules/*.
+#
+#    6. Bootstrap.
+
+# Grab command line options
+options = {:dvd => nil}
+OptionParser.new do |opts|
+  opts.banner = "Script to upgrade 4.0.X to 4.1.X"
+  opts.on("--dvd FILE", "-d", "DVD to unpack") do |v|
+    options[:dvd] = v
+  end
+end.parse!
+
+if options[:dvd].nil?
+  STDERR.puts "ERR: You must specify the location of a 4.1 DVD to upgrade with."
+  exit 1
+end
+unless File.exists?(options[:dvd])
+  STDERR.puts "ERR: Cannot find DVD #{options[:in]}"
+  exit 1
+end
+
+# Disable puppet (just in case)
+%x[puppet agent --disable]
+puts '# Disabled Puppet agent.'
+
+# Copy off default.csv before yum upgrade
+FileUtils.mkdir '/tmp/upgrade', :mode => 0750 if ! File.exists?('/tmp/upgrade')
+FileUtils.cp '/etc/puppet/manifests/extdata/default.csv', '/tmp/upgrade' if File.exists?('/etc/puppet/manifests/extdata/default.csv')
+
+#YUM - Move Local to SIMP, then unpack the DVD
+if ! File.exists?('/srv/www/yum/SIMP')
+  FileUtils::mkdir_p '/srv/www/yum/SIMP', :mode => 0750
+  FileUtils.chown 'root', 'apache', '/srv/www/yum/SIMP'
+end
+
+if ! File.symlink?('/srv/www/Local')
+  if ! File.exists?('/srv/www/Local')
+    puts '# WARN: Directory Local does not exist, continuing...'
+  else
+    if Dir['/srv/www/Local/*'].empty?
+      puts "# WARN: Directory Local is empty, continuing..."
+    else
+      FileUtils.mv Dir.glob('/srv/www/Local/*'), '/srv/www/yum/SIMP'
+    end
+    FileUtils.rm_rf('/srv/www/Local')
+  end
+  FileUtils.ln_s('/srv/www/yum/SIMP', '/srv/www/Local')
+  puts '# Moved contents of Local repo to /srv/www/yum/SIMP and symlinked back to Local.'
+else
+  puts '# Directory Local already symlinked, continuing...'
+end
+
+# Mount the distribution DVD
+FileUtils.mkdir '/mnt/distroDVD' if ! File.exists?('/mnt/distroDVD')
+value = %x[mount | grep distroDVD]
+if value.empty?
+  %x[mount -o loop #{options[:dvd]} /mnt/distroDVD]
+  puts '# Distribution DVD mounted.'
+else
+  puts '# It appears a distribution DVD is already mounted to /mnt/distroDVD, continuing...'
+end
+
+# Copy the SIMP rpms off of the DVD and re-create repos.
+puts "# (Re)Creating GPGKEYS, noarch, x86_64 repositories with 4.1 SIMP packages.  This will take time..."
+for d in ['noarch', 'x86_64', 'GPGKEYS'] do
+  simp_dir = "/srv/www/yum/SIMP/#{d}"
+  FileUtils.mkdir simp_dir, :mode => 0750 if ! File.exists?(simp_dir)
+  %x[cp -rfd /mnt/distroDVD/SIMP/#{d}/* #{simp_dir}
+     createrepo #{simp_dir}
+     chown -R root.apache #{simp_dir}
+     chmod -R g+rX #{simp_dir}
+  ]
+  puts "#    #{d} repository complete."
+end
+
+# Clean up some and unpack the distribution DVD.  Then, upgrade yum.
+puts '# Rebuilding YUM cache, unpacking distribution DVD, and unmounting distribution DVD.  This will take time...'
+%x[yum clean all
+yum makecache
+/usr/local/bin/unpack_dvd #{options[:dvd]}
+umount /mnt/distroDVD
+rm -rf /mnt/distroDVD
+]
+puts '# All packages have been unpacked.  YUM Upgrading.  This will take time...'
+%x[yes | yum upgrade]
+
+# Create Hieradata space
+directories = ['/etc/puppet/hieradata', '/etc/puppet/hieradata/domains','/etc/puppet/hieradata/hosts']
+directories.each do |directory|
+  if !File.directory?(directory)
+    Dir.mkdir(directory)
+  end
+end
+puts '# Created Hieradata space'
+# Convert all CSV except simp_def
+if File.exists?('/tmp/upgrade/default.csv')
+  %x[/usr/local/bin/extdata2hiera -i /tmp/upgrade/default.csv -o /etc/puppet/hieradata/default.yaml]
+else
+  puts '# WARN: Did not find default.csv, continuing...'
+end
+['domains','hosts'].each do |dir|
+  Dir.glob("/etc/puppet/manifests/extdata/#{dir}/*.csv").each do |dom_csv|
+    %x[/usr/local/bin/extdata2hiera -i #{dom_csv} -o /etc/puppet/hieradata/#{dir}/#{File.basename(dom_csv,'.csv')}.yaml]
+  end
+end
+puts '# Converted domains and hosts to YAML'
+# Convert simp_def.csv to simp_def.yaml
+pwd = File.dirname(File.expand_path(__FILE__))
+if File.exists?('/etc/puppet/manifests/extdata/simp_def.csv.rpmsave')
+  %x[ruby #{pwd}/simpdef2hiera --in /etc/puppet/manifests/extdata/simp_def.csv.rpmsave \
+--out /etc/puppet/hieradata/simp_def.yaml]
+  puts '# simp_def converted from CSV to YAML.  Manual check after upgrade recommended for consistency.'
+else
+  puts '# WARN: Could not find file simp_def.csv, continuing...'
+end
+if File.exists?('/etc/puppet/hieradata/hosts/puppet.your.domain.yaml')
+  FileUtils.mv '/etc/puppet/hieradata/hosts/puppet.your.domain.yaml', \
+               "/etc/puppet/hieradata/hosts/#{Socket.gethostname}.yaml"
+end
+# Set hieradata permissions
+%x[/bin/chgrp -R puppet /etc/puppet/hieradata
+/bin/chmod -R g+rX /etc/puppet/hieradata]
+
+# This section copies in puppet.conf.rpmsave to puppet.conf and configures
+# it with a few values.
+if File.exists?('/etc/puppet/puppet.conf.rpmnew')
+  puppet_server = %x[hiera puppet::server --yaml /etc/puppet/hieradata/simp_def.yaml --config /etc/puppet/hiera.yaml]
+  puppet_ca = %x[hiera puppet::ca --yaml /etc/puppet/hieradata/simp_def.yaml --config /etc/puppet/hiera.yaml]
+  puppet_ca_port = %x[hiera puppet::ca_port --yaml /etc/puppet/hieradata/simp_def.yaml --config /etc/puppet/hiera.yaml]
+  FileUtils.mv '/etc/puppet/puppet.conf.rpmnew', '/etc/puppet/puppet.conf'
+  %x[puppet config --section main set server #{puppet_server}
+puppet config set --section main stringify_facts false
+puppet config --section agent set ca_server #{puppet_ca}
+puppet config --section agent set ca_port #{puppet_ca_port}]
+  puts '# Replaced puppet.conf with puppet.conf.rpmnew.'
+else
+  puts '# WARN: Did not find puppet.conf.rpmnew, not replacing puppet.conf, continuing...'
+end
+
+# Copy the config.ru template to it's proper place.  Need to do this manually
+# so puppet can run the first time.
+%x[/bin/cp -f /etc/puppet/modules/pupmod/templates/share/puppet/rack/puppetmasterd/config.ru.erb \
+/usr/share/puppet/rack/puppetmasterd/config.ru]
+puts '# Updated config.ru'
+
+# Make httpd conf for Local in the next 2 sections
+%x[cp /etc/puppet/modules/simp/templates/etc/httpd/conf.d/yum.conf.erb \
+/etc/puppet/modules/site/templates/simp_upgrade_local_repo.conf.erb
+chown root.puppet $_
+chmod 0640 $_
+sed -i 's/yum/Local/g' $_
+touch /etc/puppet/modules/site/manifests/simp_upgrade_local_repo.pp
+chown root.puppet $_
+chmod 640 $_
+]
+# Populate simp_upgrade_local_repo and apply in hieradata
+output = %q{
+class site::simp_upgrade_local_repo (
+) {
+  apache::add_site { 'simp_upgrade_local_repo':
+    content => template('site/simp_upgrade_local_repo.conf.erb')
+  }
+}
+}
+open('/etc/puppet/modules/site/manifests/simp_upgrade_local_repo.pp', 'w') { |f|
+  f.puts output
+}
+if ! File.open("/etc/puppet/hieradata/hosts/#{Socket.gethostname}.yaml").lines.any? \
+{ |line| line.chomp == "  - 'site::simp_upgrade_local_repo'" }
+  open("/etc/puppet/hieradata/hosts/#{Socket.gethostname}.yaml", 'a') { |f|
+    f.puts "  - 'site::simp_upgrade_local_repo'"
+  }
+end
+puts '# Created simp_upgrade_local_repo class in site and ensured a Local repo httpd conf file.'
+
+# Replace extlookup with hiera
+print "# Enter 'yes' if you would like to recursively replace extlookup with hiera in /etc/puppet/modules/*:  "
+while user_input = gets.chomp
+case user_input
+  when 'yes'
+    %x[cd /etc/puppet/modules
+find . -type f -print0 | xargs -0 sed -i 's/extlookup/hiera/g'
+cd -]
+    puts "# Replaced all occourrences of hiera with hiera"
+    break
+  when 'no'
+    puts "# WARN: Not replacing extlookup with hiera.  This will need to be done manually before bootstrap."
+    break
+  else
+    print '# Please enter 'yes' or 'no':  '
+  end
+end
+
+# Enable puppet and bootstrap.  Run puppet twice after for cleanliness
+puts '# Enabling puppet and bootstraping.  This will take time...'
+%x[puppet agent --enable
+/usr/local/bin/simp bootstrap
+]
+puts '# Bootstrap complete.  You should run puppet agent -t until you get a clean run.'

@@ -1,15 +1,14 @@
 security_relevant_logs="if \$syslogfacility-text == 'authpriv' or \$syslogfacility-text == 'local5' or \$syslogfacility-text == 'local6' or \$syslogfacility-text == 'local7' or \$syslogpriority-text == 'emerg' or ( \$syslogfacility-text == 'kern' and \$msg startswith 'IPT:' ) then"
 pupbuildloc="/etc/puppet/build"
-use_nscd="true"
-ldap_root_hash='{SSHA}WPgZRFw8x48yxDI/9AHQNZMxCrxMR1p1WVNG'
+ldap_root_hash='{SSHA}WPgZGFw8x48yxDI/NAHQNZMUCrxMR1p1WVNG'
 puppet_ca_port="8140"
 autosign=puppet.change.me
-grub_password=grub.pbkdf2.sha512.10000.D1E70A301431EAA903DAD8AC7E04B305ED44BE24FFA1898B4377E507DB76CB6126535EF74AF7EDDF89C7ECB4CFD80153A1DE2C0D42C148195D74C03CDFF10E55.432B399E4D4103CD3C37C24537F50E7B1A6CF23686B62B0AD0262B3485557B02AE12C3D0BA182531F22AE271375A5834BA9756FB08F07C163399475B0F459DCD
+grub_password=$6$Y3AnAvsj52K3HOvh$s.BH/N1MzeTTk/5U/6C55FsG0839vCIj0RPmEaGMM4Sqz5i.VtW.RNPND1nXJKbthvUw9AKMRcNL/fucnSn/L1
 netmask=255.255.255.0
 use_ssh_global_known_hosts=true
 use_ldap="false"
 puppet_server_ip="192.168.0.111"
-ldap_sync_passwd='asoighasohgoasoghasadsihfoiog'
+ldap_sync_passwd='saodifhosaihgsaoghosiahfishaof'
 rsync_server="127.0.0.1"
 quiet_server_search='false'
 search_servers='true'
@@ -24,14 +23,14 @@ update_repos=
 basedn="dc=change,dc=me"
 ldapuri="ldap://puppet.change.me"
 ntp_servers=""
-ldap_bind_hash='{SSHA}Y2yqb9vo5nOFF0BkW+cPZXE5YXI1REFyR3ps'
-ldap_bind_pw='asoagioashoghaosihfoiasfasoghas'
+ldap_bind_hash='{SSHA}Y23qbNvr5nhFFxBkW+cP2YE5YXI1REFyR3ps'
+ldap_bind_pw='soihfoshaoghsahgshaishoihioh'
 ip=192.168.0.111
 network_device=eth0
 ldap_master_uri="ldap://puppet.change.me"
 gateway=
 hostname=puppet.change.me
-ldap_sync_hash='{SSHA}j3fawIxGB42EldVw7lhhigEsVK9EWWNOZUc1'
+ldap_sync_hash='{SSHA}j3fawIYxB4qEkdVE78hhigEsVK9EWWNOZUc1'
 log_server="none"
 dns_domain="change.me"
 dns_search="change.me"
