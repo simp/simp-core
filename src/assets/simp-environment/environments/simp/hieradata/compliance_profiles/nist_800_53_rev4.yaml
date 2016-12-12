@@ -2153,7 +2153,7 @@ compliance_map:
       value: ftp
     gnome::enable_screensaver:
       identifiers:
-      - AC-6
+      - AC-11
       value: true
     xinetd::banner:
       identifiers:
