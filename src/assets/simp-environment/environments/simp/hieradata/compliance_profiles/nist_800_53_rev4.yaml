@@ -2151,9 +2151,9 @@ compliance_map:
       - AC-6
       - IA-2
       value: ftp
-    windowmanager::gnome::include_sec:
+    gnome::enable_screensaver:
       identifiers:
-      - AC-6
+      - AC-11
       value: true
     xinetd::banner:
       identifiers:

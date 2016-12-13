@@ -215,6 +215,10 @@ fi
 /usr/local/sbin/simp_rpm_helper --rpm_dir=%{prefix} --rpm_section='postun' --rpm_status=$1 --preserve --target_dir='.'
 
 %changelog
+* Tue Dec 06 2016 Nick Markowski <nmarkowski@keywcorp.com> - 6.0.0-Alpha
+- Updated nist compliance map to reference new gnome::enable_screensaver
+  parameter.
+
 * Wed Nov 02 2016 Nick Markowski <nmarkowski@keywcorp.com> - 6.0.0-Alpha
 - Updated compliance maps to API 1.0.0 format
 
