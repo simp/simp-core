@@ -1,4 +1,5 @@
 # refs recorded for SIMP release 5.1.0-2
+# vi:syntax=ruby
 
 moduledir 'src'
 
@@ -377,3 +378,56 @@ mod 'simp-xinetd',
 mod 'simp-compliance_markup',
   :git => 'https://github.com/simp/pupmod-simp-compliance_markup',
   :ref => 'master'
+
+mod 'simp-at',
+  :git => 'https://github.com/simp/pupmod-simp-at',
+  :ref => 'master'
+
+mod 'simp-chkrootkit',
+  :git => 'https://github.com/simp/pupmod-simp-chkrootkit',
+  :ref => 'master'
+
+mod 'simp-useradd',
+  :git => 'https://github.com/simp/pupmod-simp-useradd',
+  :ref => 'master'
+
+mod 'simp-tuned',
+  :git => 'https://github.com/simp/pupmod-simp-tuned',
+  :ref => 'master'
+
+mod 'simp-incron',
+  :git => 'https://github.com/simp/pupmod-simp-incron',
+  :ref => 'master'
+
+mod 'simp-swappiness',
+  :git => 'https://github.com/simp/pupmod-simp-swappiness',
+  :ref => 'master'
+
+mod 'saz-timezone',
+  :git => 'https://github.com/simp/puppet-timezone',
+  :ref => 'simp-master'
+
+mod 'simp-cron',
+  :git => 'https://github.com/simp/pupmod-simp-cron',
+  :ref => 'master'
+
+mod 'simp-resolv',
+  :git => 'https://github.com/simp/pupmod-simp-resolv',
+  :ref => 'master'
+
+mod 'trlinkin-nsswitch',
+  :git => 'https://github.com/simp/puppet-nsswitch',
+  :ref => 'simp-master'
+
+mod 'puppetlabs-motd',
+  :git => 'https://github.com/simp/puppetlabs-motd',
+  :ref => 'simp-master'
+
+mod 'camptocamp-kmod',
+  :git => 'https://github.com/simp/puppet-kmod.git',
+  :ref => 'master'
+
+mod 'simp-fips',
+  :git => 'https://github.com/simp/pupmod-simp-fips',
+  :ref => 'master'
+
