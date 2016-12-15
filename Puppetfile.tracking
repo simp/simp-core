@@ -431,3 +431,7 @@ mod 'simp-fips',
   :git => 'https://github.com/simp/pupmod-simp-fips',
   :ref => 'master'
 
+mod 'simp-issue',
+  :git => 'https://github.com/simp/pupmod-simp-issue',
+  :ref => 'master'
+
