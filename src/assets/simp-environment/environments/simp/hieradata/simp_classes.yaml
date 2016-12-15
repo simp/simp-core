@@ -31,7 +31,7 @@ classes:
   - '::nsswitch'
   - '::motd'
   - '::tuned'
-  - '::swappiness'
+  - '::swap'
   - '::simp::kmod_blacklist'
   - '::simp::mountpoints'
   - '::simp::sysctl'

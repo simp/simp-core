@@ -399,8 +399,8 @@ mod 'simp-incron',
   :git => 'https://github.com/simp/pupmod-simp-incron',
   :ref => 'master'
 
-mod 'simp-swappiness',
-  :git => 'https://github.com/simp/pupmod-simp-swappiness',
+mod 'simp-swap',
+  :git => 'https://github.com/simp/pupmod-simp-swap',
   :ref => 'master'
 
 mod 'saz-timezone',
