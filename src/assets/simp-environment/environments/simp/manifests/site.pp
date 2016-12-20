@@ -10,7 +10,8 @@ Exec {
   ]
 }
 
-# Added to map simp to NIST 800-53 Rev4
+
+# Map SIMP parameters to NIST Special Publication 800-53, Revision 4
 $compliance_profile = 'nist_800_53_rev4'
 
 # Place Hiera customizations based on this variable in hieradata/hostgroups/${::hostgroup}.yaml
@@ -25,4 +26,8 @@ $compliance_profile = 'nist_800_53_rev4'
 #
 $hostgroup = 'default'
 
-hiera_include('classes')
+# Hiera class lookups and inclusions (replaces `hiera_include()`)
+$hiera_classes          = lookup('classes',          Array[String], 'unique', [])
+$hiera_class_exclusions = lookup('class_exclusions', Array[String], 'unique', [])
+$hiera_included_classes = $hiera_classes - $hiera_class_exclusions
+include $hiera_included_classes
