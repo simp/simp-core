@@ -1,29 +1,40 @@
+
+#  PE/SIMP versions
+#  app    pup  ruby
+# 2015.2  4.3  2.1.7
+# 2015.3  4.3  2.1.8
+# 2016.1  4.4  2.1.9
+# 2016.2  4.5  2.1.9
+# S6.0.0  4.7  2.1.9
 ---
 language: ruby
-sudo: false
+sudo: required
 cache: bundler
 before_script:
   - bundle
 bundler_args: --without development system_tests
-before_install: rm Gemfile.lock || true
+before_install:
+ - rm Gemfile.lock || true
+ - sudo apt-get update -qq
+ - sudo apt-get install -y rpm
 script:
   - bundle exec rake spec
 notifications:
   email: false
 rvm:
-  - 2.1.0
-  - 2.2.1
+  - 2.1.9
 env:
   global:
     - STRICT_VARIABLES=yes
     - TRUSTED_NODE_DATA=yes
   matrix:
+    - PUPPET_VERSION="~> 4.7.0"
+    - PUPPET_VERSION="~> 4.5.0"
+    - PUPPET_VERSION="~> 4.4.0"
     - PUPPET_VERSION="~> 4.3.0"
 matrix:
   fast_finish: true
   allow_failures:
-    - rvm: 2.2.1
-
-  exclude:
-  - rvm: 2.2.1
-    env: PUPPET_VERSION="~> 4.3.0"
+    - env: PUPPET_VERSION="~> 4.5.0"
+    - env: PUPPET_VERSION="~> 4.4.0"
+    - env: PUPPET_VERSION="~> 4.3.0"

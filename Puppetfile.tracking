@@ -23,6 +23,10 @@ mod 'bfraser-grafana',
   :git => 'https://github.com/simp/puppet-grafana',
   :ref => 'simp-master'
 
+mod 'camptocamp-kmod',
+  :git => 'https://github.com/simp/puppet-kmod.git',
+  :ref => 'master'
+
 mod 'elasticsearch-elasticsearch',
   :git => 'https://github.com/simp/puppet-elasticsearch',
   :ref => 'simp-master'
@@ -91,6 +95,10 @@ mod 'onyxpoint-gpasswd',
   :git => 'https://github.com/simp/puppet-gpasswd',
   :ref => 'simp-master'
 
+mod 'puppetlabs-apache',
+  :git => 'https://github.com/simp/puppetlabs-apache',
+  :ref => 'simp-master'
+
 mod 'puppetlabs-concat',
   :git => 'https://github.com/simp/puppetlabs-concat',
   :ref => 'simp-master'
@@ -107,6 +115,10 @@ mod 'puppetlabs-java_ks',
   :git => 'https://github.com/simp/puppetlabs-java_ks',
   :ref => 'simp-master'
 
+mod 'puppetlabs-motd',
+  :git => 'https://github.com/simp/puppetlabs-motd',
+  :ref => 'simp-master'
+
 mod 'puppetlabs-mysql',
   :git => 'https://github.com/simp/puppetlabs-mysql',
   :ref => 'simp-master'
@@ -115,16 +127,16 @@ mod 'puppetlabs-postgresql',
   :git => 'https://github.com/simp/puppetlabs-postgresql',
   :ref => 'simp-master'
 
-mod 'puppetlabs-apache',
-  :git => 'https://github.com/simp/puppetlabs-apache',
-  :ref => 'simp-master'
-
 mod 'puppetlabs-stdlib',
   :git => 'https://github.com/simp/puppetlabs-stdlib',
   :ref => 'master'
 
 mod 'richardc-datacat',
   :git => 'https://github.com/simp/puppet-datacat',
+  :ref => 'simp-master'
+
+mod 'saz-timezone',
+  :git => 'https://github.com/simp/puppet-timezone',
   :ref => 'simp-master'
 
 mod 'simp-acpid',
@@ -139,8 +151,8 @@ mod 'simp-aide',
   :git => 'https://github.com/simp/pupmod-simp-aide',
   :ref => 'master'
 
-mod 'simp-simp_apache',
-  :git => 'https://github.com/simp/pupmod-simp-apache',
+mod 'simp-at',
+  :git => 'https://github.com/simp/pupmod-simp-at',
   :ref => 'master'
 
 mod 'simp-auditd',
@@ -151,12 +163,20 @@ mod 'simp-autofs',
   :git => 'https://github.com/simp/pupmod-simp-autofs',
   :ref => 'master'
 
+mod 'simp-chkrootkit',
+  :git => 'https://github.com/simp/pupmod-simp-chkrootkit',
+  :ref => 'master'
+
 mod 'simp-clamav',
   :git => 'https://github.com/simp/pupmod-simp-clamav',
   :ref => 'master'
 
-mod 'simp-simpcat',
-  :git => 'https://github.com/simp/pupmod-simp-concat',
+mod 'simp-compliance_markup',
+  :git => 'https://github.com/simp/pupmod-simp-compliance_markup',
+  :ref => 'master'
+
+mod 'simp-cron',
+  :git => 'https://github.com/simp/pupmod-simp-cron',
   :ref => 'master'
 
 mod 'simp-dhcp',
@@ -165,6 +185,10 @@ mod 'simp-dhcp',
 
 mod 'simp-dirtycow',
   :git => 'https://github.com/simp/pupmod-simp-dirtycow.git',
+  :ref => 'master'
+
+mod 'simp-fips',
+  :git => 'https://github.com/simp/pupmod-simp-fips',
   :ref => 'master'
 
 mod 'simp-freeradius',
@@ -187,8 +211,16 @@ mod 'simp-haveged',
   :git => 'https://github.com/simp/puppet-haveged',
   :ref => 'simp-master'
 
+mod 'simp-incron',
+  :git => 'https://github.com/simp/pupmod-simp-incron',
+  :ref => 'master'
+
 mod 'simp-iptables',
   :git => 'https://github.com/simp/pupmod-simp-iptables',
+  :ref => 'master'
+
+mod 'simp-issue',
+  :git => 'https://github.com/simp/pupmod-simp-issue',
   :ref => 'master'
 
 mod 'simp-jenkins',
@@ -283,6 +315,10 @@ mod 'simp-puppetdb',
   :git => 'https://github.com/simp/puppetlabs-puppetdb',
   :ref => 'simp-master'
 
+mod 'simp-resolv',
+  :git => 'https://github.com/simp/pupmod-simp-resolv',
+  :ref => 'master'
+
 mod 'simp-rsync',
   :git => 'https://github.com/simp/pupmod-simp-rsync',
   :ref => 'master'
@@ -297,6 +333,14 @@ mod 'simp-selinux',
 
 mod 'simp-simp',
   :git => 'https://github.com/simp/pupmod-simp-simp',
+  :ref => 'master'
+
+mod 'simp-simpcat',
+  :git => 'https://github.com/simp/pupmod-simp-concat',
+  :ref => 'master'
+
+mod 'simp-simp_apache',
+  :git => 'https://github.com/simp/pupmod-simp-apache',
   :ref => 'master'
 
 mod 'simp-simp_elasticsearch',
@@ -347,6 +391,10 @@ mod 'simp-svckill',
   :git => 'https://github.com/simp/pupmod-simp-svckill',
   :ref => 'master'
 
+mod 'simp-swap',
+  :git => 'https://github.com/simp/pupmod-simp-swap',
+  :ref => 'master'
+
 mod 'simp-tcpwrappers',
   :git => 'https://github.com/simp/pupmod-simp-tcpwrappers',
   :ref => 'master'
@@ -357,6 +405,10 @@ mod 'simp-tftpboot',
 
 mod 'simp-tpm',
   :git => 'https://github.com/simp/pupmod-simp-tpm',
+  :ref => 'master'
+
+mod 'simp-tuned',
+  :git => 'https://github.com/simp/pupmod-simp-tuned',
   :ref => 'master'
 
 mod 'simp-upstart',
@@ -375,63 +427,11 @@ mod 'simp-xinetd',
   :git => 'https://github.com/simp/pupmod-simp-xinetd',
   :ref => 'master'
 
-mod 'simp-compliance_markup',
-  :git => 'https://github.com/simp/pupmod-simp-compliance_markup',
-  :ref => 'master'
-
-mod 'simp-at',
-  :git => 'https://github.com/simp/pupmod-simp-at',
-  :ref => 'master'
-
-mod 'simp-chkrootkit',
-  :git => 'https://github.com/simp/pupmod-simp-chkrootkit',
-  :ref => 'master'
-
 mod 'simp-useradd',
   :git => 'https://github.com/simp/pupmod-simp-useradd',
-  :ref => 'master'
-
-mod 'simp-tuned',
-  :git => 'https://github.com/simp/pupmod-simp-tuned',
-  :ref => 'master'
-
-mod 'simp-incron',
-  :git => 'https://github.com/simp/pupmod-simp-incron',
-  :ref => 'master'
-
-mod 'simp-swap',
-  :git => 'https://github.com/simp/pupmod-simp-swap',
-  :ref => 'master'
-
-mod 'saz-timezone',
-  :git => 'https://github.com/simp/puppet-timezone',
-  :ref => 'simp-master'
-
-mod 'simp-cron',
-  :git => 'https://github.com/simp/pupmod-simp-cron',
-  :ref => 'master'
-
-mod 'simp-resolv',
-  :git => 'https://github.com/simp/pupmod-simp-resolv',
   :ref => 'master'
 
 mod 'trlinkin-nsswitch',
   :git => 'https://github.com/simp/puppet-nsswitch',
   :ref => 'simp-master'
-
-mod 'puppetlabs-motd',
-  :git => 'https://github.com/simp/puppetlabs-motd',
-  :ref => 'simp-master'
-
-mod 'camptocamp-kmod',
-  :git => 'https://github.com/simp/puppet-kmod.git',
-  :ref => 'master'
-
-mod 'simp-fips',
-  :git => 'https://github.com/simp/pupmod-simp-fips',
-  :ref => 'master'
-
-mod 'simp-issue',
-  :git => 'https://github.com/simp/pupmod-simp-issue',
-  :ref => 'master'
 
