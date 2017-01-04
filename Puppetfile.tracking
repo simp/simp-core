@@ -271,10 +271,6 @@ mod 'simp-nfs',
   :git => 'https://github.com/simp/pupmod-simp-nfs',
   :ref => 'master'
 
-mod 'simp-nscd',
-  :git => 'https://github.com/simp/pupmod-simp-nscd',
-  :ref => 'master'
-
 mod 'simp-ntpd',
   :git => 'https://github.com/simp/pupmod-simp-ntpd',
   :ref => 'master'
