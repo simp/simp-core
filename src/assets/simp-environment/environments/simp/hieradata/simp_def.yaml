@@ -11,8 +11,8 @@
 # the SIMP code now validates option types whenever reasonable.      #
 #                                                                    #
 # For more information on how to use Hiera, see:                     #
-#   * http://docs.puppetlabs.com/hiera/1/puppet.html                 #
-#   * http://docs.puppetlabs.com/hiera/1/complete_example.html       #
+#   * http://docs.puppetlabs.com/hiera/latest/puppet.html            #
+#   * http://docs.puppetlabs.com/hiera/latest/complete_example.html  #
 #                                                                    #
 ######################################################################
 

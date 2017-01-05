@@ -224,10 +224,6 @@ mod 'simp-nfs',
   :git => 'https://github.com/simp/pupmod-simp-nfs',
   :ref => '243361d38726fdfea26ee3a349009b6d75aa2e21'
 
-mod 'simp-nscd',
-  :git => 'https://github.com/simp/pupmod-simp-nscd',
-  :ref => 'b3010a717cf8d4706b0c24782acf36fd8b2726af'
-
 mod 'simp-ntpd',
   :git => 'https://github.com/simp/pupmod-simp-ntpd',
   :ref => '34f76d9e0e585b20de83b2f46f7c1337d8b5e748'

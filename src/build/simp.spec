@@ -52,7 +52,6 @@ Requires: pupmod-simp-mcollective >= 3.0.0-2016, pupmod-simp-mcollective < 4.0.0
 Requires: pupmod-simp-named >= 5.0.0, pupmod-simp-named < 6.0.0
 Requires: pupmod-simp-network >= 5.0.0, pupmod-simp-network < 6.0.0
 Requires: pupmod-simp-nfs >= 5.0.0, pupmod-simp-nfs < 6.0.0
-Requires: pupmod-simp-nscd >= 6.0.0, pupmod-simp-nscd < 7.0.0
 Requires: pupmod-simp-ntpd >= 5.0.0, pupmod-simp-ntpd < 6.0.0
 Requires: pupmod-simp-oddjob >= 2.0.0-2016, pupmod-simp-oddjob < 3.0.0
 Requires: pupmod-simp-openldap >= 5.0.0, pupmod-simp-openldap < 6.0.0
