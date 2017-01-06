@@ -17,7 +17,7 @@
   - 'hostgroups/%{::hostgroup}'
   - 'default'
   - 'compliance_profiles/%{::compliance_profile}'
-  - 'simp/catalysts'
+  - 'simp/cli'
   - 'simp/%{::simp_level}'
 :logger: 'puppet'
 # When specifying a datadir:
