@@ -351,6 +351,10 @@ mod 'simp-simp_logstash',
   :git => 'https://github.com/simp/pupmod-simp-simp_logstash',
   :ref => 'master'
 
+mod 'simp-simp_rsyslog',
+  :git => 'https://github.com/simp/pupmod-simp-simp_rsyslog',
+  :ref => 'master'
+
 mod 'simp-simplib',
   :git => 'https://github.com/simp/pupmod-simp-simplib',
   :ref => 'master'

@@ -2,7 +2,7 @@
 ######################################################################
 #                                                                    #
 # This file contains the default class set that configures a default #
-# SIMP system.                                                       #
+# SIMP-lite system.                                                  #
 #                                                                    #
 # Feel free to trim these down, or add to them as necessary.         #
 #                                                                    #
@@ -16,7 +16,18 @@
 #                                                                    #
 ######################################################################
 
+# Set some catalysts off that may cause issues
+simp_options::firewall: false
+simp_options::selinux: false
+simp_options::fips: false
+
+# === YUM Options ===
+simp::yum::servers:
+  - "%{hiera('simp_options::puppet::server')}"
+
 classes:
+  # Set up the puppet server or client as appropriate for your system.
+  - 'pupmod'
   - 'aide'
   - 'auditd'
   # Virus scanning.
@@ -34,16 +45,10 @@ classes:
   - 'swap'
   - 'timezone'
   - 'ntpd'
-  # Set up the access.conf basics, allow root locally and deny
-  # everyone else from everywhere by default.
-  - 'pam::access'
   # Enable 'wheel' access controls.
   - 'pam::wheel'
-  # Set up the puppet server or client as appropriate for your system.
-  - 'pupmod'
   # We certainly want logging
-  - 'simp::rsyslog::stock'
-  - 'selinux'
+  - 'simp_rsyslog'
   # Simp base class
   - 'simp'
   # Set up the administrators group
@@ -55,7 +60,7 @@ classes:
   # technically optional.
   - 'simp::base_services'
   # This sets up an update schedule.
-  # You should set variables under the simplib::yum_schedule namespace to
+  # You should set variables under the simp::yum namespace to
   # disable updates from specific repositories.
   - 'simp::yum'
   # Blacklists several kernel modules, per compliance guidelines.
@@ -67,9 +72,6 @@ classes:
   # Set up the SSH server and client.
   - 'ssh'
   - 'sudosh'
-  # We want to ensure that only the services we define in Puppet are
-  # goig to be enabled and run.
-  - 'svckill'
   # Add TPM support by default. This will grow over time but, if you have a
   # TPM, you most likely want to use it!
   - 'tpm'
