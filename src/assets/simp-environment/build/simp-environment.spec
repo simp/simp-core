@@ -78,7 +78,6 @@ cd -
 %files
 %defattr(0640,root,puppet,0750)
 %{prefix}
-%config(noreplace) %attr(0660,-,-) %{prefix}/localusers
 %attr(0750,puppet,puppet) %{prefix}/simp_autofiles
 %attr(0750,root,puppet) %{_var}/simp/environments/simp/site_files
 %attr(0750,root,puppet) %{_var}/simp/environments/simp/site_files/krb5_files
@@ -215,20 +214,17 @@ fi
 /usr/local/sbin/simp_rpm_helper --rpm_dir=%{prefix} --rpm_section='postun' --rpm_status=$1 --preserve --target_dir='.'
 
 %changelog
-* Tue Dec 06 2016 Nick Markowski <nmarkowski@keywcorp.com> - 6.0.0-Alpha
-- Updated nist compliance map to reference new gnome::enable_screensaver
-  parameter.
-
-* Wed Nov 02 2016 Nick Markowski <nmarkowski@keywcorp.com> - 6.0.0-Alpha
-- Updated compliance maps to API 1.0.0 format
-
-* Tue Oct 25 2016 Nick Markowski <nmarkowski@keywcorp.com> - 6.0.0-Alpha
-- Updated hieradata to reflect changes in puppetdb (SIMP-1450)
-
-* Fri Sep 16 2016 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.0.0-Alpha
+* Fri Jan 06 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.0.0-Alpha
+- Eliminated the 'localusers' capability
 - Changed the name to simp-environment
 - Ripped out all of the legacy materials
 - Upated to use the simp-adapter RPM helper
+
+* Tue Dec 06 2016 Nick Markowski <nmarkowski@keywcorp.com> - 6.0.0-Alpha
+- Updated nist compliance map to reference new gnome::enable_screensaver
+  parameter.
+- Updated compliance maps to API 1.0.0 format
+- Updated hieradata to reflect changes in puppetdb (SIMP-1450)
 
 * Thu Sep 01 2016 Ralph Wright <ralph.wright@onyxpoint.com> - 5.3.2-0
 - Modified compliance files to handle updated audit rules.
