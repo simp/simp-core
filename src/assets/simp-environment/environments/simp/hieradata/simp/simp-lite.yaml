@@ -6,20 +6,29 @@
 #                                                                    #
 # Feel free to trim these down, or add to them as necessary.         #
 #                                                                    #
-# However, if you remove classes you should add them to downstream   #
-# files if possible so that the settings are applied as uniformly as #
-# possible.                                                          #
-#                                                                    #
 # For more information on how to use Hiera, see:                     #
 #   * http://docs.puppetlabs.com/hiera/latest/puppet.html            #
 #   * http://docs.puppetlabs.com/hiera/latest/complete_example.html  #
 #                                                                    #
 ######################################################################
 
-# Set some catalysts off that may cause issues
+# SIMP-lite scenario defaults
+simp_options::auditd: true
+simp_options::clamav: true
+simp_options::haveged: true
+simp_options::logrotate: true
+simp_options::pam: true
+simp_options::ldap: true
+simp_options::syslog: true
+
+# These settings are turned off in the scenario
 simp_options::firewall: false
+simp_options::kerberos: false
+simp_options::pki: false
 simp_options::selinux: false
-simp_options::fips: false
+# WARNING: trusted_nets may still need to be set, but there can be no default provided!
+#simp_options::trusted_nets:
+
 
 classes:
   # Set up the puppet server or client as appropriate for your system.

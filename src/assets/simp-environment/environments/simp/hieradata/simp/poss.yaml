@@ -5,8 +5,9 @@
 # If you are beginning to use SIMP and don't want to include any clases by default,
 # this is the scenario for you.
 #
-# Any parameters added here will be applied to every system as defined by the
-# hostgroup variable
+# SIMP catalysts defined in simp_options all default to `false` and are disabled
+# by default, allowing you to set up your infrastructure as you need,
+# piece by piece.
 #
 # See `manifests/site.pp` for an example use case for the $simp_scenario variable.
 #

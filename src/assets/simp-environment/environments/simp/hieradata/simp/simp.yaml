@@ -6,15 +6,28 @@
 #                                                                    #
 # Feel free to trim these down, or add to them as necessary.         #
 #                                                                    #
-# However, if you remove classes you should add them to downstream   #
-# files if possible so that the settings are applied as uniformly as #
-# possible.                                                          #
-#                                                                    #
 # For more information on how to use Hiera, see:                     #
 #   * http://docs.puppetlabs.com/hiera/latest/puppet.html            #
 #   * http://docs.puppetlabs.com/hiera/latest/complete_example.html  #
 #                                                                    #
 ######################################################################
+
+# SIMP scenario defaults
+simp_options::auditd: true
+simp_options::clamav: true
+simp_options::firewall: true
+simp_options::haveged: true
+simp_options::ipsec: true
+simp_options::kerberos: true
+simp_options::ldap: true
+simp_options::logrotate: true
+simp_options::pam: true
+simp_options::pki: simp
+simp_options::selinux: true
+simp_options::sssd: true
+simp_options::syslog: true
+# WARNING: trusted_nets still needs to be set, but there can be no default provided!
+#simp_options::trusted_nets:
 
 classes:
   - 'aide'
