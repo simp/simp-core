@@ -1,10 +1,10 @@
 ---
-# This must be a copy of at least 'trusted_nets' from simp/catalysts.yaml if
-# you want this to cover your base YUM repo services.
+# This must contain 'trusted_nets' if you want this to cover your base YUM
+# repo services.
 #
 # We don't enable non-TLS connections by default. All SIMP services should now
 # be able to use TLS for all connections.
-simp_apache::conf::ssl::trusted_nets: "%{alias('simp_optionstrusted_nets')}"
+simp_apache::conf::ssl::trusted_nets: "%{alias('simp_options::trusted_nets')}"
 
 # We disable the SSL client validation for the Kickstart server. There is no
 # way to validate a default image without embedding a certificate in the image

@@ -18,7 +18,7 @@ Exec {
 #   * `simp-lite` - makes use of many of our modules, but doesn't apply
 #        any prohibitive security or compliance features
 #   * `poss` or any other setting - don't include any classes by default
-$simp_level = 'simp'
+$simp_scenario = 'simp'
 
 # Map SIMP parameters to NIST Special Publication 800-53, Revision 4
 # See hieradata/compliance_profiles/ for more options.

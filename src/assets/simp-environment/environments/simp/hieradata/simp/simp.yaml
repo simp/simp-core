@@ -16,10 +16,6 @@
 #                                                                    #
 ######################################################################
 
-# === YUM Options ===
-simp::yum::servers:
-  - "%{hiera('simp_options::puppet::server')}"
-
 classes:
   - 'aide'
   - 'auditd'

@@ -21,10 +21,6 @@ simp_options::firewall: false
 simp_options::selinux: false
 simp_options::fips: false
 
-# === YUM Options ===
-simp::yum::servers:
-  - "%{hiera('simp_options::puppet::server')}"
-
 classes:
   # Set up the puppet server or client as appropriate for your system.
   - 'pupmod'

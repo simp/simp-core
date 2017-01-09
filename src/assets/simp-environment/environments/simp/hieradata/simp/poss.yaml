@@ -1,9 +1,14 @@
 ---
-# This folder will be populated by running the `simp config` command.
+
+# This is the empty SIMP scenario hiera file
 #
-# This is the default cli hiera file
+# If you are beginning to use SIMP and don't want to include any clases by default,
+# this is the scenario for you.
+#
 # Any parameters added here will be applied to every system as defined by the
 # hostgroup variable
+#
+# See `manifests/site.pp` for an example use case for the $simp_scenario variable.
 #
 # Hiera crashes if there are empty files, so
 # please remove the following line if you use this file
