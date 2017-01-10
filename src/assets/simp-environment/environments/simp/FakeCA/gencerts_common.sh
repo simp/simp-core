@@ -2,16 +2,21 @@
 
 # Common functions for gencerts items.
 
-keydist='../modules/pki/files/keydist'
+# If production is a symlink to simp, then we should probably send certs to site_files
+if [ -L /etc/puppetlabs/code/environments/production ]; then
+  keydist='/var/simp/environments/simp/site_files/pki_files/files/keydist'
+else
+  keydist='/var/simp/environments/`puppet config print environment`/site_files/pki_files/files/keydist'
+fi
 CA_src='/etc/pki/tls/misc/CA'
 
 export CATOP="`pwd`/demoCA"
 
 check_cacerts () {
-if [ ! -f cacertkey ]; then
-  dd if=/dev/urandom status=none bs=60 count=1 | openssl base64 -e -nopad | tr -d '\n' > cacertkey
-  echo '' >> cacertkey
-fi
+  if [ ! -f cacertkey ]; then
+    dd if=/dev/urandom status=none bs=60 count=1 | openssl base64 -e -nopad | tr -d '\n' > cacertkey
+    echo '' >> cacertkey
+  fi
 }
 
 create_ca () {
