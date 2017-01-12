@@ -187,16 +187,6 @@ else
   fi
 fi
 
-# Need to make sure our keydist stub is here prior to fully porting to the new
-# way of doing things.
-(
-  cd %{prefix}
-
-  if [ ! -d 'keydist' ]; then
-    ln -s modules/pki/files/keydist
-  fi
-)
-
 # Needed for migrating the environment data into the codedir
 /usr/local/sbin/simp_rpm_helper --rpm_dir=%{prefix} --rpm_section='post' --rpm_status=$1 --preserve --target_dir='.'
 
@@ -214,11 +204,16 @@ fi
 /usr/local/sbin/simp_rpm_helper --rpm_dir=%{prefix} --rpm_section='postun' --rpm_status=$1 --preserve --target_dir='.'
 
 %changelog
+* Tue Jan 10 2017 Nick Miller <nick.miller@onyxpoint.com> - 6.0.0-Alpha
+- Moved the default location of keydist from the normal puppet environment and
+  modulepath to /var/simp/environments/simp/site_files/pki_files/files/keydist,
+  which won't be overwritten or deleted when using r10k and a control repo.
+
 * Fri Jan 06 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.0.0-Alpha
 - Eliminated the 'localusers' capability
 - Changed the name to simp-environment
 - Ripped out all of the legacy materials
-- Upated to use the simp-adapter RPM helper
+- Updated to use the simp-adapter RPM helper
 
 * Tue Dec 06 2016 Nick Markowski <nmarkowski@keywcorp.com> - 6.0.0-Alpha
 - Updated nist compliance map to reference new gnome::enable_screensaver

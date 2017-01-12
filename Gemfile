@@ -2,7 +2,6 @@
 #
 # SIMP_GEM_SERVERS | a space/comma delimited list of rubygem servers
 # PUPPET_VERSION   | specifies the version of the puppet gem to load
-puppetversion = ENV.key?('PUPPET_VERSION') ? "#{ENV['PUPPET_VERSION']}" : ['~>4']
 gem_sources   = ENV.key?('SIMP_GEM_SERVERS') ? ENV['SIMP_GEM_SERVERS'].split(/[, ]+/) : ['https://rubygems.org']
 
 gem_sources.each { |gem_source| source gem_source }
@@ -21,11 +20,12 @@ end
 gem 'bundler'
 gem 'rake'
 gem 'coderay'
-gem 'puppet', puppetversion
+gem 'puppet', ENV.fetch('PUPPET_VERSION', '~>4')
 gem 'puppet-lint'
+gem 'puppet-strings'
 gem 'puppetlabs_spec_helper'
-gem 'simp-rake-helpers', '~>3.1'
-gem 'simp-build-helpers', '>=0.1.0'
+gem 'simp-rake-helpers', ENV.fetch('SIMP_RAKE_HELPERS_VERSION', '~> 3.1')
+gem 'simp-build-helpers', ENV.fetch('SIMP_RAKE_HELPERS_VERSION', '>=0.1.0')
 gem 'parallel'
 gem 'dotenv'
 gem 'ruby-progressbar'
@@ -34,7 +34,7 @@ gem 'google-api-client', '0.9.4'
 group :system_tests do
   gem 'beaker', :git => 'https://github.com/trevor-vaughan/beaker.git', :branch => 'BKR-931-2.51.0'
   gem 'beaker-rspec'
-  gem 'simp-beaker-helpers', '>= 1.0.5'
+  gem 'simp-beaker-helpers', ENV.fetch('SIMP_BEAKER_HELPERS_VERSION', '~> 1.5')
 end
 
 # nice-to-have gems (for debugging)
