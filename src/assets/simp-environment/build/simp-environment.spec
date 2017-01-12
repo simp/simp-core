@@ -7,15 +7,15 @@
 Summary: The SIMP Environment Scaffold
 Name: simp-environment
 Version: 6.0.0
-Release: Alpha2
+Release: 0 
 License: Apache License 2.0
 Group: Applications/System
 Source: %{name}-%{version}-%{release}.tar.gz
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Requires: libselinux-utils
 Requires: policycoreutils
-Requires: pupmod-simp-simp >= 0.0.1
-Requires: pupmod-simp-pki >= 4.1.0-3
+Requires: pupmod-simp-simp >= 3.0.0
+Requires: pupmod-simp-pki >= 6.0.0-0
 Requires: createrepo
 Requires: simp-rsync >= 5.0.0-3
 Requires: simp-utils >= 5.0.0-5
@@ -42,7 +42,6 @@ Obsoletes: simp-config < %{version}-%{release}
 Buildarch: noarch
 
 Prefix: /usr/share/simp/environments/simp
-
 %description
 
 Contains template files and directories for initially setting up a SIMP server
@@ -87,15 +86,16 @@ cd -
 %config(noreplace) %{prefix}/hieradata/RedHat/6.yaml
 %config(noreplace) %{prefix}/hieradata/hosts/puppet.your.domain.yaml
 %config(noreplace) %{prefix}/hieradata/hostgroups/default.yaml
-%config(noreplace) %{prefix}/hieradata/simp_classes.yaml
-%config(noreplace) %{prefix}/hieradata/simp_def.yaml
+%config(noreplace) %{prefix}/hieradata/simp/site/default.yaml
+%config(noreplace) %{prefix}/hieradata/simp/simp.yaml
+%config(noreplace) %{prefix}/hieradata/simp/simp-lite.yaml
+%config(noreplace) %{prefix}/hieradata/simp/poss.yaml
 %config(noreplace) %{prefix}/hieradata/default.yaml
 %config(noreplace) %{prefix}/manifests/site.pp
 %config(noreplace) %{prefix}/FakeCA/togen
 %config(noreplace) %{prefix}/FakeCA/usergen
 %config(noreplace) %{prefix}/hieradata/compliance_profiles/nist_800_53_rev4.yaml
 %config(noreplace) %{prefix}/hieradata/compliance_profiles/disa_stig_el7.yaml
-
 %defattr(0640,root,root,0750)
 %{_datadir}/selinux/*/%{selinux_policy}
 %{prefix}/FakeCA
