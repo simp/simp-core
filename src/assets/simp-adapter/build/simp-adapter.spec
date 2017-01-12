@@ -16,7 +16,13 @@ Requires: rsync
 Requires(post): puppet
 Requires(post): puppetserver
 Requires(post): puppetdb
+%if 0%{?redhat} == 6 || 0%{?centos} == 6
+Requires(post): procps
+%endif
+%if 0%{?redhat} == 7 || 0%{?centos} == 7
 Requires(post): procps-ng
+%endif
+
 Requires: puppet-agent < 2.0.0
 Requires: puppet-agent >= 1.6.2
 Requires: puppet-client-tools < 2.0.0
