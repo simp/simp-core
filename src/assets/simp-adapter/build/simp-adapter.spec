@@ -16,12 +16,8 @@ Requires: rsync
 Requires(post): puppet
 Requires(post): puppetserver
 Requires(post): puppetdb
-%if 0%{?redhat} == 6 || 0%{?centos} == 6
-Requires(post): procps
-%endif
-%if 0%{?redhat} == 7 || 0%{?centos} == 7
-Requires(post): procps-ng
-%endif
+%{?el6:Requires(post): procps}
+%{?el7:Requires(post): procps-ng}
 
 Requires: puppet-agent < 2.0.0
 Requires: puppet-agent >= 1.6.2
@@ -34,6 +30,7 @@ Requires: puppetdb-termini >= 4.2.2
 Requires: puppetserver < 3.0.0
 Requires: puppetserver >= 2.6.0
 Provides: simp-adapter = %{version}
+Provides: simp-adapter-foss = %{version}
 
 %package pe
 Summary: SIMP Adapter for the Puppet Enterprise Puppet Installation
@@ -42,7 +39,8 @@ Requires: rsync
 Requires(post): puppet-agent
 Requires(post): pe-puppetserver
 Requires(post): pe-puppetdb
-Requires(post): procps-ng
+%{?el6:Requires(post): procps}
+%{?el7:Requires(post): procps-ng}
 Requires: puppet-agent < 2.0.0
 Requires: puppet-agent >= 1.6.2
 Requires: pe-client-tools >= 15.0.0
