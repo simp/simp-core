@@ -79,6 +79,8 @@ which
 yum-utils
 zip
 # Puppet stuff
+#Make sure adapter for open source puppet is installed
+simp-adapter-foss
 simp
 rsync
 facter

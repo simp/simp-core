@@ -50,6 +50,7 @@ Requires: pe-puppetdb-termini < 5.0.0
 Requires: pe-puppetdb-termini >= 4.2.2
 Requires: pe-puppetserver >= 2015.0.0
 Provides: simp-adapter = %{version}
+Provides: simp-adapter-foss = %{version}
 
 %description
 An adapter RPM for gluing together a SIMP version with the AIO Puppet
