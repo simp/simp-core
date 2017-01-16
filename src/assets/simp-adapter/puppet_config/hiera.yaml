@@ -17,8 +17,8 @@
   - 'hostgroups/%{::hostgroup}'
   - 'default'
   - 'compliance_profiles/%{::compliance_profile}'
-  - 'simp/site'
-  - 'simp/%{::simp_scenario}'
+  - 'simp_config_overrides.yaml'
+  - 'scenarios/%{::simp_scenario}'
 :logger: 'puppet'
 # When specifying a datadir:
 # # 1) Make sure the directory exists
