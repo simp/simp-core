@@ -7,7 +7,7 @@
 Summary: The SIMP Environment Scaffold
 Name: simp-environment
 Version: 6.0.0
-Release: 0 
+Release: 0
 License: Apache License 2.0
 Group: Applications/System
 Source: %{name}-%{version}-%{release}.tar.gz
@@ -17,8 +17,8 @@ Requires: policycoreutils
 Requires: pupmod-simp-simp >= 3.0.0
 Requires: pupmod-simp-pki >= 6.0.0-0
 Requires: createrepo
-Requires: simp-rsync >= 5.0.0-3
-Requires: simp-utils >= 5.0.0-5
+Requires: simp-rsync >= 6.0.0-0
+Requires: simp-utils >= 6.0.0-0
 Requires: rubygem(simp-cli) >= 1.0.0-0
 Requires: openssl
 Requires(pre,preun,post,postun): simp-adapter
