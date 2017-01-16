@@ -1,0 +1,7 @@
+== Hiera SIMP Site Directory ==
+
+This directory will be populated with a yaml file containing answers to
+questions given by `simp config`. Any Hieradata or yaml files dropped in this
+folder will overwrite any defaults provided by any SIMP scenario. However, more
+specific level of Hiera, such as hostgroups or hosts, will overwrite any data
+placed here.

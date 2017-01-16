@@ -18,7 +18,6 @@ simp_apache::ssl::sslverifyclient: 'none'
 # always hit first.
 #
 # You should change this if using external yum repositories.
-#
 simp::yum::enable_simp_repos: false
 simp::yum::enable_os_repos: false
 
@@ -33,12 +32,8 @@ puppetdb::master::config::puppet_service_name: 'puppetserver'
 puppetdb::globals::version: 'latest'
 
 # Let pupmod::master::base handle this.
-#
 puppetdb::master::config::restart_puppet: false
 
 classes:
   - 'simp::server'
   - 'simp::puppetdb'
-  - 'simp::server::ldap'
-  - 'simp::server::yum'
-  - 'simp::server::kickstart_server'

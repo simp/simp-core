@@ -11,7 +11,7 @@ Exec {
 }
 
 
-# SIMP level
+# SIMP Scenarios
 #
 # Set this variable to make use of the different class sets in heiradata/simp:
 #   * `simp` - compliant and secure
@@ -35,6 +35,9 @@ $compliance_profile = 'nist_800_53_rev4'
 #   }
 #
 $hostgroup = 'default'
+
+# Include the simp_options class to ensure that defaults provided there can be found:
+include '::simp_options'
 
 # Add Puppet classes to the `classes` array in hiera to add them to the system.
 # For special cases where a class needs to be removed from the classes array, you

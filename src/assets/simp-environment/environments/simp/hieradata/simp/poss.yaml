@@ -11,6 +11,7 @@
 #
 # See `manifests/site.pp` for an example use case for the $simp_scenario variable.
 #
-# Hiera crashes if there are empty files, so
-# please remove the following line if you use this file
-this_is_another_example_key: 'that does nothing'
+
+classes:
+  # Set up as a Puppet client
+  - pupmod

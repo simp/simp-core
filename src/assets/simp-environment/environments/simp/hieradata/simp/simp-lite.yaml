@@ -20,19 +20,19 @@ simp_options::logrotate: true
 simp_options::pam: true
 simp_options::ldap: true
 simp_options::syslog: true
+simp_options::stunnel: true
+simp_options::tcpwrappers: true
 
 # These settings are turned off in the scenario
 simp_options::firewall: false
 simp_options::kerberos: false
-simp_options::pki: false
+simp_options::pki: simp
 simp_options::selinux: false
 # WARNING: trusted_nets may still need to be set, but there can be no default provided!
 #simp_options::trusted_nets:
-
+#  - <subnet>
 
 classes:
-  # Set up the puppet server or client as appropriate for your system.
-  - 'pupmod'
   - 'aide'
   - 'auditd'
   # Virus scanning.
@@ -52,6 +52,8 @@ classes:
   - 'ntpd'
   # Enable 'wheel' access controls.
   - 'pam::wheel'
+  # Set up the Puppet agent as appropriate for your system.
+  - 'pupmod'
   # We certainly want logging
   - 'simp_rsyslog'
   # Simp base class
@@ -77,6 +79,3 @@ classes:
   # Set up the SSH server and client.
   - 'ssh'
   - 'sudosh'
-  # Add TPM support by default. This will grow over time but, if you have a
-  # TPM, you most likely want to use it!
-  - 'tpm'

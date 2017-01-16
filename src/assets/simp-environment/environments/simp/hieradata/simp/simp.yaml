@@ -17,17 +17,22 @@ simp_options::auditd: true
 simp_options::clamav: true
 simp_options::firewall: true
 simp_options::haveged: true
-simp_options::ipsec: true
-simp_options::kerberos: true
 simp_options::ldap: true
 simp_options::logrotate: true
 simp_options::pam: true
 simp_options::pki: simp
 simp_options::selinux: true
 simp_options::sssd: true
+simp_options::stunnel: true
 simp_options::syslog: true
+simp_options::tcpwrappers: true
 # WARNING: trusted_nets still needs to be set, but there can be no default provided!
 #simp_options::trusted_nets:
+#  - <subnet>
+
+# Options that are not suggested to be turned on by default:
+simp_options::ipsec: false
+simp_options::kerberos: false
 
 classes:
   - 'aide'
@@ -52,7 +57,7 @@ classes:
   - 'pam::access'
   # Enable 'wheel' access controls.
   - 'pam::wheel'
-  # Set up the puppet server or client as appropriate for your system.
+  # Set up the Puppet agent as appropriate for your system.
   - 'pupmod'
   # We certainly want logging
   - 'simp_rsyslog'
@@ -83,6 +88,3 @@ classes:
   # We want to ensure that only the services we define in Puppet are
   # goig to be enabled and run.
   - 'svckill'
-  # Add TPM support by default. This will grow over time but, if you have a
-  # TPM, you most likely want to use it!
-  - 'tpm'
