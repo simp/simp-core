@@ -17,7 +17,7 @@ Exec {
 #   * `simp` - compliant and secure
 #   * `simp-lite` - makes use of many of our modules, but doesn't apply
 #        any prohibitive security or compliance features
-#   * `poss` or any other setting - don't include any classes by default
+#   * `poss` or any other setting - only include pupmod by default to configure the agent
 $simp_scenario = 'poss'
 
 # Map SIMP parameters to NIST Special Publication 800-53, Revision 4
@@ -37,6 +37,7 @@ $compliance_profile = 'nist_800_53_rev4'
 $hostgroup = 'default'
 
 # Include the simp_options class to ensure that defaults provided there can be found:
+# See the docs for more info: http://www.puppetmodule.info/github/simp/pupmod-simp-simp_options/master/
 include '::simp_options'
 
 # Add Puppet classes to the `classes` array in hiera to add them to the system.

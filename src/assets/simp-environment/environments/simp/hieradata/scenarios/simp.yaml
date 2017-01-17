@@ -12,6 +12,13 @@
 #                                                                    #
 ######################################################################
 
+### SIMP Options ###
+# The following settings in the simp_options namespace reference site or environment
+# settings essential to SIMP's functionality. This list is not comprehensive.
+#
+# Please see the simp_options module for documentation.
+# http://www.puppetmodule.info/github/simp/pupmod-simp-simp_options/master/
+
 # SIMP scenario defaults
 simp_options::auditd: true
 simp_options::clamav: true
@@ -26,9 +33,6 @@ simp_options::sssd: true
 simp_options::stunnel: true
 simp_options::syslog: true
 simp_options::tcpwrappers: true
-# WARNING: trusted_nets still needs to be set, but there can be no default provided!
-#simp_options::trusted_nets:
-#  - <subnet>
 
 # Options that are not suggested to be turned on by default:
 simp_options::ipsec: false
