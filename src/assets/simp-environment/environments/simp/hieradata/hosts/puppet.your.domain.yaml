@@ -37,3 +37,4 @@ puppetdb::master::config::restart_puppet: false
 classes:
   - 'simp::server'
   - 'simp::puppetdb'
+

@@ -5,3 +5,4 @@ classes:
   # NOTE: you *can not* use gfs2 with acpid!
   - 'acpid'
   - 'upstart'
+
