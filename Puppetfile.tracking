@@ -195,10 +195,6 @@ mod 'simp-freeradius',
   :git => 'https://github.com/simp/pupmod-simp-freeradius',
   :ref => 'master'
 
-mod 'simp-ganglia',
-  :git => 'https://github.com/simp/pupmod-simp-ganglia',
-  :ref => 'master'
-
 mod 'simp-gdm',
   :git => 'https://github.com/simp/pupmod-simp-gdm',
   :ref => 'master'
@@ -365,10 +361,6 @@ mod 'simp-simplib',
 
 mod 'simp-site',
   :git => 'https://github.com/simp/pupmod-simp-site',
-  :ref => 'master'
-
-mod 'simp-snmpd',
-  :git => 'https://github.com/simp/pupmod-simp-snmpd',
   :ref => 'master'
 
 mod 'simp-ssh',

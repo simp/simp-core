@@ -229,8 +229,6 @@ freetype
 freetype-devel
 gamin
 gamin-python
-ganglia-gmetad
-ganglia-gmond
 gawk
 gcc
 gcc-c++
@@ -554,8 +552,6 @@ libffi
 libfontenc
 libfprint
 libgail-gnome
-libganglia
-libganglia-3_1_0
 libgcc
 libgcj
 libgcj-devel

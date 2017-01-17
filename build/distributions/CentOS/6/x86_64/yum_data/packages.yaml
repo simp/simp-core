@@ -77,21 +77,6 @@ freeradius-ldap:
 freeradius-utils:
   :rpm_name: freeradius-utils-2.2.6-6.el6_7.x86_64.rpm
   :source: http://mirrors.gigenet.com/centos/6.8/os/x86_64/Packages/freeradius-utils-2.2.6-6.el6_7.x86_64.rpm
-ganglia:
-  :rpm_name: ganglia-3.7.2-2.el6.x86_64.rpm
-  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/ganglia-3.7.2-2.el6.x86_64.rpm
-ganglia-devel:
-  :rpm_name: ganglia-devel-3.7.2-2.el6.x86_64.rpm
-  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/ganglia-devel-3.7.2-2.el6.x86_64.rpm
-ganglia-gmetad:
-  :rpm_name: ganglia-gmetad-3.7.2-2.el6.x86_64.rpm
-  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/ganglia-gmetad-3.7.2-2.el6.x86_64.rpm
-ganglia-gmond:
-  :rpm_name: ganglia-gmond-3.7.2-2.el6.x86_64.rpm
-  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/ganglia-gmond-3.7.2-2.el6.x86_64.rpm
-ganglia-gmond-python:
-  :rpm_name: ganglia-gmond-python-3.7.2-2.el6.x86_64.rpm
-  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/ganglia-gmond-python-3.7.2-2.el6.x86_64.rpm
 glib2-devel:
   :rpm_name: glib2-devel-2.28.8-5.el6.x86_64.rpm
   :source: http://mirrors.gigenet.com/centos/6.8/os/x86_64/Packages/glib2-devel-2.28.8-5.el6.x86_64.rpm
