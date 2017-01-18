@@ -1,4 +1,4 @@
-# refs recorded for SIMP release 5.1.0-2
+# refs recorded for SIMP release 6.0.0 
 # vi:syntax=ruby
 
 moduledir 'src'
@@ -9,7 +9,7 @@ mod 'simp-doc',
 
 mod 'simp-rsync',
   :git => 'https://github.com/simp/simp-rsync',
-  :ref => 'simp-5.1.X'
+  :ref => 'master'
 
 moduledir 'src/rubygems'
 
@@ -77,7 +77,7 @@ mod 'herculesteam-augeasproviders_postgresql',
 
 mod 'herculesteam-augeasproviders_puppet',
   :git => 'https://github.com/simp/augeasproviders_puppet',
-  :ref => 'simp-master'
+  :ref => 'master'
 
 mod 'herculesteam-augeasproviders_shellvar',
   :git => 'https://github.com/simp/augeasproviders_shellvar',
@@ -193,10 +193,6 @@ mod 'simp-fips',
 
 mod 'simp-freeradius',
   :git => 'https://github.com/simp/pupmod-simp-freeradius',
-  :ref => 'master'
-
-mod 'simp-ganglia',
-  :git => 'https://github.com/simp/pupmod-simp-ganglia',
   :ref => 'master'
 
 mod 'simp-gdm',
@@ -351,6 +347,10 @@ mod 'simp-simp_logstash',
   :git => 'https://github.com/simp/pupmod-simp-simp_logstash',
   :ref => 'master'
 
+mod 'simp-simp_options',
+  :git => 'https://github.com/simp/pupmod-simp-simp_options',
+  :ref => 'master'
+
 mod 'simp-simp_rsyslog',
   :git => 'https://github.com/simp/pupmod-simp-simp_rsyslog',
   :ref => 'master'
@@ -361,10 +361,6 @@ mod 'simp-simplib',
 
 mod 'simp-site',
   :git => 'https://github.com/simp/pupmod-simp-site',
-  :ref => 'master'
-
-mod 'simp-snmpd',
-  :git => 'https://github.com/simp/pupmod-simp-snmpd',
   :ref => 'master'
 
 mod 'simp-ssh',

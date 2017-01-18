@@ -16,7 +16,9 @@ Requires: rsync
 Requires(post): puppet
 Requires(post): puppetserver
 Requires(post): puppetdb
-Requires(post): procps-ng
+%{?el6:Requires(post): procps}
+%{?el7:Requires(post): procps-ng}
+
 Requires: puppet-agent < 2.0.0
 Requires: puppet-agent >= 1.6.2
 Requires: puppet-client-tools < 2.0.0
@@ -28,6 +30,7 @@ Requires: puppetdb-termini >= 4.2.2
 Requires: puppetserver < 3.0.0
 Requires: puppetserver >= 2.6.0
 Provides: simp-adapter = %{version}
+Provides: simp-adapter-foss = %{version}
 
 %package pe
 Summary: SIMP Adapter for the Puppet Enterprise Puppet Installation
@@ -36,7 +39,8 @@ Requires: rsync
 Requires(post): puppet-agent
 Requires(post): pe-puppetserver
 Requires(post): pe-puppetdb
-Requires(post): procps-ng
+%{?el6:Requires(post): procps}
+%{?el7:Requires(post): procps-ng}
 Requires: puppet-agent < 2.0.0
 Requires: puppet-agent >= 1.6.2
 Requires: pe-client-tools >= 15.0.0
@@ -46,6 +50,7 @@ Requires: pe-puppetdb-termini < 5.0.0
 Requires: pe-puppetdb-termini >= 4.2.2
 Requires: pe-puppetserver >= 2015.0.0
 Provides: simp-adapter = %{version}
+Provides: simp-adapter-foss = %{version}
 
 %description
 An adapter RPM for gluing together a SIMP version with the AIO Puppet
