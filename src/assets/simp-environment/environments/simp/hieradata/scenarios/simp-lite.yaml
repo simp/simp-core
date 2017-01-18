@@ -12,6 +12,13 @@
 #                                                                    #
 ######################################################################
 
+### SIMP Options ###
+# The following settings in the simp_options namespace reference site or environment
+# settings essential to SIMP's functionality. This list is not comprehensive.
+#
+# Please see the simp_options module for documentation.
+# http://www.puppetmodule.info/github/simp/pupmod-simp-simp_options/master/
+
 # SIMP-lite scenario defaults
 simp_options::auditd: true
 simp_options::clamav: true
@@ -20,19 +27,16 @@ simp_options::logrotate: true
 simp_options::pam: true
 simp_options::ldap: true
 simp_options::syslog: true
+simp_options::stunnel: true
+simp_options::pki: simp
 
-# These settings are turned off in the scenario
+# These settings explicitly turned off
 simp_options::firewall: false
 simp_options::kerberos: false
-simp_options::pki: false
+simp_options::tcpwrappers: false
 simp_options::selinux: false
-# WARNING: trusted_nets may still need to be set, but there can be no default provided!
-#simp_options::trusted_nets:
-
 
 classes:
-  # Set up the puppet server or client as appropriate for your system.
-  - 'pupmod'
   - 'aide'
   - 'auditd'
   # Virus scanning.
@@ -52,6 +56,8 @@ classes:
   - 'ntpd'
   # Enable 'wheel' access controls.
   - 'pam::wheel'
+  # Set up the Puppet agent as appropriate for your system.
+  - 'pupmod'
   # We certainly want logging
   - 'simp_rsyslog'
   # Simp base class
@@ -77,6 +83,4 @@ classes:
   # Set up the SSH server and client.
   - 'ssh'
   - 'sudosh'
-  # Add TPM support by default. This will grow over time but, if you have a
-  # TPM, you most likely want to use it!
-  - 'tpm'
+

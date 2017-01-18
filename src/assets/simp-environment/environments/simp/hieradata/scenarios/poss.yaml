@@ -2,7 +2,7 @@
 
 # This is the empty SIMP scenario hiera file
 #
-# If you are beginning to use SIMP and don't want to include any clases by default,
+# If you are beginning to use SIMP and don't want to include any classes by default,
 # this is the scenario for you.
 #
 # SIMP catalysts defined in simp_options all default to `false` and are disabled
@@ -11,6 +11,8 @@
 #
 # See `manifests/site.pp` for an example use case for the $simp_scenario variable.
 #
-# Hiera crashes if there are empty files, so
-# please remove the following line if you use this file
-this_is_another_example_key: 'that does nothing'
+
+classes:
+  # Set up as a Puppet client
+  - 'pupmod'
+

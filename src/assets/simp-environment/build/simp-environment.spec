@@ -86,10 +86,9 @@ cd -
 %config(noreplace) %{prefix}/hieradata/RedHat/6.yaml
 %config(noreplace) %{prefix}/hieradata/hosts/puppet.your.domain.yaml
 %config(noreplace) %{prefix}/hieradata/hostgroups/default.yaml
-%config(noreplace) %{prefix}/hieradata/simp/site/default.yaml
-%config(noreplace) %{prefix}/hieradata/simp/simp.yaml
-%config(noreplace) %{prefix}/hieradata/simp/simp-lite.yaml
-%config(noreplace) %{prefix}/hieradata/simp/poss.yaml
+%config(noreplace) %{prefix}/hieradata/scenarios/simp.yaml
+%config(noreplace) %{prefix}/hieradata/scenarios/simp-lite.yaml
+%config(noreplace) %{prefix}/hieradata/scenarios/poss.yaml
 %config(noreplace) %{prefix}/hieradata/default.yaml
 %config(noreplace) %{prefix}/manifests/site.pp
 %config(noreplace) %{prefix}/FakeCA/togen
@@ -208,6 +207,8 @@ fi
 - Moved the default location of keydist from the normal puppet environment and
   modulepath to /var/simp/environments/simp/site_files/pki_files/files/keydist,
   which won't be overwritten or deleted when using r10k and a control repo.
+- Added the SIMP scenarios feature, so a user can specify a class list and
+  simp_options defaults they would like to use in their implementation.
 
 * Fri Jan 06 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.0.0-Alpha
 - Eliminated the 'localusers' capability
