@@ -86,10 +86,10 @@ cd -
 %config(noreplace) %{prefix}/hieradata/RedHat/6.yaml
 %config(noreplace) %{prefix}/hieradata/hosts/puppet.your.domain.yaml
 %config(noreplace) %{prefix}/hieradata/hostgroups/default.yaml
-%config(noreplace) %{prefix}/hieradata/simp/site/default.yaml
-%config(noreplace) %{prefix}/hieradata/simp/simp.yaml
-%config(noreplace) %{prefix}/hieradata/simp/simp-lite.yaml
-%config(noreplace) %{prefix}/hieradata/simp/poss.yaml
+%config(noreplace) %{prefix}/hieradata/scenarios/site/default.yaml
+%config(noreplace) %{prefix}/hieradata/scenarios/simp.yaml
+%config(noreplace) %{prefix}/hieradata/scenarios/simp-lite.yaml
+%config(noreplace) %{prefix}/hieradata/scenarios/poss.yaml
 %config(noreplace) %{prefix}/hieradata/default.yaml
 %config(noreplace) %{prefix}/manifests/site.pp
 %config(noreplace) %{prefix}/FakeCA/togen
