@@ -48,4 +48,3 @@ $hiera_classes          = lookup('classes',          Array[String], 'unique', []
 $hiera_class_exclusions = lookup('class_exclusions', Array[String], 'unique', [])
 $hiera_included_classes = $hiera_classes - $hiera_class_exclusions
 include $hiera_included_classes
-

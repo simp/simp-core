@@ -42,6 +42,7 @@ Obsoletes: simp-config < %{version}-%{release}
 Buildarch: noarch
 
 Prefix: /usr/share/simp/environments/simp
+
 %description
 
 Contains template files and directories for initially setting up a SIMP server
@@ -95,6 +96,7 @@ cd -
 %config(noreplace) %{prefix}/FakeCA/usergen
 %config(noreplace) %{prefix}/hieradata/compliance_profiles/nist_800_53_rev4.yaml
 %config(noreplace) %{prefix}/hieradata/compliance_profiles/disa_stig_el7.yaml
+
 %defattr(0640,root,root,0750)
 %{_datadir}/selinux/*/%{selinux_policy}
 %{prefix}/FakeCA

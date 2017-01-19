@@ -83,8 +83,7 @@ zip
 simp-adapter-foss
 simp
 rsync
-facter
-puppet
+puppet-agent
 
 # Puppet Server Complete Load
 elinks

@@ -77,6 +77,7 @@ Requires: pupmod-simp-simp_apache >= 6.0.0, pupmod-simp-simp_apache < 7.0.0
 Requires: pupmod-simp-simp_rsyslog >= 0.0.1, pupmod-simp-simp_rsyslog < 1.0.0
 Requires: pupmod-simp-simpcat >= 6.0.0, pupmod-simp-simpcat < 7.0.0
 Requires: pupmod-simp-simplib >= 3.1.0, pupmod-simp-simplib < 4.0.0
+Requires: pupmod-simp-simp_options >= 1.0.0, pupmod-simp-simp_options < 2.0.0
 Requires: pupmod-simp-site >= 2.0.2-2016, pupmod-simp-site < 3.0.0
 Requires: pupmod-simp-ssh >= 6.0.0, pupmod-simp-ssh < 7.0.0
 Requires: pupmod-simp-sssd >= 6.0.0, pupmod-simp-sssd < 7.0.0
