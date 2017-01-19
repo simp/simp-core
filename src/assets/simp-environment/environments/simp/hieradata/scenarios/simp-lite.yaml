@@ -23,18 +23,22 @@
 simp_options::auditd: true
 simp_options::clamav: true
 simp_options::haveged: true
+simp_options::ldap: true
 simp_options::logrotate: true
 simp_options::pam: true
-simp_options::ldap: true
-simp_options::syslog: true
-simp_options::stunnel: true
 simp_options::pki: simp
+simp_options::sssd: true
+simp_options::stunnel: true
+simp_options::syslog: true
 
 # These settings explicitly turned off
 simp_options::firewall: false
-simp_options::kerberos: false
-simp_options::tcpwrappers: false
 simp_options::selinux: false
+simp_options::tcpwrappers: false
+
+# Options that are not suggested to be turned on by default:
+simp_options::ipsec: false
+simp_options::kerberos: false
 
 classes:
   - 'aide'
@@ -71,7 +75,7 @@ classes:
   # technically optional.
   - 'simp::base_services'
   # This sets up an update schedule.
-  # You should set variables under the simp::yum namespace to
+  # You should set variables under the simp::yum::schedule namespace to
   # disable updates from specific repositories.
   - 'simp::yum'
   # Blacklists several kernel modules, per compliance guidelines.
