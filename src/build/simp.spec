@@ -63,6 +63,7 @@ Requires: pupmod-simp-nfs >= 6.0.0, pupmod-simp-nfs < 7.0.0
 Requires: pupmod-simp-ntpd >= 6.0.0, pupmod-simp-ntpd < 7.0.0
 Requires: pupmod-simp-oddjob >= 2.0.0-2016, pupmod-simp-oddjob < 3.0.0
 Requires: pupmod-simp-openldap >= 6.0.0, pupmod-simp-openldap < 7.0.0
+Requires: pupmod-simp-simp_options >= 2.0.0, pupmod-simp-simp_options < 3.0.0
 Requires: pupmod-simp-pam >= 6.0.0, pupmod-simp-pam < 7.0.0
 Requires: pupmod-simp-pki >= 6.0.0, pupmod-simp-pki < 7.0.0
 Requires: pupmod-simp-postfix >= 5.0.1, pupmod-simp-postfix < 6.0.0
