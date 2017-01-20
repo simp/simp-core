@@ -77,7 +77,7 @@ classes:
   # technically optional.
   - 'simp::base_services'
   # This sets up an update schedule.
-  # You should set variables under the simplib::yum_schedule namespace to
+  # You should set variables under the simp::yum::schedule namespace to
   # disable updates from specific repositories.
   - 'simp::yum'
   # Blacklists several kernel modules, per compliance guidelines.
