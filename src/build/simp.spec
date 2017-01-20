@@ -23,7 +23,6 @@ Requires: pupmod-herculesteam-augeasproviders_grub >= 2.3.1-2016, pupmod-hercule
 Requires: pupmod-herculesteam-augeasproviders_postgresql >= 2.0.3-2016, pupmod-herculesteam-augeasproviders_postgresql < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_puppet >= 2.1.0-2016, pupmod-herculesteam-augeasproviders_puppet < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_shellvar >= 2.1.1-2016, pupmod-herculesteam-augeasproviders_shellvar < 3.0.0
-Requires: pupmod-herculesteam-augeasproviders_ssh >= 2.5.0-2016, pupmod-herculesteam-augeasproviders_ssh < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_sysctl >= 2.1.0-2016, pupmod-herculesteam-augeasproviders_sysctl < 3.0.0
 Requires: pupmod-onyxpoint-gpasswd >= 1.0.0-2016, pupmod-onyxpoint-gpasswd < 2.0.0
 Requires: pupmod-puppetlabs-apache >= 1.10.0-2016, pupmod-puppetlabs-apache < 2.0.0
@@ -134,10 +133,10 @@ Requires: pupmod-simp-vnc >= 6.0.0-2016
 Requires: pupmod-simp-vsftpd >= 7.0.0-2016
 
 %description
-Stub for installing everything needed for a full SIMP system
+Metapackage for installing everything needed for a full SIMP system
 
 %description extras
-Stub for installing all 'extra' packages that are enhancements to SIMP but not
+Metapackage for installing all 'extra' packages that are enhancements to SIMP but not
 part of the supported core.
 
 Unlike the main 'simp' require packages. Packages required by this RPM do not
@@ -201,11 +200,13 @@ fi
 
 %changelog
 * Tue Jan 10 2017 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 6.0.0
+- Updated to release -0
+- Upgraded to Puppet 4.8.2
 - Updated required version of simp modules
 
 * Tue Oct 25 2016 Nick Miller <nick.miller@onyxpoint.com> - 6.0.0-Alpha
 - Added i_version mount option to non-/var and non-/tmp partitions for IMA
-    measuring
+  measuring
 
 * Mon Sep 12 2016 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.0.0-Alpha
 - Alpha work for the 6.0.0 release
@@ -244,7 +245,7 @@ fi
   file to use based on chroot.  Pkg.rake will now add all rpms built
   by a spec file to autorequires, not just one of them.
 
-* Tue Mar 26 2015 Jacob Gingrich <jgingrich@onyxpoint.com> - 5.1.0-Beta
+* Thu Mar 26 2015 Jacob Gingrich <jgingrich@onyxpoint.com> - 5.1.0-Beta
 - Updated to facter 2.4.
 
 * Tue Feb 17 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.1.0-Alpha
@@ -505,7 +506,7 @@ fi
 - Added a 'if' statement to the 'post 'section to preclude inappropriate failure
   messages if httpd can't restart for some reason.
 
-* Mon Apr 27 2010 Trevor Vaughan <tvaughan@onyxpoint.com> - 1.2.6-3
+* Tue Apr 27 2010 Trevor Vaughan <tvaughan@onyxpoint.com> - 1.2.6-3
 - Now auto-generating Requires: statements for the modules.
 
 * Mon Apr 26 2010 Trevor Vaughan <tvaughan@onyxpoint.com> - 1.2.6-2
@@ -536,7 +537,7 @@ fi
 * Tue Dec 15 2009 Trevor Vaughan <tvaughan@onyxpoint.com> - 1.2.3-3
 - Beta release of 1.2.3
 
-* Thu Oct 13 2009 Trevor Vaughan <tvaughan@onyxpoint.com> - 1.2.2
+* Tue Oct 13 2009 Trevor Vaughan <tvaughan@onyxpoint.com> - 1.2.2
 - Fixing one bug in pupmod-common and ensuring that this RPM maintains the
   proper versioning requirements.
 

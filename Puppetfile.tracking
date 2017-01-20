@@ -8,8 +8,8 @@ mod 'simp-doc',
   :ref => 'master'
 
 mod 'simp-rsync',
-  :git => 'https://github.com/simp/simp-rsync',
-  :ref => 'master'
+  :git => 'https://github.com/trevor-vaughan/simp-rsync',
+  :ref => 'SIMP-2469'
 
 moduledir 'src/rubygems'
 
@@ -27,11 +27,11 @@ mod 'camptocamp-kmod',
   :git => 'https://github.com/simp/puppet-kmod.git',
   :ref => 'master'
 
-mod 'elastics-elasticsearch',
+mod 'elastic-elasticsearch',
   :git => 'https://github.com/simp/puppet-elasticsearch',
   :ref => 'simp-master'
 
-mod 'elasticsearch-logstash',
+mod 'elastic-logstash',
   :git => 'https://github.com/simp/puppet-logstash',
   :ref => 'master'
 
@@ -100,8 +100,8 @@ mod 'puppetlabs-apache',
   :ref => 'master'
 
 mod 'puppetlabs-concat',
-  :git => 'https://github.com/simp/puppetlabs-concat',
-  :ref => 'master'
+  :git => 'https://github.com/jeefberkey/puppetlabs-concat',
+  :ref => 'MODULES-4264'
 
 mod 'puppetlabs-inifile',
   :git => 'https://github.com/simp/puppetlabs-inifile',
@@ -324,8 +324,8 @@ mod 'simp-selinux',
   :ref => 'master'
 
 mod 'simp-simp',
-  :git => 'https://github.com/simp/pupmod-simp-simp',
-  :ref => 'master'
+  :git => 'https://github.com/trevor-vaughan/pupmod-simp-simp',
+  :ref => 'SIMP-2469'
 
 mod 'simp-simpcat',
   :git => 'https://github.com/simp/pupmod-simp-simpcat',
