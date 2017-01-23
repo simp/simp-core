@@ -13,11 +13,12 @@ Exec {
 
 # SIMP Scenarios
 #
-# Set this variable to make use of the different class sets in heiradata/simp:
+# Set this variable to make use of the different class sets in heiradata/scenarios,
+#   mostly applicable to puppet agents, or, the SIMP server overrides some of these.
 #   * `simp` - compliant and secure
 #   * `simp-lite` - makes use of many of our modules, but doesn't apply
-#        any prohibitive security or compliance features
-#   * `poss` or any other setting - only include pupmod by default to configure the agent
+#        many prohibitive security or compliance features, svckill
+#   * `poss` - only include pupmod by default to configure the agent
 $simp_scenario = 'poss'
 
 # Map SIMP parameters to NIST Special Publication 800-53, Revision 4
