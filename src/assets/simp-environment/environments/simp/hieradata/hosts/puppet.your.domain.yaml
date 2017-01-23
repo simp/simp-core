@@ -34,7 +34,19 @@ puppetdb::globals::version: 'latest'
 # Let pupmod::master::base handle this.
 puppetdb::master::config::restart_puppet: false
 
-classes:
-  - 'simp::server'
-  - 'simp::puppetdb'
+### Secure SIMP Options ###
+simp_options::auditd: true
+simp_options::clamav: true
+simp_options::firewall: true
+simp_options::haveged: true
+simp_options::logrotate: true
+simp_options::pam: true
+simp_options::pki: simp
+simp_options::selinux: true
+simp_options::stunnel: true
+simp_options::syslog: true
+simp_options::tcpwrappers: true
 
+classes:
+  - 'simp::puppetdb'
+  - 'simp::server'

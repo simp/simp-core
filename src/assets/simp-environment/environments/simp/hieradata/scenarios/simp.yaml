@@ -76,7 +76,7 @@ classes:
   # A group of services that you probably want running but are
   # technically optional.
   - 'simp::base_services'
-  # This sets up an update schedule.
+  # simp::yum sets up an update schedule.
   # You should set variables under the simp::yum::schedule namespace to
   # disable updates from specific repositories.
   - 'simp::yum'

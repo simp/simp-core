@@ -203,12 +203,14 @@ fi
 /usr/local/sbin/simp_rpm_helper --rpm_dir=%{prefix} --rpm_section='postun' --rpm_status=$1 --preserve --target_dir='.'
 
 %changelog
-* Tue Jan 10 2017 Nick Miller <nick.miller@onyxpoint.com> - 6.0.0-Alpha
+* Tue Jan 10 2017 Nick Miller <nick.miller@onyxpoint.com> - 6.0.0
 - Moved the default location of keydist from the normal puppet environment and
   modulepath to /var/simp/environments/simp/site_files/pki_files/files/keydist,
-  which won't be overwritten or deleted when using r10k and a control repo.
+  which won't be overwritten or deleted when using r10k and a control repo
 - Added the SIMP scenarios feature, so a user can specify a class list and
-  simp_options defaults they would like to use in their implementation.
+  simp_options defaults they would like to use in their implementation
+- Stengthen default Puppet server hiera file to include most of the simp
+  scenario and default simp_options values
 
 * Fri Jan 06 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.0.0-Alpha
 - Eliminated the 'localusers' capability
