@@ -1,5 +1,5 @@
-SIMP 6.0.0-Alpha
-================
+SIMP 6.0.0-Beta
+===============
 
 .. raw:: pdf
 
@@ -15,22 +15,28 @@ SIMP 6.0.0-Alpha
 
 This release is known to work with:
 
-  * RHEL 7.2 x86_64
-  * CentOS 7.0 1511 x86_64
+  * RHEL 6.8 x86_64
+  * RHEL 6.8 x86_64
+  * RHEL 7.3 x86_64
+  * CentOS 7.0 1611 x86_64
 
 Breaking Changes
 ----------------
 
 .. WARNING::
-  This is an Alpha Release, things will either be broken, or break later!
+  This release of SIMP is **NOT** backwards compatible with previous releases.
+  Direct updates will not work.
 
-At this time, the included codebase is stable with the feature set in the
-**legacy** code from the `5.X` series.
+  At this point, do not expect any of our code moving forward to work with
+  Puppet 3.
 
-However, we will be making additional updates and breaking changes to various
-modules to take advantage of the breaking change of SIMP 6 itself.
+.. NOTE::
+  This is a **BETA** release
 
-If you try this version, please do `file bugs`_!
+  We currently believe that everything is feature complete but it may take a
+  small amount of time for the documentation and support scripts to catch up.
+
+If you find any issues, please `file bugs`_!
 
 .. NOTE::
   If you are working to integrate SIMP into Puppet Enterprise, these are the
@@ -40,13 +46,13 @@ Paths
 ^^^^^
 
 Puppet AIO Paths
-''''''''''''''''
+""""""""""""""""
 
 The system has been updated to use the Puppet AIO paths. Please see the
 `Puppet Location Reference`_ for full details.
 
 SIMP Installation Paths
-'''''''''''''''''''''''
+"""""""""""""""""""""""
 
 For better integration with `r10k`_ and `Puppet Code Manager`_, SIMP now installs all
 materials in ``/usr/share/simp`` by default.
@@ -59,8 +65,22 @@ auto-update for all future RPM updates. If you wish to disable this behavior,
 you should edit the options in ``/etc/simp/adapter_config.yaml``.
 
 .. NOTE::
-   Anything that is in a Git or Subversion repository in the `simp` environment
-   will **not** be overwritten by ``simp_rpm_helper``.
+   Anything that is in a Git or Subversion repository in the ``simp`` environment
+   will **NOT** be overwritten by ``simp_rpm_helper``.
+
+SIMP Dynamic Content Paths
+""""""""""""""""""""""""""
+
+To ensure that SIMP dynamic content (ssh keys, generated passwords) are not
+mixed with Git-managed infrastructure, the SIMP dynamic content has been moved
+to the top level of the environment directory under ``simp_autofiles``.
+
+SIMP Rsync Paths
+""""""""""""""""
+
+The SIMP Rsync subsystem now fully supports multiple environments. All
+environment-relevant materials have been moved to
+``/var/simp/environments/simp/rsync``.
 
 Significant Updates
 -------------------
@@ -75,6 +95,23 @@ We've attempted to capture those changes here at a high level so that you know
 where you are going to need to focus to validate your Hiera data, ENC hooks,
 and parameterized class calls.
 
+Strong Parameter Typing
+"""""""""""""""""""""""
+
+All SIMP provided modules should now be strong typed with `Puppet Data Types`_.
+
+De-Verbing of Defines
+"""""""""""""""""""""
+
+Many of the defined types have been renamed to no longer be 'verb-oriented'.
+The ``iptables`` module is probably the widest reaching change where the
+standard 'ease-of-use' aliases have been moved under a ``listen`` namespace.
+
+For instance, ``iptables::tcp_stateful_listen`` is now ``iptables::listen::tcp_stateful``
+
+Additionally, any ``add_rule`` defines were changed to just ``rule``. For
+example, ``auditd::add_rule`` was changed to just ``auditd::rule``.
+
 pupmod-simp-simpcat
 """""""""""""""""""
 
@@ -85,15 +122,33 @@ A simple find and replace of ``concat_fragment`` and ``concat_build`` in legacy
 code with ``simpcat_fragment`` and ``simpcat_build`` should suffice. Be sure to
 check for ``Concat_fragment`` and ``Concat_build`` resource dependencies!
 
-pupmod-simp-pupmod
-""""""""""""""""""
-
-This module has code that only works with Puppet 4
-
 pupmod-simp-foreman
 """""""""""""""""""
 
-The Foreman module has been removed until it works consistently with Puppet 4
+The ``foreman`` module has been removed until it works consistently with Puppet 4
+
+pupmod-simp-ganglia
+"""""""""""""""""""
+
+The ``ganglia`` module has not yet been ported to Puppet 4 and therefore not
+present in this release.
+
+pupmod-simp-nscd
+""""""""""""""""
+
+The ``nscd`` module has been removed and the functionality replaced by ``sssd``
+
+pupmod-simp-openldap
+""""""""""""""""""""
+
+The ``openldap`` module has been renamed to ``simp_openldap`` to pave the way
+towards using a more up-to-date implementation of the core openldap component
+module from the community.
+
+pupmod-simp-snmpd
+"""""""""""""""""
+
+The ``snmpd`` module has been removed until updates can be made available
 
 Puppet AIO
 ^^^^^^^^^^
@@ -144,6 +199,7 @@ Known Bugs
 ----------
 
 .. _file bugs: https://simp-project.atlassian.net
-.. _Puppet_Location_Reference: https://docs.puppet.com/puppet/4.7/reference/whered_it_go.html#where-did-everything-go-in-puppet-4.x
+.. _Puppet Location Reference: https://docs.puppet.com/puppet/4.7/reference/whered_it_go.html#where-did-everything-go-in-puppet-4.x
 .. _r10k: https://github.com/puppetlabs/r10k
 .. _Puppet Code Manager: https://docs.puppet.com/pe/latest/code_mgr.html
+.. _Puppet Data Types: https://docs.puppet.com/puppet/latest/lang_data_type.html
