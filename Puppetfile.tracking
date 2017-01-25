@@ -275,8 +275,8 @@ mod 'simp-oddjob',
   :git => 'https://github.com/simp/pupmod-simp-oddjob',
   :ref => 'master'
 
-mod 'simp-openldap',
-  :git => 'https://github.com/simp/pupmod-simp-openldap',
+mod 'simp-simp_openldap',
+  :git => 'https://github.com/simp/pupmod-simp-simp_openldap',
   :ref => 'master'
 
 mod 'simp-openscap',
