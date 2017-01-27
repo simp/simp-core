@@ -112,6 +112,38 @@ For instance, ``iptables::tcp_stateful_listen`` is now ``iptables::listen::tcp_s
 Additionally, any ``add_rule`` defines were changed to just ``rule``. For
 example, ``auditd::add_rule`` was changed to just ``auditd::rule``.
 
+Centralized Management of Application x509 PKI Certs
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+In the past, application specific PKI certificates were copied into the application
+space.  This varied per application and left certs strewn throughout the system.
+Now, certificates for all SIMP-managed applications are copied from
+``/etc/pki/simp/x509``, into a central location, ``/etc/pki/simp_apps/<application_name>/x509``.
+
+The extent to which SIMP manages PKI is governed by two new catalysts, ``pki`` and
+``pki::source``.  Additionally, every SIMP module which uses ``pki``
+has been modified to use a common set of pki class parameters.  A high-level
+description is given below, using simp_elasticsearch as an example.
+
+# @param pki
+#   * If 'simp', include SIMP's pki module and use pki::copy to manage
+#     application certs in /etc/pki/simp_apps/simp_elasticsearch/x509
+#   * If true, do *not* include SIMP's pki module, but still use pki::copy
+#     to manage certs in /etc/pki/simp_apps/simp_elasticsearch/x509
+#   * If false, do not include SIMP's pki module and do not use pki::copy
+#     to manage certs.  You will need to appropriately assign a subset of:
+#     * app_pki_dir
+#     * app_pki_key
+#     * app_pki_cert
+#     * app_pki_ca
+#     * app_pki_ca_dir
+#
+# @param app_pki_external_source
+#   * If pki = 'simp' or true, this is the directory from which certs will be
+#     copied, via pki::copy.  Defaults to /etc/pki/simp/x509.
+#
+#   * If pki = false, this variable has no effect.
+
 pupmod-simp-simpcat
 """""""""""""""""""
 
