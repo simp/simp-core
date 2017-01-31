@@ -8,8 +8,8 @@ mod 'simp-doc',
   :ref => 'master'
 
 mod 'simp-rsync',
-  :git => 'https://github.com/trevor-vaughan/simp-rsync',
-  :ref => 'SIMP-2469'
+  :git => 'https://github.com/simp/simp-rsync',
+  :ref => 'master'
 
 moduledir 'src/rubygems'
 
@@ -99,9 +99,11 @@ mod 'puppetlabs-apache',
   :git => 'https://github.com/simp/puppetlabs-apache',
   :ref => 'master'
 
+# We have updated this module for Puppet 4, and submitted changes upstream. We
+# will use the simp-master branch until it is accepted in master.
 mod 'puppetlabs-concat',
-  :git => 'https://github.com/jeefberkey/puppetlabs-concat',
-  :ref => 'MODULES-4264'
+  :git => 'https://github.com/simp/puppetlabs-concat',
+  :ref => 'simp-master'
 
 mod 'puppetlabs-inifile',
   :git => 'https://github.com/simp/puppetlabs-inifile',
@@ -117,7 +119,7 @@ mod 'puppetlabs-java_ks',
 
 mod 'puppetlabs-motd',
   :git => 'https://github.com/simp/puppetlabs-motd',
-  :ref => 'simp-master'
+  :ref => 'master'
 
 mod 'puppetlabs-mysql',
   :git => 'https://github.com/simp/puppetlabs-mysql',
@@ -135,6 +137,8 @@ mod 'richardc-datacat',
   :git => 'https://github.com/simp/puppet-datacat',
   :ref => 'master'
 
+# We have updated this module for Puppet 4 and will use the simp-master branch
+# until upstream drops Puppet 3
 mod 'saz-timezone',
   :git => 'https://github.com/simp/puppet-timezone',
   :ref => 'simp-master'
@@ -324,8 +328,8 @@ mod 'simp-selinux',
   :ref => 'master'
 
 mod 'simp-simp',
-  :git => 'https://github.com/trevor-vaughan/pupmod-simp-simp',
-  :ref => 'SIMP-2469'
+  :git => 'https://github.com/simp/pupmod-simp-simp',
+  :ref => 'master'
 
 mod 'simp-simpcat',
   :git => 'https://github.com/simp/pupmod-simp-simpcat',
