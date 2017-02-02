@@ -66,20 +66,20 @@ globus-callout:
   :rpm_name: globus-callout-3.15-1.el6.x86_64.rpm
   :source: https://dl.fedoraproject.org/pub/epel/6/x86_64/globus-callout-3.15-1.el6.x86_64.rpm
 globus-common:
-  :rpm_name: globus-common-16.8-1.el6.x86_64.rpm
-  :source: https://dl.fedoraproject.org/pub/epel/6/x86_64/globus-common-16.8-1.el6.x86_64.rpm
+  :rpm_name: globus-common-16.9-1.el6.x86_64.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-common-16.9-1.el6.x86_64.rpm
 globus-gsi-callback:
-  :rpm_name: globus-gsi-callback-5.12-1.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-gsi-callback-5.12-1.el6.x86_64.rpm
+  :rpm_name: globus-gsi-callback-5.13-1.el6.x86_64.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-gsi-callback-5.13-1.el6.x86_64.rpm
 globus-gsi-cert-utils:
-  :rpm_name: globus-gsi-cert-utils-9.15-2.el6.x86_64.rpm
-  :source: https://dl.fedoraproject.org/pub/epel/6/x86_64/globus-gsi-cert-utils-9.15-2.el6.x86_64.rpm
+  :rpm_name: globus-gsi-cert-utils-9.16-1.el6.x86_64.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-gsi-cert-utils-9.16-1.el6.x86_64.rpm
 globus-gsi-credential:
   :rpm_name: globus-gsi-credential-7.11-1.el6.x86_64.rpm
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-gsi-credential-7.11-1.el6.x86_64.rpm
 globus-gsi-openssl-error:
-  :rpm_name: globus-gsi-openssl-error-3.7-1.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-gsi-openssl-error-3.7-1.el6.x86_64.rpm
+  :rpm_name: globus-gsi-openssl-error-3.8-1.el6.x86_64.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-gsi-openssl-error-3.8-1.el6.x86_64.rpm
 globus-gsi-proxy-core:
   :rpm_name: globus-gsi-proxy-core-8.6-1.el6.x86_64.rpm
   :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/globus-gsi-proxy-core-8.6-1.el6.x86_64.rpm
@@ -90,8 +90,8 @@ globus-gsi-sysconfig:
   :rpm_name: globus-gsi-sysconfig-6.11-1.el6.x86_64.rpm
   :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/globus-gsi-sysconfig-6.11-1.el6.x86_64.rpm
 globus-gss-assist:
-  :rpm_name: globus-gss-assist-10.20-1.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-gss-assist-10.20-1.el6.x86_64.rpm
+  :rpm_name: globus-gss-assist-10.21-1.el6.x86_64.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-gss-assist-10.21-1.el6.x86_64.rpm
 globus-gssapi-gsi:
   :rpm_name: globus-gssapi-gsi-12.13-1.el6.x86_64.rpm
   :source: https://dl.fedoraproject.org/pub/epel/6/x86_64/globus-gssapi-gsi-12.13-1.el6.x86_64.rpm
@@ -228,8 +228,8 @@ puppet-client-tools:
   :rpm_name: puppet-client-tools-1.1.0-1.el6.x86_64.rpm
   :source: http://yum.puppetlabs.com/el/6/PC1/x86_64/puppet-client-tools-1.1.0-1.el6.x86_64.rpm
 puppetdb:
-  :rpm_name: puppetdb-4.3.0-1.el6.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/6/PC1/x86_64/puppetdb-4.3.0-1.el6.noarch.rpm
+  :rpm_name: puppetdb-2.3.8-1.el6.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/6/products/x86_64/puppetdb-2.3.8-1.el6.noarch.rpm
 puppetdb-termini:
   :rpm_name: puppetdb-termini-4.3.0-1.el6.noarch.rpm
   :source: http://yum.puppetlabs.com/el/6/PC1/x86_64/puppetdb-termini-4.3.0-1.el6.noarch.rpm
@@ -238,7 +238,7 @@ puppetlabs-release-pc1:
   :source: http://yum.puppetlabs.com/el/6/PC1/x86_64/puppetlabs-release-pc1-1.1.0-4.el6.noarch.rpm
 puppetserver:
   :rpm_name: puppetserver-2.7.2-1.el6.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/6/PC1/x86_64/puppetserver-2.7.2-1.el6.noarch.rpm
+  :source: https://yum.puppetlabs.com/el/6Server/PC1/x86_64/puppetserver-2.7.2-1.el6.noarch.rpm
 python-argparse:
   :rpm_name: python-argparse-1.2.1-2.1.el6.noarch.rpm
   :source: http://mirror.cogentco.com/pub/linux/centos/6/os/x86_64/Packages/python-argparse-1.2.1-2.1.el6.noarch.rpm
