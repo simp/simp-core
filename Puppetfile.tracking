@@ -14,8 +14,8 @@ mod 'simp-rsync',
 moduledir 'src/rubygems'
 
 mod 'rubygem-simp_cli',
-  :git => 'https://github.com/simp/rubygem-simp-cli',
-  :ref => 'master'
+  :git => 'https://github.com/lnemsick-simp/rubygem-simp-cli',
+  :ref => 'SIMP-1448'
 
 moduledir 'src/puppet/modules'
 
@@ -137,8 +137,7 @@ mod 'richardc-datacat',
   :git => 'https://github.com/simp/puppet-datacat',
   :ref => 'master'
 
-# We have updated this module for Puppet 4 and will use the simp-master branch
-# until upstream drops Puppet 3
+# SIMP has made changes to this module that don't exist upstream
 mod 'saz-timezone',
   :git => 'https://github.com/simp/puppet-timezone',
   :ref => 'simp-master'
@@ -207,6 +206,7 @@ mod 'simp-gnome',
   :git => 'https://github.com/simp/pupmod-simp-gnome',
   :ref => 'master'
 
+# SIMP has made changes to this module that don't exist upstream
 mod 'simp-haveged',
   :git => 'https://github.com/simp/puppet-haveged',
   :ref => 'simp-master'
@@ -227,6 +227,7 @@ mod 'simp-jenkins',
   :git => 'https://github.com/simp/pupmod-simp-jenkins',
   :ref => 'master'
 
+  # SIMP has made changes to this module that don't exist upstream
 mod 'simp-journald',
   :git => 'https://github.com/simp/pupmod-simp-journald.git',
   :ref => 'simp-master'
@@ -251,6 +252,7 @@ mod 'simp-mcafee',
   :git => 'https://github.com/simp/pupmod-simp-mcafee',
   :ref => 'master'
 
+# SIMP has made changes to this module that don't exist upstream
 mod 'simp-mcollective',
   :git => 'https://github.com/simp/pupmod-simp-mcollective',
   :ref => 'simp-master'
@@ -376,8 +378,8 @@ mod 'simp-sssd',
   :ref => 'master'
 
 mod 'simp-stunnel',
-  :git => 'https://github.com/simp/pupmod-simp-stunnel',
-  :ref => 'master'
+  :git => 'https://github.com/jeefberkey/pupmod-simp-stunnel',
+  :ref => 'SIMP-2549'
 
 mod 'simp-sudo',
   :git => 'https://github.com/simp/pupmod-simp-sudo',
@@ -431,6 +433,7 @@ mod 'simp-useradd',
   :git => 'https://github.com/simp/pupmod-simp-useradd',
   :ref => 'master'
 
+# SIMP has made changes to this module that don't exist upstream
 mod 'trlinkin-nsswitch',
   :git => 'https://github.com/simp/puppet-nsswitch',
   :ref => 'simp-master'

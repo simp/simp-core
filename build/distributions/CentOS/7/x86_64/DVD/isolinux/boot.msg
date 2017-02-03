@@ -1,4 +1,4 @@
- 
+
 
 
  -  0aNOTE:07 To disable FIPS, add 0afips=007 to any option.
@@ -6,10 +6,6 @@
  -  To auto-install SIMP, type 0asimp <ENTER>07.
     - This will erase your existing system!
     - You need at least 50GB of disk space for this to succeed.
-    - Add the option 0asimp_disk_crypt07 to encrypt your disk.
-
- -  To auto-install SIMP with a large /var, type 0asimp-big <ENTER>07.
-    - This will erase your existing system!
     - Add the option 0asimp_disk_crypt07 to encrypt your disk.
 
  -  To install SIMP with disk prompt, type 0asimp-prompt<ENTER>07.

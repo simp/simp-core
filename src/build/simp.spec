@@ -23,6 +23,7 @@ Requires: pupmod-herculesteam-augeasproviders_grub >= 2.3.1-2016, pupmod-hercule
 Requires: pupmod-herculesteam-augeasproviders_postgresql >= 2.0.3-2016, pupmod-herculesteam-augeasproviders_postgresql < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_puppet >= 2.1.0-2016, pupmod-herculesteam-augeasproviders_puppet < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_shellvar >= 2.1.1-2016, pupmod-herculesteam-augeasproviders_shellvar < 3.0.0
+Requires: pupmod-herculesteam-augeasproviders_ssh >= 2.5.0-2016, pupmod-herculesteam-augeasproviders_ssh < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_sysctl >= 2.1.0-2016, pupmod-herculesteam-augeasproviders_sysctl < 3.0.0
 Requires: pupmod-onyxpoint-gpasswd >= 1.0.0-2016, pupmod-onyxpoint-gpasswd < 2.0.0
 Requires: pupmod-puppetlabs-apache >= 1.10.0-2016, pupmod-puppetlabs-apache < 2.0.0
