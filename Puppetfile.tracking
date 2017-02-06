@@ -378,8 +378,8 @@ mod 'simp-sssd',
   :ref => 'master'
 
 mod 'simp-stunnel',
-  :git => 'https://github.com/jeefberkey/pupmod-simp-stunnel',
-  :ref => 'SIMP-2549'
+  :git => 'https://github.com/simp/pupmod-simp-stunnel',
+  :ref => 'master'
 
 mod 'simp-sudo',
   :git => 'https://github.com/simp/pupmod-simp-sudo',
