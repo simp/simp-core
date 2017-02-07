@@ -82,8 +82,26 @@ The SIMP Rsync subsystem now fully supports multiple environments. All
 environment-relevant materials have been moved to
 ``/var/simp/environments/simp/rsync``.
 
+SIMP Partitioning Scheme
+""""""""""""""""""""""""
+
+SIMP no longer creates a ``/srv`` partition on EL 6 or 7. ``/var`` has assumed
+the role of ``/srv``. The root partition size has been increased from 4GB to
+10GB.
+
 Significant Updates
 -------------------
+
+SIMP Scenarios and simp_config_settings.yaml
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+We have changed the way that SIMP includes classes. There is a new top-level
+variable, set in ``manifests/site.pp``, that controls the list of classes to be
+included. The goal of this change is to ease users with existing infrastructures
+into using full-bore SIMP.
+
+Essentially, ``simp_classes.yaml`` has been replaced by ``scenarios/simp.yaml``
+and ``simp_def.yaml`` has been replaced by ``simp_config_settings.yaml``.
 
 API Changes
 ^^^^^^^^^^^
@@ -94,6 +112,17 @@ Legacy SIMP stack.
 We've attempted to capture those changes here at a high level so that you know
 where you are going to need to focus to validate your Hiera data, ENC hooks,
 and parameterized class calls.
+
+Global catalysts
+""""""""""""""""
+
+SIMP Global catlysts now have a consitant naming scheme and are documented in
+code in the ``simp_options`` module. In particular, we have changed not only the
+value in hiera, but every module parameter that uses this value's name from
+``client_nets`` to ``simp_options::trusted_nets``. Other changes were less
+obtrusive, for example ``enable_selinux`` and other variations are now all
+called ``simp_options::selinux``. Every Catayst is strongly typed and documented
+in the module.
 
 Strong Parameter Typing
 """""""""""""""""""""""
@@ -144,6 +173,20 @@ description is given below, using simp_elasticsearch as an example.
 #
 #   * If pki = false, this variable has no effect.
 
+Keydist
+"""""""
+
+Keydist has been relocated to a second module path to facilitate workign with
+r10k. The new modulepath is located at ``/var/simp/environments/``, and the
+default location of keydist is now
+``/var/simp/environments/simp/site_files/pki_files/files/keydist/``
+
+Forked modules
+""""""""""""""
+
+Most forked modules (modules that don't start with 'simp') have been updated to
+latest upstream.
+
 pupmod-simp-simpcat
 """""""""""""""""""
 
@@ -157,7 +200,8 @@ check for ``Concat_fragment`` and ``Concat_build`` resource dependencies!
 pupmod-simp-foreman
 """""""""""""""""""
 
-The ``foreman`` module has been removed until it works consistently with Puppet 4
+The ``foreman`` module has been removed until Foreman works consistently with
+Puppet 4.
 
 pupmod-simp-ganglia
 """""""""""""""""""
@@ -165,10 +209,15 @@ pupmod-simp-ganglia
 The ``ganglia`` module has not yet been ported to Puppet 4 and therefore not
 present in this release.
 
+pupmod-simp-windowmanager
+"""""""""""""""""""""""""
+
+Rewritten and renamed module to pupmod-simp-gnome.
+
 pupmod-simp-nscd
 """"""""""""""""
 
-The ``nscd`` module has been removed and the functionality replaced by ``sssd``
+The ``nscd`` module has been removed and the functionality replaced by ``sssd``.
 
 pupmod-simp-openldap
 """"""""""""""""""""
@@ -177,10 +226,48 @@ The ``openldap`` module has been renamed to ``simp_openldap`` to pave the way
 towards using a more up-to-date implementation of the core openldap component
 module from the community.
 
+pupmod-simp-pam
+"""""""""""""""
+
+Generic, custom content can be specified to replace templated content by using
+the $use_templates parameter.
+
+pam::access:rule resources can be added through hiera using the
+$pam::access::users hash.
+
+pupmod-simp-simplib
+"""""""""""""""""""
+
+Removed all manifests and Puppet code from this module. It now only contains
+functions and custom type aliases.
+
+List of modules that were created or forked after removing content from simplib:
+
+* pupmod-simp-at
+* pupmod-simp-chkrootkit
+* pupmod-simp-useradd
+* pupmod-simp-swap
+* pupmod-simp-cron
+* pupmod-simp-resolv
+* pupmod-simp-issue
+* pupmod-simp-fips
+* puppetlabs-motd
+* trlinkin-nsswitch
+* camptocamp-kmod
+* puppetlabs-motd
+* saz-timezone
+
+The rest of the content was added to our profile module, simp-simp.
+
 pupmod-simp-snmpd
 """""""""""""""""
 
-The ``snmpd`` module has been removed until updates can be made available
+The ``snmpd`` module has been removed until updates can be made available.
+
+pupmod-simp-xwindows
+""""""""""""""""""""
+
+Module has been rewritten and renamed to pupmod-simp-gdm.
 
 Puppet AIO
 ^^^^^^^^^^
@@ -208,17 +295,17 @@ RPM Updates
 +---------------------+-------------+-------------+
 | Package             | Old Version | New Version |
 +=====================+=============+=============+
-| puppet-agent        | N/A         | 1.6.2-1     |
+| puppet-agent        | N/A         | 1.8.3-1     |
 +---------------------+-------------+-------------+
 | puppet-client-tools | N/A         | 1.1.0-1     |
 +---------------------+-------------+-------------+
-| puppetdb            | 2.3.8-1     | 4.2.2-1     |
+| puppetdb            | 2.3.8-1     | 4.3.0-1     |
 +---------------------+-------------+-------------+
-| puppetdb-termini    | N/A         | 4.2.2-1     |
+| puppetdb-termini    | N/A         | 4.3.0-1     |
 +---------------------+-------------+-------------+
 | puppetdb-terminus   | 2.3.8-1     | N/A         |
 +---------------------+-------------+-------------+
-| puppetserver        | 1.1.1-1     | 2.6.0-1     |
+| puppetserver        | 1.1.1-1     | 2.7.2-1     |
 +---------------------+-------------+-------------+
 
 Fixed Bugs
