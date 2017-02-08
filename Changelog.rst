@@ -113,8 +113,8 @@ We've attempted to capture those changes here at a high level so that you know
 where you are going to need to focus to validate your Hiera data, ENC hooks,
 and parameterized class calls.
 
-Global catalysts
-""""""""""""""""
+Global catalysts and simp_options
+"""""""""""""""""""""""""""""""""
 
 SIMP Global catlysts now have a consitant naming scheme and are documented in
 code in the ``simp_options`` module. In particular, we have changed not only the
@@ -123,6 +123,49 @@ value in hiera, but every module parameter that uses this value's name from
 obtrusive, for example ``enable_selinux`` and other variations are now all
 called ``simp_options::selinux``. Every Catayst is strongly typed and documented
 in the module.
+
+New catalysts are as follows:
+
+- simp_options::auditd
+- simp_options::clamav
+- simp_options::dns::search
+- simp_options::dns::servers
+- simp_options::firewall
+- simp_options::haveged
+- simp_options::ipsec
+- simp_options::kerberos
+- simp_options::ldap
+- simp_options::ldap::base_dn
+- simp_options::ldap::bind_dn
+- simp_options::ldap::bind_hash
+- simp_options::ldap::bind_pw
+- simp_options::ldap::master
+- simp_options::ldap::root_dn
+- simp_options::ldap::root_hash
+- simp_options::ldap::sync_dn
+- simp_options::ldap::sync_hash
+- simp_options::ldap::sync_pw
+- simp_options::ldap::uri
+- simp_options::logrotate
+- simp_options::ntpd::servers
+- simp_options::openssl::cipher_suite
+- simp_options::pam
+- simp_options::pki
+- simp_options::pki::source
+- simp_options::puppet::ca
+- simp_options::puppet::ca_port
+- simp_options::puppet::server
+- simp_options::puppet::server_distribution
+- simp_options::rsync::server
+- simp_options::rsync::timeout
+- simp_options::selinux
+- simp_options::sssd
+- simp_options::stunnel
+- simp_options::syslog
+- simp_options::syslog::failover_log_servers
+- simp_options::syslog::log_servers
+- simp_options::tcpwrappers
+- simp_options::trusted_nets
 
 Strong Parameter Typing
 """""""""""""""""""""""
@@ -187,21 +230,16 @@ Forked modules
 Most forked modules (modules that don't start with 'simp') have been updated to
 latest upstream.
 
-pupmod-simp-simpcat
-"""""""""""""""""""
-
-To deconflict with the upstream ``puppetlabs-concat`` module, the ``simpcat``
-**functions** were renamed to be prefaced by ``simpcat`` instead of ``concat``.
-
-A simple find and replace of ``concat_fragment`` and ``concat_build`` in legacy
-code with ``simpcat_fragment`` and ``simpcat_build`` should suffice. Be sure to
-check for ``Concat_fragment`` and ``Concat_build`` resource dependencies!
-
 pupmod-simp-foreman
 """""""""""""""""""
 
 The ``foreman`` module has been removed until Foreman works consistently with
 Puppet 4.
+
+pupmod-simp-iptables
+""""""""""""""""""""
+
+Added method to open ports through hiera.
 
 pupmod-simp-ganglia
 """""""""""""""""""
@@ -235,6 +273,16 @@ the $use_templates parameter.
 pam::access:rule resources can be added through hiera using the
 $pam::access::users hash.
 
+pupmod-simp-simpcat
+"""""""""""""""""""
+
+To deconflict with the upstream ``puppetlabs-concat`` module, the ``simpcat``
+**functions** were renamed to be prefaced by ``simpcat`` instead of ``concat``.
+
+A simple find and replace of ``concat_fragment`` and ``concat_build`` in legacy
+code with ``simpcat_fragment`` and ``simpcat_build`` should suffice. Be sure to
+check for ``Concat_fragment`` and ``Concat_build`` resource dependencies!
+
 pupmod-simp-simplib
 """""""""""""""""""
 
@@ -264,10 +312,20 @@ pupmod-simp-snmpd
 
 The ``snmpd`` module has been removed until updates can be made available.
 
+pupmod-simp-sudo
+""""""""""""""""
+
+Added method to create user_specification resources through hiera.
+
 pupmod-simp-xwindows
 """"""""""""""""""""
 
 Module has been rewritten and renamed to pupmod-simp-gdm.
+
+ELG Stack
+"""""""""
+
+pupmod-simp-logstash now uses TLS.
 
 Puppet AIO
 ^^^^^^^^^^
