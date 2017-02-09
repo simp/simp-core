@@ -71,7 +71,7 @@ simp_opt=`awk -F "simp_opt=" '{print $2}' /proc/cmdline | cut -f1 -d' '`
 if [ "$simp_opt" != "prompt" ]; then
   cat << EOF > /tmp/part-include
 clearpart --all --initlabel --drives=${DISK}
-part /boot/efi --fstype=efi --size=200 --ondisk ${DISK} --asprimary
+part /boot/efi --fstype=efi --size=400 --ondisk ${DISK} --asprimary
 part /boot --fstype=ext4 --size=1024 --ondisk ${DISK} --asprimary --fsoptions=nosuid,nodev
 EOF
 
@@ -86,18 +86,11 @@ if [ "$simp_opt" != "prompt" ]; then
   cat << EOF >> /tmp/part-include
 volgroup VolGroup00 pv.01
 logvol swap --fstype=swap --name=SwapVol --vgname=VolGroup00 --size=1024
-logvol / --fstype=xfs --name=RootVol --vgname=VolGroup00 --size=4096 --fsoptions=iversion
+logvol / --fstype=xfs --name=RootVol --vgname=VolGroup00 --size=10240 --fsoptions=iversion
 logvol /tmp --fstype=xfs --name=TmpVol --vgname=VolGroup00 --size=2048 --fsoptions=nosuid,noexec,nodev
 logvol /home --fstype=xfs --name=HomeVol --vgname=VolGroup00 --size=1024 --fsoptions=nosuid,noexec,nodev,iversion
+logvol /var --fstype=ext4 --name=VarVol --vgname=VolGroup00 --size=1024 --grow
 logvol /var/log --fstype=xfs --name=VarLogVol --vgname=VolGroup00 --size=4096 --fsoptions=nosuid,noexec,nodev
 logvol /var/log/audit --fstype=xfs --name=VarLogAuditVol --vgname=VolGroup00 --size=1024 --fsoptions=nosuid,noexec,nodev
 EOF
-
-  if [ "$simp_opt" == "bigsrv" ]; then
-    echo "logvol /srv --fstype=xfs --name=SrvVol --vgname=VolGroup00 --size=1024 --fsoptions=nosuid,nodev,iversion --grow" >> /tmp/part-include
-    echo "logvol /var --fstype=xfs --name=VarVol --vgname=VolGroup00 --size=4096" >> /tmp/part-include
-  else
-    echo "logvol /srv --fstype=xfs --name=SrvVol --vgname=VolGroup00 --size=4096 --fsoptions=nosuid,nodev,iversion" >> /tmp/part-include
-    echo "logvol /var --fstype=xfs --name=VarVol --vgname=VolGroup00 --size=1024 --grow" >> /tmp/part-include
-  fi
 fi

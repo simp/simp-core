@@ -1,5 +1,5 @@
 # A list of packages required for the clean base installation of the SIMP DVD
-# based on RHEL 7-beta.
+# based on CentOS 1611 release.
 #
 # This list is simply used to keep items in the base DVD so having extra
 # packages listed here is not a problem. Anything not listed in this file will
@@ -15,6 +15,7 @@ ConsoleKit-x11
 DeviceKit-power
 GConf2
 GConf2-gtk
+GeoIP
 MAKEDEV
 ModemManager-glib
 NetworkManager
@@ -36,6 +37,8 @@ accountsservice
 accountsservice-libs
 acl
 acpid
+activemq
+activemq-info-provider
 adwaita-cursor-theme
 adwaita-gtk2-theme
 adwaita-gtk3-theme
@@ -148,11 +151,23 @@ checkpolicy
 cheese-libs
 chkconfig
 chkrootkit
+chrony
 cifs-utils
 clamav
+clamav-data
 clamav-data-empty
+clamav-devel
+clamav-filesystem
+clamav-lib
 clamav-lib
 clamav-milter-systemd
+clamav-scanner
+clamav-scanner-systemd
+clamav-scanner-sysvinit
+clamav-server
+clamav-server-systemd
+clamav-server-sysvinit
+clamav-update
 cloog-ppl
 cluster-glue-libs
 clusterlib
@@ -175,6 +190,7 @@ comps-extras
 control-center
 control-center-filesystem
 coolkey
+copy-jdk-configs
 coreutils
 coreutils-libs
 corosync
@@ -268,6 +284,8 @@ efibootmgr
 efivar-devel
 efivar-libs
 eggdbus
+elasticsearch
+elasticsearch-curator
 elfutils
 elfutils-libelf
 elfutils-libs
@@ -280,7 +298,6 @@ evolution-data-server
 exempi
 expat
 expat-devel
-facter
 felix-framework
 fence-agents
 fence-virt
@@ -298,6 +315,7 @@ fipscheck
 fipscheck-lib
 firefox
 firewalld
+firewalld-filesystem
 flac
 flac-libs
 flite
@@ -411,6 +429,7 @@ gpg-pubkey
 gpgme
 gpm
 gpm-libs
+grafana
 graphite2
 grep
 grilo
@@ -450,6 +469,7 @@ hardlink
 harfbuzz
 harfbuzz-devel
 harfbuzz-icu
+haveged
 hdparm
 hesiod
 hicolor-icon-theme
@@ -478,6 +498,8 @@ iotop
 ipmitool
 iproute
 iprutils
+ipset
+ipset-libs
 iptables
 iptables-ipv6
 iptables-services
@@ -648,6 +670,7 @@ libacl
 libaio
 libao
 libarchive
+libarchive-devel
 libart_lgpl
 libassuan
 libasyncns
@@ -744,6 +767,7 @@ libjpeg-devel
 libjpeg-turbo
 libjpeg-turbo-devel
 libjson-glib
+libkadm5
 libldb
 liblouis
 liblouis-python
@@ -763,6 +787,7 @@ libnl
 libnl3
 libnl3-cli
 libnm-gtk
+libnma
 libnotify
 liboauth
 libogg
@@ -783,17 +808,18 @@ libpwquality
 libqb
 libquvi
 libquvi-scripts
+librados2
 libraw1394
 librdmacm
 libref_array
 libreport-filesystem
+libreswan
 librsvg2
 libsamplerate
 libsecret
 libselinux
 libselinux-devel
 libselinux-python
-libselinux-ruby
 libselinux-utils
 libsemanage
 libsemanage-python
@@ -806,8 +832,11 @@ libsoup
 libsrtp
 libss
 libssh2
+libsss_autofs
 libsss_idmap
 libsss_nss_idmap
+libsss_simpleifp
+libsss_sudo
 libstdc++
 libstdc++-devel
 libsysfs
@@ -868,8 +897,8 @@ lm_sensors-libs
 log4cxx
 log4j
 logrotate
+logstash
 logwatch
-lslk
 lsof
 lsscsi
 lua
@@ -887,6 +916,36 @@ man-pages
 mariadb-libs
 maven
 maven-wagon
+mcollective
+mcollective-actionpolicy-auth
+mcollective-client
+mcollective-common
+mcollective-filemgr-agent
+mcollective-filemgr-client
+mcollective-filemgr-common
+mcollective-iptables-agent
+mcollective-iptables-client
+mcollective-iptables-common
+mcollective-nettest-agent
+mcollective-nettest-client
+mcollective-nettest-common
+mcollective-nrpe-agent
+mcollective-nrpe-client
+mcollective-nrpe-common
+mcollective-package-agent
+mcollective-package-client
+mcollective-package-common
+mcollective-puppet-agent
+mcollective-puppet-client
+mcollective-puppet-common
+mcollective-service-agent
+mcollective-service-client
+mcollective-service-common
+mcollective-shell-agent
+mcollective-shell-client
+mcollective-shell-common
+mcollective-sshkey-security
+mcollective-sysctl-data
 mcpp
 mcstrans
 mdadm
@@ -906,7 +965,6 @@ microcode_ctl
 mingetty
 mlocate
 mobile-broadband-provider-info
-mod_ldap
 mod_proxy
 mod_session
 mod_ssl
@@ -986,7 +1044,6 @@ opensp
 openssh
 openssh-askpass
 openssh-clients
-openssh-ldap
 openssh-server
 openssl
 openssl-devel
@@ -1015,6 +1072,13 @@ pcre-devel
 pcsc-lite
 pcsc-lite-ccid
 pcsc-lite-libs
+pdsh
+pdsh-debuginfo
+pdsh-mod-dshgroup
+pdsh-mod-machines
+pdsh-mod-netgroup
+pdsh-rcmd-exec
+pdsh-rcmd-ssh
 perl
 perl-B-Lint
 perl-Business-ISBN
@@ -1186,6 +1250,9 @@ postfix
 postgresql
 postgresql-libs
 postgresql-server
+postgresql94
+postgresql94-libs
+postgresql94-server
 ppl
 ppp
 prelink
@@ -1200,7 +1267,12 @@ pulseaudio-gdm-hooks
 pulseaudio-libs
 pulseaudio-libs-glib2
 pulseaudio-module-bluetooth
-puppet
+puppet-agent
+puppet-client-tools
+puppetdb
+puppetdb-termini
+puppetlabs-release-pc1
+puppetserver
 pyOpenSSL
 pyatspi
 pycairo
@@ -1227,6 +1299,7 @@ python-deltarpm
 python-dmidecode
 python-elasticsearch
 python-ethtool
+python-firewall
 python-gudev
 python-hwdata
 python-iniparse
@@ -1234,6 +1307,7 @@ python-javapackages
 python-kitchen
 python-ldap
 python-libs
+python-linecache2
 python-lxml
 python-memcached
 python-perf
@@ -1241,7 +1315,6 @@ python-pycurl
 python-pyro
 python-pyudev
 python-redis
-python-rhsm
 python-setuptools
 python-simplejson
 python-six
@@ -1250,6 +1323,8 @@ python-slip-dbus
 python-sss
 python-sssdconfig
 python-suds
+python-traceback2
+python-unittest2
 python-urlgrabber
 python-urllib3
 pyxattr
@@ -1271,6 +1346,7 @@ quota
 quota-nls
 rarian
 rarian-compat
+razor-server
 rdma
 readahead
 readline
@@ -1331,6 +1407,7 @@ ruby-irb
 ruby-ldap
 ruby-libs
 ruby-rdoc
+ruby-rgen
 ruby-ri
 ruby-shadow
 ruby-static
@@ -1339,23 +1416,33 @@ rubygem-bigdecimal
 rubygem-builder
 rubygem-cucumber
 rubygem-daemons
+rubygem-deep_merge
 rubygem-diff-lcs
 rubygem-fastthread
+rubygem-ffi
 rubygem-gem_plugin
 rubygem-gemcutter
+rubygem-highline
 rubygem-hoe
 rubygem-io-console
 rubygem-json
 rubygem-minitest
 rubygem-mongrel
+rubygem-net-ldap
+rubygem-net-ldap-doc
+rubygem-net-ping
 rubygem-passenger
 rubygem-polyglot
 rubygem-psych
+rubygem-puppet-lint
 rubygem-rack
 rubygem-rake
+rubygem-rake-compiler
 rubygem-rdoc
 rubygem-rspec
 rubygem-rubyforge
+rubygem-stomp
+rubygem-stomp-doc
 rubygem-term-ansicolor
 rubygem-treetop
 rubygems
@@ -1389,6 +1476,7 @@ shared-mime-info
 shim
 simp
 simp-doc
+simp-lastbind
 simp-ppolicy-check-password
 simp_bootstrap
 simp_config
@@ -1417,6 +1505,7 @@ sssd-ad
 sssd-client
 sssd-common
 sssd-common-pac
+sssd-dbus
 sssd-ipa
 sssd-krb5
 sssd-krb5-common
@@ -1434,6 +1523,7 @@ sudosh2
 symlinks
 sysfsutils
 syslinux
+syslinux-tftpboot
 sysstat
 system-config-firewall-base
 system-gnome-theme
@@ -1473,6 +1563,7 @@ tokyocabinet
 tomcat-servlet-3.0-api
 totem-pl-parser
 tracker
+tree
 trousers
 ttmkfdir
 tuned

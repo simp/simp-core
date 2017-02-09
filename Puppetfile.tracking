@@ -1,4 +1,4 @@
-# refs recorded for SIMP release 6.0.0 
+# refs recorded for SIMP release 6.0.0
 # vi:syntax=ruby
 
 moduledir 'src'
@@ -21,59 +21,59 @@ moduledir 'src/puppet/modules'
 
 mod 'bfraser-grafana',
   :git => 'https://github.com/simp/puppet-grafana',
-  :ref => 'simp-master'
+  :ref => 'master'
 
 mod 'camptocamp-kmod',
   :git => 'https://github.com/simp/puppet-kmod.git',
   :ref => 'master'
 
-mod 'elasticsearch-elasticsearch',
+mod 'elastic-elasticsearch',
   :git => 'https://github.com/simp/puppet-elasticsearch',
   :ref => 'simp-master'
 
-mod 'elasticsearch-logstash',
+mod 'elastic-logstash',
   :git => 'https://github.com/simp/puppet-logstash',
-  :ref => 'simp-master'
+  :ref => 'master'
 
 mod 'electrical-file_concat',
   :git => 'https://github.com/simp/puppet-lib-file_concat',
-  :ref => 'simp-master'
+  :ref => 'master'
 
 mod 'herculesteam-augeasproviders',
   :git => 'https://github.com/simp/augeasproviders',
-  :ref => 'simp-master'
+  :ref => 'master'
 
 mod 'herculesteam-augeasproviders_apache',
   :git => 'https://github.com/simp/augeasproviders_apache',
-  :ref => 'simp-master'
+  :ref => 'master'
 
 mod 'herculesteam-augeasproviders_base',
   :git => 'https://github.com/simp/augeasproviders_base',
-  :ref => 'simp-master'
+  :ref => 'master'
 
 mod 'herculesteam-augeasproviders_core',
   :git => 'https://github.com/simp/augeasproviders_core',
-  :ref => 'simp-master'
+  :ref => 'master'
 
 mod 'herculesteam-augeasproviders_grub',
   :git => 'https://github.com/simp/augeasproviders_grub',
-  :ref => 'simp-master'
+  :ref => 'master'
 
 mod 'herculesteam-augeasproviders_mounttab',
   :git => 'https://github.com/simp/augeasproviders_mounttab',
-  :ref => 'simp-master'
+  :ref => 'master'
 
 mod 'herculesteam-augeasproviders_nagios',
   :git => 'https://github.com/simp/augeasproviders_nagios',
-  :ref => 'simp-master'
+  :ref => 'master'
 
 mod 'herculesteam-augeasproviders_pam',
   :git => 'https://github.com/simp/augeasproviders_pam',
-  :ref => 'simp-master'
+  :ref => 'master'
 
 mod 'herculesteam-augeasproviders_postgresql',
   :git => 'https://github.com/simp/augeasproviders_postgresql',
-  :ref => 'simp-master'
+  :ref => 'master'
 
 mod 'herculesteam-augeasproviders_puppet',
   :git => 'https://github.com/simp/augeasproviders_puppet',
@@ -81,15 +81,15 @@ mod 'herculesteam-augeasproviders_puppet',
 
 mod 'herculesteam-augeasproviders_shellvar',
   :git => 'https://github.com/simp/augeasproviders_shellvar',
-  :ref => 'simp-master'
+  :ref => 'master'
 
 mod 'herculesteam-augeasproviders_ssh',
   :git => 'https://github.com/simp/augeasproviders_ssh',
-  :ref => 'simp-master'
+  :ref => 'master'
 
 mod 'herculesteam-augeasproviders_sysctl',
   :git => 'https://github.com/simp/augeasproviders_sysctl',
-  :ref => 'simp-master'
+  :ref => 'master'
 
 mod 'onyxpoint-gpasswd',
   :git => 'https://github.com/simp/puppet-gpasswd',
@@ -97,35 +97,37 @@ mod 'onyxpoint-gpasswd',
 
 mod 'puppetlabs-apache',
   :git => 'https://github.com/simp/puppetlabs-apache',
-  :ref => 'simp-master'
+  :ref => 'master'
 
+# We have updated this module for Puppet 4, and submitted changes upstream. We
+# will use the simp-master branch until it is accepted in master.
 mod 'puppetlabs-concat',
   :git => 'https://github.com/simp/puppetlabs-concat',
   :ref => 'simp-master'
 
 mod 'puppetlabs-inifile',
   :git => 'https://github.com/simp/puppetlabs-inifile',
-  :ref => 'simp-master'
+  :ref => 'master'
 
 mod 'puppetlabs-java',
   :git => 'https://github.com/simp/puppetlabs-java',
-  :ref => 'simp-master'
+  :ref => 'master'
 
 mod 'puppetlabs-java_ks',
   :git => 'https://github.com/simp/puppetlabs-java_ks',
-  :ref => 'simp-master'
+  :ref => 'master'
 
 mod 'puppetlabs-motd',
   :git => 'https://github.com/simp/puppetlabs-motd',
-  :ref => 'simp-master'
+  :ref => 'master'
 
 mod 'puppetlabs-mysql',
   :git => 'https://github.com/simp/puppetlabs-mysql',
-  :ref => 'simp-master'
+  :ref => 'master'
 
 mod 'puppetlabs-postgresql',
   :git => 'https://github.com/simp/puppetlabs-postgresql',
-  :ref => 'simp-master'
+  :ref => 'master'
 
 mod 'puppetlabs-stdlib',
   :git => 'https://github.com/simp/puppetlabs-stdlib',
@@ -133,8 +135,9 @@ mod 'puppetlabs-stdlib',
 
 mod 'richardc-datacat',
   :git => 'https://github.com/simp/puppet-datacat',
-  :ref => 'simp-master'
+  :ref => 'master'
 
+# SIMP has made changes to this module that don't exist upstream
 mod 'saz-timezone',
   :git => 'https://github.com/simp/puppet-timezone',
   :ref => 'simp-master'
@@ -203,6 +206,7 @@ mod 'simp-gnome',
   :git => 'https://github.com/simp/pupmod-simp-gnome',
   :ref => 'master'
 
+# SIMP has made changes to this module that don't exist upstream
 mod 'simp-haveged',
   :git => 'https://github.com/simp/puppet-haveged',
   :ref => 'simp-master'
@@ -223,6 +227,7 @@ mod 'simp-jenkins',
   :git => 'https://github.com/simp/pupmod-simp-jenkins',
   :ref => 'master'
 
+  # SIMP has made changes to this module that don't exist upstream
 mod 'simp-journald',
   :git => 'https://github.com/simp/pupmod-simp-journald.git',
   :ref => 'simp-master'
@@ -247,6 +252,7 @@ mod 'simp-mcafee',
   :git => 'https://github.com/simp/pupmod-simp-mcafee',
   :ref => 'master'
 
+# SIMP has made changes to this module that don't exist upstream
 mod 'simp-mcollective',
   :git => 'https://github.com/simp/pupmod-simp-mcollective',
   :ref => 'simp-master'
@@ -328,7 +334,7 @@ mod 'simp-simp',
   :ref => 'master'
 
 mod 'simp-simpcat',
-  :git => 'https://github.com/simp/pupmod-simp-concat',
+  :git => 'https://github.com/simp/pupmod-simp-simpcat',
   :ref => 'master'
 
 mod 'simp-simp_apache',
@@ -349,6 +355,10 @@ mod 'simp-simp_logstash',
 
 mod 'simp-simp_options',
   :git => 'https://github.com/simp/pupmod-simp-simp_options',
+  :ref => 'master'
+
+mod 'simp-simp_nfs',
+  :git => 'https://github.com/simp/pupmod-simp-simp_nfs',
   :ref => 'master'
 
 mod 'simp-simp_rsyslog',
@@ -427,6 +437,7 @@ mod 'simp-useradd',
   :git => 'https://github.com/simp/pupmod-simp-useradd',
   :ref => 'master'
 
+# SIMP has made changes to this module that don't exist upstream
 mod 'trlinkin-nsswitch',
   :git => 'https://github.com/simp/puppet-nsswitch',
   :ref => 'simp-master'

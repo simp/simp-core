@@ -6,17 +6,18 @@ simp_releases:
     flavors:
       CentOS:
         isos:
-          - name:     'CentOS-7-x86_64-DVD-1511.iso'
-            size:     4329570304
-            checksum: '907e5755f824c5848b9c8efbb484f3cd945e93faa024bad6ba875226f9683b16'
-        build_command: 'bundle exec rake build:auto[6.X,CentOS-7-x86_64-DVD-1511.iso]'
+          - name:     'CentOS-7-x86_64-DVD-1611.iso'
+            size:     4379901952
+            checksum: 'c455ee948e872ad2194bdddd39045b83634e8613249182b88f549bb2319d97eb'
+        build_command: 'bundle exec rake build:auto[CentOS-7-x86_64-DVD-1611.iso,6.X]'
         mock:          'epel-7-x86_64'
         os_version:   '7.0'
+
       RedHat:
         isos:
-          - name:     'rhel-server-7.2-x86_64-dvd.iso'
-            size:     4043309056
-            checksum: '03f3a0291634335f6995534d829bd21ffaa0d000004dfeb1b2fb81052d64a4d5'
-        build_command: 'bundle exec rake build:auto[6.X,RedHat-7-x86_64-DVD-1511.iso]'
+          - name:     'rhel-server-7.3-x86_64-dvd.iso'
+            size:     3793747968
+            checksum: '120acbca7b3d55465eb9f8ef53ad7365f2997d42d4f83d7cc285bf5c71e1131f'
+        build_command: 'bundle exec rake build:auto[RedHat-7-x86_64-DVD-1511.iso,6.X]'
         mock:          'epel-7-x86_64'
-        os_version:   '7.2'
+        os_version:   '7.3'

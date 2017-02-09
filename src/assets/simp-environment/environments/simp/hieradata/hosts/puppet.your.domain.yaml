@@ -47,6 +47,10 @@ simp_options::stunnel: true
 simp_options::syslog: true
 simp_options::tcpwrappers: true
 
+# Allow the backup SIMP user, local only to this system
+simp::server::allow_simp_user: true
+
 classes:
-  - 'simp::puppetdb'
   - 'simp::server'
+  - 'simp::puppetdb'
+
