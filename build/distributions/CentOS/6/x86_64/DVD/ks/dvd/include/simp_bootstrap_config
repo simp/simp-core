@@ -1,6 +1,5 @@
 security_relevant_logs="if \$syslogfacility-text == 'authpriv' or \$syslogfacility-text == 'local5' or \$syslogfacility-text == 'local6' or \$syslogfacility-text == 'local7' or \$syslogpriority-text == 'emerg' or ( \$syslogfacility-text == 'kern' and \$msg startswith 'IPT:' ) then"
 pupbuildloc="/etc/puppet/build"
-use_nscd="true"
 ldap_root_hash='{SSHA}WPgZGFw8x48yxDI/NAHQNZMUCrxMR1p1WVNG'
 puppet_ca_port="8140"
 autosign=puppet.change.me

@@ -22,8 +22,8 @@ reboot
 redhat-lsb
 xorg-x11-xauth
 acl
-rpm
-yum
+aide
+audit
 bzip2
 crontabs
 libutempter
@@ -45,57 +45,57 @@ gnupg
 gpm
 hal
 hal-storage-addon
+iptables
+iptables-ipv6
 irqbalance
 krb5-workstation
 libaio
 logwatch
 logrotate
+lsof
+lsscsi
 mcstrans
 mdadm
 microcode_ctl
+mutt
+net-snmp
+netlabel_tools
+ntp
 nss_db
 openssh-clients
 openssh-server
 pam_krb5
 pam_passwdqc
 pam_pkcs11
-ntp
 readahead
+rpm
+rsyslog7
+rubygems
 smartmontools
 stunnel
+subversion
 sudo
 sssd
+sysstat
 tcp_wrappers
 unzip
 usbutils
 vconfig
+vim-enhanced
+vlock
 wget
 which
+yum
 zip
-aide
-iptables
-iptables-ipv6
-netlabel_tools
-audit
-lsscsi
-net-snmp
-sysstat
-vlock
-mutt
-subversion
 -sysklogd
 -rsyslog
-rsyslog7
-lsof
-vim-enhanced
 -sendmail
 # Puppet stuff
 simp
+simp-adapter-foss
 rsync
-facter
-puppet
+puppet-agent
 # Puppet client
-puppet
 ruby-rdoc
 
 # Puppet Server Complete Load
@@ -118,7 +118,6 @@ sysfsutils
 udftools
 
 # Don't install these
-
 -rhn-setup
 -rhnsd
 -rhn-check

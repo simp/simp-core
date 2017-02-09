@@ -229,6 +229,8 @@ freetype
 freetype-devel
 gamin
 gamin-python
+ganglia-gmetad
+ganglia-gmond
 gawk
 gcc
 gcc-c++
@@ -255,6 +257,8 @@ glibc
 glibc-common
 glibc-devel
 glibc-headers
+glibc-static
+glibc-utils
 globus-common
 globus-gsi-callback
 globus-gsi-cert-utils
@@ -303,6 +307,7 @@ gpg-pubkey
 gpgme
 gpm
 gpm-libs
+gpxe-bootimgs
 gpxe-roms-qemu
 grep
 groff
@@ -461,6 +466,10 @@ krb5-server
 krb5-server-ldap
 krb5-workstation
 lcms-libs
+ldns
+ldns-devel
+ldns-doc
+ldns-python
 less
 lfc-python
 lftp
@@ -547,11 +556,14 @@ libertas-usb8388-firmware
 libestr
 libevdev
 libevent
+libevent2
 libexif
 libffi
 libfontenc
 libfprint
 libgail-gnome
+libganglia
+libganglia-3_1_0
 libgcc
 libgcj
 libgcj-devel
@@ -604,6 +616,7 @@ libproxy-bin
 libproxy-python
 libraw1394
 librdmacm
+libreswan
 libref_array
 librelp
 librsvg2
@@ -698,6 +711,7 @@ metacity
 microcode_ctl
 mingetty
 mlocate
+mod_authz_ldap
 mod_ssl
 modcluster
 module-init-tools
@@ -805,6 +819,10 @@ perl-DBD-MySQL
 perl-DBI
 perl-Date-Manip
 perl-DateTime
+perl-Archive-Zip
+perl-DateTime-Format-DateParse
+perl-DateTime-Format-Mail
+perl-DateTime-Format-W3CDTF
 perl-Digest-HMAC
 perl-Digest-SHA1
 perl-Error
@@ -834,6 +852,7 @@ perl-TimeDate
 perl-URI
 perl-WWW-Curl
 perl-XML-Parser
+perl-XML-RSS
 perl-YAML-Syck
 perl-devel
 perl-libs
@@ -873,6 +892,9 @@ postfix
 postgresql
 postgresql-libs
 postgresql-server
+postgresql94
+postgresql94-libs
+postgresql94-server
 ppl
 prelink
 procps
@@ -892,6 +914,8 @@ pygtk2
 pyorbit
 pytalloc
 python
+python-backports
+python-backports-ssl_match_hostname
 python-crypto
 python-dateutil
 python-deltarpm
@@ -909,11 +933,13 @@ python-pyro
 python-redis
 python-rhsm
 python-simplejson
+python-six
 python-sss
 python-sssdconfig
 python-suds
 python-unittest2
 python-urlgrabber
+python-urllib3
 pyxdg
 ql2100-firmware
 ql2200-firmware
@@ -1068,6 +1094,7 @@ symlinks
 sysfsutils
 syslinux
 syslinux-nonlinux
+syslinux-tftpboot
 sysstat
 system-config-firewall-base
 system-gnome-theme
@@ -1224,3 +1251,6 @@ zenity
 zip
 zlib
 zlib-devel
+#pkgs needed for repo closure
+libreswan
+unbound-libs

@@ -1,7 +1,7 @@
 Summary: GPGKEYS
 Name: simp-gpgkeys
 Version: 2.0.0
-Release: 3%{?dist}
+Release: 4%{?dist}
 License: Public Domain
 Group: Applications/System
 Source: %{name}-%{version}-%{release}.tar.gz
@@ -45,7 +45,7 @@ cp RPM-GPG-KEY* %{buildroot}/%{prefix}
 
 # If we're a SIMP server, place the keys into the appropriate web directory
 
-dir='/srv/www/yum/SIMP'
+dir='/var/www/yum/SIMP'
 if [ ! -d $dir ]; then
   mkdir -p -m 0755 "${dir}/GPGKEYS"
 fi
@@ -95,12 +95,15 @@ find ${dir}/GPGKEYS/ -type f -exec chmod 640 {} +
 %postun
 #!/bin/bash
 
-dir='/srv/www/yum/SIMP'
+dir='/var/www/yum/SIMP'
 if [ -d "${dir}/GPGKEYS" ]; then
   find -P "${dir}/GPGKEYS/" -type f -xdev -xautofs -delete
 fi
 
 %changelog
+* Fri Jan 27 2017 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 2.0.0-4
+- Changed www diretory to /var/www for SIMP 6
+
 * Tue Oct 27 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 2.0.0-3
 - Fixed some logic bugs in the %postinstall script
 

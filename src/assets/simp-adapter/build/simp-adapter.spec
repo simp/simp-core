@@ -96,6 +96,9 @@ install -p -m 640 -D puppet_config/hiera.yaml %{buildroot}%{puppet_confdir}/hier
 if  [ $1 -eq 1 ]; then
   # If this is present, we're being installed via Kickstart and should set the
   # system to automatically install the packages into the correct location.
+  if [ -f /root/simp-kickstarted.txt ]; then
+     echo 'copy_rpm_data : true' >> %{prefix}/adapter_config.yaml
+  fi
 
   if [ -f /anaconda-yum.yumtx ]; then
     echo 'copy_rpm_data : true' >> %{prefix}/adapter_config.yaml

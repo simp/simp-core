@@ -14,12 +14,3 @@ systems may become overly complicated.
 Remember, the premise of this system is that you start small and secure and you
 extend via Puppet to create your desired environment.
 
-== Diskdetect.sh ==
-
-The diskdetect.sh script provides a simp_opt variable that can be
-modified at kickstart time to rearrange /srv or /var.
-
-Values:
-
-  'big'    => Grow /srv to fill all available space
-  'bigvar' => Grow /var to fill all available space instead of /srv
