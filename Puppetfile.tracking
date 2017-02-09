@@ -357,6 +357,10 @@ mod 'simp-simp_options',
   :git => 'https://github.com/simp/pupmod-simp-simp_options',
   :ref => 'master'
 
+mod 'simp-simp_nfs',
+  :git => 'https://github.com/simp/pupmod-simp-simp_nfs',
+  :ref => 'master'
+
 mod 'simp-simp_rsyslog',
   :git => 'https://github.com/simp/pupmod-simp-simp_rsyslog',
   :ref => 'master'
