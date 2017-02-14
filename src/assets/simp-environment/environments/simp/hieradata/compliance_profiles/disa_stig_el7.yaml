@@ -5,1804 +5,1773 @@ compliance_map:
   disa_stig_el7:
     aide::default_rules:
       identifiers:
-      - RHEL-07-021820
-      - SRG-OS-000364-GPOS-00151
-      - CCI-000293
-      - CCI-001812
-      - CCI-001813
-      - CCI-001814
+        - RHEL-07-021820
+        - SRG-OS-000364-GPOS-00151
+        - CCI-000293
+        - CCI-001812
+        - CCI-001813
+        - CCI-001814
       value: ''
     aide::enable:
       identifiers:
-      - RHEL-07-020940
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000318
-      - CCI-001812
-      - CCI-001813
-      - CCI-001814
-      - CCI-000368
+        - RHEL-07-020940
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000318
+        - CCI-001812
+        - CCI-001813
+        - CCI-001814
+        - CCI-000368
+      notes: AIDE is quite stressful on a system and is set to 'false' by default. It should be enabled after a good understanding of system performance
       value: false
-      notes: AIDE is quite stressful on a system and is set to 'false' by default.
-        It should be enabled after a good understanding of system performance
     aide::logrotate::rotate_period:
       identifiers:
-      - RHEL-07-030320
-      - SRG-OS-000341-GPOS-00132
-      - CCI-001849
-      value: weekly
+        - RHEL-07-030320
+        - SRG-OS-000341-GPOS-00132
+        - CCI-001849
       notes: This value can be different than weekly but should be justified.
+      value: weekly
     auditd::at_boot:
       identifiers:
-      - RHEL-07-030310
-      - RHEL-07-030020
-      - SRG-OS-000327-GPOS-00127
-      - SRG-OS-000042-GPOS-00020
-      - CCI-002234
-      - CCI-000135
+        - RHEL-07-030310
+        - RHEL-07-030020
+        - SRG-OS-000327-GPOS-00127
+        - SRG-OS-000042-GPOS-00020
+        - CCI-002234
+        - CCI-000135
+      value: true
+    auditd::config::audit_profiles::simp::audit_attr:
+      identifiers:
+        - SRG-OS-000064-GPOS-00033
+        - SRG-OS-000392-GPOS-00172
+        - SRG-OS-000458-GPOS-00203
+        - RHEL-07-030390
+        - RHEL-07-030381
+        - SRG-OS-000474-GPOS-00219
+        - SRG-OS-000474-GPOS-00219
+        - RHEL-07-030383
+        - RHEL-07-030404
+        - RHEL-07-030401
+        - SRG-OS-000474-GPOS-00219
+        - RHEL-07-030382
+        - RHEL-07-030405
+        - RHEL-07-030402
+        - RHEL-07-030403
+        - RHEL-07-030400
+      value: true
+    auditd::config::audit_profiles::simp::audit_chmod:
+      identifiers:
+        - SRG-OS-000064-GPOS-00033
+        - SRG-OS-000392-GPOS-00172
+        - SRG-OS-000458-GPOS-00203
+        - RHEL-07-030390
+        - RHEL-07-030381
+        - SRG-OS-000474-GPOS-00219
+        - SRG-OS-000474-GPOS-00219
+        - RHEL-07-030383
+        - RHEL-07-030404
+        - RHEL-07-030401
+        - SRG-OS-000474-GPOS-00219
+        - RHEL-07-030382
+        - RHEL-07-030405
+        - RHEL-07-030402
+        - RHEL-07-030403
+        - RHEL-07-030400
+      value: true
+    auditd::config::audit_profiles::simp::audit_chown:
+      identifiers:
+        - SRG-OS-000064-GPOS-00033
+        - SRG-OS-000392-GPOS-00172
+        - SRG-OS-000458-GPOS-00203
+        - RHEL-07-030390
+        - RHEL-07-030381
+        - SRG-OS-000474-GPOS-00219
+        - SRG-OS-000474-GPOS-00219
+        - RHEL-07-030383
+        - RHEL-07-030404
+        - RHEL-07-030401
+        - SRG-OS-000474-GPOS-00219
+        - RHEL-07-030382
+        - RHEL-07-030405
+        - RHEL-07-030402
+        - RHEL-07-030403
+        - RHEL-07-030400
       value: true
     auditd::config::audit_profiles::simp::audit_kernel_modules:
       identifiers:
-      - SRG-OS-000471-GPOS-00216
-      - SRG-OS-000477
-      - GPOS-00222
-      - RHEL-07-030670
+        - SRG-OS-000471-GPOS-00216
+        - SRG-OS-000477
+        - GPOS-00222
+        - RHEL-07-030670
       value: true
     auditd::config::audit_profiles::simp::audit_local_account:
       identifiers:
-      - ' RHEL-07-030710'
-      - SRG–OS–000004–GPOS–00004
-      - SRG–OS–000239–GPOS–00089
-      - SRG–OS–000241–GPOS–00090
-      - SRG–OS–000241–GPOS–00091
-      - SRG–OS–000303–GPOS–00120
-      - SRG–OS–000476–GPOS–00221
+        - ' RHEL-07-030710'
+        - SRG–OS–000004–GPOS–00004
+        - SRG–OS–000239–GPOS–00089
+        - SRG–OS–000241–GPOS–00090
+        - SRG–OS–000241–GPOS–00091
+        - SRG–OS–000303–GPOS–00120
+        - SRG–OS–000476–GPOS–00221
       value: true
     auditd::config::audit_profiles::simp::audit_login_files:
       identifiers:
-      - SRG-OS-000392-GPOS-00172
-      - SRG-OS-000470-GPOS-00214
-      - SRG-OS-000473-GPOS-00218
-      - RHEL-07-030490
-      value: true
-    auditd::config::audit_profiles::simp::audit_permissions:
-      identifiers:
-      - SRG-OS-000064-GPOS-00033
-      - SRG-OS-000392-GPOS-00172
-      - SRG-OS-000458-GPOS-00203
-      - RHEL-07-030390
-      - RHEL-07-030381
-      - SRG-OS-000474-GPOS-00219
-      - SRG-OS-000474-GPOS-00219
-      - RHEL-07-030383
-      - RHEL-07-030404
-      - RHEL-07-030401
-      - SRG-OS-000474-GPOS-00219
-      - RHEL-07-030382
-      - RHEL-07-030405
-      - RHEL-07-030402
-      - RHEL-07-030403
-      - RHEL-07-030400
+        - SRG-OS-000392-GPOS-00172
+        - SRG-OS-000470-GPOS-00214
+        - SRG-OS-000473-GPOS-00218
+        - RHEL-07-030490
       value: true
     auditd::config::audit_profiles::simp::audit_su_root_activity:
       identifiers:
-      - SRG-OS-000327-GPOS-00127
-      - RHEL-07-030310
+        - SRG-OS-000327-GPOS-00127
+        - RHEL-07-030310
       value: true
     auditd::config::audit_profiles::simp::audit_suid_sgid:
       identifiers:
-      - SRG-OS-000042-GPOS-00020
-      - SRG-OS-000392-GPOS-00172
-      - RHEL-07-030530
+        - SRG-OS-000042-GPOS-00020
+        - SRG-OS-000392-GPOS-00172
+        - RHEL-07-030530
       value: true
     auditd::config::audit_profiles::simp::audit_time:
       identifiers:
-      - SRG-OS-000255-GPOS-00096
-      - CCI-001487
+        - SRG-OS-000255-GPOS-00096
+        - CCI-001487
       value: true
     auditd::config::audit_profiles::simp::audit_unsuccessful_file_operations:
       identifiers:
-      - SRG-OS-000064-GPOS-00033
-      - SRG-OS-000392-GPOS-00172
-      - SRG-OS-000458-GPOS-00203
-      - RHEL-07-030420
-      - RHEL-07-030750
+        - SRG-OS-000064-GPOS-00033
+        - SRG-OS-000392-GPOS-00172
+        - SRG-OS-000458-GPOS-00203
+        - RHEL-07-030420
+        - RHEL-07-030750
       value: true
     auditd::default_audit_profile:
       identifiers:
-      - RHEL-07-030240
-      - SRG-OS-000239-GPOS-00089
-      - SRG-OS-000241-GPOS-00090
-      - SRG-OS-000241-GPOS-00091
-      - CCI-001403
+        - RHEL-07-030240
+        - SRG-OS-000239-GPOS-00089
+        - SRG-OS-000241-GPOS-00090
+        - SRG-OS-000241-GPOS-00091
+        - CCI-001403
+      notes: The SIMP profile applies a base set of audit rules that adhere to guidance from several sources
       value: simp
-      notes: The SIMP profile applies a base set of audit rules that adhere to guidance
-        from several sources
     auditd::disk_full_action:
       identifiers:
-      - RHEL-07-030340
-      - SRG-OS-000342-GPOS-00133
-      - CCI-001851
+        - RHEL-07-030340
+        - SRG-OS-000342-GPOS-00133
+        - CCI-001851
       value: SUSPEND
-    auditd::enable_auditing:
+    auditd::enable:
       identifiers:
-      - RHEL-07-030010
-      - SRG-OS-000038-GPOS-00016
-      - SRG-OS-000039-GPOS-00017
-      - SRG-OS-000042-GPOS-00021
-      - CCI-000131
-      - CCI-000126
+        - RHEL-07-030010
+        - SRG-OS-000038-GPOS-00016
+        - SRG-OS-000039-GPOS-00017
+        - SRG-OS-000042-GPOS-00021
+        - CCI-000131
+        - CCI-000126
       value: true
     auditd::package_name:
       identifiers:
-      - RHEL-07-030200
-      - SRG-OS-000205-GPOS-00083
-      - CCI-001312
+        - RHEL-07-030200
+        - SRG-OS-000205-GPOS-00083
+        - CCI-001312
       value: audit
     auditd::root_audit_level:
       identifiers:
-      - RHEL-07-030310
-      - RHEL-07-030020
-      - SRG-OS-000327-GPOS-00127
-      - SRG-OS-000042-GPOS-00020
-      - CCI-002234
-      - CCI-000135
+        - RHEL-07-030310
+        - RHEL-07-030020
+        - SRG-OS-000327-GPOS-00127
+        - SRG-OS-000042-GPOS-00020
+        - CCI-002234
+        - CCI-000135
       value: basic
-    auditd::service_name::enabled:
+    auditd::service_name:
       identifiers:
-      - RHEL-07-030010
-      - SRG-OS-000038-GPOS-00016
-      - SRG-OS-000039-GPOS-00017
-      - SRG-OS-000042-GPOS-00021
-      - CCI-000131
-      - CCI-000126
-      value: true
+        - RHEL-07-030010
+        - SRG-OS-000038-GPOS-00016
+        - SRG-OS-000039-GPOS-00017
+        - SRG-OS-000042-GPOS-00021
+        - CCI-000131
+        - CCI-000126
+      value: auditd
     auditd::space_left_action:
       identifiers:
-      - RHEL-07-030350
-      - SRG-OS-000343-GPOS-00134
-      - CCI-001855
+        - RHEL-07-030350
+        - SRG-OS-000343-GPOS-00134
+        - CCI-001855
+      notes: This value can be changed if there is a more ideal notification method for your systems
       value: SYSLOG
-      notes: This value can be changed if there is a more ideal notification method
-        for your systems
-    auditd::to_syslog:
+    auditd::syslog:
       identifiers:
-      - RHEL-07-030770
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
+        - RHEL-07-030770
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
+      notes: 'Sending audit logs to syslog *might* by a bandwidth problem in some instances. Otherwise, it should NOT be turned off'
       value: true
-      notes: Sending audit logs to syslog *might* by a bandwidth problem in some instances.
-        Otherwise, it should NOT be turned off
     autofs::ldap_auth::authrequired:
       identifiers:
-      - RHEL-07-010500
-      - SRG-OS-000104-GPOS-00051
-      - CCI-000764
-      - CCI-000770
+        - RHEL-07-010500
+        - SRG-OS-000104-GPOS-00051
+        - CCI-000764
+        - CCI-000770
       value: 'yes'
     autofs::ldap_auth::authtype:
       identifiers:
-      - RHEL-07-010500
-      - SRG-OS-000104-GPOS-00051
-      - CCI-000764
-      - CCI-000770
+        - RHEL-07-010500
+        - SRG-OS-000104-GPOS-00051
+        - CCI-000764
+        - CCI-000770
       value: LOGIN
     autofs::ldap_auth::tlsrequired:
       identifiers:
-      - RHEL-07-040180
-      - SRG-OS-000250-GPOS-00093
-      - CCI-001453
+        - RHEL-07-040180
+        - SRG-OS-000250-GPOS-00093
+        - CCI-001453
       value: 'yes'
     autofs::ldap_auth::usetls:
       identifiers:
-      - RHEL-07-040180
-      - SRG-OS-000250-GPOS-00093
-      - CCI-001453
+        - RHEL-07-040180
+        - SRG-OS-000250-GPOS-00093
+        - CCI-001453
       value: 'yes'
     autofs::ldap_auth_conf_file:
       identifiers:
-      - RHEL-07-010500
-      - SRG-OS-000104-GPOS-00051
-      - CCI-000764
-      - CCI-000770
+        - RHEL-07-010500
+        - SRG-OS-000104-GPOS-00051
+        - CCI-000764
+        - CCI-000770
       value: /etc/autofs_ldap_auth.conf
-    clamav::enable_clamav:
+    clamav::enable:
       identifiers:
-      - RHEL-07-030810
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
+        - RHEL-07-030810
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
+      notes: 'If ClamAV is not used, alternate malicious code detection software should be implemented'
       value: true
-      notes: If ClamAV is not used, alternate malicious code detection software should
-        be implemented
     clamav::enable_freshclam:
       identifiers:
-      - RHEL-07-030810
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
+        - RHEL-07-030810
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
+      notes: 'If ClamAV is not used, alternate malicious code detection software should be implemented'
       value: false
-      notes: If ClamAV is not used, alternate malicious code detection software should
-        be implemented
     clamav::schedule_scan:
       identifiers:
-      - RHEL-07-030810
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
+        - RHEL-07-030810
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
+      notes: 'If ClamAV is not used, alternate malicious code detection software should be implemented'
       value: true
-      notes: If ClamAV is not used, alternate malicious code detection software should
-        be implemented
-    iptables::authoritative:
+    fips::aesni:
       identifiers:
-      - RHEL-07-040920
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
+        - RHEL-07-021280
+        - RHEL-07-010300
+        - SRG-OS-000033-GPOS-00014
+        - SRG-OS-000396-GPOS-00176
+        - SRG-OS-000478-GPOS-00223
+        - SRG-OS-000120-GPOS-00061
+        - CCI-000068
+        - CCI-002450
+        - CCI-000803
       value: true
-    iptables::disable:
+    iptables::default_rules:
       identifiers:
-      - RHEL-07-040920
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
-      value: false
-    iptables::enable_default_rules:
-      identifiers:
-      - RHEL-07-040920
-      - RHEL-07-040820
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
+        - RHEL-07-040920
+        - RHEL-07-040820
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
+      notes: 'If the SIMP default rules are modified, the running rules should be viewed to ensure they allow a minimal set inbound flows'
       value: true
-      notes: If the SIMP default rules are modified, the running rules should be viewed
-        to ensure they allow a minimal set inbound flows
-    iptables::enable_scanblock:
-      identifiers:
-      - RHEL-07-040920
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
-      value: false
-      notes: This is turned off by default for SIMP as writing rules *could* cause
-        unintended behaviour
     iptables::ignore:
       identifiers:
-      - RHEL-07-040920
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
+        - RHEL-07-040920
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
       value: []
     iptables::optimize_rules:
       identifiers:
-      - RHEL-07-040920
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
+        - RHEL-07-040920
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
       value: true
     iptables::prevent_localhost_spoofing:
       identifiers:
-      - RHEL-07-040920
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
+        - RHEL-07-040920
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
       value: true
+    iptables::scanblock:
+      identifiers:
+        - RHEL-07-040920
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
+      notes: This is turned off by default for SIMP as writing rules *could* cause unintended behaviour
+      value: false
+    issue::profile:
+      identifiers:
+        - RHEL-07-010030
+        - SRG-OS-000023-GPOS-00006
+        - SRG-OS-000024-GPOS-00007
+        - CCI-000048
+      notes: The actual content should be manually validated to determine if it matches the need of the implementation
+      value: default
+    nsswitch::automount:
+      identifiers:
+        - RHEL-07-010000
+        - SRG-OS-000001-GPOS-00001
+        - CCI-000015
+      notes: This is part of the overall SIMP authentication architecture. Different implementations can be used but should be justified
+      value:
+        - files
+    nsswitch::bootparams:
+      identifiers:
+        - RHEL-07-010000
+        - SRG-OS-000001-GPOS-00001
+        - CCI-000015
+      notes: This is part of the overall SIMP authentication architecture. Different implementations can be used but should be justified
+      value:
+        - 'nisplus [NOTFOUND=return]'
+        - files
+    nsswitch::group:
+      identifiers:
+        - RHEL-07-010000
+        - SRG-OS-000001-GPOS-00001
+        - CCI-000015
+      notes: This is part of the overall SIMP authentication architecture. Different implementations can be used but should be justified
+      value:
+        - files
+        - sss
+    nsswitch::hosts:
+      identifiers:
+        - RHEL-07-010000
+        - SRG-OS-000001-GPOS-00001
+        - CCI-000015
+      notes: This is part of the overall SIMP authentication architecture. Different implementations can be used but should be justified
+      value:
+        - files
+        - dns
+    nsswitch::netgroup:
+      identifiers:
+        - RHEL-07-010000
+        - SRG-OS-000001-GPOS-00001
+        - CCI-000015
+      notes: This is part of the overall SIMP authentication architecture. Different implementations can be used but should be justified
+      value:
+        - files
+        - sss
+    nsswitch::passwd:
+      identifiers:
+        - RHEL-07-010000
+        - SRG-OS-000001-GPOS-00001
+        - CCI-000015
+      notes: This is part of the overall SIMP authentication architecture. Different implementations can be used but should be justified
+      value:
+        - files
+        - sss
+    nsswitch::publickey:
+      identifiers:
+        - RHEL-07-010000
+        - SRG-OS-000001-GPOS-00001
+        - CCI-000015
+      notes: This is part of the overall SIMP authentication architecture. Different implementations can be used but should be justified
+      value:
+        - nisplus
+    nsswitch::shadow:
+      identifiers:
+        - RHEL-07-010000
+        - SRG-OS-000001-GPOS-00001
+        - CCI-000015
+      notes: This is part of the overall SIMP authentication architecture. Different implementations can be used but should be justified
+      value:
+        - files
+        - sss
     ntpd::logconfig:
       identifiers:
-      - RHEL-07-030310
-      - SRG-OS-000327-GPOS-00127
-      - CCI-002234
+        - RHEL-07-030310
+        - SRG-OS-000327-GPOS-00127
+        - CCI-002234
       value:
-      - =syncall
-      - +clockall
-    openldap::client::tls_cacertdir:
-      identifiers:
-      - RHEL-07-040240
-      - SRG-OS-000403-GPOS-00182
-      - CCI-002470
-      value: /etc/pki/cacerts
-    openldap::client::tls_reqcert:
-      identifiers:
-      - RHEL-07-040240
-      - SRG-OS-000403-GPOS-00182
-      - CCI-002470
-      value: allow
-    openldap::pam::nss_initgroups_ignoreusers:
-      identifiers:
-      - RHEL-07-020290
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
-      value:
-      - root
-      - bin
-      - daemon
-      - adm
-      - lp
-      - mail
-      - operator
-      - nobody
-      - dbus
-      - ntp
-      - saslauth
-      - postfix
-      - sshd
-      - puppet
-      - stunnel
-      - nscd
-      - haldaemon
-      - clamav
-      - rpcuser
-      - rpc
-      - clam
-      - nfsnobody
-      - rpm
-      - nslcd
-      - avahi
-      - gdm
-      - rtkit
-      - pulse
-      - hsqldb
-      - radvd
-      - apache
-      - tomcat
-    openldap::pam::pam_member_attribute:
-      identifiers:
-      - RHEL-07-010000
-      - SRG-OS-000001-GPOS-00001
-      - CCI-000015
-      value: memberUid
-    openldap::pam::ssl:
-      identifiers:
-      - RHEL-07-040180
-      - SRG-OS-000250-GPOS-00093
-      - CCI-001453
-      value: true
-    openldap::pam::start_tls:
-      identifiers:
-      - RHEL-07-040180
-      - SRG-OS-000250-GPOS-00093
-      - CCI-001453
-      value: true
-    openldap::pam::tls_ciphers:
-      identifiers:
-      - RHEL-07-040180
-      - SRG-OS-000250-GPOS-00093
-      - CCI-001453
-      value:
-      - HIGH
-      - -SSLv2
-    openldap::pam::use_auditd:
-      identifiers:
-      - RHEL-07-030310
-      - SRG-OS-000327-GPOS-00127
-      - CCI-002234
-      value: true
-    openldap::pam::validnames:
-      identifiers:
-      - RHEL-07-010000
-      - SRG-OS-000001-GPOS-00001
-      - CCI-000015
-      value: /^[a-z0-9._@$()][a-z0-9._@$() \~-]+[a-z0-9._@$()~-]$/i
-    openldap::server::conf::audit_to_syslog:
-      identifiers:
-      - RHEL-07-030330
-      - SRG-OS-000342-GPOS-00133
-      - CCI-001851
-      value: true
-    openldap::server::conf::audit_transactions:
-      identifiers:
-      - RHEL-07-030310
-      - SRG-OS-000327-GPOS-00127
-      - CCI-002234
-      value: true
-    openldap::server::conf::auditlog:
-      identifiers:
-      - RHEL-07-030310
-      - SRG-OS-000327-GPOS-00127
-      - CCI-002234
-      value: /var/log/slapd.audit
-    openldap::server::conf::auditlog_preserve:
-      identifiers:
-      - RHEL-07-030320
-      - SRG-OS-000341-GPOS-00132
-      - CCI-001849
-      value: '7'
-    openldap::server::conf::auditlog_rotate:
-      identifiers:
-      - RHEL-07-030320
-      - SRG-OS-000341-GPOS-00132
-      - CCI-001849
-      value: daily
-    openldap::server::conf::authz_policy:
-      identifiers:
-      - RHEL-07-010000
-      - SRG-OS-000001-GPOS-00001
-      - CCI-000015
-      value: to
-    openldap::server::conf::bind_anon:
-      identifiers:
-      - RHEL-07-040880
-      - SRG-OS-000250-GPOS-00093
-      - CCI-001453
-      value: false
-    openldap::server::conf::default_ldif::ppolicy_pwd_allow_user_change:
-      identifiers:
-      - RHEL-07-010390
-      - SRG-OS-000380-GPOS-00165
-      - CCI-002041
-      value: true
-    openldap::server::conf::default_ldif::ppolicy_pwd_failure_count_interval:
-      identifiers:
-      - RHEL-07-010370
-      - SRG-OS-000329-GPOS-00128
-      - CCI-002238
-      value: '900'
-    openldap::server::conf::default_ldif::ppolicy_pwd_in_history:
-      identifiers:
-      - RHEL-07-010240
-      - SRG-OS-000077-GPOS-00045
-      - CCI-000200
-      value: '24'
-    openldap::server::conf::default_ldif::ppolicy_pwd_lockout:
-      identifiers:
-      - RHEL-07-010370
-      - SRG-OS-000329-GPOS-00128
-      - CCI-002238
-      value: true
-    openldap::server::conf::default_ldif::ppolicy_pwd_lockout_duration:
-      identifiers:
-      - RHEL-07-010370
-      - SRG-OS-000329-GPOS-00128
-      - CCI-002238
-      value: '900'
-    openldap::server::conf::default_ldif::ppolicy_pwd_max_age:
-      identifiers:
-      - RHEL-07-010220
-      - SRG-OS-000076-GPOS-00044
-      - CCI-000199
-      value: '15552000'
-    openldap::server::conf::default_ldif::ppolicy_pwd_max_failure:
-      identifiers:
-      - RHEL-07-010370
-      - SRG-OS-000329-GPOS-00128
-      - CCI-002238
-      value: '3'
-    openldap::server::conf::default_ldif::ppolicy_pwd_min_length:
-      identifiers:
-      - RHEL-07-010250
-      - SRG-OS-000078-GPOS-00046
-      - CCI-000205
-      value: '15'
-    openldap::server::conf::default_ldif::ppolicy_pwd_must_change:
-      identifiers:
-      - RHEL-07-010390
-      - SRG-OS-000380-GPOS-00165
-      - CCI-002041
-      value: true
-    openldap::server::conf::disallow:
-      identifiers:
-      - RHEL-07-040880
-      - SRG-OS-000250-GPOS-00093
-      - CCI-001453
-      value:
-      - bind_anon
-      - tls_2_anon
-    openldap::server::conf::enable_iptables:
-      identifiers:
-      - RHEL-07-040920
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
-      value: true
-    openldap::server::conf::listen_ldaps:
-      identifiers:
-      - RHEL-07-040180
-      - SRG-OS-000250-GPOS-00093
-      - CCI-001453
-      value: true
-    openldap::server::conf::password_crypt_salt_format:
-      identifiers:
-      - RHEL-07-010500
-      - SRG-OS-000104-GPOS-00051
-      - CCI-000764
-      - CCI-000770
-      value: '%s'
-    openldap::server::conf::password_hash:
-      identifiers:
-      - RHEL-07-021280
-      - SRG-OS-000033-GPOS-00014
-      - CCI-000068
-      - CCI-002450
-      value: SSHA
-    openldap::server::conf::security:
-      identifiers:
-      - RHEL-07-021280
-      - SRG-OS-000033-GPOS-00014
-      - CCI-000068
-      - CCI-002450
-      value: ssf=256 tls=256 update_ssf=256 simple_bind=256 update_tls=256
-    openldap::server::conf::slapd_logLevel:
-      identifiers:
-      - RHEL-07-030310
-      - SRG-OS-000327-GPOS-00127
-      - CCI-002234
-      value:
-      - stats
-      - acl
-      - sync
-    openldap::server::conf::use_tls:
-      identifiers:
-      - RHEL-07-040180
-      - SRG-OS-000250-GPOS-00093
-      - CCI-001453
-      value: true
-    openldap::server::schema_source:
-      identifiers:
-      - RHEL-07-010000
-      - SRG-OS-000001-GPOS-00001
-      - CCI-000015
-      value: puppet:///modules/openldap/etc/openldap/schema
-    openldap::server::schema_sync:
-      identifiers:
-      - RHEL-07-010000
-      - SRG-OS-000001-GPOS-00001
-      - CCI-000015
-      value: true
-    openldap::server::use_tcpwrappers:
-      identifiers:
-      - RHEL-07-040810
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
-      value: true
+        - =syncall
+        - +clockall
     pam::cracklib_dcredit:
       identifiers:
-      - RHEL-07-010110
-      - SRG-OS-000071-GPOS-00039
-      - CCI-000194
+        - RHEL-07-010110
+        - SRG-OS-000071-GPOS-00039
+        - CCI-000194
       value: '-1'
     pam::cracklib_difok:
       identifiers:
-      - RHEL-07-010130
-      - SRG-OS-000072-GPOS-00040
-      - CCI-000195
+        - RHEL-07-010130
+        - SRG-OS-000072-GPOS-00040
+        - CCI-000195
       value: '8'
     pam::cracklib_lcredit:
       identifiers:
-      - RHEL-07-010100
-      - SRG-OS-000070-GPOS-00038
-      - CCI-000193
+        - RHEL-07-010100
+        - SRG-OS-000070-GPOS-00038
+        - CCI-000193
       value: '-1'
     pam::cracklib_maxclassrepeat:
       identifiers:
-      - RHEL-07-010160
-      - SRG-OS-000072-GPOS-00040
-      - CCI-000195
+        - RHEL-07-010160
+        - SRG-OS-000072-GPOS-00040
+        - CCI-000195
       value: '2'
     pam::cracklib_maxrepeat:
       identifiers:
-      - RHEL-07-010150
-      - SRG-OS-000072-GPOS-00040
-      - CCI-000195
+        - RHEL-07-010150
+        - SRG-OS-000072-GPOS-00040
+        - CCI-000195
       value: '2'
     pam::cracklib_maxsequence:
       identifiers:
-      - CCI-000195
+        - CCI-000195
       value: '4'
     pam::cracklib_minclass:
       identifiers:
-      - RHEL-07-010140
-      - SRG-OS-000072-GPOS-00040
-      - CCI-000195
+        - RHEL-07-010140
+        - SRG-OS-000072-GPOS-00040
+        - CCI-000195
       value: '4'
     pam::cracklib_minlen:
       identifiers:
-      - RHEL-07-010250
-      - SRG-OS-000078-GPOS-00046
-      - CCI-000205
+        - RHEL-07-010250
+        - SRG-OS-000078-GPOS-00046
+        - CCI-000205
       value: '15'
     pam::cracklib_ocredit:
       identifiers:
-      - RHEL-07-010120
-      - SRG-OS-000266-GPOS-00101
-      - CCI-001619
+        - RHEL-07-010120
+        - SRG-OS-000266-GPOS-00101
+        - CCI-001619
       value: '-1'
     pam::cracklib_retry:
       identifiers:
-      - RHEL-07-010410
-      - SRG-OS-000480-GPOS-00225
-      - CCI-000366
+        - RHEL-07-010410
+        - SRG-OS-000480-GPOS-00225
+        - CCI-000366
       value: '3'
     pam::cracklib_ucredit:
       identifiers:
-      - RHEL-07-010090
-      - SRG-OS-000069-GPOS-00037
-      - CCI-000192
+        - RHEL-07-010090
+        - SRG-OS-000069-GPOS-00037
+        - CCI-000192
       value: '-1'
     pam::deny:
       identifiers:
-      - RHEL-07-010370
-      - SRG-OS-000329-GPOS-00128
-      - CCI-002238
+        - RHEL-07-010370
+        - SRG-OS-000329-GPOS-00128
+        - CCI-002238
       value: '3'
     pam::fail_interval:
       identifiers:
-      - RHEL-07-010370
-      - SRG-OS-000329-GPOS-00128
-      - CCI-002238
+        - RHEL-07-010370
+        - SRG-OS-000329-GPOS-00128
+        - CCI-002238
       value: '900'
     pam::homedir_umask:
       identifiers:
-      - RHEL-07-020230
-      - SRG-OS-000480-GPOS-00228
-      - CCI-000366
+        - RHEL-07-020230
+        - SRG-OS-000480-GPOS-00228
+        - CCI-000366
       value: '0077'
     pam::remember:
       identifiers:
-      - RHEL-07-010240
-      - SRG-OS-000077-GPOS-00045
-      - CCI-000200
+        - RHEL-07-010240
+        - SRG-OS-000077-GPOS-00045
+        - CCI-000200
       value: '24'
     pam::uid:
       identifiers:
-      - RHEL-07-010000
-      - SRG-OS-000001-GPOS-00001
-      - CCI-000015
+        - RHEL-07-010000
+        - SRG-OS-000001-GPOS-00001
+        - CCI-000015
       value: '500'
     pam::unlock_time:
       identifiers:
-      - RHEL-07-010370
-      - SRG-OS-000329-GPOS-00128
-      - CCI-002238
+        - RHEL-07-010370
+        - SRG-OS-000329-GPOS-00128
+        - CCI-002238
       value: '900'
     pam::use_netgroups:
       identifiers:
-      - RHEL-07-010000
-      - SRG-OS-000001-GPOS-00001
-      - CCI-000015
+        - RHEL-07-010000
+        - SRG-OS-000001-GPOS-00001
+        - CCI-000015
       value: false
-    pki::enable_audit:
+    pki::auditd:
       identifiers:
-      - RHEL-07-030010
-      - SRG-OS-000038-GPOS-00016
-      - SRG-OS-000039-GPOS-00017
-      - SRG-OS-000042-GPOS-00021
-      - CCI-000131
-      - CCI-000126
+        - RHEL-07-030010
+        - SRG-OS-000038-GPOS-00016
+        - SRG-OS-000039-GPOS-00017
+        - SRG-OS-000042-GPOS-00021
+        - CCI-000131
+        - CCI-000126
       value: true
     postfix::enable_server:
       identifiers:
-      - RHEL-07-040480
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
+        - RHEL-07-040480
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
       value: false
-    postfix::server::enable_iptables:
+    postfix::server::firewall:
       identifiers:
-      - RHEL-07-040920
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
+        - RHEL-07-040920
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
       value: true
     pupmod::auditd_support:
       identifiers:
-      - RHEL-07-030310
-      - SRG-OS-000327-GPOS-00127
-      - CCI-002234
+        - RHEL-07-030310
+        - SRG-OS-000327-GPOS-00127
+        - CCI-002234
       value: true
     pupmod::logdir:
       identifiers:
-      - RHEL-07-030010
-      - SRG-OS-000038-GPOS-00016
-      - CCI-000131
-      - CCI-000126
-      value: /var/log/puppet
-    pupmod::master::log_to_syslog:
+        - RHEL-07-030010
+        - SRG-OS-000038-GPOS-00016
+        - CCI-000131
+        - CCI-000126
+      value: /var/log/puppetlabs/puppet
+    pupmod::master::firewall:
       identifiers:
-      - RHEL-07-030770
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
+        - RHEL-07-040920
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
+      value: true
+    pupmod::master::syslog:
+      identifiers:
+        - RHEL-07-030770
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
       value: true
     pupmod::master::syslog_message_format:
       identifiers:
-      - RHEL-07-030770
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
+        - RHEL-07-030770
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
       value: '%logger[%thread]: %msg'
-    pupmod::master::use_iptables:
-      identifiers:
-      - RHEL-07-040920
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
-      value: true
     pupmod::syslogfacility:
       identifiers:
-      - RHEL-07-030770
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
+        - RHEL-07-030770
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
       value: local6
+    pupmod::vardir:
+      identifiers:
+        - CM-6
+      value: /opt/puppetlabs/puppet/cache
     rsyslog::config::enable_default_rules:
       identifiers:
-      - RHEL-07-030320
-      - SRG-OS-000341-GPOS-00132
-      - CCI-001849
+        - RHEL-07-030320
+        - SRG-OS-000341-GPOS-00132
+        - CCI-001849
       value: true
     rsyslog::config::main_msg_queue_save_on_shutdown:
       identifiers:
-      - RHEL-07-030090
-      - SRG-OS-000046-GPOS-00022
-      - CCI-000139
+        - RHEL-07-030090
+        - SRG-OS-000046-GPOS-00022
+        - CCI-000139
       value: 'on'
     rsyslog::server::enable_firewall:
       identifiers:
-      - RHEL-07-030320
-      - SRG-OS-000341-GPOS-00132
-      - CCI-001849
+        - RHEL-07-030320
+        - SRG-OS-000341-GPOS-00132
+        - CCI-001849
       value: true
     rsyslog::server::enable_selinux:
       identifiers:
-      - RHEL-07-020210
-      - SRG-OS-000445-GPOS-00199
-      - CCI-002696
+        - RHEL-07-020210
+        - SRG-OS-000445-GPOS-00199
+        - CCI-002696
       value: true
     rsyslog::server::enable_tcpwrappers:
       identifiers:
-      - RHEL-07-040810
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
+        - RHEL-07-040810
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
       value: true
     selinux::ensure:
       identifiers:
-      - RHEL-07-020210
-      - RHEL-07-020080
-      - SRG-OS-000445-GPOS-00199
-      - SRG-OS-000312-GPOS-00124
-      - CCI-002696
-      - CCI-002165
+        - RHEL-07-020210
+        - RHEL-07-020080
+        - SRG-OS-000445-GPOS-00199
+        - SRG-OS-000312-GPOS-00124
+        - CCI-002696
+        - CCI-002165
       value: enforcing
     selinux::mode:
       identifiers:
-      - RHEL-07-020210
-      - RHEL-07-020080
-      - SRG-OS-000445-GPOS-00199
-      - SRG-OS-000312-GPOS-00124
-      - CCI-002696
-      - CCI-002165
+        - RHEL-07-020210
+        - RHEL-07-020080
+        - SRG-OS-000445-GPOS-00199
+        - SRG-OS-000312-GPOS-00124
+        - CCI-002696
+        - CCI-002165
       value: targeted
-    simp::admin::force_sudosh:
+    simp::admin::logged_shell:
       identifiers:
-      - RHEL-07-030310
-      - SRG-OS-000327-GPOS-00127
-      - CCI-002234
-      value: true
+        - RHEL-07-030310
+        - SRG-OS-000327-GPOS-00127
+        - CCI-002234
+      value: sudosh
+    simp::ctrl_alt_del::enable:
+      identifiers:
+        - RHEL-07-020220
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
+      value: false
     simp::enable_filebucketing:
       identifiers:
-      - RHEL-07-021820
-      - SRG-OS-000364-GPOS-00151
-      - CCI-000293
-      - CCI-001812
-      - CCI-001813
-      - CCI-001814
+        - RHEL-07-021820
+        - SRG-OS-000364-GPOS-00151
+        - CCI-000293
+        - CCI-001812
+        - CCI-001813
+        - CCI-001814
+      value: true
+    simp::fips:
+      identifiers:
+        - RHEL-07-021280
+        - RHEL-07-010300
+        - SRG-OS-000033-GPOS-00014
+        - SRG-OS-000396-GPOS-00176
+        - SRG-OS-000478-GPOS-00223
+        - SRG-OS-000120-GPOS-00061
+        - CCI-000068
+        - CCI-002450
+        - CCI-000803
+      value: true
+    simp::kmod_blacklist::blacklist:
+      identifiers:
+        - RHEL-07-020020
+        - RHEL-07-021750
+        - SRG-OS-000114-GPOS-00059
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000778
+        - CCI-000366
+      value:
+        - bluetooth
+        - cramfs
+        - dccp
+        - dccp_ipv4
+        - dccp_ipv6
+        - freevxfs
+        - hfs
+        - hfsplus
+        - ieee1394
+        - jffs2
+        - net-pf-31
+        - rds
+        - sctp
+        - squashfs
+        - tipc
+        - udf
+        - usb-storage
+    simp::kmod_blacklist::enable_defaults:
+      identifiers:
+        - RHEL-07-020020
+        - RHEL-07-021750
+        - SRG-OS-000114-GPOS-00059
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000778
+        - CCI-000366
+      value: true
+    simp::mountpoints::manage_tmp_perms:
+      identifiers:
+        - RHEL-07-020040
+        - SRG-OS-000138-GPOS-00069
+        - CCI-001090
       value: true
     simp::nfs::stock::export_home::sec:
       identifiers:
-      - RHEL-07-021240
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
-      value: none:sys
-    simp::rsyslog::stock::log_server::forward::log_transport:
+        - RHEL-07-021240
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
+      value: 'none:sys'
+    simp::pam_limits::max_logins:
       identifiers:
-      - RHEL-07-030200
-      - SRG-OS-000205-GPOS-00083
-      - CCI-001312
-      value: tcp
-      notes: The use of UDP should be justified
-    simp::rsyslog::stock::log_server::rotate:
-      identifiers:
-      - RHEL-07-030320
-      - SRG-OS-000341-GPOS-00132
-      - CCI-001849
-      value: '122'
-      notes: This value can vary according to storage capacity of a log server
-    simp::rsyslog::stock::log_server::rotate_period:
-      identifiers:
-      - RHEL-07-030320
-      - SRG-OS-000341-GPOS-00132
-      - CCI-001849
-      value: weekly
-      notes: This value can vary according to storage capacity of a log server
-    simp::rsyslog::stock::log_server::size:
-      identifiers:
-      - RHEL-07-030320
-      - SRG-OS-000341-GPOS-00132
-      - CCI-001849
-      value: '2'
-      notes: This value can vary according to storage capacity of a log server
-    simp::rsyslog::stock::log_server::use_iptables:
-      identifiers:
-      - RHEL-07-040920
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
-      value: true
-    simp::rsyslog::stock::security_relevant_logs:
-      identifiers:
-      - RHEL-07-030310
-      - RHEL-07-030620
-      - SRG-OS-000327-GPOS-00127
-      - SRG-OS-000471-GPOS-00215
-      - CCI-002234
-      - CCI-000172
-      value: if $programname == 'sudosh' or $programname == 'yum' or $syslogfacility-text
-        == 'cron' or $syslogfacility-text == 'authpriv' or $syslogfacility-text ==
-        'local5' or $syslogfacility-text == 'local6' or $syslogfacility-text == 'local7'
-        or $syslogpriority-text == 'emerg' or ( $syslogfacility-text == 'kern' and
-        $msg startswith 'IPT:' ) then
-      notes: If the default security relevant logs are changed, they should be justified,
-        especially if fewer than the SIMP default are configured
+        - RHEL-07-040010
+        - SRG-OS-000027-GPOS-00008
+        - CCI-000054
+      notes: Setting this number higher than 10 should be justified
+      value: '10'
     simp::server::allow_simp_user:
       identifiers:
-      - RHEL-07-020290
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
+        - RHEL-07-020290
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
+      notes: Passwordless sudo for the administrators group is part of a larger default account management strategy in SIMP. Setting this to false might not be a bad thing as long as the implementation can explain their account strategy
       value: true
-      notes: Passwordless sudo for the administrators group is part of a larger default
-        account management strategy in SIMP. Setting this to false might not be a
-        bad thing as long as the implementation can explain their account strategy
+    simp::sssd::client::autofs:
+      identifiers:
+        - RHEL-07-010000
+        - RHEL-07-020020
+        - SRG-OS-000114-GPOS-00059
+        - SRG-OS-000001-GPOS-00001
+        - CCI-000778
+        - CCI-000015
+      value: true
     simp::sssd::client::enumerate_users:
       identifiers:
-      - RHEL-07-010000
-      - SRG-OS-000001-GPOS-00001
-      - CCI-000015
+        - RHEL-07-010000
+        - SRG-OS-000001-GPOS-00001
+        - CCI-000015
       value: false
+    simp::sssd::client::ldap_domain:
+      identifiers:
+        - RHEL-07-010000
+        - SRG-OS-000001-GPOS-00001
+        - CCI-000015
+      value: true
     simp::sssd::client::min_id:
       identifiers:
-      - RHEL-07-010000
-      - SRG-OS-000001-GPOS-00001
-      - CCI-000015
-      value: '501'
-    simp::sssd::client::use_autofs:
+        - RHEL-07-010000
+        - SRG-OS-000001-GPOS-00001
+        - CCI-000015
+      value: 1000
+    simp::sssd::client::ssh:
       identifiers:
-      - RHEL-07-010000
-      - RHEL-07-020020
-      - SRG-OS-000114-GPOS-00059
-      - SRG-OS-000001-GPOS-00001
-      - CCI-000778
-      - CCI-000015
+        - RHEL-07-040260
+        - SRG-OS-000423-GPOS-00187
+        - SRG-OS-000423-GPOS-00188
+        - SRG-OS-000423-GPOS-00189
+        - SRG-OS-000423-GPOS-00190
+        - CCI-002418
+        - CCI-002421
+        - CCI-002420
+        - CCI-002422
       value: true
-    simp::sssd::client::use_ldap:
+    simp::sssd::client::sudo:
       identifiers:
-      - RHEL-07-010000
-      - SRG-OS-000001-GPOS-00001
-      - CCI-000015
+        - RHEL-07-010000
+        - RHEL-07-010380
+        - SRG-OS-000373-GPOS-00156
+        - SRG-OS-000373-GPOS-00157
+        - SRG-OS-000373-GPOS-00158
+        - SRG-OS-000001-GPOS-00001
+        - CCI-000015
+        - CCI-002038
       value: true
-    simp::sssd::client::use_ssh:
+    simp::sysctl::core_dumps:
       identifiers:
-      - RHEL-07-040260
-      - SRG-OS-000423-GPOS-00187
-      - SRG-OS-000423-GPOS-00188
-      - SRG-OS-000423-GPOS-00189
-      - SRG-OS-000423-GPOS-00190
-      - CCI-002418
-      - CCI-002421
-      - CCI-002420
-      - CCI-002422
-      value: true
-    simp::sssd::client::use_sudo:
+        - RHEL-07-021230
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
+      value: false
+    simp::sysctl::kernel__exec_shield:
       identifiers:
-      - RHEL-07-010000
-      - RHEL-07-010380
-      - SRG-OS-000373-GPOS-00156
-      - SRG-OS-000373-GPOS-00157
-      - SRG-OS-000373-GPOS-00158
-      - SRG-OS-000001-GPOS-00001
-      - CCI-000015
-      - CCI-002038
-      value: true
+        - RHEL-07-020180
+        - SRG-OS-000433-GPOS-00192
+        - CCI-002824
+      value: '1'
+    simp::sysctl::kernel__randomize_va_space:
+      identifiers:
+        - RHEL-07-020190
+        - SRG-OS-000433-GPOS-00193
+        - CCI-002824
+      value: '2'
+    simp::sysctl::net__ipv4__conf__all__accept_redirects:
+      identifiers:
+        - RHEL-07-040410
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
+      value: '0'
+    simp::sysctl::net__ipv4__conf__all__accept_source_route:
+      identifiers:
+        - RHEL-07-040350
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
+      value: '0'
+    simp::sysctl::net__ipv4__conf__all__send_redirects:
+      identifiers:
+        - RHEL-07-040420
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
+      value: '0'
+    simp::sysctl::net__ipv4__conf__default__accept_redirects:
+      identifiers:
+        - RHEL-07-040410
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
+      value: '0'
+    simp::sysctl::net__ipv4__icmp_echo_ignore_broadcasts:
+      identifiers:
+        - RHEL-07-040870
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
+      value: '1'
+    simp::sysctl::net__ipv4__tcp_syncookies:
+      identifiers:
+        - RHEL-07-040430
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
+      value: '1'
     simp::yum::enable_auto_updates:
       identifiers:
-      - RHEL-07-021810
-      - SRG-OS-000191-GPOS-00080
-      - CCI-001233
+        - RHEL-07-021810
+        - SRG-OS-000191-GPOS-00080
+        - CCI-001233
+      notes: Enabled for internal repos only. Updated packages still need to be applied to the configured yum repos
       value: true
-      notes: Enabled for internal repos only. Updated packages still need to be applied
-        to the configured yum repos
     simp_apache::conf::group:
       identifiers:
-      - RHEL-07-020410
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
+        - RHEL-07-020410
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
       value: apache
     simp_apache::conf::logfacility:
       identifiers:
-      - RHEL-07-030770
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
+        - RHEL-07-030770
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
       value: local6
     simp_apache::conf::logformat:
       identifiers:
-      - RHEL-07-030010
-      - SRG-OS-000038-GPOS-00016
-      - CCI-000131
-      - CCI-000126
-      value: '%h %l %u %t \"%r\" %>s %b \"%{hiera(''compliance_map::percent_sign'')}{Referer}i\"
-        \"%{hiera(''compliance_map::percent_sign'')}{User-Agent}i\"'
-    simp_apache::conf::rsyslog_target:
+        - RHEL-07-030010
+        - SRG-OS-000038-GPOS-00016
+        - CCI-000131
+        - CCI-000126
+      value: '%h %l %u %t \"%r\" %>s %b \"%{hiera(''compliance_map::percent_sign'')}{Referer}i\" \"%{hiera(''compliance_map::percent_sign'')}{User-Agent}i\"'
+    simp_apache::conf::syslog_target:
       identifiers:
-      - RHEL-07-030010
-      - SRG-OS-000038-GPOS-00016
-      - CCI-000131
-      - CCI-000126
+        - RHEL-07-030010
+        - SRG-OS-000038-GPOS-00016
+        - CCI-000131
+        - CCI-000126
       value: /var/log/httpd
     simp_apache::conf::user:
       identifiers:
-      - RHEL-07-020400
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
+        - RHEL-07-020400
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
       value: apache
     simp_apache::ssl:
       identifiers:
-      - RHEL-07-040030
-      - SRG-OS-000066-GPOS-00034
-      - CCI-000185
+        - RHEL-07-040030
+        - SRG-OS-000066-GPOS-00034
+        - CCI-000185
       value: true
-    simp_apache::ssl::enable_iptables:
+    simp_apache::ssl::app_pki_ca_dir:
       identifiers:
-      - RHEL-07-040920
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
+        - RHEL-07-040030
+        - SRG-OS-000066-GPOS-00034
+        - CCI-000185
+      value: /etc/pki/simp_apps/simp_apache/x509/cacerts
+    simp_apache::ssl::firewall:
+      identifiers:
+        - RHEL-07-040920
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
       value: true
     simp_apache::ssl::logformat:
       identifiers:
-      - RHEL-07-030010
-      - SRG-OS-000038-GPOS-00016
-      - CCI-000131
-      - CCI-000126
-      value: '%t %h %{hiera(''compliance_map::percent_sign'')}{SSL_CLIENT_S_DN_CN}x
-        %{hiera(''compliance_map::percent_sign'')}{SSL_PROTOCOL}x %{hiera(''compliance_map::percent_sign'')}{SSL_CIPHER}x
-        \"%r\" %b %s'
+        - RHEL-07-030010
+        - SRG-OS-000038-GPOS-00016
+        - CCI-000131
+        - CCI-000126
+      value: '%t %h %{hiera(''compliance_map::percent_sign'')}{SSL_CLIENT_S_DN_CN}x %{hiera(''compliance_map::percent_sign'')}{SSL_PROTOCOL}x %{hiera(''compliance_map::percent_sign'')}{SSL_CIPHER}x \"%r\" %b %s'
+    simp_apache::ssl::pki:
+      identifiers:
+        - RHEL-07-040030
+        - SRG-OS-000066-GPOS-00034
+        - CCI-000185
+      value: simp
     simp_apache::ssl::ssl_honor_cipher_order:
       identifiers:
-      - RHEL-07-040030
-      - SRG-OS-000066-GPOS-00034
-      - CCI-000185
-      value: 'on'
+        - RHEL-07-040030
+        - SRG-OS-000066-GPOS-00034
+        - CCI-000185
+      value: true
     simp_apache::ssl::ssl_protocols:
       identifiers:
-      - RHEL-07-040030
-      - SRG-OS-000066-GPOS-00034
-      - CCI-000185
+        - RHEL-07-040030
+        - SRG-OS-000066-GPOS-00034
+        - CCI-000185
       value:
-      - TLSv1
-      - TLSv1.1
-      - TLSv1.2
-    simp_apache::ssl::sslcacertificatepath:
-      identifiers:
-      - RHEL-07-040030
-      - SRG-OS-000066-GPOS-00034
-      - CCI-000185
-      value: /etc/httpd/conf/pki/cacerts
+        - TLSv1
+        - TLSv1.1
+        - TLSv1.2
     simp_apache::ssl::sslverifyclient:
       identifiers:
-      - RHEL-07-040030
-      - SRG-OS-000066-GPOS-00034
-      - CCI-000185
-      value: require
+        - RHEL-07-040030
+        - SRG-OS-000066-GPOS-00034
+        - CCI-000185
+      notes: Client verification is off by default since the clients don't present certificates in all instances.
+      value: none
     simp_apache::ssl::sslverifydepth:
       identifiers:
-      - RHEL-07-040030
-      - SRG-OS-000066-GPOS-00034
-      - CCI-000185
+        - RHEL-07-040030
+        - SRG-OS-000066-GPOS-00034
+        - CCI-000185
       value: '10'
-    simp_apache::ssl::use_simp_pki:
+    simp_openldap::client::app_pki_ca_dir:
       identifiers:
-      - RHEL-07-040030
-      - SRG-OS-000066-GPOS-00034
-      - CCI-000185
+        - RHEL-07-040240
+        - SRG-OS-000403-GPOS-00182
+        - CCI-002470
+      value: /etc/pki/simp_apps/openldap/x509/cacerts
+    simp_openldap::client::tls_reqcert:
+      identifiers:
+        - RHEL-07-040240
+        - SRG-OS-000403-GPOS-00182
+        - CCI-002470
+      value: allow
+    simp_openldap::server::conf::audit_to_syslog:
+      identifiers:
+        - RHEL-07-030330
+        - SRG-OS-000342-GPOS-00133
+        - CCI-001851
       value: true
-    simplib::core_dump:
+    simp_openldap::server::conf::audit_transactions:
       identifiers:
-      - RHEL-07-021230
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
+        - RHEL-07-030310
+        - SRG-OS-000327-GPOS-00127
+        - CCI-002234
+      value: true
+    simp_openldap::server::conf::auditlog:
+      identifiers:
+        - RHEL-07-030310
+        - SRG-OS-000327-GPOS-00127
+        - CCI-002234
+      value: /var/log/slapd.audit
+    simp_openldap::server::conf::auditlog_preserve:
+      identifiers:
+        - RHEL-07-030320
+        - SRG-OS-000341-GPOS-00132
+        - CCI-001849
+      value: '7'
+    simp_openldap::server::conf::auditlog_rotate:
+      identifiers:
+        - RHEL-07-030320
+        - SRG-OS-000341-GPOS-00132
+        - CCI-001849
+      value: daily
+    simp_openldap::server::conf::authz_policy:
+      identifiers:
+        - RHEL-07-010000
+        - SRG-OS-000001-GPOS-00001
+        - CCI-000015
+      value: to
+    simp_openldap::server::conf::bind_anon:
+      identifiers:
+        - RHEL-07-040880
+        - SRG-OS-000250-GPOS-00093
+        - CCI-001453
       value: false
-    simplib::issue::source:
+    simp_openldap::server::conf::default_ldif::ppolicy_pwd_allow_user_change:
       identifiers:
-      - RHEL-07-010030
-      - SRG-OS-000023-GPOS-00006
-      - SRG-OS-000024-GPOS-00007
-      - CCI-000048
-      value: puppet:///modules/simplib/etc/issue
-      notes: The actual content should be manually validated to determine if it matches
-        the need of the implementation
-    simplib::libuser_conf::defaults_create_modules:
-      identifiers:
-      - RHEL-07-010170
-      - SRG-OS-000073-GPOS-00041
-      - CCI-000196
-      value:
-      - files
-      - shadow
-    simplib::libuser_conf::defaults_crypt_style:
-      identifiers:
-      - RHEL-07-010170
-      - SRG-OS-000073-GPOS-00041
-      - CCI-000196
-      value: sha512
-    simplib::libuser_conf::defaults_hash_rounds_max:
-      identifiers:
-      - RHEL-07-010170
-      - SRG-OS-000073-GPOS-00041
-      - CCI-000196
-      value: ''
-    simplib::libuser_conf::defaults_hash_rounds_min:
-      identifiers:
-      - RHEL-07-010170
-      - SRG-OS-000073-GPOS-00041
-      - CCI-000196
-      value: ''
-    simplib::libuser_conf::defaults_modules:
-      identifiers:
-      - RHEL-07-010170
-      - SRG-OS-000073-GPOS-00041
-      - CCI-000196
-      value:
-      - files
-      - shadow
-    simplib::login_defs::create_home:
-      identifiers:
-      - RHEL-07-020630
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
+        - RHEL-07-010390
+        - SRG-OS-000380-GPOS-00165
+        - CCI-002041
       value: true
-    simplib::login_defs::default_home:
+    simp_openldap::server::conf::default_ldif::ppolicy_pwd_failure_count_interval:
       identifiers:
-      - RHEL-07-020630
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
-      value: false
-    simplib::login_defs::encrypt_method:
+        - RHEL-07-010370
+        - SRG-OS-000329-GPOS-00128
+        - CCI-002238
+      value: '900'
+    simp_openldap::server::conf::default_ldif::ppolicy_pwd_in_history:
       identifiers:
-      - RHEL-07-010170
-      - RHEL-07-010180
-      - SRG-OS-000073-GPOS-00041
-      - SRG-OS-000073-GPOS-00041
-      - CCI-000196
-      value: SHA512
-    simplib::login_defs::fail_delay:
+        - RHEL-07-010240
+        - SRG-OS-000077-GPOS-00045
+        - CCI-000200
+      value: '24'
+    simp_openldap::server::conf::default_ldif::ppolicy_pwd_lockout:
       identifiers:
-      - RHEL-07-010420
-      - SRG-OS-000480-GPOS-00226
-      - CCI-000366
-      value: '4'
-    simplib::login_defs::faillog_enab:
-      identifiers:
-      - RHEL-07-030680
-      - SRG-OS-000472-GPOS-00217
-      - CCI-000172
+        - RHEL-07-010370
+        - SRG-OS-000329-GPOS-00128
+        - CCI-002238
       value: true
-    simplib::login_defs::gid_max:
+    simp_openldap::server::conf::default_ldif::ppolicy_pwd_lockout_duration:
       identifiers:
-      - RHEL-07-020410
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
-      value: '500000'
-    simplib::login_defs::gid_min:
+        - RHEL-07-010370
+        - SRG-OS-000329-GPOS-00128
+        - CCI-002238
+      value: '900'
+    simp_openldap::server::conf::default_ldif::ppolicy_pwd_max_age:
       identifiers:
-      - RHEL-07-020410
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
-      value: '500'
-    simplib::login_defs::issue_file:
+        - RHEL-07-010220
+        - SRG-OS-000076-GPOS-00044
+        - CCI-000199
+      value: '15552000'
+    simp_openldap::server::conf::default_ldif::ppolicy_pwd_max_failure:
       identifiers:
-      - RHEL-07-010030
-      - SRG-OS-000023-GPOS-00006
-      - SRG-OS-000024-GPOS-00007
-      - CCI-000048
-      value: /etc/issue
-    simplib::login_defs::lastlog_enab:
-      identifiers:
-      - RHEL-07-030490
-      - SRG-OS-000470-GPOS-00214
-      - SRG-OS-000392-GPOS-00172
-      - CCI-000172
-      - CCI-002884
-      - CCI-000126
-      value: true
-    simplib::login_defs::log_ok_logins:
-      identifiers:
-      - RHEL-07-030490
-      - SRG-OS-000470-GPOS-00214
-      - SRG-OS-000392-GPOS-00172
-      - CCI-000172
-      - CCI-002884
-      - CCI-000126
-      value: true
-    simplib::login_defs::log_unkfail_enab:
-      identifiers:
-      - RHEL-07-030490
-      - SRG-OS-000470-GPOS-00214
-      - SRG-OS-000392-GPOS-00172
-      - CCI-000172
-      - CCI-002884
-      - CCI-000126
-      value: true
-    simplib::login_defs::login_retries:
-      identifiers:
-      - RHEL-07-010410
-      - SRG-OS-000480-GPOS-00225
-      - CCI-000366
+        - RHEL-07-010370
+        - SRG-OS-000329-GPOS-00128
+        - CCI-002238
       value: '3'
-    simplib::login_defs::login_timeout:
+    simp_openldap::server::conf::default_ldif::ppolicy_pwd_min_length:
       identifiers:
-      - RHEL-07-040160
-      - SRG-OS-000163-GPOS-00072
-      - CCI-001133
-      - CCI-002361
-      value: '60'
-    simplib::login_defs::obscure_checks_enab:
-      identifiers:
-      - RHEL-07-010500
-      - SRG-OS-000104-GPOS-00051
-      - CCI-000764
-      - CCI-000770
-      value: true
-    simplib::login_defs::pass_change_tries:
-      identifiers:
-      - RHEL-07-010410
-      - SRG-OS-000480-GPOS-00225
-      - CCI-000366
-      value: '3'
-    simplib::login_defs::pass_max_days:
-      identifiers:
-      - RHEL-07-010220
-      - SRG-OS-000076-GPOS-00044
-      - CCI-000199
-      value: '180'
-    simplib::login_defs::pass_min_days:
-      identifiers:
-      - RHEL-07-010210
-      - SRG-OS-000075-GPOS-00043
-      - CCI-000198
-      value: '1'
-    simplib::login_defs::pass_min_len:
-      identifiers:
-      - RHEL-07-010250
-      - SRG-OS-000078-GPOS-00046
-      - CCI-000205
+        - RHEL-07-010250
+        - SRG-OS-000078-GPOS-00046
+        - CCI-000205
       value: '15'
-    simplib::login_defs::umask:
+    simp_openldap::server::conf::default_ldif::ppolicy_pwd_must_change:
       identifiers:
-      - RHEL-07-020230
-      - RHEL-07-021060
-      - SRG-OS-000480-GPOS-00227
-      - SRG-OS-000480-GPOS-00228
-      - CCI-000366
-      - CCI-000368
-      - CCI-000318
-      - CCI-001812
-      - CCI-001813
-      - CCI-001814
-      value: '0077'
-    simplib::manage_tmp_perms:
-      identifiers:
-      - RHEL-07-020040
-      - SRG-OS-000138-GPOS-00069
-      - CCI-001090
+        - RHEL-07-010390
+        - SRG-OS-000380-GPOS-00165
+        - CCI-002041
       value: true
-    simplib::max_logins:
+    simp_openldap::server::conf::disallow:
       identifiers:
-      - RHEL-07-040010
-      - SRG-OS-000027-GPOS-00008
-      - CCI-000054
-      value: '10'
-      notes: Setting this number higher than 10 should be justified
-    simplib::modprobe_blacklist::blacklist:
-      identifiers:
-      - RHEL-07-020020
-      - RHEL-07-021750
-      - SRG-OS-000114-GPOS-00059
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000778
-      - CCI-000366
+        - RHEL-07-040880
+        - SRG-OS-000250-GPOS-00093
+        - CCI-001453
       value:
-      - bluetooth
-      - cramfs
-      - dccp
-      - dccp_ipv4
-      - dccp_ipv6
-      - freevxfs
-      - hfs
-      - hfsplus
-      - ieee1394
-      - jffs2
-      - net-pf-31
-      - rds
-      - sctp
-      - squashfs
-      - tipc
-      - udf
-      - usb-storage
-    simplib::modprobe_blacklist::blacklist_method:
+        - bind_anon
+        - tls_2_anon
+    simp_openldap::server::conf::firewall:
       identifiers:
-      - RHEL-07-020020
-      - RHEL-07-021750
-      - SRG-OS-000114-GPOS-00059
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000778
-      - CCI-000366
-      value: /bin/true
-    simplib::modprobe_blacklist::enable:
-      identifiers:
-      - RHEL-07-020020
-      - RHEL-07-021750
-      - SRG-OS-000114-GPOS-00059
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000778
-      - CCI-000366
+        - RHEL-07-040920
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
       value: true
-    simplib::nsswitch::aliases:
+    simp_openldap::server::conf::listen_ldaps:
       identifiers:
-      - RHEL-07-010000
-      - SRG-OS-000001-GPOS-00001
-      - CCI-000015
-      value:
-      - files
-      - nisplus
-      notes: This is part of the overall SIMP authentication architecture. Different
-        implementations can be used but should be justified
-    simplib::nsswitch::automount:
-      identifiers:
-      - RHEL-07-010000
-      - SRG-OS-000001-GPOS-00001
-      - CCI-000015
-      value:
-      - files
-      - nisplus
-      notes: This is part of the overall SIMP authentication architecture. Different
-        implementations can be used but should be justified
-    simplib::nsswitch::bootparams:
-      identifiers:
-      - RHEL-07-010000
-      - SRG-OS-000001-GPOS-00001
-      - CCI-000015
-      value:
-      - nisplus [NOTFOUND=return]
-      - files
-      notes: This is part of the overall SIMP authentication architecture. Different
-        implementations can be used but should be justified
-    simplib::nsswitch::group:
-      identifiers:
-      - RHEL-07-010000
-      - SRG-OS-000001-GPOS-00001
-      - CCI-000015
-      value:
-      - files
-      notes: This is part of the overall SIMP authentication architecture. Different
-        implementations can be used but should be justified
-    simplib::nsswitch::hosts:
-      identifiers:
-      - RHEL-07-010000
-      - SRG-OS-000001-GPOS-00001
-      - CCI-000015
-      value:
-      - files
-      - dns
-      notes: This is part of the overall SIMP authentication architecture. Different
-        implementations can be used but should be justified
-    simplib::nsswitch::netgroup:
-      identifiers:
-      - RHEL-07-010000
-      - SRG-OS-000001-GPOS-00001
-      - CCI-000015
-      value:
-      - files
-      notes: This is part of the overall SIMP authentication architecture. Different
-        implementations can be used but should be justified
-    simplib::nsswitch::passwd:
-      identifiers:
-      - RHEL-07-010000
-      - SRG-OS-000001-GPOS-00001
-      - CCI-000015
-      value:
-      - files
-      notes: This is part of the overall SIMP authentication architecture. Different
-        implementations can be used but should be justified
-    simplib::nsswitch::publickey:
-      identifiers:
-      - RHEL-07-010000
-      - SRG-OS-000001-GPOS-00001
-      - CCI-000015
-      value:
-      - nisplus
-      notes: This is part of the overall SIMP authentication architecture. Different
-        implementations can be used but should be justified
-    simplib::nsswitch::shadow:
-      identifiers:
-      - RHEL-07-010000
-      - SRG-OS-000001-GPOS-00001
-      - CCI-000015
-      value:
-      - files
-      notes: This is part of the overall SIMP authentication architecture. Different
-        implementations can be used but should be justified
-    simplib::nsswitch::use_ldap:
-      identifiers:
-      - RHEL-07-010000
-      - SRG-OS-000001-GPOS-00001
-      - CCI-000015
+        - RHEL-07-040180
+        - SRG-OS-000250-GPOS-00093
+        - CCI-001453
       value: true
-      notes: This is part of the overall SIMP authentication architecture. Different
-        implementations can be used but should be justified
-    simplib::nsswitch::use_sssd:
+    simp_openldap::server::conf::password_crypt_salt_format:
       identifiers:
-      - RHEL-07-010000
-      - SRG-OS-000001-GPOS-00001
-      - CCI-000015
-      value: true
-      notes: This is part of the overall SIMP authentication architecture. Different
-        implementations can be used but should be justified
-    simplib::profile_settings::session_timeout:
+        - RHEL-07-010500
+        - SRG-OS-000104-GPOS-00051
+        - CCI-000764
+        - CCI-000770
+      value: '%s'
+    simp_openldap::server::conf::password_hash:
       identifiers:
-      - RHEL-07-010070
-      - SRG-OS-000029-GPOS-00010
-      - CCI-000057
-      value: '15'
-    simplib::profile_settings::umask:
+        - RHEL-07-021280
+        - SRG-OS-000033-GPOS-00014
+        - CCI-000068
+        - CCI-002450
+      value: SSHA
+    simp_openldap::server::conf::security:
       identifiers:
-      - RHEL-07-020230
-      - RHEL-07-021060
-      - SRG-OS-000480-GPOS-00227
-      - SRG-OS-000480-GPOS-00228
-      - CCI-000366
-      - CCI-000368
-      - CCI-000318
-      - CCI-001812
-      - CCI-001813
-      - CCI-001814
-      value: '0077'
-    simplib::shells:
-      identifiers:
-      - RHEL-07-020890
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
+        - RHEL-07-021280
+        - SRG-OS-000033-GPOS-00014
+        - CCI-000068
+        - CCI-002450
       value:
-      - /bin/sh
-      - /bin/zsh
-      - /bin/bash
-      - /sbin/nologin
-      notes: Adding or removing shells may not be a bad thing. Any changes to the
-        SIMP default should be justified
-    simplib::sysconfig::init::single_user_login:
+        - ssf=256
+        - tls=256
+        - update_ssf=256
+        - simple_bind=256
+        - update_tls=256
+    simp_openldap::server::conf::slapd_log_level:
       identifiers:
-      - RHEL-07-021770
-      - SRG-OS-000080-GPOS-00048
-      - CCI-000213
-      value: /sbin/sulogin
-    simplib::sysctl::kernel__exec_shield:
+        - RHEL-07-030310
+        - SRG-OS-000327-GPOS-00127
+        - CCI-002234
+      value:
+        - stats
+        - acl
+        - sync
+    simp_openldap::server::conf::use_tls:
       identifiers:
-      - RHEL-07-020180
-      - SRG-OS-000433-GPOS-00192
-      - CCI-002824
-      value: '1'
-    simplib::sysctl::kernel__randomize_va_space:
+        - RHEL-07-040180
+        - SRG-OS-000250-GPOS-00093
+        - CCI-001453
+      value: simp
+    simp_openldap::server::schema_source:
       identifiers:
-      - RHEL-07-020190
-      - SRG-OS-000433-GPOS-00193
-      - CCI-002824
-      value: '2'
-    simplib::sysctl::net__ipv4__conf__all__accept_redirects:
+        - RHEL-07-010000
+        - SRG-OS-000001-GPOS-00001
+        - CCI-000015
+      value: 'puppet:///modules/simp_openldap/etc/openldap/schema'
+    simp_openldap::server::schema_sync:
       identifiers:
-      - RHEL-07-040410
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
-      value: '0'
-    simplib::sysctl::net__ipv4__conf__all__accept_source_route:
-      identifiers:
-      - RHEL-07-040350
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
-      value: '0'
-    simplib::sysctl::net__ipv4__conf__all__send_redirects:
-      identifiers:
-      - RHEL-07-040420
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
-      value: '0'
-    simplib::sysctl::net__ipv4__conf__default__accept_redirects:
-      identifiers:
-      - RHEL-07-040410
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
-      value: '0'
-    simplib::sysctl::net__ipv4__icmp_echo_ignore_broadcasts:
-      identifiers:
-      - RHEL-07-040870
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
-      value: '1'
-    simplib::sysctl::net__ipv4__tcp_syncookies:
-      identifiers:
-      - RHEL-07-040430
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
-      value: '1'
-    simplib::use_fips:
-      identifiers:
-      - RHEL-07-021280
-      - RHEL-07-010300
-      - SRG-OS-000033-GPOS-00014
-      - SRG-OS-000396-GPOS-00176
-      - SRG-OS-000478-GPOS-00223
-      - SRG-OS-000120-GPOS-00061
-      - CCI-000068
-      - CCI-002450
-      - CCI-000803
+        - RHEL-07-010000
+        - SRG-OS-000001-GPOS-00001
+        - CCI-000015
       value: true
-    simplib::use_fips_aesni:
+    simp_openldap::server::tcpwrappers:
       identifiers:
-      - RHEL-07-021280
-      - RHEL-07-010300
-      - SRG-OS-000033-GPOS-00014
-      - SRG-OS-000396-GPOS-00176
-      - SRG-OS-000478-GPOS-00223
-      - SRG-OS-000120-GPOS-00061
-      - CCI-000068
-      - CCI-002450
-      - CCI-000803
+        - RHEL-07-040810
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
       value: true
-    simplib::user_umask:
+    simp_rsyslog::default_logs:
       identifiers:
-      - RHEL-07-020230
-      - RHEL-07-021060
-      - SRG-OS-000480-GPOS-00227
-      - SRG-OS-000480-GPOS-00228
-      - CCI-000366
-      - CCI-000368
-      - CCI-000318
-      - CCI-001812
-      - CCI-001813
-      - CCI-001814
-      value: '0077'
+        - RHEL-07-030310
+        - RHEL-07-030620
+        - SRG-OS-000327-GPOS-00127
+        - SRG-OS-000471-GPOS-00215
+        - CCI-002234
+        - CCI-000172
+      notes: 'If the default security relevant logs are changed, they should be justified, especially if fewer than the SIMP default are configured'
+      value:
+        programs:
+          - sudo
+          - sudosh
+          - yum
+          - auditd
+          - audit
+          - systemd
+          - crond
+        facilities:
+          - cron.*
+          - authpriv.*
+          - local6.*
+          - local7.warn
+          - '*.emerg'
+        msg_starts:
+          - 'IPT:'
+        msg_regex: []
+    simp_rsyslog::forward::dest_type:
+      identifiers:
+        - RHEL-07-030200
+        - SRG-OS-000205-GPOS-00083
+        - CCI-001312
+      notes: The use of UDP should be justified
+      value: tcp
+    simp_rsyslog::server::rotate_period:
+      identifiers:
+        - RHEL-07-030320
+        - SRG-OS-000341-GPOS-00132
+        - CCI-001849
+      notes: This value can vary according to storage capacity of a log server
+      value: weekly
+    simp_rsyslog::server::rotate_preserve:
+      identifiers:
+        - RHEL-07-030320
+        - SRG-OS-000341-GPOS-00132
+        - CCI-001849
+      notes: This value can vary according to storage capacity of a log server
+      value: '12'
     ssh::client::add_default_entry:
       identifiers:
-      - RHEL-07-040260
-      - SRG-OS-000423-GPOS-00187
-      - SRG-OS-000423-GPOS-00188
-      - SRG-OS-000423-GPOS-00189
-      - SRG-OS-000423-GPOS-00190
-      - CCI-002418
-      - CCI-002421
-      - CCI-002420
-      - CCI-002422
+        - RHEL-07-040260
+        - SRG-OS-000423-GPOS-00187
+        - SRG-OS-000423-GPOS-00188
+        - SRG-OS-000423-GPOS-00189
+        - SRG-OS-000423-GPOS-00190
+        - CCI-002418
+        - CCI-002421
+        - CCI-002420
+        - CCI-002422
+      notes: 'If the default entry is not used, each of the values for the ssh client config should be evaluated'
       value: true
-      notes: If the default entry is not used, each of the values for the ssh client
-        config should be evaluated
     ssh::enable_client:
       identifiers:
-      - RHEL-07-040260
-      - SRG-OS-000423-GPOS-00187
-      - SRG-OS-000423-GPOS-00188
-      - SRG-OS-000423-GPOS-00189
-      - SRG-OS-000423-GPOS-00190
-      - CCI-002418
-      - CCI-002421
-      - CCI-002420
-      - CCI-002422
+        - RHEL-07-040260
+        - SRG-OS-000423-GPOS-00187
+        - SRG-OS-000423-GPOS-00188
+        - SRG-OS-000423-GPOS-00189
+        - SRG-OS-000423-GPOS-00190
+        - CCI-002418
+        - CCI-002421
+        - CCI-002420
+        - CCI-002422
       value: true
     ssh::enable_server:
       identifiers:
-      - RHEL-07-040260
-      - SRG-OS-000423-GPOS-00187
-      - SRG-OS-000423-GPOS-00188
-      - SRG-OS-000423-GPOS-00189
-      - SRG-OS-000423-GPOS-00190
-      - CCI-002418
-      - CCI-002421
-      - CCI-002420
-      - CCI-002422
+        - RHEL-07-040260
+        - SRG-OS-000423-GPOS-00187
+        - SRG-OS-000423-GPOS-00188
+        - SRG-OS-000423-GPOS-00189
+        - SRG-OS-000423-GPOS-00190
+        - CCI-002418
+        - CCI-002421
+        - CCI-002420
+        - CCI-002422
       value: true
     ssh::server::conf::authorizedkeyscommanduser:
       identifiers:
-      - RHEL-07-040600
-      - SRG-OS-000033-GPOS-00014
-      - CCI-000068
+        - RHEL-07-040600
+        - SRG-OS-000033-GPOS-00014
+        - CCI-000068
       value: nobody
     ssh::server::conf::authorizedkeysfile:
       identifiers:
-      - RHEL-07-040600
-      - SRG-OS-000033-GPOS-00014
-      - CCI-000068
+        - RHEL-07-040600
+        - SRG-OS-000033-GPOS-00014
+        - CCI-000068
       value: /etc/ssh/local_keys/%u
     ssh::server::conf::banner:
       identifiers:
-      - RHEL-07-010030
-      - SRG-OS-000023-GPOS-00006
-      - SRG-OS-000024-GPOS-00007
-      - CCI-000048
+        - RHEL-07-010030
+        - SRG-OS-000023-GPOS-00006
+        - SRG-OS-000024-GPOS-00007
+        - CCI-000048
       value: /etc/issue.net
     ssh::server::conf::enable_fallback_ciphers:
       identifiers:
-      - RHEL-07-040600
-      - SRG-OS-000033-GPOS-00014
-      - CCI-000068
+        - RHEL-07-040600
+        - SRG-OS-000033-GPOS-00014
+        - CCI-000068
       value: true
     ssh::server::conf::gssapiauthentication:
       identifiers:
-      - RHEL-07-040660
-      - SRG-OS-000364-GPOS-00151
-      - CCI-000368
-      - CCI-000318
-      - CCI-001812
-      - CCI-001813
-      - CCI-001814
+        - RHEL-07-040660
+        - SRG-OS-000364-GPOS-00151
+        - CCI-000368
+        - CCI-000318
+        - CCI-001812
+        - CCI-001813
+        - CCI-001814
       value: false
+    ssh::server::conf::pam:
+      identifiers:
+        - RHEL-07-010000
+        - SRG-OS-000001-GPOS-00001
+        - CCI-000015
+      value: true
     ssh::server::conf::permitemptypasswords:
       identifiers:
-      - RHEL-07-010270
-      - SRG-OS-000106-GPOS-00053
-      - CCI-000766
+        - RHEL-07-010270
+        - SRG-OS-000106-GPOS-00053
+        - CCI-000766
       value: false
     ssh::server::conf::permitrootlogin:
       identifiers:
-      - RHEL-07-040310
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
+        - RHEL-07-040310
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
       value: false
+    ssh::server::conf::pki:
+      identifiers:
+        - RHEL-07-040260
+        - SRG-OS-000423-GPOS-00187
+        - SRG-OS-000423-GPOS-00188
+        - SRG-OS-000423-GPOS-00189
+        - SRG-OS-000423-GPOS-00190
+        - CCI-002418
+        - CCI-002421
+        - CCI-002420
+        - CCI-002422
+      value: true
     ssh::server::conf::syslogfacility:
       identifiers:
-      - RHEL-07-030770
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
+        - RHEL-07-030770
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
       value: AUTHPRIV
-    ssh::server::conf::use_tcpwrappers:
+    ssh::server::conf::tcpwrappers:
       identifiers:
-      - RHEL-07-040810
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
-      value: true
-    ssh::server::conf::usepam:
-      identifiers:
-      - RHEL-07-010000
-      - SRG-OS-000001-GPOS-00001
-      - CCI-000015
+        - RHEL-07-040810
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
       value: true
     ssh::server::conf::useprivilegeseparation:
       identifiers:
-      - RHEL-07-020090
-      - SRG-OS-000324-GPOS-00125
-      - CCI-002235
+        - RHEL-07-020090
+        - SRG-OS-000324-GPOS-00125
+        - CCI-002235
       value: true
     ssh::server::conf::x11forwarding:
       identifiers:
-      - RHEL-07-040540
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
-      value: true
-    ssh::server::use_system_pki:
+        - RHEL-07-040540
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
+      value: false
+    sssd::app_pki_dir:
       identifiers:
-      - RHEL-07-040260
-      - SRG-OS-000423-GPOS-00187
-      - SRG-OS-000423-GPOS-00188
-      - SRG-OS-000423-GPOS-00189
-      - SRG-OS-000423-GPOS-00190
-      - CCI-002418
-      - CCI-002421
-      - CCI-002420
-      - CCI-002422
-      value: true
-    sssd::cert_source:
+        - RHEL-07-040240
+        - SRG-OS-000403-GPOS-00182
+        - CCI-002470
+      value: /etc/pki/simp_apps/sssd/x509
+    sssd::auditd:
       identifiers:
-      - RHEL-07-040240
-      - SRG-OS-000403-GPOS-00182
-      - CCI-002470
-      value: /etc/sssd/pki
-    sssd::enable_auditd:
-      identifiers:
-      - RHEL-07-030010
-      - SRG-OS-000038-GPOS-00016
-      - SRG-OS-000039-GPOS-00017
-      - SRG-OS-000042-GPOS-00021
-      - CCI-000131
-      - CCI-000126
+        - RHEL-07-030010
+        - SRG-OS-000038-GPOS-00016
+        - SRG-OS-000039-GPOS-00017
+        - SRG-OS-000042-GPOS-00021
+        - CCI-000131
+        - CCI-000126
       value: true
-    sssd::enable_pki:
+    sssd::pki:
       identifiers:
-      - RHEL-07-040240
-      - SRG-OS-000403-GPOS-00182
-      - CCI-002470
-      value: true
+        - RHEL-07-040240
+        - SRG-OS-000403-GPOS-00182
+        - CCI-002470
+      value: simp
     sssd::provider::ldap::ldap_chpass_updates_last_change:
       identifiers:
-      - RHEL-07-010000
-      - SRG-OS-000001-GPOS-00001
-      - CCI-000015
+        - RHEL-07-010000
+        - SRG-OS-000001-GPOS-00001
+        - CCI-000015
       value: true
+    sssd::provider::ldap::ldap_id_use_start_tls:
+      identifiers:
+        - RHEL-07-040180
+        - SRG-OS-000250-GPOS-00093
+        - CCI-001453
+      value: true
+    sssd::provider::ldap::ldap_tls_cipher_suite:
+      identifiers:
+        - RHEL-07-040180
+        - SRG-OS-000250-GPOS-00093
+        - CCI-001453
+      value:
+        - HIGH
+        - '-SSLv2'
     sssd::service::pam::offline_failed_login_attempts:
       identifiers:
-      - RHEL-07-010000
-      - SRG-OS-000001-GPOS-00001
-      - CCI-000015
+        - RHEL-07-010000
+        - SRG-OS-000001-GPOS-00001
+        - CCI-000015
       value: '3'
     sssd::service::pam::offline_failed_login_delay:
       identifiers:
-      - RHEL-07-010000
-      - SRG-OS-000001-GPOS-00001
-      - CCI-000015
-      value: '30'
+        - RHEL-07-010000
+        - SRG-OS-000001-GPOS-00001
+        - CCI-000015
+      value: '5'
     sssd::service::pam::pam_id_timeout:
       identifiers:
-      - RHEL-07-010000
-      - SRG-OS-000001-GPOS-00001
-      - CCI-000015
+        - RHEL-07-010000
+        - SRG-OS-000001-GPOS-00001
+        - CCI-000015
       value: '5'
     sssd::service::pam::pam_pwd_expiration_warning:
       identifiers:
-      - RHEL-07-010000
-      - SRG-OS-000001-GPOS-00001
-      - CCI-000015
+        - RHEL-07-010000
+        - SRG-OS-000001-GPOS-00001
+        - CCI-000015
       value: '7'
     sssd::service::ssh::ssh_hash_known_hosts:
       identifiers:
-      - RHEL-07-021830
-      - SRG-OS-000364-GPOS-00151
-      - CCI-000293
-      - CCI-001812
-      - CCI-001813
-      - CCI-001814
+        - RHEL-07-021830
+        - SRG-OS-000364-GPOS-00151
+        - CCI-000293
+        - CCI-001812
+        - CCI-001813
+        - CCI-001814
       value: true
     sssd::services:
       identifiers:
-      - RHEL-07-010000
-      - SRG-OS-000001-GPOS-00001
-      - CCI-000015
+        - RHEL-07-010000
+        - SRG-OS-000001-GPOS-00001
+        - CCI-000015
       value:
-      - nss
-      - pam
-      - ssh
-      - sudo
-    sssd::use_simp_pki:
+        - nss
+        - pam
+        - ssh
+        - sudo
+    stunnel::app_pki_dir:
       identifiers:
-      - RHEL-07-040240
-      - SRG-OS-000403-GPOS-00182
-      - CCI-002470
+        - RHEL-07-040030
+        - SRG-OS-000066-GPOS-00034
+        - CCI-000185
+      value: /etc/pki/simp_apps/stunnel/x509
+    stunnel::connection::firewall:
+      identifiers:
+        - RHEL-07-040920
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
       value: true
-    stunnel::add::ca_path:
+    stunnel::connection::openssl_cipher_suite:
       identifiers:
-      - RHEL-07-040030
-      - SRG-OS-000066-GPOS-00034
-      - CCI-000185
-      value: /etc/pki/cacerts
-    stunnel::add::ciphers:
-      identifiers:
-      - RHEL-07-040030
-      - SRG-OS-000066-GPOS-00034
-      - CCI-000185
+        - RHEL-07-040030
+        - SRG-OS-000066-GPOS-00034
+        - CCI-000185
       value:
-      - HIGH
-      - -SSLv2
-    stunnel::add::use_iptables:
-      identifiers:
-      - RHEL-07-040920
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
-      value: true
+        - HIGH
+        - '-SSLv2'
     stunnel::setgid:
       identifiers:
-      - RHEL-07-020410
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
+        - RHEL-07-020410
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
       value: stunnel
     stunnel::setuid:
       identifiers:
-      - RHEL-07-020400
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
+        - RHEL-07-020400
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
       value: stunnel
     stunnel::syslog:
       identifiers:
-      - RHEL-07-030310
-      - RHEL-07-030620
-      - SRG-OS-000327-GPOS-00127
-      - SRG-OS-000471-GPOS-00215
-      - CCI-002234
-      - CCI-000172
+        - RHEL-07-030310
+        - RHEL-07-030620
+        - SRG-OS-000327-GPOS-00127
+        - SRG-OS-000471-GPOS-00215
+        - CCI-002234
+        - CCI-000172
       value: true
-    upstart::disable_ctrl_alt_del:
+    useradd::etc_profile::session_timeout:
       identifiers:
-      - RHEL-07-020220
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
+        - RHEL-07-010070
+        - SRG-OS-000029-GPOS-00010
+        - CCI-000057
+      value: '15'
+    useradd::etc_profile::umask:
+      identifiers:
+        - RHEL-07-020230
+        - RHEL-07-021060
+        - SRG-OS-000480-GPOS-00227
+        - SRG-OS-000480-GPOS-00228
+        - CCI-000366
+        - CCI-000368
+        - CCI-000318
+        - CCI-001812
+        - CCI-001813
+        - CCI-001814
+      value: '0077'
+    useradd::libuser_conf::defaults_create_modules:
+      identifiers:
+        - RHEL-07-010170
+        - SRG-OS-000073-GPOS-00041
+        - CCI-000196
+      value:
+        - files
+        - shadow
+    useradd::libuser_conf::defaults_crypt_style:
+      identifiers:
+        - RHEL-07-010170
+        - SRG-OS-000073-GPOS-00041
+        - CCI-000196
+      value:
+        - sha512
+    useradd::libuser_conf::defaults_hash_rounds_max:
+      identifiers:
+        - RHEL-07-010170
+        - SRG-OS-000073-GPOS-00041
+        - CCI-000196
+      value: ''
+    useradd::libuser_conf::defaults_hash_rounds_min:
+      identifiers:
+        - RHEL-07-010170
+        - SRG-OS-000073-GPOS-00041
+        - CCI-000196
+      value: ''
+    useradd::libuser_conf::defaults_modules:
+      identifiers:
+        - RHEL-07-010170
+        - SRG-OS-000073-GPOS-00041
+        - CCI-000196
+      value:
+        - files
+        - shadow
+    useradd::login_defs::create_home:
+      identifiers:
+        - RHEL-07-020630
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
       value: true
+    useradd::login_defs::default_home:
+      identifiers:
+        - RHEL-07-020630
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
+      value: false
+    useradd::login_defs::encrypt_method:
+      identifiers:
+        - RHEL-07-010170
+        - RHEL-07-010180
+        - SRG-OS-000073-GPOS-00041
+        - SRG-OS-000073-GPOS-00041
+        - CCI-000196
+      value: SHA512
+    useradd::login_defs::fail_delay:
+      identifiers:
+        - RHEL-07-010420
+        - SRG-OS-000480-GPOS-00226
+        - CCI-000366
+      value: '4'
+    useradd::login_defs::faillog_enab:
+      identifiers:
+        - RHEL-07-030680
+        - SRG-OS-000472-GPOS-00217
+        - CCI-000172
+      value: true
+    useradd::login_defs::gid_max:
+      identifiers:
+        - RHEL-07-020410
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
+      value: '500000'
+    useradd::login_defs::gid_min:
+      identifiers:
+        - RHEL-07-020410
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
+      value: '500'
+    useradd::login_defs::issue_file:
+      identifiers:
+        - RHEL-07-010030
+        - SRG-OS-000023-GPOS-00006
+        - SRG-OS-000024-GPOS-00007
+        - CCI-000048
+      value: /etc/issue
+    useradd::login_defs::lastlog_enab:
+      identifiers:
+        - RHEL-07-030490
+        - SRG-OS-000470-GPOS-00214
+        - SRG-OS-000392-GPOS-00172
+        - CCI-000172
+        - CCI-002884
+        - CCI-000126
+      value: true
+    useradd::login_defs::log_ok_logins:
+      identifiers:
+        - RHEL-07-030490
+        - SRG-OS-000470-GPOS-00214
+        - SRG-OS-000392-GPOS-00172
+        - CCI-000172
+        - CCI-002884
+        - CCI-000126
+      value: true
+    useradd::login_defs::log_unkfail_enab:
+      identifiers:
+        - RHEL-07-030490
+        - SRG-OS-000470-GPOS-00214
+        - SRG-OS-000392-GPOS-00172
+        - CCI-000172
+        - CCI-002884
+        - CCI-000126
+      value: true
+    useradd::login_defs::login_retries:
+      identifiers:
+        - RHEL-07-010410
+        - SRG-OS-000480-GPOS-00225
+        - CCI-000366
+      value: '3'
+    useradd::login_defs::login_timeout:
+      identifiers:
+        - RHEL-07-040160
+        - SRG-OS-000163-GPOS-00072
+        - CCI-001133
+        - CCI-002361
+      value: '60'
+    useradd::login_defs::obscure_checks_enab:
+      identifiers:
+        - RHEL-07-010500
+        - SRG-OS-000104-GPOS-00051
+        - CCI-000764
+        - CCI-000770
+      value: true
+    useradd::login_defs::pass_change_tries:
+      identifiers:
+        - RHEL-07-010410
+        - SRG-OS-000480-GPOS-00225
+        - CCI-000366
+      value: '3'
+    useradd::login_defs::pass_max_days:
+      identifiers:
+        - RHEL-07-010220
+        - SRG-OS-000076-GPOS-00044
+        - CCI-000199
+      value: '180'
+    useradd::login_defs::pass_min_days:
+      identifiers:
+        - RHEL-07-010210
+        - SRG-OS-000075-GPOS-00043
+        - CCI-000198
+      value: '1'
+    useradd::login_defs::pass_min_len:
+      identifiers:
+        - RHEL-07-010250
+        - SRG-OS-000078-GPOS-00046
+        - CCI-000205
+      value: '15'
+    useradd::login_defs::umask:
+      identifiers:
+        - RHEL-07-020230
+        - RHEL-07-021060
+        - SRG-OS-000480-GPOS-00227
+        - SRG-OS-000480-GPOS-00228
+        - CCI-000366
+        - CCI-000368
+        - CCI-000318
+        - CCI-001812
+        - CCI-001813
+        - CCI-001814
+      value: '0077'
+    useradd::shells:
+      identifiers:
+        - RHEL-07-020890
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
+      notes: Adding or removing shells may not be a bad thing. Any changes to the SIMP default should be justified
+      value:
+        - /bin/sh
+        - /bin/zsh
+        - /bin/bash
+        - /sbin/nologin
+    useradd::sysconfig_init::single_user_login:
+      identifiers:
+        - RHEL-07-021770
+        - SRG-OS-000080-GPOS-00048
+        - CCI-000213
+      value: /sbin/sulogin
     vsftpd::config::banner_file:
       identifiers:
-      - RHEL-07-010030
-      - SRG-OS-000023-GPOS-00006
-      - SRG-OS-000024-GPOS-00007
-      - CCI-000048
+        - RHEL-07-010030
+        - SRG-OS-000023-GPOS-00006
+        - SRG-OS-000024-GPOS-00007
+        - CCI-000048
       value: /etc/issue.net
     vsftpd::config::force_local_data_ssl:
       identifiers:
-      - RHEL-07-040030
-      - SRG-OS-000066-GPOS-00034
-      - CCI-000185
+        - RHEL-07-040030
+        - SRG-OS-000066-GPOS-00034
+        - CCI-000185
       value: true
     vsftpd::config::force_local_logins_ssl:
       identifiers:
-      - RHEL-07-040030
-      - SRG-OS-000066-GPOS-00034
-      - CCI-000185
+        - RHEL-07-040030
+        - SRG-OS-000066-GPOS-00034
+        - CCI-000185
       value: true
     vsftpd::config::ssl_ciphers:
       identifiers:
-      - RHEL-07-040030
-      - SRG-OS-000066-GPOS-00034
-      - CCI-000185
+        - RHEL-07-040030
+        - SRG-OS-000066-GPOS-00034
+        - CCI-000185
       value:
-      - HIGH
+        - HIGH
     vsftpd::config::ssl_tlsv1:
       identifiers:
-      - RHEL-07-040030
-      - SRG-OS-000066-GPOS-00034
-      - CCI-000185
+        - RHEL-07-040030
+        - SRG-OS-000066-GPOS-00034
+        - CCI-000185
       value: true
-    vsftpd::config::syslog_enable:
+    vsftpd::config::syslog:
       identifiers:
-      - RHEL-07-030310
-      - RHEL-07-030620
-      - SRG-OS-000327-GPOS-00127
-      - SRG-OS-000471-GPOS-00215
-      - CCI-002234
-      - CCI-000172
+        - RHEL-07-030310
+        - RHEL-07-030620
+        - SRG-OS-000327-GPOS-00127
+        - SRG-OS-000471-GPOS-00215
+        - CCI-002234
+        - CCI-000172
       value: true
     vsftpd::manage_group:
       identifiers:
-      - RHEL-07-020410
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
+        - RHEL-07-020410
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
       value: true
     vsftpd::manage_user:
       identifiers:
-      - RHEL-07-040490
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
+        - RHEL-07-040490
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
       value: true
     vsftpd::require_ssl_reuse:
       identifiers:
-      - RHEL-07-040030
-      - SRG-OS-000066-GPOS-00034
-      - CCI-000185
+        - RHEL-07-040030
+        - SRG-OS-000066-GPOS-00034
+        - CCI-000185
       value: true
     vsftpd::ssl_enable:
       identifiers:
-      - RHEL-07-040030
-      - SRG-OS-000066-GPOS-00034
-      - CCI-000185
+        - RHEL-07-040030
+        - SRG-OS-000066-GPOS-00034
+        - CCI-000185
       value: true
     vsftpd::userlist_enable:
       identifiers:
-      - RHEL-07-040030
-      - SRG-OS-000066-GPOS-00034
-      - CCI-000185
+        - RHEL-07-040030
+        - SRG-OS-000066-GPOS-00034
+        - CCI-000185
       value: true
     vsftpd::validate_cert:
       identifiers:
-      - RHEL-07-040030
-      - SRG-OS-000066-GPOS-00034
-      - CCI-000185
+        - RHEL-07-040030
+        - SRG-OS-000066-GPOS-00034
+        - CCI-000185
       value: true
     vsftpd::vsftpd_user:
       identifiers:
-      - RHEL-07-020400
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
+        - RHEL-07-020400
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
       value: ftp
     xinetd::banner:
       identifiers:
-      - RHEL-07-010030
-      - SRG-OS-000023-GPOS-00006
-      - SRG-OS-000024-GPOS-00007
-      - CCI-000048
+        - RHEL-07-010030
+        - SRG-OS-000023-GPOS-00006
+        - SRG-OS-000024-GPOS-00007
+        - CCI-000048
       value: /etc/issue.net
     xinetd::log_type:
       identifiers:
-      - RHEL-07-030310
-      - RHEL-07-030620
-      - SRG-OS-000327-GPOS-00127
-      - SRG-OS-000471-GPOS-00215
-      - CCI-002234
-      - CCI-000172
+        - RHEL-07-030310
+        - RHEL-07-030620
+        - SRG-OS-000327-GPOS-00127
+        - SRG-OS-000471-GPOS-00215
+        - CCI-002234
+        - CCI-000172
       value: SYSLOG authpriv
-  disa_stig_el7:clamav:
-    package_name:
+    simp_options::auditd:
       identifiers:
-      - RHEL-07-030810
-      - SRG-OS-000480-GPOS-00227
-      - CCI-000366
-      value: clamav
-      notes: If ClamAV is not used, alternate malicious code detection software should
-        be implemented
+        - RHEL-07-030310
+        - RHEL-07-030020
+        - SRG-OS-000327-GPOS-00127
+        - SRG-OS-000042-GPOS-00020
+        - CCI-002234
+        - CCI-000135
+      value: true
+    simp_options::clamav:
+      identifiers:
+        - SI-3(a)
+      value: true
+    simp_options::fips:
+      identifiers:
+        - AC-3
+        - AC-17A(2)
+        - IA-7
+        - SC-13
+      value: true
+    simp_options::firewall:
+      identifiers:
+        - AC-4
+      value: true
+    simp_options::haveged:
+      identifiers:
+        - SC-13
+      value: true
+    simp_options::ipsec:
+      identifiers:
+        - SC-8
+      notes: Turning ipsec on only enhances security.
+      value: false
+    simp_options::kerberos:
+      identifiers:
+        - IA-3
+      notes: Turning kerberos on only enhances security.
+      value: false
+    simp_options::ldap:
+      identifiers:
+        - IA-2
+      value: true
+    simp_options::logrotate:
+      identifiers:
+        - AU-4
+        - AU-11
+      value: true
+    simp_options::pam:
+      identifiers:
+        - IA-5
+      value: true
+    simp_options::pki:
+      identifiers:
+        - SC-8
+        - IA-3
+      value: simp
+    simp_options::selinux:
+      identifiers:
+        - AC-3(3)
+      value: true
+    simp_options::sssd:
+      identifiers:
+        - IA-2
+      value: true
+    simp_options::stunnel:
+      identifiers:
+        - SC-8
+        - SC-8(1)
+        - SC-8(2)
+        - SC-23
+      value: true
+    simp_options::syslog:
+      identifiers:
+        - AU-3(2)
+        - AU-4(1)
+        - AU-9
+      value: true
+    simp_options::tcpwrappers:
+      identifiers:
+        - AC-4
+      value: true
