@@ -1,7 +1,7 @@
 Summary: GPGKEYS
 Name: simp-gpgkeys
-Version: 2.0.0
-Release: 4%{?dist}
+Version: 3.0.0
+Release: 0%{?dist}
 License: Public Domain
 Group: Applications/System
 Source: %{name}-%{version}-%{release}.tar.gz
@@ -107,6 +107,9 @@ for dir in '/srv/www/yum/SIMP' '/var/www/yum/SIMP'; do
 done
 
 %changelog
+* Tue Feb 14 2016 Nick Miller <nick.miller@onyxpoint.com> - 3.0.0-0
+- Added new puppet gpg key from http://yum.puppetlabs.com/RPM-GPG-KEY-puppet
+
 * Tue Sep 27 2016 Trevor Vaughan <tvaughan@onyxpoint.com> - 2.0.0-4
 - Ensure that 'facter' is available for us to use in the %post section
 
