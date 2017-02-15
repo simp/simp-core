@@ -1,7 +1,7 @@
 Summary: GPGKEYS
 Name: simp-gpgkeys
-Version: 2.0.0
-Release: 4%{?dist}
+Version: 3.0.0
+Release: 0%{?dist}
 License: Public Domain
 Group: Applications/System
 Source: %{name}-%{version}-%{release}.tar.gz
@@ -101,6 +101,9 @@ if [ -d "${dir}/GPGKEYS" ]; then
 fi
 
 %changelog
+* Tue Feb 14 2016 Nick Miller <nick.miller@onyxpoint.com> - 3.0.0-0
+- Added new puppet gpg key from http://yum.puppetlabs.com/RPM-GPG-KEY-puppet
+
 * Fri Jan 27 2017 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 2.0.0-4
 - Changed www diretory to /var/www for SIMP 6
 
