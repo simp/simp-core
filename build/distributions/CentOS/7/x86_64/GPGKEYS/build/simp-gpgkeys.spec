@@ -28,7 +28,7 @@ All keys copyright their respective owners.
 mkdir -p %{buildroot}/%{_sysconfdir}/pki/rpm-gpg
 mkdir -p %{buildroot}/%{prefix}
 
-#Now install the files.
+# Now install the files.
 cp RPM-GPG-KEY* %{buildroot}/%{_sysconfdir}/pki/rpm-gpg
 cp RPM-GPG-KEY* %{buildroot}/%{prefix}
 
@@ -42,6 +42,7 @@ cp RPM-GPG-KEY* %{buildroot}/%{prefix}
 
 %post
 #!/bin/bash
+export PATH=/opt/puppetlabs/bin:$PATH
 
 # If we're a SIMP server, place the keys into the appropriate web directory
 
@@ -103,6 +104,7 @@ fi
 %changelog
 * Tue Feb 14 2017 Nick Miller <nick.miller@onyxpoint.com> - 3.0.0-0
 - Added new puppet gpg key from http://yum.puppetlabs.com/RPM-GPG-KEY-puppet
+- Ensure facter is in $PATH during post install
 
 * Tue Oct 27 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 2.0.0-3
 - Fixed some logic bugs in the %postinstall script
