@@ -138,9 +138,9 @@ fi
 
 # Switch things over to the new setup.
 arch=`uname -p`;
-version=`/usr/bin/facter lsbdistrelease 2> /dev/null`;
-majversion=`/usr/bin/facter lsbmajdistrelease 2> /dev/null`;
-os=`/usr/bin/facter operatingsystem 2> /dev/null`;
+version=`facter lsbdistrelease 2> /dev/null`;
+majversion=`facter lsbmajdistrelease 2> /dev/null`;
+os=`facter operatingsystem 2> /dev/null`;
 www_dir="/var/www/yum";
 base="${www_dir}/${os}";
 
@@ -205,6 +205,9 @@ fi
 /usr/local/sbin/simp_rpm_helper --rpm_dir=%{prefix} --rpm_section='postun' --rpm_status=$1 --preserve --target_dir='.'
 
 %changelog
+* Thu Feb 16 2017 Liz Nemsick <lnemsick.simp@gmail.com> - 6.0.0
+- Fix path to facter in post install
+
 * Tue Jan 10 2017 Nick Miller <nick.miller@onyxpoint.com> - 6.0.0
 - Moved the default location of keydist from the normal puppet environment and
   modulepath to /var/simp/environments/simp/site_files/pki_files/files/keydist,

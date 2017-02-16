@@ -28,9 +28,13 @@ All keys copyright their respective owners.
 mkdir -p %{buildroot}/%{_sysconfdir}/pki/rpm-gpg
 mkdir -p %{buildroot}/%{prefix}
 
-#Now install the files.
+# Now install the files.
 cp RPM-GPG-KEY* %{buildroot}/%{_sysconfdir}/pki/rpm-gpg
 cp RPM-GPG-KEY* %{buildroot}/%{prefix}
+
+# Make sure this doesn't include the development key
+rm -f %{buildroot}/%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-SIMP-Dev
+rm -f %{buildroot}/%{prefix}/RPM-GPG-KEY-SIMP-Dev
 
 %clean
 [ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
@@ -42,6 +46,7 @@ cp RPM-GPG-KEY* %{buildroot}/%{prefix}
 
 %post
 #!/bin/bash
+export PATH=/opt/puppetlabs/bin:$PATH
 
 # If we're a SIMP server, place the keys into the appropriate web directory
 
@@ -107,6 +112,10 @@ for dir in '/srv/www/yum/SIMP' '/var/www/yum/SIMP'; do
 done
 
 %changelog
+* Thu Feb 16 2016 Liz Nemsick <lnemsick.simp@gmail.com> - 3.0.0-0
+- Ensure facter is in $PATH during post install
+- Ensure SIMP development GPG key is not included in the GPG key set
+
 * Tue Feb 14 2016 Nick Miller <nick.miller@onyxpoint.com> - 3.0.0-0
 - Added new puppet gpg key from http://yum.puppetlabs.com/RPM-GPG-KEY-puppet
 
