@@ -161,6 +161,7 @@ chmod u=rwX,g=rX,o=rX -R %{buildroot}%{_sysconfdir}/simp
 
 %post
 # Post installation stuff
+export PATH=/opt/puppetlabs/bin:$PATH
 
 if [ -f %{prefix}/autosign.conf ]; then
   chmod 644 %{prefix}/autosign.conf;
@@ -200,6 +201,9 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Thu Feb 16 2017 Liz Nemsick<lnemsick.simp@gmail.com> - 6.0.0
+- Ensure puppet and facter are in $PATH during post install
+
 * Tue Jan 10 2017 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 6.0.0
 - Updated to release -0
 - Upgraded to Puppet 4.8.2
