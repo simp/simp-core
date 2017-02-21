@@ -17,7 +17,7 @@ mod 'rubygem-simp_cli',
 moduledir 'src/puppet/modules'
 
 mod 'bfraser-grafana',
-  :git => 'git@github.com:trevor-vaughan/puppet-grafana',
+  :git => 'https://github.com/simp/puppet-grafana',
   :ref => '6d426d5ccc52ff23dbbcfc45290dafd224b5d2bc'
 
 mod 'camptocamp-kmod',
@@ -29,7 +29,7 @@ mod 'elastic-elasticsearch',
   :ref => 'dc6d3fab6ace62701aa3de6e4bb868e24fef0553'
 
 mod 'elastic-logstash',
-  :git => 'git@github.com:trevor-vaughan/puppet-logstash',
+  :git => 'https://github.com/simp/puppet-logstash',
   :ref => 'f475deaeb6120abc4c56c27cd3ab1ce808391517'
 
 mod 'electrical-file_concat',
@@ -137,7 +137,7 @@ mod 'saz-timezone',
   :ref => '9344a1d094313b7d94e1ee4da4be9bda441c2708'
 
 mod 'simp-acpid',
-  :git => 'git@github.com:trevor-vaughan/pupmod-simp-acpid',
+  :git => 'https://github.com/simp/pupmod-simp-acpid',
   :ref => '66ec8df52c867252a742c8023ddf176105147dc3'
 
 mod 'simp-activemq',
@@ -169,7 +169,7 @@ mod 'simp-clamav',
   :ref => 'c0e603c9af7ef72c3657a759ac450d2682b2fa64'
 
 mod 'simp-compliance_markup',
-  :git => 'git@github.com:trevor-vaughan/pupmod-simp-compliance_markup',
+  :git => 'https://github.com/simp/pupmod-simp-compliance_markup',
   :ref => '16c660d5b56be37cbe44ecbfac87bfc61ed40bfd'
 
 mod 'simp-cron',
@@ -229,7 +229,7 @@ mod 'simp-krb5',
   :ref => '6bd6e1a197b6fef9763b760a3cbd8970b31250be'
 
 mod 'simp-libreswan',
-  :git => 'git@github.com:trevor-vaughan/pupmod-simp-libreswan',
+  :git => 'https://github.com/simp/pupmod-simp-libreswan',
   :ref => 'f850061118a8decfe62ea2fca25d222b33716cde'
 
 mod 'simp-libvirt',
@@ -273,7 +273,7 @@ mod 'simp-oddjob',
   :ref => '0c79577630e86b6e2859738a04d65e4489ed29cd'
 
 mod 'simp-simp_openldap',
-  :git => 'git@github.com:trevor-vaughan/pupmod-simp-simp_openldap',
+  :git => 'https://github.com/simp/pupmod-simp-simp_openldap',
   :ref => '085a7e373d6c44a39dd2698461f51a86805f771d'
 
 mod 'simp-openscap',
@@ -297,7 +297,7 @@ mod 'simp-postfix',
   :ref => '6095591ca482fe57cf3525137a996290e7d03052'
 
 mod 'simp-pupmod',
-  :git => 'git@github.com:trevor-vaughan/pupmod-simp-pupmod',
+  :git => 'https://github.com/simp/pupmod-simp-pupmod',
   :ref => '88790fe1c4ab49392eb59c2e7a8f9f343aa66aaa'
 
 mod 'simp-puppetdb',
@@ -329,19 +329,19 @@ mod 'simp-simpcat',
   :ref => '50deb1cecc783b28aed39e348da45cd212c37706'
 
 mod 'simp-simp_apache',
-  :git => 'git@github.com:trevor-vaughan/pupmod-simp-apache',
+  :git => 'https://github.com/simp/pupmod-simp-apache',
   :ref => 'beebf920ffd077e930d7705a7d470d1b22ff3304'
 
 mod 'simp-simp_elasticsearch',
-  :git => 'git@github.com:trevor-vaughan/pupmod-simp-simp_elasticsearch',
+  :git => 'https://github.com/simp/pupmod-simp-simp_elasticsearch',
   :ref => '5acdadfc21f06ec109c4a4a23c2945415a180ad6'
 
 mod 'simp-simp_grafana',
-  :git => 'git@github.com:trevor-vaughan/pupmod-simp-simp_grafana',
+  :git => 'https://github.com/simp/pupmod-simp-simp_grafana',
   :ref => '7c31ca566f03b438084adc693ab5c0d3f5f36e4b'
 
 mod 'simp-simp_logstash',
-  :git => 'git@github.com:trevor-vaughan/pupmod-simp-simp_logstash',
+  :git => 'https://github.com/simp/pupmod-simp-simp_logstash',
   :ref => 'd78a6188f5ad6cdf8e0a4e8083b833d2432cdddb'
 
 mod 'simp-simp_options',
@@ -357,7 +357,7 @@ mod 'simp-simp_rsyslog',
   :ref => 'bac200cbef242f08dfc3a570680667d2812e65c0'
 
 mod 'simp-simplib',
-  :git => 'git@github.com:trevor-vaughan/pupmod-simp-simplib',
+  :git => 'https://github.com/simp/pupmod-simp-simplib',
   :ref => '7a1122b00866c3123f3b14b4fc0273972e5692c5'
 
 mod 'simp-site',
@@ -385,7 +385,7 @@ mod 'simp-sudosh',
   :ref => 'baa03f1e58e5bdc5bb5884bd639c4450ae3b8f61'
 
 mod 'simp-svckill',
-  :git => 'git@github.com:trevor-vaughan/pupmod-simp-svckill',
+  :git => 'https://github.com/simp/pupmod-simp-svckill',
   :ref => 'a4c027eeb4cc8091c0771c9c29eb8e099acc75d8'
 
 mod 'simp-swap',
