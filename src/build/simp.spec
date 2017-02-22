@@ -1,7 +1,7 @@
 Summary: SIMP Full Install
 Name: simp
 Version: 6.0.0
-Release: 0%{?snapshot_release}
+Release: Beta%{?snapshot_release}
 License: Apache License, Version 2.0
 Group: Applications/System
 
@@ -201,10 +201,13 @@ fi
 # Post uninstall stuff
 
 %changelog
-* Thu Feb 16 2017 Liz Nemsick<lnemsick.simp@gmail.com> - 6.0.0
+* Fri Feb 17 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.0.0-Beta
+- Cut release of 6.0.0-Beta
+
+* Thu Feb 16 2017 Liz Nemsick <lnemsick.simp@gmail.com> - 6.0.0-Beta
 - Ensure puppet and facter are in $PATH during post install
 
-* Tue Jan 10 2017 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 6.0.0
+* Tue Jan 10 2017 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 6.0.0-Beta
 - Updated to release -0
 - Upgraded to Puppet 4.8.2
 - Updated required version of simp modules
