@@ -10,7 +10,6 @@ Exec {
   ]
 }
 
-
 # SIMP Scenarios
 #
 # Set this variable to make use of the different class sets in heiradata/scenarios,
@@ -37,17 +36,8 @@ $compliance_profile = 'nist_800_53_rev4'
 #
 $hostgroup = 'default'
 
-# Include the simp_options class to ensure that defaults provided there can be found:
-# See the docs for more info: http://www.puppetmodule.info/github/simp/pupmod-simp-simp_options/master/
-include '::simp_options'
+# Include the SIMP base controller with the preferred scenario
+class { 'simp': scenario => $simp_scenario }
 
-# Add Puppet classes to the `classes` array in hiera to add them to the system.
-# For special cases where a class needs to be removed from the classes array, you
-# can use the `class_exclusions` array and it will be subtracted.
-$hiera_classes          = lookup('classes',          Array[String], 'unique', [])
-$hiera_class_exclusions = lookup('class_exclusions', Array[String], 'unique', [])
-$hiera_included_classes = $hiera_classes - $hiera_class_exclusions
-include $hiera_included_classes
-# Include the compliance class last to ensure all of parameters are available
-# before the mappings are checked.
+# For proper functionality, the compliance_markup list needs to be included *absolutely last*
 include compliance_markup
