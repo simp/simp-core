@@ -81,7 +81,9 @@ class site {
 
       it 'should install cleanly' do
         host.install_package('pupmod-simp-beakertest')
+        host.install_package('simp-environment')
         on(host, 'test -d /usr/share/simp/modules/beakertest')
+        on(host, 'test -f /usr/share/simp/environment/simp/test_file')
         host.check_for_package('simp-adapter')
       end
 
@@ -95,13 +97,14 @@ class site {
       it 'should start in a clean state' do
         host.uninstall_package('pupmod-simp-beakertest')
         host.uninstall_package('simp-environment')
+        host.uninstall_package('simp-adapter')
 
         config_yaml =<<-EOM
 ---
 copy_rpm_data : true
 this_should_not_break_things : awwww_yeah
         EOM
-        create_remote_file(host, '/etc/simp/simp_adapter_config.yaml', config_yaml)
+        create_remote_file(host, '/etc/simp/adapter_config.yaml', config_yaml)
       end
 
       it 'should copy the module data into the appropriate location' do
@@ -121,6 +124,7 @@ this_should_not_break_things : awwww_yeah
       it 'should uninstall cleanly' do
         host.uninstall_package('pupmod-simp-beakertest')
         host.uninstall_package('simp-environment')
+        host.uninstall_package('simp-adapter')
         on(host, 'test ! -d /usr/share/simp/modules/beakertest')
         on(host, "test ! -d #{install_target}/environments/simp/modules/beakertest")
         on(host, "test ! -f #{install_target}/environments/simp/test_file")
@@ -140,7 +144,7 @@ this_should_not_break_things : awwww_yeah
       end
 
       it 'should install cleanly' do
-        host.install_package('simp-environment')
+        host.install_package('simp-adapter')
         host.install_package('pupmod-simp-beakertest')
         on(host, 'test -d /usr/share/simp/modules/beakertest')
       end
@@ -159,7 +163,7 @@ this_should_not_break_things : awwww_yeah
 
       it 'should uninstall cleanly' do
         host.uninstall_package('pupmod-simp-beakertest')
-        host.uninstall_package('simp-environment')
+        host.uninstall_package('simp-adapter')
         on(host, 'test ! -d /usr/share/simp/modules/beakertest')
         on(host, 'test ! -f /usr/share/simp/environment/simp/test_file')
       end
