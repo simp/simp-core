@@ -1,0 +1,64 @@
+HOSTS:
+  el6-server:
+    roles:
+      - default
+      - master
+      - client
+      - server
+      - nfs_server
+      - el6_nfs_server
+    platform:   el-6-x86_64
+    box:        centos/6
+    hypervisor: vagrant
+    yum_repos:
+      epel:
+        mirrorlist: 'https://mirrors.fedoraproject.org/mirrorlist?repo=epel-6&arch=$basearch&country=us'
+        gpgkeys:
+          - https://getfedora.org/static/0608B895.txt
+
+  el6-client:
+    roles:
+      - client
+      - nfs_client
+      - el6_nfs_client
+    platform:   el-6-x86_64
+    box:        centos/6
+    hypervisor: vagrant
+    yum_repos:
+      epel:
+        mirrorlist: 'https://mirrors.fedoraproject.org/mirrorlist?repo=epel-6&arch=$basearch&country=us'
+        gpgkeys:
+          - https://getfedora.org/static/0608B895.txt
+
+  el7-server:
+    roles:
+      - client
+      - nfs_server
+      - el7_nfs_server
+    platform: el-7-x86_64
+    box: centos/7
+    hypervisor: vagrant
+    yum_repos:
+      epel:
+        mirrorlist: 'https://mirrors.fedoraproject.org/mirrorlist?repo=epel-7&arch=$basearch&country=us'
+        gpgkeys:
+          - https://getfedora.org/static/352C64E5.txt
+
+  el7-client:
+    roles:
+      - client
+      - nfs_client
+      - el7_nfs_client_
+    platform: el-7-x86_64
+    box: centos/7
+    hypervisor: vagrant
+    yum_repos:
+      epel:
+        mirrorlist: 'https://mirrors.fedoraproject.org/mirrorlist?repo=epel-7&arch=$basearch&country=us'
+        gpgkeys:
+          - https://getfedora.org/static/352C64E5.txt
+
+CONFIG:
+  log_level: verbose
+  type: aio
+  vagrant_memsize: 512
