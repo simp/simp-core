@@ -1,7 +1,7 @@
 Summary: SIMP Full Install
 Name: simp
 Version: 6.0.0
-Release: Beta%{?snapshot_release}
+Release: Beta%{?dist}%{?snapshot_release}
 License: Apache License, Version 2.0
 Group: Applications/System
 
@@ -201,6 +201,11 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Wed Mar 01 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.0.0-RC1
+- Added the dist flag to the release due to distribution specific logic
+- This is required due to automatic distribution-specific requirements that end
+  up bound to the simp RPM
+
 * Fri Feb 17 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.0.0-Beta
 - Cut release of 6.0.0-Beta
 
