@@ -18,7 +18,7 @@ Exec {
 #   * `simp-lite` - makes use of many of our modules, but doesn't apply
 #        many prohibitive security or compliance features, svckill
 #   * `poss` - only include pupmod by default to configure the agent
-$simp_scenario = 'poss'
+$simp_scenario = 'simp'
 
 # Map SIMP parameters to NIST Special Publication 800-53, Revision 4
 # See hieradata/compliance_profiles/ for more options.
@@ -36,6 +36,9 @@ $compliance_profile = 'nist_800_53_rev4'
 #
 $hostgroup = 'default'
 
+# Required if you want the SIMP global catalysts
+# Defaults should technically be sane in all modules without this
+include 'simp_options'
 # Include the SIMP base controller with the preferred scenario
 class { 'simp': scenario => $simp_scenario }
 
