@@ -88,7 +88,7 @@ cd -
 %config(noreplace) %{prefix}/hieradata/hosts/puppet.your.domain.yaml
 %config(noreplace) %{prefix}/hieradata/hostgroups/default.yaml
 %config(noreplace) %{prefix}/hieradata/scenarios/simp.yaml
-%config(noreplace) %{prefix}/hieradata/scenarios/simp-lite.yaml
+%config(noreplace) %{prefix}/hieradata/scenarios/simp_lite.yaml
 %config(noreplace) %{prefix}/hieradata/scenarios/poss.yaml
 %config(noreplace) %{prefix}/hieradata/default.yaml
 %config(noreplace) %{prefix}/manifests/site.pp
