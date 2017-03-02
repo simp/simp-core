@@ -22,6 +22,8 @@
 # NOTE: Details for the 'simp_lite' scenario can be found in the
 # 'simp::scenario::simp_lite' class
 
+simp::scenario: 'simp_lite'
+
 # SIMP-lite scenario defaults
 simp_options::auditd: true
 simp_options::clamav: true

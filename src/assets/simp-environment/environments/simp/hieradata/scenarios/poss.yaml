@@ -14,4 +14,4 @@
 # NOTE: Details for the 'poss' scenario can be found in the
 # 'simp::scenario::poss' class
 
-classes : []
+simp::scenario: 'poss'

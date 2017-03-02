@@ -40,7 +40,7 @@ $hostgroup = 'default'
 # Defaults should technically be sane in all modules without this
 include 'simp_options'
 # Include the SIMP base controller with the preferred scenario
-class { 'simp': scenario => $simp_scenario }
+include 'simp'
 
 # For proper functionality, the compliance_markup list needs to be included *absolutely last*
 include compliance_markup
