@@ -87,6 +87,9 @@ cd -
 %config(noreplace) %{prefix}/hieradata/RedHat/6.yaml
 %config(noreplace) %{prefix}/hieradata/hosts/puppet.your.domain.yaml
 %config(noreplace) %{prefix}/hieradata/hostgroups/default.yaml
+%config(noreplace) %{prefix}/hieradata/scenarios/simp.yaml
+%config(noreplace) %{prefix}/hieradata/scenarios/simp-lite.yaml
+%config(noreplace) %{prefix}/hieradata/scenarios/poss.yaml
 %config(noreplace) %{prefix}/hieradata/default.yaml
 %config(noreplace) %{prefix}/manifests/site.pp
 %config(noreplace) %{prefix}/FakeCA/togen
@@ -203,7 +206,7 @@ fi
 
 %changelog
 * Wed Mar 01 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.1.0
-- Removed the 'scenarios' since they have been moved into pupmod-simp-simp
+- Moved the class lists from 'scenarios' to pupmod-simp-simp
 
 * Thu Feb 16 2017 Liz Nemsick <lnemsick.simp@gmail.com> - 6.0.0
 - Fix path to facter in post install
