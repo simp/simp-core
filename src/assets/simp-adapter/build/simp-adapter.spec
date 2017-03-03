@@ -36,8 +36,6 @@ Summary: SIMP Adapter for the Puppet Enterprise Puppet Installation
 License: Apache-2.0
 Requires: rsync
 Requires(post): puppet-agent
-Requires(post): pe-puppetserver
-Requires(post): pe-puppetdb
 %{?el6:Requires(post): procps}
 %{?el7:Requires(post): procps-ng}
 Requires: puppet-agent < 2.0.0
@@ -77,6 +75,13 @@ install -p -m 640 -D puppet_config/hiera.yaml %{buildroot}%{puppet_confdir}/hier
 [ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
 
 %files
+#
+# TODO: Many of the hard-coded users and groups are likely to break when using
+#       PE, which has different service, user, and group names:
+#
+#  - https://docs.puppet.com/pe/2016.4/install_what_and_where.html#user-accounts-installed
+#  - https://docs.puppet.com/pe/2016.4/install_what_and_where.html#group-accounts-installed
+#
 %defattr(-,root,root,-)
 %config(noreplace) %{prefix}/adapter_config.yaml
 /usr/local/sbin/simp_rpm_helper
@@ -93,16 +98,19 @@ install -p -m 640 -D puppet_config/hiera.yaml %{buildroot}%{puppet_confdir}/hier
 %post
 # Post installation stuff
 
-if  [ $1 -eq 1 ]; then
-  # If this is present, we're being installed via Kickstart and should set the
-  # system to automatically install the packages into the correct location.
-  if [ -f /root/simp-kickstarted.txt ]; then
-     echo 'copy_rpm_data : true' >> %{prefix}/adapter_config.yaml
-  fi
-
-  if [ -f /anaconda-yum.yumtx ]; then
-    echo 'copy_rpm_data : true' >> %{prefix}/adapter_config.yaml
-  fi
+# If the adpater is installed during a SIMP installation (e.g., from the ISO or
+# kickstarts), ensure that the /etc/simp/adapter_config.yaml is set up to copy over
+# the /usr
+#
+# This will only work if the kernel procinfo includes a `simp_install` argument
+simp_install=`awk -F "simp_install=" '{print $2}' /proc/cmdline | cut -f1 -d' '`
+if [ ! -z "${simp_install}" ]; then
+  date=`date +%Y%m%d\ %H%M%S`
+  [ -f %{prefix}/adapter_config.yaml ] || echo '---' > %{prefix}/adapter_config.yaml
+  echo "# This file was modified by simp-adapter during a SIMP install" >> %{prefix}/adapter_config.yaml
+  echo "# on ${date}:"            >> %{prefix}/adapter_config.yaml
+  echo "target_directory: 'auto'" >> %{prefix}/adapter_config.yaml
+  echo 'copy_rpm_data : true'     >> %{prefix}/adapter_config.yaml
 fi
 
 PATH=$PATH:/opt/puppetlabs/bin
