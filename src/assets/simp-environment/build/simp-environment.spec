@@ -205,8 +205,9 @@ fi
 /usr/local/sbin/simp_rpm_helper --rpm_dir=%{prefix} --rpm_section='postun' --rpm_status=$1 --preserve --target_dir='.'
 
 %changelog
-* Wed Mar 01 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.1.0
-- Moved the class lists from 'scenarios' to pupmod-simp-simp
+* Wed Mar 01 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.0.1
+- Moved the class lists from 'scenarios' Hiera data to pupmod-simp-simp
+- Updated site.pp to use include the base classes in the correct order
 
 * Thu Feb 16 2017 Liz Nemsick <lnemsick.simp@gmail.com> - 6.0.0
 - Fix path to facter in post install
