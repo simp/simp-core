@@ -1,7 +1,7 @@
 Summary: GPGKEYS
 Name: simp-gpgkeys
 Version: 3.0.0
-Release: 0%{?dist}
+Release: 1
 License: Public Domain
 Group: Applications/System
 Source: %{name}-%{version}-%{release}.tar.gz
@@ -29,8 +29,9 @@ mkdir -p %{buildroot}/%{_sysconfdir}/pki/rpm-gpg
 mkdir -p %{buildroot}/%{prefix}
 
 # Now install the files.
-cp RPM-GPG-KEY* %{buildroot}/%{_sysconfdir}/pki/rpm-gpg
-cp RPM-GPG-KEY* %{buildroot}/%{prefix}
+cp GPGKEYS/RPM-GPG-KEY-puppet* %{buildroot}/%{_sysconfdir}/pki/rpm-gpg
+cp GPGKEYS/RPM-GPG-KEY-SIMP* %{buildroot}/%{_sysconfdir}/pki/rpm-gpg
+cp GPGKEYS/* %{buildroot}/%{prefix}
 
 %clean
 [ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
@@ -92,7 +93,6 @@ fi
 chown -R root:48 ${dir}/GPGKEYS/
 find ${dir}/GPGKEYS/ -type f -exec chmod 640 {} +
 
-
 %postun
 #!/bin/bash
 
@@ -102,6 +102,12 @@ if [ -d "${dir}/GPGKEYS" ]; then
 fi
 
 %changelog
+* Fri Feb 24 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 3.0.0-1
+- Only copy in the SIMP and Puppet GPG keys into the system trust chain.
+  Copying more than that is too presumptive.
+- Removed the 'dist' qualifier from the version since it was determined that
+  the public GPG keys are OK to be common across all releases.
+
 * Tue Feb 14 2017 Nick Miller <nick.miller@onyxpoint.com> - 3.0.0-0
 - Added new puppet gpg key from http://yum.puppetlabs.com/RPM-GPG-KEY-puppet
 - Ensure facter is in $PATH during post install
