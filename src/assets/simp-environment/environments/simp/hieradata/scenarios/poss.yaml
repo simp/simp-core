@@ -11,8 +11,7 @@
 #
 # See `manifests/site.pp` for an example use case for the $simp_scenario variable.
 #
+# NOTE: Details for the 'poss' scenario can be found in the
+# 'simp::scenario::poss' class
 
-classes:
-  # Set up as a Puppet client
-  - 'pupmod'
-
+simp::scenario: 'poss'

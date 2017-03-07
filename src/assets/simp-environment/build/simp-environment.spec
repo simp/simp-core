@@ -6,7 +6,7 @@
 
 Summary: The SIMP Environment Scaffold
 Name: simp-environment
-Version: 6.0.0
+Version: 6.0.1
 Release: 0
 License: Apache License 2.0
 Group: Applications/System
@@ -88,7 +88,7 @@ cd -
 %config(noreplace) %{prefix}/hieradata/hosts/puppet.your.domain.yaml
 %config(noreplace) %{prefix}/hieradata/hostgroups/default.yaml
 %config(noreplace) %{prefix}/hieradata/scenarios/simp.yaml
-%config(noreplace) %{prefix}/hieradata/scenarios/simp-lite.yaml
+%config(noreplace) %{prefix}/hieradata/scenarios/simp_lite.yaml
 %config(noreplace) %{prefix}/hieradata/scenarios/poss.yaml
 %config(noreplace) %{prefix}/hieradata/default.yaml
 %config(noreplace) %{prefix}/manifests/site.pp
@@ -205,6 +205,10 @@ fi
 /usr/local/sbin/simp_rpm_helper --rpm_dir=%{prefix} --rpm_section='postun' --rpm_status=$1 --preserve --target_dir='.'
 
 %changelog
+* Wed Mar 01 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.0.1
+- Moved the class lists from 'scenarios' Hiera data to pupmod-simp-simp
+- Updated site.pp to use include the base classes in the correct order
+
 * Thu Feb 16 2017 Liz Nemsick <lnemsick.simp@gmail.com> - 6.0.0
 - Fix path to facter in post install
 

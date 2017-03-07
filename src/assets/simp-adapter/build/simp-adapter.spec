@@ -3,7 +3,7 @@
 Summary: SIMP Adapter for the AIO Puppet Installation
 Name: simp-adapter
 Version: 0.0.3
-Release: 0
+Release: 0%{?dist}
 License: Apache-2.0
 Group: Applications/System
 Source: %{name}-%{version}-%{release}.tar.gz
@@ -252,9 +252,12 @@ EOM
 )
 
 %changelog
-* Thu Mar 02 2017 Liz Nemsick <lnemsick.simp@gmail.com> - 0.0.3
+* Thu Mar 02 2017 Liz Nemsick <lnemsick.simp@gmail.com> - 0.0.3-0
 - Fix simp_rpm_helper bugs that prevented SIMP module RPM uninstalls
   in certain scenarios
 
+* Tue Feb 28 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 0.0.3-0
+- Add dist to the release field to account for RPM generation on EL6 vs EL7
+
 * Mon Sep 12 2016 Trevor Vaughan <tvaughan@onyxpoint.com> - 0.0.1-Alpha
-  - First cut at the simp-adapter
+- First cut at the simp-adapter
