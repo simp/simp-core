@@ -8,9 +8,6 @@ activemq-info-provider:
 apr-util-ldap:
   :rpm_name: apr-util-ldap-1.5.2-6.el7.x86_64.rpm
   :source: http://denver.gaminghost.co/7.2.1511/os/x86_64/Packages/apr-util-ldap-1.5.2-6.el7.x86_64.rpm
-cfacter:
-  :rpm_name: cfacter-0.3.0-1.el7.x86_64.rpm
-  :source: https://dl.bintray.com/simp/5.1.X/cfacter-0.3.0-1.el7.x86_64.rpm
 chkrootkit:
   :rpm_name: chkrootkit-0.50-4el7.x86_64.rpm
   :source: https://dl.bintray.com/simp/5.1.X-Ext/chkrootkit-0.50-4el7.x86_64.rpm
@@ -59,9 +56,6 @@ elasticsearch:
 elasticsearch-curator:
   :rpm_name: elasticsearch-curator-1.1.1-0el7.noarch.rpm
   :source: https://dl.bintray.com/simp/5.1.X-Ext/elasticsearch-curator-1.1.1-0el7.noarch.rpm
-facter:
-  :rpm_name: facter-2.4.6-1.el7.x86_64.rpm
-  :source: https://dl.bintray.com/simp/5.1.X/facter-2.4.6-1.el7.x86_64.rpm
 grafana:
   :rpm_name: grafana-3.1.1-1470047149.x86_64.rpm
   :source: https://packagecloud.io/grafana/stable/el/7/x86_64/grafana-3.1.1-1470047149.x86_64.rpm
@@ -71,15 +65,12 @@ gweb:
 haveged:
   :rpm_name: haveged-1.9.1-1.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/h/haveged-1.9.1-1.el7.x86_64.rpm
-hiera:
-  :rpm_name: hiera-3.0.5-1.el7.noarch.rpm
-  :source: https://dl.bintray.com/simp/5.1.X/hiera-3.0.5-1.el7.noarch.rpm
 incron:
   :rpm_name: incron-0.5.10-8.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/i/incron-0.5.10-8.el7.x86_64.rpm
 libarchive-devel:
   :rpm_name: libarchive-devel-3.1.2-10.el7_2.x86_64.rpm
-  :source: http://mirror.datto.com/CentOS/7.3.1611/os/x86_64/Packages/libarchive-devel-3.1.2-10.el7_2.x86_64.rpm
+  :source: http://mirror.supremebytes.com/centos/7.3.1611/os/x86_64/Packages/libarchive-devel-3.1.2-10.el7_2.x86_64.rpm
 libconfuse:
   :rpm_name: libconfuse-2.7-7.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/l/libconfuse-2.7-7.el7.x86_64.rpm
@@ -92,117 +83,9 @@ libevent:
 libreswan:
   :rpm_name: libreswan-3.15-5.el7_1.x86_64.rpm
   :source: http://mirror.centos.org/centos-7/7.2.1511/updates/x86_64/Packages/libreswan-3.15-5.el7_1.x86_64.rpm
-libselinux:
-  :rpm_name: libselinux-2.2.2-6.el7.x86_64.rpm
-  :source: https://dl.bintray.com/simp/5.1.X/libselinux-2.2.2-6.el7.x86_64.rpm
-libselinux-ruby:
-  :rpm_name: libselinux-ruby-2.2.2-6.el7.x86_64.rpm
-  :source: https://dl.bintray.com/simp/5.1.X/libselinux-ruby-2.2.2-6.el7.x86_64.rpm
-libselinux-static:
-  :rpm_name: libselinux-static-2.2.2-6.el7.x86_64.rpm
-  :source: https://dl.bintray.com/simp/5.1.X/libselinux-static-2.2.2-6.el7.x86_64.rpm
-libsepol-static:
-  :rpm_name: libsepol-static-2.1.9-3.el7.x86_64.rpm
-  :source: https://dl.bintray.com/simp/5.1.X/libsepol-static-2.1.9-3.el7.x86_64.rpm
 logstash:
   :rpm_name: logstash-2.3.4-1.noarch.rpm
   :source: https://download.elastic.co/logstash/logstash/packages/centos/logstash-2.3.4-1.noarch.rpm
-mcollective:
-  :rpm_name: mcollective-2.8.9-1.el7.noarch.rpm
-  :source: https://packagecloud.io/simp-project/5_X_Dependencies/el/7/noarch/mcollective-2.8.9-1.el7.noarch.rpm
-mcollective-actionpolicy-auth:
-  :rpm_name: mcollective-actionpolicy-auth-2.1.0-1.el7.noarch.rpm
-  :source: https://dl.bintray.com/simp/5.1.X/mcollective-actionpolicy-auth-2.1.0-1.el7.noarch.rpm
-mcollective-client:
-  :rpm_name: mcollective-client-2.8.9-1.el7.noarch.rpm
-  :source: https://packagecloud.io/simp-project/5_X_Dependencies/el/7/noarch/mcollective-client-2.8.9-1.el7.noarch.rpm
-mcollective-common:
-  :rpm_name: mcollective-common-2.8.9-1.el7.noarch.rpm
-  :source: https://packagecloud.io/simp-project/5_X_Dependencies/el/7/noarch/mcollective-common-2.8.9-1.el7.noarch.rpm
-mcollective-filemgr-agent:
-  :rpm_name: mcollective-filemgr-agent-1.1.0-1.el7.noarch.rpm
-  :source: https://dl.bintray.com/simp/5.1.X/mcollective-filemgr-agent-1.1.0-1.el7.noarch.rpm
-mcollective-filemgr-client:
-  :rpm_name: mcollective-filemgr-client-1.1.0-1.el7.noarch.rpm
-  :source: https://dl.bintray.com/simp/5.1.X/mcollective-filemgr-client-1.1.0-1.el7.noarch.rpm
-mcollective-filemgr-common:
-  :rpm_name: mcollective-filemgr-common-1.1.0-1.el7.noarch.rpm
-  :source: https://dl.bintray.com/simp/5.1.X/mcollective-filemgr-common-1.1.0-1.el7.noarch.rpm
-mcollective-iptables-agent:
-  :rpm_name: mcollective-iptables-agent-3.0.2-1.el7.noarch.rpm
-  :source: https://dl.bintray.com/simp/5.1.X/mcollective-iptables-agent-3.0.2-1.el7.noarch.rpm
-mcollective-iptables-client:
-  :rpm_name: mcollective-iptables-client-3.0.2-1.el7.noarch.rpm
-  :source: https://dl.bintray.com/simp/5.1.X/mcollective-iptables-client-3.0.2-1.el7.noarch.rpm
-mcollective-iptables-common:
-  :rpm_name: mcollective-iptables-common-3.0.2-1.el7.noarch.rpm
-  :source: https://dl.bintray.com/simp/5.1.X/mcollective-iptables-common-3.0.2-1.el7.noarch.rpm
-mcollective-nettest-agent:
-  :rpm_name: mcollective-nettest-agent-3.0.4-1.el7.noarch.rpm
-  :source: https://dl.bintray.com/simp/5.1.X/mcollective-nettest-agent-3.0.4-1.el7.noarch.rpm
-mcollective-nettest-client:
-  :rpm_name: mcollective-nettest-client-3.0.4-1.el7.noarch.rpm
-  :source: https://dl.bintray.com/simp/5.1.X/mcollective-nettest-client-3.0.4-1.el7.noarch.rpm
-mcollective-nettest-common:
-  :rpm_name: mcollective-nettest-common-3.0.4-1.el7.noarch.rpm
-  :source: https://dl.bintray.com/simp/5.1.X/mcollective-nettest-common-3.0.4-1.el7.noarch.rpm
-mcollective-nrpe-agent:
-  :rpm_name: mcollective-nrpe-agent-3.1.0-1.el7.noarch.rpm
-  :source: https://dl.bintray.com/simp/5.1.X/mcollective-nrpe-agent-3.1.0-1.el7.noarch.rpm
-mcollective-nrpe-client:
-  :rpm_name: mcollective-nrpe-client-3.1.0-1.el7.noarch.rpm
-  :source: https://dl.bintray.com/simp/5.1.X/mcollective-nrpe-client-3.1.0-1.el7.noarch.rpm
-mcollective-nrpe-common:
-  :rpm_name: mcollective-nrpe-common-3.1.0-1.el7.noarch.rpm
-  :source: https://dl.bintray.com/simp/5.1.X/mcollective-nrpe-common-3.1.0-1.el7.noarch.rpm
-mcollective-package-agent:
-  :rpm_name: mcollective-package-agent-4.4.0-1.el7.noarch.rpm
-  :source: https://dl.bintray.com/simp/5.1.X/mcollective-package-agent-4.4.0-1.el7.noarch.rpm
-mcollective-package-client:
-  :rpm_name: mcollective-package-client-4.4.0-1.el7.noarch.rpm
-  :source: https://dl.bintray.com/simp/5.1.X/mcollective-package-client-4.4.0-1.el7.noarch.rpm
-mcollective-package-common:
-  :rpm_name: mcollective-package-common-4.4.0-1.el7.noarch.rpm
-  :source: https://dl.bintray.com/simp/5.1.X/mcollective-package-common-4.4.0-1.el7.noarch.rpm
-mcollective-puppet-agent:
-  :rpm_name: mcollective-puppet-agent-1.11.1-1.el7.noarch.rpm
-  :source: https://packagecloud.io/simp-project/5_X_Dependencies/el/7/noarch/mcollective-puppet-agent-1.11.1-1.el7.noarch.rpm
-mcollective-puppet-client:
-  :rpm_name: mcollective-puppet-client-1.11.1-1.el7.noarch.rpm
-  :source: https://packagecloud.io/simp-project/5_X_Dependencies/el/7/noarch/mcollective-puppet-client-1.11.1-1.el7.noarch.rpm
-mcollective-puppet-common:
-  :rpm_name: mcollective-puppet-common-1.11.1-1.el7.noarch.rpm
-  :source: https://packagecloud.io/simp-project/5_X_Dependencies/el/7/noarch/mcollective-puppet-common-1.11.1-1.el7.noarch.rpm
-mcollective-service-agent:
-  :rpm_name: mcollective-service-agent-3.1.3-1.el7.noarch.rpm
-  :source: https://dl.bintray.com/simp/5.1.X/mcollective-service-agent-3.1.3-1.el7.noarch.rpm
-mcollective-service-client:
-  :rpm_name: mcollective-service-client-3.1.3-1.el7.noarch.rpm
-  :source: https://dl.bintray.com/simp/5.1.X/mcollective-service-client-3.1.3-1.el7.noarch.rpm
-mcollective-service-common:
-  :rpm_name: mcollective-service-common-3.1.3-1.el7.noarch.rpm
-  :source: https://dl.bintray.com/simp/5.1.X/mcollective-service-common-3.1.3-1.el7.noarch.rpm
-mcollective-shell-agent:
-  :rpm_name: mcollective-shell-agent-0.0.2-1.el7.noarch.rpm
-  :source: https://dl.bintray.com/simp/5.1.X/mcollective-shell-agent-0.0.2-1.el7.noarch.rpm
-mcollective-shell-client:
-  :rpm_name: mcollective-shell-client-0.0.2-1.el7.noarch.rpm
-  :source: https://dl.bintray.com/simp/5.1.X/mcollective-shell-client-0.0.2-1.el7.noarch.rpm
-mcollective-shell-common:
-  :rpm_name: mcollective-shell-common-0.0.2-1.el7.noarch.rpm
-  :source: https://dl.bintray.com/simp/5.1.X/mcollective-shell-common-0.0.2-1.el7.noarch.rpm
-mcollective-sshkey-security:
-  :rpm_name: mcollective-sshkey-security-0.5.0-1.el7.noarch.rpm
-  :source: https://dl.bintray.com/simp/5.1.X/mcollective-sshkey-security-0.5.0-1.el7.noarch.rpm
-mcollective-sysctl-data:
-  :rpm_name: mcollective-sysctl-data-2.0.1-1.el7.noarch.rpm
-  :source: https://dl.bintray.com/simp/5.1.X/mcollective-sysctl-data-2.0.1-1.el7.noarch.rpm
-mod_ldap:
-  :rpm_name: mod_ldap-2.4.6-40.el7.centos.x86_64.rpm
-  :source: https://dl.bintray.com/simp/5.1.X/mod_ldap-2.4.6-40.el7.centos.x86_64.rpm
-openssh-ldap:
-  :rpm_name: openssh-ldap-6.6.1p1-22.el7.x86_64.rpm
-  :source: https://dl.bintray.com/simp/5.1.X/openssh-ldap-6.6.1p1-22.el7.x86_64.rpm
 pdsh:
   :rpm_name: pdsh-2.29-1el7.x86_64.rpm
   :source: https://dl.bintray.com/simp/5.1.X-Ext/pdsh-2.29-1el7.x86_64.rpm
@@ -237,23 +120,23 @@ pssh:
   :rpm_name: pssh-2.3.1.SIMP-5.el7.noarch.rpm
   :source: https://dl.bintray.com/simp/5.1.X-Ext/pssh-2.3.1.SIMP-5.el7.noarch.rpm
 puppet-agent:
-  :rpm_name: puppet-agent-1.8.0-1.el7.x86_64.rpm
-  :source: https://yum.puppetlabs.com/el/7/PC1/x86_64/puppet-agent-1.8.0-1.el7.x86_64.rpm
+  :rpm_name: puppet-agent-1.8.3-1.el7.x86_64.rpm
+  :source: http://yum.puppetlabs.com/el/7/PC1/x86_64/puppet-agent-1.8.3-1.el7.x86_64.rpm
 puppet-client-tools:
   :rpm_name: puppet-client-tools-1.1.0-1.el7.x86_64.rpm
   :source: http://yum.puppetlabs.com/el/7Server/PC1/x86_64/puppet-client-tools-1.1.0-1.el7.x86_64.rpm
 puppetdb:
   :rpm_name: puppetdb-4.3.0-1.el7.noarch.rpm
-  :source: https://yum.puppetlabs.com/el/7/PC1/x86_64/puppetdb-4.3.0-1.el7.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/7/PC1/x86_64/puppetdb-4.3.0-1.el7.noarch.rpm
 puppetdb-termini:
-  :rpm_name: puppetdb-termini-4.2.4-1.el7.noarch.rpm
-  :source: https://yum.puppetlabs.com/el/7/PC1/x86_64/puppetdb-termini-4.2.4-1.el7.noarch.rpm
+  :rpm_name: puppetdb-termini-4.3.0-1.el7.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/7/PC1/x86_64/puppetdb-termini-4.3.0-1.el7.noarch.rpm
 puppetlabs-release-pc1:
-  :rpm_name: puppetlabs-release-pc1-1.1.0-4.el7.noarch.rpm
-  :source: https://yum.puppetlabs.com/el/7/PC1/x86_64/puppetlabs-release-pc1-1.1.0-4.el7.noarch.rpm
+  :rpm_name: puppetlabs-release-pc1-1.1.0-5.el7.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/7/PC1/x86_64/puppetlabs-release-pc1-1.1.0-5.el7.noarch.rpm
 puppetserver:
-  :rpm_name: puppetserver-2.6.0-1.el7.noarch.rpm
-  :source: https://yum.puppetlabs.com/el/7/PC1/x86_64/puppetserver-2.6.0-1.el7.noarch.rpm
+  :rpm_name: puppetserver-2.7.2-1.el7.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/7/PC1/x86_64/puppetserver-2.7.2-1.el7.noarch.rpm
 python-elasticsearch:
   :rpm_name: python-elasticsearch-1.2.0-0.el7.centos.noarch.rpm
   :source: https://dl.bintray.com/simp/5.1.X-Ext/python-elasticsearch-1.2.0-0.el7.centos.noarch.rpm
