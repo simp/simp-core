@@ -252,10 +252,13 @@ EOM
 )
 
 %changelog
+
 * Mon Mar 06 2017 Liz Nemsick <lnemsick.simp@gmail.com> -  0.0.3-0
 - Fix 'puppet resource service' bugs in %post
 - Add /var/run/puppetlabs to the list of directories to traverse,
   when fixing puppet uid/gid.
+- Fix simp_rpm_helper bugs that prevented SIMP module RPM uninstalls
+  in certain scenarios
 
 * Tue Feb 28 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 0.0.3-0
 - Add dist to the release field to account for RPM generation on EL6 vs EL7

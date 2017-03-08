@@ -280,7 +280,7 @@ def validate_options(options, usage)
     fail("Error: 'rpm_section' must be one of '#{valid_rpm_sections.join("', '")}'\n#{usage}")
   end
 
-  unless options.rpm_section == 'pre'
+  if (options.rpm_section == 'post') || (options.rpm_section == 'preun')
     unless File.directory?(options.rpm_dir)
       fail("Error: Could not find 'rpm_dir': '#{options.rpm_dir}'")
     end
@@ -386,10 +386,13 @@ unless is_managed?(File.join(options.target_dir, options.module_name)) || !optio
         # Only delete items that are in the reference repo
         Dir.chdir(options.target_dir) do
           ref_list.each do |to_rm|
-            if File.directory?(to_rm)
+            if File.symlink?(to_rm)
+              FileUtils.rm_f(to_rm)
+            elsif File.directory?(to_rm) && (Dir.entries(to_rm).delete_if {|dir|
+                dir == '.' || dir == '..'}.size == 0)
               FileUtils.rmdir(to_rm)
             elsif File.exist?(to_rm)
-              FileUtils.rm_f(to_rm) if File.exist?(to_rm)
+              FileUtils.rm_f(to_rm)
             end
           end
         end

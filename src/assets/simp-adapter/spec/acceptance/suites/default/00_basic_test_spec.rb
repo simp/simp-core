@@ -129,6 +129,23 @@ this_should_not_break_things : awwww_yeah
         on(host, "test ! -d #{install_target}/environments/simp/modules/beakertest")
         on(host, "test ! -f #{install_target}/environments/simp/test_file")
       end
+
+      it 'should not remove local module files upon module uninstall' do
+        config_yaml =<<-EOM
+---
+copy_rpm_data : true
+        EOM
+        create_remote_file(host, '/etc/simp/adapter_config.yaml', config_yaml)
+        host.install_package('pupmod-simp-beakertest')
+        on(host, "echo 'this module is great' > #{install_target}/environments/simp/modules/beakertest/NOTES.txt")
+        host.uninstall_package('pupmod-simp-beakertest')
+        host.uninstall_package('simp-adapter')
+        on(host, "test -d #{install_target}/environments/simp/modules/beakertest")
+        on(host, "test -f #{install_target}/environments/simp/modules/beakertest/NOTES.txt")
+        expect(
+          on(host, "find #{install_target}/environments/simp/modules/beakertest | wc -l").output
+        ).to eq "2\n"
+      end
     end
 
     context "Installing with an already managed target" do
