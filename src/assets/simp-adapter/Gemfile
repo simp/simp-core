@@ -10,7 +10,7 @@ gem_sources   = ENV.key?('SIMP_GEM_SERVERS') ? ENV['SIMP_GEM_SERVERS'].split(/[,
 gem_sources.each { |gem_source| source gem_source }
 
 group :test do
-  gem "rake"
+  gem "rake", '< 11.0.1'
   gem 'puppet', ENV.fetch('PUPPET_VERSION',  '~>4')
   gem "rspec"
   gem "rspec-puppet"

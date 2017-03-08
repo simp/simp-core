@@ -36,6 +36,8 @@ Summary: SIMP Adapter for the Puppet Enterprise Puppet Installation
 License: Apache-2.0
 Requires: rsync
 Requires(post): puppet-agent
+Requires(post): pe-puppetserver
+Requires(post): pe-puppetdb
 %{?el6:Requires(post): procps}
 %{?el7:Requires(post): procps-ng}
 Requires: puppet-agent < 2.0.0
@@ -92,99 +94,118 @@ install -p -m 640 -D puppet_config/hiera.yaml %{buildroot}%{puppet_confdir}/hier
 %defattr(-,root,root,-)
 %config(noreplace) %{prefix}/adapter_config.yaml
 /usr/local/sbin/simp_rpm_helper
-%attr(-,-,puppet) %{puppet_confdir}/auth.conf.simp
-%attr(-,-,puppet) %{puppet_confdir}/hiera.yaml.simp
+%attr(-,-,pe-puppet) %{puppet_confdir}/auth.conf.simp
+%attr(-,-,pe-puppet) %{puppet_confdir}/hiera.yaml.simp
 
 %post
 # Post installation stuff
 
-# If the adpater is installed during a SIMP installation (e.g., from the ISO or
-# kickstarts), ensure that the /etc/simp/adapter_config.yaml is set up to copy over
-# the /usr
-#
-# This will only work if the kernel procinfo includes a `simp_install` argument
-simp_install=`awk -F "simp_install=" '{print $2}' /proc/cmdline | cut -f1 -d' '`
-if [ ! -z "${simp_install}" ]; then
-  date=`date +%Y%m%d\ %H%M%S`
-  [ -f %{prefix}/adapter_config.yaml ] || echo '---' > %{prefix}/adapter_config.yaml
-  echo "# This file was modified by simp-adapter during a SIMP install" >> %{prefix}/adapter_config.yaml
-  echo "# on ${date}:"            >> %{prefix}/adapter_config.yaml
-  echo "target_directory: 'auto'" >> %{prefix}/adapter_config.yaml
-  echo 'copy_rpm_data : true'     >> %{prefix}/adapter_config.yaml
+if [ $1 -eq 1 ]; then
+  # If the adapter is installed during a SIMP installation (e.g., from the ISO or
+  # kickstarts), ensure that the /etc/simp/adapter_config.yaml is set up to copy over
+  # the /usr
+  #
+  # This will only work if the kernel procinfo includes a `simp_install` argument
+  simp_install=`awk -F "simp_install=" '{print $2}' /proc/cmdline | cut -f1 -d' '`
+  if [ ! -z "${simp_install}" ]; then
+    date=`date +%Y%m%d\ %H%M%S`
+    [ -f %{prefix}/adapter_config.yaml ] || echo '---' > %{prefix}/adapter_config.yaml
+    echo "# This file was modified by simp-adapter during a SIMP install" >> %{prefix}/adapter_config.yaml
+    echo "# on ${date}:"            >> %{prefix}/adapter_config.yaml
+    echo "target_directory: 'auto'" >> %{prefix}/adapter_config.yaml
+    echo 'copy_rpm_data: true'     >> %{prefix}/adapter_config.yaml
+  fi
 fi
 
 PATH=$PATH:/opt/puppetlabs/bin
 
-# This is here due to a bug in the Puppet Server RPM that does not properly
-# nail up the Puppet UID and GID to 52
-#
-# Unfortunately, we can't guarantee order in 'post', so we may have to munge up
-# the filesystem pretty hard
-
-puppet_uid=`id -u puppet 2>/dev/null`
-puppet_gid=`id -g puppet 2>/dev/null`
-
-restart_puppetserver=0
-
-puppet_owned_dirs='/opt/puppetlabs /etc/puppetlabs /var/log /var/run/puppetlabs'
-
-if [ -n $puppet_gid ]; then
-  if [ "$puppet_gid" != '52' ]; then
-
-    if `pgrep -f puppetserver &>/dev/null`; then
-      puppet resource service puppetserver ensure=stopped || :
-      wait
-      restart_puppetserver=1
-    fi
-
-    groupmod -g 52 puppet || :
-
-    for dir in $puppet_owned_dirs; do
-      if [ -d $dir ]; then
-        find $dir -gid $puppet_gid -exec chgrp puppet {} \;
-      fi
-    done
-  fi
+id -u 'pe-puppet' &> /dev/null
+if [ $? -eq 0 ]; then
+  puppet_user='pe-puppet'
+  puppet_group='pe-puppet'
+  puppetdb_user='pe-puppetdb'
+  puppetdb_group='pe-puppetdb'
 else
+  puppet_user='puppet'
+  puppet_group='puppet'
+  puppetdb_user='puppetdb'
+  puppetdb_group='puppetdb'
+fi
+
+if [ "${puppet_user}" == 'puppet' ]; then
+  # This fix is Puppet Open Source Only
+  #
+  # This is here due to a bug in the Puppet Server RPM that does not properly
+  # nail up the Puppet UID and GID to 52
+  #
+  # Unfortunately, we can't guarantee order in 'post', so we may have to munge up
+  # the filesystem pretty hard
+
+  puppet_owned_dirs='/opt/puppetlabs /etc/puppetlabs /var/log/puppetlabs /var/run/puppetlabs'
+
+  puppet_uid=`id -u puppet 2>/dev/null`
+  puppet_gid=`id -g puppet 2>/dev/null`
+
+  restart_puppetserver=0
+
+  if [ -n $puppet_gid ]; then
+    if [ "$puppet_gid" != '52' ]; then
+
+      if `pgrep -f puppetserver &>/dev/null`; then
+        puppet resource service puppetserver ensure=stopped || :
+        wait
+        restart_puppetserver=1
+      fi
+
+      groupmod -g 52 puppet || :
+
+      for dir in $puppet_owned_dirs; do
+        if [ -d $dir ]; then
+          find $dir -gid $puppet_gid -exec chgrp puppet {} \;
+        fi
+      done
+    fi
+  else
+    # Add puppet group
+    groupadd -r -g 52 puppet || :
+  fi
+
+  if [ -n $puppet_uid ]; then
+    if [ "$puppet_uid" != '52' ]; then
+
+      if `pgrep -f puppetserver &>/dev/null`; then
+        puppet resource service puppetserver stop || :
+        wait
+        restart_puppetserver=1
+      fi
+
+      usermod -u 52 puppet || :
+
+      for dir in $puppet_owned_dirs; do
+        if [ -d $dir ]; then
+          find $dir -uid $puppet_uid -exec chown puppet {} \;
+        fi
+      done
+    fi
+  else
+    # Add puppet user
+    useradd -r --uid 52 --gid puppet --home /opt/puppetlabs/server/data/puppetserver --shell $(which nologin) --comment "puppetserver daemon" puppet || :
+  fi
+
+  if [ $restart_puppetserver -eq 1 ]; then
+    puppet resource service puppetserver ensure=running
+  fi
+
+  # PuppetDB doesn't have a set user and group, but we really want to make sure
+  # that the directory permissions aren't awful
+
   # Add puppet group
-  groupadd -r -g 52 puppet || :
-fi
+  getent group puppetdb > /dev/null || groupadd -r puppetdb || :
 
-if [ -n $puppet_uid ]; then
-  if [ "$puppet_uid" != '52' ]; then
-
-    if `pgrep -f puppetserver &>/dev/null`; then
-      puppet resource service puppetserver ensure=stopped || :
-      wait
-      restart_puppetserver=1
-    fi
-
-    usermod -u 52 puppet || :
-
-    for dir in $puppet_owned_dirs; do
-      if [ -d $dir ]; then
-        find $dir -uid $puppet_uid -exec chown puppet {} \;
-      fi
-    done
-  fi
-else
   # Add puppet user
-  useradd -r --uid 52 --gid puppet --home /opt/puppetlabs/server/data/puppetserver --shell $(which nologin) --comment "puppetserver daemon" puppet || :
+  getent passwd puppetdb > /dev/null || useradd -r --gid puppetdb --home /opt/puppetlabs/server/data/puppetdb --shell $(which nologin) --comment "puppetdb daemon" puppetdb || :
 fi
-
-if [ $restart_puppetserver -eq 1 ]; then
-  puppet resource service puppetserver ensure=running
-fi
-
-# PuppetDB doesn't have a set user and group, but we really want to make sure
-# that the directory permissions aren't awful
-
-# Add puppet group
-getent group puppetdb > /dev/null || groupadd -r puppetdb || :
-
-# Add puppet user
-getent passwd puppetdb > /dev/null || useradd -r --gid puppetdb --home /opt/puppetlabs/server/data/puppetdb --shell $(which nologin) --comment "puppetdb daemon" puppetdb || :
-
+# End Puppet Open Source permissions munging
 
 puppet config set trusted_node_data true || :
 puppet config set digest_algorithm sha256 || :
@@ -213,7 +234,7 @@ EOM
 
     ln -sf "${file}.simp" $file
 
-    chgrp puppet $file
+    chgrp $puppet_group $file
   done
 
   # Only do permission fixes on a fresh install
@@ -223,20 +244,20 @@ EOM
       if [ -d $dir ]; then
         chmod -R u+rwX,g+rX,g-w,o-rwx $dir
         chmod ug+st $dir
-        chgrp -R puppet $dir
+        chgrp -R $puppet_group $dir
       fi
     done
 
     if [ -d 'puppet/ssl' ]; then
       chmod -R u+rwX,g+rX,g-w,o-rwx 'puppet/ssl'
       chmod ug+st 'puppet/ssl'
-      chown -R puppet:puppet 'puppet/ssl'
+      chown -R ${puppet_user}:${puppet_group} 'puppet/ssl'
     fi
 
     if [ -d 'puppetdb' ]; then
       chmod -R u+rwX,g+rX,g-w,o-rwx 'puppetdb'
       chmod ug+st 'puppetdb'
-      chgrp -R puppetdb 'puppetdb'
+      chgrp -R $puppetdb_group 'puppetdb'
     fi
   fi
 )
@@ -260,6 +281,11 @@ EOM
 )
 
 %changelog
+* Wed Mar 08 2017 Trevor Vaughan <tvaughan@onyxpont.com> - 0.0.3-0
+- Handle PE and Puppet Open source in the post section
+- Add dist to the release field to account for RPM generation on EL6 vs EL7
+- Updates to work better with PE and with the new method for detecting
+  kickstart installs as added by Chris Tessmer <ctessmer@onyxpoint.com>
 
 * Mon Mar 06 2017 Liz Nemsick <lnemsick.simp@gmail.com> -  0.0.3-0
 - Fix 'puppet resource service' bugs in %post
@@ -267,9 +293,6 @@ EOM
   when fixing puppet uid/gid.
 - Fix simp_rpm_helper bugs that prevented SIMP module RPM uninstalls
   in certain scenarios
-
-* Tue Feb 28 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 0.0.3-0
-- Add dist to the release field to account for RPM generation on EL6 vs EL7
 
 * Mon Sep 12 2016 Trevor Vaughan <tvaughan@onyxpoint.com> - 0.0.1-Alpha
 - First cut at the simp-adapter
