@@ -1,8 +1,8 @@
 ---
 ######################################################################
 #                                                                    #
-# This file contains the default class set that configures a default #
-# SIMP-lite system.                                                  #
+# This file contains the default parameters for configuring the      #
+# global catalysts in a SIMP-lite system.                            #
 #                                                                    #
 # Feel free to trim these down, or add to them as necessary.         #
 #                                                                    #
@@ -18,6 +18,11 @@
 #
 # Please see the simp_options module for documentation.
 # http://www.puppetmodule.info/github/simp/pupmod-simp-simp_options/master/
+#
+# NOTE: Details for the 'simp_lite' scenario can be found in the
+# 'simp::scenario::simp_lite' class
+
+simp::scenario: 'simp_lite'
 
 # SIMP-lite scenario defaults
 simp_options::auditd: true
@@ -39,52 +44,3 @@ simp_options::tcpwrappers: false
 # Options that are not suggested to be turned on by default:
 simp_options::ipsec: false
 simp_options::kerberos: false
-
-classes:
-  - 'aide'
-  - 'auditd'
-  # Virus scanning.
-  - 'clamav'
-  - 'chkrootkit'
-  # Ensuring reasonably sane defaults.
-  - 'at'
-  - 'cron'
-  - 'incron'
-  - 'useradd'
-  - 'resolv'
-  - 'nsswitch'
-  - 'issue'
-  - 'tuned'
-  - 'swap'
-  - 'timezone'
-  - 'ntpd'
-  # Enable 'wheel' access controls.
-  - 'pam::wheel'
-  # Set up the Puppet agent as appropriate for your system.
-  - 'pupmod'
-  # We certainly want logging
-  - 'simp_rsyslog'
-  # Simp base class
-  - 'simp'
-  # Set up the administrators group
-  - 'simp::admin'
-  # A collection of applications that may be useful on most servers but are not
-  # actually required for base functionality.
-  - 'simp::base_apps'
-  # A group of services that you probably want running but are
-  # technically optional.
-  - 'simp::base_services'
-  # This sets up an update schedule.
-  # You should set variables under the simp::yum::schedule namespace to
-  # disable updates from specific repositories.
-  - 'simp::yum'
-  # Blacklists several kernel modules, per compliance guidelines.
-  - 'simp::kmod_blacklist'
-  # Manage mountpoints, including all tmp dirs on the system
-  - 'simp::mountpoints'
-  # Set common and recommended sysctl settings
-  - 'simp::sysctl'
-  # Set up the SSH server and client.
-  - 'ssh'
-  - 'sudosh'
-

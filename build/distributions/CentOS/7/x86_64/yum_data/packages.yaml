@@ -7,7 +7,7 @@ activemq-info-provider:
   :source: http://yum.puppetlabs.com/el/7/dependencies/x86_64/activemq-info-provider-5.9.1-2.el7.noarch.rpm
 apr-util-ldap:
   :rpm_name: apr-util-ldap-1.5.2-6.el7.x86_64.rpm
-  :source: http://denver.gaminghost.co/7.2.1511/os/x86_64/Packages/apr-util-ldap-1.5.2-6.el7.x86_64.rpm
+  :source: http://mirrors.advancedhosters.com/centos/7.3.1611/os/x86_64/Packages/apr-util-ldap-1.5.2-6.el7.x86_64.rpm
 chkrootkit:
   :rpm_name: chkrootkit-0.50-4el7.x86_64.rpm
   :source: https://dl.bintray.com/simp/5.1.X-Ext/chkrootkit-0.50-4el7.x86_64.rpm
@@ -77,12 +77,6 @@ libconfuse:
 libev:
   :rpm_name: libev-4.15-3.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/l/libev-4.15-3.el7.x86_64.rpm
-libevent:
-  :rpm_name: libevent-2.0.21-4.el7.x86_64.rpm
-  :source: http://mirror.centos.org/centos-7/7.2.1511/os/x86_64/Packages/libevent-2.0.21-4.el7.x86_64.rpm
-libreswan:
-  :rpm_name: libreswan-3.15-5.el7_1.x86_64.rpm
-  :source: http://mirror.centos.org/centos-7/7.2.1511/updates/x86_64/Packages/libreswan-3.15-5.el7_1.x86_64.rpm
 logstash:
   :rpm_name: logstash-2.3.4-1.noarch.rpm
   :source: https://download.elastic.co/logstash/logstash/packages/centos/logstash-2.3.4-1.noarch.rpm
@@ -192,8 +186,8 @@ rubygem-puppet-lint:
   :rpm_name: rubygem-puppet-lint-1.1.0-1.el7.noarch.rpm
   :source: http://yum.puppetlabs.com/el/7/dependencies/x86_64/rubygem-puppet-lint-1.1.0-1.el7.noarch.rpm
 rubygem-rake:
-  :rpm_name: rubygem-rake-0.9.6-25.el7_1.noarch.rpm
-  :source: http://mirrors.advancedhosters.com/centos/7.2.1511/os/x86_64/Packages/rubygem-rake-0.9.6-25.el7_1.noarch.rpm
+  :rpm_name: rubygem-rake-0.9.6-29.el7.noarch.rpm
+  :source: http://mirrors.advancedhosters.com/centos/7.3.1611/os/x86_64/Packages/rubygem-rake-0.9.6-29.el7.noarch.rpm
 rubygem-rake-compiler:
   :rpm_name: rubygem-rake-compiler-0.9.3-1.el7.noarch.rpm
   :source: http://yum.puppetlabs.com/el/7/dependencies/x86_64/rubygem-rake-compiler-0.9.3-1.el7.noarch.rpm
@@ -213,8 +207,5 @@ sudosh2:
   :rpm_name: sudosh2-1.0.2-2el7.x86_64.rpm
   :source: https://dl.bintray.com/simp/5.1.X-Ext/sudosh2-1.0.2-2el7.x86_64.rpm
 syslinux-tftpboot:
-  :rpm_name: syslinux-tftpboot-4.05-12.el7.x86_64.rpm
-  :source: http://mirror.steadfast.net/centos/7.2.1511/os/x86_64/Packages/syslinux-tftpboot-4.05-12.el7.x86_64.rpm
-unbound-libs:
-  :rpm_name: unbound-libs-1.4.20-26.el7.x86_64.rpm
-  :source: http://mirror.us.leaseweb.net/centos/7.2.1511/os/x86_64/Packages/unbound-libs-1.4.20-26.el7.x86_64.rpm
+  :rpm_name: syslinux-tftpboot-4.05-13.el7.x86_64.rpm
+  :source: http://mirror.steadfast.net/centos/7.3.1611/os/x86_64/Packages/syslinux-tftpboot-4.05-13.el7.x86_64.rpm

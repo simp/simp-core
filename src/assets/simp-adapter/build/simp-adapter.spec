@@ -3,7 +3,7 @@
 Summary: SIMP Adapter for the AIO Puppet Installation
 Name: simp-adapter
 Version: 0.0.3
-Release: 0
+Release: 0%{?dist}
 License: Apache-2.0
 Group: Applications/System
 Source: %{name}-%{version}-%{release}.tar.gz
@@ -252,10 +252,13 @@ EOM
 )
 
 %changelog
-* Mon Mar 06 2017 Liz Nemsick <lnemsick.simp@gmail.com> -  0.0.3
+* Mon Mar 06 2017 Liz Nemsick <lnemsick.simp@gmail.com> -  0.0.3-0
 - Fix 'puppet resource service' bugs in %post
 - Add /var/run/puppetlabs to the list of directories to traverse,
   when fixing puppet uid/gid.
 
+* Tue Feb 28 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 0.0.3-0
+- Add dist to the release field to account for RPM generation on EL6 vs EL7
+
 * Mon Sep 12 2016 Trevor Vaughan <tvaughan@onyxpoint.com> - 0.0.1-Alpha
-  - First cut at the simp-adapter
+- First cut at the simp-adapter
