@@ -58,7 +58,7 @@ ENV['PATH'] += ':/opt/puppetlabs/bin'
 
 # Get the Puppet configuration parameters currently in use
 def get_puppet_config
-  system_config = %x{puppet config print}
+  system_config = %x{puppet config --section master print}
 
   config_hash = Hash.new
 
@@ -294,7 +294,6 @@ def validate_options(options, usage)
   fail('Error: Could not determine puppet group') if options.puppet_group.empty?
 end
 
-
 ### Main Code
 
 @puppet_config = get_puppet_config
@@ -312,10 +311,13 @@ unless is_managed?(File.join(options.target_dir, options.module_name)) || !optio
 
   # A regular installation or upgrade
   if options.rpm_section == 'post'
-    if options.rpm_status == '2'
-      # Short circuit on upgrading safe modules, just don't touch them!
-      if safe_modules.include?(options.module_name)
-        if File.directory?(File.join(options.target_dir,options.module_name))
+    if safe_modules.include?(options.module_name)
+      # Make sure that we preserve anything in the safe modules on installation
+      options.preserve = true
+
+      if options.rpm_status == '2'
+        # Short circuit on upgrading safe modules, just don't touch them!
+        if File.directory?(File.join(options.target_dir, options.module_name))
           exit(0)
         end
       end
@@ -343,7 +345,9 @@ unless is_managed?(File.join(options.target_dir, options.module_name)) || !optio
 
     cmd = %(#{rsync} -a --force)
 
-    unless options.preserve
+    if options.preserve
+      cmd += %( --ignore-existing)
+    else
      cmd += %( --delete)
     end
 
