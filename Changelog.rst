@@ -376,7 +376,7 @@ Known Bugs
 ----------
 
 .. _file bugs: https://simp-project.atlassian.net
-.. _Puppet Location Reference: https://docs.puppet.com/puppet/4.7/reference/whered_it_go.html#where-did-everything-go-in-puppet-4.x
+.. _Puppet Location Reference: https://docs.puppet.com/puppet/4.7/reference/whered_it_go.html
 .. _r10k: https://github.com/puppetlabs/r10k
 .. _Puppet Code Manager: https://docs.puppet.com/pe/latest/code_mgr.html
 .. _Puppet Data Types: https://docs.puppet.com/puppet/latest/lang_data_type.html
