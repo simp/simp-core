@@ -118,13 +118,13 @@ puppet_gid=`id -g puppet 2>/dev/null`
 
 restart_puppetserver=0
 
-puppet_owned_dirs='/opt/puppetlabs /etc/puppetlabs /var/log'
+puppet_owned_dirs='/opt/puppetlabs /etc/puppetlabs /var/log /var/run/puppetlabs'
 
 if [ -n $puppet_gid ]; then
   if [ "$puppet_gid" != '52' ]; then
 
     if `pgrep -f puppetserver &>/dev/null`; then
-      puppet resource service puppetserver stop || :
+      puppet resource service puppetserver ensure=stopped || :
       wait
       restart_puppetserver=1
     fi
@@ -146,7 +146,7 @@ if [ -n $puppet_uid ]; then
   if [ "$puppet_uid" != '52' ]; then
 
     if `pgrep -f puppetserver &>/dev/null`; then
-      puppet resource service puppetserver stop || :
+      puppet resource service puppetserver ensure=stopped || :
       wait
       restart_puppetserver=1
     fi
@@ -165,7 +165,7 @@ else
 fi
 
 if [ $restart_puppetserver -eq 1 ]; then
-  puppet resource service puppetserver start
+  puppet resource service puppetserver ensure=running
 fi
 
 # PuppetDB doesn't have a set user and group, but we really want to make sure
@@ -252,6 +252,11 @@ EOM
 )
 
 %changelog
+* Mon Mar 06 2017 Liz Nemsick <lnemsick.simp@gmail.com> -  0.0.3-0
+- Fix 'puppet resource service' bugs in %post
+- Add /var/run/puppetlabs to the list of directories to traverse,
+  when fixing puppet uid/gid.
+
 * Tue Feb 28 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 0.0.3-0
 - Add dist to the release field to account for RPM generation on EL6 vs EL7
 
