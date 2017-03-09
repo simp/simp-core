@@ -1,7 +1,7 @@
 Summary: GPGKEYS
 Name: simp-gpgkeys
-Version: 3.0.0
-Release: 1
+Version: 3.0.1
+Release: 0
 License: Public Domain
 Group: Applications/System
 Source: %{name}-%{version}-%{release}.tar.gz
@@ -102,6 +102,10 @@ if [ -d "${dir}/GPGKEYS" ]; then
 fi
 
 %changelog
+* Thu Mar 09 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 3.0.1-0
+- Added the updated Grafana GPG key and renamed the old one to note its legacy
+  status
+
 * Fri Feb 24 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 3.0.0-1
 - Only copy in the SIMP and Puppet GPG keys into the system trust chain.
   Copying more than that is too presumptive.
