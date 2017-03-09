@@ -73,9 +73,11 @@ repo_gpgcheck=0
       end
 
       context 'Installing The RPM' do
-        it 'should install as a pupmod dependency' do
+        it 'should install as a dependency' do
           host.install_package('pupmod-simp-beakertest')
+          host.install_package('simp-environment')
           on(host, 'test -d /usr/share/simp/modules/beakertest')
+          on(host, 'test -f /usr/share/simp/environment/simp/test_file')
           host.check_for_package('simp-adapter')
         end
 
