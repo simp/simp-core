@@ -174,7 +174,7 @@ if [ "${puppet_user}" == 'puppet' ]; then
     if [ "$puppet_uid" != '52' ]; then
 
       if `pgrep -f puppetserver &>/dev/null`; then
-        puppet resource service puppetserver stop || :
+        puppet resource service puppetserver ensure=stopped  || :
         wait
         restart_puppetserver=1
       fi
