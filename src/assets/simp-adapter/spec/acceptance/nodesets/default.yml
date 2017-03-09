@@ -15,7 +15,7 @@ HOSTS:
     mock_chroot: epel-6-x86_64
 
 CONFIG:
-  rpm_glob: 'simp-adapter-[0-9]*'
+  rpm_glob: 'simp-adapter-[0-9]*rpm'
   log_level: verbose
   type: aio
   vagrant_memsize: 256
