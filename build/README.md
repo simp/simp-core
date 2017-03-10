@@ -3,9 +3,9 @@ SIMP build directory
 1. [Build Directory](#build-directory)
 2. [Existing Individual Distribution Directories](#existing-individual-distribution-directories)
   1. [yum_data](#yum_data)
-  2. [DVD](#DVD)
-  3. [release_mappings.yaml](#release_mappings.yaml)
-  4. [mock.cfg](#mock.cfg)
+  2. [DVD](#dvd)
+  3. [release_mappings.yaml](#release_mappingsyaml)
+  4. [mock.cfg](#mockcfg)
   5. [GPGKEYS](#GPGKEYS)
 3. [Directories created by the build process](#directories-created-by-the-build-process)
 
@@ -51,7 +51,7 @@ The following directories and files are present in each distribution:
 ### GPGKEYS
   A collection of GPG Keys required for repos used by SIMP.
 
-### yumdata
+### yum_data
   This directory structure assists in the building of a particular release of
 SIMP with all of the correct RPM package dependencies.
 
