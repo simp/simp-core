@@ -6,7 +6,7 @@ SIMP build directory
   2. [DVD](#dvd)
   3. [release_mappings.yaml](#release_mappingsyaml)
   4. [mock.cfg](#mockcfg)
-  5. [GPGKEYS](#GPGKEYS)
+  5. [GPGKEYS](#gpgkeys)
 3. [Directories created by the build process](#directories-created-by-the-build-process)
 
 
