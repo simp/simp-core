@@ -161,11 +161,7 @@ chmod u=rwX,g=rX,o=rX -R %{buildroot}%{_sysconfdir}/simp
 
 %post
 # Post installation stuff
-export PATH=/opt/puppetlabs/bin:$PATH
-
-if [ -f %{prefix}/autosign.conf ]; then
-  chmod 644 %{prefix}/autosign.conf;
-fi
+export PATH=/opt/puppetlabs/bin:/opt/puppetlabs/puppet/bin:$PATH
 
 if [ -f /etc/puppetlabs/puppet/autosign.conf ]; then
   chmod 644 %{prefix}/autosign.conf;
