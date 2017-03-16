@@ -1,7 +1,7 @@
 Summary: SIMP Full Install
 Name: simp
 Version: 6.0.0
-Release: 0%{?dist}%{?snapshot_release}
+Release: RC1%{?dist}%{?snapshot_release}
 License: Apache License, Version 2.0
 Group: Applications/System
 
@@ -198,7 +198,10 @@ fi
 # Post uninstall stuff
 
 %changelog
-* Thu Mar 16 2017 Liz Nemsick <lnemsick.simp@gmail.com> - 6.0.0
+* Thu Mar 16 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.0.0-RC1
+- RC1 Release of SIMP
+
+* Thu Mar 16 2017 Liz Nemsick <lnemsick.simp@gmail.com> - 6.0.0-RC1
 - Only run hiera_upgrade in %post if both simp environment and hiera_upgrade
   exist
 
