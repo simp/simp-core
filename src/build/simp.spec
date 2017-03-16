@@ -1,7 +1,7 @@
 Summary: SIMP Full Install
 Name: simp
 Version: 6.0.0
-Release: Beta%{?dist}%{?snapshot_release}
+Release: 0%{?dist}%{?snapshot_release}
 License: Apache License, Version 2.0
 Group: Applications/System
 
@@ -167,7 +167,8 @@ if [ -f /etc/puppetlabs/puppet/autosign.conf ]; then
   chmod 644 %{prefix}/autosign.conf;
 fi
 
-if [ -f '%{_usr}/local/sbin/hiera_upgrade' ]; then
+simp_env="`puppet config print environmentpath`/simp"
+if [[ -d $simp_env && -f '%{_usr}/local/sbin/hiera_upgrade' ]]; then
   %{_usr}/local/sbin/hiera_upgrade || true
 fi
 
@@ -197,6 +198,10 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Thu Mar 16 2017 Liz Nemsick <lnemsick.simp@gmail.com> - 6.0.0
+- Only run hiera_upgrade in %post if both simp environment and hiera_upgrade
+  exist
+
 * Wed Mar 01 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.0.0-RC1
 - Added the dist flag to the release due to distribution specific logic
 - This is required due to automatic distribution-specific requirements that end
