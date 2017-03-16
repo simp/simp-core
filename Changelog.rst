@@ -15,8 +15,8 @@ SIMP 6.0.0-RC1
 This release is known to work with:
 
   * RHEL 6.8 x86_64
-  * RHEL 6.8 x86_64
   * RHEL 7.3 x86_64
+  * CentOS 6.8 x86_64
   * CentOS 7.0 1611 x86_64
 
 Breaking Changes
@@ -109,7 +109,7 @@ Significant Updates
 SSH Access is Behind ``trusted_nets`` by Default
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Previouisly, SSH was open to all networks by default. This has been changed to
+Previously, SSH was open to all networks by default. This has been changed to
 the ``simp_options::trusted_nets`` parameter, if available. If it is not
 available, then it defaults to allowing ``ALL``.
 
@@ -124,7 +124,7 @@ into using full-bore SIMP.
 
 Essentially, ``simp_classes.yaml`` has been replaced by class inclusions under
 the ``simp::scenario`` namespace and ``simp_def.yaml`` has been replaced by
-``simp_config_settings.yaml``. However, modifications should not be madeto
+``simp_config_settings.yaml``. However, modifications should not be made to
 ``simp_config_settings.yaml``. Settings from ``simp_config_settings.yaml``
 should be changed by either running ``simp config`` again or be overwritten in
 ``default.yaml``.
@@ -142,7 +142,7 @@ and parameterized class calls.
 Global catalysts and simp_options
 """""""""""""""""""""""""""""""""
 
-SIMP Global catlysts now have a consitant naming scheme and are documented in
+SIMP Global catalysts now have a consistent naming scheme and are documented in
 code in the ``simp_options`` module. In particular, we have changed not only the
 value in hiera, but every module parameter that uses this value's name from
 ``client_nets`` to ``simp_options::trusted_nets``. Other changes were less
@@ -167,7 +167,6 @@ New catalysts are as follows:
 - simp_options::ldap::bind_pw
 - simp_options::ldap::master
 - simp_options::ldap::root_dn
-- simp_options::ldap::root_hash
 - simp_options::ldap::sync_dn
 - simp_options::ldap::sync_hash
 - simp_options::ldap::sync_pw
@@ -182,8 +181,6 @@ New catalysts are as follows:
 - simp_options::puppet::ca_port
 - simp_options::puppet::server
 - simp_options::puppet::server_distribution
-- simp_options::rsync::server
-- simp_options::rsync::timeout
 - simp_options::selinux
 - simp_options::sssd
 - simp_options::stunnel
