@@ -46,7 +46,7 @@ RPM Installation
 
 If installing from RPM, you will want to take a look at the latest
 documentation. The most important thing to be aware of is that there is now
-something called ``simp-adapter`` that must be instaled with, or before, the
+something called ``simp-adapter`` that must be installed with, or before, the
 ``simp`` RPM.
 
 If you are using Puppet Enterprise, you'll want to use the ``simp-adapter-pe``
@@ -64,8 +64,8 @@ The system has been updated to use the Puppet AIO paths. Please see the
 SIMP Installation Paths
 """""""""""""""""""""""
 
-For better integration with `r10k`_ and `Puppet Code Manager`_, SIMP now installs all
-materials in ``/usr/share/simp`` by default.
+For better integration with `r10k`_ and `Puppet Code Manager`_, SIMP now
+installs all materials in ``/usr/share/simp`` by default.
 
 A script ``simp_rpm_helper`` has been added to copy the ``environment`` and
 `module` data into place at ``/etc/puppetlabs/code`` **if configured to do so**.
@@ -118,13 +118,16 @@ SIMP Scenarios and simp_config_settings.yaml
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We have changed the way that SIMP includes classes. There is a new top-level
-variable, set in ``manifests/site.pp``, that controls the list of classes to be
+variable, set in ``manifests/site.pp`` that controls the list of classes to be
 included. The goal of this change is to ease users with existing infrastructures
 into using full-bore SIMP.
 
 Essentially, ``simp_classes.yaml`` has been replaced by class inclusions under
 the ``simp::scenario`` namespace and ``simp_def.yaml`` has been replaced by
-``simp_config_settings.yaml``.
+``simp_config_settings.yaml``. However, modifications should not be madeto
+``simp_config_settings.yaml``. Settings from ``simp_config_settings.yaml``
+should be changed by either running ``simp config`` again or be overwritten in
+``default.yaml``.
 
 API Changes
 ^^^^^^^^^^^
@@ -220,29 +223,30 @@ The extent to which SIMP manages PKI is governed by two new catalysts, ``pki`` a
 has been modified to use a common set of pki class parameters.  A high-level
 description is given below, using simp_elasticsearch as an example.
 
-# @param pki
-#   * If 'simp', include SIMP's pki module and use pki::copy to manage
-#     application certs in /etc/pki/simp_apps/simp_elasticsearch/x509
-#   * If true, do *not* include SIMP's pki module, but still use pki::copy
-#     to manage certs in /etc/pki/simp_apps/simp_elasticsearch/x509
-#   * If false, do not include SIMP's pki module and do not use pki::copy
-#     to manage certs.  You will need to appropriately assign a subset of:
-#     * app_pki_dir
-#     * app_pki_key
-#     * app_pki_cert
-#     * app_pki_ca
-#     * app_pki_ca_dir
-#
-# @param app_pki_external_source
-#   * If pki = 'simp' or true, this is the directory from which certs will be
-#     copied, via pki::copy.  Defaults to /etc/pki/simp/x509.
-#
-#   * If pki = false, this variable has no effect.
+.. code-block::
+   # @param pki
+   #   * If 'simp', include SIMP's pki module and use pki::copy to manage
+   #     application certs in /etc/pki/simp_apps/simp_elasticsearch/x509
+   #   * If true, do *not* include SIMP's pki module, but still use pki::copy
+   #     to manage certs in /etc/pki/simp_apps/simp_elasticsearch/x509
+   #   * If false, do not include SIMP's pki module and do not use pki::copy
+   #     to manage certs.  You will need to appropriately assign a subset of:
+   #     * app_pki_dir
+   #     * app_pki_key
+   #     * app_pki_cert
+   #     * app_pki_ca
+   #     * app_pki_ca_dir
+   #
+   # @param app_pki_external_source
+   #   * If pki = 'simp' or true, this is the directory from which certs will be
+   #     copied, via pki::copy.  Defaults to /etc/pki/simp/x509.
+   #
+   #   * If pki = false, this variable has no effect.
 
 Keydist
 """""""
 
-Keydist has been relocated to a second module path to facilitate workign with
+Keydist has been relocated to a second module path to facilitate working with
 r10k. The new modulepath is located at ``/var/simp/environments/``, and the
 default location of keydist is now
 ``/var/simp/environments/simp/site_files/pki_files/files/keydist/``
