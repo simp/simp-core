@@ -6,7 +6,7 @@
 
 Summary: The SIMP Environment Scaffold
 Name: simp-environment
-Version: 6.0.1
+Version: 6.0.2
 Release: 0
 License: Apache License 2.0
 Group: Applications/System
@@ -181,7 +181,11 @@ if [ -d "${www_dir}/SIMP" ]; then
     )
   fi
 else
-  if [ ! -d "${www_dir}/SIMP" ]; then
+  # Only warn user if the kernel procinfo includes a `simp_install` argument, which
+  # indicates this is an ISO install.  Otherwise, we cannot assume that the simp server
+  # is also the yum server for simp packages.
+  simp_install=`awk -F "simp_install=" '{print $2}' /proc/cmdline | cut -f1 -d' '`
+  if [[ ! -z "${simp_install}" &&  ! -d "${www_dir}/SIMP" ]]; then
     echo "Warning: Could not find ${www_dir}/SIMP on this system, you will need";
     echo "  to ensure that your 'SIMP' repository has repodata in i386 and";
     echo "  x86_64 as well as having symlinked noarch to both."
@@ -205,6 +209,10 @@ fi
 /usr/local/sbin/simp_rpm_helper --rpm_dir=%{prefix} --rpm_section='postun' --rpm_status=$1 --preserve --target_dir='.'
 
 %changelog
+* Thu Mar 16 2017 Liz Nemsick <lnemsick.simp@gmail.com> - 6.0.2
+- Only warn about missing /var/www/yum/SIMP directory when this RPM is
+  installed via the SIMP ISO.
+
 * Wed Mar 01 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.0.1
 - Moved the class lists from 'scenarios' Hiera data to pupmod-simp-simp
 - Updated site.pp to use include the base classes in the correct order
