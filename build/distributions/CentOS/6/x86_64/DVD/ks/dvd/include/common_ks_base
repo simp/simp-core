@@ -1,6 +1,5 @@
 authconfig --enableshadow --passalgo=sha512 --enablemd5
 network --nodns --hostname=puppet.change.me
-skipx
 rootpw --iscrypted $6$80gio95q$anOG/VG/cs0vNfYblxQKnH7J3z9omZbxe3Gpa2VojlNf8CbWmtZWXbd/O.4HdlGbGFTRLmvtVe8.jEjQpbxDl/
 bootloader --location=mbr --driveorder=sda,hda --append="console=ttyS1,57600 console=tty0" --iscrypted --password=$6$EiDpY9dX.blbssNm$9KxoNaquKc1HEAjO.uH1EqFO.PpC.uJyfvjoIAvgojAKoio7MXHCwxm4vwBW4TNlKQxkZaNRJ9cxDmmStDe9H.
 zerombr
