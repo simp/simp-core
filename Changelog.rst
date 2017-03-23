@@ -220,7 +220,8 @@ The extent to which SIMP manages PKI is governed by two new catalysts, ``pki`` a
 has been modified to use a common set of pki class parameters.  A high-level
 description is given below, using simp_elasticsearch as an example.
 
-.. code-block::
+.. code-block:: none
+
    # @param pki
    #   * If 'simp', include SIMP's pki module and use pki::copy to manage
    #     application certs in /etc/pki/simp_apps/simp_elasticsearch/x509
