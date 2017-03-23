@@ -6,7 +6,7 @@
 
 Summary: The SIMP Environment Scaffold
 Name: simp-environment
-Version: 6.0.2
+Version: 6.1.0
 Release: 0
 License: Apache License 2.0
 Group: Applications/System
@@ -209,6 +209,11 @@ fi
 /usr/local/sbin/simp_rpm_helper --rpm_dir=%{prefix} --rpm_section='postun' --rpm_status=$1 --preserve --target_dir='.'
 
 %changelog
+* Thu Mar 23 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.1.0
+- Remove the unnecessary class includes from the EL6-specific hieradata
+- The appropriate class includes have been moved into the 'simp' and
+  'simp-lite' scenarios in the simp module
+
 * Thu Mar 16 2017 Liz Nemsick <lnemsick.simp@gmail.com> - 6.0.2
 - Only warn about missing /var/www/yum/SIMP directory when this RPM is
   installed via the SIMP ISO.
