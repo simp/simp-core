@@ -1,4 +1,4 @@
-SIMP 6.0.0-RC1
+SIMP 6.0.0-RC2
 ==============
 
 .. raw:: pdf
@@ -40,6 +40,52 @@ If you find any issues, please `file bugs`_!
 .. NOTE::
    If you are working to integrate SIMP into Puppet Enterprise, these are the
    modules that you need to use since they are Puppet 4 compatible.
+
+Breaking Changes Since RC1
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Unfortunately, a few items were identified which necessitated additional
+breaking changes prior to the final release.
+
+These are specifically enumerated here to make sure that they are not missed.
+
+simp::yum Refactor
+""""""""""""""""""
+
+The ``simp::yum`` class was confusing and, as we attempted to install systems
+via ``yum`` we found out just how bad it was.
+
+Fundamentally, most installations of SIMP are going to have their own repos at
+some unknown location that they want to use. In ISO installations, which we can
+detect, there will be a local repo and we can set the parameters accordingly
+via ``simp config``.
+
+The following can be used to modify your Hiera data, or you can just run
+``simp config`` again:
+
++--------------------------------+-------------+--------------------------------+--------------------+
+| Old Parameter                  | Old Default | New Parameter                  | New Default        |
++================================+=============+================================+====================+
+| simp::yum::servers             | None        | simp::yum::local_repo_servers  | **undef**          |
++--------------------------------+-------------+--------------------------------+--------------------+
+| simp::yum::enable_simp_repos   | true        | simp::yum::local_simp_repos    | **false**          |
++--------------------------------+-------------+--------------------------------+--------------------+
+| simp::yum::enable_os_repos     | true        | simp::yum::local_os_repos      | **false**          |
++--------------------------------+-------------+--------------------------------+--------------------+
+| simp::yum::enable_auto_updates | true        | simp::yum::auto_update         | true               |
++--------------------------------+-------------+--------------------------------+--------------------+
+| simp::yum::os_update_url       | UNCHANGED   | simp::yum::local_os_update_url | UNCHANGED          |
++--------------------------------+-------------+--------------------------------+--------------------+
+| simp::yum::os_gpg_url          | UNCHANGED   | simp::yum::local_os_gpg_url    | UNCHANGED          |
++--------------------------------+-------------+--------------------------------+--------------------+
+| simp::yum::os_simp_url         | UNCHANGED   | simp::yum::local_os_simp_url   | UNCHANGED          |
++--------------------------------+-------------+--------------------------------+--------------------+
+| simp::yum::os_simp_url         | UNCHANGED   | simp::yum::local_os_simp_url   | UNCHANGED          |
++--------------------------------+-------------+--------------------------------+--------------------+
+| none                           | N/A         | simp::yum::simp_version        | **simp_version()** |
++--------------------------------+-------------+--------------------------------+--------------------+
+| none                           | N/A         | simp::yum::internet_simp_repos | **false**          |
++--------------------------------+-------------+--------------------------------+--------------------+
 
 RPM Installation
 ^^^^^^^^^^^^^^^^
