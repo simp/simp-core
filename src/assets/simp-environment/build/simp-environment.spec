@@ -209,10 +209,13 @@ fi
 /usr/local/sbin/simp_rpm_helper --rpm_dir=%{prefix} --rpm_section='postun' --rpm_status=$1 --preserve --target_dir='.'
 
 %changelog
-* Thu Mar 23 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.1.0
+* Thu Mar 31 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.1.0
 - Remove the unnecessary class includes from the EL6-specific hieradata
 - The appropriate class includes have been moved into the 'simp' and
   'simp-lite' scenarios in the simp module
+
+* Wed Mar 29 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.0.3
+- Reintroduce the 'classes' and 'class_exclusions' Global Hiera Arrays
 
 * Thu Mar 16 2017 Liz Nemsick <lnemsick.simp@gmail.com> - 6.0.2
 - Only warn about missing /var/www/yum/SIMP directory when this RPM is
