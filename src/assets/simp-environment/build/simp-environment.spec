@@ -6,7 +6,7 @@
 
 Summary: The SIMP Environment Scaffold
 Name: simp-environment
-Version: 6.0.3
+Version: 6.1.0
 Release: 0
 License: Apache License 2.0
 Group: Applications/System
@@ -84,7 +84,6 @@ cd -
 %attr(0750,root,puppet) %{_var}/simp/environments/simp/site_files/krb5_files/files
 %attr(0750,root,puppet) %{_var}/simp/environments/simp/site_files/krb5_files/files/keytabs
 %config(noreplace) %{prefix}/environment.conf
-%config(noreplace) %{prefix}/hieradata/RedHat/6.yaml
 %config(noreplace) %{prefix}/hieradata/hosts/puppet.your.domain.yaml
 %config(noreplace) %{prefix}/hieradata/hostgroups/default.yaml
 %config(noreplace) %{prefix}/hieradata/scenarios/simp.yaml
@@ -209,6 +208,11 @@ fi
 /usr/local/sbin/simp_rpm_helper --rpm_dir=%{prefix} --rpm_section='postun' --rpm_status=$1 --preserve --target_dir='.'
 
 %changelog
+* Thu Mar 31 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.1.0
+- Remove the unnecessary class includes from the EL6-specific hieradata
+- The appropriate class includes have been moved into the 'simp' and
+  'simp-lite' scenarios in the simp module
+
 * Wed Mar 29 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.0.3
 - Reintroduce the 'classes' and 'class_exclusions' Global Hiera Arrays
 
