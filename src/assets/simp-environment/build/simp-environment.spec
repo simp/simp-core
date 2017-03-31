@@ -84,7 +84,6 @@ cd -
 %attr(0750,root,puppet) %{_var}/simp/environments/simp/site_files/krb5_files/files
 %attr(0750,root,puppet) %{_var}/simp/environments/simp/site_files/krb5_files/files/keytabs
 %config(noreplace) %{prefix}/environment.conf
-%config(noreplace) %{prefix}/hieradata/RedHat/6.yaml
 %config(noreplace) %{prefix}/hieradata/hosts/puppet.your.domain.yaml
 %config(noreplace) %{prefix}/hieradata/hostgroups/default.yaml
 %config(noreplace) %{prefix}/hieradata/scenarios/simp.yaml
