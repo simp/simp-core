@@ -42,5 +42,12 @@ include 'simp_options'
 # Include the SIMP base controller with the preferred scenario
 include 'simp'
 
+# Hiera class lookups and inclusions (replaces `hiera_include()`)
+$hiera_classes          = lookup('classes',          Array[String], 'unique', [])
+$hiera_class_exclusions = lookup('class_exclusions', Array[String], 'unique', [])
+$hiera_included_classes = $hiera_classes - $hiera_class_exclusions
+
+include $hiera_included_classes
+
 # For proper functionality, the compliance_markup list needs to be included *absolutely last*
 include compliance_markup
