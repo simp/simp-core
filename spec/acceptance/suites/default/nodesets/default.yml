@@ -1,37 +1,24 @@
 HOSTS:
-  el7-build-server:
+  puppet:
     roles:
-      - build_server
-    platform: el-7-x86_64
-    hypervisor: docker
-    image: centos:7
-    docker_cmd: '/sbin/sshd; tail -f /dev/null'
-    docker_image_commands:
-      - 'yum install -y openssl'
-      - 'yum install -y epel-release'
-      - 'ln -sf /bin/true /usr/bin/systemctl'
-      - "echo 'Defaults:build_user !requiretty' >> /etc/sudoers"
-      - "echo 'build_user ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers"
-      - 'useradd -b /home -m -c "Build User" -s /bin/bash -U build_user'
-      # simp build-deps
-      - 'yum install -y rpm-build augeas-devel createrepo genisoimage git gnupg2 libicu-devel libxml2 libxml2-devel libxslt libxslt-devel mock rpmdevtools clamav clamav-update which rpm-sign'
-      - 'usermod -a -G mock build_user'
-      # rvm build-deps
-      - 'yum install -y libyaml-devel glibc-headers autoconf gcc-c++ glibc-devel readline-devel libffi-devel openssl-devel automake libtool bison sqlite-devel'
-      - 'runuser build_user -l -c "gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3"'
-      - 'runuser build_user -l -c "curl -sSL https://get.rvm.io | bash -s stable --ruby=2.1"'
-      - 'runuser build_user -l -c "rvm use --default 2.1"'
-      - 'runuser build_user -l -c "rvm all do gem install bundler"'
-      - 'runuser build_user -l -c "rvm use default; gem install --no-ri --no-rdoc simp-rake-helpers"'
-      - 'runuser build_user -l -c "rvm use default; gem install --no-ri --no-rdoc json"'
-      - 'runuser build_user -l -c "rvm use default; gem install --no-ri --no-rdoc charlock_holmes"'
-      - 'runuser build_user -l -c "rvm use default; gem install --no-ri --no-rdoc posix-spawn"'
-    docker_preserve_image: true
-    ssh:
-      password: root
-      auth_methods:
-        - password
-
+      - server # Mandatory
+      - master
+      - default
+      - simp_server
+    platform:   el-7-x86_64
+    box:        centos/7
+    hypervisor: vagrant
+    vagrant_memsize: 4608
+    vagrant_cpus: 2
+  agent:
+    roles:
+      - agent
+    platform:   el-7-x86_64
+    box:        centos/7
+    hypervisor: vagrant
 CONFIG:
   log_level: verbose
-  type:      foss
+  type:      aio
+  vagrant_memsize: 256
+  synced_folder: disabled
+  # vb_gui: true
