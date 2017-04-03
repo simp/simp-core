@@ -208,6 +208,10 @@ fi
 /usr/local/sbin/simp_rpm_helper --rpm_dir=%{prefix} --rpm_section='postun' --rpm_status=$1 --preserve --target_dir='.'
 
 %changelog
+* Mon Apr 03 2017 Liz Nemsick <lnemsick.simp@gmail.com> - 6.1.0
+- Remove YUM-related parameters in puppet.your.domain.yaml,
+  as these parameters are managed by 'simp config'.
+
 * Thu Mar 31 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.1.0
 - Remove the unnecessary class includes from the EL6-specific hieradata
 - The appropriate class includes have been moved into the 'simp' and
