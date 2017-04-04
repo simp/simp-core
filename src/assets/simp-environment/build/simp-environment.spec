@@ -221,6 +221,11 @@ fi
 - Ensure that a copy of the FakeCA core exists in /usr/share/simp so that users
   have a clean copy to work from
 
+* Mon Apr 03 2017 Liz Nemsick <lnemsick.simp@gmail.com> - 6.1.0
+- Remove YUM-related parameters in puppet.your.domain.yaml,
+  as these parameters are managed by 'simp config'.
+
+
 * Thu Mar 31 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.1.0
 - Remove the unnecessary class includes from the EL6-specific hieradata
 - The appropriate class includes have been moved into the 'simp' and
