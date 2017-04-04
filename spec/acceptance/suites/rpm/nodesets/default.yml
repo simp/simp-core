@@ -1,0 +1,24 @@
+HOSTS:
+  puppet:
+    roles:
+      - server # Mandatory
+      - master
+      - default
+      - simp_server
+    platform:   el-7-x86_64
+    box:        centos/7
+    hypervisor: vagrant
+    vagrant_memsize: 4608
+    vagrant_cpus: 2
+  agent:
+    roles:
+      - agent
+    platform:   el-7-x86_64
+    box:        centos/7
+    hypervisor: vagrant
+CONFIG:
+  log_level: verbose
+  type:      aio
+  vagrant_memsize: 256
+  synced_folder: disabled
+  # vb_gui: true
