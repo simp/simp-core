@@ -14,13 +14,6 @@ simp_apache::conf::ssl::trusted_nets: "%{alias('simp_options::trusted_nets')}"
 # this will not adversely affect the security posture of the system.
 simp_apache::ssl::sslverifyclient: 'none'
 
-# Disable hooking to the remote SIMP and OS repos so that the local filesystem is
-# always hit first.
-#
-# You should change this if using external yum repositories.
-simp::yum::enable_simp_repos: false
-simp::yum::enable_os_repos: false
-
 # Make this server a puppetserver
 pupmod::enable_puppet_master: true
 
