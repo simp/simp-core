@@ -2,8 +2,19 @@
 # This file houses the *officially supported* SIMP release combinations
 # Other build combinations may work, but unexpected issues may arise.
 simp_releases:
-  4.2.X:
+  6.X:
     flavors:
+      CentOS:
+        isos:
+          - name:     'CentOS-6.8-x86_64-bin-DVD1.iso'
+            size:     3916431360
+            checksum: '1dda55622614a8b43b448a72f87d6cb7f79de1eff49ee8c5881a7d9db28d4e35'
+          - name:     'CentOS-6.8-x86_64-bin-DVD2.iso'
+            size:     2220693504
+            checksum: '0aba869427b4ce04e100d72744daf7fea1f7be2e4be56b658095bd9e99e04e6d'
+        build_command: 'bundle exec rake build:auto[4.2.X,/path/to/CentOS-6.8/DVDs]'
+        mock:          'epel-6-x86_64'
+        os_version:   '6.8'
       RedHat:
         isos:
           - name:     'rhel-server-6.8-x86_64-dvd.iso'
@@ -12,33 +23,3 @@ simp_releases:
         build_command: 'bundle exec rake build:auto[4.2.X,rhel-server-6.8-x86_64-dvd.iso]'
         mock:          'epel-6-x86_64'
         os_version:   '6.8'
-  4.3.0-0:
-    flavors:
-      RedHat:
-        isos:
-          - name:     'rhel-server-6.8-x86_64-dvd.iso'
-            size:     3878682624
-            checksum: 'd35fd1af20f6adef9b11b46c2534ae8b6e18de7754889e2b51808b436dff2804'
-        build_command: 'bundle exec rake build:auto[4.2.X,rhel-server-6.8-x86_64-dvd.iso]'
-        mock:          'epel-6-x86_64'
-        os_version:   '6.8'
-  4.2.0-2:
-    flavors:
-      RedHat:
-        isos:
-          - name:     'rhel-server-6.7-x86_64-dvd.iso'
-            size:     3841982464
-            checksum: '0e0acb2a544f4d58f10292144161f40439734c6e98b13ba8c595372b20354bc5'
-        build_command: 'bundle exec rake build:auto[4.2.X,rhel-server-6.7-x86_64-dvd.iso]'
-        mock:          'epel-6-x86_64'
-        os_version:   '6.7'
-  4.2.0-1:
-    flavors:
-      RedHat:
-        isos:
-          - name:     'rhel-server-6.7-x86_64-dvd.iso'
-            size:     3841982464
-            checksum: '0e0acb2a544f4d58f10292144161f40439734c6e98b13ba8c595372b20354bc5'
-        build_command: 'bundle exec rake build:auto[4.2.0-1,rhel-server-6.7-x86_64-dvd.iso]'
-        mock:          'epel-6-x86_64'
-        os_version:   '6.7'

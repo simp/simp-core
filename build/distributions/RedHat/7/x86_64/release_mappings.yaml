@@ -2,43 +2,22 @@
 # This file houses the *officially supported* SIMP release combinations
 # Other build combinations may work, but unexpected issues may arise.
 simp_releases:
-  5.1.X:
+  6.X:
     flavors:
+      CentOS:
+        isos:
+          - name:     'CentOS-7-x86_64-DVD-1611.iso'
+            size:     4379901952
+            checksum: 'c455ee948e872ad2194bdddd39045b83634e8613249182b88f549bb2319d97eb'
+        build_command: 'bundle exec rake build:auto[CentOS-7-x86_64-DVD-1611.iso,6.X]'
+        mock:          'epel-7-x86_64'
+        os_version:   '7.0'
+
       RedHat:
         isos:
-          - name:     'rhel-server-7.2-x86_64-dvd.iso'
-            size:     4043309056
-            checksum: '03f3a0291634335f6995534d829bd21ffaa0d000004dfeb1b2fb81052d64a4d5'
-        build_command: 'bundle exec rake build:auto[5.1.X,RedHat-7-x86_64-DVD-1511.iso]'
+          - name:     'rhel-server-7.3-x86_64-dvd.iso'
+            size:     3793747968
+            checksum: '120acbca7b3d55465eb9f8ef53ad7365f2997d42d4f83d7cc285bf5c71e1131f'
+        build_command: 'bundle exec rake build:auto[RedHat-7-x86_64-DVD-1511.iso,6.X]'
         mock:          'epel-7-x86_64'
-        os_version:   '7.2'
-  5.2.0-0:
-    flavors:
-      RedHat:
-        isos:
-          - name:     'rhel-server-7.2-x86_64-dvd.iso'
-            size:     4043309056
-            checksum: '03f3a0291634335f6995534d829bd21ffaa0d000004dfeb1b2fb81052d64a4d5'
-        build_command: 'bundle exec rake build:auto[5.1.X,RedHat-7-x86_64-DVD-1511.iso]'
-        mock:          'epel-7-x86_64'
-        os_version:   '7.2'
-  5.1.0-3:
-    flavors:
-      RedHat:
-        isos:
-          - name:     'rhel-server-7.2-x86_64-dvd.iso'
-            size:     4043309056
-            checksum: '03f3a0291634335f6995534d829bd21ffaa0d000004dfeb1b2fb81052d64a4d5'
-        build_command: 'bundle exec rake build:auto[5.1.X,RedHat-7-x86_64-DVD-1511.iso]'
-        mock:          'epel-7-x86_64'
-        os_version:   '7.2'
-  5.1.0-2:
-    flavors:
-      RedHat:
-        isos:
-          - name:     'rhel-server-7.2-x86_64-dvd.iso'
-            size:     4043309056
-            checksum: '03f3a0291634335f6995534d829bd21ffaa0d000004dfeb1b2fb81052d64a4d5'
-        build_command: 'bundle exec rake build:auto[5.1.0-2,RedHat-7-x86_64-DVD-1511.iso]'
-        mock:          'epel-7-x86_64'
-        os_version:   '7.2'
+        os_version:   '7.3'

@@ -117,8 +117,8 @@ puppet-agent:
   :rpm_name: puppet-agent-1.8.3-1.el7.x86_64.rpm
   :source: http://yum.puppetlabs.com/el/7/PC1/x86_64/puppet-agent-1.8.3-1.el7.x86_64.rpm
 puppet-client-tools:
-  :rpm_name: puppet-client-tools-1.1.0-1.el7.x86_64.rpm
-  :source: http://yum.puppetlabs.com/el/7Server/PC1/x86_64/puppet-client-tools-1.1.0-1.el7.x86_64.rpm
+  :rpm_name: puppet-client-tools-1.1.1-1.el7.x86_64.rpm
+  :source: http://yum.puppetlabs.com/el/7Server/PC1/x86_64/puppet-client-tools-1.1.1-1.el7.x86_64.rpm
 puppetdb:
   :rpm_name: puppetdb-4.3.0-1.el7.noarch.rpm
   :source: http://yum.puppetlabs.com/el/7/PC1/x86_64/puppetdb-4.3.0-1.el7.noarch.rpm
