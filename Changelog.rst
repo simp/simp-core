@@ -135,13 +135,6 @@ to **10GB**.
 Significant Updates
 -------------------
 
-SSH Access is Behind ``trusted_nets`` by Default
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Previously, SSH was open to all networks by default. This has been changed to
-the ``simp_options::trusted_nets`` parameter, if available. If it is not
-available, then it defaults to allowing ``ALL``.
-
 Root Login via Console
 ^^^^^^^^^^^^^^^^^^^^^^
 
@@ -524,7 +517,8 @@ pupmod-simp-svckill
 rubygem-simp_cli
 ^^^^^^^^^^^^^^^^
 
-* Completely updated ``simp config`` and ``simp bootstrap``
+* Completely updated ``simp config`` and ``simp bootstrap``.
+* ``simp passgen`` was updated to support environments.
 
 Known Bugs
 ----------
