@@ -1,5 +1,5 @@
-SIMP 6.0.0-RC1
-==============
+SIMP 6.0.0-0
+============
 
 .. raw:: pdf
 
@@ -30,16 +30,44 @@ Breaking Changes
    Puppet 3.
 
 .. NOTE::
-   This is the first Release Candidate for SIMP 6
-
-   We currently believe that everything is feature complete but it may take a
-   small amount of time for the documentation and support scripts to catch up.
+   This is the final release of SIMP 6!
 
 If you find any issues, please `file bugs`_!
 
 .. NOTE::
    If you are working to integrate SIMP into Puppet Enterprise, these are the
    modules that you need to use since they are Puppet 4 compatible.
+
+Breaking Changes Since RC1
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Unfortunately, a few items were identified which necessitated additional
+breaking changes prior to the final release.
+
+These are specifically enumerated here to make sure that they are not missed.
+
+simp::yum Refactor
+""""""""""""""""""
+
+The ``simp::yum`` class was confusing and, as we attempted to install systems
+via ``yum``, we found out just how bad it was.
+
+Fundamentally, most installations of SIMP are going to have their own repos at
+some unknown location that they want to use. In ISO installations, which we can
+detect, there will be a local repo and we can set the parameters accordingly
+via ``simp config``.
+
+All of the old parameters have been removed, and to get back to old
+functionality, all that has to be done is add the following classes to nodes
+and adjust previous hiera settings to use the new classes:
+
+.. code-block:: yaml
+
+   ---
+   classes:
+   - 'simp::yum::repo::local_os_updates'
+   - 'simp::yum::repo::local_simp'
+   ---
 
 RPM Installation
 ^^^^^^^^^^^^^^^^
@@ -68,13 +96,14 @@ For better integration with `r10k`_ and `Puppet Code Manager`_, SIMP now
 installs all materials in ``/usr/share/simp`` by default.
 
 A script ``simp_rpm_helper`` has been added to copy the ``environment`` and
-`module` data into place at ``/etc/puppetlabs/code`` **if configured to do so**.
+``module`` data into place at ``/etc/puppetlabs/code`` **if configured to do so**.
 
 On the ISO, this configuration is done by default and will be set to
 auto-update for all future RPM updates. If you wish to disable this behavior,
 you should edit the options in ``/etc/simp/adapter_config.yaml``.
 
 .. NOTE::
+
    Anything that is in a Git or Subversion repository in the ``simp``
    environment will **NOT** be overwritten by ``simp_rpm_helper``.
 
@@ -100,18 +129,16 @@ SIMP Partitioning Scheme
 """"""""""""""""""""""""
 
 SIMP no longer creates a ``/srv`` partition on EL 6 or 7. ``/var`` has assumed
-the role of ``/srv``. The root partition size has been increased from 4GB to
-10GB.
+the role of ``/srv``. The root partition size has been increased from **4GB**
+to **10GB**.
 
 Significant Updates
 -------------------
 
-SSH Access is Behind ``trusted_nets`` by Default
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Root Login via Console
+^^^^^^^^^^^^^^^^^^^^^^
 
-Previously, SSH was open to all networks by default. This has been changed to
-the ``simp_options::trusted_nets`` parameter, if available. If it is not
-available, then it defaults to allowing ``ALL``.
+Root is no longer allowed to log into clients or the SIMP server by default.
 
 
 SIMP Scenarios and simp_config_settings.yaml
@@ -283,7 +310,7 @@ RPM Updates
 +=====================+=============+=============+
 | puppet-agent        | N/A         | 1.8.3-1     |
 +---------------------+-------------+-------------+
-| puppet-client-tools | N/A         | 1.1.0-1     |
+| puppet-client-tools | N/A         | 1.1.1-1     |
 +---------------------+-------------+-------------+
 | puppetdb            | 2.3.8-1     | 4.3.0-1     |
 +---------------------+-------------+-------------+
@@ -349,7 +376,7 @@ pupmod-simp-auditd
 pupmod-simp-gdm
 ^^^^^^^^^^^^^^^
 
-* Fixed the managed service list
+* Updated the managed service list
 
 pupmod-simp-gnome
 ^^^^^^^^^^^^^^^^^
@@ -481,13 +508,26 @@ pupmod-simp-sudo
 
 * Added method to create ``user_specification`` resources through hiera
 
+pupmod-simp-svckill
+^^^^^^^^^^^^^^^^^^^
+
+* The default service killing behavior has been set to 'warning'. However,
+  ``simp cli`` will ask for the setting during config.
+
 rubygem-simp_cli
 ^^^^^^^^^^^^^^^^
 
-* Completely updated ``simp config`` and ``simp bootstrap``
+* Completely updated ``simp config`` and ``simp bootstrap``.
+* ``simp passgen`` was updated to support environments.
 
 Known Bugs
 ----------
+
+* A bug is still allowing root to log into client systems on a console even
+  though ``/etc/securetty`` is present and empty
+* The ``krb5`` module may have issues in some cases, validation pending
+* The graphical ``switch user`` functionality does not work. We are working
+  with the vendor to discover a solution
 
 .. _file bugs: https://simp-project.atlassian.net
 .. _Puppet Location Reference: https://docs.puppet.com/puppet/4.7/reference/whered_it_go.html
