@@ -6,7 +6,7 @@
 
 Summary: The SIMP Environment Scaffold
 Name: simp-environment
-Version: 6.1.0
+Version: 6.2.0
 Release: 0
 License: Apache License 2.0
 Group: Applications/System
@@ -66,6 +66,11 @@ mkdir -p %{buildroot}/%{prefix}/hieradata/compliance_profiles
 mkdir -p %{buildroot}/%{_var}/simp/environments/simp/site_files/krb5_files/files/keytabs
 
 # Now install the files.
+
+# Make sure we have a clean, and active, copy of the FakeCA
+cp -r FakeCA %{buildroot}/usr/share/simp
+cp -r FakeCA %{buildroot}/%{_var}/simp/environments/simp
+
 cp -r environments/* %{buildroot}/`dirname %{prefix}`
 
 cd build/selinux
@@ -91,18 +96,19 @@ cd -
 %config(noreplace) %{prefix}/hieradata/scenarios/poss.yaml
 %config(noreplace) %{prefix}/hieradata/default.yaml
 %config(noreplace) %{prefix}/manifests/site.pp
-%config(noreplace) %{prefix}/FakeCA/togen
-%config(noreplace) %{prefix}/FakeCA/usergen
 %config(noreplace) %{prefix}/hieradata/compliance_profiles/nist_800_53_rev4.yaml
 %config(noreplace) %{prefix}/hieradata/compliance_profiles/disa_stig_el7.yaml
 
 %defattr(0640,root,root,0750)
 %{_datadir}/selinux/*/%{selinux_policy}
-%{prefix}/FakeCA
-%attr(0750,-,-) %{prefix}/FakeCA/clean.sh
-%attr(0750,-,-) %{prefix}/FakeCA/gencerts_common.sh
-%attr(0750,-,-) %{prefix}/FakeCA/gencerts_nopass.sh
-%attr(0750,-,-) %{prefix}/FakeCA/usergen_nopass.sh
+/usr/share/simp/FakeCA
+%{_var}/simp/environments/simp/FakeCA
+%config(noreplace) %{_var}/simp/environments/simp/FakeCA/togen
+%config(noreplace) %{_var}/simp/environments/simp/FakeCA/usergen
+%attr(0750,-,-) %{_var}/simp/environments/simp/FakeCA/clean.sh
+%attr(0750,-,-) %{_var}/simp/environments/simp/FakeCA/gencerts_common.sh
+%attr(0750,-,-) %{_var}/simp/environments/simp/FakeCA/gencerts_nopass.sh
+%attr(0750,-,-) %{_var}/simp/environments/simp/FakeCA/usergen_nopass.sh
 
 %post
 PATH=/opt/puppetlabs/bin:$PATH
@@ -117,7 +123,7 @@ fi
 
 # Ensure that the cacertkey has some random gibberish in it if it doesn't
 # exist.
-if [ ! -e "%{prefix}/FakeCA/cacertkey" ]; then
+if [ ! -e "%{_var}/simp/environments/simp/FakeCA/cacertkey" ]; then
   dd if=/dev/urandom count=24 bs=1 status=none | openssl enc -a -out "%{prefix}/FakeCA/cacertkey"
 fi
 
@@ -208,6 +214,18 @@ fi
 /usr/local/sbin/simp_rpm_helper --rpm_dir=%{prefix} --rpm_section='postun' --rpm_status=$1 --preserve --target_dir='.'
 
 %changelog
+* Mon Apr 03 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.2.0
+- Move FakeCA down into /var/simp/environment/simp where it can be
+  appropriately applied without getting wiped out by r10k or Code Manager
+- Make FakeCA use relative paths for writing keys
+- Ensure that a copy of the FakeCA core exists in /usr/share/simp so that users
+  have a clean copy to work from
+
+* Mon Apr 03 2017 Liz Nemsick <lnemsick.simp@gmail.com> - 6.1.0
+- Remove YUM-related parameters in puppet.your.domain.yaml,
+  as these parameters are managed by 'simp config'.
+
+
 * Thu Mar 31 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.1.0
 - Remove the unnecessary class includes from the EL6-specific hieradata
 - The appropriate class includes have been moved into the 'simp' and
