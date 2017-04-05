@@ -60,32 +60,17 @@ some unknown location that they want to use. In ISO installations, which we can
 detect, there will be a local repo and we can set the parameters accordingly
 via ``simp config``.
 
-The following can be used to modify your Hiera data, or you can just run
-``simp config`` again:
+All of the old parameters have been removed, and to get back to old
+functionality, all that has to be done is add the following classes to nodes
+and adjust previous hiera settings to use the new classes:
 
-+--------------------------------+-------------+--------------------------------+--------------------+
-| Old Parameter                  | Old Default | New Parameter                  | New Default        |
-+================================+=============+================================+====================+
-| simp::yum::servers             | None        | simp::yum::local_repo_servers  | **undef**          |
-+--------------------------------+-------------+--------------------------------+--------------------+
-| simp::yum::enable_simp_repos   | true        | simp::yum::local_simp_repos    | **false**          |
-+--------------------------------+-------------+--------------------------------+--------------------+
-| simp::yum::enable_os_repos     | true        | simp::yum::local_os_repos      | **false**          |
-+--------------------------------+-------------+--------------------------------+--------------------+
-| simp::yum::enable_auto_updates | true        | simp::yum::auto_update         | true               |
-+--------------------------------+-------------+--------------------------------+--------------------+
-| simp::yum::os_update_url       | UNCHANGED   | simp::yum::local_os_update_url | UNCHANGED          |
-+--------------------------------+-------------+--------------------------------+--------------------+
-| simp::yum::os_gpg_url          | UNCHANGED   | simp::yum::local_os_gpg_url    | UNCHANGED          |
-+--------------------------------+-------------+--------------------------------+--------------------+
-| simp::yum::os_simp_url         | UNCHANGED   | simp::yum::local_os_simp_url   | UNCHANGED          |
-+--------------------------------+-------------+--------------------------------+--------------------+
-| simp::yum::os_simp_url         | UNCHANGED   | simp::yum::local_os_simp_url   | UNCHANGED          |
-+--------------------------------+-------------+--------------------------------+--------------------+
-| none                           | N/A         | simp::yum::simp_version        | **simp_version()** |
-+--------------------------------+-------------+--------------------------------+--------------------+
-| none                           | N/A         | simp::yum::internet_simp_repos | **false**          |
-+--------------------------------+-------------+--------------------------------+--------------------+
+.. code-block:: yaml
+
+   ---
+   classes:
+   - 'simp::yum::repo::local_os_updates'
+   - 'simp::yum::repo::local_simp'
+   ---
 
 RPM Installation
 ^^^^^^^^^^^^^^^^
@@ -158,6 +143,11 @@ SSH Access is Behind ``trusted_nets`` by Default
 Previously, SSH was open to all networks by default. This has been changed to
 the ``simp_options::trusted_nets`` parameter, if available. If it is not
 available, then it defaults to allowing ``ALL``.
+
+Root Login via Console
+^^^^^^^^^^^^^^^^^^^^^^
+
+Root is no longer allowed to log into clients or the SIMP server by default.
 
 
 SIMP Scenarios and simp_config_settings.yaml
@@ -395,7 +385,7 @@ pupmod-simp-auditd
 pupmod-simp-gdm
 ^^^^^^^^^^^^^^^
 
-* Fixed the managed service list
+* Updated the managed service list
 
 pupmod-simp-gnome
 ^^^^^^^^^^^^^^^^^
@@ -527,6 +517,12 @@ pupmod-simp-sudo
 
 * Added method to create ``user_specification`` resources through hiera
 
+pupmod-simp-svckill
+^^^^^^^^^^^^^^^^^^^
+
+* The default service killing behavior has been set to 'warning'. However,
+  ``simp cli`` will ask for the setting during config.
+
 rubygem-simp_cli
 ^^^^^^^^^^^^^^^^
 
@@ -534,6 +530,8 @@ rubygem-simp_cli
 
 Known Bugs
 ----------
+
+* A Puppet bug is still allowing root to log into client systems on a console
 
 .. _file bugs: https://simp-project.atlassian.net
 .. _Puppet Location Reference: https://docs.puppet.com/puppet/4.7/reference/whered_it_go.html
