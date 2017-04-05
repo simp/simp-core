@@ -53,7 +53,7 @@ simp::yum Refactor
 """"""""""""""""""
 
 The ``simp::yum`` class was confusing and, as we attempted to install systems
-via ``yum`` we found out just how bad it was.
+via ``yum``, we found out just how bad it was.
 
 Fundamentally, most installations of SIMP are going to have their own repos at
 some unknown location that they want to use. In ISO installations, which we can
@@ -99,13 +99,14 @@ For better integration with `r10k`_ and `Puppet Code Manager`_, SIMP now
 installs all materials in ``/usr/share/simp`` by default.
 
 A script ``simp_rpm_helper`` has been added to copy the ``environment`` and
-`module` data into place at ``/etc/puppetlabs/code`` **if configured to do so**.
+``module`` data into place at ``/etc/puppetlabs/code`` **if configured to do so**.
 
 On the ISO, this configuration is done by default and will be set to
 auto-update for all future RPM updates. If you wish to disable this behavior,
 you should edit the options in ``/etc/simp/adapter_config.yaml``.
 
 .. NOTE::
+
    Anything that is in a Git or Subversion repository in the ``simp``
    environment will **NOT** be overwritten by ``simp_rpm_helper``.
 
@@ -131,8 +132,8 @@ SIMP Partitioning Scheme
 """"""""""""""""""""""""
 
 SIMP no longer creates a ``/srv`` partition on EL 6 or 7. ``/var`` has assumed
-the role of ``/srv``. The root partition size has been increased from 4GB to
-10GB.
+the role of ``/srv``. The root partition size has been increased from **4GB**
+to **10GB**.
 
 Significant Updates
 -------------------
@@ -319,7 +320,7 @@ RPM Updates
 +=====================+=============+=============+
 | puppet-agent        | N/A         | 1.8.3-1     |
 +---------------------+-------------+-------------+
-| puppet-client-tools | N/A         | 1.1.0-1     |
+| puppet-client-tools | N/A         | 1.1.1-1     |
 +---------------------+-------------+-------------+
 | puppetdb            | 2.3.8-1     | 4.3.0-1     |
 +---------------------+-------------+-------------+
@@ -531,7 +532,7 @@ rubygem-simp_cli
 Known Bugs
 ----------
 
-* A Puppet bug is still allowing root to log into client systems on a console
+* A bug is still allowing root to log into client systems on a console even though ``/etc/securetty`` is present and empty
 
 .. _file bugs: https://simp-project.atlassian.net
 .. _Puppet Location Reference: https://docs.puppet.com/puppet/4.7/reference/whered_it_go.html
