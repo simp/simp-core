@@ -1,5 +1,5 @@
-SIMP 6.0.0-RC2
-==============
+SIMP 6.0.0-0
+============
 
 .. raw:: pdf
 
@@ -30,10 +30,7 @@ Breaking Changes
    Puppet 3.
 
 .. NOTE::
-   This is the first Release Candidate for SIMP 6
-
-   We currently believe that everything is feature complete but it may take a
-   small amount of time for the documentation and support scripts to catch up.
+   This is the final release of SIMP 6!
 
 If you find any issues, please `file bugs`_!
 
