@@ -523,7 +523,11 @@ rubygem-simp_cli
 Known Bugs
 ----------
 
-* A bug is still allowing root to log into client systems on a console even though ``/etc/securetty`` is present and empty
+* A bug is still allowing root to log into client systems on a console even
+  though ``/etc/securetty`` is present and empty
+* The ``krb5`` module may have issues in some cases, validation pending
+* The graphical ``switch user`` functionality does not work. We are working
+  with the vendor to discover a solution
 
 .. _file bugs: https://simp-project.atlassian.net
 .. _Puppet Location Reference: https://docs.puppet.com/puppet/4.7/reference/whered_it_go.html
