@@ -31,18 +31,18 @@ GEM
   remote: https://rubygems.org/
   specs:
     CFPropertyList (2.3.5)
-    addressable (2.5.0)
+    addressable (2.5.1)
       public_suffix (~> 2.0, >= 2.0.2)
-    aws-sdk-v1 (1.66.0)
+    aws-sdk-v1 (1.67.0)
       json (~> 1.4)
-      nokogiri (>= 1.4.4)
-    beaker-answers (0.14.0)
+      nokogiri (~> 1)
+    beaker-answers (0.16.0)
       hocon (~> 1.0)
       require_all (~> 1.3.2)
       stringify-hash (~> 0.0.0)
     beaker-hiera (0.1.1)
       stringify-hash (~> 0.0.0)
-    beaker-hostgenerator (0.8.3)
+    beaker-hostgenerator (0.8.4)
       deep_merge (~> 1.0)
       stringify-hash (~> 0.0.0)
     beaker-pe (0.12.2)
@@ -50,7 +50,7 @@ GEM
     beaker-puppet_install_helper (0.6.0)
       beaker (>= 2.0)
     beaker-rspec (5.6.0)
-      beaker (~> 2.0)
+      beaker
       rspec
       serverspec (~> 2)
       specinfra (~> 2)
@@ -61,10 +61,10 @@ GEM
       colored (~> 1.2)
     deep_merge (1.1.1)
     diff-lcs (1.3)
-    docker-api (1.33.2)
+    docker-api (1.33.3)
       excon (>= 0.38.0)
       json
-    domain_name (0.5.20170223)
+    domain_name (0.5.20170404)
       unf (>= 0.0.5, < 1.0.0)
     dotenv (2.2.0)
     excon (0.55.0)
@@ -104,7 +104,7 @@ GEM
     fog-atmos (0.1.0)
       fog-core
       fog-xml
-    fog-aws (1.2.1)
+    fog-aws (1.3.0)
       fog-core (~> 1.38)
       fog-json (~> 1.0)
       fog-xml (~> 0.1)
@@ -169,14 +169,14 @@ GEM
     fog-voxel (0.1.0)
       fog-core
       fog-xml
-    fog-xml (0.1.2)
+    fog-xml (0.1.3)
       fog-core
-      nokogiri (~> 1.5, >= 1.5.11)
+      nokogiri (>= 1.5.11, < 2.0.0)
     formatador (0.2.5)
     gettext (3.2.2)
       locale (>= 2.0.5)
       text (>= 1.3.0)
-    gettext-setup (0.16)
+    gettext-setup (0.21)
       fast_gettext (~> 1.1.0)
       gettext (>= 3.0.2)
       locale
@@ -199,7 +199,7 @@ GEM
       os (~> 0.9)
       signet (~> 0.7)
     hiera (3.3.1)
-    hocon (1.2.4)
+    hocon (1.2.5)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     httpclient (2.8.3)
@@ -217,7 +217,7 @@ GEM
     little-plugger (1.1.4)
     locale (2.1.2)
     log4r (1.1.10)
-    logging (2.2.0)
+    logging (2.2.1)
       little-plugger (~> 1.1)
       multi_json (~> 1.10)
     memoist (0.15.0)
@@ -242,7 +242,7 @@ GEM
     os (0.9.6)
     pager (1.0.1)
     parallel (1.11.1)
-    parallel_tests (2.14.0)
+    parallel_tests (2.14.1)
       parallel
     pry (0.10.4)
       coderay (~> 1.1.0)
@@ -252,7 +252,7 @@ GEM
       pry (~> 0.9)
       yard (~> 0.9)
     public_suffix (2.0.5)
-    puppet (4.9.4)
+    puppet (4.10.0)
       facter (> 2.0, < 4)
       gettext-setup (>= 0.10, < 1)
       hiera (>= 2.0, < 4)
@@ -261,7 +261,7 @@ GEM
     puppet-blacksmith (3.4.0)
       puppet (>= 2.7.16)
       rest-client (~> 1.8.0)
-    puppet-lint (2.1.1)
+    puppet-lint (2.2.1)
     puppet-strings (1.1.0)
       yard (~> 0.9.5)
     puppet-syntax (2.4.0)
@@ -277,7 +277,7 @@ GEM
       puppet-lint (~> 2.0)
       puppet-syntax (~> 2.0)
       rspec-puppet (~> 2.0)
-    r10k (2.5.2)
+    r10k (2.5.4)
       colored (= 1.2)
       cri (~> 2.6.1)
       gettext-setup (~> 0.5)
@@ -339,12 +339,12 @@ GEM
       jwt (~> 1.5)
       multi_json (~> 1.10)
     simp-beaker-helpers (1.6.0)
-      beaker (~> 2)
+      beaker
       beaker-puppet_install_helper (~> 0.6)
     simp-build-helpers (0.1.1)
     simp-rake-helpers (3.3.0)
-      beaker (~> 2.51)
-      beaker-rspec (~> 5.0)
+      beaker
+      beaker-rspec
       bundler (~> 1.0)
       coderay (~> 1.0)
       listen (~> 3.0.6)
@@ -366,7 +366,7 @@ GEM
       json (~> 1)
       rspec-puppet-facts (~> 0)
     slop (3.6.0)
-    specinfra (2.67.3)
+    specinfra (2.67.7)
       net-scp
       net-ssh (>= 2.7, < 5.0)
       net-telnet
