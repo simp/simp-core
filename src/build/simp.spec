@@ -1,7 +1,7 @@
 Summary: SIMP Full Install
 Name: simp
 Version: 6.0.0
-Release: RC2%{?dist}%{?snapshot_release}
+Release: 0%{?dist}%{?snapshot_release}
 License: Apache License, Version 2.0
 Group: Applications/System
 
@@ -198,6 +198,9 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Mon Apr 04 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.0.0-0
+- 6.0.0-0 Final Release
+
 * Thu Mar 16 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.0.0-RC1
 - RC1 Release of SIMP
 
