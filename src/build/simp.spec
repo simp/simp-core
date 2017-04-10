@@ -1,7 +1,7 @@
 Summary: SIMP Full Install
 Name: simp
-Version: 6.0.0
-Release: 0%{?dist}%{?snapshot_release}
+Version: 6.0.1
+Release: RC1%{?dist}%{?snapshot_release}
 License: Apache License, Version 2.0
 Group: Applications/System
 
@@ -159,6 +159,8 @@ chmod u=rwX,g=rX,o=rX -R %{buildroot}%{_sysconfdir}/simp
 %defattr(-,root,root,-)
 %{_sysconfdir}/simp/simp.version
 
+%files extras
+
 %post
 # Post installation stuff
 export PATH=/opt/puppetlabs/bin:/opt/puppetlabs/puppet/bin:$PATH
@@ -198,7 +200,11 @@ fi
 # Post uninstall stuff
 
 %changelog
-* Mon Apr 04 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.0.0-0
+* Mon Apr 10 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.0.1-0
+- 6.0.1-RC1 Prep
+- Fixed the generation of the simp-extras package
+
+* Mon Apr 10 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.0.0-0
 - 6.0.0-0 Final Release
 
 * Thu Mar 16 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.0.0-RC1
