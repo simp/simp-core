@@ -7,8 +7,6 @@ LOCK_TMOUT=300
 (
   flock -w $LOCK_TMOUT 9 || exit 1
 
-  sleep 10;
-
   check_cacerts;
 
   batch=1;
