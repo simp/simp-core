@@ -6,7 +6,7 @@
 
 Summary: The SIMP Environment Scaffold
 Name: simp-environment
-Version: 6.2.1
+Version: 6.3.0
 Release: 0
 License: Apache License 2.0
 Group: Applications/System
@@ -214,8 +214,9 @@ fi
 /usr/local/sbin/simp_rpm_helper --rpm_dir=%{prefix} --rpm_section='postun' --rpm_status=$1 --preserve --target_dir='.'
 
 %changelog
-* Thu Apr 20 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.2.1
+* Thu Apr 20 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.3.0
 - Updated the compliance maps based on recent code changes.
+- Allow FakeCA to take hosts at the command line
 
 * Mon Apr 03 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.2.0
 - Move FakeCA down into /var/simp/environment/simp where it can be
