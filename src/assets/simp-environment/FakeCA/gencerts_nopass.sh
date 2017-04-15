@@ -9,11 +9,20 @@ if [ "$1" == "auto" ]; then
   batch=0;
 fi
 
+host=$2
+
 create_ca;
 
-for hosts in `cat togen`; do
+if [ -z "${host}" ]; then
+  host_input=`cat togen`
+else
+  host_input=$host
+fi
+
+for hosts in $host_input; do
   hosts=`echo $hosts | sed -e 's/[ \t]//g'`
   hname=`echo $hosts | cut -d',' -f1`
+
   if [ "$hname" != "$hosts" ];
   then
     alts=`echo $hosts | cut -d',' -f2-`
@@ -58,7 +67,6 @@ for hosts in `cat togen`; do
       OPENSSL_CONF=ca.cnf openssl ca -passin file:cacertkey -revoke $cert -crl_reason superseded
       mv $cert demoCA/revoked;
     fi
-
   done
 
   export OPENSSL_CONF=output/conf/$hname.cnf;
@@ -76,7 +84,6 @@ for hosts in `cat togen`; do
   openssl ca -passin file:cacertkey -batch -out ${keydist}/${hname}/${hname}.pub -infiles working/"${hname}"req.pem
 
   cat ${keydist}/${hname}/${hname}.pub >> ${keydist}/${hname}/${hname}.pem
-
 done
 
 distribute_ca;

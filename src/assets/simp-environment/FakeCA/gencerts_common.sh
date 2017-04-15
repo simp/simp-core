@@ -2,7 +2,12 @@
 
 # Common functions for gencerts items.
 
-keydist="`dirname $0`/../site_files/pki_files/files/keydist"
+if [ -z "${KEYDIST_DIR}" ]; then
+  keydist="`dirname $0`/../site_files/pki_files/files/keydist"
+else
+  keydist=$KEYDIST_DIR
+fi
+
 CA_src='/etc/pki/tls/misc/CA'
 
 export CATOP="`pwd`/demoCA"
@@ -91,6 +96,8 @@ distribute_ca () {
     cd -;
   fi
 
-  chmod -R u+rwX,g+rX,o-rwx $keydist;
-  chown -R root.puppet $keydist;
+  if [ "${USER}" == 'root' ] || [ $UID -eq 0 ]; then
+    chmod -R u+rwX,g+rX,o-rwx $keydist;
+    chown -R root.puppet $keydist;
+  fi
 }
