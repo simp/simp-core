@@ -76,6 +76,7 @@ compliance_map:
         - RHEL-07-030402
         - RHEL-07-030403
         - RHEL-07-030400
+      notes: SIMP disables this by default due to the excessive number of audit records generated. Enable with caution.
       value: true
     auditd::config::audit_profiles::simp::audit_chown:
       identifiers:
@@ -518,7 +519,7 @@ compliance_map:
         - SRG-OS-000480-GPOS-00227
         - CCI-000366
       value: true
-    pupmod::auditd_support:
+    pupmod::master::auditd:
       identifiers:
         - RHEL-07-030310
         - SRG-OS-000327-GPOS-00127
@@ -619,15 +620,6 @@ compliance_map:
         - SRG-OS-000480-GPOS-00227
         - CCI-000366
       value: false
-    simp::enable_filebucketing:
-      identifiers:
-        - RHEL-07-021820
-        - SRG-OS-000364-GPOS-00151
-        - CCI-000293
-        - CCI-001812
-        - CCI-001813
-        - CCI-001814
-      value: true
     simp::fips:
       identifiers:
         - RHEL-07-021280
@@ -1064,7 +1056,6 @@ compliance_map:
         - CCI-002234
       value:
         - stats
-        - acl
         - sync
     simp_openldap::server::conf::use_tls:
       identifiers:
@@ -1257,6 +1248,7 @@ compliance_map:
         - RHEL-07-020090
         - SRG-OS-000324-GPOS-00125
         - CCI-002235
+      notes: For EL7, this should be 'sandbox'. This will be fixed in a later revision of the map.
       value: true
     ssh::server::conf::x11forwarding:
       identifiers:
@@ -1578,7 +1570,7 @@ compliance_map:
         - CCI-001813
         - CCI-001814
       value: '0077'
-    useradd::shells:
+    useradd::shells_default:
       identifiers:
         - RHEL-07-020890
         - SRG-OS-000480-GPOS-00227
@@ -1586,9 +1578,18 @@ compliance_map:
       notes: Adding or removing shells may not be a bad thing. Any changes to the SIMP default should be justified
       value:
         - /bin/sh
-        - /bin/zsh
         - /bin/bash
         - /sbin/nologin
+        - /usr/bin/sh
+        - /usr/bin/bash
+        - /usr/sbin/nologin
+    useradd::shells:
+      identifiers:
+        - RHEL-07-020890
+        - SRG-OS-000480-GPOS-00227
+        - CCI-000366
+      notes: Additional shells must be justified
+      value: []
     useradd::sysconfig_init::single_user_login:
       identifiers:
         - RHEL-07-021770

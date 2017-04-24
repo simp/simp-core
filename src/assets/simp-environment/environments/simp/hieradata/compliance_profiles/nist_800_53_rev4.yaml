@@ -105,6 +105,7 @@ compliance_map:
     auditd::config::audit_profiles::simp::audit_chmod:
       identifiers:
         - AU-2
+      notes: SIMP disables this by default due to the excessive number of audit records generated. Enable with caution.
       value: true
     auditd::config::audit_profiles::simp::audit_chown:
       identifiers:
@@ -169,6 +170,7 @@ compliance_map:
     auditd::config::audit_profiles::simp::audit_umask:
       identifiers:
         - AU-2
+      notes: SIMP disables this by default due to the excessive number of audit records generated. Enable with caution.
       value: true
     auditd::config::audit_profiles::simp::audit_unsuccessful_file_operations:
       identifiers:
@@ -223,6 +225,7 @@ compliance_map:
     auditd::failure_mode:
       identifiers:
         - AU-5(b)
+      notes: This is set to '1' in SIMP by default since '2' was proven to be prone to random kernel panics in production.
       value: '2'
     auditd::max_log_file:
       identifiers:
@@ -633,7 +636,7 @@ compliance_map:
       identifiers:
         - CM-3(3)
       value: '*'
-    pupmod::auditd_support:
+    pupmod::master::auditd:
       identifiers:
         - AU-3(2)
         - AU-4(1)
@@ -840,14 +843,6 @@ compliance_map:
       identifiers:
         - AC-6
       value: false
-    simp::enable_filebucketing:
-      identifiers:
-        - SI-2(a)
-        - SI-6(a)
-        - SI-6(b)
-        - SI-7
-        - SI-7(1)
-      value: true
     simp::fips:
       identifiers:
         - AC-3
@@ -1281,7 +1276,7 @@ compliance_map:
     simp_openldap::server::conf::conn_max_pending_auth:
       identifiers:
         - SC-5
-      value: '100'
+      value: '1000'
     simp_openldap::server::conf::default_ldif::ppolicy_pwd_allow_user_change:
       identifiers:
         - AC-7
@@ -1391,7 +1386,6 @@ compliance_map:
         - AU-3
       value:
         - stats
-        - acl
         - sync
     simp_openldap::server::conf::syslog:
       identifiers:
@@ -1562,16 +1556,23 @@ compliance_map:
         - CM-6
         - SC-8
       value: true
+    useradd::shells_default:
+      identifiers:
+        - CM-6
+        - CM-7
+      value:
+        - /bin/sh
+        - /bin/bash
+        - /sbin/nologin
+        - /usr/bin/sh
+        - /usr/bin/bash
+        - /usr/sbin/nologin
     useradd::shells:
       identifiers:
         - CM-6
         - CM-7
-      notes: Adding or removing shells may not be a bad thing.  Any changes to the SIMP default should be justified
-      value:
-        - /bin/sh
-        - /bin/zsh
-        - /bin/bash
-        - /sbin/nologin
+      notes: Additional shells must be justified
+      value: []
     ssh::client::add_default_entry:
       identifiers:
         - AC-2(1)
@@ -1646,6 +1647,7 @@ compliance_map:
       identifiers:
         - AC-3
         - AC-6
+      notes: For EL7, this should be 'sandbox'. This will be fixed in a later revision of the map.
       value: true
     ssh::server::conf::x11forwarding:
       identifiers:
@@ -2052,17 +2054,7 @@ compliance_map:
       identifiers:
         - IA-2(1)
         - AC-1(1)
-      notes: This list can actually be reduced in many cases.  This is a list that the SIMP team feels might be needed for most systems
-      value:
-        - console
-        - tty1
-        - tty2
-        - tty3
-        - tty4
-        - tty5
-        - tty6
-        - ttyS0
-        - ttyS1
+      value: []
     useradd::sysconfig_init::single_user_login:
       identifiers:
         - IA-2(1)
