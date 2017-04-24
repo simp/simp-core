@@ -32,7 +32,7 @@ gem 'ruby-progressbar'
 gem 'google-api-client', '0.9.4'
 
 group :system_tests do
-  gem 'beaker', :git => 'https://github.com/trevor-vaughan/beaker.git', :branch => 'BKR-931-2.51.0'
+  gem 'beaker'
   gem 'beaker-rspec'
   gem 'simp-beaker-helpers', ENV.fetch('SIMP_BEAKER_HELPERS_VERSION', '~> 1.5')
 end

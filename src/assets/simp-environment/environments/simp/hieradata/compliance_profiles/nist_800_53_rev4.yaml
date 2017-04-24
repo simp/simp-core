@@ -1272,11 +1272,11 @@ compliance_map:
     simp_openldap::server::conf::conn_max_pending:
       identifiers:
         - SC-5
-      value: '1000'
+      value: '100'
     simp_openldap::server::conf::conn_max_pending_auth:
       identifiers:
         - SC-5
-      value: '100'
+      value: '1000'
     simp_openldap::server::conf::default_ldif::ppolicy_pwd_allow_user_change:
       identifiers:
         - AC-7
