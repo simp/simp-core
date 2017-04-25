@@ -21,7 +21,7 @@ end
 
 def tarball_yumrepos(host, tarball)
   if tarball =~ /download/
-    filename = 'SIMP-6.0.0-0-CentOS-7-x86_64.tar.gz'
+    filename = 'SIMP-6.0.0-0-CentOS-6-x86_64.tar.gz'
     url = "https://simp-project.com/ISO/SIMP/tar_bundles/#{filename}"
     require 'net/http'
     File.write("spec/fixtures/#{filename}", Net::HTTP.get(URI.parse(url)))
@@ -33,7 +33,7 @@ def tarball_yumrepos(host, tarball)
   warn('Test will continue by setting up a local repository on the master from the tarball')
   warn('='*72)
 
-  host.install_package('http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm')
+  host.install_package('http://yum.puppetlabs.com/puppetlabs-release-pc1-el-6.noarch.rpm')
   on(host, "curl -s https://packagecloud.io/install/repositories/simp-project/6_X_Dependencies/script.rpm.sh | bash")
 
   host.install_package('createrepo')
@@ -85,7 +85,7 @@ describe 'install SIMP via rpm' do
   end
 
   context 'master' do
-    let(:simp_conf_template) { File.read(File.open('spec/acceptance/suites/rpm/files/simp_conf.yaml.erb')) }
+    let(:simp_conf_template) { File.read(File.open('spec/acceptance/suites/rpm_el6/files/simp_conf.yaml.erb')) }
     masters.each do |master|
       it 'should set up SIMP repositories' do
         master.install_package('epel-release')
@@ -105,7 +105,7 @@ describe 'install SIMP via rpm' do
       end
 
       it 'should run simp config' do
-        # grub password: H.SxdcuyF56G75*3ww*HF#9i-eDM3Dp5
+        # grub password: XrlJsxJHI7Ba%IVSxYG+1WVqj3n33WPv
         # ldap root password: Q*AsdtFlHSLp%Q3tsSEc3vFbFx5Vwe58
         create_remote_file(master, '/root/simp_conf.yaml', ERB.new(simp_conf_template).result(binding))
         on(master, 'simp config -a /root/simp_conf.yaml --quiet --skip-safety-save')
@@ -132,7 +132,12 @@ describe 'install SIMP via rpm' do
           # The following settings are because $server_facts['serverip'] is
           # incorrect in a beaker/vagrant (mutli-interface) environment
           'simp::puppet_server_hosts_entry'       => false,
-          'simp::rsync_stunnel'                   => master_fqdn
+          'simp::rsync_stunnel'                   => master_fqdn,
+          # Make sure puppet doesn't run (hopefully)
+          'pupmod::agent::cron::minute'           => '0',
+          'pupmod::agent::cron::hour'             => '0',
+          'pupmod::agent::cron::weekday'          => '0',
+          'pupmod::agent::cron::month'            => '1',
           }.to_yaml
         )
       end
@@ -172,7 +177,14 @@ describe 'install SIMP via rpm' do
   context 'agents' do
     agents.each do |agent|
       it 'should install the agent' do
-        agent.install_package('http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm')
+        if agent.host_hash[:platform] =~ /el-7/
+          agent.install_package('http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm')
+        else
+          agent.install_package('http://yum.puppetlabs.com/puppetlabs-release-pc1-el-6.noarch.rpm')
+          # the portreserve service will fail unless something is configured
+          on(agent, 'mkdir -p /etc/portreserve')
+          on(agent, 'echo rndc/tcp > /etc/portreserve/named')
+        end
         agent.install_package('puppet-agent')
         agent.install_package('net-tools')
         internet_yumrepos(agent, find_reponame)
