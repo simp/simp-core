@@ -1,5 +1,0 @@
-module simp-environment 1.0;
-
-require {
-  type puppet_var_lib_t;
-}
