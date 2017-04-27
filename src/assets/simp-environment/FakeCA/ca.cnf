@@ -115,7 +115,7 @@ organizationalUnitName_default = Hosts
 
 commonName                     = Common Name (eg, your name or your server\'s hostname)
 commonName_max                 = 64
-commonName_default 		= Fake Org Fake CA - 648898aa
+commonName_default 		= Fake Org Fake CA - 72cfa70f
 
 #emailAddress			= Email Address
 #emailAddress_max		= 64
