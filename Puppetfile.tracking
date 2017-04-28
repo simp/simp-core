@@ -13,7 +13,7 @@ mod 'simp-rsync',
 
 moduledir 'src/assets'
 
-mod 'simp-environment'
+mod 'simp-environment',
   :git => 'https://github.com/simp/simp-environment-skeleton',
   :ref => 'master'
 
