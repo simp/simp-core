@@ -23,6 +23,10 @@ mod 'bfraser-grafana',
   :git => 'https://github.com/simp/puppet-grafana',
   :ref => 'master'
 
+mod 'binford2k-node_encrypt',
+  :git => 'https://github.com/simp/binford2k-node_encrypt.git',
+  :ref => 'master'
+
 mod 'camptocamp-kmod',
   :git => 'https://github.com/simp/puppet-kmod.git',
   :ref => 'master'
