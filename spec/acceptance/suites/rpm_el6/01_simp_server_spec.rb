@@ -7,7 +7,7 @@ test_name 'puppetserver via rpm'
 # Find a release tarball
 def find_tarball
   tarball = ENV['BEAKER_release_tarball']
-  tarball ||= Dir.glob('spec/fixtures/SIMP*.tar.gz')[0]
+  tarball ||= Dir.glob('build/distributions/CentOS/6/x86_64/DVD_Overlay/SIMP*.tar.gz')[0]
   warn("Found Tarball: #{tarball}")
   tarball
 end
