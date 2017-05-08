@@ -1,0 +1,40 @@
+---
+
+######################################################################
+#                                                                    #
+# This file contains the default parameters for configuring the      #
+# global catalysts in a full SIMP system.                            #
+#                                                                    #
+# Feel free to trim these down, or add to them as necessary.         #
+#                                                                    #
+# For more information on how to use Hiera, see:                     #
+#   * http://docs.puppetlabs.com/hiera/latest/puppet.html            #
+#   * http://docs.puppetlabs.com/hiera/latest/complete_example.html  #
+#                                                                    #
+######################################################################
+
+### SIMP Options ###
+# The following settings in the simp_options namespace reference site or environment
+# settings essential to SIMP's functionality. This list is not comprehensive.
+#
+# Please see the simp_options module for documentation.
+# http://www.puppetmodule.info/github/simp/pupmod-simp-simp_options/master/
+#
+
+simp::scenario: 'idm'
+
+simp_options::auditd: false
+simp_options::clamav: false
+simp_options::firewall: false
+simp_options::haveged: false
+simp_options::ldap: true
+simp_options::logrotate: false
+simp_options::pam: true
+simp_options::pki: simp
+simp_options::selinux: false
+simp_options::sssd: true
+simp_options::stunnel: false
+simp_options::syslog: true
+simp_options::tcpwrappers: false
+simp_options::ipsec: false
+simp_options::kerberos: false
