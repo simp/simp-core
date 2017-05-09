@@ -14,6 +14,7 @@ Requires: httpd >= 2.2
 Obsoletes: simp-hiera < 3.0.2
 
 # Core SIMP Requirements
+Requires: pupmod-binford2k-node_encrypt >= 0.2.5, pupmod-binford2k-node_encrypt < 1.0.0
 Requires: pupmod-camptocamp-kmod >= 2.1.0, pupmod-camptocamp-kmod < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders >= 2.1.3-2016, pupmod-herculesteam-augeasproviders < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_apache >= 2.0.1-2016, pupmod-herculesteam-augeasproviders_apache < 3.0.0
@@ -66,6 +67,7 @@ Requires: pupmod-simp-simp_openldap >= 6.0.0, pupmod-simp-simp_openldap < 7.0.0
 Requires: pupmod-simp-simp_options >= 1.0.0, pupmod-simp-simp_options < 2.0.0
 Requires: pupmod-simp-pam >= 6.0.0, pupmod-simp-pam < 7.0.0
 Requires: pupmod-simp-pki >= 6.0.0, pupmod-simp-pki < 7.0.0
+Requires: pupmod-simp-polkit >= 6.1.0-2016
 Requires: pupmod-simp-postfix >= 5.0.1, pupmod-simp-postfix < 6.0.0
 Requires: pupmod-simp-pupmod >= 7.1.0, pupmod-simp-pupmod < 8.0.0
 Requires: pupmod-simp-resolv >= 0.0.1, pupmod-simp-resolv < 1.0.0
@@ -126,7 +128,6 @@ Requires: pupmod-simp-libvirt >= 5.0.1-2016
 Requires: pupmod-simp-mcafee >= 6.0.0-2016
 Requires: pupmod-simp-mozilla >= 5.0.0-2016
 Requires: pupmod-simp-openscap >= 6.0.0-2016
-Requires: pupmod-simp-polkit >= 6.0.0-2016
 Requires: pupmod-simp-simp_elasticsearch >= 4.0.0
 Requires: pupmod-simp-simp_grafana >= 1.0.1-2016
 Requires: pupmod-simp-simp_logstash >= 3.0.1-2016
@@ -200,6 +201,9 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Thu May 04 2017 Nick Miller <nick.miller@onyxpoint.com> - 6.0.2-0
+- Added core module binford2k-node_encrypt
+
 * Mon Apr 10 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.0.1-0
 - 6.0.1-RC1 Prep
 - Fixed the generation of the simp-extras package
