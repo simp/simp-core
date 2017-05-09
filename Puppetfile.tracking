@@ -11,6 +11,12 @@ mod 'simp-rsync',
   :git => 'https://github.com/simp/simp-rsync',
   :ref => 'master'
 
+moduledir 'src/assets'
+
+mod 'simp-environment',
+  :git => 'https://github.com/simp/simp-environment-skeleton',
+  :ref => 'master'
+
 moduledir 'src/rubygems'
 
 mod 'rubygem-simp_cli',
