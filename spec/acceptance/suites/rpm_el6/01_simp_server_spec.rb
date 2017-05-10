@@ -22,10 +22,11 @@ end
 def tarball_yumrepos(host, tarball)
   if tarball =~ /download/
     filename = 'SIMP-6.0.0-0-CentOS-6-x86_64.tar.gz'
-    url = "https://simp-project.com/ISO/SIMP/tar_bundles/#{filename}"
+    url = ENV['BEAKER_tarball_url']
+    url ||= "https://simp-project.com/ISO/SIMP/tar_bundles/#{filename}"
     require 'net/http'
     File.write("spec/fixtures/#{filename}", Net::HTTP.get(URI.parse(url)))
-    tarball = Dir.glob('spec/fixtures/SIMP*.tar.gz')[0]
+    tarball = "spec/fixtures/#{filename}"
   end
 
   warn('='*72)
@@ -33,8 +34,7 @@ def tarball_yumrepos(host, tarball)
   warn('Test will continue by setting up a local repository on the master from the tarball')
   warn('='*72)
 
-  host.install_package('http://yum.puppetlabs.com/puppetlabs-release-pc1-el-6.noarch.rpm')
-  on(host, "curl -s https://packagecloud.io/install/repositories/simp-project/6_X_Dependencies/script.rpm.sh | bash")
+#  host.install_package('http://yum.puppetlabs.com/puppetlabs-release-pc1-el-6.noarch.rpm')
 
   host.install_package('createrepo')
   scp_to(host, tarball, '/root/')
