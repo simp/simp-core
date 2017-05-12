@@ -23,6 +23,28 @@ mod 'rubygem-simp_cli',
   :git => 'https://github.com/simp/rubygem-simp-cli',
   :ref => 'master'
 
+moduledir 'src/mcollective/plugins'
+
+mod 'mcollective_puppet_agent',
+  :git => 'https://github.com/puppetlabs/mcollective-puppet-agent.git',
+  :ref => 'master'
+
+mod 'mcollective_package_agent',
+  :git => 'https://github.com/puppetlabs/mcollective-package-agent.git',
+  :ref => 'master'
+
+mod 'mcollective_filemgr_agent',
+  :git => 'https://github.com/puppetlabs/mcollective-filemgr-agent.git',
+  :ref => 'master'
+
+mod 'mcollective_service_agent',
+  :git => 'https://github.com/puppetlabs/mcollective-service-agent.git',
+  :ref => 'master'
+
+mod 'mcollective_actionpolicy_auth',
+  :git => 'https://github.com/puppetlabs/mcollective-actionpolicy-auth.git',
+  :ref => 'master'
+
 moduledir 'src/puppet/modules'
 
 mod 'bfraser-grafana',
@@ -35,6 +57,18 @@ mod 'binford2k-node_encrypt',
 
 mod 'camptocamp-kmod',
   :git => 'https://github.com/simp/puppet-kmod.git',
+  :ref => 'master'
+
+mod 'camptocamp-systemd',
+  :git => 'https://github.com/simp/puppet-systemd.git',
+  :ref => 'master'
+
+mod 'choria-nats',
+  :git => 'https://github.com/simp/puppet-nats.git',
+  :ref => 'master'
+
+mod 'choria-mcollective',
+  :git => 'https://github.com/simp/puppet-mcollective.git',
   :ref => 'master'
 
 mod 'elastic-elasticsearch',
@@ -261,11 +295,6 @@ mod 'simp-logrotate',
 mod 'simp-mcafee',
   :git => 'https://github.com/simp/pupmod-simp-mcafee',
   :ref => 'master'
-
-# SIMP has made changes to this module that don't exist upstream
-mod 'simp-mcollective',
-  :git => 'https://github.com/simp/pupmod-simp-mcollective',
-  :ref => 'simp-master'
 
 mod 'simp-mozilla',
   :git => 'https://github.com/simp/pupmod-simp-mozilla',

@@ -12,7 +12,7 @@ build/**/GPGKEYS/.dropped_keys
 build/**/GPGKEYS/dist
 build/**/SIMP
 build/**/build_keys/*
-build/distributions/CentOS/7/x86_64/DVD/RPM-GPG-KEY-SIMP-Dev
+build/**/RPM-GPG-KEY-SIMP-Dev
 build/yum_data/*/packages
 log
 spec/fixtures
@@ -20,9 +20,8 @@ src/assets/*/dist
 src/build/autorequires
 src/dist
 src/doc
-src/puppet/bootstrap/dist
-src/puppet/bootstrap/environments/simp/hieradata/.simp_migrated
 src/puppet/modules
+src/mcollective/plugins
 src/rsync
 src/rubygems
 src/utils/dist

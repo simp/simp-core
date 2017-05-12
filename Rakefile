@@ -16,3 +16,16 @@ end
 task :default do
   help
 end
+
+task :build_mco_plugins do
+  cmd = ['mco','plugin','package']
+  cmd += ['--format aiomodulepackage','--vendor choria','--config src/mcollective/plugins/build.cfg']
+
+  Dir.glob('src/mcollective/plugins/**').each do |plugin|
+    cmd += plugin
+    require 'pry';binding.pry
+    puts run.join(' ')
+    `#{run.join(' ')}`
+  end
+
+end
