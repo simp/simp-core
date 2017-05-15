@@ -45,6 +45,10 @@ mod 'mcollective_actionpolicy_auth',
   :git => 'https://github.com/puppetlabs/mcollective-actionpolicy-auth.git',
   :ref => 'master'
 
+mod 'mcollective_openscap_agent',
+  :git => 'https://github.com/onyxpoint/mcollective-openscap-agent',
+  :ref => 'master'
+
 moduledir 'src/puppet/modules'
 
 mod 'bfraser-grafana',

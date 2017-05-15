@@ -31,6 +31,7 @@ gem 'dotenv'
 gem 'ruby-progressbar'
 gem 'google-api-client', '0.9.4'
 gem 'mcollective-client'
+gem 'git'
 
 group :system_tests do
   gem 'beaker'
