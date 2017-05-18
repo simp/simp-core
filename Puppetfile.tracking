@@ -26,7 +26,7 @@ mod 'rubygem-simp_cli',
 moduledir 'src/puppet/modules'
 
 mod 'bfraser-grafana',
-  :git => 'https://github.com/simp/puppet-grafana',
+  :git => 'https://github.com/bfraser/puppet-grafana',
   :ref => 'master'
 
 mod 'binford2k-node_encrypt',

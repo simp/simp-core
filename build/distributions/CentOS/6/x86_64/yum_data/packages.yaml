@@ -7,7 +7,7 @@ activemq-info-provider:
   :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/activemq-info-provider-5.9.1-2.el6.noarch.rpm
 apr-util-ldap:
   :rpm_name: apr-util-ldap-1.3.9-3.el6_0.1.x86_64.rpm
-  :source: http://denver.gaminghost.co/6.8/os/x86_64/Packages/apr-util-ldap-1.3.9-3.el6_0.1.x86_64.rpm
+  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.9/os/x86_64/Packages/apr-util-ldap-1.3.9-3.el6_0.1.x86_64.rpm
 chkrootkit:
   :rpm_name: chkrootkit-0.49-9.el6.x86_64.rpm
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/chkrootkit-0.49-9.el6.x86_64.rpm
@@ -60,8 +60,8 @@ globus-callout:
   :rpm_name: globus-callout-3.15-1.el6.x86_64.rpm
   :source: https://dl.fedoraproject.org/pub/epel/6/x86_64/globus-callout-3.15-1.el6.x86_64.rpm
 globus-common:
-  :rpm_name: globus-common-16.9-1.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-common-16.9-1.el6.x86_64.rpm
+  :rpm_name: globus-common-17.1-1.el6.x86_64.rpm
+  :source: https://epel.mirror.constant.com/epel/6/x86_64/globus-common-17.1-1.el6.x86_64.rpm
 globus-gsi-callback:
   :rpm_name: globus-gsi-callback-5.13-1.el6.x86_64.rpm
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-gsi-callback-5.13-1.el6.x86_64.rpm
@@ -87,8 +87,8 @@ globus-gss-assist:
   :rpm_name: globus-gss-assist-10.21-1.el6.x86_64.rpm
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-gss-assist-10.21-1.el6.x86_64.rpm
 globus-gssapi-gsi:
-  :rpm_name: globus-gssapi-gsi-12.13-1.el6.x86_64.rpm
-  :source: https://dl.fedoraproject.org/pub/epel/6/x86_64/globus-gssapi-gsi-12.13-1.el6.x86_64.rpm
+  :rpm_name: globus-gssapi-gsi-12.13-3.el6.x86_64.rpm
+  :source: https://epel.mirror.constant.com/epel/6/x86_64/globus-gssapi-gsi-12.13-3.el6.x86_64.rpm
 globus-openssl-module:
   :rpm_name: globus-openssl-module-4.8-1.el6.x86_64.rpm
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-openssl-module-4.8-1.el6.x86_64.rpm
@@ -105,29 +105,29 @@ incron:
   :rpm_name: incron-0.5.9-1.el6.x86_64.rpm
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/incron-0.5.9-1.el6.x86_64.rpm
 kernel:
-  :rpm_name: kernel-2.6.32-642.1.1.el6.x86_64.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.8/updates/x86_64/Packages/kernel-2.6.32-642.1.1.el6.x86_64.rpm
+  :rpm_name: kernel-2.6.32-696.1.1.el6.x86_64.rpm
+  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.9/updates/x86_64/Packages/kernel-2.6.32-696.1.1.el6.x86_64.rpm
 kernel-abi-whitelists:
-  :rpm_name: kernel-abi-whitelists-2.6.32-642.1.1.el6.noarch.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.8/updates/x86_64/Packages/kernel-abi-whitelists-2.6.32-642.1.1.el6.noarch.rpm
+  :rpm_name: kernel-abi-whitelists-2.6.32-696.1.1.el6.noarch.rpm
+  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.9/updates/x86_64/Packages/kernel-abi-whitelists-2.6.32-696.1.1.el6.noarch.rpm
 kernel-debug:
-  :rpm_name: kernel-debug-2.6.32-642.1.1.el6.x86_64.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.8/updates/x86_64/Packages/kernel-debug-2.6.32-642.1.1.el6.x86_64.rpm
+  :rpm_name: kernel-debug-2.6.32-696.1.1.el6.x86_64.rpm
+  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.9/updates/x86_64/Packages/kernel-debug-2.6.32-696.1.1.el6.x86_64.rpm
 kernel-debug-devel:
-  :rpm_name: kernel-debug-devel-2.6.32-642.1.1.el6.x86_64.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.8/updates/x86_64/Packages/kernel-debug-devel-2.6.32-642.1.1.el6.x86_64.rpm
+  :rpm_name: kernel-debug-devel-2.6.32-696.1.1.el6.x86_64.rpm
+  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.9/updates/x86_64/Packages/kernel-debug-devel-2.6.32-696.1.1.el6.x86_64.rpm
 kernel-devel:
-  :rpm_name: kernel-devel-2.6.32-642.1.1.el6.x86_64.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.8/updates/x86_64/Packages/kernel-devel-2.6.32-642.1.1.el6.x86_64.rpm
+  :rpm_name: kernel-devel-2.6.32-696.1.1.el6.x86_64.rpm
+  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.9/updates/x86_64/Packages/kernel-devel-2.6.32-696.1.1.el6.x86_64.rpm
 kernel-doc:
-  :rpm_name: kernel-doc-2.6.32-642.1.1.el6.noarch.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.8/updates/x86_64/Packages/kernel-doc-2.6.32-642.1.1.el6.noarch.rpm
+  :rpm_name: kernel-doc-2.6.32-696.1.1.el6.noarch.rpm
+  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.9/updates/x86_64/Packages/kernel-doc-2.6.32-696.1.1.el6.noarch.rpm
 kernel-firmware:
-  :rpm_name: kernel-firmware-2.6.32-642.1.1.el6.noarch.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.8/updates/x86_64/Packages/kernel-firmware-2.6.32-642.1.1.el6.noarch.rpm
+  :rpm_name: kernel-firmware-2.6.32-696.1.1.el6.noarch.rpm
+  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.9/updates/x86_64/Packages/kernel-firmware-2.6.32-696.1.1.el6.noarch.rpm
 kernel-headers:
-  :rpm_name: kernel-headers-2.6.32-642.1.1.el6.x86_64.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.8/updates/x86_64/Packages/kernel-headers-2.6.32-642.1.1.el6.x86_64.rpm
+  :rpm_name: kernel-headers-2.6.32-696.1.1.el6.x86_64.rpm
+  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.9/updates/x86_64/Packages/kernel-headers-2.6.32-696.1.1.el6.x86_64.rpm
 lcgdm-libs:
   :rpm_name: lcgdm-libs-1.9.0-1.el6.x86_64.rpm
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/lcgdm-libs-1.9.0-1.el6.x86_64.rpm
@@ -202,16 +202,16 @@ perl-Sort-Versions:
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/perl-Sort-Versions-1.5-12.el6.noarch.rpm
 perl-Time-modules:
   :rpm_name: perl-Time-modules-2006.0814-5.el6.noarch.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.8/os/x86_64/Packages/perl-Time-modules-2006.0814-5.el6.noarch.rpm
+  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.9/os/x86_64/Packages/perl-Time-modules-2006.0814-5.el6.noarch.rpm
 postgresql94:
-  :rpm_name: postgresql94-9.4.10-1PGDG.rhel6.x86_64.rpm
-  :source: https://download.postgresql.org/pub/repos/yum/9.4/redhat/rhel-6.8-x86_64/postgresql94-9.4.10-1PGDG.rhel6.x86_64.rpm
+  :rpm_name: postgresql94-9.4.12-1PGDG.rhel6.x86_64.rpm
+  :source: https://download.postgresql.org/pub/repos/yum/9.4/redhat/rhel-6.9-x86_64/postgresql94-9.4.12-1PGDG.rhel6.x86_64.rpm
 postgresql94-libs:
-  :rpm_name: postgresql94-libs-9.4.10-1PGDG.rhel6.x86_64.rpm
-  :source: https://download.postgresql.org/pub/repos/yum/9.4/redhat/rhel-6.8-x86_64/postgresql94-libs-9.4.10-1PGDG.rhel6.x86_64.rpm
+  :rpm_name: postgresql94-libs-9.4.12-1PGDG.rhel6.x86_64.rpm
+  :source: https://download.postgresql.org/pub/repos/yum/9.4/redhat/rhel-6.9-x86_64/postgresql94-libs-9.4.12-1PGDG.rhel6.x86_64.rpm
 postgresql94-server:
-  :rpm_name: postgresql94-server-9.4.10-1PGDG.rhel6.x86_64.rpm
-  :source: https://download.postgresql.org/pub/repos/yum/9.4/redhat/rhel-6.8-x86_64/postgresql94-server-9.4.10-1PGDG.rhel6.x86_64.rpm
+  :rpm_name: postgresql94-server-9.4.12-1PGDG.rhel6.x86_64.rpm
+  :source: https://download.postgresql.org/pub/repos/yum/9.4/redhat/rhel-6.9-x86_64/postgresql94-server-9.4.12-1PGDG.rhel6.x86_64.rpm
 pssh:
   :rpm_name: pssh-2.3.1-5.el6.noarch.rpm
   :source: https://packagecloud.io/simp-project/6_X_Alpha_Dependencies/packages/el/7/pssh-2.3.1-5.el6.noarch.rpm
@@ -295,7 +295,7 @@ sudosh2:
   :source: https://packagecloud.io/simp-project/6_X_Alpha_Dependencies/packages/el/7/sudosh2-1.0.2-2.el6.x86_64.rpm
 tpm-tools-pkcs11:
   :rpm_name: tpm-tools-pkcs11-1.3.4-2.el6.x86_64.rpm
-  :source: http://mirror.steadfast.net/centos/6.8/os/x86_64/Packages/tpm-tools-pkcs11-1.3.4-2.el6.x86_64.rpm
+  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.9/os/x86_64/Packages/tpm-tools-pkcs11-1.3.4-2.el6.x86_64.rpm
 voms:
   :rpm_name: voms-2.0.14-1.el6.x86_64.rpm
   :source: http://dl.fedoraproject.org/pub/epel/6/x86_64/voms-2.0.14-1.el6.x86_64.rpm

@@ -1,5 +1,5 @@
 [postgresql]
 name=postgresql
-baseurl=https://download.postgresql.org/pub/repos/yum/9.4/redhat/rhel-6.8-x86_64/
+baseurl=https://download.postgresql.org/pub/repos/yum/9.4/redhat/rhel-6.9-x86_64/
 enabled=1
 gpgcheck=0
