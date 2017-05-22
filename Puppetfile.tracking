@@ -25,8 +25,8 @@ mod 'rubygem-simp_cli',
 
 moduledir 'src/puppet/modules'
 
-mod 'bfraser-grafana',
-  :git => 'https://github.com/bfraser/puppet-grafana',
+mod 'puppet-grafana',
+  :git => 'https://github.com/simp/puppet-grafana.git',
   :ref => 'master'
 
 mod 'binford2k-node_encrypt',
@@ -39,7 +39,7 @@ mod 'camptocamp-kmod',
 
 mod 'elastic-elasticsearch',
   :git => 'https://github.com/simp/puppet-elasticsearch',
-  :ref => 'simp-master'
+  :ref => 'master'
 
 mod 'elastic-logstash',
   :git => 'https://github.com/simp/puppet-logstash',

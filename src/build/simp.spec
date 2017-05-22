@@ -111,9 +111,9 @@ Prefix: %{_sysconfdir}/puppet
 %package extras
 Summary: Extra Packages for SIMP
 License: Apache-2.0
-Requires: pupmod-bfraser-grafana >= 2.5.0-2016
-Requires: pupmod-elasticsearch-elasticsearch >= 0.11.0-2016
-Requires: pupmod-elasticsearch-logstash >= 0.6.4-2016
+Requires: pupmod-puppet-grafana >= 3.0.0-2016
+Requires: pupmod-elastic-elasticsearch >= 5.2.0-2016
+Requires: pupmod-elastic-logstash >= 5.2.1-2016
 Requires: pupmod-electrical-file_concat >= 1.0.1-2016
 Requires: pupmod-herculesteam-augeasproviders_mounttab >= 2.0.1-2016
 Requires: pupmod-herculesteam-augeasproviders_nagios >= 2.0.1-2016
