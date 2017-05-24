@@ -27,7 +27,7 @@ moduledir 'src/puppet/modules'
 
 mod 'puppet-grafana',
   :git => 'https://github.com/simp/puppet-grafana.git',
-  :ref => 'master'
+  :tag => 'v3.0.0'
 
 mod 'binford2k-node_encrypt',
   :git => 'https://github.com/simp/binford2k-node_encrypt.git',
@@ -39,11 +39,11 @@ mod 'camptocamp-kmod',
 
 mod 'elastic-elasticsearch',
   :git => 'https://github.com/simp/puppet-elasticsearch',
-  :ref => 'master'
+  :tag => '5.2.0'
 
 mod 'elastic-logstash',
   :git => 'https://github.com/simp/puppet-logstash',
-  :ref => 'master'
+  :tag => '5.2.1'
 
 mod 'electrical-file_concat',
   :git => 'https://github.com/simp/puppet-lib-file_concat',

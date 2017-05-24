@@ -23,7 +23,7 @@ mod 'binford2k-node_encrypt',
 
 mod 'puppet-grafana',
   :git => 'https://github.com/simp/puppet-grafana.git',
-  :ref => '84267ebe1e4fbe8211a44165d37e690e180fb2fb'
+  :tag => 'v3.0.0'
 
 mod 'camptocamp-kmod',
   :git => 'https://github.com/simp/puppet-kmod.git',
@@ -31,11 +31,11 @@ mod 'camptocamp-kmod',
 
 mod 'elastic-elasticsearch',
   :git => 'https://github.com/simp/puppet-elasticsearch',
-  :ref => '1f5cce28ca0eec9e5bb748dbc91af5e092685f7b'
+  :tag => '5.2.0'
 
 mod 'elastic-logstash',
   :git => 'https://github.com/simp/puppet-logstash',
-  :ref => '8f416a43c6e5b3782b892f9df0830dd816ec57cb'
+  :tag => '5.2.1'
 
 mod 'electrical-file_concat',
   :git => 'https://github.com/simp/puppet-lib-file_concat',
