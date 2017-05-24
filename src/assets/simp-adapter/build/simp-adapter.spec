@@ -70,7 +70,6 @@ install -p -m 750 -D src/sbin/simp_rpm_helper %{buildroot}/usr/local/sbin/simp_r
 install -p -m 640 -D src/conf/adapter_config.yaml %{buildroot}%{prefix}/adapter_config.yaml
 
 mkdir -p %{buildroot}%{puppet_confdir}
-install -p -m 640 -D puppet_config/auth.conf %{buildroot}%{puppet_confdir}/auth.conf.simp
 install -p -m 640 -D puppet_config/hiera.yaml %{buildroot}%{puppet_confdir}/hiera.yaml.simp
 
 %clean
@@ -87,14 +86,12 @@ install -p -m 640 -D puppet_config/hiera.yaml %{buildroot}%{puppet_confdir}/hier
 %defattr(-,root,root,-)
 %config(noreplace) %{prefix}/adapter_config.yaml
 /usr/local/sbin/simp_rpm_helper
-%attr(-,-,puppet) %{puppet_confdir}/auth.conf.simp
 %attr(-,-,puppet) %{puppet_confdir}/hiera.yaml.simp
 
 %files pe
 %defattr(-,root,root,-)
 %config(noreplace) %{prefix}/adapter_config.yaml
 /usr/local/sbin/simp_rpm_helper
-%attr(-,-,pe-puppet) %{puppet_confdir}/auth.conf.simp
 %attr(-,-,pe-puppet) %{puppet_confdir}/hiera.yaml.simp
 
 %post
@@ -281,6 +278,9 @@ EOM
 )
 
 %changelog
+* Wed May 22 2017 Nick Miller <nick.miller@onyxpoint.com> - 0.0.4-0
+- Removed packaged auth.conf in favor of managing it with Puppet
+
 * Wed Mar 08 2017 Trevor Vaughan <tvaughan@onyxpont.com> - 0.0.3-0
 - Handle PE and Puppet Open source in the post section
 - Add dist to the release field to account for RPM generation on EL6 vs EL7
