@@ -1,3 +1,5 @@
+[![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/73/badge)](https://bestpractices.coreinfrastructure.org/projects/73)
+
 This is the 6.X series of the [SIMP](https://github.com/NationalSecurityAgency/SIMP) supermodule.
 
 
