@@ -16,11 +16,6 @@ mod 'rubygem-simp_cli',
 
 moduledir 'src/puppet/modules'
 
-mod 'binford2k-node_encrypt',
-  :git => 'https://github.com/simp/binford2k-node_encrypt.git',
-  :ref => '3bcae75e8bd89bf2a7eab0ad2fc1aceafe984d48'
-  #:tag => 'v0.2.5'
-
 mod 'bfraser-grafana',
   :git => 'https://github.com/simp/puppet-grafana',
   :ref => '6d426d5ccc52ff23dbbcfc45290dafd224b5d2bc'

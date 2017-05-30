@@ -14,7 +14,6 @@ Requires: httpd >= 2.2
 Obsoletes: simp-hiera < 3.0.2
 
 # Core SIMP Requirements
-Requires: pupmod-binford2k-node_encrypt >= 0.2.5, pupmod-binford2k-node_encrypt < 1.0.0
 Requires: pupmod-camptocamp-kmod >= 2.1.0, pupmod-camptocamp-kmod < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders >= 2.1.3-2016, pupmod-herculesteam-augeasproviders < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_apache >= 2.0.1-2016, pupmod-herculesteam-augeasproviders_apache < 3.0.0
@@ -201,6 +200,10 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Thu May 25 2017 Nick Markowski <nmarkowski@keywcorp.com> - 6.0.2-0
+- Removed core module binford2k-node_encrypt.  There are issues with
+  the module and we don't currently use it anywhere in core.
+
 * Thu May 04 2017 Nick Miller <nick.miller@onyxpoint.com> - 6.0.2-0
 - Added core module binford2k-node_encrypt
 
