@@ -2,24 +2,24 @@
 # This file houses the *officially supported* SIMP release combinations
 # Other build combinations may work, but unexpected issues may arise.
 simp_releases:
-  6.X:
+  6.1.0-RC1:
     flavors:
       CentOS:
         isos:
-          - name:     'CentOS-6.8-x86_64-bin-DVD1.iso'
-            size:     3916431360
-            checksum: '1dda55622614a8b43b448a72f87d6cb7f79de1eff49ee8c5881a7d9db28d4e35'
-          - name:     'CentOS-6.8-x86_64-bin-DVD2.iso'
-            size:     2220693504
-            checksum: '0aba869427b4ce04e100d72744daf7fea1f7be2e4be56b658095bd9e99e04e6d'
-        build_command: 'bundle exec rake build:auto[4.2.X,/path/to/CentOS-6.8/DVDs]'
+          - name:     'CentOS-6.9-x86_64-bin-DVD1.iso'
+            size:     3972005888
+            checksum: 'd27cf37a40509c17ad70f37bc743f038c1feba00476fe6b69682aa424c399ea6'
+          - name:     'CentOS-6.9-x86_64-bin-DVD2.iso'
+            size:     2177677312
+            checksum: '631b8640460f46a8139a6a7cbbac5f3594d08c32945449b6bbd65234929ce7a4'
+        build_command: 'bundle exec rake build:auto[/path/to/CentOS-6.9/DVDs,6.X]'
         mock:          'epel-6-x86_64'
-        os_version:   '6.8'
+        os_version:   '6.9'
       RedHat:
         isos:
           - name:     'rhel-server-6.8-x86_64-dvd.iso'
             size:     3878682624
             checksum: 'd35fd1af20f6adef9b11b46c2534ae8b6e18de7754889e2b51808b436dff2804'
-        build_command: 'bundle exec rake build:auto[4.2.X,rhel-server-6.8-x86_64-dvd.iso]'
+        build_command: 'bundle exec rake build:auto[/path/to/RedHat/DVDS,6.X]'
         mock:          'epel-6-x86_64'
         os_version:   '6.8'
