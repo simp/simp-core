@@ -17,9 +17,9 @@ simp_releases:
         os_version:   '6.9'
       RedHat:
         isos:
-          - name:     'rhel-server-6.8-x86_64-dvd.iso'
-            size:     3878682624
-            checksum: 'd35fd1af20f6adef9b11b46c2534ae8b6e18de7754889e2b51808b436dff2804'
+          - name:     'rhel-server-6.9-x86_64-dvd.iso'
+            size:     3887071232
+            checksum: '3f961576e9f81ea118566f73f98d7bdf3287671c35436a13787c1ffd5078cf8e'
         build_command: 'bundle exec rake build:auto[/path/to/RedHat/DVDS,6.X]'
         mock:          'epel-6-x86_64'
-        os_version:   '6.8'
+        os_version:   '6.9'
