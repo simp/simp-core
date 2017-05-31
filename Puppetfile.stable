@@ -26,11 +26,11 @@ mod 'camptocamp-kmod',
 
 mod 'elastic-elasticsearch',
   :git => 'https://github.com/simp/puppet-elasticsearch',
-  :ref => 'dc6d3fab6ace62701aa3de6e4bb868e24fef0553'
+  :tag => '5.2.0'
 
 mod 'elastic-logstash',
   :git => 'https://github.com/simp/puppet-logstash',
-  :ref => 'f475deaeb6120abc4c56c27cd3ab1ce808391517'
+  :tag => '5.2.1'
 
 mod 'electrical-file_concat',
   :git => 'https://github.com/simp/puppet-lib-file_concat',

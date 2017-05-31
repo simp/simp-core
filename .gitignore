@@ -17,6 +17,7 @@ build/yum_data/*/packages
 log
 spec/fixtures
 src/assets/*/dist
+src/assets/environment
 src/build/autorequires
 src/dist
 src/doc

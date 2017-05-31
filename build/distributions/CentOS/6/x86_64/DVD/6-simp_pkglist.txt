@@ -595,6 +595,9 @@ libjpeg
 libjpeg-devel
 libjpeg-turbo
 libjpeg-turbo-devel
+libkadm5
+libkadm5srv_mit
+libkadm5clnt_mit
 libldb
 libmcpp
 libmng
