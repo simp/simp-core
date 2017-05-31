@@ -2,7 +2,7 @@
 # This file houses the *officially supported* SIMP release combinations
 # Other build combinations may work, but unexpected issues may arise.
 simp_releases:
-  6.0.1-RC1:
+  6.X:
     flavors:
       CentOS:
         isos:
