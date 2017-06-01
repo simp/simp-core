@@ -95,6 +95,7 @@ Requires: pupmod-simp-upstart >= 6.0.0-2016, pupmod-simp-upstart < 7.0.0
 Requires: pupmod-simp-useradd >= 0.0.1-2016, pupmod-simp-useradd < 1.0.0
 Requires: pupmod-simp-xinetd >= 4.0.0-2016, pupmod-simp-xinetd < 5.0.0
 Requires: pupmod-trlinkin-nsswitch >= 2.0.0, pupmod-trlinkin-nsswitch < 3.0.0
+Requires: pupmod-puppetlabs-puppet_authorization >= 0.2.0, pupmod-puppetlabs-puppet_authorization < 1.0.0
 Requires: rubygem-simp-cli >= 4.0.0-0, rubygem-simp-cli < 5.0.0
 Requires: rubygem-simp-cli-doc >= 4.0.0-0, rubygem-simp-cli-doc < 5.0.0
 Requires: simp-adapter >= 0.0.3-0, simp-adapter < 1.0.0
