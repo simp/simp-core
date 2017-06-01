@@ -211,7 +211,7 @@ puppet config set stringify_facts false || :
 (
   cd %{puppet_confdir}
 
-  simp_overrides='hiera.yaml auth.conf'
+  simp_overrides='hiera.yaml'
   for file in $simp_overrides; do
 
     if [ ! -f "${file}.simpbak" ] && [ ! -h $file ] && [ -f $file ]; then
@@ -265,7 +265,7 @@ EOM
 (
   cd %{puppet_confdir}
 
-  simp_overrides='hiera.yaml auth.conf'
+  simp_overrides='hiera.yaml'
   for file in $simp_overrides; do
     if [ -h $file ] && [ ! -e $file ]; then
       rm $file
