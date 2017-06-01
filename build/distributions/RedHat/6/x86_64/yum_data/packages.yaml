@@ -7,7 +7,7 @@ activemq-info-provider:
   :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/activemq-info-provider-5.9.1-2.el6.noarch.rpm
 apr-util-ldap:
   :rpm_name: apr-util-ldap-1.3.9-3.el6_0.1.x86_64.rpm
-  :source: http://denver.gaminghost.co/6.8/os/x86_64/Packages/apr-util-ldap-1.3.9-3.el6_0.1.x86_64.rpm
+  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.9/os/x86_64/Packages/apr-util-ldap-1.3.9-3.el6_0.1.x86_64.rpm
 chkrootkit:
   :rpm_name: chkrootkit-0.49-9.el6.x86_64.rpm
   :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/chkrootkit-0.49-9.el6.x86_64.rpm
@@ -37,7 +37,7 @@ elasticsearch:
   :source: https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/rpm/elasticsearch/2.3.5/elasticsearch-2.3.5.rpm
 elasticsearch-curator:
   :rpm_name: elasticsearch-curator-1.1.1-0.el6.noarch.rpm
-  :source: https://dl.bintray.com/simp/4.2.X-Ext/elasticsearch-curator-1.1.1-0.el6.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/elasticsearch-curator-1.1.1-0.el6.noarch.rpm
 fping:
   :rpm_name: fping-2.4b2-10.el6.x86_64.rpm
   :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/fping-2.4b2-10.el6.x86_64.rpm
@@ -60,8 +60,8 @@ globus-callout:
   :rpm_name: globus-callout-3.15-1.el6.x86_64.rpm
   :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/globus-callout-3.13-2.el6.x86_64.rpm
 globus-common:
-  :rpm_name: globus-common-16.9-1.el6.x86_64.rpm
-  :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/globus-common-15.30-1.el6.x86_64.rpm
+  :rpm_name: globus-common-17.1-1.el6.x86_64.rpm
+  :source: https://epel.mirror.constant.com/epel/6/x86_64/globus-common-17.1-1.el6.x86_64.rpm
 globus-gsi-callback:
   :rpm_name: globus-gsi-callback-5.13-1.el6.x86_64.rpm
   :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/globus-gsi-callback-5.8-1.el6.x86_64.rpm
@@ -87,8 +87,8 @@ globus-gss-assist:
   :rpm_name: globus-gss-assist-10.21-1.el6.x86_64.rpm
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-gss-assist-10.15-1.el6.x86_64.rpm
 globus-gssapi-gsi:
-  :rpm_name: globus-gssapi-gsi-12.13-1.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-gssapi-gsi-11.26-1.el6.x86_64.rpm
+  :rpm_name: globus-gssapi-gsi-12.13-3.el6.x86_64.rpm
+  :source: https://epel.mirror.constant.com/epel/6/x86_64/globus-gssapi-gsi-12.13-3.el6.x86_64.rpm
 globus-openssl-module:
   :rpm_name: globus-openssl-module-4.8-1.el6.x86_64.rpm
   :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/globus-openssl-module-4.6-2.el6.x86_64.rpm
@@ -97,7 +97,7 @@ grafana:
   :source: https://packagecloud.io/grafana/stable/packages/el/6/grafana-3.1.1-1470047149.x86_64.rpm
 gweb:
   :rpm_name: gweb-2.1.8-1.noarch.rpm
-  :source: https://dl.bintray.com/simp/4.2.X-Ext/gweb-2.1.8-1.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/gweb-2.1.8-1.noarch.rpm
 haveged:
   :rpm_name: haveged-1.9.1-2.el6.x86_64.rpm
   :source: http://mirror.sfo12.us.leaseweb.net/epel/6/x86_64/haveged-1.9.1-2.el6.x86_64.rpm
@@ -148,10 +148,10 @@ libev:
   :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/libev-4.03-3.el6.x86_64.rpm
 libyaml:
   :rpm_name: libyaml-0.1.4-2.el6.x86_64.rpm
-  :source: https://dl.bintray.com/simp/4.2.X-Ext/libyaml-0.1.4-2.el6.x86_64.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/libyaml-0.1.4-2.el6.x86_64.rpm
 libyaml-devel:
   :rpm_name: libyaml-devel-0.1.4-2.el6.x86_64.rpm
-  :source: https://dl.bintray.com/simp/4.2.X-Ext/libyaml-devel-0.1.4-2.el6.x86_64.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/libyaml-devel-0.1.4-2.el6.x86_64.rpm
 logstash:
   :rpm_name: logstash-2.3.4-1.noarch.rpm
   :source: https://download.elastic.co/logstash/logstash/packages/centos/logstash-2.3.4-1.noarch.rpm
@@ -163,22 +163,22 @@ mysql-connector-python:
   :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/mysql-connector-python-1.1.6-1.el6.noarch.rpm
 pdsh:
   :rpm_name: pdsh-2.28-0.x86_64.rpm
-  :source: https://dl.bintray.com/simp/4.2.X-Ext/pdsh-2.28-0.x86_64.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/pdsh-2.28-0.x86_64.rpm
 pdsh-mod-dshgroup:
   :rpm_name: pdsh-mod-dshgroup-2.28-0.x86_64.rpm
-  :source: https://dl.bintray.com/simp/4.2.X-Ext/pdsh-mod-dshgroup-2.28-0.x86_64.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/pdsh-mod-dshgroup-2.28-0.x86_64.rpm
 pdsh-mod-machines:
   :rpm_name: pdsh-mod-machines-2.28-0.x86_64.rpm
-  :source: https://dl.bintray.com/simp/4.2.X-Ext/pdsh-mod-machines-2.28-0.x86_64.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/pdsh-mod-machines-2.28-0.x86_64.rpm
 pdsh-mod-netgroup:
   :rpm_name: pdsh-mod-netgroup-2.28-0.x86_64.rpm
-  :source: https://dl.bintray.com/simp/4.2.X-Ext/pdsh-mod-netgroup-2.28-0.x86_64.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/pdsh-mod-netgroup-2.28-0.x86_64.rpm
 pdsh-rcmd-exec:
   :rpm_name: pdsh-rcmd-exec-2.28-0.x86_64.rpm
-  :source: https://dl.bintray.com/simp/4.2.X-Ext/pdsh-rcmd-exec-2.28-0.x86_64.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/pdsh-rcmd-exec-2.28-0.x86_64.rpm
 pdsh-rcmd-ssh:
   :rpm_name: pdsh-rcmd-ssh-2.28-0.x86_64.rpm
-  :source: https://dl.bintray.com/simp/4.2.X-Ext/pdsh-rcmd-ssh-2.28-0.x86_64.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/pdsh-rcmd-ssh-2.28-0.x86_64.rpm
 perl-Crypt-DES:
   :rpm_name: perl-Crypt-DES-2.05-9.el6.x86_64.rpm
   :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/perl-Crypt-DES-2.05-9.el6.x86_64.rpm
@@ -204,14 +204,14 @@ perl-Time-modules:
   :rpm_name: perl-Time-modules-2006.0814-5.el6.noarch.rpm
   :source: Red Hat Base Repository
 postgresql94:
-  :rpm_name: postgresql94-9.4.10-1PGDG.rhel6.x86_64.rpm
-  :source: https://download.postgresql.org/pub/repos/yum/9.4/redhat/rhel-6.8-x86_64/postgresql94-9.4.10-1PGDG.rhel6.x86_64.rpm
+  :rpm_name: postgresql94-9.4.12-1PGDG.rhel6.x86_64.rpm
+  :source: https://download.postgresql.org/pub/repos/yum/9.4/redhat/rhel-6.9-x86_64/postgresql94-9.4.12-1PGDG.rhel6.x86_64.rpm
 postgresql94-libs:
-  :rpm_name: postgresql94-libs-9.4.10-1PGDG.rhel6.x86_64.rpm
-  :source: https://download.postgresql.org/pub/repos/yum/9.4/redhat/rhel-6.8-x86_64/postgresql94-libs-9.4.10-1PGDG.rhel6.x86_64.rpm
+  :rpm_name: postgresql94-libs-9.4.12-1PGDG.rhel6.x86_64.rpm
+  :source: https://download.postgresql.org/pub/repos/yum/9.4/redhat/rhel-6.9-x86_64/postgresql94-libs-9.4.12-1PGDG.rhel6.x86_64.rpm
 postgresql94-server:
-  :rpm_name: postgresql94-server-9.4.10-1PGDG.rhel6.x86_64.rpm
-  :source: https://download.postgresql.org/pub/repos/yum/9.4/redhat/rhel-6.8-x86_64/postgresql94-server-9.4.10-1PGDG.rhel6.x86_64.rpm
+  :rpm_name: postgresql94-server-9.4.12-1PGDG.rhel6.x86_64.rpm
+  :source: https://download.postgresql.org/pub/repos/yum/9.4/redhat/rhel-6.9-x86_64/postgresql94-server-9.4.12-1PGDG.rhel6.x86_64.rpm
 pssh:
   :rpm_name: pssh-2.3.1-5.el6.noarch.rpm
   :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/pssh-2.3.1-5.el6.noarch.rpm
@@ -238,7 +238,7 @@ python-argparse:
   :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/python-argparse-1.2.1-2.el6.noarch.rpm
 python-elasticsearch:
   :rpm_name: python-elasticsearch-1.2.0-0.el6.noarch.rpm
-  :source: https://dl.bintray.com/simp/4.2.X-Ext/python-elasticsearch-1.2.0-0.el6.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/python-elasticsearch-1.2.0-0.el6.noarch.rpm
 python-redis:
   :rpm_name: python-redis-2.0.0-1.el6.noarch.rpm
   :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/python-redis-2.0.0-1.el6.noarch.rpm
@@ -265,7 +265,7 @@ rubygem-ffi:
   :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/rubygem-ffi-1.4.0-2.el6.x86_64.rpm
 rubygem-highline:
   :rpm_name: rubygem-highline-1.6.11-1.noarch.rpm
-  :source: https://dl.bintray.com/simp/4.2.X-Ext/rubygem-highline-1.6.11-1.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-highline-1.6.11-1.noarch.rpm
 rubygem-net-ldap:
   :rpm_name: rubygem-net-ldap-0.6.1-2.el6.1.noarch.rpm
   :source: https://dl.fedoraproject.org/pub/epel/6/x86_64/rubygem-net-ldap-0.6.1-2.el6.1.noarch.rpm
@@ -286,16 +286,16 @@ rubygem-stomp-doc:
   :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/rubygem-stomp-doc-1.3.2-1.el6.noarch.rpm
 simp-lastbind:
   :rpm_name: simp-lastbind-2.4.23-0.x86_64.rpm
-  :source: https://dl.bintray.com/simp/4.2.X-Ext/simp-lastbind-2.4.23-0.x86_64.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/simp-lastbind-2.4.23-0.x86_64.rpm
 simp-ppolicy-check-password:
   :rpm_name: simp-ppolicy-check-password-2.4.39-0.el6.x86_64.rpm
-  :source: https://dl.bintray.com/simp/4.2.X-Ext/simp-ppolicy-check-password-2.4.39-0.el6.x86_64.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/simp-ppolicy-check-password-2.4.39-0.el6.x86_64.rpm
 sudosh2:
   :rpm_name: sudosh2-1.0.2-2.el6.x86_64.rpm
-  :source: https://dl.bintray.com/simp/4.2.X-Ext/sudosh2-1.0.2-2.el6.x86_64.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/sudosh2-1.0.2-2.el6.x86_64.rpm
 tpm-tools-pkcs11:
   :rpm_name: tpm-tools-pkcs11-1.3.4-2.el6.x86_64.rpm
-  :source: http://mirror.steadfast.net/centos/6.8/os/x86_64/Packages/tpm-tools-pkcs11-1.3.4-2.el6.x86_64.rpm
+  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.9/os/x86_64/Packages/tpm-tools-pkcs11-1.3.4-2.el6.x86_64.rpm
 voms:
   :rpm_name: voms-2.0.14-1.el6.x86_64.rpm
   :source: http://mirror.symnds.com/distributions/fedora-epel/6/x86_64/voms-2.0.12-3.el6.x86_64.rpm

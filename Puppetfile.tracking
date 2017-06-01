@@ -25,13 +25,9 @@ mod 'rubygem-simp_cli',
 
 moduledir 'src/puppet/modules'
 
-mod 'bfraser-grafana',
-  :git => 'https://github.com/simp/puppet-grafana',
-  :ref => 'master'
-
-mod 'binford2k-node_encrypt',
-  :git => 'https://github.com/simp/binford2k-node_encrypt.git',
-  :ref => 'master'
+mod 'puppet-grafana',
+  :git => 'https://github.com/simp/puppet-grafana.git',
+  :tag => 'v3.0.0'
 
 mod 'camptocamp-kmod',
   :git => 'https://github.com/simp/puppet-kmod.git',
@@ -39,11 +35,11 @@ mod 'camptocamp-kmod',
 
 mod 'elastic-elasticsearch',
   :git => 'https://github.com/simp/puppet-elasticsearch',
-  :ref => 'simp-master'
+  :tag => '5.2.0'
 
 mod 'elastic-logstash',
   :git => 'https://github.com/simp/puppet-logstash',
-  :ref => 'master'
+  :tag => '5.2.1'
 
 mod 'electrical-file_concat',
   :git => 'https://github.com/simp/puppet-lib-file_concat',

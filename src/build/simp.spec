@@ -14,7 +14,6 @@ Requires: httpd >= 2.2
 Obsoletes: simp-hiera < 3.0.2
 
 # Core SIMP Requirements
-Requires: pupmod-binford2k-node_encrypt >= 0.2.5, pupmod-binford2k-node_encrypt < 1.0.0
 Requires: pupmod-camptocamp-kmod >= 2.1.0, pupmod-camptocamp-kmod < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders >= 2.1.3-2016, pupmod-herculesteam-augeasproviders < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_apache >= 2.0.1-2016, pupmod-herculesteam-augeasproviders_apache < 3.0.0
@@ -111,15 +110,14 @@ Prefix: %{_sysconfdir}/puppet
 %package extras
 Summary: Extra Packages for SIMP
 License: Apache-2.0
-Requires: pupmod-bfraser-grafana >= 2.5.0-2016
-Requires: pupmod-elasticsearch-elasticsearch >= 0.11.0-2016
-Requires: pupmod-elasticsearch-logstash >= 0.6.4-2016
+Requires: pupmod-puppet-grafana >= 3.0.0-2016
+Requires: pupmod-elastic-elasticsearch >= 5.2.0-2016
+Requires: pupmod-elastic-logstash >= 5.2.1-2016
 Requires: pupmod-electrical-file_concat >= 1.0.1-2016
 Requires: pupmod-herculesteam-augeasproviders_mounttab >= 2.0.1-2016
 Requires: pupmod-herculesteam-augeasproviders_nagios >= 2.0.1-2016
 Requires: pupmod-herculesteam-augeasproviders_pam >= 2.0.3-2016
 Requires: pupmod-puppetlabs-mysql >= 2.2.3-2016
-Requires: pupmod-simp-foreman >= 1.0.0
 Requires: pupmod-simp-gdm >= 6.0.0-2016
 Requires: pupmod-simp-gnome >= 6.0.0-2016
 Requires: pupmod-simp-jenkins >= 6.0.0-2016
@@ -201,6 +199,10 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Thu May 25 2017 Nick Markowski <nmarkowski@keywcorp.com> - 6.0.2-0
+- Removed core module binford2k-node_encrypt.  There are issues with
+  the module and we don't currently use it anywhere in core.
+
 * Thu May 04 2017 Nick Miller <nick.miller@onyxpoint.com> - 6.0.2-0
 - Added core module binford2k-node_encrypt
 
