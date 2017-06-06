@@ -123,6 +123,10 @@ mod 'puppetlabs-java_ks',
   :git => 'https://github.com/simp/puppetlabs-java_ks',
   :ref => 'master'
 
+mod 'puppetlabs-puppet_authorization',
+  :git => 'https://github.com/simp/puppetlabs-puppet_authorization.git',
+  :ref => 'master'
+
 mod 'puppetlabs-motd',
   :git => 'https://github.com/simp/puppetlabs-motd',
   :ref => 'master'
