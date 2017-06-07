@@ -1,4 +1,6 @@
 ---
 fixtures:
+  repositories:
+    '../inspec-stig-rhel7': https://github.com/inspec-stigs/inspec-stig-rhel7
   symlinks:
     garbage: "#{source_dir}/spec/fixtures/modules"
