@@ -1,4 +1,0 @@
-Things should go in here that need to build RPMs via 'rake pkg:rpm' but that do
-not have their own repos.
-
-Anything with its own repo should be fetched and built via the Puppetfile

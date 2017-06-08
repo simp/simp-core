@@ -13,8 +13,20 @@ mod 'simp-rsync',
 
 moduledir 'src/assets'
 
+mod 'simp-adapter',
+:git => 'https://github.com/simp/simp-adapter',
+:ref => 'master'
+
 mod 'simp-environment',
   :git => 'https://github.com/simp/simp-environment-skeleton',
+  :ref => 'master'
+
+mod 'simp-gpgkeys',
+  :git => 'https://github.com/simp/simp-gpgkeys',
+  :ref => 'master'
+
+mod 'simp-utils',
+  :git => 'https://github.com/simp/simp-utils',
   :ref => 'master'
 
 moduledir 'src/rubygems'
