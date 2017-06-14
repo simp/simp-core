@@ -1,5 +1,0 @@
---- 
-  fixtures: 
-    symlinks: 
-      acpid: "#{source_dir}"
-      simp: "#{source_dir}/../simp"
