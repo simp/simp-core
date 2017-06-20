@@ -4,71 +4,8 @@ require 'pathname'
 
 test_name 'puppetserver via rpm'
 
-# Find a release tarball
-def find_tarball
-  tarball = ENV['BEAKER_release_tarball']
-  tarball ||= Dir.glob('build/distributions/CentOS/6/x86_64/DVD_Overlay/SIMP*.tar.gz')[0]
-  warn("Found Tarball: #{tarball}")
-  tarball
-end
 
-def find_reponame
-  reponame = ENV['BEAKER_reponame']
-  reponame ||= '6_X'
-  warn("Using SIMP reponame #{reponame}")
-  reponame
-end
-
-def tarball_yumrepos(host, tarball)
-  if tarball =~ /download/
-    filename = 'SIMP-6.0.0-0-CentOS-6-x86_64.tar.gz'
-    url = ENV['BEAKER_tarball_url']
-    url ||= "https://simp-project.com/ISO/SIMP/tar_bundles/#{filename}"
-    require 'net/http'
-    File.write("spec/fixtures/#{filename}", Net::HTTP.get(URI.parse(url)))
-    tarball = "spec/fixtures/#{filename}"
-  end
-
-  warn('='*72)
-  warn("Found Tarball: #{tarball}")
-  warn('Test will continue by setting up a local repository on the master from the tarball')
-  warn('='*72)
-
-#  host.install_package('http://yum.puppetlabs.com/puppetlabs-release-pc1-el-6.noarch.rpm')
-
-  host.install_package('createrepo')
-  scp_to(host, tarball, '/root/')
-  tarball_basename = File.basename(tarball)
-  on(host, "mkdir -p /var/www && cd /var/www && tar xzf /root/#{tarball_basename}")
-  on(host, 'createrepo -q -p /var/www/SIMP/noarch')
-  create_remote_file(host, '/etc/yum.repos.d/simp_tarball.repo', <<-EOF.gsub(/^\s+/,'')
-    [simp-tarball]
-    name=Tarball repo
-    baseurl=file:///var/www/SIMP/noarch
-    enabled=1
-    gpgcheck=0
-    repo_gpgcheck=0
-    EOF
-  )
-  on(host, 'yum makecache')
-end
-
-# Install the packagecloud yum repos
-# See https://packagecloud.io/simp-project/ for the reponame key
-def internet_yumrepos(host, reponame)
-  if reponame !~ /manual/
-    warn('='*72)
-    warn('Using Internet repos from packagecloud for testing')
-    warn('Specify a tarball with BEAKER_release_tarball or by placing one in spec/fixtures')
-    warn('='*72)
-
-    on(host, "curl -s https://packagecloud.io/install/repositories/simp-project/#{reponame}/script.rpm.sh | bash")
-    on(host, "curl -s https://packagecloud.io/install/repositories/simp-project/#{reponame}_Dependencies/script.rpm.sh | bash")
-  else
-    warn('Internet yumrepos disabled, modify nodeset to add manual repos')
-  end
-end
-
+test_name 'puppetserver via rpm'
 
 describe 'install SIMP via rpm' do
 
@@ -76,6 +13,8 @@ describe 'install SIMP via rpm' do
   agents  = hosts_with_role(hosts, 'agent')
   let(:domain)      { fact_on(master, 'domain') }
   let(:master_fqdn) { fact_on(master, 'fqdn') }
+  let(:majver)      { fact_on(master, 'operatingsystemmajrelease') }
+  let(:osname)      {fact_on(master, ':operatingsystem') }
 
   hosts.each do |host|
     it 'should set the root password' do
@@ -90,14 +29,23 @@ describe 'install SIMP via rpm' do
       it 'should set up SIMP repositories' do
         master.install_package('epel-release')
 
-        tarball = find_tarball
+        tarball = find_tarball(:majver, :osname)
         if tarball.nil? or tarball.empty?
-          internet_yumrepos(master, find_reponame)
+          internet_simprepo(master, find_reponame)
         else
           tarball_yumrepos(master, tarball)
         end
         on(master, 'yum makecache')
       end
+
+      use_puppet_repo = ENV['BEAKER_puppet_repo'] || false
+
+      if use_puppet_repo
+        host.install_package('http://yum.puppetlabs.com/puppetlabs-release-pc1-el-6.noarch.rpm')
+      end
+
+      #Set up the simp project dependancy repo
+      internet_deprepo(master,find_reponame)
 
       it 'should install simp' do
         master.install_package('simp-adapter-foss')
@@ -105,7 +53,7 @@ describe 'install SIMP via rpm' do
       end
 
       it 'should run simp config' do
-        # grub password: XrlJsxJHI7Ba%IVSxYG+1WVqj3n33WPv
+        # grub password: H.SxdcuyF56G75*3ww*HF#9i-eDM3Dp5
         # ldap root password: Q*AsdtFlHSLp%Q3tsSEc3vFbFx5Vwe58
         create_remote_file(master, '/root/simp_conf.yaml', ERB.new(simp_conf_template).result(binding))
         on(master, 'simp config -a /root/simp_conf.yaml --quiet --skip-safety-save')
@@ -187,7 +135,7 @@ describe 'install SIMP via rpm' do
         end
         agent.install_package('puppet-agent')
         agent.install_package('net-tools')
-        internet_yumrepos(agent, find_reponame)
+        internet_deprepo(agent, find_reponame)
       end
       it 'should run the agent' do
         # require 'pry';binding.pry if fact_on(agent, 'hostname') == 'agent'
