@@ -1,100 +1,57 @@
 require 'beaker-rspec'
 require 'tmpdir'
-require 'yaml'
 require 'simp/beaker_helpers'
 include Simp::BeakerHelpers
 
+
+# Install Facter for beaker helpers
 unless ENV['BEAKER_provision'] == 'no'
-  hosts.each do |host|
-    # Install Facter for beaker helpers
-    host.install_package('rubygems')
-    on(host, 'gem install facter')
-    on(host, 'echo export PATH=$PATH:/usr/local/bin > /root/.bashrc')
-  end
-end
-
-# Find a release tarball
-def find_tarball(relver,osname)
-# set the tar ball using environment variable 'BEAKER_release_tarball'
-# If it begins with https: then download it from that URL
-  tarball = ENV['BEAKER_release_tarball']
-  #If tarball is not defined, check for one in the build directory
-  if ( tarball.nil? or tarball.empty? )
-    tarball = Dir.glob("build/distributions/#{osname}/#{relver}/x86_64/DVD_Overlay/SIMP*.tar.gz")[0]
-  end
-  if tarball =~ /https/
-    filename = 'SIMP-downloaded-CentOS-7-x86_64.tar.gz'
-    url = "#{tarball}"
-    require 'net/http'
-    Dir.exists?("spec/fixtures") || Dir.mkdir("spec/fixtures")
-    File.write("spec/fixtures/#{filename}", Net::HTTP.get(URI.parse(url)))
-    tarball = "spec/fixtures/#{filename}"
-    warn("Found tarball.  Downloaded from #{url}")
-  else
-    if not ( tarball.nil? or tarball.empty? )
-      if File.exists?(tarball)
-        warn("Found Tarball: #{tarball}")
-      else
-        warn("Tarball #{tarball} not found, will use Project repos")
-        #Set tarball to empty so it will use project repos
-        tarball = ''
-      end
+    hosts.each do |host|
+      host.install_package('rubygems')
+      on(host, 'gem install facter')
+      on(host, 'echo export PATH=$PATH:/usr/local/bin > /root/.bashrc')
     end
-  end 
-  tarball
 end
 
-def find_reponame
-  reponame = ENV['BEAKER_reponame']
+
+def setup_repo(host)
+  reponame = ENV['BEAKER_repo']
   reponame ||= '6_X'
-  warn("Using SIMP reponame #{reponame}")
-  reponame
-end
-
-def tarball_yumrepos(host, tarball)
-  warn('='*72)
-  warn("Found Tarball: #{tarball}")
-  warn('Test will continue by setting up a local repository on the master from the tarball')
-  warn('='*72)
-
-
-  host.install_package('createrepo')
-  scp_to(host, tarball, '/root/')
-  tarball_basename = File.basename(tarball)
-  on(host, "mkdir -p /var/www && cd /var/www && tar xzf /root/#{tarball_basename}")
-  on(host, 'createrepo -q -p /var/www/SIMP/noarch')
-  create_remote_file(host, '/etc/yum.repos.d/simp_tarball.repo', <<-EOF.gsub(/^\s+/,'')
-    [simp-tarball]
-    name=Tarball repo
-    baseurl=file:///var/www/SIMP/noarch
-    enabled=1
-    gpgcheck=0
-    repo_gpgcheck=0
-    EOF
-  )
-  on(host, 'yum makecache')
+  if reponame[0] == '/' 
+    setup_repo=copy_repo(host,reponame)
+  else
+    setup_repo=internet_simprepo(host, reponame)
+  end 
+  setup_repo
 end
 
 # Install the packagecloud yum repos
 # See https://packagecloud.io/simp-project/ for the reponame key
 def internet_simprepo(host, reponame)
-  if reponame !~ /manual/
     warn('='*72)
-    warn('Using Internet repos from packagecloud for testing')
-    warn('If you do not want to use the project repos ')
-    warn('Specify a tarball with BEAKER_release_tarball or by placing one in the build DVD_Overlay directory')
+    warn("Using Internet repos from packagecloud for testing version #{reponame}")
     warn('='*72)
 
     on(host, "curl -s https://packagecloud.io/install/repositories/simp-project/#{reponame}/script.rpm.sh | bash")
-  else
-    warn('Internet yumrepos disabled, modify nodeset to add manual repos')
+    on(host, "curl -s https://packagecloud.io/install/repositories/simp-project/#{reponame}_Dependencies/script.rpm.sh | bash")
+    internet_repo = true
+end
+
+def copy_repo(host,reponame)
+  if File.exists(reponame)
+    warn('='*72)
+    warn("Using repos defined in #{reponame}")
+    warn('='*72)
+    text = File.read(reponame)
+    repo_copied = create_remote_file(hosts,'/etc/yum.repo.d/simp_manual.repo',text)
+  else 
+    warn('='*72)
+    warn("File #{reponame} could not be found")
+    warn('='*72)
+    repo_copied = false
   end
-end
-
-def internet_deprepo(host, reponame)
-  on(host, "curl -s https://packagecloud.io/install/repositories/simp-project/#{reponame}_Dependencies/script.rpm.sh | bash")
-end
-
+  repo_copied
+end 
 
 
 RSpec.configure do |c|
