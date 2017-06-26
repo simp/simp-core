@@ -29,7 +29,7 @@ describe 'install SIMP via tar' do
   let(:domain)      { fact_on(master, 'domain') }
   let(:master_fqdn) { fact_on(master, 'fqdn') }
   let(:majver)      { fact_on(master, 'operatingsystemmajrelease') }
-  let(:osname)      {fact_on(master, ':operatingsystem') }
+  let(:osname)      { fact_on(master, 'operatingsystem') }
 
   hosts.each do |host|
     it 'should set the root password' do
@@ -44,7 +44,7 @@ describe 'install SIMP via tar' do
       it 'should set up SIMP repositories' do
         master.install_package('epel-release')
 
-        tarball = find_tarball(:majver, :osname)
+        tarball = find_tarball(majver, osname)
         if tarball.nil?
           fail("Tarball not found")
         else
@@ -55,7 +55,7 @@ describe 'install SIMP via tar' do
 
       use_puppet_repo = ENV['BEAKER_puppet_repo'] || false
       if use_puppet_repo
-        host.install_package('http://yum.puppetlabs.com/puppetlabs-release-pc1-el-6.noarch.rpm')
+        master.install_package('http://yum.puppetlabs.com/puppetlabs-release-pc1-el-6.noarch.rpm')
         on(master, 'mkdir -p /etc/portreserve')
         on(master, 'echo rndc/tcp > /etc/portreserve/named')
       end

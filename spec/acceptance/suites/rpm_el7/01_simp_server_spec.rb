@@ -34,8 +34,6 @@ describe 'install SIMP via rpm' do
   agents  = hosts_with_role(hosts, 'agent')
   let(:domain)      { fact_on(master, 'domain') }
   let(:master_fqdn) { fact_on(master, 'fqdn') }
-  let(:majver)      { fact_on(master, 'operatingsystemmajrelease') }
-  let(:osname)      {fact_on(master, ':operatingsystem') }
 
   hosts.each do |host|
     it 'should set the root password' do
@@ -56,7 +54,7 @@ describe 'install SIMP via rpm' do
       use_puppet_repo = ENV['BEAKER_puppet_repo'] || false
 
       if use_puppet_repo
-        host.install_package('http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm')
+        master.install_package('http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm')
       end
 
       it 'should install simp' do
