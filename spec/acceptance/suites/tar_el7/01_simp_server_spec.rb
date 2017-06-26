@@ -16,13 +16,13 @@
 #     default:  in it is not set it will look for the tar ball in the DVD_Overlay
 #     directory under the simp-core/build directory.
 #
-require 'spec_helper_rpm'
+require 'spec_helper_tar'
 require 'erb'
 require 'pathname'
 
-test_name 'puppetserver via rpm'
+test_name 'puppetserver via tarball'
 
-describe 'install SIMP via rpm' do
+describe 'install SIMP via tarball' do
 
   masters = hosts_with_role(hosts, 'master')
   agents  = hosts_with_role(hosts, 'agent')

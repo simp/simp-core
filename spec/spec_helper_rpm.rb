@@ -38,12 +38,11 @@ def internet_simprepo(host, reponame)
 end
 
 def copy_repo(host,reponame)
-  if File.exists(reponame)
+  if File.exists?(reponame)
     warn('='*72)
     warn("Using repos defined in #{reponame}")
     warn('='*72)
-    text = File.read(reponame)
-    repo_copied = create_remote_file(hosts,'/etc/yum.repo.d/simp_manual.repo',text)
+    repo_copied = scp_to(hosts,reponame,'/etc/yum.repos.d/simp_manual.repo')
   else 
     warn('='*72)
     warn("File #{reponame} could not be found")
