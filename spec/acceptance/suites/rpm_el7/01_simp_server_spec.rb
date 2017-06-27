@@ -1,6 +1,6 @@
 # This test attempts to set up two repos,
 # 1) the simp repo which contains all the puppet modules for a simp deployment
-# 2) the dependancy repo that contains rpm used by simp.
+# 2) the dependency repo that contains rpm used by simp.
 #
 # Use the following ENV variables to configure the test:
 #
@@ -17,7 +17,7 @@
 #
 # BEAKER_puppet_repo
 #     default = false; this means that your repos include a version of puppet
-#              in them to install.  (The package cloud dependancy repo has 
+#              in them to install.  (The package cloud dependency repo has 
 #              a version of puppet in it.)
 #     true    = It downloads and installs the puppet repo definition and will use
 #             the latest version of puppet.

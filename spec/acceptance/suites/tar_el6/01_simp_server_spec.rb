@@ -1,6 +1,6 @@
 # This test attempts to set up two repos,
 # 1) the simp repo which contains all the puppet modules for a simp deployment
-# 2) the dependancy repo that contains rpm used by simp.
+# 2) the dependency repo that contains rpm used by simp.
 #
 # Use the following ENV variables to configure the test:
 #
@@ -60,7 +60,7 @@ describe 'install SIMP via tar' do
         on(master, 'echo rndc/tcp > /etc/portreserve/named')
       end
 
-      #Set up the simp project dependancy repo
+      #Set up the simp project dependency repo
       internet_deprepo(master)
 
       it 'should install simp' do
