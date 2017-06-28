@@ -1,0 +1,29 @@
+---
+# This is the default hiera.yaml file
+# Feel free to modify the hierarchy to suit your needs but please
+# leave the simp* entries in place at the bottom of the list
+:backends:
+  - 'yaml'
+  - 'json'
+:hierarchy:
+  - 'hosts/%{trusted.certname}'
+  - 'hosts/%{facts.fqdn}'
+  - 'hosts/%{facts.hostname}'
+  - 'domains/%{facts.domain}'
+  - '%{facts.os.family}'
+  - '%{facts.os.name}/%{facts.os.release.full}'
+  - '%{facts.os.name}/%{facts.os.release.major}'
+  - '%{facts.os.name}'
+  - 'hostgroups/%{::hostgroup}'
+  - 'default'
+  - 'compliance_profiles/%{::compliance_profile}'
+  - 'simp_config_settings'
+  - 'scenarios/%{::simp_scenario}'
+:logger: 'puppet'
+# When specifying a datadir:
+# # 1) Make sure the directory exists
+# # 2) Make sure the directory reflects the hierarchy
+:yaml:
+  :datadir: '/etc/puppetlabs/code/environments/%{::environment}/hieradata'
+:json:
+  :datadir: '/etc/puppetlabs/code/environments/%{::environment}/hieradata'

@@ -5,35 +5,31 @@
 # Use the following ENV variables to configure the test:
 #
 # BEAKER_repo
+#     This is used by 'cloud' set up to determine which package cloud
+#     repos to use to set up the dependancies repo.  It defaults to 6_X.
 #
-#     default - if BEAKER_repo is not set this will default
-#               to using the package cloud repos version 6_X.
-#     fully qualified path - if this is set to a fully qualified
-#               path, it will assume this is a repo file that contains
-#               definitions for both the simp repo and the simp dependancies
-#               repo
-#     version -  if it is defined and does not start with "/" it will assume
-#               it is an different version for the simp package cloud.`
+# BEAKER_release_tarball
+#     This can be used to override the simp libraries with either cloud or default.
+#     It should be either
+#        - a url pointing to a tar ball to be downloaded (http: or https:).
+#        - a full path to a tarball located on the server running the tests.
+#     default:  in it is not set it will look for the tar ball in the DVD_Overlay
+#     directory under the simp-core/build directory.
 #
-# BEAKER_puppet_repo
-#     default = false; this means that your repos include a version of puppet
-#              in them to install.  (The package cloud dependency repo has 
-#              a version of puppet in it.)
-#     true    = It downloads and installs the puppet repo definition and will use
-#             the latest version of puppet.
-#
-require 'spec_helper_rpm'
+require 'spec_helper_tar'
 require 'erb'
 require 'pathname'
 
-test_name 'puppetserver via rpm'
+test_name 'puppetserver via tarball'
 
-describe 'install SIMP via rpm' do
+describe 'install SIMP via tarball' do
 
   masters = hosts_with_role(hosts, 'master')
   agents  = hosts_with_role(hosts, 'agent')
   let(:domain)      { fact_on(master, 'domain') }
   let(:master_fqdn) { fact_on(master, 'fqdn') }
+  let(:majver)      { fact_on(master, 'operatingsystemmajrelease') }
+  let(:osname)      { fact_on(master, 'operatingsystem') }
 
   hosts.each do |host|
     it 'should set the root password' do
@@ -43,21 +39,27 @@ describe 'install SIMP via rpm' do
   end
 
   context 'master' do
-    let(:simp_conf_template) { File.read(File.open('spec/acceptance/suites/rpm_el6/files/simp_conf.yaml.erb')) }
+    let(:simp_conf_template) { File.read(File.open('spec/acceptance/suites/tar_el7/files/simp_conf.yaml.erb')) }
     masters.each do |master|
       it 'should set up SIMP repositories' do
         master.install_package('epel-release')
-        setup_repo(master)
+
+        tarball = find_tarball(majver, osname)
+        if tarball.nil?
+          fail("Tarball not found")
+        else
+          tarball_yumrepos(master, tarball)
+        end
         on(master, 'yum makecache')
       end
 
       use_puppet_repo = ENV['BEAKER_puppet_repo'] || false
-
       if use_puppet_repo
-        master.install_package('http://yum.puppetlabs.com/puppetlabs-release-pc1-el-6.noarch.rpm')
-        on(master, 'mkdir -p /etc/portreserve')
-        on(master, 'echo rndc/tcp > /etc/portreserve/named')
+        master.install_package('http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm')
       end
+
+      #Set up the simp project dependency repo
+      internet_deprepo(master)
 
       it 'should install simp' do
         master.install_package('simp-adapter-foss')
@@ -137,18 +139,22 @@ describe 'install SIMP via rpm' do
   context 'agents' do
     agents.each do |agent|
       it 'should install the agent' do
-        if agent.host_hash[:platform] =~ /el-7/
-          agent.install_package('http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm')
-        else
-          agent.install_package('http://yum.puppetlabs.com/puppetlabs-release-pc1-el-6.noarch.rpm')
-          # the portreserve service will fail unless something is configured
-          on(agent, 'mkdir -p /etc/portreserve')
-          on(agent, 'echo rndc/tcp > /etc/portreserve/named')
+        use_puppet_repo = ENV['BEAKER_puppet_repo'] || false
+        if use_puppet_repo
+          if agent.host_hash[:platform] =~ /el-7/
+            agent.install_package('http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm')
+          else
+            agent.install_package('http://yum.puppetlabs.com/puppetlabs-release-pc1-el-6.noarch.rpm')
+            # the portreserve service will fail unless something is configured
+            on(agent, 'mkdir -p /etc/portreserve')
+            on(agent, 'echo rndc/tcp > /etc/portreserve/named')
+          end
         end
+        internet_deprepo(agent)
         agent.install_package('epel-release')
         agent.install_package('puppet-agent')
         agent.install_package('net-tools')
-        setup_repo(agent)
+        internet_deprepo(agent)
       end
       it 'should run the agent' do
         # require 'pry';binding.pry if fact_on(agent, 'hostname') == 'agent'
