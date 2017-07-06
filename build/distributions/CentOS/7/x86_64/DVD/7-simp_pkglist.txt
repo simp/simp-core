@@ -1309,12 +1309,15 @@ python-ldap
 python-libs
 python-linecache2
 python-lxml
+python-magic
 python-memcached
 python-perf
 python-pycurl
 python-pyro
 python-pyudev
 python-redis
+python-rhsm
+python-rhsm-certificates
 python-setuptools
 python-simplejson
 python-six
