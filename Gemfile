@@ -18,18 +18,19 @@ end
 
 # mandatory gems
 gem 'bundler'
-gem 'rake'
 gem 'coderay'
+gem 'dotenv'
+gem 'google-api-client', '0.9.4'
+gem 'metadata-json-lint'
+gem 'parallel'
 gem 'puppet', ENV.fetch('PUPPET_VERSION', '~>4')
 gem 'puppet-lint'
 gem 'puppet-strings'
 gem 'puppetlabs_spec_helper'
-gem 'simp-rake-helpers', ENV.fetch('SIMP_RAKE_HELPERS_VERSION', '~> 3.3')
-gem 'simp-build-helpers', ENV.fetch('SIMP_RAKE_HELPERS_VERSION', '>=0.1.0')
-gem 'parallel'
-gem 'dotenv'
+gem 'rake'
 gem 'ruby-progressbar'
-gem 'google-api-client', '0.9.4'
+gem 'simp-build-helpers', ENV.fetch('SIMP_RAKE_HELPERS_VERSION', '>=0.1.0')
+gem 'simp-rake-helpers', ENV.fetch('SIMP_RAKE_HELPERS_VERSION', '~> 3.3')
 
 group :system_tests do
   gem 'beaker'

@@ -1,53 +1,39 @@
+[![License](https://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/73/badge)](https://bestpractices.coreinfrastructure.org/projects/73)
+[![Puppet Forge](https://img.shields.io/puppetforge/v/simp/simp_core.svg)](https://forge.puppetlabs.com/simp/simp_core)
+[![Puppet Forge Downloads](https://img.shields.io/puppetforge/dt/simp/simp_core.svg)](https://forge.puppetlabs.com/simp/simp_core)
+[![Puppet Forge Modules](https://img.shields.io/puppetforge/mc/simp.svg)](https://forge.puppetlabs.com/simp)
+[![Build Status](https://travis-ci.org/simp/simp-core.svg)](https://travis-ci.org/simp/simp-core)
 
-This is the 6.X series of the [SIMP](https://github.com/NationalSecurityAgency/SIMP) supermodule.
+This is the [SIMP](https://simp-project.com) supermodule.
 
+The latest release is [![GitHub release](https://img.shields.io/github/release/simp/simp-core.svg)](https://github.com/simp/simp-core/releases)
 
 1. [Supported releases](#supported-releases)
-2. [Building the SIMP ISO](#building-the-simp-iso)
-  1. [Prerequisites](#prerequisites)
-  2. [Quickstart](#quickstart)
-  3. [Full build procedure](#full-procedure)
-3. [Links](#links)
+2. [Getting Started](#getting-started)
+3. [Relevant Links](#relevant-links)
 
 
-## Supported releases
-This branch supports:
-  - RHEL 7.2
-  - [CentOS 7 1511](http://isoredirect.centos.org/centos/7.2.1511/isos/x86_64/CentOS-7-x86_64-DVD-1511.iso)
+## Supported Releases
+
+  - [Red Hat Enterprise Linux 7.3](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/7.3_Release_Notes/index.html)
+  - [CentOS 7 1611](http://isoredirect.centos.org/centos/7/isos/x86_64/CentOS-7-x86_64-DVD-1611.iso)
+  * [Red Hat Enterprise Linux 6.8](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/6.8_Release_Notes/index.html)
+  * [CentOS 6.8](http://mirror.centos.org/centos/6/isos/x86_64/)
 
 
-## Building the SIMP ISO
+## Getting Started
+
+Please take a look at the [SIMP Documentation](http://simp.readthedocs.io/en/6.0.0-0/)
+for this release for full details on using the SIMP system.
+
+We recommend that you also reference the
+[latest rolling Documentation](http://simp.readthedocs.io/en/latest/)
+for any relevant updates or corrections.
 
 
-**NOTE** The following examples use `CentOS-7-x86_64-DVD-1511.iso` as an overlay source.
+## Relevant Links
 
-### Prerequisites
-   - You must first:
-     - [Set up your build environment](https://simp-project.atlassian.net/wiki/display/SD/Setting+up+your+build+environment)
-     - Download an appropriate source ISO to overlay (in this example CentOS-7-x86_64-DVD-1511.iso)
-     - If building the release tarballs from scratch:
-        - ~70GB free in the mock root directory (generally this is `/var/lib/mock`)
-
-### Quickstart
-
-
-The minimum necessary command to build SIMP from scratch is:
-```bash
-bundle exec rake build:auto[6.X,path/to/CentOS-7-x86_64-DVD-1511.iso]
-```
-
-
-If building from published [release tarball](https://bintray.com/artifact/download/simp/Releases/SIMP-DVD-CentOS-5.1.0-2.tar.gz):
-```bash
-bundle exec rake build:auto[6.X,path/to/CentOS-7-x86_64-DVD-1511.iso,path/to/SIMP-DVD-CentOS-6.0.0-0.tar.gz]
-```
-
-
-### Full procedure
-There is full procedure for [compiling the SIMP tarball and ISO](https://simp-project.atlassian.net/wiki/display/SD/Compiling+the+SIMP+Tarball+and+ISO) in the [SIMP Development](https://simp-project.atlassian.net/wiki/display/SD/) documentation.
-
-## Links
-- [SIMP master repository](https://github.com/NationalSecurityAgency/SIMP)
-- [SIMP Development documentation](https://simp-project.atlassian.net/wiki/display/SD)
-- [SIMP admin/user documentation](http://simp.readthedocs.org/en/latest/)
+- [SIMP Documentation](http://simp.readthedocs.io)
+- [SIMP Help](http://simp.readthedocs.io/en/master/help/index.html)
+- [SIMP GitHub Project](https://github.com/simp)

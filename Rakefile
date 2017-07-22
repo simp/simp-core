@@ -12,6 +12,9 @@ rescue LoadError => e
   warn "WARNING: #{e.message}"
 end
 
+task :metadata_lint do
+  sh 'metadata-json-lint metadata.json'
+end
 
 task :default do
   help
