@@ -135,6 +135,20 @@ to **10GB**.
 Significant Updates
 -------------------
 
+Puppetserver auth.conf
+^^^^^^^^^^^^^^^^^^^^^^
+
+Legacy auth.conf has been deprecated.  The puppetserver's auth.conf is now
+managed by Puppet.  If you are upgrading from SIMP-6.0.0-0 to a later verison,
+you should:
+
+1. Back up legacy puppet auth.conf ``<puppet confdir>/auth.conf``, before
+   upgrade.
+
+2. Re-produce any custom work done to legacy auth.conf in the new auth.conf,
+   via the ``puppet_authorization::rule`` define.  The stock rules are managed
+   in ``pupmod::master::simp_auth``.
+
 Root Login via Console
 ^^^^^^^^^^^^^^^^^^^^^^
 
@@ -392,6 +406,7 @@ pupmod-simp-pam
 pupmod-simp-pupmod
 ^^^^^^^^^^^^^^^^^^
 
+* Deprecated legacy auth.conf
 * Fixed the cron job unlock code so that it actually work as documented
 * Made it more clear to the user how to disable the force-unlock
 
