@@ -1,25 +1,27 @@
-[simp-project_5_X]
-name=simp-project_5_X
-baseurl=https://packagecloud.io/simp-project/5_X/el/7/$basearch
+[simp-project_6_X]
+name=simp-project_6_X
+baseurl=https://packagecloud.io/simp-project/6_X/el/7/$basearch
 gpgcheck=1
 enabled=1
 gpgkey=https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
 
-[simp-project_5_X_dependencies]
-name=simp-project_5_1_X_dependencies
-baseurl=https://packagecloud.io/simp-project/5_X_Dependencies/el/7/$basearch
+[simp-project_6_X_dependencies]
+name=simp-project_6_X_dependencies
+baseurl=https://packagecloud.io/simp-project/6_X_Dependencies/el/7/$basearch
 gpgcheck=1
 enabled=1
 gpgkey=https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
        https://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs
+       https://yum.puppetlabs.com/RPM-GPG-KEY-puppet
+       https://apt.postgresql.org/pub/repos/yum/RPM-GPG-KEY-PGDG-94
        https://getfedora.org/static/352C64E5.txt
 
 [simp-legacy]
 name=simp-base
 baseurl=https://dl.bintray.com/simp/5.1.X
-enabled=1
+enabled=0
 
 [simp-ext-legacy]
 name=simp-ext
 baseurl=https://dl.bintray.com/simp/5.1.X-Ext
-enabled=1
+enabled=0
