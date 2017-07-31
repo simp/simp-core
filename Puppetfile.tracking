@@ -7,7 +7,7 @@ mod 'simp-doc',
   :git => 'https://github.com/simp/simp-doc',
   :ref => 'master'
 
-mod 'simp-rsync_skeleton',
+mod 'simp-rsync',
   :git => 'https://github.com/simp/simp-rsync-skeleton',
   :ref => 'master'
 
