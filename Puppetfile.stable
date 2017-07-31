@@ -1,10 +1,10 @@
 moduledir 'src'
 
-mod 'simp-doc',
+mod 'simp_core-doc',
   :git => 'https://github.com/simp/simp-doc',
   :ref => '79c18f732f6c73b8bff21809c639771a892722f2'
 
-mod 'simp-rsync'
+mod 'simp_core-rsync'
   :git => 'https://github.com/simp/simp-rsync-skeleton',
   :ref => 'd03a15bfbdb7fd756b71e3e8e10b2fc7bbaa9f31'
 
