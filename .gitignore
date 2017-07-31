@@ -23,6 +23,6 @@ src/doc
 src/puppet/bootstrap/dist
 src/puppet/bootstrap/environments/simp/hieradata/.simp_migrated
 src/puppet/modules
-src/rsync_skeleton
+src/rsync
 src/rubygems
 src/utils/dist
