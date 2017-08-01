@@ -18,8 +18,8 @@ The latest release is [![GitHub release](https://img.shields.io/github/release/s
 
   - [Red Hat Enterprise Linux 7.3](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/7.3_Release_Notes/index.html)
   - [CentOS 7 1611](http://isoredirect.centos.org/centos/7/isos/x86_64/CentOS-7-x86_64-DVD-1611.iso)
-  * [Red Hat Enterprise Linux 6.8](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/6.8_Release_Notes/index.html)
-  * [CentOS 6.8](http://mirror.centos.org/centos/6/isos/x86_64/)
+  * [Red Hat Enterprise Linux 6.9](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/6.9_Release_Notes/index.html)
+  * [CentOS 6.9](http://mirror.centos.org/centos/6/isos/x86_64/)
 
 
 ## Getting Started
