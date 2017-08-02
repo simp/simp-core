@@ -4,7 +4,7 @@
   "author": "SIMP Team",
   "summary": "A Metamodule for SIMP",
   "license": "Apache-2.0",
-  "source": "https://github.com/simp/simp_core",
+  "source": "https://github.com/simp/simp-core",
   "project_page": "https://simp-project.com",
   "issues_url": "https://simp-project.atlassian.net",
   "tags": [
