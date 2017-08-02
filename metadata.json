@@ -1,0 +1,54 @@
+{
+  "name": "simp-simp_core",
+  "version": "6.0.0",
+  "author": "SIMP Team",
+  "summary": "A Metamodule for SIMP",
+  "license": "Apache-2.0",
+  "source": "https://github.com/simp/simp-core",
+  "project_page": "https://simp-project.com",
+  "issues_url": "https://simp-project.atlassian.net",
+  "tags": [
+    "simp",
+    "bundle",
+    "security",
+    "compliance",
+    "NIST 800-53",
+    "DISA STIG"
+  ],
+  "dependencies": [
+    {
+      "name": "simp/compliance_markup",
+      "version_requirement": ">= 2.1.0 < 3.0.0"
+    },
+    {
+      "name": "simp/simp_options",
+      "version_requirement": ">= 1.0.1 < 2.0.0"
+    },
+    {
+      "name": "simp/simp",
+      "version_requirement": ">= 4.0.0 < 5.0.0"
+    }
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 4.7.0 < 6.0.0"
+    }
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "6",
+        "7"
+      ]
+    }
+  ]
+}

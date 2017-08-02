@@ -1,0 +1,9 @@
+.fixtures.yml
+.git*
+Gemfile*
+Puppetfile*
+build/
+junit/
+log/
+spec/
+src/
