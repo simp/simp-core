@@ -60,7 +60,7 @@ describe 'install environment via r10k and puppetserver' do
     masters.each do |master|
       master.install_package('wget')
       moduledir = create_tmpdir_on(master)
-      deps = [ 'pupmod-simp-pupmod','pupmod-simp-pam','pupmod-simp-sudo','pupmod-simp-simplib','pupmod-simp-simpcat','pupmod-simp-iptables','pupmod-simp-tcpwrappers','augeasproviders_ssh','augeasproviders_core','puppetlabs-stdlib','puppetlabs-inifile','puppetlabs-concat','puppet-haveged']
+      deps = [ 'pupmod-simp-pupmod','pupmod-simp-pam','pupmod-simp-sudo','pupmod-simp-simplib','pupmod-simp-simpcat','pupmod-simp-iptables','pupmod-simp-tcpwrappers','augeasproviders_ssh','augeasproviders_core','puppetlabs-stdlib','puppetlabs-inifile','puppetlabs-concat','puppet-haveged','puppetlabs-puppet_authorization']
       it 'should install base modules for pupmod' do
         on(master, 'mkdir -p /tmp/module-tars /tmp/modules')
         deps.each do |dep|
