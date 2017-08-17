@@ -1,21 +1,21 @@
 # refs recorded for SIMP release 6.0.0
 # vi:syntax=ruby
 
-mod 'bfraser-grafana',
-  :git => 'https://github.com/simp/puppet-grafana',
-  :ref => 'master'
+mod 'puppet-grafana',
+  :git => 'https://github.com/simp/puppet-grafana.git',
+  :tag => 'v3.0.0'
 
 mod 'camptocamp-kmod',
   :git => 'https://github.com/simp/puppet-kmod.git',
-  :ref => 'master'
+  :tag => '2.2.0'
 
 mod 'elastic-elasticsearch',
   :git => 'https://github.com/simp/puppet-elasticsearch',
-  :ref => 'simp-master'
+  :tag => '5.2.0'
 
 mod 'elastic-logstash',
   :git => 'https://github.com/simp/puppet-logstash',
-  :ref => 'master'
+  :tag => '5.2.1'
 
 mod 'electrical-file_concat',
   :git => 'https://github.com/simp/puppet-lib-file_concat',
@@ -99,6 +99,10 @@ mod 'puppetlabs-java_ks',
   :git => 'https://github.com/simp/puppetlabs-java_ks',
   :ref => 'master'
 
+mod 'puppetlabs-puppet_authorization',
+  :git => 'https://github.com/simp/puppetlabs-puppet_authorization.git',
+  :ref => 'master'
+
 mod 'puppetlabs-motd',
   :git => 'https://github.com/simp/puppetlabs-motd',
   :ref => 'master'
@@ -113,7 +117,7 @@ mod 'puppetlabs-postgresql',
 
 mod 'puppetlabs-stdlib',
   :git => 'https://github.com/simp/puppetlabs-stdlib',
-  :ref => 'master'
+  :tag => '4.18.0'
 
 mod 'richardc-datacat',
   :git => 'https://github.com/simp/puppet-datacat',
