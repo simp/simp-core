@@ -43,7 +43,7 @@ mod 'puppet-grafana',
 
 mod 'camptocamp-kmod',
   :git => 'https://github.com/simp/puppet-kmod.git',
-  :ref => 'master'
+  :tag => '2.2.0'
 
 mod 'elastic-elasticsearch',
   :git => 'https://github.com/simp/puppet-elasticsearch',

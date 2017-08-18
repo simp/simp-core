@@ -40,7 +40,7 @@ mod 'bfraser-grafana',
 
 mod 'camptocamp-kmod',
   :git => 'https://github.com/simp/puppet-kmod.git',
-  :ref => '0d69a96e8d0d3a08da0d5f476c733134df4fb9ee'
+  :tag => '2.2.0'
 
 mod 'elastic-elasticsearch',
   :git => 'https://github.com/simp/puppet-elasticsearch',
