@@ -13,15 +13,16 @@ enabled=1
 gpgkey=https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
        https://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs
        https://yum.puppetlabs.com/RPM-GPG-KEY-puppet
-       https://apt.postgresql.org/pub/repos/yum/RPM-GPG-KEY-PGDG-94
+       https://download.postgresql.org/pub/repos/yum/RPM-GPG-KEY-PGDG-94
+       https://download.postgresql.org/pub/repos/yum/RPM-GPG-KEY-PGDG-96
        https://getfedora.org/static/352C64E5.txt
 
-[simp-legacy]
-name=simp-base
+[simp-legacy-base]
+name=simp-legacy-base
 baseurl=https://dl.bintray.com/simp/5.1.X
 enabled=0
 
-[simp-ext-legacy]
-name=simp-ext
+[simp-legacy-ext]
+name=simp-legacy-ext
 baseurl=https://dl.bintray.com/simp/5.1.X-Ext
 enabled=0
