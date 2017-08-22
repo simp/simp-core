@@ -252,7 +252,7 @@ mod 'simp-jenkins',
   # SIMP has made changes to this module that don't exist upstream
 mod 'simp-journald',
   :git => 'https://github.com/simp/pupmod-simp-journald.git',
-  :ref => 'simp-master'
+  :ref => 'master'
 
 mod 'simp-krb5',
   :git => 'https://github.com/simp/pupmod-simp-krb5',
