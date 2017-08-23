@@ -350,11 +350,8 @@ mod 'simp-selinux',
   :ref => 'master'
 
 mod 'simp-simp',
-# FIXME with SIMP-3458 branch is merged
-#  :git => 'https://github.com/simp/pupmod-simp-simp',
-#  :ref => 'master'
-  :git => 'https://github.com/lnemsick-simp/pupmod-simp-simp',
-  :branch => 'SIMP-3458'
+  :git => 'https://github.com/simp/pupmod-simp-simp',
+  :ref => 'master'
 
 mod 'simp-simpcat',
   :git => 'https://github.com/simp/pupmod-simp-simpcat',
