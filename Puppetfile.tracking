@@ -45,6 +45,10 @@ mod 'camptocamp-kmod',
   :git => 'https://github.com/simp/puppet-kmod.git',
   :tag => '2.2.0'
 
+mod 'cristifalcas-journald',
+  :git => 'https://github.com/simp/pupmod-simp-journald.git',
+  :tag => '0.5.0'
+
 mod 'elastic-elasticsearch',
   :git => 'https://github.com/simp/puppet-elasticsearch',
   :tag => '5.2.0'
@@ -248,11 +252,6 @@ mod 'simp-issue',
 mod 'simp-jenkins',
   :git => 'https://github.com/simp/pupmod-simp-jenkins',
   :ref => 'master'
-
-  # SIMP has made changes to this module that don't exist upstream
-mod 'simp-journald',
-  :git => 'https://github.com/simp/pupmod-simp-journald.git',
-  :ref => 'simp-master'
 
 mod 'simp-krb5',
   :git => 'https://github.com/simp/pupmod-simp-krb5',

@@ -122,6 +122,7 @@ Requires: pupmod-puppetlabs-mysql >= 2.2.3-2016
 Requires: pupmod-simp-gdm >= 6.0.0-2016
 Requires: pupmod-simp-gnome >= 6.0.0-2016
 Requires: pupmod-simp-jenkins >= 6.0.0-2016
+Requires: pupmod-cristifalcas-journald >= 0.5.0-2016
 Requires: pupmod-simp-libreswan >= 3.0.0-2016
 Requires: pupmod-simp-libvirt >= 5.0.1-2016
 Requires: pupmod-simp-mcafee >= 6.0.0-2016
