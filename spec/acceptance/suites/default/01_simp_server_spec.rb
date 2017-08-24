@@ -1,4 +1,26 @@
 require 'spec_helper_integration'
+require 'beaker/puppet_install_helper'
+
+# Create a Puppetfile for R10K from module
+# portion of a simp-core Puppetfile.<tracking|stable>.
+# Returns Puppetfile content
+def create_r10k_puppetfile(simp_core_puppetfile)
+  r10k_puppetfile = []
+  lines = IO.readlines(simp_core_puppetfile)
+  modules_section = false
+  lines.each do |line|
+     if line.match(/^moduledir/)
+       if line.match(/^moduledir 'src\/puppet\/modules'/)
+         modules_section = true
+       else
+         modules_section = false
+       end
+       next
+     end
+     r10k_puppetfile << line if modules_section
+  end
+  r10k_puppetfile.join  # each line already contains a \n
+end
 
 test_name 'puppetserver via r10k'
 
@@ -56,30 +78,16 @@ describe 'install environment via r10k and puppetserver' do
     end
   end
 
-  context 'master' do
+  context 'install and start a standard puppetserver' do
     masters.each do |master|
-      master.install_package('wget')
-      moduledir = create_tmpdir_on(master)
-      deps = [ 'pupmod-simp-pupmod','pupmod-simp-pam','pupmod-simp-sudo','pupmod-simp-simplib','pupmod-simp-simpcat','pupmod-simp-iptables','pupmod-simp-tcpwrappers','augeasproviders_ssh','augeasproviders_core','puppetlabs-stdlib','puppetlabs-inifile','puppetlabs-concat','puppet-haveged','puppetlabs-puppet_authorization']
-      it 'should install base modules for pupmod' do
-        on(master, 'mkdir -p /tmp/module-tars /tmp/modules')
-        deps.each do |dep|
-          on(master, <<-EOF
-              wget https://github.com/simp/#{dep}/archive/master.tar.gz -O /tmp/module-tars/#{dep}.tar.gz
-              puppet module install /tmp/module-tars/#{dep}.tar.gz --ignore-dependencies --target-dir=#{moduledir}
-            EOF
-          )
-        end
+      it 'should install puppetserver' do
+        master.install_package('puppetserver')
       end
-      it 'should set up a puppetserver' do
-        apply_manifest_on(master, master_manifest, :modulepath => moduledir, :accept_all_exit_codes => true)
-        apply_manifest_on(master, master_manifest, :modulepath => moduledir, :accept_all_exit_codes => true)
-        master.reboot
-        apply_manifest_on(master, master_manifest, :modulepath => moduledir, :catch_failures => true)
+
+      it 'should start puppetserver' do
+        on(master, 'puppet resource service puppetserver ensure=running')
       end
-      it 'should be idempotent' do
-        apply_manifest_on(master, master_manifest, :modulepath => moduledir, :catch_changes => true )
-      end
+
       it 'should enable trusted_server_facts' do
         on(master, 'puppet config --section master set trusted_server_facts true')
       end
@@ -87,16 +95,30 @@ describe 'install environment via r10k and puppetserver' do
   end
 
   context 'install modules via r10k' do
-    it 'scp a Puppetfile to $codedir' do
-      scp_to(master, 'spec/acceptance/suites/default/files/Puppetfile', '/etc/puppetlabs/code/environments/production/Puppetfile')
+    it 'should create a Puppetfile in $codedir from Puppetfile.tracking' do
+      file_content = create_r10k_puppetfile('Puppetfile.tracking')
+      create_remote_file(master, '/etc/puppetlabs/code/environments/production/Puppetfile',
+        file_content)
     end
+
     it 'should install the Puppetfile' do
       on(master, 'cd /etc/puppetlabs/code/environments/production; /opt/puppetlabs/puppet/bin/r10k puppetfile install', :accept_all_exit_codes => true)
       on(master, 'cd /etc/puppetlabs/code/environments/production; /opt/puppetlabs/puppet/bin/r10k puppetfile install')
       on(master, 'chown -R root.puppet /etc/puppetlabs/code/environments/production/modules')
       on(master, 'chmod -R g+rX /etc/puppetlabs/code/environments/production/modules')
     end
+  end
 
+  context 'bootstrap simp server' do
+    it 'should set up a simp server' do
+       apply_manifest_on(master, master_manifest, :accept_all_exit_codes => true)
+       apply_manifest_on(master, master_manifest, :accept_all_exit_codes => true)
+       master.reboot
+       apply_manifest_on(master, master_manifest, :catch_failures => true)
+     end
+     it 'should be idempotent' do
+       apply_manifest_on(master, master_manifest, :catch_changes => true )
+     end
   end
 
   context 'classify nodes' do
@@ -185,14 +207,14 @@ describe 'install environment via r10k and puppetserver' do
       it 'should run the agent' do
         # require 'pry';binding.pry if fact_on(agent, 'hostname') == 'agent'
         on(agent, "puppet agent -t --ca_port 8141 --server #{master_fqdn}", :acceptable_exit_codes => [0,2,4,6])
-        sleep(30)
+        Simp::TestHelpers.wait(30)
         on(agent, "puppet agent -t --ca_port 8141 --server #{master_fqdn}", :acceptable_exit_codes => [0,2,4,6])
         agent.reboot
-        sleep(240)
+        Simp::TestHelpers.wait(240)
         on(agent, "puppet agent -t --ca_port 8141 --server #{master_fqdn}", :acceptable_exit_codes => [0,2])
       end
       it 'should be idempotent' do
-        sleep(30)
+        Simp::TestHelpers.wait(30)
         on(agent, 'puppet agent -t', :acceptable_exit_codes => [0])
       end
     end

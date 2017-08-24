@@ -4,6 +4,24 @@ require 'yaml'
 require 'simp/beaker_helpers'
 include Simp::BeakerHelpers
 
+module Simp
+  module TestHelpers
+    # Wait specified seconds, logging (bold blue) the remaining seconds to wait
+    def self.wait(time_seconds)
+      max_width = time_seconds.to_s.size
+      while time_seconds > 0
+        line = sprintf("\e[1;34m>>>>> Waiting %1$*2$d seconds ...\e[0m", time_seconds, max_width)
+        print line
+        sleep 1
+        print "\b"*line.size
+        time_seconds -= 1
+      end
+      line = sprintf("\e[1;34m>>>>> Waiting %1$*2$d seconds ... Done\e[0m", 0, max_width)
+      puts line
+    end
+  end
+end
+
 unless ENV['BEAKER_provision'] == 'no'
   hosts.each do |host|
     # Install Puppet
