@@ -189,7 +189,7 @@ rubygem-puppet-lint:
   :rpm_name: rubygem-puppet-lint-1.1.0-1.el7.noarch.rpm
   :source: http://yum.puppetlabs.com/el/7/dependencies/x86_64/rubygem-puppet-lint-1.1.0-1.el7.noarch.rpm
 rubygem-rake:
-  :rpm_name: rubygem-rake-0.9.6-25.el7_1.noarch.rpm
+  :rpm_name: rubygem-rake-0.9.6-29.el7.noarch.rpm
   :source: http://mirrors.advancedhosters.com/centos/7.3.1611/os/x86_64/Packages/rubygem-rake-0.9.6-29.el7.noarch.rpm
 rubygem-rake-compiler:
   :rpm_name: rubygem-rake-compiler-0.9.3-1.el7.noarch.rpm
