@@ -14,8 +14,8 @@ mod 'simp-rsync',
 moduledir 'src/assets'
 
 mod 'simp-adapter',
-:git => 'https://github.com/simp/simp-adapter',
-:ref => 'master'
+  :git => 'https://github.com/simp/simp-adapter',
+  :ref => 'master'
 
 mod 'simp-environment',
   :git => 'https://github.com/simp/simp-environment-skeleton',
@@ -119,13 +119,11 @@ mod 'onyxpoint-gpasswd',
 
 mod 'puppetlabs-apache',
   :git => 'https://github.com/simp/puppetlabs-apache',
-  :ref => 'master'
+  :tag => '2.0.0'
 
-# We have updated this module for Puppet 4, and submitted changes upstream. We
-# will use the simp-master branch until it is accepted in master.
 mod 'puppetlabs-concat',
   :git => 'https://github.com/simp/puppetlabs-concat',
-  :ref => 'simp-master'
+  :tag => '3.0.0'
 
 mod 'puppetlabs-inifile',
   :git => 'https://github.com/simp/puppetlabs-inifile',
@@ -139,10 +137,6 @@ mod 'puppetlabs-java_ks',
   :git => 'https://github.com/simp/puppetlabs-java_ks',
   :ref => 'master'
 
-mod 'puppetlabs-puppet_authorization',
-  :git => 'https://github.com/simp/puppetlabs-puppet_authorization.git',
-  :ref => 'master'
-
 mod 'puppetlabs-motd',
   :git => 'https://github.com/simp/puppetlabs-motd',
   :ref => 'master'
@@ -153,6 +147,14 @@ mod 'puppetlabs-mysql',
 
 mod 'puppetlabs-postgresql',
   :git => 'https://github.com/simp/puppetlabs-postgresql',
+  :tag => '5.1.0'
+
+mod 'puppetlabs-puppetdb',
+  :git => 'https://github.com/simp/puppetlabs-puppetdb',
+  :tag => '6.0.1'
+
+mod 'puppetlabs-puppet_authorization',
+  :git => 'https://github.com/simp/puppetlabs-puppet_authorization.git',
   :ref => 'master'
 
 mod 'puppetlabs-stdlib',
@@ -329,10 +331,6 @@ mod 'simp-postfix',
 mod 'simp-pupmod',
   :git => 'https://github.com/simp/pupmod-simp-pupmod',
   :ref => 'master'
-
-mod 'simp-puppetdb',
-  :git => 'https://github.com/simp/puppetlabs-puppetdb',
-  :ref => 'simp-master'
 
 mod 'simp-resolv',
   :git => 'https://github.com/simp/pupmod-simp-resolv',

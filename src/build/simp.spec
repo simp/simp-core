@@ -26,14 +26,14 @@ Requires: pupmod-herculesteam-augeasproviders_shellvar >= 2.1.1-2016, pupmod-her
 Requires: pupmod-herculesteam-augeasproviders_ssh >= 2.5.0-2016, pupmod-herculesteam-augeasproviders_ssh < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_sysctl >= 2.1.0-2016, pupmod-herculesteam-augeasproviders_sysctl < 3.0.0
 Requires: pupmod-onyxpoint-gpasswd >= 1.0.0-2016, pupmod-onyxpoint-gpasswd < 2.0.0
-Requires: pupmod-puppetlabs-apache >= 1.10.0-2016, pupmod-puppetlabs-apache < 2.0.0
+Requires: pupmod-puppetlabs-apache >= 1.10.0-2016, pupmod-puppetlabs-apache < 3.0.0
 Requires: pupmod-puppetlabs-concat >= 2.2.0-2016, pupmod-puppetlabs-concat < 4.0.0
 Requires: pupmod-puppetlabs-inifile >= 1.6.0-2016, pupmod-puppetlabs-inifile < 2.0.0
 Requires: pupmod-puppetlabs-java >= 1.2.0-2016, pupmod-puppetlabs-java < 2.0.0
 Requires: pupmod-puppetlabs-java_ks >= 1.4.0-2016, pupmod-puppetlabs-java_ks < 2.0.0
 Requires: pupmod-puppetlabs-motd >= 1.4.0-2016, pupmod-puppetlabs-motd < 2.0.0
-Requires: pupmod-puppetlabs-postgresql >= 4.8.0, pupmod-puppetlabs-postgresql < 5.0.0
-Requires: pupmod-puppetlabs-puppetdb >= 5.0.0-2016, pupmod-puppetlabs-puppetdb < 6.0.0
+Requires: pupmod-puppetlabs-postgresql >= 4.8.0, pupmod-puppetlabs-postgresql < 6.0.0
+Requires: pupmod-puppetlabs-puppetdb >= 5.0.0-2016, pupmod-puppetlabs-puppetdb < 7.0.0
 Requires: pupmod-puppetlabs-stdlib >= 4.13.1-2016, pupmod-puppetlabs-stdlib < 5.0.0
 Requires: pupmod-richardc-datacat >= 0.6.2-2016, pupmod-richardc-datacat < 1.0.0
 Requires: pupmod-saz-timezone >= 3.3.0, pupmod-saz-timezone < 4.0.0
@@ -201,6 +201,9 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Wed Aug 23 2017 Liz Nemsick <lnemsick.simp@gmail.com> - 6.1.0-0
+- 6.1.0-RC1 prep
+
 * Thu May 25 2017 Nick Markowski <nmarkowski@keywcorp.com> - 6.0.2-0
 - Removed core module binford2k-node_encrypt.  There are issues with
   the module and we don't currently use it anywhere in core.

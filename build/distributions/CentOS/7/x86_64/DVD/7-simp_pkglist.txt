@@ -1250,9 +1250,6 @@ postfix
 postgresql
 postgresql-libs
 postgresql-server
-postgresql94
-postgresql94-libs
-postgresql94-server
 ppl
 ppp
 prelink

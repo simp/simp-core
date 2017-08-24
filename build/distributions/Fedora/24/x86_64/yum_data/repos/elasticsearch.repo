@@ -1,15 +1,15 @@
-[elasticsearch-2.x]
-name=Elasticsearch repository for 2.x packages
-baseurl=https://packages.elastic.co/elasticsearch/2.x/centos
-gpgcheck=1
-gpgkey=https://packages.elastic.co/GPG-KEY-elasticsearch
+[elastic-5.x]
+name=Elasticsearch/Logstash Centos Repo
+baseurl=https://artifacts.elastic.co/packages/5.x/yum
 enabled=1
-
-[logstash-2.3]
-name=Logstash repository for 2.3.x packages
-baseurl=https://packages.elastic.co/logstash/2.3/centos
 gpgcheck=1
-gpgkey=https://packages.elastic.co/GPG-KEY-elasticsearch
+gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch
+
+[curator-5]
+name=CentOS/RHEL 7 repository for Elasticsearch Curator 5.x packages
+baseurl=http://packages.elastic.co/curator/5/centos/7
+gpgcheck=1
+gpgkey=http://packages.elastic.co/GPG-KEY-elasticsearch
 enabled=1
 
 [grafana]

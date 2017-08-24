@@ -94,7 +94,7 @@ describe 'use the simp::server::ldap class to create and ldap environment' do
       end
       it 'should configure the system' do
         on(master, 'puppet agent -t', :acceptable_exit_codes => [0,2,4,6])
-        sleep(30)
+        Simp::TestHelpers.wait(30)
         retry_on(master, 'puppet agent -t', :desired_exit_codes => [0,2], :max_retries => 3, :retry_interval => 20)
       end
       it 'should be idempotent' do
