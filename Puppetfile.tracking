@@ -461,3 +461,6 @@ mod 'trlinkin-nsswitch',
   :git => 'https://github.com/simp/puppet-nsswitch',
   :ref => 'simp-master'
 
+mod 'voxpupuli-yum',
+  :git => 'https://github.com/simp/voxpupuli-yum',
+  :tag => 'v2.0.0'
