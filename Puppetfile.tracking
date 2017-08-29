@@ -459,7 +459,7 @@ mod 'simp-useradd',
 # SIMP has made changes to this module that don't exist upstream
 mod 'trlinkin-nsswitch',
   :git => 'https://github.com/simp/puppet-nsswitch',
-  :ref => 'simp-master'
+  :ref => 'f1d51eeecf3d95a3d38562a50743ee7c915d0624'
 
 mod 'voxpupuli-yum',
   :git => 'https://github.com/simp/voxpupuli-yum',
