@@ -68,29 +68,29 @@
   :requires:
     - 'pupmod-puppetlabs-stdlib'
 
-'puppetlabs-motd':
+'motd':
   :requires:
     # exclude pupmod-puppetlabs-registry
     - 'pupmod-puppetlabs-stdlib'
 
-'puppetlabs-mysql':
+'mysql':
   :requires:
     # exclude pupmod-puppet-staging
     - 'pupmod-puppetlabs-stdlib'
 
-'puppetlabs-postgresql':
+'postgresql':
   :requires:
     # exclude pupmod-puppetlabs-apt
     - 'pupmod-puppetlabs-stdlib'
     - 'pupmod-puppetlabs-concat'
 
-'puppetlabs-puppet_authorization':
+'puppet_authorization':
   :requires:
     # exclude pupmod-puppetlabs-hocon
     - 'pupmod-puppetlabs-stdlib'
     - 'pupmod-puppetlabs-concat'
 
-'puppetlabs-puppetdb':
+'puppetdb':
   :requires:
     # exclude pupmod-puppetlabs-firewall
     - 'pupmod-puppetlabs-inifile'
