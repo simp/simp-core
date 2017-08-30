@@ -8,12 +8,13 @@ SIMP build directory
   2. [release_mappings.yaml](#release_mappingsyaml)
   3. [mock.cfg](#mockcfg)
   4. [GPGKEYS/](#gpgkeys/)
-  5. [yum_data/](#yum_data/)
+  5. [rpm/](#rpm/)
+  6. [yum_data/](#yum_data/)
     1. [my_repos/](#my_repos/)
     2. [repos/](#repos/)
     3. [packages.yaml](#packages.yaml)
     4. [packages/](#packages/)
-  6. [Directories Created By The Build Process](#directories-created-by-the-build-process)
+  7. [Directories Created By The Build Process](#directories-created-by-the-build-process)
     1. [SIMP Directories](#simp-directories)
     2. [DVD_Overlay/](#dvd-overlay/)
 
@@ -51,6 +52,9 @@ The following files are present in every distribution's architecture directory.
 
 ### GPGKEYS/
 * A collection of GPG Keys required for repos used by SIMP.
+
+### rpm/
+* Houses items that are relevant to the **global** RPM build process.
 
 ### yum_data/
 * This directory structure assists in the building of a particular release of

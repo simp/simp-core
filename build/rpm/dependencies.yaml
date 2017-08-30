@@ -1,0 +1,98 @@
+# This file holds a list of RPM dependencies/obsoletes that apply
+# to Puppet module RPMs.  Module entries in this file are needed when
+# any of the following conditions occur:
+#
+# (1) We need to specify an obsoletes.
+#     This is required when a project has changed owner and
+#     the RPM name will change from pupmod-<old owner>-<module name>
+#     to pupmod-<new owner>-<module name>.
+#
+# (2) We want to restrict the depedencies.
+#     This is useful when modules require modules for OS's other
+#     than RedHat/CentOS or require modules that conflict with SIMP
+#     capabilities. We don't really need the dependencies in this
+#     case, and excluding them has no impact on SIMP system
+#     operations.
+#
+# For all modules listed in this file,
+# * The RPM obsoletes will be pulled from this file.
+# * The RPM dependency names will be pulled from this file.
+# * The depedency versions will be pulled directly from the
+#   metadata.json file in the module.
+#
+# For all other modules 
+# * The module will have no RPM obsoletes.
+# * Both the RPM dependency names and versions will be pulled
+#   from the metadata.json file in the module.
+#
+# NOTE: This file is only used for simp-rake-helpers >= 4.1.0 
+---
+'augeasproviders':
+  :requires:
+    # exclude pupmod-herculesteam-augeasproviders_syslog"
+    - 'pupmod-herculesteam-augeasproviders_apache'
+    - 'pupmod-herculesteam-augeasproviders_base'
+    - 'pupmod-herculesteam-augeasproviders_grub'
+    - 'pupmod-herculesteam-augeasproviders_mounttab'
+    - 'pupmod-herculesteam-augeasproviders_nagios'
+    - 'pupmod-herculesteam-augeasproviders_pam'
+    - 'pupmod-herculesteam-augeasproviders_postgresql'
+    - 'pupmod-herculesteam-augeasproviders_puppet'
+    - 'pupmod-herculesteam-augeasproviders_shellvar'
+    - 'pupmod-herculesteam-augeasproviders_ssh'
+    - 'pupmod-herculesteam-augeasproviders_sysctl'
+
+'elasticsearch':
+  :obsoletes:
+    'pupmod-elasticsearch-elasticsearch': '0.11.0-2016.1'
+  :requires:
+    # exclude pupmod-puppetlabs-apt
+    - 'pupmod-richardc-datacat'
+    - 'pupmod-puppetlabs-java'
+    - 'pupmod-puppetlabs-stdlib'
+    - 'pupmod-puppet-yum'
+
+'grafana':
+  :obsoletes:
+    'pupmod-bfraser-grafana': '2.5.0-2016.1'
+  :requires:
+    # exclude pupmod-garethr-docker
+    # exclude pupmod-maestrodev-wget
+    # exclude pupmod-puppet-archive
+    # exclude pupmod-puppetlabs-apt
+    - 'pupmod-puppetlabs-stdlib'
+
+'logstash':
+  :obsoletes:
+    'pupmod-elasticsearch-logstash': '2.0.0-2016'
+  :requires:
+    - 'pupmod-puppetlabs-stdlib'
+
+'motd':
+  :requires:
+    # exclude pupmod-puppetlabs-registry
+    - 'pupmod-puppetlabs-stdlib'
+
+'mysql':
+  :requires:
+    # exclude pupmod-puppet-staging
+    - 'pupmod-puppetlabs-stdlib'
+
+'postgresql':
+  :requires:
+    # exclude pupmod-puppetlabs-apt
+    - 'pupmod-puppetlabs-stdlib'
+    - 'pupmod-puppetlabs-concat'
+
+'puppet_authorization':
+  :requires:
+    # exclude pupmod-puppetlabs-hocon
+    - 'pupmod-puppetlabs-stdlib'
+    - 'pupmod-puppetlabs-concat'
+
+'puppetdb':
+  :requires:
+    # exclude pupmod-puppetlabs-firewall
+    - 'pupmod-puppetlabs-inifile'
+    - 'pupmod-puppetlabs-postgresql'
+    - 'pupmod-puppetlabs-stdlib'
