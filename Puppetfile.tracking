@@ -7,11 +7,15 @@ mod 'simp-doc',
   :git => 'https://github.com/simp/simp-doc',
   :ref => 'master'
 
-mod 'simp-rsync',
-  :git => 'https://github.com/simp/simp-rsync',
+moduledir 'src/assets'
+
+mod 'rubygem-rubygem_simp_cli',
+  :git => 'https://github.com/simp/rubygem-simp-cli',
   :ref => 'master'
 
-moduledir 'src/assets'
+mod 'simp-rsync_data',
+  :git => 'https://github.com/simp/simp-rsync',
+  :ref => 'master'
 
 mod 'simp-adapter',
   :git => 'https://github.com/simp/simp-adapter',
@@ -27,12 +31,6 @@ mod 'simp-gpgkeys',
 
 mod 'simp-utils',
   :git => 'https://github.com/simp/simp-utils',
-  :ref => 'master'
-
-moduledir 'src/rubygems'
-
-mod 'rubygem-simp_cli',
-  :git => 'https://github.com/simp/rubygem-simp-cli',
   :ref => 'master'
 
 moduledir 'src/puppet/modules'
