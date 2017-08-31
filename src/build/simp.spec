@@ -1,7 +1,7 @@
 Summary: SIMP Full Install
 Name: simp
 Version: 6.0.0
-Release: 0%{?dist}%{?snapshot_release}
+Release: 1%{?dist}%{?snapshot_release}
 License: Apache License, Version 2.0
 Group: Applications/System
 
@@ -19,7 +19,7 @@ Requires: pupmod-herculesteam-augeasproviders >= 2.1.3-2016, pupmod-herculesteam
 Requires: pupmod-herculesteam-augeasproviders_apache >= 2.0.1-2016, pupmod-herculesteam-augeasproviders_apache < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_base >= 2.0.1-2016, pupmod-herculesteam-augeasproviders_base < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_core >= 2.1.1-2016, pupmod-herculesteam-augeasproviders_core < 3.0.0
-Requires: pupmod-herculesteam-augeasproviders_grub >= 2.3.1-2016, pupmod-herculesteam-augeasproviders_grub < 3.0.0
+Requires: pupmod-herculesteam-augeasproviders_grub >= 2.3.1-2016, pupmod-herculesteam-augeasproviders_grub < 4.0.0
 Requires: pupmod-herculesteam-augeasproviders_postgresql >= 2.0.3-2016, pupmod-herculesteam-augeasproviders_postgresql < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_puppet >= 2.1.0-2016, pupmod-herculesteam-augeasproviders_puppet < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_shellvar >= 2.1.1-2016, pupmod-herculesteam-augeasproviders_shellvar < 3.0.0
@@ -198,6 +198,11 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Wed Aug 30 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.0.0-1
+- Update to support augeasproviders_grub 3
+- augeasproviders_grub dropped support for some older OS and Ruby versions but
+  did not have any Puppet logic breaking changes
+
 * Mon Apr 04 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.0.0-0
 - 6.0.0-0 Final Release
 
