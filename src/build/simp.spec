@@ -202,6 +202,9 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Thu Aug 31 2017 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 6.1.0
+- updated packages.yaml to pull puppet 4.10.6 rpms.
+
 * Wed Aug 23 2017 Liz Nemsick <lnemsick.simp@gmail.com> - 6.1.0-0
 - 6.1.0-RC1 prep
 
