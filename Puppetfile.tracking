@@ -163,7 +163,7 @@ mod 'puppetlabs-puppet_authorization',
 
 mod 'puppetlabs-stdlib',
   :git => 'https://github.com/simp/puppetlabs-stdlib',
-  :tag => '4.18.0'
+  :tag => '4.19.0'
 
 mod 'richardc-datacat',
   :git => 'https://github.com/simp/puppet-datacat',
