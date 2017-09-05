@@ -45,6 +45,10 @@ mod 'camptocamp-kmod',
   :git => 'https://github.com/simp/puppet-kmod.git',
   :tag => '2.2.0'
 
+mod 'camptocamp-systemd',
+  :git => 'https://github.com/simp/puppet-systemd.git',
+  :tag => '1.0.0'
+
 mod 'cristifalcas-journald',
   :git => 'https://github.com/simp/pupmod-simp-journald.git',
   :tag => '0.5.0'

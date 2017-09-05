@@ -15,6 +15,7 @@ Obsoletes: simp-hiera < 3.0.2
 
 # Core SIMP Requirements
 Requires: pupmod-camptocamp-kmod >= 2.1.0, pupmod-camptocamp-kmod < 3.0.0
+Requires: pupmod-camptocamp-systemd >= 1.0.0, pupmod-camptocamp-systemd < 2.0.0
 Requires: pupmod-herculesteam-augeasproviders >= 2.1.3, pupmod-herculesteam-augeasproviders < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_apache >= 2.0.1, pupmod-herculesteam-augeasproviders_apache < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_base >= 2.0.1, pupmod-herculesteam-augeasproviders_base < 3.0.0
