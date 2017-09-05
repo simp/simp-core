@@ -96,6 +96,11 @@ Fixed Bugs
 New Features
 ------------
 
+pupmod-camptocamp-systemd
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* Added as a core supported module
+
 Known Bugs
 ----------
 
