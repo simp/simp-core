@@ -14,7 +14,7 @@ mod 'rubygem-rubygem_simp_cli',
   :ref => 'master'
 
 mod 'simp-rsync_data',
-  :git => 'https://github.com/simp/simp-rsync',
+  :git => 'https://github.com/simp/simp-rsync-skeleton',
   :ref => 'master'
 
 mod 'simp-adapter',
