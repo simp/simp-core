@@ -108,7 +108,7 @@ mod 'herculesteam-augeasproviders_sysctl',
 
 mod 'onyxpoint-gpasswd',
   :git => 'https://github.com/simp/puppet-gpasswd',
-  :ref => '1.0.3'
+  :ref => '04431f902da8b20527e1cb5eb98ec6f4fefd6429'
 
 mod 'puppetlabs-apache',
   :git => 'https://github.com/simp/puppetlabs-apache',
