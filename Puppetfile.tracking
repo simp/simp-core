@@ -165,6 +165,10 @@ mod 'puppetlabs-stdlib',
   :git => 'https://github.com/simp/puppetlabs-stdlib',
   :tag => '4.19.0'
 
+mod 'razorsedge-snmp',
+  :git => 'https://github.com/simp/puppet-snmp',
+  :tag => '3.8.1'
+
 mod 'richardc-datacat',
   :git => 'https://github.com/simp/puppet-datacat',
   :ref => 'master'
@@ -386,6 +390,10 @@ mod 'simp-simp_nfs',
 
 mod 'simp-simp_rsyslog',
   :git => 'https://github.com/simp/pupmod-simp-simp_rsyslog',
+  :ref => 'master'
+
+mod 'simp-simp_snmpd',
+  :git => 'https://github.com/simp/pupmod-simp-simp_snmpd',
   :ref => 'master'
 
 mod 'simp-simplib',

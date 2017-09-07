@@ -86,11 +86,11 @@ if [ "$simp_opt" != "prompt" ]; then
   cat << EOF >> /tmp/part-include
 volgroup VolGroup00 pv.01
 logvol swap --fstype=swap --name=SwapVol --vgname=VolGroup00 --size=1024
-logvol / --fstype=xfs --name=RootVol --vgname=VolGroup00 --size=10240 --fsoptions=iversion
-logvol /tmp --fstype=xfs --name=TmpVol --vgname=VolGroup00 --size=2048 --fsoptions=nosuid,noexec,nodev
-logvol /home --fstype=xfs --name=HomeVol --vgname=VolGroup00 --size=1024 --fsoptions=nosuid,noexec,nodev,iversion
+logvol / --fstype=ext4 --name=RootVol --vgname=VolGroup00 --size=10240 --fsoptions=iversion
+logvol /tmp --fstype=ext4 --name=TmpVol --vgname=VolGroup00 --size=2048 --fsoptions=nosuid,noexec,nodev
+logvol /home --fstype=ext4 --name=HomeVol --vgname=VolGroup00 --size=1024 --fsoptions=nosuid,noexec,nodev,iversion
 logvol /var --fstype=ext4 --name=VarVol --vgname=VolGroup00 --size=1024 --grow
-logvol /var/log --fstype=xfs --name=VarLogVol --vgname=VolGroup00 --size=4096 --fsoptions=nosuid,noexec,nodev
-logvol /var/log/audit --fstype=xfs --name=VarLogAuditVol --vgname=VolGroup00 --size=1024 --fsoptions=nosuid,noexec,nodev
+logvol /var/log --fstype=ext4 --name=VarLogVol --vgname=VolGroup00 --size=4096 --fsoptions=nosuid,noexec,nodev
+logvol /var/log/audit --fstype=ext4 --name=VarLogAuditVol --vgname=VolGroup00 --size=1024 --fsoptions=nosuid,noexec,nodev
 EOF
 fi
