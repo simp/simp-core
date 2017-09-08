@@ -15,11 +15,10 @@ Obsoletes: simp-hiera < 3.0.2
 
 # Core SIMP Requirements
 Requires: pupmod-camptocamp-kmod >= 2.1.0, pupmod-camptocamp-kmod < 3.0.0
-Requires: pupmod-herculesteam-augeasproviders >= 2.1.3-2016, pupmod-herculesteam-augeasproviders < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_apache >= 2.0.1-2016, pupmod-herculesteam-augeasproviders_apache < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_base >= 2.0.1-2016, pupmod-herculesteam-augeasproviders_base < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_core >= 2.1.1-2016, pupmod-herculesteam-augeasproviders_core < 3.0.0
-Requires: pupmod-herculesteam-augeasproviders_grub >= 2.3.1-2016, pupmod-herculesteam-augeasproviders_grub < 3.0.0
+Requires: pupmod-herculesteam-augeasproviders_grub >= 2.3.1-2016, pupmod-herculesteam-augeasproviders_grub < 4.0.0
 Requires: pupmod-herculesteam-augeasproviders_postgresql >= 2.0.3-2016, pupmod-herculesteam-augeasproviders_postgresql < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_puppet >= 2.1.0-2016, pupmod-herculesteam-augeasproviders_puppet < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_shellvar >= 2.1.1-2016, pupmod-herculesteam-augeasproviders_shellvar < 3.0.0
@@ -102,7 +101,6 @@ Requires: simp-adapter >= 0.0.3-0, simp-adapter < 1.0.0
 Requires: simp-environment >= 6.0.0, simp-environment < 7.0.0
 Requires: simp-gpgkeys >= 3.0.0-0%{?dist}, simp-gpgkeys < 4.0.0
 Requires: simp-rsync >= 6.0.0-0%{?dist}, simp-rsync < 7.0.0
-Requires: simp-rsync-clamav >= 6.0.0-0%{?dist}, simp-rsync-clamav < 7.0.0
 Requires: simp-utils >= 6.0.0, simp-utils < 7.0.0
 
 Prefix: %{_sysconfdir}/puppet
