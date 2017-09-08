@@ -63,10 +63,6 @@ mod 'electrical-file_concat',
   :git => 'https://github.com/simp/puppet-lib-file_concat',
   :ref => 'master'
 
-mod 'herculesteam-augeasproviders',
-  :git => 'https://github.com/simp/augeasproviders',
-  :ref => 'master'
-
 mod 'herculesteam-augeasproviders_apache',
   :git => 'https://github.com/simp/augeasproviders_apache',
   :ref => 'master'
@@ -157,7 +153,7 @@ mod 'puppetlabs-puppetdb',
 
 mod 'puppetlabs-puppet_authorization',
   :git => 'https://github.com/simp/puppetlabs-puppet_authorization.git',
-  :ref => 'master'
+  :ref => '0.3.0'
 
 mod 'puppetlabs-stdlib',
   :git => 'https://github.com/simp/puppetlabs-stdlib',
