@@ -30,9 +30,8 @@ HOSTS:
       - "echo 'Defaults:build_user !requiretty' >> /etc/sudoers"
       - "echo 'build_user ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers"
 
-      # Standard mock group for compatibility with legacy builds
-      - 'groupadd -g 135 mock'
-      - 'useradd -b /home -G mock -m -c "Build User" -s /bin/bash -U build_user'
+      # Add the build user
+      - 'useradd -b /home -m -c "Build User" -s /bin/bash -U build_user'
 
       # simp build-deps
       - 'yum-config-manager --enable extras'
@@ -91,9 +90,8 @@ HOSTS:
 #     - "echo 'Defaults:build_user !requiretty' >> /etc/sudoers"
 #     - "echo 'build_user ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers"
 
-#     # Standard mock group for compatibility with legacy builds
-#     - 'groupadd -g 135 mock'
-#     - 'useradd -b /home -G mock -m -c "Build User" -s /bin/bash -U build_user'
+#      # Add the build user
+#      - 'useradd -b /home -m -c "Build User" -s /bin/bash -U build_user'
 
 #     # simp build-deps
 #     - 'yum-config-manager --enable extras'
