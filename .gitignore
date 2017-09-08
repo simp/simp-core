@@ -20,6 +20,7 @@ pkg/
 spec/fixtures
 src/assets/*
 !src/assets/simp
+src/assets/simp/dist
 src/build/autorequires
 src/dist
 src/doc
