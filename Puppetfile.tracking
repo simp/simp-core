@@ -123,6 +123,10 @@ mod 'puppetlabs-concat',
   :git => 'https://github.com/simp/puppetlabs-concat',
   :tag => '3.0.0'
 
+mod 'puppetlabs-hocon',
+  :git => 'https://github.com/simp/pupmod-puppetlabs-hocon',
+  :tag => '0.9.4'
+
 mod 'puppetlabs-inifile',
   :git => 'https://github.com/simp/puppetlabs-inifile',
   :ref => 'master'

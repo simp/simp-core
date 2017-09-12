@@ -64,7 +64,7 @@ Requires: pupmod-simp-simp_openldap >= 6.0.0, pupmod-simp-simp_openldap < 7.0.0
 Requires: pupmod-simp-simp_options >= 1.0.0, pupmod-simp-simp_options < 2.0.0
 Requires: pupmod-simp-pam >= 6.0.0, pupmod-simp-pam < 7.0.0
 Requires: pupmod-simp-pki >= 6.0.0, pupmod-simp-pki < 7.0.0
-Requires: pupmod-simp-polkit >= 6.1.0-2016
+Requires: pupmod-simp-polkit >= 6.1.0, pupmod-simp-polkit < 7.0.0
 Requires: pupmod-simp-postfix >= 5.0.1, pupmod-simp-postfix < 6.0.0
 Requires: pupmod-simp-pupmod >= 7.1.0, pupmod-simp-pupmod < 8.0.0
 Requires: pupmod-simp-resolv >= 0.0.1, pupmod-simp-resolv < 1.0.0
@@ -94,10 +94,11 @@ Requires: pupmod-simp-upstart >= 6.0.0, pupmod-simp-upstart < 7.0.0
 Requires: pupmod-simp-useradd >= 0.0.1, pupmod-simp-useradd < 1.0.0
 Requires: pupmod-simp-xinetd >= 4.0.0, pupmod-simp-xinetd < 5.0.0
 Requires: pupmod-trlinkin-nsswitch >= 2.0.0, pupmod-trlinkin-nsswitch < 3.0.0
+Requires: pupmod-puppetlabs-hocon >= 0.9.4, pupmod-puppetlabs-hocon < 1.0.0
 Requires: pupmod-puppetlabs-puppet_authorization >= 0.2.0, pupmod-puppetlabs-puppet_authorization < 1.0.0
-Requires: rubygem-simp-cli >= 4.0.0-0, rubygem-simp-cli < 5.0.0
-Requires: rubygem-simp-cli-doc >= 4.0.0-0, rubygem-simp-cli-doc < 5.0.0
-Requires: simp-adapter >= 0.0.3-0, simp-adapter < 1.0.0
+Requires: rubygem-simp-cli >= 4.0.0, rubygem-simp-cli < 5.0.0
+Requires: rubygem-simp-cli-doc >= 4.0.0, rubygem-simp-cli-doc < 5.0.0
+Requires: simp-adapter >= 0.0.3, simp-adapter < 1.0.0
 Requires: simp-environment >= 6.0.0, simp-environment < 7.0.0
 Requires: simp-gpgkeys >= 3.0.0-0%{?dist}, simp-gpgkeys < 4.0.0
 Requires: simp-rsync >= 6.0.0-0%{?dist}, simp-rsync < 7.0.0
@@ -109,15 +110,15 @@ Prefix: %{_sysconfdir}/puppet
 %package extras
 Summary: Extra Packages for SIMP
 License: Apache-2.0
-Requires: pupmod-cristifalcas-journald >= 0.5.0-2016
-Requires: pupmod-elastic-elasticsearch >= 5.2.0-2016
-Requires: pupmod-elastic-logstash >= 5.2.1-2016
+Requires: pupmod-cristifalcas-journald >= 0.5.0
+Requires: pupmod-elastic-elasticsearch >= 5.2.0
+Requires: pupmod-elastic-logstash >= 5.2.1
 Requires: pupmod-electrical-file_concat >= 1.0.1-2016
 Requires: pupmod-herculesteam-augeasproviders_mounttab >= 2.0.1-2016
 Requires: pupmod-herculesteam-augeasproviders_nagios >= 2.0.1-2016
 Requires: pupmod-herculesteam-augeasproviders_pam >= 2.0.3-2016
-Requires: pupmod-puppet-grafana >= 3.0.0-2016
-Requires: pupmod-puppet-yum >= 2.0.0-2016
+Requires: pupmod-puppet-grafana >= 3.0.0
+Requires: pupmod-puppet-yum >= 2.0.0
 Requires: pupmod-puppetlabs-mysql >= 2.2.3-2016
 Requires: pupmod-simp-gdm >= 6.0.0-2016
 Requires: pupmod-simp-gnome >= 6.0.0-2016

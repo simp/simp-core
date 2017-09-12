@@ -84,12 +84,6 @@
     - 'pupmod-puppetlabs-stdlib'
     - 'pupmod-puppetlabs-concat'
 
-'puppet_authorization':
-  :requires:
-    # exclude pupmod-puppetlabs-hocon
-    - 'pupmod-puppetlabs-stdlib'
-    - 'pupmod-puppetlabs-concat'
-
 'puppetdb':
   :requires:
     # exclude pupmod-puppetlabs-firewall
