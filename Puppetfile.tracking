@@ -3,12 +3,12 @@
 
 moduledir 'src'
 
-mod 'simp-doc',
+mod 'simp_core-doc',
   :git => 'https://github.com/simp/simp-doc',
   :ref => 'master'
 
-mod 'simp-rsync',
-  :git => 'https://github.com/simp/simp-rsync',
+mod 'simp_core-rsync',
+  :git => 'https://github.com/simp/simp-rsync-skeleton',
   :ref => 'master'
 
 moduledir 'src/assets'
