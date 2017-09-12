@@ -476,4 +476,4 @@ mod 'trlinkin-nsswitch',
 
 mod 'voxpupuli-yum',
   :git => 'https://github.com/simp/voxpupuli-yum',
-  :tag => 'v2.0.0'
+  :tag => 'v2.0.1'
