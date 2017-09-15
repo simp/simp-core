@@ -391,7 +391,7 @@ mod 'simp-simp_snmpd',
 
 mod 'simp-simplib',
   :git => 'https://github.com/simp/pupmod-simp-simplib',
-  :ref => 'master'
+  :tag => '3.5.0'
 
 mod 'simp-site',
   :git => 'https://github.com/simp/pupmod-simp-site',
@@ -403,7 +403,7 @@ mod 'simp-ssh',
 
 mod 'simp-sssd',
   :git => 'https://github.com/simp/pupmod-simp-sssd',
-  :ref => 'master'
+  :tag => '6.0.3'
 
 mod 'simp-stunnel',
   :git => 'https://github.com/simp/pupmod-simp-stunnel',
@@ -411,7 +411,7 @@ mod 'simp-stunnel',
 
 mod 'simp-sudo',
   :git => 'https://github.com/simp/pupmod-simp-sudo',
-  :ref => 'master'
+  :tag => '5.0.3'
 
 mod 'simp-sudosh',
   :git => 'https://github.com/simp/pupmod-simp-sudosh',
@@ -419,7 +419,7 @@ mod 'simp-sudosh',
 
 mod 'simp-svckill',
   :git => 'https://github.com/simp/pupmod-simp-svckill',
-  :ref => 'master'
+  :tag => '3.2.3'
 
 mod 'simp-swap',
   :git => 'https://github.com/simp/pupmod-simp-swap',
@@ -427,7 +427,7 @@ mod 'simp-swap',
 
 mod 'simp-tcpwrappers',
   :git => 'https://github.com/simp/pupmod-simp-tcpwrappers',
-  :ref => 'master'
+  :tag => '6.0.2'
 
 mod 'simp-tftpboot',
   :git => 'https://github.com/simp/pupmod-simp-tftpboot',
