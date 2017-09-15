@@ -31,7 +31,7 @@ mod 'simp-gpgkeys',
 
 mod 'simp-utils',
   :git => 'https://github.com/simp/simp-utils',
-  :ref => 'master'
+  :tag => '6.0.1'
 
 moduledir 'src/puppet/modules'
 
@@ -233,7 +233,7 @@ mod 'simp-gdm',
 
 mod 'simp-gnome',
   :git => 'https://github.com/simp/pupmod-simp-gnome',
-  :ref => 'master'
+  :tag => '7.0.0'
 
 # SIMP has made changes to this module that don't exist upstream
 mod 'simp-haveged',
@@ -307,7 +307,7 @@ mod 'simp-oddjob',
 
 mod 'simp-simp_openldap',
   :git => 'https://github.com/simp/pupmod-simp-simp_openldap',
-  :ref => 'master'
+  :tag => '6.1.0'
 
 mod 'simp-openscap',
   :git => 'https://github.com/simp/pupmod-simp-openscap',
@@ -315,7 +315,7 @@ mod 'simp-openscap',
 
 mod 'simp-pam',
   :git => 'https://github.com/simp/pupmod-simp-pam',
-  :ref => 'master'
+  :tag => '6.0.4'
 
 mod 'simp-pki',
   :git => 'https://github.com/simp/pupmod-simp-pki',
@@ -391,7 +391,7 @@ mod 'simp-simp_snmpd',
 
 mod 'simp-simplib',
   :git => 'https://github.com/simp/pupmod-simp-simplib',
-  :ref => 'master'
+  :tag => '3.5.0'
 
 mod 'simp-site',
   :git => 'https://github.com/simp/pupmod-simp-site',
@@ -403,7 +403,7 @@ mod 'simp-ssh',
 
 mod 'simp-sssd',
   :git => 'https://github.com/simp/pupmod-simp-sssd',
-  :ref => 'master'
+  :tag => '6.0.3'
 
 mod 'simp-stunnel',
   :git => 'https://github.com/simp/pupmod-simp-stunnel',
@@ -411,7 +411,7 @@ mod 'simp-stunnel',
 
 mod 'simp-sudo',
   :git => 'https://github.com/simp/pupmod-simp-sudo',
-  :ref => 'master'
+  :tag => '5.0.3'
 
 mod 'simp-sudosh',
   :git => 'https://github.com/simp/pupmod-simp-sudosh',
@@ -419,7 +419,7 @@ mod 'simp-sudosh',
 
 mod 'simp-svckill',
   :git => 'https://github.com/simp/pupmod-simp-svckill',
-  :ref => 'master'
+  :tag => '3.2.3'
 
 mod 'simp-swap',
   :git => 'https://github.com/simp/pupmod-simp-swap',
@@ -427,7 +427,7 @@ mod 'simp-swap',
 
 mod 'simp-tcpwrappers',
   :git => 'https://github.com/simp/pupmod-simp-tcpwrappers',
-  :ref => 'master'
+  :tag => '6.0.2'
 
 mod 'simp-tftpboot',
   :git => 'https://github.com/simp/pupmod-simp-tftpboot',
