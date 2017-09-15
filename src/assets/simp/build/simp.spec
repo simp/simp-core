@@ -120,6 +120,7 @@ Requires: pupmod-herculesteam-augeasproviders_pam >= 2.0.3-2016
 Requires: pupmod-puppet-grafana >= 3.0.0
 Requires: pupmod-puppet-yum >= 2.0.0
 Requires: pupmod-puppetlabs-mysql >= 2.2.3-2016
+Requires: pupmod-razorsedge-snmp >= 3.8.1
 Requires: pupmod-simp-gdm >= 6.0.0-2016
 Requires: pupmod-simp-gnome >= 6.0.0-2016
 Requires: pupmod-simp-jenkins >= 6.0.0-2016
@@ -131,6 +132,8 @@ Requires: pupmod-simp-openscap >= 6.0.0-2016
 Requires: pupmod-simp-simp_elasticsearch >= 4.0.0
 Requires: pupmod-simp-simp_grafana >= 1.0.1-2016
 Requires: pupmod-simp-simp_logstash >= 3.0.1-2016
+Requires: pupmod-simp-simp_nfs >= 0.0.3
+Requires: pupmod-simp-simp_snmpd >= 0.0.1
 Requires: pupmod-simp-vnc >= 6.0.0-2016
 Requires: pupmod-simp-vsftpd >= 7.0.0-2016
 
