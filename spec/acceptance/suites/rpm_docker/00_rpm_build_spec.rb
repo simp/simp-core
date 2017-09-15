@@ -17,6 +17,9 @@ require 'spec_helper_rpm'
 
 test_name 'RPM build'
 
+#set build directory
+build_dir = ( ENV['BEAKER_copyin'] == 'yes' ) ? '/simp-import': '/simp-core'
+
 # Custom Gemfile Support
 gemfile = nil
 gemfile_path = File.expand_path(File.join(fixtures_path,'Gemfile'))
@@ -32,13 +35,6 @@ describe 'RPM build' do
   let(:build_user) { 'build_user' }
   let(:run_cmd) { %(runuser #{build_user} -l -c ) }
 
-  before(:all) do
-    @build_dir = '/simp-core'
-
-    if ENV['BEAKER_copyin']
-      @build_dir = '/simp-import'
-    end
-  end
 
   hosts.each do |host|
     next if host[:roles].include?('disabled')
@@ -47,45 +43,45 @@ describe 'RPM build' do
       set_perms = false
 
       if ENV['BEAKER_copyin'] == 'yes'
-        %x(docker cp #{Dir.pwd} #{host.name}:#{@build_dir})
+        %x(docker cp #{Dir.pwd} #{host.name}:#{build_dir})
         set_perms = true
-      elsif !host.file_exist?("#{@build_dir}/metadata.json")
+      elsif !host.file_exist?("#{build_dir}/metadata.json")
         # Handle Travis CI first
         if ENV['TRAVIS_BUILD_DIR']
           base_dir = File.dirname(ENV['TRAVIS_BUILD_DIR'])
 
-          %x(docker cp #{ENV['TRAVIS_BUILD_DIR']} #{host.name}:#{@build_dir})
+          %x(docker cp #{ENV['TRAVIS_BUILD_DIR']} #{host.name}:#{build_dir})
 
           host.mkdir_p(base_dir)
-          on(host, %(cd #{base_dir}; ln -s #{@build_dir} .))
+          on(host, %(cd #{base_dir}; ln -s #{build_dir} .))
         else
           # Just clone the main simp repo
-          on(host, %(git clone https://github.com/simp/simp-core #{@build_dir}))
+          on(host, %(git clone https://github.com/simp/simp-core #{build_dir}))
         end
 
         set_perms = true
       end
 
       if set_perms
-        on(host, %(chown -R #{build_user}:#{build_user} #{@build_dir}))
+        on(host, %(chown -R #{build_user}:#{build_user} #{build_dir}))
       end
     end
 
     it 'should have access to the local simp-core' do
 
       # This is to work around irritating artifacts left around by r10k
-      unless local_basedir == @build_dir
+      unless local_basedir == build_dir
         host.mkdir_p(File.dirname(local_basedir))
 
-        on(host, %(cd #{File.dirname(local_basedir)}; ln -s #{@build_dir} #{File.basename(local_basedir)}))
+        on(host, %(cd #{File.dirname(local_basedir)}; ln -s #{build_dir} #{File.basename(local_basedir)}))
       end
 
       host.file_exist?("#{local_basedir}/metadata.json")
     end
 
     it 'should align the build user uid and gid with the mounted filesystem' do
-      on(host, %(groupmod -g `stat --printf="%g" #{@build_dir}` #{build_user}))
-      on(host, %(usermod -u `stat --printf="%u" #{@build_dir}` -g `stat --printf="%g" #{@build_dir}` #{build_user}))
+      on(host, %(groupmod -g `stat --printf="%g" #{build_dir}` #{build_user}))
+      on(host, %(usermod -u `stat --printf="%u" #{build_dir}` -g `stat --printf="%g" #{build_dir}` #{build_user}))
       on(host, %(chown -R #{build_user}:#{build_user} ~#{build_user}))
     end
 
@@ -93,7 +89,7 @@ describe 'RPM build' do
       on(host, "#{run_cmd} 'cd #{local_basedir}; bundle update'")
     end
 
-    if host.file_exist?("#{@build_dir}/ISO")
+    if host.file_exist?("#{build_dir}/ISO")
       it 'should be able to build the ISO' do
         on(host, "#{run_cmd} 'cd #{local_basedir}; bundle exec rake build:auto[ISO]'")
       end
