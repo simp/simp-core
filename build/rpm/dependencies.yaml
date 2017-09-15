@@ -96,3 +96,9 @@
     - 'pupmod-puppetlabs-inifile'
     - 'pupmod-puppetlabs-postgresql'
     - 'pupmod-puppetlabs-stdlib'
+'timezone':
+  :obsoletes:
+    'pupmod-saz-timezone': '3.3.0-2016.1'
+  :requires:
+    # exclude pupmod-puppet-debconf
+    - 'pupmod-puppetlabs-stdlib'

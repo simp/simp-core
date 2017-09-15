@@ -173,11 +173,6 @@ mod 'richardc-datacat',
   :git => 'https://github.com/simp/puppet-datacat',
   :ref => 'master'
 
-# SIMP has made changes to this module that don't exist upstream
-mod 'saz-timezone',
-  :git => 'https://github.com/simp/puppet-timezone',
-  :ref => 'simp-master'
-
 mod 'simp-acpid',
   :git => 'https://github.com/simp/pupmod-simp-acpid',
   :ref => 'master'
@@ -439,6 +434,13 @@ mod 'simp-tcpwrappers',
 mod 'simp-tftpboot',
   :git => 'https://github.com/simp/pupmod-simp-tftpboot',
   :ref => 'master'
+
+# SIMP has made changes to this module that don't exist upstream
+# yet. (PR pending). Since may revert to saz/puppet-timezone at a
+# later date, working off of simp-master.
+mod 'simp-timezone',
+  :git => 'https://github.com/simp/pupmod-simp-timezone',
+  :ref => 'simp-master'
 
 mod 'simp-tpm',
   :git => 'https://github.com/simp/pupmod-simp-tpm',
