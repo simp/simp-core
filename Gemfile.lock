@@ -32,7 +32,7 @@ GEM
     aws-sdk-v1 (1.67.0)
       json (~> 1.4)
       nokogiri (~> 1)
-    beaker (3.23.0)
+    beaker (3.24.0)
       beaker-aws (~> 0.1)
       beaker-docker (~> 0.1)
       beaker-google (~> 0.1)
@@ -68,7 +68,7 @@ GEM
       stringify-hash (~> 0.0.0)
     beaker-hiera (0.1.1)
       stringify-hash (~> 0.0.0)
-    beaker-hostgenerator (1.0.2)
+    beaker-hostgenerator (1.1.0)
       deep_merge (~> 1.0)
       stringify-hash (~> 0.0.0)
     beaker-openstack (0.1.0)
@@ -292,7 +292,7 @@ GEM
       multi_json (~> 1.11)
       os (~> 0.9)
       signet (~> 0.7)
-    hiera (3.4.0)
+    hiera (3.4.1)
     hocon (1.2.5)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
@@ -337,7 +337,7 @@ GEM
     netrc (0.11.0)
     nokogiri (1.8.0)
       mini_portile2 (~> 2.2.0)
-    oga (2.10)
+    oga (2.11)
       ast
       ruby-ll (~> 2.1)
     open_uri_redirections (0.2.1)
@@ -357,7 +357,7 @@ GEM
       pry (~> 0.9)
       yard (~> 0.9)
     public_suffix (3.0.0)
-    puppet (4.10.6)
+    puppet (4.10.7)
       facter (> 2.0, < 4)
       gettext-setup (>= 0.10, < 1)
       hiera (>= 2.0, < 4)
@@ -390,7 +390,7 @@ GEM
       multi_json (~> 1.10)
       puppet_forge (~> 2.2)
       semantic_puppet (~> 0.1.0)
-    rake (12.0.0)
+    rake (12.1.0)
     rb-fsevent (0.10.2)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
@@ -422,7 +422,7 @@ GEM
     rspec-mocks (3.6.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.6.0)
-    rspec-puppet (2.6.8)
+    rspec-puppet (2.6.9)
       rspec
     rspec-puppet-facts (0.12.0)
       facter
@@ -432,7 +432,7 @@ GEM
     ruby-ll (2.1.2)
       ansi
       ast
-    ruby-progressbar (1.8.1)
+    ruby-progressbar (1.8.3)
     semantic_puppet (0.1.4)
       gettext-setup (>= 0.3)
     serverspec (2.40.0)
@@ -456,7 +456,7 @@ GEM
       rspec-puppet-facts (~> 0)
     slop (3.6.0)
     spdx-licenses (1.1.0)
-    specinfra (2.71.1)
+    specinfra (2.71.2)
       net-scp
       net-ssh (>= 2.7, < 5.0)
       net-telnet

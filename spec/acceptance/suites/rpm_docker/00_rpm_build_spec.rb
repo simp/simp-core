@@ -17,7 +17,11 @@ require 'spec_helper_rpm'
 
 test_name 'RPM build'
 
-#set build directory
+# Set build directory inside the container
+#
+# The /simp-core mount will be mounted regardless of the test requirements so
+# we have to use a different location if we want to copy things into the system
+#
 build_dir = ( ENV['BEAKER_copyin'] == 'yes' ) ? '/simp-import': '/simp-core'
 
 # Custom Gemfile Support
@@ -39,11 +43,16 @@ describe 'RPM build' do
   hosts.each do |host|
     next if host[:roles].include?('disabled')
 
+    # This needs to happen *prior* to the test selection since the test
+    # selection depends on this being present
+    if ENV['BEAKER_copyin'] == 'yes'
+      %x(docker cp #{Dir.pwd} #{host.name}:#{build_dir})
+    end
+
     it 'should clone the repo if necessary' do
       set_perms = false
 
       if ENV['BEAKER_copyin'] == 'yes'
-        %x(docker cp #{Dir.pwd} #{host.name}:#{build_dir})
         set_perms = true
       elsif !host.file_exist?("#{build_dir}/metadata.json")
         # Handle Travis CI first
