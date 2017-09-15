@@ -31,7 +31,7 @@ mod 'simp-gpgkeys',
 
 mod 'simp-utils',
   :git => 'https://github.com/simp/simp-utils',
-  :ref => 'master'
+  :tag => '6.0.1'
 
 moduledir 'src/puppet/modules'
 
@@ -233,7 +233,7 @@ mod 'simp-gdm',
 
 mod 'simp-gnome',
   :git => 'https://github.com/simp/pupmod-simp-gnome',
-  :ref => 'master'
+  :tag => '7.0.0'
 
 # SIMP has made changes to this module that don't exist upstream
 mod 'simp-haveged',
@@ -307,7 +307,7 @@ mod 'simp-oddjob',
 
 mod 'simp-simp_openldap',
   :git => 'https://github.com/simp/pupmod-simp-simp_openldap',
-  :ref => 'master'
+  :tag => '6.1.0'
 
 mod 'simp-openscap',
   :git => 'https://github.com/simp/pupmod-simp-openscap',
@@ -315,7 +315,7 @@ mod 'simp-openscap',
 
 mod 'simp-pam',
   :git => 'https://github.com/simp/pupmod-simp-pam',
-  :ref => 'master'
+  :tag => '6.0.4'
 
 mod 'simp-pki',
   :git => 'https://github.com/simp/pupmod-simp-pki',
