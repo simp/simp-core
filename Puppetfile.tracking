@@ -11,7 +11,7 @@ moduledir 'src/assets'
 
 mod 'rubygem-rubygem_simp_cli',
   :git => 'https://github.com/simp/rubygem-simp-cli',
-  :ref => 'master'
+  :ref => '4.0.3'
 
 mod 'simp-rsync_data',
   :git => 'https://github.com/simp/simp-rsync-skeleton',
@@ -19,7 +19,7 @@ mod 'simp-rsync_data',
 
 mod 'simp-adapter',
   :git => 'https://github.com/simp/simp-adapter',
-  :ref => 'master'
+  :ref => '0.0.4'
 
 mod 'simp-environment',
   :git => 'https://github.com/simp/simp-environment-skeleton',
