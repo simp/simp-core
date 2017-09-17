@@ -13,7 +13,7 @@ build/**/GPGKEYS/.dropped_keys
 build/**/GPGKEYS/dist
 build/**/SIMP
 build/**/build_keys/*
-build/distributions/CentOS/7/x86_64/DVD/RPM-GPG-KEY-SIMP-Dev
+build/distributions/*/*/*/DVD/RPM-GPG-KEY-SIMP-Dev
 build/yum_data/*/packages
 log/
 pkg/
