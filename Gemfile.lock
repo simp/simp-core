@@ -74,7 +74,7 @@ GEM
     beaker-openstack (0.1.0)
       fog (~> 1.38)
       stringify-hash (~> 0.0.0)
-    beaker-puppet (0.6.0)
+    beaker-puppet (0.7.0)
       in-parallel (~> 0.1)
       oga
       stringify-hash (~> 0.0.0)
@@ -357,7 +357,7 @@ GEM
       pry (~> 0.9)
       yard (~> 0.9)
     public_suffix (3.0.0)
-    puppet (4.10.7)
+    puppet (4.10.8)
       facter (> 2.0, < 4)
       gettext-setup (>= 0.10, < 1)
       hiera (>= 2.0, < 4)
