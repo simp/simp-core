@@ -5,6 +5,7 @@ moduledir 'src'
 
 mod 'simp-doc',
   :git => 'https://github.com/simp/simp-doc',
+#FIXME
   :ref => 'master'
 
 moduledir 'src/assets'
@@ -15,7 +16,7 @@ mod 'rubygem-rubygem_simp_cli',
 
 mod 'simp-rsync_data',
   :git => 'https://github.com/simp/simp-rsync-skeleton',
-  :ref => 'master'
+  :tag => '6.1.0'
 
 mod 'simp-adapter',
   :git => 'https://github.com/simp/simp-adapter',
@@ -34,10 +35,6 @@ mod 'simp-utils',
   :tag => '6.0.1'
 
 moduledir 'src/puppet/modules'
-
-mod 'puppet-grafana',
-  :git => 'https://github.com/simp/puppet-grafana.git',
-  :tag => 'v3.0.0'
 
 mod 'camptocamp-kmod',
   :git => 'https://github.com/simp/puppet-kmod.git',
@@ -60,60 +57,154 @@ mod 'elastic-logstash',
   :tag => '5.2.1'
 
 mod 'electrical-file_concat',
+  #FIXME NOW.  WE NEED TO RELEASE A 'simp' VERSION
+  # This is a bit messy.  This project has 3 tags that are
+  # all version 1.0.1, but slightly different IN MEANINGFUL
+  # WAYS:
+  #   '1.0.1 from the owner
+  #   'simp6.0.0-1.0.1' from SIMP team for SIMP6 adds ensure_newline
+  #     and autorequire in file_concat type
+  #   'simp-1.0.1' from SIMP team also for SIMP6 adds ensure_newline
+  #     and autorequire in file_concat type
+  # We are going to use the last SIMP team release, until
+  # file_concat gets updated and we can get out
+  # of this mess.
   :git => 'https://github.com/simp/puppet-lib-file_concat',
-  :ref => 'master'
+  :tag => 'simp-1.0.1'
 
 mod 'herculesteam-augeasproviders_apache',
+  #FIXME Next herculesteam release.
+  # This is a bit messy.  This project has 3 tags that are
+  # all version 2.0.1, but slightly different:
+  #   '2.0.1 from the owner
+  #   'simp-2.0.1' from SIMP team for SIMP4/SIMP5
+  #   'simp6.0.0-2.0.1' from SIMP team for SIMP6
+  # We are going to use the last SIMP team release, until
+  # augeasproviders_apache gets updated and we can get out
+  # of this mess.
   :git => 'https://github.com/simp/augeasproviders_apache',
-  :ref => 'master'
+  :tag => 'simp6.0.0-2.0.1'
 
 mod 'herculesteam-augeasproviders_base',
+  #FIXME Next herculesteam release.
+  # This is a bit messy.  This project has 3 tags that are
+  # all version 2.0.1, but slightly different:
+  #   '2.0.1 from the owner
+  #   'simp-2.0.1' from SIMP team for SIMP4/SIMP5
+  #   'simp6.0.0-2.0.1' from SIMP team for SIMP6
+  # We are going to use the last SIMP team release, until
+  # augeasproviders_base gets updated and we can get out
+  # of this mess.
   :git => 'https://github.com/simp/augeasproviders_base',
-  :ref => 'master'
+  :tag => 'simp6.0.0-2.0.1'
 
 mod 'herculesteam-augeasproviders_core',
+  #FIXME Next herculesteam release.
+  # This is a bit messy.  This project has 2 tags that are
+  # both version 2.1.3, but slightly different:
+  #   '2.1.3 from the owner
+  #   'simp6.0.0-2.1.3' from SIMP team for SIMP6
+  # We are going to use the last SIMP team release, until
+  # augeasproviders_core gets updated and we can get out
+  # of this mess.
   :git => 'https://github.com/simp/augeasproviders_core',
-  :ref => 'master'
+  :tag => 'simp6.0.0-2.1.3'
 
 mod 'herculesteam-augeasproviders_grub',
   :git => 'https://github.com/simp/augeasproviders_grub',
-  :ref => 'master'
+  :tag => '3.0.0'
 
 mod 'herculesteam-augeasproviders_mounttab',
+  #FIXME Next herculesteam release.
+  # This is a bit messy.  This project has 3 tags that are
+  # all version 2.0.1, but slightly different:
+  #   '2.0.1 from the owner
+  #   'simp-2.0.1' from SIMP team for SIMP4/SIMP5
+  #   'simp6.0.0-2.0.1' from SIMP team for SIMP6
+  # We are going to use the last SIMP team release, until
+  # augeasproviders_mounttab gets updated and we can get out
+  # of this mess.
   :git => 'https://github.com/simp/augeasproviders_mounttab',
-  :ref => 'master'
+  :tag => 'simp6.0.0-2.0.1'
 
 mod 'herculesteam-augeasproviders_nagios',
+  #FIXME Next herculesteam release.
+  # This is a bit messy.  This project has 3 tags that are
+  # all version 2.0.1, but slightly different:
+  #   '2.0.1 from the owner
+  #   'simp-2.0.1' from SIMP team for SIMP4/SIMP5
+  #   'simp6.0.0-2.0.1' from SIMP team for SIMP6
+  # We are going to use the last SIMP team release, until
+  # augeasproviders_nagios gets updated and we can get out
+  # of this mess.
   :git => 'https://github.com/simp/augeasproviders_nagios',
-  :ref => 'master'
+  :tag => 'simp6.0.0-2.0.1'
 
 mod 'herculesteam-augeasproviders_pam',
+  #FIXME Next herculesteam release.
+  # This is a bit messy.  This project has 2 tags that are
+  # both version 2.1.0, but slightly different:
+  #   '2.1.0 from the owner
+  #   'simp6.0.0-2.1.0' from SIMP team for SIMP6
+  # We are going to use the last SIMP team release, until
+  # augeasproviders_pam gets updated and we can get out
+  # of this mess.
   :git => 'https://github.com/simp/augeasproviders_pam',
-  :ref => 'master'
+  :tag => 'simp6.0.0-2.1.0'
 
 mod 'herculesteam-augeasproviders_postgresql',
+  #FIXME Next herculesteam release.
+  # This is a bit messy.  This project has 3 tags that are
+  # all version 2.0.3, but slightly different:
+  #   '2.0.3 from the owner
+  #   'simp-2.0.3' from SIMP team for SIMP4/SIMP5
+  #   'simp6.0.0-2.0.3' from SIMP team for SIMP6
+  # We are going to use the last SIMP team release, until
+  # augeasproviders_postgresql gets updated and we can get out
+  # of this mess.
   :git => 'https://github.com/simp/augeasproviders_postgresql',
-  :ref => 'master'
+  :tag => 'simp6.0.0-2.0.3'
 
 mod 'herculesteam-augeasproviders_puppet',
+  #FIXME Next herculesteam release.
+  # This is a bit messy.  This project has 2 tags that are
+  # both version 2.1.0, but slightly different:
+  #   '2.1.0 from the owner
+  #   'simp-2.1.0' from SIMP team for SIMP6
+  # We are going to use the last SIMP team release, until
+  # augeasproviders_pam gets updated and we can get out
+  # of this mess.
   :git => 'https://github.com/simp/augeasproviders_puppet',
-  :ref => 'master'
+  :tag => 'simp-2.1.0'
 
 mod 'herculesteam-augeasproviders_shellvar',
+  #FIXME Next herculesteam release.
+  # This is a bit messy.  This project has 3 tags that are
+  # all version 2.2.1, but slightly different:
+  #   '2.2.1 from the owner
+  #   'simp-2.2.1' from SIMP team for SIMP4/SIMP5
+  #   'simp6.0.0-2.2.1' from SIMP team for SIMP6
+  # We are going to use the last SIMP team release, until
+  # augeasproviders_postgresql gets updated and we can get out
+  # of this mess.
   :git => 'https://github.com/simp/augeasproviders_shellvar',
-  :ref => 'master'
+  :tag => 'simp6.0.0-2.2.1'
 
 mod 'herculesteam-augeasproviders_ssh',
   :git => 'https://github.com/simp/augeasproviders_ssh',
-  :ref => 'master'
+  :tag => '2.5.3'
 
 mod 'herculesteam-augeasproviders_sysctl',
   :git => 'https://github.com/simp/augeasproviders_sysctl',
-  :ref => 'master'
+  :tag => '2.2.0'
 
 mod 'onyxpoint-gpasswd',
   :git => 'https://github.com/simp/puppet-gpasswd',
   :ref => '1.0.3'
+
+mod 'puppet-grafana',
+  :git => 'https://github.com/simp/puppet-grafana.git',
+  :tag => 'v3.0.0'
 
 mod 'puppetlabs-apache',
   :git => 'https://github.com/simp/puppetlabs-apache',
@@ -128,24 +219,42 @@ mod 'puppetlabs-hocon',
   :tag => '0.9.4'
 
 mod 'puppetlabs-inifile',
+  #FIXME LATER
+  # This is a bit messy.  This project has 2 tags that are
+  # both version 1.6.0, but slightly different:
+  #   '1.6.0 from the owner
+  #   'simp6.0.0-1.6.0' from SIMP team for SIMP6
+  # We are going to use the last SIMP team release, until
+  # all the modules that uses inifile (e.g. puppetdb) update
+  # to 2.0.0 (already released) or later.
   :git => 'https://github.com/simp/puppetlabs-inifile',
-  :ref => 'master'
+  :tag => 'simp6.0.0-1.6.0'
 
 mod 'puppetlabs-java',
+  #FIXME NOW
+  # SIMP released 'simp-1.6.0-post1' as version 1.6.0.
+  # This is very different from puppetlabs's released
+  # 1.6.0 version.
   :git => 'https://github.com/simp/puppetlabs-java',
-  :ref => 'master'
+  :tag => 'simp-1.6.0-post1'
 
 mod 'puppetlabs-java_ks',
   :git => 'https://github.com/simp/puppetlabs-java_ks',
-  :ref => 'master'
+  :tag => '1.6.0'
 
 mod 'puppetlabs-motd',
+  #FIXME Next motd release.
+  # Another messy problem. The 'simp6.0.0-1.4.0' tag has
+  # changes beyond the official 1.4.0 release from puppetlabs.
+  # Since the changes appear to be Debian-related, we're going
+  # to stay with the last SIMP-released version, and live with
+  # this inconsistency until the next motd release.
   :git => 'https://github.com/simp/puppetlabs-motd',
-  :ref => 'master'
+  :tag => 'simp6.0.0-1.4.0'
 
 mod 'puppetlabs-mysql',
   :git => 'https://github.com/simp/puppetlabs-mysql',
-  :ref => 'master'
+  :tag => '4.0.1'
 
 mod 'puppetlabs-postgresql',
   :git => 'https://github.com/simp/puppetlabs-postgresql',
@@ -168,28 +277,37 @@ mod 'razorsedge-snmp',
   :tag => '3.8.1'
 
 mod 'richardc-datacat',
+  #FIXME Next datacat release.
+  # This is a bit messy.  This project has 3 tags that are
+  # all version 0.6.2, but slightly different:
+  #   '0.6.2 from the owner
+  #   'simp-0.6.2' from SIMP team for SIMP4/SIMP5
+  #   'simp6.0.0-0.6.2' from SIMP team for SIMP6
+  # We are going to use the last SIMP team release, until
+  # datacat gets updated and we can get out
+  # of this mess.
   :git => 'https://github.com/simp/puppet-datacat',
-  :ref => 'master'
+  :tag => 'simp6.0.0-0.6.2'
 
 mod 'simp-acpid',
   :git => 'https://github.com/simp/pupmod-simp-acpid',
-  :ref => 'master'
+  :tag => '1.0.2'
 
 mod 'simp-activemq',
   :git => 'https://github.com/simp/pupmod-simp-activemq',
-  :ref => 'master'
+  :tag => '4.0.1'
 
 mod 'simp-aide',
   :git => 'https://github.com/simp/pupmod-simp-aide',
-  :ref => 'master'
+  :tag => '6.1.0'
 
 mod 'simp-at',
   :git => 'https://github.com/simp/pupmod-simp-at',
-  :ref => 'master'
+  :tag => '0.0.3'
 
 mod 'simp-auditd',
   :git => 'https://github.com/simp/pupmod-simp-auditd',
-  :ref => 'master'
+  :tag => '7.1.1'
 
 mod 'simp-autofs',
   :git => 'https://github.com/simp/pupmod-simp-autofs',
@@ -197,48 +315,51 @@ mod 'simp-autofs',
 
 mod 'simp-chkrootkit',
   :git => 'https://github.com/simp/pupmod-simp-chkrootkit',
-  :ref => 'master'
+  :tag => '0.0.2'
 
 mod 'simp-clamav',
   :git => 'https://github.com/simp/pupmod-simp-clamav',
-  :ref => 'master'
+  :tag => '6.0.2'
 
 mod 'simp-compliance_markup',
   :git => 'https://github.com/simp/pupmod-simp-compliance_markup',
+#FIXME waiting for PR
   :ref => 'master'
 
 mod 'simp-cron',
   :git => 'https://github.com/simp/pupmod-simp-cron',
-  :ref => 'master'
+  :tag => '0.0.2'
 
 mod 'simp-dhcp',
   :git => 'https://github.com/simp/pupmod-simp-dhcp',
-  :ref => 'master'
+  :tag => '6.0.1'
 
 mod 'simp-dirtycow',
   :git => 'https://github.com/simp/pupmod-simp-dirtycow.git',
-  :ref => 'master'
+  :tag => '1.0.3'
 
 mod 'simp-fips',
   :git => 'https://github.com/simp/pupmod-simp-fips',
-  :ref => 'master'
+  :tag => '0.1.3'
 
 mod 'simp-freeradius',
   :git => 'https://github.com/simp/pupmod-simp-freeradius',
-  :ref => 'master'
+  :tag => '7.0.1'
 
 mod 'simp-gdm',
   :git => 'https://github.com/simp/pupmod-simp-gdm',
-  :ref => 'master'
+  :tag => '7.0.2'
 
 mod 'simp-gnome',
   :git => 'https://github.com/simp/pupmod-simp-gnome',
   :tag => '7.0.0'
 
 # SIMP has made changes to this module that don't exist upstream
+# and owns this version.  Beginnin with version 0.4.4, all module
+# changes will be done on the 'master' branch.
 mod 'simp-haveged',
   :git => 'https://github.com/simp/puppet-haveged',
-  :ref => 'simp-master'
+  :tag => '0.4.4'
 
 mod 'simp-incron',
   :git => 'https://github.com/simp/pupmod-simp-incron',
@@ -250,48 +371,50 @@ mod 'simp-iptables',
 
 mod 'simp-issue',
   :git => 'https://github.com/simp/pupmod-simp-issue',
-  :ref => 'master'
+  :tag => '0.0.2'
 
 mod 'simp-jenkins',
   :git => 'https://github.com/simp/pupmod-simp-jenkins',
-  :ref => 'master'
+  :tag => '6.0.1'
 
 mod 'simp-krb5',
   :git => 'https://github.com/simp/pupmod-simp-krb5',
-  :ref => 'master'
+  :tag => '7.0.2'
 
 mod 'simp-libreswan',
   :git => 'https://github.com/simp/pupmod-simp-libreswan',
-  :ref => 'master'
+  :tag => '3.0.1'
 
 mod 'simp-libvirt',
   :git => 'https://github.com/simp/pupmod-simp-libvirt',
-  :ref => 'master'
+  :tag => '5.0.3'
 
 mod 'simp-logrotate',
   :git => 'https://github.com/simp/pupmod-simp-logrotate',
-  :ref => 'master'
+  :tag => '6.1.1'
 
 mod 'simp-mcafee',
   :git => 'https://github.com/simp/pupmod-simp-mcafee',
-  :ref => 'master'
+  :tag => '6.0.1'
 
 # SIMP has made changes to this module that don't exist upstream
+# So we are working off of simp-master.
 mod 'simp-mcollective',
+  #FIXME Does the module even work?
   :git => 'https://github.com/simp/pupmod-simp-mcollective',
-  :ref => 'simp-master'
+  :tag => 'simp-3.0.0'
 
 mod 'simp-mozilla',
   :git => 'https://github.com/simp/pupmod-simp-mozilla',
-  :ref => 'master'
+  :tag => '5.0.1'
 
 mod 'simp-named',
   :git => 'https://github.com/simp/pupmod-simp-named',
-  :ref => 'master'
+  :tag => '6.0.2'
 
 mod 'simp-network',
   :git => 'https://github.com/simp/pupmod-simp-network',
-  :ref => 'master'
+  :tag => '6.0.2'
 
 mod 'simp-nfs',
   :git => 'https://github.com/simp/pupmod-simp-nfs',
@@ -303,15 +426,11 @@ mod 'simp-ntpd',
 
 mod 'simp-oddjob',
   :git => 'https://github.com/simp/pupmod-simp-oddjob',
-  :ref => 'master'
-
-mod 'simp-simp_openldap',
-  :git => 'https://github.com/simp/pupmod-simp-simp_openldap',
-  :tag => '6.1.0'
+  :tag => '2.0.1'
 
 mod 'simp-openscap',
   :git => 'https://github.com/simp/pupmod-simp-openscap',
-  :ref => 'master'
+  :tag => '6.0.2'
 
 mod 'simp-pam',
   :git => 'https://github.com/simp/pupmod-simp-pam',
@@ -319,15 +438,15 @@ mod 'simp-pam',
 
 mod 'simp-pki',
   :git => 'https://github.com/simp/pupmod-simp-pki',
-  :ref => 'master'
+  :tag => '6.0.1'
 
 mod 'simp-polkit',
   :git => 'https://github.com/simp/pupmod-simp-polkit',
-  :ref => 'master'
+  :tag => '6.1.0'
 
 mod 'simp-postfix',
   :git => 'https://github.com/simp/pupmod-simp-postfix',
-  :ref => 'master'
+  :tag => '5.0.2'
 
 mod 'simp-pupmod',
   :git => 'https://github.com/simp/pupmod-simp-pupmod',
@@ -335,7 +454,7 @@ mod 'simp-pupmod',
 
 mod 'simp-resolv',
   :git => 'https://github.com/simp/pupmod-simp-resolv',
-  :ref => 'master'
+  :tag => '0.0.2'
 
 mod 'simp-rsync',
   :git => 'https://github.com/simp/pupmod-simp-rsync',
@@ -343,11 +462,11 @@ mod 'simp-rsync',
 
 mod 'simp-rsyslog',
   :git => 'https://github.com/simp/pupmod-simp-rsyslog',
-  :ref => 'master'
+  :tag => '7.1.0'
 
 mod 'simp-selinux',
   :git => 'https://github.com/simp/pupmod-simp-selinux',
-  :ref => 'master'
+  :tag => '2.1.0'
 
 mod 'simp-simp',
   :git => 'https://github.com/simp/pupmod-simp-simp',
@@ -355,51 +474,55 @@ mod 'simp-simp',
 
 mod 'simp-simpcat',
   :git => 'https://github.com/simp/pupmod-simp-simpcat',
-  :ref => 'master'
-
-mod 'simp-simp_apache',
-  :git => 'https://github.com/simp/pupmod-simp-apache',
-  :ref => 'master'
-
-mod 'simp-simp_elasticsearch',
-  :git => 'https://github.com/simp/pupmod-simp-simp_elasticsearch',
-  :ref => 'master'
-
-mod 'simp-simp_grafana',
-  :git => 'https://github.com/simp/pupmod-simp-simp_grafana',
-  :ref => 'master'
-
-mod 'simp-simp_logstash',
-  :git => 'https://github.com/simp/pupmod-simp-simp_logstash',
-  :ref => 'master'
-
-mod 'simp-simp_options',
-  :git => 'https://github.com/simp/pupmod-simp-simp_options',
-  :ref => 'master'
-
-mod 'simp-simp_nfs',
-  :git => 'https://github.com/simp/pupmod-simp-simp_nfs',
-  :ref => 'master'
-
-mod 'simp-simp_rsyslog',
-  :git => 'https://github.com/simp/pupmod-simp-simp_rsyslog',
-  :ref => 'master'
-
-mod 'simp-simp_snmpd',
-  :git => 'https://github.com/simp/pupmod-simp-simp_snmpd',
-  :ref => 'master'
+  :tag => '6.0.1'
 
 mod 'simp-simplib',
   :git => 'https://github.com/simp/pupmod-simp-simplib',
   :tag => '3.5.0'
 
+mod 'simp-simp_apache',
+  :git => 'https://github.com/simp/pupmod-simp-apache',
+  :tag => '6.0.1'
+
+mod 'simp-simp_elasticsearch',
+  :git => 'https://github.com/simp/pupmod-simp-simp_elasticsearch',
+  :tag => '5.0.0'
+
+mod 'simp-simp_grafana',
+  :git => 'https://github.com/simp/pupmod-simp-simp_grafana',
+  :tag => '1.0.4'
+
+mod 'simp-simp_logstash',
+  :git => 'https://github.com/simp/pupmod-simp-simp_logstash',
+  :tag => '5.0.0'
+
+mod 'simp-simp_nfs',
+  :git => 'https://github.com/simp/pupmod-simp-simp_nfs',
+  :tag => '0.0.4'
+
+mod 'simp-simp_openldap',
+  :git => 'https://github.com/simp/pupmod-simp-simp_openldap',
+  :tag => '6.1.0'
+
+mod 'simp-simp_options',
+  :git => 'https://github.com/simp/pupmod-simp-simp_options',
+  :tag => '1.0.3'
+
+mod 'simp-simp_rsyslog',
+  :git => 'https://github.com/simp/pupmod-simp-simp_rsyslog',
+  :tag => '0.2.0'
+
+mod 'simp-simp_snmpd',
+  :git => 'https://github.com/simp/pupmod-simp-simp_snmpd',
+  :tag => '0.0.2'
+
 mod 'simp-site',
   :git => 'https://github.com/simp/pupmod-simp-site',
-  :ref => 'master'
+  :tag => '2.0.4'
 
 mod 'simp-ssh',
   :git => 'https://github.com/simp/pupmod-simp-ssh',
-  :ref => 'master'
+  :tag => '6.2.1'
 
 mod 'simp-sssd',
   :git => 'https://github.com/simp/pupmod-simp-sssd',
@@ -407,7 +530,7 @@ mod 'simp-sssd',
 
 mod 'simp-stunnel',
   :git => 'https://github.com/simp/pupmod-simp-stunnel',
-  :ref => 'master'
+  :tag => '6.1.0'
 
 mod 'simp-sudo',
   :git => 'https://github.com/simp/pupmod-simp-sudo',
@@ -415,7 +538,7 @@ mod 'simp-sudo',
 
 mod 'simp-sudosh',
   :git => 'https://github.com/simp/pupmod-simp-sudosh',
-  :ref => 'master'
+  :tag => '6.0.1'
 
 mod 'simp-svckill',
   :git => 'https://github.com/simp/pupmod-simp-svckill',
@@ -423,7 +546,7 @@ mod 'simp-svckill',
 
 mod 'simp-swap',
   :git => 'https://github.com/simp/pupmod-simp-swap',
-  :ref => 'master'
+  :tag => '0.1.1'
 
 mod 'simp-tcpwrappers',
   :git => 'https://github.com/simp/pupmod-simp-tcpwrappers',
@@ -431,13 +554,14 @@ mod 'simp-tcpwrappers',
 
 mod 'simp-tftpboot',
   :git => 'https://github.com/simp/pupmod-simp-tftpboot',
-  :ref => 'master'
+  :tag => '6.0.1'
 
 # SIMP has made changes to this module that don't exist upstream
 # yet. (PR pending). Since may revert to saz/puppet-timezone at a
 # later date, working off of simp-master.
 mod 'simp-timezone',
   :git => 'https://github.com/simp/pupmod-simp-timezone',
+#FIXME waiting for keys
   :ref => 'simp-master'
 
 mod 'simp-tpm',
@@ -446,27 +570,27 @@ mod 'simp-tpm',
 
 mod 'simp-tuned',
   :git => 'https://github.com/simp/pupmod-simp-tuned',
-  :ref => 'master'
+  :tag => '0.0.2'
 
 mod 'simp-upstart',
   :git => 'https://github.com/simp/pupmod-simp-upstart',
-  :ref => 'master'
-
-mod 'simp-vnc',
-  :git => 'https://github.com/simp/pupmod-simp-vnc',
-  :ref => 'master'
-
-mod 'simp-vsftpd',
-  :git => 'https://github.com/simp/pupmod-simp-vsftpd',
-  :ref => 'master'
-
-mod 'simp-xinetd',
-  :git => 'https://github.com/simp/pupmod-simp-xinetd',
-  :ref => 'master'
+  :tag => '6.0.1'
 
 mod 'simp-useradd',
   :git => 'https://github.com/simp/pupmod-simp-useradd',
-  :ref => 'master'
+  :tag => '0.2.0'
+
+mod 'simp-vnc',
+  :git => 'https://github.com/simp/pupmod-simp-vnc',
+  :tag => '6.0.2'
+
+mod 'simp-vsftpd',
+  :git => 'https://github.com/simp/pupmod-simp-vsftpd',
+  :tag => '7.0.1'
+
+mod 'simp-xinetd',
+  :git => 'https://github.com/simp/pupmod-simp-xinetd',
+  :tag => '4.0.2'
 
 # The code we need has not been released.  Until it is released,
 # we are using a ref spec that has that code.
@@ -477,3 +601,4 @@ mod 'trlinkin-nsswitch',
 mod 'voxpupuli-yum',
   :git => 'https://github.com/simp/voxpupuli-yum',
   :tag => 'v2.0.1'
+
