@@ -1,113 +1,28 @@
 ---
-puppet-syntax:
-  stage: test
-  tags:
-    - docker
-  image: ruby:2.1
-  script:
-    - bundle install
-    - bundle exec rake syntax
-puppet-lint:
-  stage: test
-  tags:
-    - docker
-  image: ruby:2.1
-  script:
-    - bundle install
-    - bundle exec rake lint
-puppet-metadata:
-  stage: test
-  tags:
-    - docker
-  image: ruby:2.1
-  script:
-    - bundle install
-    - bundle exec rake metadata_lint
-unit-test-ruby-2.1:
-  stage: test
-  tags:
-    - docker
-  image: ruby:2.1
-  script:
-    - bundle install
-    - bundle exec rake spec
-unit-test-ruby-2.2:
-  stage: test
-  tags:
-    - docker
-  image: ruby:2.2
-  allow_failure: true
-  script:
-    - bundle install
-    - bundle exec rake spec
-unit-test-ruby-2.3:
-  stage: test
-  tags:
-    - docker
-  image: ruby:2.3
-  allow_failure: true
-  script:
-    - bundle install
-    - bundle exec rake spec
-
-# For PE LTS Support
-# See: https://puppet.com/misc/puppet-enterprise-lifecycle
-puppet4.7-syntax:
-  stage: test
-  tags:
-    - docker
-  image: ruby:2.1
-  script:
-    - PUPPET_VERSION=4.7 bundle install
-    - PUPPET_VERSION=4.7 bundle exec rake syntax
-unit-test-puppet4.7-ruby-2.1:
-  stage: test
-  tags:
-    - docker
-  image: ruby:2.1
-  script:
-    - PUPPET_VERSION=4.7 bundle install
-    - PUPPET_VERSION=4.7 bundle exec rake spec
-unit-test-puppet4.7-ruby-2.2:
-  stage: test
-  tags:
-    - docker
-  image: ruby:2.2
-  allow_failure: true
-  script:
-    - PUPPET_VERSION=4.7 bundle install
-    - PUPPET_VERSION=4.7 bundle exec rake spec
-unit-test-puppet4.7-ruby-2.3:
-  stage: test
-  tags:
-    - docker
-  image: ruby:2.3
-  allow_failure: true
-  script:
-    - PUPPET_VERSION=4.7 bundle install
-    - PUPPET_VERSION=4.7 bundle exec rake spec
-
-core-default-test:
+acceptance-default-test:
   stage: test
   tags:
     - beaker
   script:
+    - rm Gemfile.lock || true
     - bundle install --no-binstubs --path=vendor
     - bundle exec rake beaker:suites[default]
 
-core-rpm_el6-test:
+acceptance-rpm_el6-test:
   stage: test
   tags:
     - beaker
   script:
+    - rm Gemfile.lock || true
     - bundle install --no-binstubs --path=vendor
     - bundle exec rake beaker:suites[rpm_el6]
 
-core-rpm_el7-test:
+acceptance-rpm_el7-test:
   stage: test
   tags:
     - beaker
   script:
+    - rm Gemfile.lock || true
     - bundle install --no-binstubs --path=vendor
     - bundle exec rake beaker:suites[rpm_el7]
 

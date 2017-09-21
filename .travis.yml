@@ -1,37 +1,30 @@
-#  PE/SIMP versions
-#  app    pup  ruby
-# 2015.2  4.3  2.1.7
-# 2015.3  4.3  2.1.8
-# 2016.1  4.4  2.1.9
-# 2016.2  4.5  2.1.9
-# S6.0.0  4.7  2.1.9
-
+# The testing matrix considers ruby/puppet versions supported by SIMP and PE:
+# ------------------------------------------------------------------------------
+#  release    pup   ruby      eol
+# PE 2016.4   4.7   2.1.9  TBD (LTS)
+# PE 2016.5   4.8   2.1.9  2017-10-31
+# SIMP6.0.0   4.8   2.1.9  TBD
+# PE 2017.1   4.9   2.1.9  2017-10-31
+# PE 2017.2   4.10  2.1.9  TBD
 ---
 language: ruby
-# This is because any call to 'rake' currently calls 'rpm'
-sudo: required
+sudo: false
 cache: bundler
-
 before_script:
   - bundle
-
-bundler_args: --without development system_tests
-
+bundler_args: --without development system_tests --path .vendor
 before_install:
  - rm Gemfile.lock || true
  - sudo apt-get update -qq
  - sudo apt-get install -y rpm
-
 script:
   - bundle exec rake metadata_lint
+  - bundle exec rake validate
   - bundle exec rake spec
-
 notifications:
   email: false
-
 rvm:
   - 2.1.9
-
 env:
   global:
     - STRICT_VARIABLES=yes
@@ -39,12 +32,16 @@ env:
   matrix:
     - PUPPET_VERSION="~> 4.7.0"
     - PUPPET_VERSION="~> 4.8.2" FORGE_PUBLISH=true
-
+    - PUPPET_VERSION="~> 4.9.2"
+    - PUPPET_VERSION="~> 4.10.0"
+    - PUPPET_VERSION="~> 5.2.0"
 matrix:
   fast_finish: true
 
 before_deploy:
   - 'bundle exec rake metadata_lint'
+  - 'bundle exec rake clobber'
+  - 'bundle exec rake spec_clean'
   - "export PUPMOD_METADATA_VERSION=`ruby -r json -e \"puts JSON.parse(File.read('metadata.json')).fetch('version')\"`"
   - '[[ $TRAVIS_TAG =~ ^simp-${PUPMOD_METADATA_VERSION}$|^${PUPMOD_METADATA_VERSION}$ ]]'
 deploy:
