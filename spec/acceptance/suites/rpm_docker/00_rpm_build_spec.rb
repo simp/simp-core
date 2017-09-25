@@ -90,7 +90,7 @@ describe 'RPM build' do
 
     it 'should align the build user uid and gid with the mounted filesystem' do
       #on(host, %(groupmod -g `stat --printf="%g" #{build_dir}` #{build_user}))
-      on(host, %(if ! id `stat --printf="%g" #{build_dir}` >&/dev/null; then groupadd -g `stat --printf="%g" #{build_dir}` #{build_user}_supplementary; fi))
+      on(host, %(if ! getent group `stat --printf="%g" #{build_dir}` >&/dev/null; then groupadd -g `stat --printf="%g" #{build_dir}` #{build_user}_supplementary; fi))
       on(host, %(usermod -u `stat --printf="%u" #{build_dir}` -G `stat --printf="%g" #{build_dir}` #{build_user}))
       on(host, %(chown -R #{build_user}:#{build_user} ~#{build_user}))
     end
