@@ -1,0 +1,28 @@
+---
+acceptance-default-test:
+  stage: test
+  tags:
+    - beaker
+  script:
+    - rm Gemfile.lock || true
+    - bundle install --no-binstubs --path=vendor
+    - bundle exec rake beaker:suites[default]
+
+acceptance-rpm_el6-test:
+  stage: test
+  tags:
+    - beaker
+  script:
+    - rm Gemfile.lock || true
+    - bundle install --no-binstubs --path=vendor
+    - bundle exec rake beaker:suites[rpm_el6]
+
+acceptance-rpm_el7-test:
+  stage: test
+  tags:
+    - beaker
+  script:
+    - rm Gemfile.lock || true
+    - bundle install --no-binstubs --path=vendor
+    - bundle exec rake beaker:suites[rpm_el7]
+

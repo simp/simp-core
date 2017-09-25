@@ -241,7 +241,7 @@ GEM
     gettext (3.2.4)
       locale (>= 2.0.5)
       text (>= 1.3.0)
-    gettext-setup (0.26)
+    gettext-setup (0.28)
       fast_gettext (~> 1.1.0)
       gettext (>= 3.0.2)
       locale
@@ -315,7 +315,7 @@ GEM
     os (0.9.6)
     pager (1.0.1)
     parallel (1.12.0)
-    parallel_tests (2.14.3)
+    parallel_tests (2.15.0)
       parallel
     pry (0.10.4)
       coderay (~> 1.1.0)
@@ -415,7 +415,7 @@ GEM
       beaker (~> 3.14)
       beaker-puppet_install_helper (~> 0.6)
     simp-build-helpers (0.1.1)
-    simp-rake-helpers (4.0.1)
+    simp-rake-helpers (4.1.1)
       beaker (~> 3.14)
       beaker-rspec (~> 6.1)
       bundler (~> 1.14)
@@ -470,15 +470,15 @@ DEPENDENCIES
   parallel
   pry
   pry-doc
-  puppet (= 4.8.2)
+  puppet (~> 4)
   puppet-lint
   puppet-strings
   puppetlabs_spec_helper
   rake
   ruby-progressbar
-  simp-beaker-helpers (~> 1.5)
+  simp-beaker-helpers (~> 1.7)
   simp-build-helpers (>= 0.1.0)
-  simp-rake-helpers (~> 4.0)
+  simp-rake-helpers (~> 4.1)
 
 BUNDLED WITH
    1.15.4
