@@ -100,11 +100,11 @@ pupmod-camptocamp-systemd
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 * Added as a core supported module
 
-pupmod-simp-simp-gitlab
+pupmod-simp-simp_gitlab
 ^^^^^^^^^^^^^^^^^^^^^^^
 * Added as a supported simp extra
 
-puppet-gitlab
+pupmod-puppet-gitlab
 ^^^^^^^^^^^^^^^^^^^^^^^
 * Added as a simp extra
 
