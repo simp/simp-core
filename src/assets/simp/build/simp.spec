@@ -116,6 +116,7 @@ Requires: pupmod-electrical-file_concat >= 1.0.1-2016
 Requires: pupmod-herculesteam-augeasproviders_mounttab >= 2.0.1-2016
 Requires: pupmod-herculesteam-augeasproviders_nagios >= 2.0.1-2016
 Requires: pupmod-herculesteam-augeasproviders_pam >= 2.0.3-2016
+Requires: pupmod-puppet-gitlab >= 1.13.3
 Requires: pupmod-puppet-grafana >= 3.0.0
 Requires: pupmod-puppet-yum >= 2.0.0
 Requires: pupmod-puppetlabs-mysql >= 2.2.3-2016
@@ -136,7 +137,6 @@ Requires: pupmod-simp-simp_nfs >= 0.0.3
 Requires: pupmod-simp-simp_snmpd >= 0.0.1
 Requires: pupmod-simp-vnc >= 6.0.0-2016
 Requires: pupmod-simp-vsftpd >= 7.0.0-2016
-Requires: puppet-gitlab >= 1.13.3
 
 %description
 Metapackage for installing everything needed for a full SIMP system
