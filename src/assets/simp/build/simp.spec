@@ -129,12 +129,14 @@ Requires: pupmod-simp-mcafee >= 6.0.0-2016
 Requires: pupmod-simp-mozilla >= 5.0.0-2016
 Requires: pupmod-simp-openscap >= 6.0.0-2016
 Requires: pupmod-simp-simp_elasticsearch >= 5.0.0
+Requires: pupmod-simp-simp_gitlab >= 0.2.0
 Requires: pupmod-simp-simp_grafana >= 1.0.1-2016
 Requires: pupmod-simp-simp_logstash >= 5.0.0
 Requires: pupmod-simp-simp_nfs >= 0.0.3
 Requires: pupmod-simp-simp_snmpd >= 0.0.1
 Requires: pupmod-simp-vnc >= 6.0.0-2016
 Requires: pupmod-simp-vsftpd >= 7.0.0-2016
+Requires: puppet-gitlab >= 1.13.3
 
 %description
 Metapackage for installing everything needed for a full SIMP system
