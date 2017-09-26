@@ -74,6 +74,10 @@
 'file_concat':
   :release: '2016'
 
+'puppet-gitlab': '1.13.3'
+    # exclude pupmod-puppetlabs-apt
+    - 'pupmod-puppetlabs-stdlib'
+
 'grafana':
   :obsoletes:
     'pupmod-bfraser-grafana': '2.5.0-2016.1'

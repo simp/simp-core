@@ -202,6 +202,10 @@ mod 'onyxpoint-gpasswd',
   :git => 'https://github.com/simp/puppet-gpasswd',
   :ref => '1.0.3'
 
+mod 'puppet-gitlab',
+  :git => 'https://github.com/simp/puppet-gitlab.git',
+  :tag => 'v1.13.3'
+
 mod 'puppet-grafana',
   :git => 'https://github.com/simp/puppet-grafana.git',
   :tag => 'v3.0.0'
@@ -487,6 +491,10 @@ mod 'simp-simp_apache',
 mod 'simp-simp_elasticsearch',
   :git => 'https://github.com/simp/pupmod-simp-simp_elasticsearch',
   :tag => '5.0.0'
+
+mod 'simp-simp_gitlab',
+  :git => 'https://github.com/simp/pupmod-simp-simp_gitlab',
+  :tag => '0.2.0'
 
 mod 'simp-simp_grafana',
   :git => 'https://github.com/simp/pupmod-simp-simp_grafana',
