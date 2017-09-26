@@ -33,6 +33,7 @@ jobs:
   include:
     - stage: lint
       rvm: 2.1.9
+      script:
         - bundle exec rake metadata_lint
 
     - stage: spec
