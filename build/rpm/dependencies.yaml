@@ -74,7 +74,8 @@
 'file_concat':
   :release: '2016'
 
-'puppet-gitlab': '1.13.3'
+'gitlab':
+  :requires:
     # exclude pupmod-puppetlabs-apt
     - 'pupmod-puppetlabs-stdlib'
 
