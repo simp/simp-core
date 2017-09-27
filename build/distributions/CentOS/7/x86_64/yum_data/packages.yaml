@@ -7,7 +7,7 @@ activemq-info-provider:
   :source: http://yum.puppetlabs.com/el/7/dependencies/x86_64/activemq-info-provider-5.9.1-2.el7.noarch.rpm
 apr-util-ldap:
   :rpm_name: apr-util-ldap-1.5.2-6.el7.x86_64.rpm
-  :source: http://mirrors.advancedhosters.com/centos/7.3.1611/os/x86_64/Packages/apr-util-ldap-1.5.2-6.el7.x86_64.rpm
+  :source: http://mirror.steadfast.net/centos/7.4.1708/os/x86_64/Packages/apr-util-ldap-1.5.2-6.el7.x86_64.rpm
 chkrootkit:
   :rpm_name: chkrootkit-0.50-4el7.x86_64.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/chkrootkit-0.50-4el7.x86_64.rpm
@@ -70,7 +70,7 @@ incron:
   :source: http://lug.mtu.edu/epel/7/x86_64/i/incron-0.5.10-8.el7.x86_64.rpm
 libarchive-devel:
   :rpm_name: libarchive-devel-3.1.2-10.el7_2.x86_64.rpm
-  :source: http://repos.dfw.quadranet.com/centos/7.3.1611/os/x86_64/Packages/libarchive-devel-3.1.2-10.el7_2.x86_64.rpm
+  :source: http://mirror.steadfast.net/centos/7.4.1708/os/x86_64/Packages/libarchive-devel-3.1.2-10.el7_2.x86_64.rpm
 libconfuse:
   :rpm_name: libconfuse-2.7-7.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/l/libconfuse-2.7-7.el7.x86_64.rpm
@@ -132,8 +132,8 @@ puppetlabs-release-pc1:
   :rpm_name: puppetlabs-release-pc1-1.1.0-5.el7.noarch.rpm
   :source: http://yum.puppetlabs.com/el/7/PC1/x86_64/puppetlabs-release-pc1-1.1.0-5.el7.noarch.rpm
 puppetserver:
-  :rpm_name: puppetserver-2.8.0-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/PC1/x86_64/puppetserver-2.8.0-1.el7.noarch.rpm
+  :rpm_name: puppetserver-2.7.2-1.el7.noarch.rpm
+  :source: https://yum.puppetlabs.com/el/7/PC1/x86_64/puppetserver-2.7.2-1.el7.noarch.rpm
 python-elasticsearch:
   :rpm_name: python-elasticsearch-1.2.0-0.el7.centos.noarch.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/python-elasticsearch-1.2.0-0.el7.centos.noarch.rpm
@@ -189,8 +189,8 @@ rubygem-puppet-lint:
   :rpm_name: rubygem-puppet-lint-1.1.0-1.el7.noarch.rpm
   :source: http://yum.puppetlabs.com/el/7/dependencies/x86_64/rubygem-puppet-lint-1.1.0-1.el7.noarch.rpm
 rubygem-rake:
-  :rpm_name: rubygem-rake-0.9.6-29.el7.noarch.rpm
-  :source: http://mirrors.advancedhosters.com/centos/7.3.1611/os/x86_64/Packages/rubygem-rake-0.9.6-29.el7.noarch.rpm
+  :rpm_name: rubygem-rake-0.9.6-30.el7.noarch.rpm
+  :source: http://mirrors.advancedhosters.com/centos/7.4.1708/os/x86_64/Packages/rubygem-rake-0.9.6-30.el7.noarch.rpm
 rubygem-rake-compiler:
   :rpm_name: rubygem-rake-compiler-0.9.3-1.el7.noarch.rpm
   :source: http://yum.puppetlabs.com/el/7/dependencies/x86_64/rubygem-rake-compiler-0.9.3-1.el7.noarch.rpm
@@ -211,4 +211,4 @@ sudosh2:
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/sudosh2-1.0.2-2el7.x86_64.rpm
 syslinux-tftpboot:
   :rpm_name: syslinux-tftpboot-4.05-13.el7.x86_64.rpm
-  :source: http://mirror.steadfast.net/centos/7.3.1611/os/x86_64/Packages/syslinux-tftpboot-4.05-13.el7.x86_64.rpm
+  :source: http://mirror.steadfast.net/centos/7.4.1708/os/x86_64/Packages/syslinux-tftpboot-4.05-13.el7.x86_64.rpm
