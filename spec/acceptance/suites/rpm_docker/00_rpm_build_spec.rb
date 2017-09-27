@@ -80,18 +80,19 @@ describe 'RPM build' do
 
       # This is to work around irritating artifacts left around by r10k
       unless local_basedir == build_dir
-        host.mkdir_p(File.dirname(local_basedir))
+        host.mkdir_p(local_basedir)
 
-        on(host, %(cd #{File.dirname(local_basedir)}; ln -s #{build_dir} #{File.basename(local_basedir)}))
+        on(host, %(cd #{File.dirname(local_basedir)}; mount -o bind #{build_dir} #{File.basename(local_basedir)}))
       end
 
       host.file_exist?("#{local_basedir}/metadata.json")
     end
 
     it 'should align the build user uid and gid with the mounted filesystem' do
-      #on(host, %(groupmod -g `stat --printf="%g" #{build_dir}` #{build_user}))
       on(host, %(if ! getent group `stat --printf="%g" #{build_dir}` >&/dev/null; then groupadd -g `stat --printf="%g" #{build_dir}` #{build_user}_supplementary; fi))
+
       on(host, %(usermod -u `stat --printf="%u" #{build_dir}` -G `stat --printf="%g" #{build_dir}` #{build_user}))
+
       on(host, %(chown -R #{build_user}:#{build_user} ~#{build_user}))
     end
 
@@ -101,7 +102,7 @@ describe 'RPM build' do
 
     if host.file_exist?("#{build_dir}/ISO")
       it 'should be able to build the ISO' do
-        on(host, "#{run_cmd} 'cd #{local_basedir}; bundle exec rake build:auto[ISO]'")
+        on(host, "#{run_cmd} 'cd #{local_basedir}; SIMP_BUILD_prompt=no bundle exec rake build:auto[ISO]'")
       end
     else
       it 'should have all of the dependencies' do

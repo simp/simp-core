@@ -1,26 +1,3 @@
-PATH
-  remote: src/rubygems/rubygem-simp-rake-helpers
-  specs:
-    simp-rake-helpers (5.0.0)
-      beaker (~> 3.14)
-      beaker-rspec (~> 6.1)
-      bundler (~> 1.14)
-      coderay (~> 1.0)
-      listen (~> 3.0.6)
-      pager
-      parallel (~> 1.0)
-      parallel_tests (~> 2.4)
-      puppet (>= 3.0, < 6.0)
-      puppet-blacksmith (~> 3.3)
-      puppet-lint (>= 1.0, < 3.0)
-      puppetlabs_spec_helper (~> 2.0)
-      r10k (~> 2.2)
-      rake (>= 10.0, < 13.0)
-      rspec (~> 3.0)
-      rspec-core (~> 3.0)
-      simp-beaker-helpers (~> 1.0)
-      simp-rspec-puppet-facts (~> 2.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -32,7 +9,7 @@ GEM
     aws-sdk-v1 (1.67.0)
       json (~> 1.4)
       nokogiri (~> 1)
-    beaker (3.24.0)
+    beaker (3.25.0)
       beaker-aws (~> 0.1)
       beaker-docker (~> 0.1)
       beaker-google (~> 0.1)
@@ -68,7 +45,7 @@ GEM
       stringify-hash (~> 0.0.0)
     beaker-hiera (0.1.1)
       stringify-hash (~> 0.0.0)
-    beaker-hostgenerator (1.1.0)
+    beaker-hostgenerator (1.1.1)
       deep_merge (~> 1.0)
       stringify-hash (~> 0.0.0)
     beaker-openstack (0.1.0)
@@ -257,7 +234,7 @@ GEM
     fog-voxel (0.1.0)
       fog-core
       fog-xml
-    fog-vsphere (1.12.0)
+    fog-vsphere (1.13.0)
       fog-core
       rbvmomi (~> 1.9)
     fog-xenserver (0.3.0)
@@ -321,9 +298,9 @@ GEM
     metadata-json-lint (2.0.2)
       json-schema (~> 2.8)
       spdx-licenses (~> 1.0)
-    method_source (0.8.2)
+    method_source (0.9.0)
     mime-types (2.99.3)
-    mini_portile2 (2.2.0)
+    mini_portile2 (2.3.0)
     minitar (0.6.1)
     minitest (5.10.3)
     mocha (1.3.0)
@@ -335,8 +312,8 @@ GEM
     net-ssh (4.2.0)
     net-telnet (0.1.1)
     netrc (0.11.0)
-    nokogiri (1.8.0)
-      mini_portile2 (~> 2.2.0)
+    nokogiri (1.8.1)
+      mini_portile2 (~> 2.3.0)
     oga (2.11)
       ast
       ruby-ll (~> 2.1)
@@ -344,12 +321,11 @@ GEM
     os (0.9.6)
     pager (1.0.1)
     parallel (1.12.0)
-    parallel_tests (2.15.0)
+    parallel_tests (2.16.0)
       parallel
-    pry (0.10.4)
+    pry (0.11.1)
       coderay (~> 1.1.0)
-      method_source (~> 0.8.1)
-      slop (~> 3.4)
+      method_source (~> 0.9.0)
     pry-byebug (3.4.3)
       byebug (>= 9.0, < 9.1)
       pry (~> 0.10)
@@ -366,7 +342,7 @@ GEM
     puppet-blacksmith (3.4.0)
       puppet (>= 2.7.16)
       rest-client (~> 1.8.0)
-    puppet-lint (2.3.0)
+    puppet-lint (2.3.2)
     puppet-strings (1.1.0)
       yard (~> 0.9.5)
     puppet-syntax (2.4.1)
@@ -432,31 +408,49 @@ GEM
     ruby-ll (2.1.2)
       ansi
       ast
-    ruby-progressbar (1.8.3)
+    ruby-progressbar (1.9.0)
     semantic_puppet (0.1.4)
       gettext-setup (>= 0.3)
-    serverspec (2.40.0)
+    serverspec (2.41.0)
       multi_json
       rspec (~> 3.0)
       rspec-its
-      specinfra (~> 2.68)
+      specinfra (~> 2.72)
     sfl (2.3)
     signet (0.7.3)
       addressable (~> 2.3)
       faraday (~> 0.9)
       jwt (~> 1.5)
       multi_json (~> 1.10)
-    simp-beaker-helpers (1.8.3)
+    simp-beaker-helpers (1.8.6)
       beaker (~> 3.14)
       beaker-puppet_install_helper (~> 0.6)
     simp-build-helpers (0.1.1)
+    simp-rake-helpers (5.0.0)
+      beaker (~> 3.14)
+      beaker-rspec (~> 6.1)
+      bundler (~> 1.14)
+      coderay (~> 1.0)
+      listen (~> 3.0.6)
+      pager
+      parallel (~> 1.0)
+      parallel_tests (~> 2.4)
+      puppet (>= 3.0, < 6.0)
+      puppet-blacksmith (~> 3.3)
+      puppet-lint (>= 1.0, < 3.0)
+      puppetlabs_spec_helper (~> 2.0)
+      r10k (~> 2.2)
+      rake (>= 10.0, < 13.0)
+      rspec (~> 3.0)
+      rspec-core (~> 3.0)
+      simp-beaker-helpers (~> 1.0)
+      simp-rspec-puppet-facts (~> 2.0)
     simp-rspec-puppet-facts (2.0.1)
       facter (>= 1.5.0, < 3.0)
       json (~> 1)
       rspec-puppet-facts (~> 0)
-    slop (3.6.0)
     spdx-licenses (1.1.0)
-    specinfra (2.71.2)
+    specinfra (2.72.0)
       net-scp
       net-ssh (>= 2.7, < 5.0)
       net-telnet
@@ -497,4 +491,4 @@ DEPENDENCIES
   simp-rake-helpers (~> 5.0)
 
 BUNDLED WITH
-   1.15.4
+   1.14.6
