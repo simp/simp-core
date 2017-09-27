@@ -116,11 +116,7 @@ Requires: pupmod-electrical-file_concat >= 1.0.1-2016
 Requires: pupmod-herculesteam-augeasproviders_mounttab >= 2.0.1-2016
 Requires: pupmod-herculesteam-augeasproviders_nagios >= 2.0.1-2016
 Requires: pupmod-herculesteam-augeasproviders_pam >= 2.0.3-2016
-<<<<<<< HEAD:src/assets/simp/build/simp.spec
-Requires: pupmod-puppet-gitlab >= 1.13.3
-=======
 Requires: pupmod-vshn-gitlab >= 1.13.3
->>>>>>> 78aaec246de5fa0cbf6f6cc9324573f0054e276c:src/assets/simp/build/simp.spec
 Requires: pupmod-puppet-grafana >= 3.0.0
 Requires: pupmod-puppet-yum >= 2.0.0
 Requires: pupmod-puppetlabs-mysql >= 2.2.3-2016
@@ -209,15 +205,12 @@ fi
 # Post uninstall stuff
 
 %changelog
-<<<<<<< HEAD:src/assets/simp/build/simp.spec
 * Tue Sep 26 2017 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 6.1.0-0
 - update puppetserver to 2.8.0-1
 - updated packages.yaml to pull puppet 4.10.6 rpms.
 - change diskdetect.sh kickstart file to use ext4 instead of xfs
 - add simp_snmp, simp_nfs and update augeasproviders_grub
 
-=======
->>>>>>> 78aaec246de5fa0cbf6f6cc9324573f0054e276c:src/assets/simp/build/simp.spec
 * Wed Aug 23 2017 Liz Nemsick <lnemsick.simp@gmail.com> - 6.1.0-0
 - 6.1.0-RC1 prep
 
