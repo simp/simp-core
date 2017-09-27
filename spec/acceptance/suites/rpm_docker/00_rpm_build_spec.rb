@@ -102,7 +102,7 @@ describe 'RPM build' do
 
     if host.file_exist?("#{build_dir}/ISO")
       it 'should be able to build the ISO' do
-        on(host, "#{run_cmd} 'cd #{local_basedir}; SIMP_BUILD_prompt=no bundle exec rake build:auto[ISO]'")
+        on(host, "#{run_cmd} 'cd #{local_basedir}; SIMP_BUILD_docs=yes SIMP_BUILD_prompt=no bundle exec rake build:auto[ISO]'")
       end
     else
       it 'should have all of the dependencies' do

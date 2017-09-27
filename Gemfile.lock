@@ -1,3 +1,26 @@
+PATH
+  remote: src/rubygems/rubygem-simp-rake-helpers
+  specs:
+    simp-rake-helpers (5.0.0)
+      beaker (~> 3.14)
+      beaker-rspec (~> 6.1)
+      bundler (~> 1.14)
+      coderay (~> 1.0)
+      listen (~> 3.0.6)
+      pager
+      parallel (~> 1.0)
+      parallel_tests (~> 2.4)
+      puppet (>= 3.0, < 6.0)
+      puppet-blacksmith (~> 3.3)
+      puppet-lint (>= 1.0, < 3.0)
+      puppetlabs_spec_helper (~> 2.0)
+      r10k (~> 2.2)
+      rake (>= 10.0, < 13.0)
+      rspec (~> 3.0)
+      rspec-core (~> 3.0)
+      simp-beaker-helpers (~> 1.0)
+      simp-rspec-puppet-facts (~> 2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -9,7 +32,11 @@ GEM
     aws-sdk-v1 (1.67.0)
       json (~> 1.4)
       nokogiri (~> 1)
+<<<<<<< HEAD
     beaker (3.25.0)
+=======
+    beaker (3.24.0)
+>>>>>>> 78aaec246de5fa0cbf6f6cc9324573f0054e276c
       beaker-aws (~> 0.1)
       beaker-docker (~> 0.1)
       beaker-google (~> 0.1)
@@ -45,7 +72,11 @@ GEM
       stringify-hash (~> 0.0.0)
     beaker-hiera (0.1.1)
       stringify-hash (~> 0.0.0)
+<<<<<<< HEAD
     beaker-hostgenerator (1.1.1)
+=======
+    beaker-hostgenerator (1.1.0)
+>>>>>>> 78aaec246de5fa0cbf6f6cc9324573f0054e276c
       deep_merge (~> 1.0)
       stringify-hash (~> 0.0.0)
     beaker-openstack (0.1.0)
@@ -234,7 +265,11 @@ GEM
     fog-voxel (0.1.0)
       fog-core
       fog-xml
+<<<<<<< HEAD
     fog-vsphere (1.13.0)
+=======
+    fog-vsphere (1.12.0)
+>>>>>>> 78aaec246de5fa0cbf6f6cc9324573f0054e276c
       fog-core
       rbvmomi (~> 1.9)
     fog-xenserver (0.3.0)
@@ -312,8 +347,13 @@ GEM
     net-ssh (4.2.0)
     net-telnet (0.1.1)
     netrc (0.11.0)
+<<<<<<< HEAD
     nokogiri (1.8.1)
       mini_portile2 (~> 2.3.0)
+=======
+    nokogiri (1.8.0)
+      mini_portile2 (~> 2.2.0)
+>>>>>>> 78aaec246de5fa0cbf6f6cc9324573f0054e276c
     oga (2.11)
       ast
       ruby-ll (~> 2.1)
@@ -321,11 +361,20 @@ GEM
     os (0.9.6)
     pager (1.0.1)
     parallel (1.12.0)
+<<<<<<< HEAD
     parallel_tests (2.16.0)
+=======
+    parallel_tests (2.15.0)
+>>>>>>> 78aaec246de5fa0cbf6f6cc9324573f0054e276c
       parallel
     pry (0.11.1)
       coderay (~> 1.1.0)
+<<<<<<< HEAD
       method_source (~> 0.9.0)
+=======
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+>>>>>>> 78aaec246de5fa0cbf6f6cc9324573f0054e276c
     pry-byebug (3.4.3)
       byebug (>= 9.0, < 9.1)
       pry (~> 0.10)
@@ -408,7 +457,11 @@ GEM
     ruby-ll (2.1.2)
       ansi
       ast
+<<<<<<< HEAD
     ruby-progressbar (1.9.0)
+=======
+    ruby-progressbar (1.8.3)
+>>>>>>> 78aaec246de5fa0cbf6f6cc9324573f0054e276c
     semantic_puppet (0.1.4)
       gettext-setup (>= 0.3)
     serverspec (2.41.0)
@@ -422,6 +475,7 @@ GEM
       faraday (~> 0.9)
       jwt (~> 1.5)
       multi_json (~> 1.10)
+<<<<<<< HEAD
     simp-beaker-helpers (1.8.6)
       beaker (~> 3.14)
       beaker-puppet_install_helper (~> 0.6)
@@ -445,12 +499,22 @@ GEM
       rspec-core (~> 3.0)
       simp-beaker-helpers (~> 1.0)
       simp-rspec-puppet-facts (~> 2.0)
+=======
+    simp-beaker-helpers (1.8.3)
+      beaker (~> 3.14)
+      beaker-puppet_install_helper (~> 0.6)
+    simp-build-helpers (0.1.1)
+>>>>>>> 78aaec246de5fa0cbf6f6cc9324573f0054e276c
     simp-rspec-puppet-facts (2.0.1)
       facter (>= 1.5.0, < 3.0)
       json (~> 1)
       rspec-puppet-facts (~> 0)
     spdx-licenses (1.1.0)
+<<<<<<< HEAD
     specinfra (2.72.0)
+=======
+    specinfra (2.71.2)
+>>>>>>> 78aaec246de5fa0cbf6f6cc9324573f0054e276c
       net-scp
       net-ssh (>= 2.7, < 5.0)
       net-telnet
@@ -488,7 +552,11 @@ DEPENDENCIES
   ruby-progressbar
   simp-beaker-helpers (~> 1.7)
   simp-build-helpers (>= 0.1.0)
+<<<<<<< HEAD
   simp-rake-helpers (~> 5.0)
+=======
+  simp-rake-helpers!
+>>>>>>> 78aaec246de5fa0cbf6f6cc9324573f0054e276c
 
 BUNDLED WITH
    1.14.6
