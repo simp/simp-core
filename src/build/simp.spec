@@ -206,6 +206,9 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Tue Sep 26 2017 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 6.1.0
+- update puppetserver to 2.8.0-1
+
 * Thu Aug 31 2017 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 6.1.0
 - updated packages.yaml to pull puppet 4.10.6 rpms.
 - change diskdetect.sh kickstart file to use ext4 instead of xfs
