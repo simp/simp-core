@@ -159,7 +159,6 @@ clamav-data-empty
 clamav-devel
 clamav-filesystem
 clamav-lib
-clamav-lib
 clamav-milter-systemd
 clamav-scanner
 clamav-scanner-systemd
@@ -173,6 +172,7 @@ cluster-glue-libs
 clusterlib
 clutter
 clutter-gst2
+clutter-gst3
 clutter-gtk
 cman
 cogl
@@ -234,6 +234,7 @@ dbus-libs
 dbus-python
 dbus-x11
 dconf
+default-yama-scope
 dejavu-fonts-common
 dejavu-lgc-sans-fonts
 dejavu-lgc-sans-mono-fonts
@@ -287,6 +288,7 @@ eggdbus
 elasticsearch
 elasticsearch-curator
 elfutils
+elfutils-default-yama-scope
 elfutils-libelf
 elfutils-libs
 elinks
@@ -356,6 +358,7 @@ gdm-libs
 genisoimage
 geoclue
 geoclue2
+geoclue2-libs
 geocode-glib
 geronimo-annotation
 geronimo-jms
@@ -431,12 +434,14 @@ gpm
 gpm-libs
 grafana
 graphite2
+graphite2-devel
 grep
 grilo
 groff
 groff-base
 grub
 grub2
+grub2-common
 grub2-efi
 grub2-tools
 grubby
@@ -452,12 +457,15 @@ gstreamer1-plugins-bad-free
 gstreamer1-plugins-base
 gstreamer1-plugins-good
 gtk-doc
+gtk-update-icon-cache
 gtk2
 gtk2-engines
 gtk3
 guava
 gucharmap
+gucharmap-libs
 gvfs
+gvfs-client
 gweb
 gzip
 hal
@@ -475,6 +483,7 @@ hesiod
 hicolor-icon-theme
 hmaccalc
 hostname
+http-parser
 httpcomponents-client
 httpcomponents-core
 httpd
@@ -483,6 +492,7 @@ httpd-tools
 hunspell
 hunspell-en-US
 hwdata
+hyphen
 ibus-libs
 im-chooser
 im-chooser-common
@@ -644,6 +654,7 @@ libXext-devel
 libXfixes
 libXfixes-devel
 libXfont
+libXfont2
 libXft
 libXft-devel
 libXi
@@ -722,6 +733,7 @@ libev
 libevdev
 libevent
 libexif
+libfastjson
 libffi
 libfontenc
 libfprint
@@ -778,6 +790,7 @@ libmnl
 libmodman
 libmount
 libmpc
+libmpcdec
 libndp
 libnetfilter_conntrack
 libnfnetlink
@@ -816,6 +829,7 @@ libreport-filesystem
 libreswan
 librsvg2
 libsamplerate
+libseccomp
 libsecret
 libselinux
 libselinux-devel
@@ -833,6 +847,7 @@ libsrtp
 libss
 libssh2
 libsss_autofs
+libsss_certmap
 libsss_idmap
 libsss_nss_idmap
 libsss_simpleifp
@@ -857,6 +872,7 @@ libunistring
 libusal
 libusb
 libusb1
+libusbmuxd
 libusbx
 libuser
 libutempter
@@ -866,6 +882,7 @@ libverto
 libverto-devel
 libverto-tevent
 libvirt-client
+libvirt-libs
 libvisual
 libvorbis
 libvpx
@@ -881,6 +898,8 @@ libwnck3
 libxatracker
 libxcb
 libxcb-devel
+libxkbcommon
+libxkbcommon-x11
 libxkbfile
 libxklavier
 libxml2
@@ -955,6 +974,7 @@ mesa-dri1-drivers
 mesa-filesystem
 mesa-libEGL
 mesa-libGL
+mesa-libGLES
 mesa-libGLU
 mesa-libgbm
 mesa-libglapi
@@ -1014,6 +1034,7 @@ nscd
 nspr
 nss
 nss-pam-ldapd
+nss-pem
 nss-softokn
 nss-softokn-freebl
 nss-sysinit
@@ -1052,6 +1073,8 @@ opus
 orc
 orca
 os-prober
+osinfo-db
+osinfo-db-tools
 p11-kit
 p11-kit-trust
 pakchois
@@ -1069,6 +1092,7 @@ pciutils
 pciutils-libs
 pcre
 pcre-devel
+pcre2
 pcsc-lite
 pcsc-lite-ccid
 pcsc-lite-libs
@@ -1264,6 +1288,7 @@ pulseaudio-gdm-hooks
 pulseaudio-libs
 pulseaudio-libs-glib2
 pulseaudio-module-bluetooth
+pupmod-puppet-gitlab
 puppet-agent
 puppet-client-tools
 puppetdb
@@ -1297,6 +1322,8 @@ python-dmidecode
 python-elasticsearch
 python-ethtool
 python-firewall
+python-gobject
+python-gobject-base
 python-gudev
 python-hwdata
 python-iniparse
@@ -1305,6 +1332,7 @@ python-kitchen
 python-ldap
 python-libs
 python-linecache2
+python-linux-procfs
 python-lxml
 python-magic
 python-memcached
@@ -1315,6 +1343,7 @@ python-pyudev
 python-redis
 python-rhsm
 python-rhsm-certificates
+python-schedutils
 python-setuptools
 python-simplejson
 python-six
@@ -1327,6 +1356,7 @@ python-traceback2
 python-unittest2
 python-urlgrabber
 python-urllib3
+python2-caribou
 pyxattr
 pyxdg
 qdox
@@ -1348,6 +1378,7 @@ rarian
 rarian-compat
 razor-server
 rdma
+rdma-core
 readahead
 readline
 realmd
@@ -1604,6 +1635,9 @@ vte291
 vte3
 wavpack
 webkitgtk3
+webkitgtk4
+webkitgtk4-jsc
+webkitgtk4-plugin-process-gtk2
 webrtc-audio-processing
 wget
 which
