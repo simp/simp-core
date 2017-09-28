@@ -565,8 +565,7 @@ mod 'simp-tftpboot',
 # later date, working off of simp-master.
 mod 'simp-timezone',
   :git => 'https://github.com/simp/pupmod-simp-timezone',
-#FIXME waiting for keys
-  :ref => 'simp-master'
+  :ref => '4.0.0'
 
 mod 'simp-tpm',
   :git => 'https://github.com/simp/pupmod-simp-tpm',
