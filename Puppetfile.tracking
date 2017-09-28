@@ -202,10 +202,6 @@ mod 'onyxpoint-gpasswd',
   :git => 'https://github.com/simp/puppet-gpasswd',
   :ref => '1.0.3'
 
-mod 'puppet-gitlab',
-  :git => 'https://github.com/simp/puppet-gitlab.git',
-  :tag => 'v1.13.3'
-
 mod 'puppet-grafana',
   :git => 'https://github.com/simp/puppet-grafana.git',
   :tag => 'v3.0.0'
@@ -482,7 +478,7 @@ mod 'simp-simpcat',
 
 mod 'simp-simplib',
   :git => 'https://github.com/simp/pupmod-simp-simplib',
-  :tag => '3.5.0'
+  :tag => '3.6.0'
 
 mod 'simp-simp_apache',
   :git => 'https://github.com/simp/pupmod-simp-apache',
@@ -534,7 +530,7 @@ mod 'simp-ssh',
 
 mod 'simp-sssd',
   :git => 'https://github.com/simp/pupmod-simp-sssd',
-  :tag => '6.0.3'
+  :tag => '6.0.4'
 
 mod 'simp-stunnel',
   :git => 'https://github.com/simp/pupmod-simp-stunnel',
@@ -610,3 +606,6 @@ mod 'voxpupuli-yum',
   :git => 'https://github.com/simp/voxpupuli-yum',
   :tag => 'v2.0.1'
 
+mod 'vshn-gitlab',
+  :git => 'https://github.com/simp/puppet-gitlab.git',
+  :tag => 'v1.13.3'
