@@ -24,6 +24,16 @@ test_name 'RPM build'
 #
 build_dir = ( ENV['BEAKER_copyin'] == 'yes' ) ? '/simp-import': '/simp-core'
 
+def get_test_env
+  test_env_variables = ENV.select { |env| env.match('^SIMP_') }
+  env_string = ''
+  test_env_variables.each do |key,value|
+    env_string += "#{key}=#{value} "
+  end
+  env_string
+end
+
+
 # Custom Gemfile Support
 gemfile = nil
 gemfile_path = File.expand_path(File.join(fixtures_path,'Gemfile'))
@@ -102,7 +112,7 @@ describe 'RPM build' do
 
     if host.file_exist?("#{build_dir}/ISO")
       it 'should be able to build the ISO' do
-        on(host, "#{run_cmd} 'cd #{local_basedir}; SIMP_BUILD_docs=yes SIMP_BUILD_prompt=no bundle exec rake build:auto[ISO]'")
+        on(host, "#{run_cmd} 'cd #{local_basedir}; SIMP_BUILD_docs=yes SIMP_BUILD_prompt=no #{get_test_env} bundle exec rake build:auto[ISO]'")
       end
     else
       it 'should have all of the dependencies' do
@@ -110,11 +120,11 @@ describe 'RPM build' do
       end
 
       it 'should be able to build all modules ' do
-        on(host, "#{run_cmd} 'cd #{local_basedir}; bundle exec rake pkg:modules'")
+        on(host, "#{run_cmd} 'cd #{local_basedir}; #{get_test_env} bundle exec rake pkg:modules'")
       end
 
       it 'should be able to build aux packages ' do
-        on(host, "#{run_cmd} 'cd #{local_basedir}; bundle exec rake pkg:aux'")
+        on(host, "#{run_cmd} 'cd #{local_basedir}; #{get_test_env} bundle exec rake pkg:aux'")
       end
     end
   end
