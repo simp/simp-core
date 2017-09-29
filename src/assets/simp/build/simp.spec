@@ -15,26 +15,26 @@ Obsoletes: simp-hiera < 3.0.2
 
 # Core SIMP Requirements
 Requires: pupmod-camptocamp-kmod >= 2.1.0, pupmod-camptocamp-kmod < 3.0.0
-Requires: pupmod-camptocamp-systemd >= 1.0.0, pupmod-camptocamp-systemd < 2.0.0
-Requires: pupmod-herculesteam-augeasproviders >= 2.1.3, pupmod-herculesteam-augeasproviders < 3.0.0
-Requires: pupmod-herculesteam-augeasproviders_apache >= 2.0.1, pupmod-herculesteam-augeasproviders_apache < 3.0.0
-Requires: pupmod-herculesteam-augeasproviders_base >= 2.0.1, pupmod-herculesteam-augeasproviders_base < 3.0.0
-Requires: pupmod-herculesteam-augeasproviders_core >= 2.1.1, pupmod-herculesteam-augeasproviders_core < 3.0.0
-Requires: pupmod-herculesteam-augeasproviders_grub >= 2.3.1, pupmod-herculesteam-augeasproviders_grub < 4.0.0
-Requires: pupmod-herculesteam-augeasproviders_postgresql >= 2.0.3, pupmod-herculesteam-augeasproviders_postgresql < 3.0.0
-Requires: pupmod-herculesteam-augeasproviders_puppet >= 2.1.0, pupmod-herculesteam-augeasproviders_puppet < 3.0.0
-Requires: pupmod-herculesteam-augeasproviders_shellvar >= 2.1.1, pupmod-herculesteam-augeasproviders_shellvar < 3.0.0
-Requires: pupmod-herculesteam-augeasproviders_ssh >= 2.5.0, pupmod-herculesteam-augeasproviders_ssh < 3.0.0
-Requires: pupmod-herculesteam-augeasproviders_sysctl >= 2.1.0, pupmod-herculesteam-augeasproviders_sysctl < 3.0.0
-Requires: pupmod-onyxpoint-gpasswd >= 1.0.0, pupmod-onyxpoint-gpasswd < 2.0.0
-Requires: pupmod-puppetlabs-apache >= 1.10.0, pupmod-puppetlabs-apache < 3.0.0
-Requires: pupmod-puppetlabs-concat >= 2.2.0, pupmod-puppetlabs-concat < 4.0.0
-Requires: pupmod-puppetlabs-inifile >= 1.6.0, pupmod-puppetlabs-inifile < 2.0.0
-Requires: pupmod-puppetlabs-java >= 1.2.0, pupmod-puppetlabs-java < 2.0.0
-Requires: pupmod-puppetlabs-java_ks >= 1.4.0, pupmod-puppetlabs-java_ks < 2.0.0
-Requires: pupmod-puppetlabs-motd >= 1.4.0, pupmod-puppetlabs-motd < 2.0.0
+Requires: pupmod-herculesteam-augeasproviders_apache >= 2.0.1-2016, pupmod-herculesteam-augeasproviders_apache < 3.0.0
+Requires: pupmod-herculesteam-augeasproviders_base >= 2.0.1-2016, pupmod-herculesteam-augeasproviders_base < 3.0.0
+Requires: pupmod-herculesteam-augeasproviders_core >= 2.1.1-2016, pupmod-herculesteam-augeasproviders_core < 3.0.0
+Requires: pupmod-herculesteam-augeasproviders_grub >= 2.3.1-2016, pupmod-herculesteam-augeasproviders_grub < 4.0.0
+Requires: pupmod-herculesteam-augeasproviders_postgresql >= 2.0.3-2016, pupmod-herculesteam-augeasproviders_postgresql < 3.0.0
+Requires: pupmod-herculesteam-augeasproviders_puppet >= 2.1.0-2016, pupmod-herculesteam-augeasproviders_puppet < 3.0.0
+Requires: pupmod-herculesteam-augeasproviders_shellvar >= 2.1.1-2016, pupmod-herculesteam-augeasproviders_shellvar < 3.0.0
+Requires: pupmod-herculesteam-augeasproviders_ssh >= 2.5.0-2016, pupmod-herculesteam-augeasproviders_ssh < 3.0.0
+Requires: pupmod-herculesteam-augeasproviders_sysctl >= 2.1.0-2016, pupmod-herculesteam-augeasproviders_sysctl < 3.0.0
+Requires: pupmod-onyxpoint-gpasswd >= 1.0.0-2016, pupmod-onyxpoint-gpasswd < 2.0.0
+Requires: pupmod-puppetlabs-apache >= 1.10.0-2016, pupmod-puppetlabs-apache < 3.0.0
+Requires: pupmod-puppetlabs-concat >= 2.2.0-2016, pupmod-puppetlabs-concat < 4.0.0
+Requires: pupmod-puppetlabs-hocon >= 0.9.4, pupmod-puppetlabs-hocon < 1.0.0
+Requires: pupmod-puppetlabs-inifile >= 1.6.0-2016, pupmod-puppetlabs-inifile < 3.0.0
+Requires: pupmod-puppetlabs-java >= 1.2.0-2016, pupmod-puppetlabs-java < 2.0.0
+Requires: pupmod-puppetlabs-java_ks >= 1.4.0-2016, pupmod-puppetlabs-java_ks < 2.0.0
+Requires: pupmod-puppetlabs-motd >= 1.4.0-2016, pupmod-puppetlabs-motd < 2.0.0
 Requires: pupmod-puppetlabs-postgresql >= 4.8.0, pupmod-puppetlabs-postgresql < 6.0.0
 Requires: pupmod-puppetlabs-puppetdb >= 5.0.0, pupmod-puppetlabs-puppetdb < 7.0.0
+Requires: pupmod-puppetlabs-puppet_authorization >= 0.2.0, pupmod-puppetlabs-puppet_authorization < 1.0.0
 Requires: pupmod-puppetlabs-stdlib >= 4.13.1, pupmod-puppetlabs-stdlib < 5.0.0
 Requires: pupmod-richardc-datacat >= 0.6.2, pupmod-richardc-datacat < 1.0.0
 Requires: pupmod-simp-acpid >= 1.0.1, pupmod-simp-acpid < 2.0.0
@@ -44,47 +44,46 @@ Requires: pupmod-simp-at >= 0.0.1, pupmod-simp-at < 1.0.0
 Requires: pupmod-simp-auditd >= 7.0.0, pupmod-simp-auditd < 8.0.0
 Requires: pupmod-simp-autofs >= 6.0.0, pupmod-simp-autofs < 7.0.0
 Requires: pupmod-simp-chkrootkit >= 0.0.1, pupmod-simp-chkrootkit < 1.0.0
-Requires: pupmod-simp-clamav >= 6.0.0, pupmod-simp-clamav < 7.0.0
+Requires: pupmod-simp-clamav >= 6.0.0-2016, pupmod-simp-clamav < 7.0.0
 Requires: pupmod-simp-compliance_markup >= 2.0.0, pupmod-simp-compliance_markup < 3.0.0
 Requires: pupmod-simp-cron >= 0.0.1, pupmod-simp-cron < 1.0.0
-Requires: pupmod-simp-dhcp >= 6.0.0, pupmod-simp-dhcp < 7.0.0
+Requires: pupmod-simp-dhcp >= 6.0.0-2016, pupmod-simp-dhcp < 7.0.0
 Requires: pupmod-simp-fips >= 0.1.0, pupmod-simp-fips < 1.0.0
-Requires: pupmod-simp-freeradius >= 7.0.0, pupmod-simp-freeradius < 8.0.0
-Requires: pupmod-simp-issue >= 0.0.1, pupmod-simp-issue < 1.0.0
-Requires: pupmod-simp-haveged >= 0.3.2, pupmod-simp-haveged < 1.0.0
+Requires: pupmod-simp-freeradius >= 7.0.0-2016, pupmod-simp-freeradius < 8.0.0
+Requires: pupmod-simp-haveged >= 0.3.2-2016, pupmod-simp-haveged < 1.0.0
 Requires: pupmod-simp-incron >= 0.0.1, pupmod-simp-incron < 1.0.0
 Requires: pupmod-simp-iptables >= 6.0.0, pupmod-simp-iptables < 7.0.0
-Requires: pupmod-simp-krb5 >= 7.0.0, pupmod-simp-krb5 < 8.0.0
-Requires: pupmod-simp-logrotate >= 6.0.0, pupmod-simp-logrotate < 7.0.0
-Requires: pupmod-simp-mcollective >= 3.0.0, pupmod-simp-mcollective < 4.0.0
+Requires: pupmod-simp-issue >= 0.0.1, pupmod-simp-issue < 1.0.0
+Requires: pupmod-simp-krb5 >= 7.0.0-2016, pupmod-simp-krb5 < 8.0.0
+Requires: pupmod-simp-logrotate >= 6.0.0-2016, pupmod-simp-logrotate < 7.0.0
+Requires: pupmod-simp-mcollective >= 3.0.0-2016, pupmod-simp-mcollective < 4.0.0
 Requires: pupmod-simp-named >= 6.0.0, pupmod-simp-named < 7.0.0
 Requires: pupmod-simp-network >= 6.0.0, pupmod-simp-network < 7.0.0
 Requires: pupmod-simp-nfs >= 6.0.0, pupmod-simp-nfs < 7.0.0
 Requires: pupmod-simp-ntpd >= 6.0.0, pupmod-simp-ntpd < 7.0.0
-Requires: pupmod-simp-oddjob >= 2.0.0, pupmod-simp-oddjob < 3.0.0
-Requires: pupmod-simp-simp_openldap >= 6.0.0, pupmod-simp-simp_openldap < 7.0.0
-Requires: pupmod-simp-simp_options >= 1.0.0, pupmod-simp-simp_options < 2.0.0
+Requires: pupmod-simp-oddjob >= 2.0.0-2016, pupmod-simp-oddjob < 3.0.0
 Requires: pupmod-simp-pam >= 6.0.0, pupmod-simp-pam < 7.0.0
 Requires: pupmod-simp-pki >= 6.0.0, pupmod-simp-pki < 7.0.0
-Requires: pupmod-simp-polkit >= 6.1.0
+Requires: pupmod-simp-polkit >= 6.1.0, pupmod-simp-polkit < 7.0.0
 Requires: pupmod-simp-postfix >= 5.0.1, pupmod-simp-postfix < 6.0.0
 Requires: pupmod-simp-pupmod >= 7.1.0, pupmod-simp-pupmod < 8.0.0
 Requires: pupmod-simp-resolv >= 0.0.1, pupmod-simp-resolv < 1.0.0
 Requires: pupmod-simp-rsync >= 6.0.0, pupmod-simp-rsync < 7.0.0
 Requires: pupmod-simp-rsyslog >= 7.0.0, pupmod-simp-rsyslog < 8.0.0
-Requires: pupmod-simp-selinux >= 2.0.1, pupmod-simp-selinux < 3.0.0
+Requires: pupmod-simp-selinux >= 2.0.1-2016, pupmod-simp-selinux < 3.0.0
 Requires: pupmod-simp-simp >= 4.0.0, pupmod-simp-simp < 5.0.0
-Requires: pupmod-simp-simp_apache >= 6.0.0, pupmod-simp-simp_apache < 7.0.0
-Requires: pupmod-simp-simp_rsyslog >= 0.0.1, pupmod-simp-simp_rsyslog < 1.0.0
 Requires: pupmod-simp-simpcat >= 6.0.0, pupmod-simp-simpcat < 7.0.0
 Requires: pupmod-simp-simplib >= 3.1.0, pupmod-simp-simplib < 4.0.0
+Requires: pupmod-simp-simp_apache >= 6.0.0, pupmod-simp-simp_apache < 7.0.0
+Requires: pupmod-simp-simp_openldap >= 6.0.0, pupmod-simp-simp_openldap < 7.0.0
 Requires: pupmod-simp-simp_options >= 1.0.0, pupmod-simp-simp_options < 2.0.0
-Requires: pupmod-simp-site >= 2.0.2, pupmod-simp-site < 3.0.0
+Requires: pupmod-simp-simp_rsyslog >= 0.0.1, pupmod-simp-simp_rsyslog < 1.0.0
+Requires: pupmod-simp-site >= 2.0.2-2016, pupmod-simp-site < 3.0.0
 Requires: pupmod-simp-ssh >= 6.0.0, pupmod-simp-ssh < 7.0.0
 Requires: pupmod-simp-sssd >= 6.0.0, pupmod-simp-sssd < 7.0.0
 Requires: pupmod-simp-stunnel >= 6.0.0, pupmod-simp-stunnel < 7.0.0
 Requires: pupmod-simp-sudo >= 5.0.1, pupmod-simp-sudo < 6.0.0
-Requires: pupmod-simp-sudosh >= 6.0.0, pupmod-simp-sudosh < 7.0.0
+Requires: pupmod-simp-sudosh >= 6.0.0-2016, pupmod-simp-sudosh < 7.0.0
 Requires: pupmod-simp-svckill >= 3.1.0, pupmod-simp-svckill < 4.0.0
 Requires: pupmod-simp-swap >= 0.1.0, pupmod-simp-swap < 1.0.0
 Requires: pupmod-simp-tcpwrappers >= 6.0.0, pupmod-simp-tcpwrappers < 7.0.0
@@ -96,14 +95,12 @@ Requires: pupmod-simp-upstart >= 6.0.0, pupmod-simp-upstart < 7.0.0
 Requires: pupmod-simp-useradd >= 0.0.1, pupmod-simp-useradd < 1.0.0
 Requires: pupmod-simp-xinetd >= 4.0.0, pupmod-simp-xinetd < 5.0.0
 Requires: pupmod-trlinkin-nsswitch >= 2.0.0, pupmod-trlinkin-nsswitch < 3.0.0
-Requires: pupmod-puppetlabs-puppet_authorization >= 0.2.0, pupmod-puppetlabs-puppet_authorization < 1.0.0
-Requires: rubygem-simp-cli >= 4.0.0-0, rubygem-simp-cli < 5.0.0
-Requires: rubygem-simp-cli-doc >= 4.0.0-0, rubygem-simp-cli-doc < 5.0.0
-Requires: simp-adapter >= 0.0.3-0, simp-adapter < 1.0.0
+Requires: rubygem-simp-cli >= 4.0.0, rubygem-simp-cli < 5.0.0
+Requires: rubygem-simp-cli-doc >= 4.0.0, rubygem-simp-cli-doc < 5.0.0
+Requires: simp-adapter >= 0.0.3, simp-adapter < 1.0.0
 Requires: simp-environment >= 6.0.0, simp-environment < 7.0.0
 Requires: simp-gpgkeys >= 3.0.0-0%{?dist}, simp-gpgkeys < 4.0.0
 Requires: simp-rsync >= 6.0.0-0%{?dist}, simp-rsync < 7.0.0
-Requires: simp-rsync-clamav >= 6.0.0-0%{?dist}, simp-rsync-clamav < 7.0.0
 Requires: simp-utils >= 6.0.0, simp-utils < 7.0.0
 
 Prefix: %{_sysconfdir}/puppet
@@ -115,29 +112,31 @@ License: Apache-2.0
 Requires: pupmod-cristifalcas-journald >= 0.5.0
 Requires: pupmod-elastic-elasticsearch >= 5.2.0
 Requires: pupmod-elastic-logstash >= 5.2.1
-Requires: pupmod-electrical-file_concat >= 1.0.1
-Requires: pupmod-herculesteam-augeasproviders_mounttab >= 2.0.1
-Requires: pupmod-herculesteam-augeasproviders_nagios >= 2.0.1
-Requires: pupmod-herculesteam-augeasproviders_pam >= 2.0.3
+Requires: pupmod-electrical-file_concat >= 1.0.1-2016
+Requires: pupmod-herculesteam-augeasproviders_mounttab >= 2.0.1-2016
+Requires: pupmod-herculesteam-augeasproviders_nagios >= 2.0.1-2016
+Requires: pupmod-herculesteam-augeasproviders_pam >= 2.0.3-2016
+Requires: pupmod-vshn-gitlab >= 1.13.3
 Requires: pupmod-puppet-grafana >= 3.0.0
 Requires: pupmod-puppet-yum >= 2.0.0
-Requires: pupmod-puppetlabs-mysql >= 2.2.3
+Requires: pupmod-puppetlabs-mysql >= 2.2.3-2016
 Requires: pupmod-razorsedge-snmp >= 3.8.1
-Requires: pupmod-simp-gdm >= 6.0.0
-Requires: pupmod-simp-gnome >= 6.0.0
-Requires: pupmod-simp-jenkins >= 6.0.0
-Requires: pupmod-simp-libreswan >= 3.0.0
-Requires: pupmod-simp-libvirt >= 5.0.1
-Requires: pupmod-simp-mcafee >= 6.0.0
-Requires: pupmod-simp-mozilla >= 5.0.0
-Requires: pupmod-simp-openscap >= 6.0.0
-Requires: pupmod-simp-simp_elasticsearch >= 4.0.0
-Requires: pupmod-simp-simp_grafana >= 1.0.1
-Requires: pupmod-simp-simp_logstash >= 3.0.1
+Requires: pupmod-simp-gdm >= 6.0.0-2016
+Requires: pupmod-simp-gnome >= 6.0.0-2016
+Requires: pupmod-simp-jenkins >= 6.0.0-2016
+Requires: pupmod-simp-libreswan >= 3.0.0-2016
+Requires: pupmod-simp-libvirt >= 5.0.1-2016
+Requires: pupmod-simp-mcafee >= 6.0.0-2016
+Requires: pupmod-simp-mozilla >= 5.0.0-2016
+Requires: pupmod-simp-openscap >= 6.0.0-2016
+Requires: pupmod-simp-simp_elasticsearch >= 5.0.0
+Requires: pupmod-simp-simp_gitlab >= 0.2.0
+Requires: pupmod-simp-simp_grafana >= 1.0.1-2016
+Requires: pupmod-simp-simp_logstash >= 5.0.0
 Requires: pupmod-simp-simp_nfs >= 0.0.3
 Requires: pupmod-simp-simp_snmpd >= 0.0.1
-Requires: pupmod-simp-vnc >= 6.0.0
-Requires: pupmod-simp-vsftpd >= 7.0.0
+Requires: pupmod-simp-vnc >= 6.0.0-2016
+Requires: pupmod-simp-vsftpd >= 7.0.0-2016
 
 %description
 Metapackage for installing everything needed for a full SIMP system
@@ -206,10 +205,8 @@ fi
 # Post uninstall stuff
 
 %changelog
-* Tue Sep 26 2017 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 6.1.0
+* Tue Sep 26 2017 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 6.1.0-0
 - update puppetserver to 2.8.0-1
-
-* Thu Aug 31 2017 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 6.1.0
 - updated packages.yaml to pull puppet 4.10.6 rpms.
 - change diskdetect.sh kickstart file to use ext4 instead of xfs
 - add simp_snmp, simp_nfs and update augeasproviders_grub

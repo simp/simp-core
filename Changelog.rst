@@ -98,8 +98,16 @@ New Features
 
 pupmod-camptocamp-systemd
 ^^^^^^^^^^^^^^^^^^^^^^^^^
-
 * Added as a core supported module
+
+pupmod-simp-simp_gitlab
+^^^^^^^^^^^^^^^^^^^^^^^
+* Added as a supported simp extra
+
+pupmod-puppet-gitlab
+^^^^^^^^^^^^^^^^^^^^^^^
+* Added as a simp extra
+
 
 Known Bugs
 ----------

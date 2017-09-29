@@ -5,6 +5,7 @@
 .vagrant/
 Gemfile.lock
 Puppetfile.lock
+ISO
 SIMP_ISO
 SIMP_ISO_STAGING
 build/**/DVD_Overlay
@@ -12,12 +13,14 @@ build/**/GPGKEYS/.dropped_keys
 build/**/GPGKEYS/dist
 build/**/SIMP
 build/**/build_keys/*
-build/distributions/CentOS/7/x86_64/DVD/RPM-GPG-KEY-SIMP-Dev
+build/distributions/*/*/*/DVD/RPM-GPG-KEY-SIMP-Dev
 build/yum_data/*/packages
 log/
 pkg/
 spec/fixtures
 src/assets/*
+!src/assets/simp
+src/assets/simp/dist
 src/build/autorequires
 src/dist
 src/doc

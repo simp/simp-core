@@ -20,13 +20,14 @@
 # * The depedency versions will be pulled directly from the
 #   metadata.json file in the module.
 #
-# For all other modules 
+# For all other modules
 # * The module will have no RPM obsoletes.
 # * Both the RPM dependency names and versions will be pulled
 #   from the metadata.json file in the module.
 #
-# NOTE: This file is only used for simp-rake-helpers >= 4.1.0 
+# NOTE: This file is only used for simp-rake-helpers >= 4.1.0
 ---
+
 'augeasproviders':
   :requires:
     # exclude pupmod-herculesteam-augeasproviders_syslog"
@@ -42,6 +43,24 @@
     - 'pupmod-herculesteam-augeasproviders_ssh'
     - 'pupmod-herculesteam-augeasproviders_sysctl'
 
+'augeasproviders_base':
+  :release: '2016'
+
+'augeasproviders_apache':
+  :release: '2016'
+
+'augeasproviders_mounttab':
+  :release: '2016'
+
+'augeasproviders_nagios':
+  :release: '2016'
+
+'augeasproviders_puppet':
+  :release: '2016'
+
+'augeasproviders_postgresql':
+  :release: '2016'
+
 'elasticsearch':
   :obsoletes:
     'pupmod-elasticsearch-elasticsearch': '0.11.0-2016.1'
@@ -51,6 +70,14 @@
     - 'pupmod-puppetlabs-java'
     - 'pupmod-puppetlabs-stdlib'
     - 'pupmod-puppet-yum'
+
+'file_concat':
+  :release: '2016'
+
+'gitlab':
+  :requires:
+    # exclude pupmod-puppetlabs-apt
+    - 'pupmod-puppetlabs-stdlib'
 
 'grafana':
   :obsoletes:
@@ -62,13 +89,20 @@
     # exclude pupmod-puppetlabs-apt
     - 'pupmod-puppetlabs-stdlib'
 
+'inifile':
+  :release: '2016'
+
 'logstash':
   :obsoletes:
     'pupmod-elasticsearch-logstash': '2.0.0-2016'
   :requires:
     - 'pupmod-puppetlabs-stdlib'
 
+'mcollective':
+  :release: '2016'
+
 'motd':
+  :release: '2016'
   :requires:
     # exclude pupmod-puppetlabs-registry
     - 'pupmod-puppetlabs-stdlib'
@@ -84,18 +118,13 @@
     - 'pupmod-puppetlabs-stdlib'
     - 'pupmod-puppetlabs-concat'
 
-'puppet_authorization':
-  :requires:
-    # exclude pupmod-puppetlabs-hocon
-    - 'pupmod-puppetlabs-stdlib'
-    - 'pupmod-puppetlabs-concat'
-
 'puppetdb':
   :requires:
     # exclude pupmod-puppetlabs-firewall
     - 'pupmod-puppetlabs-inifile'
     - 'pupmod-puppetlabs-postgresql'
     - 'pupmod-puppetlabs-stdlib'
+
 'timezone':
   :obsoletes:
     'pupmod-saz-timezone': '3.3.0-2016.1'
