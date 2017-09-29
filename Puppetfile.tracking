@@ -480,7 +480,7 @@ mod 'simp-simplib',
   :tag => '3.6.0'
 
 mod 'simp-simp_apache',
-  :git => 'https://github.com/simp/pupmod-simp-apache',
+  :git => 'https://github.com/simp/pupmod-simp-simp_apache',
   :tag => '6.0.1'
 
 mod 'simp-simp_elasticsearch',
