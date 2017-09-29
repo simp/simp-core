@@ -342,7 +342,7 @@ GEM
     puppet-blacksmith (3.4.0)
       puppet (>= 2.7.16)
       rest-client (~> 1.8.0)
-    puppet-lint (2.3.2)
+    puppet-lint (2.3.3)
     puppet-strings (1.1.0)
       yard (~> 0.9.5)
     puppet-syntax (2.4.1)
@@ -426,7 +426,7 @@ GEM
       beaker (~> 3.14)
       beaker-puppet_install_helper (~> 0.6)
     simp-build-helpers (0.1.1)
-    simp-rake-helpers (5.0.0)
+    simp-rake-helpers (5.0.1)
       beaker (~> 3.14)
       beaker-rspec (~> 6.1)
       bundler (~> 1.14)
@@ -491,4 +491,4 @@ DEPENDENCIES
   simp-rake-helpers (~> 5.0)
 
 BUNDLED WITH
-   1.14.6
+   1.15.4

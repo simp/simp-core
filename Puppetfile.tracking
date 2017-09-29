@@ -323,8 +323,7 @@ mod 'simp-clamav',
 
 mod 'simp-compliance_markup',
   :git => 'https://github.com/simp/pupmod-simp-compliance_markup',
-#FIXME waiting for PR
-  :ref => 'master'
+  :ref => '2.3.1'
 
 mod 'simp-cron',
   :git => 'https://github.com/simp/pupmod-simp-cron',
@@ -348,11 +347,11 @@ mod 'simp-freeradius',
 
 mod 'simp-gdm',
   :git => 'https://github.com/simp/pupmod-simp-gdm',
-  :tag => '7.0.2'
+  :tag => '7.0.3'
 
 mod 'simp-gnome',
   :git => 'https://github.com/simp/pupmod-simp-gnome',
-  :tag => '7.0.0'
+  :tag => '7.0.1'
 
 # SIMP has made changes to this module that don't exist upstream
 # and owns this version.  Beginnin with version 0.4.4, all module
@@ -387,7 +386,7 @@ mod 'simp-libreswan',
 
 mod 'simp-libvirt',
   :git => 'https://github.com/simp/pupmod-simp-libvirt',
-  :tag => '5.0.3'
+  :tag => '5.0.4'
 
 mod 'simp-logrotate',
   :git => 'https://github.com/simp/pupmod-simp-logrotate',
