@@ -545,7 +545,7 @@ mod 'simp-sudosh',
 
 mod 'simp-svckill',
   :git => 'https://github.com/simp/pupmod-simp-svckill',
-  :tag => '3.2.3'
+  :tag => '3.2.4'
 
 mod 'simp-swap',
   :git => 'https://github.com/simp/pupmod-simp-swap',
