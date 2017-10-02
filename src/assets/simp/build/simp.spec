@@ -16,7 +16,6 @@ Obsoletes: simp-hiera < 3.0.2
 # Core SIMP Requirements
 Requires: pupmod-camptocamp-kmod >= 2.1.0, pupmod-camptocamp-kmod < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_apache >= 2.0.1-2016, pupmod-herculesteam-augeasproviders_apache < 3.0.0
-Requires: pupmod-herculesteam-augeasproviders_base >= 2.0.1-2016, pupmod-herculesteam-augeasproviders_base < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_core >= 2.1.1-2016, pupmod-herculesteam-augeasproviders_core < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_grub >= 2.3.1-2016, pupmod-herculesteam-augeasproviders_grub < 4.0.0
 Requires: pupmod-herculesteam-augeasproviders_postgresql >= 2.0.3-2016, pupmod-herculesteam-augeasproviders_postgresql < 3.0.0
@@ -205,6 +204,9 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Mon Oct 02 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.1.0-0
+- Removed pupmod-herculesteam-augeasproviders_base as a SIMP dependency
+
 * Tue Sep 26 2017 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 6.1.0-0
 - update puppetserver to 2.8.0-1
 - updated packages.yaml to pull puppet 4.10.6 rpms.

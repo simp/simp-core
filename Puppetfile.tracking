@@ -73,122 +73,40 @@ mod 'electrical-file_concat',
   :tag => 'simp-1.0.1'
 
 mod 'herculesteam-augeasproviders_apache',
-  #FIXME Next herculesteam release.
-  # This is a bit messy.  This project has 3 tags that are
-  # all version 2.0.1, but slightly different:
-  #   '2.0.1 from the owner
-  #   'simp-2.0.1' from SIMP team for SIMP4/SIMP5
-  #   'simp6.0.0-2.0.1' from SIMP team for SIMP6
-  # We are going to use the last SIMP team release, until
-  # augeasproviders_apache gets updated and we can get out
-  # of this mess.
   :git => 'https://github.com/simp/augeasproviders_apache',
-  :tag => 'simp6.0.0-2.0.1'
-
-mod 'herculesteam-augeasproviders_base',
-  #FIXME Next herculesteam release.
-  # This is a bit messy.  This project has 3 tags that are
-  # all version 2.0.1, but slightly different:
-  #   '2.0.1 from the owner
-  #   'simp-2.0.1' from SIMP team for SIMP4/SIMP5
-  #   'simp6.0.0-2.0.1' from SIMP team for SIMP6
-  # We are going to use the last SIMP team release, until
-  # augeasproviders_base gets updated and we can get out
-  # of this mess.
-  :git => 'https://github.com/simp/augeasproviders_base',
-  :tag => 'simp6.0.0-2.0.1'
+  :tag => '2.0.2'
 
 mod 'herculesteam-augeasproviders_core',
-  #FIXME Next herculesteam release.
-  # This is a bit messy.  This project has 2 tags that are
-  # both version 2.1.3, but slightly different:
-  #   '2.1.3 from the owner
-  #   'simp6.0.0-2.1.3' from SIMP team for SIMP6
-  # We are going to use the last SIMP team release, until
-  # augeasproviders_core gets updated and we can get out
-  # of this mess.
   :git => 'https://github.com/simp/augeasproviders_core',
-  :tag => 'simp6.0.0-2.1.3'
+  :tag => '2.1.4'
 
 mod 'herculesteam-augeasproviders_grub',
   :git => 'https://github.com/simp/augeasproviders_grub',
   :tag => '3.0.0'
 
 mod 'herculesteam-augeasproviders_mounttab',
-  #FIXME Next herculesteam release.
-  # This is a bit messy.  This project has 3 tags that are
-  # all version 2.0.1, but slightly different:
-  #   '2.0.1 from the owner
-  #   'simp-2.0.1' from SIMP team for SIMP4/SIMP5
-  #   'simp6.0.0-2.0.1' from SIMP team for SIMP6
-  # We are going to use the last SIMP team release, until
-  # augeasproviders_mounttab gets updated and we can get out
-  # of this mess.
   :git => 'https://github.com/simp/augeasproviders_mounttab',
-  :tag => 'simp6.0.0-2.0.1'
+  :tag => '2.0.2'
 
 mod 'herculesteam-augeasproviders_nagios',
-  #FIXME Next herculesteam release.
-  # This is a bit messy.  This project has 3 tags that are
-  # all version 2.0.1, but slightly different:
-  #   '2.0.1 from the owner
-  #   'simp-2.0.1' from SIMP team for SIMP4/SIMP5
-  #   'simp6.0.0-2.0.1' from SIMP team for SIMP6
-  # We are going to use the last SIMP team release, until
-  # augeasproviders_nagios gets updated and we can get out
-  # of this mess.
   :git => 'https://github.com/simp/augeasproviders_nagios',
-  :tag => 'simp6.0.0-2.0.1'
+  :tag => '2.0.2'
 
 mod 'herculesteam-augeasproviders_pam',
-  #FIXME Next herculesteam release.
-  # This is a bit messy.  This project has 2 tags that are
-  # both version 2.1.0, but slightly different:
-  #   '2.1.0 from the owner
-  #   'simp6.0.0-2.1.0' from SIMP team for SIMP6
-  # We are going to use the last SIMP team release, until
-  # augeasproviders_pam gets updated and we can get out
-  # of this mess.
   :git => 'https://github.com/simp/augeasproviders_pam',
-  :tag => 'simp6.0.0-2.1.0'
+  :tag => '2.1.1'
 
 mod 'herculesteam-augeasproviders_postgresql',
-  #FIXME Next herculesteam release.
-  # This is a bit messy.  This project has 3 tags that are
-  # all version 2.0.3, but slightly different:
-  #   '2.0.3 from the owner
-  #   'simp-2.0.3' from SIMP team for SIMP4/SIMP5
-  #   'simp6.0.0-2.0.3' from SIMP team for SIMP6
-  # We are going to use the last SIMP team release, until
-  # augeasproviders_postgresql gets updated and we can get out
-  # of this mess.
   :git => 'https://github.com/simp/augeasproviders_postgresql',
-  :tag => 'simp6.0.0-2.0.3'
+  :tag => '2.0.4'
 
 mod 'herculesteam-augeasproviders_puppet',
-  #FIXME Next herculesteam release.
-  # This is a bit messy.  This project has 2 tags that are
-  # both version 2.1.0, but slightly different:
-  #   '2.1.0 from the owner
-  #   'simp-2.1.0' from SIMP team for SIMP6
-  # We are going to use the last SIMP team release, until
-  # augeasproviders_pam gets updated and we can get out
-  # of this mess.
   :git => 'https://github.com/simp/augeasproviders_puppet',
-  :tag => 'simp-2.1.0'
+  :tag => '2.1.1'
 
 mod 'herculesteam-augeasproviders_shellvar',
-  #FIXME Next herculesteam release.
-  # This is a bit messy.  This project has 3 tags that are
-  # all version 2.2.1, but slightly different:
-  #   '2.2.1 from the owner
-  #   'simp-2.2.1' from SIMP team for SIMP4/SIMP5
-  #   'simp6.0.0-2.2.1' from SIMP team for SIMP6
-  # We are going to use the last SIMP team release, until
-  # augeasproviders_postgresql gets updated and we can get out
-  # of this mess.
   :git => 'https://github.com/simp/augeasproviders_shellvar',
-  :tag => 'simp6.0.0-2.2.1'
+  :tag => '2.2.2'
 
 mod 'herculesteam-augeasproviders_ssh',
   :git => 'https://github.com/simp/augeasproviders_ssh',
