@@ -153,7 +153,7 @@ have an upper bound to restrict breaking changes on a given distribution.
 
 %install
 mkdir -p %{buildroot}%{_sysconfdir}/simp
-echo "%{version}-%{release}" > %{buildroot}%{_sysconfdir}/simp/simp.version
+echo "%{version}-%{release}" | sed -e 's/%{dist}//' > %{buildroot}%{_sysconfdir}/simp/simp.version
 chmod u=rwX,g=rX,o=rX -R %{buildroot}%{_sysconfdir}/simp
 
 %clean
@@ -204,8 +204,9 @@ fi
 # Post uninstall stuff
 
 %changelog
-* Mon Oct 02 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.1.0-0
+* Wed Oct 04 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.1.0-0
 - Removed pupmod-herculesteam-augeasproviders_base as a SIMP dependency
+- Removed the 'dist' from the /etc/simp/simp.version file
 
 * Tue Sep 26 2017 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 6.1.0-0
 - update puppetserver to 2.8.0-1
