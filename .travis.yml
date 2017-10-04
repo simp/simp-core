@@ -27,8 +27,6 @@ before_install:
 jobs:
   allow_failures:
     - env: STRICT_VARIABLES=yes TRUSTED_NODE_DATA=yes PUPPET_VERSION="~> 5.0"
-    - stage: package
-      env: PUPPET_VERSION"~> 4.8.2"
 
   include:
     - stage: lint
@@ -78,7 +76,9 @@ jobs:
       rvm: 2.1.9
       services:
         - docker
+      env: PUPPET_VERSION="~> 4.8.2" SIMP_PKG_verbose=yes
       script:
         - bundle exec rake deps:checkout
+        # Keep Travis from bailing early
+        - "travis_wait 30 sleep 10 &"
         - bundle exec rake beaker:suites[rpm_docker,travis_ci]
-      env: PUPPET_VERSION"~> 4.8.2"
