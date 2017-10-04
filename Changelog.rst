@@ -57,8 +57,8 @@ No Longer Delivering ClamAV DAT Files
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Given the wide spacing of SIMP releases, the team determined that it was
-effective for us to maintain the ``simp-rsync-clamav`` RPM with upstream ClamAV
-DAT file updates.
+ineffective for us to maintain the ``simp-rsync-clamav`` RPM with upstream
+ClamAV DAT file updates.
 
 From this point forward, SIMP will not ship with updated ClamAV DAT files and
 we highly recommend updating your DAT files from the authoritative upstream
@@ -73,12 +73,23 @@ SIMP-specific components on top of it.
 Preparing for Puppet 5
 ^^^^^^^^^^^^^^^^^^^^^^
 
-We have been updating all of our modules to include tests for Puppet 5 and, so
-far, things have gone quite well. Many module version bumps were simply due to
-the fact that Puppet 5 tests were added and no functionality was changed.
+We are in the process of updating all of our modules to include tests for
+Puppet 5 and, so far, things have gone quite well. Many module version bumps
+were simply due to the fact that Puppet 5 tests were added and no functionality
+was changed.
 
 At this time, we expect that the update to Puppet 5 will be seamless for
 existing SIMP 6 installations.
+
+Non-Breaking Version Updates
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Many modules had dependencies that were updated in a manner that was breaking
+for the downstream module, but which did not affect the SIMP infrastructure.
+This caused quite a few of the SIMP modules to have version updates with no
+changes other than an update to the ``metadata.json`` file.
+
+In general, this was due to dropping support for Puppet 3.
 
 
 Security Announcements
@@ -110,6 +121,12 @@ RPM Updates
 
 Removed Modules
 ---------------
+
+pupmod-herculesteam-augeasproviders
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+* This was a meta-module that simply required all other ``augeasproviders_*``
+  modules and was both not in use by the SIMP framework and was causing user
+  confusion.
 
 pupmod-herculesteam-augeasproviders_base
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -214,6 +231,8 @@ pupmod-simp-selinux
 * Added a reboot notification on appropriate SELinux state changes
 * Ensure that a ``/.autorelabel`` file is created on appropriate SELinux state
   changes
+  * This capability is *disabled* by default due to issues discovered with the
+    autorelabel process in the operating system
 
 pupmod-simp-simp_snmpd
 ^^^^^^^^^^^^^^^^^^^^^^
