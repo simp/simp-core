@@ -119,12 +119,23 @@ describe 'RPM build' do
         on(host, "#{run_cmd} 'cd #{local_basedir}; bundle exec rake deps:checkout'")
       end
 
-      it 'should be able to build all modules ' do
+      it 'should be able to build all modules' do
         on(host, "#{run_cmd} 'cd #{local_basedir}; #{get_test_env} bundle exec rake pkg:modules'")
       end
 
-      it 'should be able to build aux packages ' do
+      it 'should be able to build aux packages' do
         on(host, "#{run_cmd} 'cd #{local_basedir}; #{get_test_env} bundle exec rake pkg:aux'")
+      end
+
+      it 'should be able to build the docs' do
+        # NOTE: This uses a flag to tell the build to ignore certain VERY SLOW
+        # items when building the docs. The doc builds are still quite slow,
+        # but is suitable for testing that the task builds correctly overall.
+        #
+        # On a fast system, the RPM build time was reduced from 6m to 2m.
+        #
+        # You can set SIMP_FAST_DOCS to 'false' to disable this behavior.
+        on(host, "#{run_cmd} 'cd #{local_basedir}; SIMP_FAST_DOCS=true #{get_test_env} bundle exec rake pkg:doc'")
       end
     end
   end
