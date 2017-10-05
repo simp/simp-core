@@ -596,8 +596,8 @@ libjpeg-devel
 libjpeg-turbo
 libjpeg-turbo-devel
 libkadm5
-libkadm5srv_mit
 libkadm5clnt_mit
+libkadm5srv_mit
 libldb
 libmcpp
 libmng
@@ -619,9 +619,9 @@ libproxy-bin
 libproxy-python
 libraw1394
 librdmacm
-libreswan
 libref_array
 librelp
+libreswan
 librsvg2
 libselinux
 libselinux-devel
@@ -812,6 +812,7 @@ pcre
 pcsc-lite
 pcsc-lite-libs
 perl
+perl-Archive-Zip
 perl-CGI
 perl-Class-Accessor
 perl-Class-Singleton
@@ -822,7 +823,6 @@ perl-DBD-MySQL
 perl-DBI
 perl-Date-Manip
 perl-DateTime
-perl-Archive-Zip
 perl-DateTime-Format-DateParse
 perl-DateTime-Format-Mail
 perl-DateTime-Format-W3CDTF
@@ -918,6 +918,7 @@ python-backports
 python-backports-ssl_match_hostname
 python-crypto
 python-dateutil
+python-decorator
 python-deltarpm
 python-dmidecode
 python-ethtool
@@ -926,12 +927,14 @@ python-iniparse
 python-ldap
 python-libs
 python-lxml
+python-magic
 python-memcached
 python-paramiko
 python-pycurl
 python-pyro
 python-redis
 python-rhsm
+python-rhsm-certificates
 python-simplejson
 python-six
 python-sss
@@ -1126,6 +1129,7 @@ tzdata-java
 udev
 udftools
 udisks
+unbound-libs
 unifdef
 unique
 unixODBC
@@ -1251,6 +1255,3 @@ zenity
 zip
 zlib
 zlib-devel
-#pkgs needed for repo closure
-libreswan
-unbound-libs
