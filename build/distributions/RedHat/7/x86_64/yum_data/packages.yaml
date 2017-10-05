@@ -51,8 +51,8 @@ clamav-update:
   :rpm_name: clamav-update-0.99.2-1.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/c/clamav-update-0.99-2.el7.x86_64.rpm
 elasticsearch:
-  :rpm_name: elasticsearch-5.5.2.rpm
-  :source: https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.5.2.rpm
+  :rpm_name: elasticsearch-5.6.2.rpm
+  :source: https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.6.2.rpm
 elasticsearch-curator:
   :rpm_name: elasticsearch-curator-5.0.2-1.x86_64.rpm
   :source: https://packages.elastic.co/curator/5/centos/7/Packages/elasticsearch-curator-5.0.2-1.x86_64.rpm
@@ -78,8 +78,8 @@ libev:
   :rpm_name: libev-4.15-3.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/l/libev-4.15-3.el7.x86_64.rpm
 logstash:
-  :rpm_name: logstash-5.5.2.rpm
-  :source: https://artifacts.elastic.co/downloads/logstash/logstash-5.5.2.rpm
+  :rpm_name: logstash-5.6.2.rpm
+  :source: https://artifacts.elastic.co/downloads/logstash/logstash-5.6.2.rpm
 pdsh:
   :rpm_name: pdsh-2.29-1el7.x86_64.rpm
   :source: https://dl.bintray.com/simp/5.1.X-Ext/pdsh-2.29-1el7.x86_64.rpm
