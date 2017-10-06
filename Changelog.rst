@@ -1,5 +1,5 @@
-SIMP 6.1.0-0
-============
+SIMP 6.1.0-RC1
+==============
 
 .. raw:: pdf
 
@@ -35,7 +35,7 @@ If you find any issues, please `file bugs`_!
 Breaking Changes Since 6.0.0-0
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-We do not expect any breaking changes to be present in 6.1.0-0.
+We do not expect any breaking changes to be present in 6.1.0-RC1.
 
 Significant Updates
 -------------------
@@ -74,12 +74,8 @@ Preparing for Puppet 5
 ^^^^^^^^^^^^^^^^^^^^^^
 
 We are in the process of updating all of our modules to include tests for
-Puppet 5 and, so far, things have gone quite well. Many module version bumps
-were simply due to the fact that Puppet 5 tests were added and no functionality
-was changed.
-
-At this time, we expect that the update to Puppet 5 will be seamless for
-existing SIMP 6 installations.
+Puppet 5 and, so far, things have gone quite well.  Our expectation is that the
+update to Puppet 5 will be seamless for existing SIMP 6 installations.
 
 Non-Breaking Version Updates
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
