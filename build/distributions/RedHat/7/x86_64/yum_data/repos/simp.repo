@@ -1,13 +1,13 @@
 [simp-project_6_X]
 name=simp-project_6_X
-baseurl=https://packagecloud.io/simp-project/6_X/el/$releasever/$basearch
+baseurl=https://packagecloud.io/simp-project/6_X/el/7/$basearch
 gpgcheck=1
 enabled=1
 gpgkey=https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
 
 [simp-project_6_X_dependencies]
-name=simp-project_6_1_X_dependencies
-baseurl=https://packagecloud.io/simp-project/6_X_Dependencies/el/$releasever/$basearch
+name=simp-project_6_X_dependencies
+baseurl=https://packagecloud.io/simp-project/6_X_Dependencies/el/7/$basearch
 gpgcheck=1
 enabled=1
 gpgkey=https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
@@ -20,9 +20,9 @@ gpgkey=https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGK
 [simp-legacy-base]
 name=simp-legacy-base
 baseurl=https://dl.bintray.com/simp/5.1.X
-enabled=1
+enabled=0
 
 [simp-legacy-ext]
 name=simp-legacy-ext
 baseurl=https://dl.bintray.com/simp/5.1.X-Ext
-enabled=1
+enabled=0
