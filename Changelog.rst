@@ -92,9 +92,10 @@ Security Announcements
 ----------------------
 
 * CVE-2017-2299
+
   * Versions of the puppetlabs-apache module prior to 1.11.1 and 2.1.0 make it
     very easy to accidentally misconfigure TLS trust.
-  * SIMP brings in version puppetlabs-apache 2.1.0 to mitigate this issue
+  * SIMP brings in version puppetlabs-apache 2.1.0 to mitigate this issue.
 
 
 RPM Updates
@@ -177,7 +178,7 @@ pupmod-simp-sssd
   maximum length to ``255`` characters
 
 pupmod-simp-svckill
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^
 * Fixed a bug in which ``svckill`` could fail on servers for which there are no
   aliased ``systemd`` services
 
@@ -213,6 +214,7 @@ pupmod-simp-pupmod
 ^^^^^^^^^^^^^^^^^^
 * Added a SHA256-based option to generate the minute parameter for a client's
   ``puppet agent`` cron entry based on its IP Address
+
   * This option is intended mitigate the undesirable clustering of client
     ``puppet agent`` runs, when the number of IPs to be transformed is less
     than the minute range over which the randomization is requested (60) and/or
@@ -227,6 +229,7 @@ pupmod-simp-selinux
 * Added a reboot notification on appropriate SELinux state changes
 * Ensure that a ``/.autorelabel`` file is created on appropriate SELinux state
   changes
+
   * This capability is *disabled* by default due to issues discovered with the
     autorelabel process in the operating system
 
@@ -242,6 +245,7 @@ pupmod-simp-simplib
 * Added a ``simplib::assert_metadata_os`` function that will read the
   ``operatingsystem_support`` field of a module's ``metadata.json`` and fail if
   the target OS is not in the supported list
+
   * This can be globally disabled by setting the variable
     ``simplib::assert_metadata::options`` to ``{ 'enable' => false }``
 
