@@ -54,8 +54,8 @@ clamav-update:
   :rpm_name: clamav-update-0.99.2-1.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/c/clamav-update-0.99.2-1.el7.x86_64.rpm
 elasticsearch:
-  :rpm_name: elasticsearch-5.5.2.rpm
-  :source: https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.5.2.rpm
+  :rpm_name: elasticsearch-5.6.2.rpm
+  :source: https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.6.2.rpm
 elasticsearch-curator:
   :rpm_name: elasticsearch-curator-5.0.2-1.x86_64.rpm
   :source: https://packages.elastic.co/curator/5/centos/7/Packages/elasticsearch-curator-5.0.2-1.x86_64.rpm
@@ -105,8 +105,8 @@ libsepol-static:
   :rpm_name: libsepol-static-2.1.9-3.el7.x86_64.rpm
   :source: http://mirror.steadfast.net/centos/7.2.1511/os/x86_64/Packages/libsepol-static-2.1.9-3.el7.x86_64.rpm
 logstash:
-  :rpm_name: logstash-5.5.2.rpm
-  :source: https://artifacts.elastic.co/downloads/logstash/logstash-5.5.2.rpm
+  :rpm_name: logstash-5.6.2.rpm
+  :source: https://artifacts.elastic.co/downloads/logstash/logstash-5.6.2.rpm
 mcollective:
   :rpm_name: mcollective-2.8.9-1.el7.noarch.rpm
   :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-2.8.9-1.el7.noarch.rpm
