@@ -216,7 +216,7 @@ pupmod-simp-pam
 pupmod-simp-pupmod
 ^^^^^^^^^^^^^^^^^^
 * Added a SHA256-based option to generate the minute parameter for a client's
-  ``puppet agent`` cron entry based on it's IP Address
+  ``puppet agent`` cron entry based on its IP Address
   * This option is intended mitigate the undesirable clustering of client
     ``puppet agent`` runs, when the number of IPs to be transformed is less
     than the minute range over which the randomization is requested (60) and/or
@@ -278,7 +278,7 @@ simp-rsync
 
 simp-utils
 ^^^^^^^^^^
-* Added the default LDIF example files out of the ``simp-doc`` RPM and into
+* Moved the default LDIF example files out of the ``simp-doc`` RPM and into
   ``simp-utils`` for wider accessibility
 
 
