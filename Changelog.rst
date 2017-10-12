@@ -65,6 +65,7 @@ we highly recommend updating your DAT files from the authoritative upstream
 sources.
 
 SNMP Support Added
+^^^^^^^^^^^^^^^^^^
 
 We have re-added SNMP support after a thorough re-assessment and update from
 our legacy ``snmp`` module. We now build upon a community module and wrap the
