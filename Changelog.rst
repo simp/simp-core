@@ -293,6 +293,65 @@ Known Bugs
 * The ``krb5`` module may have issues in some cases, validation pending
 * The graphical ``switch user`` functionality does not work. We are working
   with the vendor to discover a solution
+* The upgrade of the ``simp-gpgkeys-3.0.1-0.noarch`` RPM on a SIMP server
+  fails to set up the keys in ``/var/www/yum/SIMP/GPGKEYS``.   This problem
+  can be worked around by either uninstalling ``simp-gpgkeys-3.0.1-0.noarch``
+  prior to the SIMP 6.1.0 upgrade, or reinstalling the newer ``simp-gpgkeys``
+  RPM after the upgrade.
+* An upgrade of the ``pupmod-saz-timezone-3.3.0-2016.1.noarch`` RPM  to
+  the ``pupmod-simp-timezone-4.0.0-0.noarch`` RPM fails to copy the
+  installed files into ``/etc/puppetlabs/code/environments/simp/modules``,
+  when the ``simp-adapter`` is configured to execute the copy.  This
+  problem can be worked around by either uninstalling
+  ``pupmod-saz-timezone-3.3.0-2016.1.noarch`` prior to the SIMP 6.1.0
+  upgrade, or reinstalling the ``pupmod-simp-timezone-4.0.0-0.noarch`` RPM
+  after the upgrade.
+
+Other Upgrade Notices
+---------------------
+
+The upgrade from SIMP 6.0.0 to SIMP 6.1.0 is largely seamless.  However,
+there are a few details that warrant further discussion.
+
+#. *The PostgreSQL 9.4 server must be stopped prior to the post-upgrade
+   compilation:* 
+
+   SIMP 6.1.0 updates the ``puppetdb`` Puppet module to 6.0.0, which,
+   by default, requires a PostgreSQL upgrade from 9.4 to 9.6.  Although
+   the appropriate PostgreSQL RPMs will be installed via the ``puppetdb``
+   6.0.0 Puppet module, the Puppet compilation after the SIMP 6.1.0
+   upgrade will fail, because the PostgreSQL 9.6 server cannot start
+   while the PostgreSQL 9.4 server is still running.  You must manually
+   stop the PostgreSQL 9.4 server prior to compiling the SIMP 6.1.0
+   Puppet manifests.
+
+   In addition, you may want to
+
+   * Migrate the data contained in the 9.4 database.  This data is *not*
+     automatically imported into the 9.6 database by the ``puppetdb``
+     Puppet module.  See `Upgrading a PostgreSQL Cluster`_ for detailed
+     instructions.
+
+   * Prevent future conflicts between the two PostgreSQL versions by
+     performing one of the following actions:
+ 
+     * Disabling the automatic start of the PostgreSQL 9.4 server at
+       boot time.
+     * Configuring the PostgreSQL 9.4 server to use different ports
+       than the 9.6 server.
+     * Uninstalling the PostgreSQL 9.4 RPMs.
+
+     Unless you need the PostgreSQL 9.4 server for another application
+     running on the PuppetDB server, removing the 9.4 RPMs is advised.
+
+#. *Puppet compiles containing the AIDE database initialization are long*:
+
+   In order to expose AIDE database configuration errors during a Puppet
+   compilation, the database initialization is no longer handled as a
+   background process.  When the AIDE database must be initialized
+   this can extend the time for a Puppet compilation by several minutes.
+   At the console the Puppet compilation will appear to pause at
+   ``(/Stage[main]/Aide/Exec[update_aide_db])``.
 
 .. _FACT-1732: https://tickets.puppetlabs.com/browse/FACT-1732
 .. _Puppet Code Manager: https://docs.puppet.com/pe/latest/code_mgr.html
@@ -300,3 +359,4 @@ Known Bugs
 .. _Puppet Location Reference: https://docs.puppet.com/puppet/4.7/reference/whered_it_go.html
 .. _file bugs: https://simp-project.atlassian.net
 .. _r10k: https://github.com/puppetlabs/r10k
+.. _Upgrading a PostgreSQL Cluster: https://www.postgresql.org/docs/9.6/static/upgrading.html
