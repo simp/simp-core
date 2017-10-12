@@ -348,7 +348,7 @@ there are a few details that warrant further discussion.
 
    In order to expose AIDE database configuration errors during a Puppet
    compilation, the database initialization is no longer handled as a
-   background process.  When the AIDE database must be initialized
+   background process.  When the AIDE database must be initialized,
    this can extend the time for a Puppet compilation by several minutes.
    At the console the Puppet compilation will appear to pause at
    ``(/Stage[main]/Aide/Exec[update_aide_db])``.
