@@ -307,44 +307,11 @@ Known Bugs
   ``pupmod-saz-timezone-3.3.0-2016.1.noarch`` prior to the SIMP 6.1.0
   upgrade, or reinstalling the ``pupmod-simp-timezone-4.0.0-0.noarch`` RPM
   after the upgrade.
+* Setting selinux to disabled can cause stunnel daemon fail.  Using
+  the permissive mode of selinux does not cause these issues.
 
 Other Upgrade Notices
 ---------------------
-
-The upgrade from SIMP 6.0.0 to SIMP 6.1.0 is largely seamless.  However,
-there are a few details that warrant further discussion.
-
-#. *The PostgreSQL 9.4 server must be stopped prior to the post-upgrade
-   compilation:* 
-
-   SIMP 6.1.0 updates the ``puppetdb`` Puppet module to 6.0.0, which,
-   by default, requires a PostgreSQL upgrade from 9.4 to 9.6.  Although
-   the appropriate PostgreSQL RPMs will be installed via the ``puppetdb``
-   6.0.0 Puppet module, the Puppet compilation after the SIMP 6.1.0
-   upgrade will fail, because the PostgreSQL 9.6 server cannot start
-   while the PostgreSQL 9.4 server is still running.  You must manually
-   stop the PostgreSQL 9.4 server prior to compiling the SIMP 6.1.0
-   Puppet manifests.
-
-   In addition, you may want to
-
-   * Migrate the data contained in the 9.4 database.  This data is *not*
-     automatically imported into the 9.6 database by the ``puppetdb``
-     Puppet module.  See `Upgrading a PostgreSQL Cluster`_ for detailed
-     instructions.
-
-   * Prevent future conflicts between the two PostgreSQL versions by
-     performing one of the following actions:
- 
-     * Disabling the automatic start of the PostgreSQL 9.4 server at
-       boot time.
-     * Configuring the PostgreSQL 9.4 server to use different ports
-       than the 9.6 server.
-     * Uninstalling the PostgreSQL 9.4 RPMs.
-
-     Unless you need the PostgreSQL 9.4 server for another application
-     running on the PuppetDB server, removing the 9.4 RPMs is advised.
-
 #. *Puppet compiles containing the AIDE database initialization are long*:
 
    In order to expose AIDE database configuration errors during a Puppet
@@ -353,6 +320,11 @@ there are a few details that warrant further discussion.
    this can extend the time for a Puppet compilation by several minutes.
    At the console the Puppet compilation will appear to pause at
    ``(/Stage[main]/Aide/Exec[update_aide_db])``.
+
+#. *More details on the known bugs and issues, and also troubleshooting the
+   upgrade are in the docs located at ``https://readthedocs.org/projects/simp`` on the
+   internet or under ``/usr/share/doc`` when installed from simp-doc rpm on the iso.
+
 
 .. _FACT-1732: https://tickets.puppetlabs.com/browse/FACT-1732
 .. _Puppet Code Manager: https://docs.puppet.com/pe/latest/code_mgr.html
