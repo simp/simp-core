@@ -321,9 +321,10 @@ Other Upgrade Notices
    At the console the Puppet compilation will appear to pause at
    ``(/Stage[main]/Aide/Exec[update_aide_db])``.
 
-#. *More details on the known bugs and issues, and also troubleshooting the
-   upgrade are in the docs located at ``https://readthedocs.org/projects/simp`` on the
-   internet or under ``/usr/share/doc`` when installed from simp-doc rpm on the iso.
+#. *Guidelines for upgrading and troublehooting possible issues are in the docs
+   under the ``User Guide`` section.  The docs can be found at 
+   `Read The Docs`_ on the internet or under ``/usr/share/doc``
+   when installed from ``simp-doc.noarch`` rpm on the iso.
 
 
 .. _FACT-1732: https://tickets.puppetlabs.com/browse/FACT-1732
@@ -332,4 +333,5 @@ Other Upgrade Notices
 .. _Puppet Location Reference: https://docs.puppet.com/puppet/4.7/reference/whered_it_go.html
 .. _file bugs: https://simp-project.atlassian.net
 .. _r10k: https://github.com/puppetlabs/r10k
+.. _Read The Docs: https://readthedocs.org/projects/simp
 .. _Upgrading a PostgreSQL Cluster: https://www.postgresql.org/docs/9.6/static/upgrading.html
