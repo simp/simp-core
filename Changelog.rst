@@ -321,10 +321,12 @@ Other Upgrade Notices
    At the console the Puppet compilation will appear to pause at
    ``(/Stage[main]/Aide/Exec[update_aide_db])``.
 
-#. *Guidelines for upgrading and troublehooting possible issues are in the docs
-   under the ``User Guide`` section.  The docs can be found at 
-   `Read The Docs`_ on the internet or under ``/usr/share/doc``
-   when installed from ``simp-doc.noarch`` rpm on the iso.
+#. *Guidelines for upgrading and troublehooting
+  
+   The ``User Guide: Upgrading SIMP`` section of the documentation contains further
+   information and should be read before upgrading your system.
+   The docs can be found at `Read The Docs`_ on the internet or under 
+   ``/usr/share/doc`` when installed from ``simp-doc.noarch`` rpm on the iso.
 
 
 .. _FACT-1732: https://tickets.puppetlabs.com/browse/FACT-1732
