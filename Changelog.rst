@@ -24,8 +24,9 @@ Breaking Changes
 ----------------
 
 .. WARNING::
+
    This release of SIMP is **NOT** backwards compatible with the 4.X and 5.X
-   releases.  **Direct upgrades will not work!**
+   releases. **Direct upgrades will not work!**
 
    At this point, do not expect any of our code moving forward to work with
    Puppet 3.
@@ -35,7 +36,16 @@ If you find any issues, please `file bugs`_!
 Breaking Changes Since 6.0.0-0
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-We do not expect any breaking changes to be present in 6.1.0-RC1.
+Upgrade Issues
+""""""""""""""
+
+* You **MUST** read the ``User Guide: Upgrading SIMP`` section of the
+  documentation for this upgrade. There were several RPM issues that require
+  manual intervention for a clean upgrade.
+
+  * The docs can be found at `Read The Docs`_ on the internet or under
+    ``/usr/share/doc`` when the ``simp-doc.noarch`` RPM is installed.
+
 
 Significant Updates
 -------------------
@@ -65,6 +75,7 @@ we highly recommend updating your DAT files from the authoritative upstream
 sources.
 
 SNMP Support Added
+^^^^^^^^^^^^^^^^^^
 
 We have re-added SNMP support after a thorough re-assessment and update from
 our legacy ``snmp`` module. We now build upon a community module and wrap the
@@ -86,6 +97,17 @@ This caused quite a few of the SIMP modules to have version updates with no
 changes other than an update to the ``metadata.json`` file.
 
 In general, this was due to dropping support for Puppet 3.
+
+Long Puppet Compiles with AIDE Database Initialization
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In order to expose ``aide`` database configuration errors during a Puppet
+compilation, the database initialization is no longer handled as a background
+process.
+
+When the AIDE database must be initialized, this can extend the time for a
+Puppet compilation by **several minutes**. At the console the Puppet
+compilation will appear to pause at ``(/Stage[main]/Aide/Exec[update_aide_db])``.
 
 
 Security Announcements
@@ -293,6 +315,21 @@ Known Bugs
 * The ``krb5`` module may have issues in some cases, validation pending
 * The graphical ``switch user`` functionality does not work. We are working
   with the vendor to discover a solution
+* The upgrade of the ``simp-gpgkeys-3.0.1-0.noarch`` RPM on a SIMP server
+  fails to set up the keys in ``/var/www/yum/SIMP/GPGKEYS``.   This problem
+  can be worked around by either uninstalling ``simp-gpgkeys-3.0.1-0.noarch``
+  prior to the SIMP 6.1.0 upgrade, or reinstalling the newer ``simp-gpgkeys``
+  RPM after the upgrade.
+* An upgrade of the ``pupmod-saz-timezone-3.3.0-2016.1.noarch`` RPM  to
+  the ``pupmod-simp-timezone-4.0.0-0.noarch`` RPM fails to copy the
+  installed files into ``/etc/puppetlabs/code/environments/simp/modules``,
+  when the ``simp-adapter`` is configured to execute the copy.  This
+  problem can be worked around by either uninstalling
+  ``pupmod-saz-timezone-3.3.0-2016.1.noarch`` prior to the SIMP 6.1.0
+  upgrade, or reinstalling the ``pupmod-simp-timezone-4.0.0-0.noarch`` RPM
+  after the upgrade.
+* Setting selinux to disabled can cause stunnel daemon fail.  Using
+  the permissive mode of selinux does not cause these issues.
 
 .. _FACT-1732: https://tickets.puppetlabs.com/browse/FACT-1732
 .. _Puppet Code Manager: https://docs.puppet.com/pe/latest/code_mgr.html
@@ -300,3 +337,4 @@ Known Bugs
 .. _Puppet Location Reference: https://docs.puppet.com/puppet/4.7/reference/whered_it_go.html
 .. _file bugs: https://simp-project.atlassian.net
 .. _r10k: https://github.com/puppetlabs/r10k
+.. _Read The Docs: https://readthedocs.org/projects/simp
