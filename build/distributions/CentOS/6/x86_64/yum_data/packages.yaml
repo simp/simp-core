@@ -87,8 +87,8 @@ globus-gss-assist:
   :rpm_name: globus-gss-assist-10.21-1.el6.x86_64.rpm
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-gss-assist-10.21-1.el6.x86_64.rpm
 globus-gssapi-gsi:
-  :rpm_name: globus-gssapi-gsi-13.0-2.el6.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-gssapi-gsi-13.0-2.el6.x86_64.rpm
+  :rpm_name: globus-gssapi-gsi-13.1-1.el6.x86_64.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-gssapi-gsi-13.1-1.el6.x86_64.rpm
 globus-openssl-module:
   :rpm_name: globus-openssl-module-4.8-1.el6.x86_64.rpm
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/globus-openssl-module-4.8-1.el6.x86_64.rpm
