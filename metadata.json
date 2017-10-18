@@ -12,8 +12,10 @@
     "bundle",
     "security",
     "compliance",
-    "NIST 800-53",
-    "DISA STIG"
+    "NIST",
+    "800-53",
+    "DISA",
+    "STIG"
   ],
   "dependencies": [
     {
