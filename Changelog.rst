@@ -190,7 +190,7 @@ pupmod-simp-simp
   * Having ``min_id`` at ``1000`` was causing intermittent retrieval errors for
     the ``administrators`` group (and potentially other supplementary groups)
     that users may be assigned to. This led to the potential of users below
-    ``1000`` potentially being left unable to log into their system and was
+    ``1000`` being left unable to log into their system and was
     reproduced using the stock ``administrators`` group.
   * The wording of the ``sssd.conf`` man page for ``min_id`` leads us to
     believe that the behavior of non-primary groups may not be well defined.
