@@ -20,15 +20,15 @@ mod 'simp-rsync_data',
 
 mod 'simp-adapter',
   :git => 'https://github.com/simp/simp-adapter',
-  :tag => '0.0.4'
+  :tag => '0.0.5'
 
 mod 'simp-environment',
   :git => 'https://github.com/simp/simp-environment-skeleton',
-  :tag => '6.2.1'
+  :tag => '6.2.4'
 
 mod 'simp-gpgkeys',
   :git => 'https://github.com/simp/simp-gpgkeys',
-  :tag => '3.0.2'
+  :tag => '3.0.3'
 
 mod 'simp-utils',
   :git => 'https://github.com/simp/simp-utils',
