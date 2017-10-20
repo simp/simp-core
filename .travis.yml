@@ -20,6 +20,8 @@ addons:
   apt:
     packages:
       - rpm
+      # provides unbuffer
+      - expect-dev
 
 before_install:
   - rm -f Gemfile.lock
@@ -80,5 +82,5 @@ jobs:
         - docker
       script:
         - bundle exec rake deps:checkout
-        - bundle exec rake beaker:suites[rpm_docker,travis_ci]
+        - travis wait 30 unbuffer bundle exec rake beaker:suites[rpm_docker,travis_ci]
       env: PUPPET_VERSION"~> 4.8.2"
