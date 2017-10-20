@@ -13,7 +13,7 @@ rescue LoadError => e
 end
 
 task :metadata_lint do
-  sh 'metadata-json-lint metadata.json'
+  sh 'metadata-json-lint --strict-dependencies --strict-license --fail-on-warnings metadata.json'
 end
 
 task :default do
