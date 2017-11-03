@@ -9,7 +9,7 @@ GEM
     aws-sdk-v1 (1.67.0)
       json (~> 1.4)
       nokogiri (~> 1)
-    beaker (3.26.0)
+    beaker (3.28.0)
       beaker-aws (~> 0.1)
       beaker-docker (~> 0.1)
       beaker-google (~> 0.1)
@@ -45,7 +45,7 @@ GEM
       stringify-hash (~> 0.0.0)
     beaker-hiera (0.1.1)
       stringify-hash (~> 0.0.0)
-    beaker-hostgenerator (1.1.2)
+    beaker-hostgenerator (1.1.3)
       deep_merge (~> 1.0)
       stringify-hash (~> 0.0.0)
     beaker-openstack (0.1.0)
@@ -64,8 +64,9 @@ GEM
       specinfra (~> 2)
     beaker-vagrant (0.1.0)
       stringify-hash (~> 0.0.0)
-    beaker-vcloud (0.1.0)
+    beaker-vcloud (0.2.0)
       beaker-vmpooler
+      beaker-vmware
       rbvmomi (~> 1.9)
       stringify-hash (~> 0.0.0)
     beaker-vmpooler (1.1.0)
@@ -145,7 +146,7 @@ GEM
       fog-json (~> 1.0)
       fog-xml (~> 0.1)
       ipaddress (~> 0.8)
-    fog-brightbox (0.13.0)
+    fog-brightbox (0.14.0)
       fog-core (~> 1.22)
       fog-json
       inflecto (~> 0.0.2)
@@ -323,7 +324,7 @@ GEM
     parallel (1.12.0)
     parallel_tests (2.17.0)
       parallel
-    pry (0.11.1)
+    pry (0.11.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
     pry-byebug (3.4.3)
@@ -343,7 +344,7 @@ GEM
       puppet (>= 2.7.16)
       rest-client (~> 1.8.0)
     puppet-lint (2.3.3)
-    puppet-strings (1.1.0)
+    puppet-strings (1.1.1)
       yard (~> 0.9.5)
     puppet-syntax (2.4.1)
       rake
@@ -366,7 +367,7 @@ GEM
       multi_json (~> 1.10)
       puppet_forge (~> 2.2)
       semantic_puppet (~> 0.1.0)
-    rake (12.1.0)
+    rake (12.2.1)
     rb-fsevent (0.10.2)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
@@ -411,7 +412,7 @@ GEM
     ruby-progressbar (1.9.0)
     semantic_puppet (0.1.4)
       gettext-setup (>= 0.3)
-    serverspec (2.41.0)
+    serverspec (2.41.2)
       multi_json
       rspec (~> 3.0)
       rspec-its
@@ -422,7 +423,7 @@ GEM
       faraday (~> 0.9)
       jwt (>= 1.5, < 3.0)
       multi_json (~> 1.10)
-    simp-beaker-helpers (1.8.8)
+    simp-beaker-helpers (1.8.10)
       beaker (~> 3.14)
       beaker-puppet_install_helper (~> 0.6)
     simp-build-helpers (0.1.1)

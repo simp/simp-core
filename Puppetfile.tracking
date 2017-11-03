@@ -16,7 +16,7 @@ mod 'rubygem-rubygem_simp_cli',
 
 mod 'simp-rsync_data',
   :git => 'https://github.com/simp/simp-rsync-skeleton',
-  :tag => '6.1.0'
+  :tag => '6.2.0'
 
 mod 'simp-adapter',
   :git => 'https://github.com/simp/simp-adapter',
@@ -24,7 +24,7 @@ mod 'simp-adapter',
 
 mod 'simp-environment',
   :git => 'https://github.com/simp/simp-environment-skeleton',
-  :tag => '6.2.4'
+  :tag => '6.2.5'
 
 mod 'simp-gpgkeys',
   :git => 'https://github.com/simp/simp-gpgkeys',
@@ -217,7 +217,7 @@ mod 'simp-activemq',
 
 mod 'simp-aide',
   :git => 'https://github.com/simp/pupmod-simp-aide',
-  :tag => '6.1.0'
+  :tag => '6.1.1'
 
 mod 'simp-at',
   :git => 'https://github.com/simp/pupmod-simp-at',
@@ -229,7 +229,7 @@ mod 'simp-auditd',
 
 mod 'simp-autofs',
   :git => 'https://github.com/simp/pupmod-simp-autofs',
-  :tag => '6.0.2'
+  :tag => '6.1.0'
 
 mod 'simp-chkrootkit',
   :git => 'https://github.com/simp/pupmod-simp-chkrootkit',
@@ -241,7 +241,7 @@ mod 'simp-clamav',
 
 mod 'simp-compliance_markup',
   :git => 'https://github.com/simp/pupmod-simp-compliance_markup',
-  :ref => '2.3.1'
+  :ref => '2.3.2'
 
 mod 'simp-cron',
   :git => 'https://github.com/simp/pupmod-simp-cron',
@@ -296,7 +296,7 @@ mod 'simp-jenkins',
 
 mod 'simp-krb5',
   :git => 'https://github.com/simp/pupmod-simp-krb5',
-  :tag => '7.0.2'
+  :tag => '7.0.3'
 
 mod 'simp-libreswan',
   :git => 'https://github.com/simp/pupmod-simp-libreswan',
@@ -367,7 +367,7 @@ mod 'simp-postfix',
 
 mod 'simp-pupmod',
   :git => 'https://github.com/simp/pupmod-simp-pupmod',
-  :tag => '7.4.0'
+  :tag => '7.4.1'
 
 mod 'simp-resolv',
   :git => 'https://github.com/simp/pupmod-simp-resolv',
@@ -395,7 +395,7 @@ mod 'simp-simpcat',
 
 mod 'simp-simplib',
   :git => 'https://github.com/simp/pupmod-simp-simplib',
-  :tag => '3.6.0'
+  :tag => '3.7.0'
 
 mod 'simp-simp_apache',
   :git => 'https://github.com/simp/pupmod-simp-simp_apache',
@@ -451,7 +451,7 @@ mod 'simp-sssd',
 
 mod 'simp-stunnel',
   :git => 'https://github.com/simp/pupmod-simp-stunnel',
-  :tag => '6.1.0'
+  :tag => '6.2.0'
 
 mod 'simp-sudo',
   :git => 'https://github.com/simp/pupmod-simp-sudo',
