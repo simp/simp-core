@@ -39,7 +39,7 @@ Breaking Changes Since 6.0.0-0
 Upgrade Issues
 """"""""""""""
 
-* You **MUST** read the ``User Guide: Upgrading SIMP`` section of the
+* You **MUST** read the :ref:`upgrade-6.0.0-to-6.1.0` section of the
   documentation for this upgrade. There were several RPM issues that require
   manual intervention for a clean upgrade.
 
