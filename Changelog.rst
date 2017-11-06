@@ -39,7 +39,7 @@ Breaking Changes Since 6.0.0-0
 Upgrade Issues
 """"""""""""""
 
-* You **MUST** read the :ref:`upgrade-6.0.0-to-6.1.0` section of the
+* You **MUST** read the `upgrade-6.0.0-to-6.1.0`_ section of the
   documentation for this upgrade. There were several RPM issues that require
   manual intervention for a clean upgrade.
 
@@ -350,3 +350,4 @@ Known Bugs
 .. _file bugs: https://simp-project.atlassian.net
 .. _r10k: https://github.com/puppetlabs/r10k
 .. _Read The Docs: https://readthedocs.org/projects/simp
+.. _upgrade-6.0.0-to-6.1.0: http://simp.readthedocs.io/en/latest/user_guide/Upgrade_SIMP/Version_Specific_Upgrade_Instructions.html#upgrading-from-simp-6-0-0-to-simp-6-1-0
