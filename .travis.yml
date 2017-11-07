@@ -29,6 +29,7 @@ before_install:
 jobs:
   allow_failures:
     - stage: package
+    - env: STRICT_VARIABLES=yes TRUSTED_NODE_DATA=yes PUPPET_VERSION="~> 5.0"
 
   include:
     - stage: check
@@ -46,13 +47,19 @@ jobs:
 
     - stage: spec
       rvm: 2.1.9
-      env: STRICT_VARIABLES=yes TRUSTED_NODE_DATA=yes PUPPET_VERSION="~> 4.7.0"
+      env: STRICT_VARIABLES=yes TRUSTED_NODE_DATA=yes PUPPET_VERSION="~> 4.10.0"
       script:
         - bundle exec rake spec
 
     - stage: spec
       rvm: 2.1.9
-      env: STRICT_VARIABLES=yes TRUSTED_NODE_DATA=yes PUPPET_VERSION="~> 5.0"
+      env: STRICT_VARIABLES=yes TRUSTED_NODE_DATA=yes PUPPET_VERSION="~> 4.9.2"
+      script:
+        - bundle exec rake spec
+
+    - stage: spec
+      rvm: 2.1.9
+      env: STRICT_VARIABLES=yes TRUSTED_NODE_DATA=yes PUPPET_VERSION="~> 4.8.2"
       script:
         - bundle exec rake spec
 
