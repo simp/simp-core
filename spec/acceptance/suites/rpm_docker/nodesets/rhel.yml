@@ -17,10 +17,12 @@ HOSTS:
       # We only want to deal with the original distro packages
       - 'yum-config-manager --disable \*'
 
+      # Downgrade ALL THE THINGS!!!
+      - 'cd /root; yum downgrade -y *'
+
       # Getting rid of package conflicts
       - 'yum remove -y fakesystemd'
       - '\cp -a /etc/ssh /root'
-      - 'yum downgrade -y openssh openssh-clients systemd-libs'
       - 'yum install -y openssh-server'
       - '\cp -a /root/ssh /etc'
 
@@ -39,7 +41,6 @@ HOSTS:
 
       # simp build-deps
       - 'yum-config-manager --enable extras'
-      - 'yum-config-manager --enable base'
       - 'yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm'
       - 'yum install -y openssl util-linux rpm-build augeas-devel createrepo genisoimage git gnupg2 libicu-devel libxml2 libxml2-devel libxslt libxslt-devel rpmdevtools clamav clamav-update which ruby-devel rpm-devel rpm-sign'
 
@@ -85,9 +86,11 @@ HOSTS:
       - 'yum-config-manager --disable \*'
       - 'echo -e "[legacy]\nname=Legacy\nbaseurl=http://vault.centos.org/6.6/os/x86_64\ngpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-6\ngpgcheck=1" > /etc/yum.repos.d/legacy.repo'
 
+      # Downgrade ALL THE THINGS!!!
+      - 'cd /root; yum downgrade -y *'
+
       # Getting rid of package conflicts
       - '\cp -a /etc/ssh /root'
-      - 'yum downgrade -y openssh openssh-server openssh-clients'
       - 'yum install -y openssh-server'
       - '\cp -a /root/ssh /etc'
 
@@ -106,7 +109,6 @@ HOSTS:
 
       # simp build-deps
       - 'yum-config-manager --enable extras'
-      - 'yum-config-manager --enable base'
       - 'yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm'
       - 'yum install -y openssl util-linux rpm-build augeas-devel createrepo genisoimage git gnupg2 libicu-devel libxml2 libxml2-devel libxslt libxslt-devel rpmdevtools clamav which ruby-devel rpm-sign acl'
 
