@@ -5,8 +5,7 @@ moduledir 'src'
 
 mod 'simp-doc',
   :git => 'https://github.com/simp/simp-doc',
-#FIXME
-  :ref => 'master'
+  :tag => '6.1.0-0'
 
 moduledir 'src/assets'
 
