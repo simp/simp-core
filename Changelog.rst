@@ -348,9 +348,9 @@ pupmod-simp-simplib
   * This can be globally disabled by setting the variable
     ``simplib::assert_metadata::options`` to ``{ 'enable' => false }``
 
-* Began deprecation of legacy Puppet 3 functions in lieu of their Puppet 4
-  counterparts. At this time, no deprecation warnings will be generated but
-  this will change in a later release of SIMP 6.
+* Began deprecation of legacy Puppet 3 functions by Puppet 4 counterparts.
+  At this time, no deprecation warnings will be generated but this will
+  change in a later release of SIMP 6.
 
 pupmod-simp-timezone
 ^^^^^^^^^^^^^^^^^^^^
