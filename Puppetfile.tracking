@@ -133,7 +133,7 @@ mod 'puppetlabs-concat',
 
 mod 'puppetlabs-docker',
   :git => 'https://github.com/simp/puppetlabs-docker',
-  :tag => '1.0.1'
+  :tag => '1.0.2'
 
 mod 'puppetlabs-hocon',
   :git => 'https://github.com/simp/pupmod-puppetlabs-hocon',
