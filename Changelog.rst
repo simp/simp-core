@@ -50,6 +50,22 @@ Upgrade Issues
 Significant Updates
 -------------------
 
+Puppetserver Log Issues
+^^^^^^^^^^^^^^^^^^^^^^^
+
+You may have noticed that you were not getting ``puppetserver`` logs recorded
+either on the file system or via ``rsyslog``. We fixed the issue as identified
+in `SIMP-4049`_ but we cannot safely upgrade existing systems to fix the issue.
+
+To enable log collection via ``rsyslog`` (the default), you will need to add
+the following to your puppet server's hieradata:
+
+  * ``rsyslog::udp_server: true``
+  * ``rsyslog::udp_listen_address: '127.0.0.1'``
+
+By default, this file will be located at
+``/etc/puppetlabs/code/environments/simp/hieradata/hosts/puppet.<your.domain>.yaml``
+
 Puppetserver auth.conf
 ^^^^^^^^^^^^^^^^^^^^^^
 
@@ -260,6 +276,13 @@ simp-environment
   **all** SELinux contexts on any environment files in
   ``/var/simp/environments`` with the exception of the default ``simp``
   environment.
+* Added the following items to the default puppet server hieradata file at
+  ``/etc/puppetlabs/code/environments/simp/hieradata/hosts/puppet.your.domain.yaml``
+  to enable the UDP log server on ``127.0.0.1`` so that the ``puppetserver``
+  logs can be processed via ``rsyslog`` by default.
+
+  * ``rsyslog::udp_server: true``
+  * ``rsyslog::udp_listen_address: '127.0.0.1'``
 
 simp-rsync
 ^^^^^^^^^^
@@ -285,6 +308,7 @@ pupmod-simp-autofs
 * Allow pinning of the ``samba`` and ``autofs`` packages to work around bugs in
   ``autofs`` that do not allow proper functionality when working with
   ``stunnel``
+
   * `autofs EL6 Beaker Bug Report`_
   * `autofs EL7 Beaker Bug Report`_
 
@@ -422,6 +446,7 @@ Known Bugs
 .. _Puppet Data Types: https://docs.puppet.com/puppet/latest/lang_data_type.html
 .. _Puppet Location Reference: https://docs.puppet.com/puppet/4.7/reference/whered_it_go.html
 .. _Read The Docs: https://readthedocs.org/projects/simp
+.. _SIMP-4049: https://simp-project.atlassian.net/browse/SIMP-4049
 .. _autofs EL6 Beaker Bug Report: https://bugs.centos.org/view.php?id=13575
 .. _autofs EL7 Beaker Bug Report: https://bugs.centos.org/view.php?id=14080
 .. _file bugs: https://simp-project.atlassian.net
