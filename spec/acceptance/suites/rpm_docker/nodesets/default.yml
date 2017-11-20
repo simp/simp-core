@@ -10,7 +10,14 @@ HOSTS:
     docker_cmd: '/usr/sbin/sshd -D'
     docker_preserve_image: true
     docker_image_commands:
-      # For SELinux Builds
+      # See https://github.com/CentOS/sig-cloud-instance-images/issues/15
+      - 'rm -f /var/lib/rpm/__db*'
+      - 'rpm --rebuilddb'
+      - 'yum clean all'
+      # This is a hack to force an exit code of 0
+      # Sometimes yum-plugin-ovl will install dependencies, which will fail with rpmdb errors
+      # since yum-plugin-ovl is not installed (chicken and egg)
+      - 'yum install -y yum-plugin-ovl || :'
       - 'yum install -y yum-utils'
 
       # We only want to deal with the original distro packages
@@ -44,11 +51,17 @@ HOSTS:
       - 'yum install -y epel-release'
       - 'yum install -y openssl util-linux rpm-build augeas-devel createrepo genisoimage git gnupg2 libicu-devel libxml2 libxml2-devel libxslt libxslt-devel rpmdevtools clamav clamav-update which ruby-devel rpm-devel rpm-sign'
 
+      # Openssl 1.0.2 required for gem-wrapper and ruby 2.1.0 openssl
+      - 'yum-config-manager --enable base'
+      - 'yumdownloader openssl openssl-libs openssl-devel --arch=x86_64'
+      - 'yum-config-manager --disable base'
+      - 'yum localinstall -y openssl*.rpm'
+
       # simp doc deps
       - 'yum -y install centos-release-scl python27 python-pip python-virtualenv fontconfig dejavu-sans-fonts dejavu-sans-mono-fonts dejavu-serif-fonts dejavu-fonts-common libjpeg-devel zlib-devel'
 
       # RVM build-deps
-      - 'yum install -y libyaml-devel glibc-headers autoconf gcc gcc-c++ glibc-devel readline-devel libffi-devel openssl-devel automake libtool bison sqlite-devel'
+      - 'yum install -y libyaml-devel glibc-headers autoconf gcc gcc-c++ glibc-devel readline-devel libffi-devel automake libtool bison sqlite-devel'
 
       # For things that want to call systemctl - we don't need them for this
       - 'ln -sf /bin/true /usr/bin/systemctl'
@@ -79,7 +92,14 @@ HOSTS:
     image: centos:6.6
     docker_preserve_image: true
     docker_image_commands:
-      # For SELinux Builds
+      # See https://github.com/CentOS/sig-cloud-instance-images/issues/15
+      - 'rm -f /var/lib/rpm/__db*'
+      - 'rpm --rebuilddb'
+      - 'yum clean all'
+      # This is a hack to force an exit code of 0
+      # Sometimes yum-plugin-ovl will install dependencies, which will fail with rpmdb errors
+      # since yum-plugin-ovl is not installed (chicken and egg)
+      - 'yum install -y yum-plugin-ovl || :'
       - 'yum install -y yum-utils'
 
       # We only want to deal with the original distro packages
@@ -87,7 +107,8 @@ HOSTS:
       - 'echo -e "[legacy]\nname=Legacy\nbaseurl=http://vault.centos.org/6.6/os/x86_64\ngpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-6\ngpgcheck=1" > /etc/yum.repos.d/legacy.repo'
 
       # Downgrade ALL THE THINGS!!!
-      - 'cd /root; yum downgrade -y *'
+      # ...except yum and python-urlgrabber, which yum-plugin-ovl has dependencies on
+      - 'cd /root; yum -x yum -x python-urlgrabber downgrade -y *'
 
       # Getting rid of package conflicts
       - '\cp -a /etc/ssh /root'
@@ -112,11 +133,18 @@ HOSTS:
       - 'yum install -y epel-release'
       - 'yum install -y openssl util-linux rpm-build augeas-devel createrepo genisoimage git gnupg2 libicu-devel libxml2 libxml2-devel libxslt libxslt-devel rpmdevtools clamav which ruby-devel rpm-sign acl'
 
+      # Openssl 1.0.2 required for gem-wrapper and ruby 2.1.0 openssl
+      - 'yum-config-manager --enable base'
+      - 'yumdownloader openssl openssl-libs openssl-devel --arch=x86_64'
+      - 'yum-config-manager --disable base'
+      # Unlike el7, el6 pulls in multilib openssl; only install x86_64
+      - 'yum localinstall -y openssl*.x86_64.rpm'
+
       # simp doc deps
       - 'yum -y install centos-release-scl python27 python-pip python-virtualenv fontconfig dejavu-sans-fonts dejavu-sans-mono-fonts dejavu-serif-fonts dejavu-fonts-common libjpeg-devel zlib-devel'
 
       # RVM build-deps
-      - 'yum install -y libyaml-devel glibc-headers autoconf gcc gcc-c++ glibc-devel readline-devel libffi-devel openssl-devel automake libtool bison sqlite-devel tar'
+      - 'yum install -y libyaml-devel glibc-headers autoconf gcc gcc-c++ glibc-devel readline-devel libffi-devel automake libtool bison sqlite-devel tar'
 
       # Puppet Deps
       - 'yum install -y ntpdate rubygems'

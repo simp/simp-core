@@ -17,6 +17,12 @@ end
 
 
 # mandatory gems
+
+# https://github.com/net-ssh/net-ssh/issues/478
+gem 'rbnacl'
+gem 'rbnacl-libsodium'
+gem 'bcrypt_pbkdf'
+
 gem 'bundler'
 gem 'coderay'
 gem 'dotenv'
