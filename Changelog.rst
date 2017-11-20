@@ -1,5 +1,5 @@
-SIMP 6.1.0-RC1
-==============
+SIMP 6.1.0-0
+============
 
 .. raw:: pdf
 
@@ -49,6 +49,22 @@ Upgrade Issues
 
 Significant Updates
 -------------------
+
+Puppetserver Log Issues
+^^^^^^^^^^^^^^^^^^^^^^^
+
+You may have noticed that you were not getting ``puppetserver`` logs recorded
+either on the file system or via ``rsyslog``. We fixed the issue as identified
+in `SIMP-4049`_ but we cannot safely upgrade existing systems to fix the issue.
+
+To enable log collection via ``rsyslog`` (the default), you will need to add
+the following to your puppet server's hieradata:
+
+  * ``rsyslog::udp_server: true``
+  * ``rsyslog::udp_listen_address: '127.0.0.1'``
+
+By default, this file will be located at
+``/etc/puppetlabs/code/environments/simp/hieradata/hosts/puppet.<your.domain>.yaml``
 
 Puppetserver auth.conf
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -165,19 +181,41 @@ Fixed Bugs
 
 pupmod-simp-aide
 ^^^^^^^^^^^^^^^^
-* Fixed a bug where aide reports and errors were not being sent to syslog
+* Fixed a bug where ``aide`` reports and errors were not being sent to syslog
 * Now use FIPS-appropriate Hash algorithms when the system is in FIPS mode
 * No longer hide AIDE initialization failures during Puppet runs
+* Ensure that ``aide`` now properly retains the output database in accordance
+  with the STIG checks
+
+pupmod-simp-auditd
+^^^^^^^^^^^^^^^^^^
+* Changed a typo in auditing ``faillock`` to the correct watch path
+
 
 pupmod-simp-compliance_markup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 * Fixed an issue where a crash would occur when ``null`` values were in the
   compliance markup data
 
+pupmod-simp-libreswan
+^^^^^^^^^^^^^^^^^^^^^
+* Fixed issues when running ``libreswan`` on a FIPS-enabled system
+
 pupmod-simp-logrotate
 ^^^^^^^^^^^^^^^^^^^^^
 * Ensure that ``nodateext`` is set if the ``dateext`` parameter is set to
   ``false``
+
+pupmod-simp-simp_openldap
+^^^^^^^^^^^^^^^^^^^^^^^^^
+* Fixed an issue where ``pki::copy`` was not correctly hooked into the server
+  service logic. This caused the OpenLDAP server to fail to restart if a new
+  host certificate was placed on the system.
+* Fixed an idempotency issue due to an ``selinux`` context not being set
+
+pupmod-simp-simp_options
+^^^^^^^^^^^^^^^^^^^^^^^^
+* Made some parameter fixes for a bug in Puppet 5 (`PUP-8124`_)
 
 pupmod-simp-pam
 ^^^^^^^^^^^^^^^
@@ -211,10 +249,47 @@ pupmod-simp-sssd
 * Ensure that an empty ``sssd::domains`` Array cannot be passed and set the
   maximum length to ``255`` characters
 
+pupmod-simp-stunnel
+^^^^^^^^^^^^^^^^^^^
+* Improved the SysV init scripts to be more safe when killing ``stunnel``
+  services
+* The ``stunnel`` PKI certificates are owned by the correct UID
+* Fixed the init scripts for starting ``stunnel`` when SELinux was disabled
+* Added a ``systemd`` unit for EL7+ systems
+* Updated the ``systemd`` unit files to run stunnel in the foreground
+
+
 pupmod-simp-svckill
 ^^^^^^^^^^^^^^^^^^^
 * Fixed a bug in which ``svckill`` could fail on servers for which there are no
   aliased ``systemd`` services
+
+simp-core
+^^^^^^^^^
+
+* Fixed several issues with the ISO build task: ``rake beaker:suites[rpm_docker]``
+
+simp-environment
+^^^^^^^^^^^^^^^^
+
+* Fixed a bug where a relabel of the filesystem would incorrectly change
+  **all** SELinux contexts on any environment files in
+  ``/var/simp/environments`` with the exception of the default ``simp``
+  environment.
+* Added the following items to the default puppet server hieradata file at
+  ``/etc/puppetlabs/code/environments/simp/hieradata/hosts/puppet.your.domain.yaml``
+  to enable the UDP log server on ``127.0.0.1`` so that the ``puppetserver``
+  logs can be processed via ``rsyslog`` by default.
+
+  * ``rsyslog::udp_server: true``
+  * ``rsyslog::udp_listen_address: '127.0.0.1'``
+
+simp-rsync
+^^^^^^^^^^
+* Fixed a bug where a relabel of the filesystem would incorrectly change
+  **all** SELinux contexts on any environment files in
+  ``/var/simp/environments`` with the exception of the default ``simp``
+  environment.
 
 
 New Features
@@ -228,6 +303,15 @@ pupmod-vshn-gitlab
 ^^^^^^^^^^^^^^^^^^
 * Added as a SIMP extra
 
+pupmod-simp-autofs
+^^^^^^^^^^^^^^^^^^
+* Allow pinning of the ``samba`` and ``autofs`` packages to work around bugs in
+  ``autofs`` that do not allow proper functionality when working with
+  ``stunnel``
+
+  * `autofs EL6 Beaker Bug Report`_
+  * `autofs EL7 Beaker Bug Report`_
+
 pupmod-simp-clamav
 ^^^^^^^^^^^^^^^^^^
 * Added the option to not manage ClamAV data **at all**
@@ -235,6 +319,11 @@ pupmod-simp-clamav
 pupmod-simp-compliance_markup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 * Converted all of the module data to JSON for efficiency
+
+pupmod-simp-krb5
+^^^^^^^^^^^^^^^^
+* Allow users to modify the owner, group, and mode of various global
+  kerberos-related files
 
 pupmod-simp-logrotate
 ^^^^^^^^^^^^^^^^^^^^^
@@ -283,6 +372,10 @@ pupmod-simp-simplib
   * This can be globally disabled by setting the variable
     ``simplib::assert_metadata::options`` to ``{ 'enable' => false }``
 
+* Began deprecation of legacy Puppet 3 functions by Puppet 4 counterparts.
+  At this time, no deprecation warnings will be generated but this will
+  change in a later release of SIMP 6.
+
 pupmod-simp-timezone
 ^^^^^^^^^^^^^^^^^^^^
 * Forked ``saz/timezone`` since our Puppet 4 PR was not reviewed and no other
@@ -295,6 +388,10 @@ pupmod-simp-tpm
   resource tpm_ownership`` works as expected
 * Changed the ``owner_pass`` to ``well-known`` by default in ``tpm_ownership``
 * Removed ``ensure`` in favor of ``owned`` in ``tpm_ownership``
+
+pupmod-simp-vsftpd
+^^^^^^^^^^^^^^^^^^
+* Change ``vsftpd`` to use TLS 1.2 instead of TLS 1.0 by default
 
 pupmod-voxpupuli-yum
 ^^^^^^^^^^^^^^^^^^^^
@@ -344,9 +441,13 @@ Known Bugs
   the permissive mode of selinux does not cause these issues.
 
 .. _FACT-1732: https://tickets.puppetlabs.com/browse/FACT-1732
+.. _PUP-8124: https://tickets.puppetlabs.com/browse/PUP-8124
 .. _Puppet Code Manager: https://docs.puppet.com/pe/latest/code_mgr.html
 .. _Puppet Data Types: https://docs.puppet.com/puppet/latest/lang_data_type.html
 .. _Puppet Location Reference: https://docs.puppet.com/puppet/4.7/reference/whered_it_go.html
+.. _Read The Docs: https://readthedocs.org/projects/simp
+.. _SIMP-4049: https://simp-project.atlassian.net/browse/SIMP-4049
+.. _autofs EL6 Beaker Bug Report: https://bugs.centos.org/view.php?id=13575
+.. _autofs EL7 Beaker Bug Report: https://bugs.centos.org/view.php?id=14080
 .. _file bugs: https://simp-project.atlassian.net
 .. _r10k: https://github.com/puppetlabs/r10k
-.. _Read The Docs: https://readthedocs.org/projects/simp
