@@ -31,7 +31,7 @@ mod 'simp-gpgkeys',
 
 mod 'simp-utils',
   :git => 'https://github.com/simp/simp-utils',
-  :tag => '6.1.0'
+  :tag => '6.1.1'
 
 moduledir 'src/puppet/modules'
 
