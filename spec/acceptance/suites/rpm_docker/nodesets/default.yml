@@ -20,11 +20,15 @@ HOSTS:
       - 'yum install -y yum-plugin-ovl || :'
       - 'yum install -y yum-utils'
 
+      # Openssl 1.0.2 required for gem-wrapper and ruby 2.1.0 openssl
+      # Grab it before disabling base
+      - 'yumdownloader openssl openssl-libs openssl-devel --arch=x86_64'
+
       # We only want to deal with the original distro packages
       - 'yum-config-manager --disable \*'
       - 'echo -e "[legacy]\nname=Legacy\nbaseurl=http://vault.centos.org/7.0.1406/os/x86_64\ngpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-7\ngpgcheck=1" > /etc/yum.repos.d/legacy.repo'
 
-      # Downgrade ALL THE THINGS!!!
+      # Downgrade ALL THE THINGS
       - 'cd /root; yum downgrade -y *'
 
       # Getting rid of package conflicts
@@ -51,10 +55,8 @@ HOSTS:
       - 'yum install -y epel-release'
       - 'yum install -y openssl util-linux rpm-build augeas-devel createrepo genisoimage git gnupg2 libicu-devel libxml2 libxml2-devel libxslt libxslt-devel rpmdevtools clamav clamav-update which ruby-devel rpm-devel rpm-sign'
 
-      # Openssl 1.0.2 required for gem-wrapper and ruby 2.1.0 openssl
-      - 'yum-config-manager --enable base'
-      - 'yumdownloader openssl openssl-libs openssl-devel --arch=x86_64'
-      - 'yum-config-manager --disable base'
+      # fakesystemd is removed and base dependencies are installed,
+      # so it's possible to 'upgrade' openssl
       - 'yum localinstall -y openssl*.rpm'
 
       # simp doc deps
@@ -102,6 +104,10 @@ HOSTS:
       - 'yum install -y yum-plugin-ovl || :'
       - 'yum install -y yum-utils'
 
+      # Openssl 1.0.2 required for gem-wrapper and ruby 2.1.0 openssl
+      # Grab it before disabling base
+      - 'yumdownloader openssl openssl-libs openssl-devel --arch=x86_64'
+
       # We only want to deal with the original distro packages
       - 'yum-config-manager --disable \*'
       - 'echo -e "[legacy]\nname=Legacy\nbaseurl=http://vault.centos.org/6.6/os/x86_64\ngpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-6\ngpgcheck=1" > /etc/yum.repos.d/legacy.repo'
@@ -133,11 +139,8 @@ HOSTS:
       - 'yum install -y epel-release'
       - 'yum install -y openssl util-linux rpm-build augeas-devel createrepo genisoimage git gnupg2 libicu-devel libxml2 libxml2-devel libxslt libxslt-devel rpmdevtools clamav which ruby-devel rpm-sign acl'
 
-      # Openssl 1.0.2 required for gem-wrapper and ruby 2.1.0 openssl
-      - 'yum-config-manager --enable base'
-      - 'yumdownloader openssl openssl-libs openssl-devel --arch=x86_64'
-      - 'yum-config-manager --disable base'
-      # Unlike el7, el6 pulls in multilib openssl; only install x86_64
+      # fakesystemd is removed and base dependencies are installed,
+      # so it's possible to 'upgrade' openssl
       - 'yum localinstall -y openssl*.x86_64.rpm'
 
       # simp doc deps

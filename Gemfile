@@ -18,7 +18,9 @@ end
 
 # mandatory gems
 
-# https://github.com/net-ssh/net-ssh/issues/478
+# The following gems are required for ed25519 support in net-ssh. It is unclear
+# when net-ssh/vagrant will support ed25519 out of the box.
+# See: https://github.com/net-ssh/net-ssh/issues/478
 gem 'rbnacl'
 gem 'rbnacl-libsodium'
 gem 'bcrypt_pbkdf'
