@@ -131,6 +131,12 @@ mod 'puppetlabs-concat',
   :git => 'https://github.com/simp/puppetlabs-concat',
   :tag => '3.0.0'
 
+mod 'puppetlabs-docker',
+  # TODO Changes have been made to this module upstream that have not been
+  # released yet. See SIMP-4120 and SIMP-4124
+  :git => 'https://github.com/simp/puppetlabs-docker',
+  :ref => 'master'
+
 mod 'puppetlabs-hocon',
   :git => 'https://github.com/simp/pupmod-puppetlabs-hocon',
   :tag => '0.9.4'
@@ -399,6 +405,12 @@ mod 'simp-simplib',
 mod 'simp-simp_apache',
   :git => 'https://github.com/simp/pupmod-simp-simp_apache',
   :tag => '6.0.1'
+
+mod 'simp-simp_docker',
+  # TODO This module has not been released yet, so master will have to do
+  # See SIMP-4120
+  :git => 'https://github.com/simp/pupmod-simp-simp_docker',
+  :ref => 'master'
 
 mod 'simp-simp_elasticsearch',
   :git => 'https://github.com/simp/pupmod-simp-simp_elasticsearch',
