@@ -9,7 +9,7 @@ GEM
     aws-sdk-v1 (1.67.0)
       json (~> 1.4)
       nokogiri (~> 1)
-    beaker (3.28.0)
+    beaker (3.29.0)
       beaker-aws (~> 0.1)
       beaker-docker (~> 0.1)
       beaker-google (~> 0.1)
@@ -45,7 +45,7 @@ GEM
       stringify-hash (~> 0.0.0)
     beaker-hiera (0.1.1)
       stringify-hash (~> 0.0.0)
-    beaker-hostgenerator (1.1.3)
+    beaker-hostgenerator (1.1.4)
       deep_merge (~> 1.0)
       stringify-hash (~> 0.0.0)
     beaker-openstack (0.1.0)
@@ -57,12 +57,12 @@ GEM
       stringify-hash (~> 0.0.0)
     beaker-puppet_install_helper (0.7.1)
       beaker (>= 2.0)
-    beaker-rspec (6.2.1)
+    beaker-rspec (6.2.3)
       beaker (~> 3.0)
       rspec (~> 3.0)
       serverspec (~> 2)
       specinfra (~> 2)
-    beaker-vagrant (0.1.0)
+    beaker-vagrant (0.1.1)
       stringify-hash (~> 0.0.0)
     beaker-vcloud (0.2.0)
       beaker-vmpooler
@@ -81,11 +81,11 @@ GEM
     colored (1.2)
     cri (2.6.1)
       colored (~> 1.2)
-    deep_merge (1.1.1)
+    deep_merge (1.2.1)
     diff-lcs (1.3)
-    docker-api (1.33.6)
-      excon (>= 0.38.0)
-      json
+    docker-api (1.34.0)
+      excon (>= 0.47.0)
+      multi_json
     domain_name (0.5.20170404)
       unf (>= 0.0.5, < 1.0.0)
     dotenv (2.2.1)
@@ -141,7 +141,7 @@ GEM
     fog-atmos (0.1.0)
       fog-core
       fog-xml
-    fog-aws (1.4.1)
+    fog-aws (2.0.0)
       fog-core (~> 1.38)
       fog-json (~> 1.0)
       fog-xml (~> 0.1)
@@ -198,7 +198,7 @@ GEM
       fog-core (~> 1.27)
       fog-json (~> 1.0)
       fog-xml (~> 0.1)
-    fog-profitbricks (4.0.0)
+    fog-profitbricks (4.1.0)
       fog-core (~> 1.42)
       fog-json (~> 1.0)
     fog-rackspace (0.1.5)
@@ -248,7 +248,7 @@ GEM
     gettext (3.2.4)
       locale (>= 2.0.5)
       text (>= 1.3.0)
-    gettext-setup (0.28)
+    gettext-setup (0.29)
       fast_gettext (~> 1.1.0)
       gettext (>= 3.0.2)
       locale
@@ -322,9 +322,9 @@ GEM
     os (0.9.6)
     pager (1.0.1)
     parallel (1.12.0)
-    parallel_tests (2.17.0)
+    parallel_tests (2.19.0)
       parallel
-    pry (0.11.2)
+    pry (0.11.3)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
     pry-byebug (3.4.3)
@@ -333,8 +333,8 @@ GEM
     pry-doc (0.11.1)
       pry (~> 0.9)
       yard (~> 0.9)
-    public_suffix (3.0.0)
-    puppet (4.10.8)
+    public_suffix (3.0.1)
+    puppet (4.10.9)
       facter (> 2.0, < 4)
       gettext-setup (>= 0.10, < 1)
       hiera (>= 2.0, < 4)
@@ -354,7 +354,7 @@ GEM
       gettext-setup (~> 0.11)
       minitar
       semantic_puppet (~> 0.1.0)
-    puppetlabs_spec_helper (2.4.0)
+    puppetlabs_spec_helper (2.5.1)
       mocha (~> 1.0)
       puppet-lint (~> 2.0)
       puppet-syntax (~> 2.0)
@@ -367,7 +367,7 @@ GEM
       multi_json (~> 1.10)
       puppet_forge (~> 2.2)
       semantic_puppet (~> 0.1.0)
-    rake (12.2.1)
+    rake (12.3.0)
     rb-fsevent (0.10.2)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
@@ -412,7 +412,7 @@ GEM
     ruby-progressbar (1.9.0)
     semantic_puppet (0.1.4)
       gettext-setup (>= 0.3)
-    serverspec (2.41.2)
+    serverspec (2.41.3)
       multi_json
       rspec (~> 3.0)
       rspec-its
@@ -427,7 +427,7 @@ GEM
       beaker (~> 3.14)
       beaker-puppet_install_helper (~> 0.6)
     simp-build-helpers (0.1.1)
-    simp-rake-helpers (5.1.2)
+    simp-rake-helpers (5.1.4)
       beaker (~> 3.14)
       beaker-rspec (~> 6.1)
       bundler (~> 1.14)
@@ -451,7 +451,7 @@ GEM
       json (~> 1)
       rspec-puppet-facts (~> 0)
     spdx-licenses (1.1.0)
-    specinfra (2.72.0)
+    specinfra (2.72.1)
       net-scp
       net-ssh (>= 2.7, < 5.0)
       net-telnet
@@ -465,7 +465,7 @@ GEM
       unf_ext
     unf_ext (0.0.7.4)
     xml-simple (1.1.5)
-    yard (0.9.9)
+    yard (0.9.12)
 
 PLATFORMS
   ruby
@@ -492,4 +492,4 @@ DEPENDENCIES
   simp-rake-helpers (~> 5.0)
 
 BUNDLED WITH
-   1.15.4
+   1.16.0
