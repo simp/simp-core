@@ -1,7 +1,7 @@
 Summary: SIMP Full Install
 Name: simp
-Version: 6.1.0
-Release: 0%{?dist}%{?snapshot_release}
+Version: 6.1.1
+Release: RC1%{?dist}%{?snapshot_release}
 License: Apache License, Version 2.0
 Group: Applications/System
 
@@ -118,6 +118,8 @@ Requires: pupmod-herculesteam-augeasproviders_pam >= 2.0.3-2016
 Requires: pupmod-vshn-gitlab >= 1.13.3
 Requires: pupmod-puppet-grafana >= 3.0.0
 Requires: pupmod-puppet-yum >= 2.0.0
+# TODO update puppetlabs-docker to desired version when released
+Requires: pupmod-puppetlabs-docker >= 1.0.2
 Requires: pupmod-puppetlabs-mysql >= 2.2.3-2016
 Requires: pupmod-razorsedge-snmp >= 3.8.1
 Requires: pupmod-simp-gdm >= 6.0.0-2016
@@ -128,6 +130,8 @@ Requires: pupmod-simp-libvirt >= 5.0.1-2016
 Requires: pupmod-simp-mcafee >= 6.0.0-2016
 Requires: pupmod-simp-mozilla >= 5.0.0-2016
 Requires: pupmod-simp-openscap >= 6.0.0-2016
+# TODO update simp-simp_docker to desired version when released
+Requires: pupmod-simp-simp_docker >= 0.1.0
 Requires: pupmod-simp-simp_elasticsearch >= 5.0.0
 Requires: pupmod-simp-simp_gitlab >= 0.2.0
 Requires: pupmod-simp-simp_grafana >= 1.0.1-2016

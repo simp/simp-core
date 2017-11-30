@@ -61,6 +61,12 @@
 'augeasproviders_postgresql':
   :release: '2016'
 
+'docker':
+  :requires:
+    # exclude pupmod-stahnma-epel
+    # exclude pupmod-puppetlabs-apt
+    - 'pupmod-puppetlabs-stdlib'
+
 'elasticsearch':
   :obsoletes:
     'pupmod-elasticsearch-elasticsearch': '0.11.0-2016.1'
