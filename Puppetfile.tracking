@@ -47,6 +47,11 @@ mod 'cristifalcas-journald',
   :git => 'https://github.com/simp/pupmod-simp-journald.git',
   :tag => '0.5.0'
 
+mod 'cristifalcas-etcd',
+  :git => 'https://github.com/cristifalcas/puppet-etcd',
+  # patch made upstream
+  :ref => '9e3bf7f71c2ad3d91351068a51d5db06ff8763fe'
+
 mod 'elastic-elasticsearch',
   :git => 'https://github.com/simp/puppet-elasticsearch',
   :tag => '5.2.0'
@@ -423,6 +428,10 @@ mod 'simp-simp_gitlab',
 mod 'simp-simp_grafana',
   :git => 'https://github.com/simp/pupmod-simp-simp_grafana',
   :tag => '1.0.4'
+
+mod 'simp-simp_kubernetes',
+  :git => 'https://github.com/jeefberkey/pupmod-simp-simp_kubernetes',
+  :ref => 'iptables'
 
 mod 'simp-simp_logstash',
   :git => 'https://github.com/simp/pupmod-simp-simp_logstash',
