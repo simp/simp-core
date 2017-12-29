@@ -10,14 +10,21 @@ HOSTS:
     docker_cmd: '/usr/sbin/sshd -D'
     docker_preserve_image: true
     docker_image_commands:
-      # For SELinux Builds
+      # See https://github.com/CentOS/sig-cloud-instance-images/issues/15
+      - 'rm -f /var/lib/rpm/__db*'
+      - 'rpm --rebuilddb'
+      - 'yum clean all'
+      # This is a hack to force an exit code of 0
+      # Sometimes yum-plugin-ovl will install dependencies, which will fail with rpmdb errors
+      # since yum-plugin-ovl is not installed (chicken and egg)
+      - 'yum install -y yum-plugin-ovl || :'
       - 'yum install -y yum-utils'
 
       # We only want to deal with the original distro packages
       - 'yum-config-manager --disable \*'
       - 'echo -e "[legacy]\nname=Legacy\nbaseurl=http://vault.centos.org/7.0.1406/os/x86_64\ngpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-7\ngpgcheck=1" > /etc/yum.repos.d/legacy.repo'
 
-      # Downgrade ALL THE THINGS!!!
+      # Downgrade ALL THE THINGS
       - 'cd /root; yum downgrade -y *'
 
       # Getting rid of package conflicts
@@ -79,7 +86,14 @@ HOSTS:
     image: centos:6.6
     docker_preserve_image: true
     docker_image_commands:
-      # For SELinux Builds
+      # See https://github.com/CentOS/sig-cloud-instance-images/issues/15
+      - 'rm -f /var/lib/rpm/__db*'
+      - 'rpm --rebuilddb'
+      - 'yum clean all'
+      # This is a hack to force an exit code of 0
+      # Sometimes yum-plugin-ovl will install dependencies, which will fail with rpmdb errors
+      # since yum-plugin-ovl is not installed (chicken and egg)
+      - 'yum install -y yum-plugin-ovl || :'
       - 'yum install -y yum-utils'
 
       # We only want to deal with the original distro packages
@@ -87,7 +101,8 @@ HOSTS:
       - 'echo -e "[legacy]\nname=Legacy\nbaseurl=http://vault.centos.org/6.6/os/x86_64\ngpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-6\ngpgcheck=1" > /etc/yum.repos.d/legacy.repo'
 
       # Downgrade ALL THE THINGS!!!
-      - 'cd /root; yum downgrade -y *'
+      # ...except yum and python-urlgrabber, which yum-plugin-ovl has dependencies on
+      - 'cd /root; yum -x yum -x python-urlgrabber downgrade -y *'
 
       # Getting rid of package conflicts
       - '\cp -a /etc/ssh /root'
