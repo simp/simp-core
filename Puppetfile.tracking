@@ -193,7 +193,7 @@ mod 'puppetlabs-puppet_authorization',
 
 mod 'puppetlabs-stdlib',
   :git => 'https://github.com/simp/puppetlabs-stdlib',
-  :tag => '4.19.0'
+  :tag => '4.24.0'
 
 mod 'razorsedge-snmp',
   :git => 'https://github.com/simp/puppet-snmp',
