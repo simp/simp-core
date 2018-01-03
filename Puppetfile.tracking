@@ -137,10 +137,8 @@ mod 'puppetlabs-concat',
   :tag => '3.0.0'
 
 mod 'puppetlabs-docker',
-  # TODO Changes have been made to this module upstream that have not been
-  # released yet. See SIMP-4120 and SIMP-4124
   :git => 'https://github.com/simp/puppetlabs-docker',
-  :ref => 'master'
+  :tag => '1.0.4'
 
 mod 'puppetlabs-hocon',
   :git => 'https://github.com/simp/pupmod-puppetlabs-hocon',
