@@ -137,10 +137,8 @@ mod 'puppetlabs-concat',
   :tag => '3.0.0'
 
 mod 'puppetlabs-docker',
-  # TODO Changes have been made to this module upstream that have not been
-  # released yet. See SIMP-4120 and SIMP-4124
   :git => 'https://github.com/simp/puppetlabs-docker',
-  :ref => 'master'
+  :tag => '1.0.4'
 
 mod 'puppetlabs-hocon',
   :git => 'https://github.com/simp/pupmod-puppetlabs-hocon',
@@ -430,8 +428,8 @@ mod 'simp-simp_grafana',
   :tag => '1.0.4'
 
 mod 'simp-simp_kubernetes',
-  :git => 'https://github.com/jeefberkey/pupmod-simp-simp_kubernetes',
-  :ref => 'iptables'
+  :git => 'https://github.com/simp/pupmod-simp-simp_kubernetes',
+  :ref => 'master'
 
 mod 'simp-simp_logstash',
   :git => 'https://github.com/simp/pupmod-simp-simp_logstash',
