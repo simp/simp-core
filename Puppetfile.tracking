@@ -429,7 +429,7 @@ mod 'simp-simp_grafana',
 
 mod 'simp-simp_kubernetes',
   :git => 'https://github.com/jeefberkey/pupmod-simp-simp_kubernetes',
-  :ref => 'iptables'
+  :ref => 'master'
 
 mod 'simp-simp_logstash',
   :git => 'https://github.com/simp/pupmod-simp-simp_logstash',
