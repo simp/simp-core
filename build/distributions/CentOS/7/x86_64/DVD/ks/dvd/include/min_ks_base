@@ -1,4 +1,4 @@
-authconfig --enableshadow --passalgo=sha512 --enablemd5
+authconfig --enableshadow --passalgo=sha512
 network --bootproto=dhcp --nodns --hostname=puppet.change.me
 skipx
 rootpw --iscrypted $6$3iLC5g2j9z/UvuAX$wKQy4.T92omIx7aEQ6iVunQHSG0l2eVd7be47kUKC2nWFoJhoARx68h8x.jcR99TZZRrFf8SKzVlvK3JdhKkf0
@@ -10,14 +10,14 @@ logging --level=info
 selinux --permissive
 timezone --utc GMT
 
-clearpart --all --initlabel
+clearpart --all
 
 %include /tmp/part-include
 %include /tmp/repo-include
 
 reboot
 
-%packages --nobase
+%packages
 -sendmail
 -sysklogd
 acl

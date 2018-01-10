@@ -10,7 +10,11 @@ HOSTS:
     docker_cmd: '/usr/sbin/sshd -D'
     docker_preserve_image: true
     docker_image_commands:
-      # See https://github.com/CentOS/sig-cloud-instance-images/issues/15
+      # The following 3 commands are intended to solve the problem in
+      # https://github.com/CentOS/sig-cloud-instance-images/issues/15.
+      # However, sometimes these commands cause yum problems, instead
+      # of fixing yum problems.  If the install of yum-plugin-ovl and
+      # yum-utils fails, try commenting out these commands.
       - 'rm -f /var/lib/rpm/__db*'
       - 'rpm --rebuilddb'
       - 'yum clean all'
@@ -86,7 +90,11 @@ HOSTS:
     image: centos:6.6
     docker_preserve_image: true
     docker_image_commands:
-      # See https://github.com/CentOS/sig-cloud-instance-images/issues/15
+      # The following 3 commands are intended to solve the problem in
+      # https://github.com/CentOS/sig-cloud-instance-images/issues/15.
+      # However, sometimes these commands cause yum problems, instead
+      # of fixing yum problems.  If the install of yum-plugin-ovl and
+      # yum-utils fails, try commenting out these commands.
       - 'rm -f /var/lib/rpm/__db*'
       - 'rpm --rebuilddb'
       - 'yum clean all'
