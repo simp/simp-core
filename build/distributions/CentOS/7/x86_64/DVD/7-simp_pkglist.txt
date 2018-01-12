@@ -1280,7 +1280,6 @@ postgresql-libs
 postgresql-server
 ppl
 ppp
-prelink
 procps
 procps-ng
 psacct
