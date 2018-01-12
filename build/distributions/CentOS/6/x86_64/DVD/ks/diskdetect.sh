@@ -14,6 +14,7 @@ for disk in \
   /sys/block/vd[a-z] \
   /sys/block/vd[a-z][a-z] \
   /sys/block/hd[a-z] \
+  /sys/block/nvme[0-9]n[0-9] \
   ;
 do
   [ -d "$disk" ] || continue
