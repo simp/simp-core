@@ -29,7 +29,7 @@ rpm_el7-test:
     - bundle install --no-binstubs --path=vendor
     - bundle exec rake beaker:suites[rpm_el7]
 
-acceptance-kubernetes:
+kubernetes-test:
   stage: acceptance
   tags:
     - beaker
@@ -38,7 +38,7 @@ acceptance-kubernetes:
     - bundle install --no-binstubs --path=vendor
     - bundle exec rake beaker:suites[kubernetes]
 
-acceptance-forge_install:
+forge_install-test:
   stage: acceptance
   tags:
     - beaker
