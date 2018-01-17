@@ -11,3 +11,4 @@ junit/
 log/
 spec/
 src/
+vendor/
