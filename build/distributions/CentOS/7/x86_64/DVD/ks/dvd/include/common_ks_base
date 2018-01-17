@@ -96,7 +96,6 @@ hdparm
 kbd
 libhugetlbfs
 policycoreutils
-prelink
 rootfiles
 selinux-policy-targeted
 setserial

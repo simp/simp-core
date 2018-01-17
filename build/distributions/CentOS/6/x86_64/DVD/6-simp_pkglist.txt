@@ -896,7 +896,6 @@ postgresql
 postgresql-libs
 postgresql-server
 ppl
-prelink
 procps
 psacct
 psmisc
