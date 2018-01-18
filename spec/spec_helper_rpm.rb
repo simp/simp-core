@@ -6,22 +6,22 @@ include Simp::BeakerHelpers
 
 # Install Facter for beaker helpers
 unless ENV['BEAKER_provision'] == 'no'
-    hosts.each do |host|
-      host.install_package('rubygems')
-      on(host, 'gem install facter')
-      on(host, 'echo export PATH=$PATH:/usr/local/bin > /root/.bashrc')
-    end
+  hosts.each do |host|
+    host.install_package('rubygems')
+    on(host, 'gem install facter')
+    on(host, 'echo export PATH=$PATH:/usr/local/bin > /root/.bashrc')
+  end
 end
 
 
 def setup_repo(host)
   reponame = ENV['BEAKER_repo']
   reponame ||= '6_X'
-  if reponame[0] == '/' 
+  if reponame[0] == '/'
     setup_repo=copy_repo(host,reponame)
   else
     setup_repo=internet_simprepo(host, reponame)
-  end 
+  end
   setup_repo
 end
 
@@ -43,14 +43,14 @@ def copy_repo(host,reponame)
     warn("Using repos defined in #{reponame}")
     warn('='*72)
     repo_copied = scp_to(hosts,reponame,'/etc/yum.repos.d/simp_manual.repo')
-  else 
+  else
     warn('='*72)
     warn("File #{reponame} could not be found")
     warn('='*72)
     repo_copied = false
   end
   repo_copied
-end 
+end
 
 
 RSpec.configure do |c|

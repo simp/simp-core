@@ -159,6 +159,7 @@ describe 'install SIMP via tar' do
         internet_deprepo(agent)
       end
       it 'should run the agent' do
+        sleep(30)
         # require 'pry';binding.pry if fact_on(agent, 'hostname') == 'agent'
         on(agent, "/opt/puppetlabs/bin/puppet agent -t --ca_port 8141 --masterport 8140 --server #{master_fqdn}", :acceptable_exit_codes => [0,2,4,6])
         on(agent, '/opt/puppetlabs/bin/puppet agent -t', :acceptable_exit_codes => [0,2,4,6])
