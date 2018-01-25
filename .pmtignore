@@ -1,9 +1,14 @@
 .fixtures.yml
 .git*
+.vagrant*
+.r10k*
+.bundle*
 Gemfile*
+ISO/
 Puppetfile*
 build/
 junit/
 log/
 spec/
 src/
+vendor/

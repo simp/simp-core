@@ -1,6 +1,9 @@
 ---
-acceptance-default-test:
-  stage: test
+stages:
+  - acceptance
+
+default-test:
+  stage: acceptance
   tags:
     - beaker
   script:
@@ -8,8 +11,8 @@ acceptance-default-test:
     - bundle install --no-binstubs --path=vendor
     - bundle exec rake beaker:suites[default]
 
-acceptance-rpm_el6-test:
-  stage: test
+rpm_el6-test:
+  stage: acceptance
   tags:
     - beaker
   script:
@@ -17,8 +20,8 @@ acceptance-rpm_el6-test:
     - bundle install --no-binstubs --path=vendor
     - bundle exec rake beaker:suites[rpm_el6]
 
-acceptance-rpm_el7-test:
-  stage: test
+rpm_el7-test:
+  stage: acceptance
   tags:
     - beaker
   script:
@@ -26,3 +29,30 @@ acceptance-rpm_el7-test:
     - bundle install --no-binstubs --path=vendor
     - bundle exec rake beaker:suites[rpm_el7]
 
+kubernetes-test:
+  stage: acceptance
+  tags:
+    - beaker
+  script:
+    - rm Gemfile.lock || true
+    - bundle install --no-binstubs --path=vendor
+    - bundle exec rake beaker:suites[kubernetes]
+
+forge_install-test:
+  stage: acceptance
+  tags:
+    - beaker
+  script:
+    - rm Gemfile.lock || true
+    - bundle install --no-binstubs --path=vendor
+    - bundle exec rake beaker:suites[forge_install]
+
+# Just gonna comment this one out for now...
+# acceptance-rpm_docker:
+#   stage: acceptance
+#   tags:
+#     - beaker
+#   script:
+#     - rm Gemfile.lock || true
+#     - bundle install --no-binstubs --path=vendor
+#     - bundle exec rake beaker:suites[rpm_docker]
