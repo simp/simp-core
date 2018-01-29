@@ -469,7 +469,7 @@ groff-base
 grub
 grub2
 grub2-common
-grub2-efi
+grub2-efi-x64
 grub2-pc
 grub2-pc-modules
 grub2-tools
