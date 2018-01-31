@@ -63,7 +63,6 @@
 
 'docker':
   :requires:
-    # exclude pupmod-stahnma-epel
     # exclude pupmod-puppetlabs-apt
     - 'pupmod-puppetlabs-stdlib'
 
@@ -95,9 +94,6 @@
     # exclude pupmod-puppetlabs-apt
     - 'pupmod-puppetlabs-stdlib'
 
-'inifile':
-  :release: '2016'
-
 'logstash':
   :obsoletes:
     'pupmod-elasticsearch-logstash': '2.0.0-2016'
@@ -108,7 +104,6 @@
   :release: '2016'
 
 'motd':
-  :release: '2016'
   :requires:
     # exclude pupmod-puppetlabs-registry
     - 'pupmod-puppetlabs-stdlib'
@@ -133,6 +128,7 @@
 
 'timezone':
   :obsoletes:
+    'pupmod-simp-timezone': '4.0.0-0'
     'pupmod-saz-timezone': '3.3.0-2016.1'
   :requires:
     # exclude pupmod-puppet-debconf
