@@ -170,7 +170,7 @@ mod 'puppetlabs-postgresql',
 
 mod 'puppetlabs-puppetdb',
   :git => 'https://github.com/simp/puppetlabs-puppetdb',
-  :tag => '6.0.1'
+  :tag => '6.0.2'
 
 mod 'puppetlabs-puppet_authorization',
   :git => 'https://github.com/simp/puppetlabs-puppet_authorization.git',
