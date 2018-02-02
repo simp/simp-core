@@ -1625,7 +1625,7 @@ sg3_utils-libs
 sgml-common
 shadow-utils
 shared-mime-info
-shim
+shim-x64
 simp
 simp-doc
 simp-lastbind
