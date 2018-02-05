@@ -62,6 +62,10 @@ describe 'set up an IPA server' do
           389 => nil,
           443 => nil,
           464 => nil,
+          53  => { 'proto' => 'udp' },
+          88  => { 'proto' => 'udp' },
+          123 => { 'proto' => 'udp' },
+          464 => { 'proto' => 'udp' },
         },
         'pam::access::users'          => {
           'defaults'   => {
