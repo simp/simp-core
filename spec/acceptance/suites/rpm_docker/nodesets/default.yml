@@ -16,7 +16,6 @@ HOSTS:
       # of fixing yum problems.  If the install of yum-plugin-ovl and
       # yum-utils fails, try commenting out these commands.
       - 'rm -f /var/lib/rpm/__db*'
-      - 'rpm --rebuilddb'
       - 'yum clean all'
       # This is a hack to force an exit code of 0
       # Sometimes yum-plugin-ovl will install dependencies, which will fail with rpmdb errors
@@ -96,7 +95,6 @@ HOSTS:
       # of fixing yum problems.  If the install of yum-plugin-ovl and
       # yum-utils fails, try commenting out these commands.
       - 'rm -f /var/lib/rpm/__db*'
-      - 'rpm --rebuilddb'
       - 'yum clean all'
       # This is a hack to force an exit code of 0
       # Sometimes yum-plugin-ovl will install dependencies, which will fail with rpmdb errors
