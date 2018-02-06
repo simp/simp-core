@@ -9,7 +9,7 @@
     - Partitions will be configured to be STIG compliant.
     - Add the option 0asimp_disk_crypt07 to encrypt your disk.
 
- -  To install SIMP with disk prompt, type 0asimp-prompt<ENTER>07.
+ -  To install SIMP with disk prompt, type 0asimp-prompt <ENTER>07.
     - This will erase your existing system!
     - This will allow you to specify the system disk partitioning.
 
