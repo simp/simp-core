@@ -51,7 +51,7 @@ Requires: pupmod-simp-fips >= 0.1.0, pupmod-simp-fips < 1.0.0
 Requires: pupmod-simp-freeradius >= 7.0.0-2016, pupmod-simp-freeradius < 8.0.0
 Requires: pupmod-simp-haveged >= 0.3.2-2016, pupmod-simp-haveged < 1.0.0
 Requires: pupmod-simp-incron >= 0.0.1, pupmod-simp-incron < 1.0.0
-Requires: pupmod-simp-iptables >= 6.0.0, pupmod-simp-iptables < 7.0.0
+Requires: pupmod-simp-iptables >= 6.1.1, pupmod-simp-iptables < 7.0.0
 Requires: pupmod-simp-issue >= 0.0.1, pupmod-simp-issue < 1.0.0
 Requires: pupmod-simp-krb5 >= 7.0.0-2016, pupmod-simp-krb5 < 8.0.0
 Requires: pupmod-simp-logrotate >= 6.0.0-2016, pupmod-simp-logrotate < 7.0.0
@@ -118,8 +118,7 @@ Requires: pupmod-herculesteam-augeasproviders_pam >= 2.0.3-2016
 Requires: pupmod-vshn-gitlab >= 1.13.3
 Requires: pupmod-puppet-grafana >= 3.0.0
 Requires: pupmod-puppet-yum >= 2.0.0
-# TODO update puppetlabs-docker to desired version when released
-Requires: pupmod-puppetlabs-docker >= 1.0.2
+Requires: pupmod-puppetlabs-docker >= 1.0.5
 Requires: pupmod-puppetlabs-mysql >= 2.2.3-2016
 Requires: pupmod-razorsedge-snmp >= 3.8.1
 Requires: pupmod-simp-gdm >= 6.0.0-2016
@@ -130,7 +129,6 @@ Requires: pupmod-simp-libvirt >= 5.0.1-2016
 Requires: pupmod-simp-mcafee >= 6.0.0-2016
 Requires: pupmod-simp-mozilla >= 5.0.0-2016
 Requires: pupmod-simp-openscap >= 6.0.0-2016
-# TODO update simp-simp_docker to desired version when released
 Requires: pupmod-simp-simp_docker >= 0.1.0
 Requires: pupmod-simp-simp_elasticsearch >= 5.0.0
 Requires: pupmod-simp-simp_gitlab >= 0.2.0
