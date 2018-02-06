@@ -10,7 +10,7 @@ HOSTS:
     docker_cmd: '/usr/sbin/sshd -D'
     docker_preserve_image: true
     docker_image_commands:
-      # The following 3 commands are intended to solve the problem in
+      # The following 2 commands are intended to solve the problem in
       # https://github.com/CentOS/sig-cloud-instance-images/issues/15.
       # However, sometimes these commands cause yum problems, instead
       # of fixing yum problems.  If the install of yum-plugin-ovl and
@@ -89,7 +89,7 @@ HOSTS:
     image: centos:6.6
     docker_preserve_image: true
     docker_image_commands:
-      # The following 3 commands are intended to solve the problem in
+      # The following 2 commands are intended to solve the problem in
       # https://github.com/CentOS/sig-cloud-instance-images/issues/15.
       # However, sometimes these commands cause yum problems, instead
       # of fixing yum problems.  If the install of yum-plugin-ovl and
