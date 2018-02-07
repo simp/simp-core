@@ -7,7 +7,6 @@
 # commit` command
 #   * docker commit <running container ID> el6_build
 #   * docker run -it el6_build
-FROM centos:7.0.1406
 FROM centos:6.6
 ENV container docker
 
