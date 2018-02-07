@@ -108,6 +108,7 @@ Prefix: %{_sysconfdir}/puppet
 %package extras
 Summary: Extra Packages for SIMP
 License: Apache-2.0
+Requires: pupmod-camptocamp-systemd >= 1.0.0
 Requires: pupmod-cristifalcas-journald >= 0.5.0
 Requires: pupmod-elastic-elasticsearch >= 5.2.0
 Requires: pupmod-elastic-logstash >= 5.2.1
@@ -120,6 +121,7 @@ Requires: pupmod-puppet-grafana >= 3.0.0
 Requires: pupmod-puppet-yum >= 2.0.0
 Requires: pupmod-puppetlabs-docker >= 1.0.5
 Requires: pupmod-puppetlabs-mysql >= 2.2.3-2016
+Requires: pupmod-puppetlabs-translate >= 1.1.0
 Requires: pupmod-razorsedge-snmp >= 3.8.1
 Requires: pupmod-simp-gdm >= 6.0.0-2016
 Requires: pupmod-simp-gnome >= 6.0.0-2016
