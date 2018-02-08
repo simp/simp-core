@@ -122,7 +122,7 @@ mod 'herculesteam-augeasproviders_sysctl',
 
 mod 'onyxpoint-gpasswd',
   :git => 'https://github.com/simp/puppet-gpasswd',
-  :ref => '1.0.3'
+  :ref => '1.0.4'
 
 mod 'puppet-grafana',
   :git => 'https://github.com/simp/puppet-grafana.git',
@@ -184,15 +184,15 @@ mod 'puppetlabs-mysql',
 
 mod 'puppetlabs-postgresql',
   :git => 'https://github.com/simp/puppetlabs-postgresql',
-  :tag => '5.1.0'
+  :tag => '5.2.1'
 
 mod 'puppetlabs-puppetdb',
   :git => 'https://github.com/simp/puppetlabs-puppetdb',
-  :tag => '6.0.1'
+  :tag => '6.0.2'
 
 mod 'puppetlabs-puppet_authorization',
   :git => 'https://github.com/simp/puppetlabs-puppet_authorization.git',
-  :ref => '0.3.0'
+  :ref => '0.4.0'
 
 mod 'puppetlabs-stdlib',
   :git => 'https://github.com/simp/puppetlabs-stdlib',
@@ -536,7 +536,7 @@ mod 'trlinkin-nsswitch',
 
 mod 'voxpupuli-yum',
   :git => 'https://github.com/simp/voxpupuli-yum',
-  :tag => 'v2.0.1'
+  :tag => 'v2.1.0'
 
 mod 'vshn-gitlab',
   :git => 'https://github.com/simp/puppet-gitlab.git',
