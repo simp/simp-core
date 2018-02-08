@@ -49,7 +49,7 @@ mod 'cristifalcas-journald',
 
 mod 'cristifalcas-etcd',
   :git => 'https://github.com/cristifalcas/puppet-etcd',
-  # FIXME: A patch we need has been made upstream, but not yet 
+  # FIXME: A patch we need has been made upstream, but not yet
   # released.  If it does NOT get released, before we need
   # to release SIMP 6.1.X, we will have to release our own version
   # of it, as the latest version released to PuppetForge, 1.12.1,
@@ -413,9 +413,7 @@ mod 'simp-simp_apache',
 
 mod 'simp-simp_docker',
   :git => 'https://github.com/simp/pupmod-simp-simp_docker',
-#BROKEN  NOT RELEASED YET
-#  :tag => '0.1.0'
-  :ref => 'master'
+  :tag => '0.1.0'
 
 mod 'simp-simp_elasticsearch',
   :git => 'https://github.com/simp/pupmod-simp-simp_elasticsearch',
