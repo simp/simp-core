@@ -142,7 +142,7 @@ mod 'puppetlabs-docker',
 
 mod 'puppetlabs-hocon',
   :git => 'https://github.com/simp/pupmod-puppetlabs-hocon',
-  :tag => '0.9.4'
+  :tag => '1.0.0'
 
 mod 'puppetlabs-inifile',
   #FIXME LATER
