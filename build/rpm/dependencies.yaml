@@ -108,7 +108,6 @@
   :release: '2016'
 
 'motd':
-  :release: '2016'
   :requires:
     # exclude pupmod-puppetlabs-registry
     - 'pupmod-puppetlabs-stdlib'

@@ -41,15 +41,19 @@ mod 'camptocamp-kmod',
 
 mod 'camptocamp-systemd',
   :git => 'https://github.com/simp/puppet-systemd.git',
-  :tag => '1.0.0'
+  :tag => '1.1.1'
 
 mod 'cristifalcas-journald',
   :git => 'https://github.com/simp/pupmod-simp-journald.git',
-  :tag => '0.5.0'
+  :tag => '0.6.0'
 
 mod 'cristifalcas-etcd',
   :git => 'https://github.com/cristifalcas/puppet-etcd',
-  # patch made upstream
+  # FIXME: A patch we need has been made upstream, but not yet
+  # released.  If it does NOT get released, before we need
+  # to release SIMP 6.1.X, we will have to release our own version
+  # of it, as the latest version released to PuppetForge, 1.12.1,
+  # will not work for us.
   :ref => '9e3bf7f71c2ad3d91351068a51d5db06ff8763fe'
 
 mod 'elastic-elasticsearch',
@@ -130,7 +134,7 @@ mod 'puppet-grafana',
 
 mod 'puppetlabs-apache',
   :git => 'https://github.com/simp/puppetlabs-apache',
-  :tag => '2.1.0'
+  :tag => '2.3.0'
 
 mod 'puppetlabs-concat',
   :git => 'https://github.com/simp/puppetlabs-concat',
@@ -169,18 +173,12 @@ mod 'puppetlabs-java_ks',
   :tag => '1.6.0'
 
 mod 'puppetlabs-motd',
-  #FIXME Next motd release.
-  # Another messy problem. The 'simp6.0.0-1.4.0' tag has
-  # changes beyond the official 1.4.0 release from puppetlabs.
-  # Since the changes appear to be Debian-related, we're going
-  # to stay with the last SIMP-released version, and live with
-  # this inconsistency until the next motd release.
   :git => 'https://github.com/simp/puppetlabs-motd',
-  :tag => 'simp6.0.0-1.4.0'
+  :tag => '1.7.0'
 
 mod 'puppetlabs-mysql',
   :git => 'https://github.com/simp/puppetlabs-mysql',
-  :tag => '4.0.1'
+  :tag => '5.2.1'
 
 mod 'puppetlabs-postgresql',
   :git => 'https://github.com/simp/puppetlabs-postgresql',
@@ -198,9 +196,13 @@ mod 'puppetlabs-stdlib',
   :git => 'https://github.com/simp/puppetlabs-stdlib',
   :tag => '4.24.0'
 
+mod 'puppetlabs-translate',
+  :git => 'https://github.com/simp/pupmod-puppetlabs-translate',
+  :tag => '1.1.0'
+
 mod 'razorsedge-snmp',
   :git => 'https://github.com/simp/puppet-snmp',
-  :tag => '3.8.1'
+  :tag => '3.9.0'
 
 mod 'richardc-datacat',
   #FIXME Next datacat release.

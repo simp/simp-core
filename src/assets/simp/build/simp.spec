@@ -26,7 +26,7 @@ Requires: pupmod-herculesteam-augeasproviders_sysctl >= 2.1.0-2016, pupmod-hercu
 Requires: pupmod-onyxpoint-gpasswd >= 1.0.0-2016, pupmod-onyxpoint-gpasswd < 2.0.0
 Requires: pupmod-puppetlabs-apache >= 1.10.0-2016, pupmod-puppetlabs-apache < 3.0.0
 Requires: pupmod-puppetlabs-concat >= 2.2.0-2016, pupmod-puppetlabs-concat < 4.0.0
-Requires: pupmod-puppetlabs-hocon >= 0.9.4, pupmod-puppetlabs-hocon < 1.0.0
+Requires: pupmod-puppetlabs-hocon >= 1.0.0, pupmod-puppetlabs-hocon < 2.0.0
 Requires: pupmod-puppetlabs-inifile >= 1.6.0-2016, pupmod-puppetlabs-inifile < 3.0.0
 Requires: pupmod-puppetlabs-java >= 1.2.0-2016, pupmod-puppetlabs-java < 2.0.0
 Requires: pupmod-puppetlabs-java_ks >= 1.4.0-2016, pupmod-puppetlabs-java_ks < 2.0.0
@@ -108,6 +108,7 @@ Prefix: %{_sysconfdir}/puppet
 %package extras
 Summary: Extra Packages for SIMP
 License: Apache-2.0
+Requires: pupmod-camptocamp-systemd >= 1.0.0
 Requires: pupmod-cristifalcas-journald >= 0.5.0
 Requires: pupmod-elastic-elasticsearch >= 5.2.0
 Requires: pupmod-elastic-logstash >= 5.2.1
@@ -120,6 +121,7 @@ Requires: pupmod-puppet-grafana >= 3.0.0
 Requires: pupmod-puppet-yum >= 2.0.0
 Requires: pupmod-puppetlabs-docker >= 1.0.5
 Requires: pupmod-puppetlabs-mysql >= 2.2.3-2016
+Requires: pupmod-puppetlabs-translate >= 1.1.0
 Requires: pupmod-razorsedge-snmp >= 3.8.1
 Requires: pupmod-simp-gdm >= 6.0.0-2016
 Requires: pupmod-simp-gnome >= 6.0.0-2016
