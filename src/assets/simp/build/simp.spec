@@ -1,6 +1,6 @@
 Summary: SIMP Full Install
 Name: simp
-Version: 6.1.1
+Version: 6.2.0
 Release: RC1%{?dist}%{?snapshot_release}
 License: Apache License, Version 2.0
 Group: Applications/System
@@ -24,12 +24,14 @@ Requires: pupmod-herculesteam-augeasproviders_shellvar >= 2.1.1-2016, pupmod-her
 Requires: pupmod-herculesteam-augeasproviders_ssh >= 2.5.0-2016, pupmod-herculesteam-augeasproviders_ssh < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_sysctl >= 2.1.0-2016, pupmod-herculesteam-augeasproviders_sysctl < 3.0.0
 Requires: pupmod-onyxpoint-gpasswd >= 1.0.0-2016, pupmod-onyxpoint-gpasswd < 2.0.0
-Requires: pupmod-puppetlabs-apache >= 1.10.0-2016, pupmod-puppetlabs-apache < 3.0.0
-Requires: pupmod-puppetlabs-concat >= 2.2.0-2016, pupmod-puppetlabs-concat < 4.0.0
+Requires: pupmod-puppet-archive >= 1.1.0, pupmod-puppet-archive < 3.0.0
+Requires: pupmod-puppet-yum >= 2.0.0, pupmod-puppet-yum < 3.0.0
+Requires: pupmod-puppetlabs-apache >= 1.10.0-2016, pupmod-puppetlabs-apache < 4.0.0
+Requires: pupmod-puppetlabs-concat >= 2.2.0-2016, pupmod-puppetlabs-concat < 5.0.0
 Requires: pupmod-puppetlabs-hocon >= 1.0.0, pupmod-puppetlabs-hocon < 2.0.0
 Requires: pupmod-puppetlabs-inifile >= 1.6.0-2016, pupmod-puppetlabs-inifile < 3.0.0
-Requires: pupmod-puppetlabs-java >= 1.2.0-2016, pupmod-puppetlabs-java < 2.0.0
-Requires: pupmod-puppetlabs-java_ks >= 1.4.0-2016, pupmod-puppetlabs-java_ks < 2.0.0
+Requires: pupmod-puppetlabs-java >= 1.2.0-2016, pupmod-puppetlabs-java < 3.0.0
+Requires: pupmod-puppetlabs-java_ks >= 1.4.0-2016, pupmod-puppetlabs-java_ks < 3.0.0
 Requires: pupmod-puppetlabs-motd >= 1.4.0-2016, pupmod-puppetlabs-motd < 2.0.0
 Requires: pupmod-puppetlabs-mount_providers >= 1.0.0, pupmod-puppetlabs-mount_providers < 2.0.0
 Requires: pupmod-puppetlabs-postgresql >= 4.8.0, pupmod-puppetlabs-postgresql < 6.0.0
@@ -38,7 +40,6 @@ Requires: pupmod-puppetlabs-puppet_authorization >= 0.2.0, pupmod-puppetlabs-pup
 Requires: pupmod-puppetlabs-stdlib >= 4.13.1, pupmod-puppetlabs-stdlib < 5.0.0
 Requires: pupmod-richardc-datacat >= 0.6.2, pupmod-richardc-datacat < 1.0.0
 Requires: pupmod-simp-acpid >= 1.0.1, pupmod-simp-acpid < 2.0.0
-Requires: pupmod-simp-activemq >= 4.0.0, pupmod-simp-activemq < 5.0.0
 Requires: pupmod-simp-aide >= 6.0.0, pupmod-simp-aide < 7.0.0
 Requires: pupmod-simp-at >= 0.0.1, pupmod-simp-at < 1.0.0
 Requires: pupmod-simp-auditd >= 7.0.0, pupmod-simp-auditd < 8.0.0
@@ -56,7 +57,6 @@ Requires: pupmod-simp-iptables >= 6.1.1, pupmod-simp-iptables < 7.0.0
 Requires: pupmod-simp-issue >= 0.0.1, pupmod-simp-issue < 1.0.0
 Requires: pupmod-simp-krb5 >= 7.0.0-2016, pupmod-simp-krb5 < 8.0.0
 Requires: pupmod-simp-logrotate >= 6.0.0-2016, pupmod-simp-logrotate < 7.0.0
-Requires: pupmod-simp-mcollective >= 3.0.0-2016, pupmod-simp-mcollective < 4.0.0
 Requires: pupmod-simp-named >= 6.0.0, pupmod-simp-named < 7.0.0
 Requires: pupmod-simp-network >= 6.0.0, pupmod-simp-network < 7.0.0
 Requires: pupmod-simp-nfs >= 6.0.0, pupmod-simp-nfs < 7.0.0
@@ -89,7 +89,7 @@ Requires: pupmod-simp-swap >= 0.1.0, pupmod-simp-swap < 1.0.0
 Requires: pupmod-simp-tcpwrappers >= 6.0.0, pupmod-simp-tcpwrappers < 7.0.0
 Requires: pupmod-simp-tftpboot >= 6.0.0, pupmod-simp-tftpboot < 7.0.0
 Requires: pupmod-simp-timezone >= 4.0.0, pupmod-simp-timezone < 5.0.0
-Requires: pupmod-simp-tpm >= 1.0.0, pupmod-simp-tpm < 2.0.0
+Requires: pupmod-simp-tpm >= 1.0.0, pupmod-simp-tpm < 3.0.0
 Requires: pupmod-simp-tuned >= 0.0.1, pupmod-simp-tuned < 1.0.0
 Requires: pupmod-simp-upstart >= 6.0.0, pupmod-simp-upstart < 7.0.0
 Requires: pupmod-simp-useradd >= 0.0.1, pupmod-simp-useradd < 1.0.0
@@ -119,10 +119,9 @@ Requires: pupmod-herculesteam-augeasproviders_nagios >= 2.0.1-2016
 Requires: pupmod-herculesteam-augeasproviders_pam >= 2.0.3-2016
 Requires: pupmod-vshn-gitlab >= 1.13.3
 Requires: pupmod-puppet-grafana >= 3.0.0
-Requires: pupmod-puppet-yum >= 2.0.0
 Requires: pupmod-puppetlabs-docker >= 1.0.5
 Requires: pupmod-puppetlabs-mysql >= 2.2.3-2016
-Requires: pupmod-puppetlabs-translate >= 1.1.0
+Requires: pupmod-puppetlabs-translate >= 1.0.0
 Requires: pupmod-razorsedge-snmp >= 3.8.1
 Requires: pupmod-simp-gdm >= 6.0.0-2016
 Requires: pupmod-simp-gnome >= 6.0.0-2016
@@ -209,6 +208,12 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Tue Feb 10 2018 Liz Nemsick <lnemsick.simp@gmail.com> - 6.2.0-0
+- Add pupmod-puppet-archive dependency to simp package
+- Move pupmod-puppet-yum from simp-extras package to simp packages, as
+  required by pupmod-simp-tpm
+- Update versions of dependencies for both simp and simp-extras packages
+
 * Wed Oct 04 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.1.0-0
 - Removed pupmod-herculesteam-augeasproviders_base as a SIMP dependency
 - Removed the 'dist' from the /etc/simp/simp.version file
