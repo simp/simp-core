@@ -48,7 +48,7 @@ mod 'cristifalcas-journald',
   :tag => '0.6.0'
 
 mod 'cristifalcas-etcd',
-  :git => 'https://github.com/cristifalcas/puppet-etcd',
+  :git => 'https://github.com/simp/puppet-etcd',
   :ref => '1.12.2'
 
 mod 'elastic-elasticsearch',
