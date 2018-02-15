@@ -49,9 +49,6 @@
 'augeasproviders_apache':
   :release: '2016'
 
-'augeasproviders_mounttab':
-  :release: '2016'
-
 'augeasproviders_nagios':
   :release: '2016'
 
@@ -63,7 +60,6 @@
 
 'docker':
   :requires:
-    # exclude pupmod-stahnma-epel
     # exclude pupmod-puppetlabs-apt
     - 'pupmod-puppetlabs-stdlib'
 
