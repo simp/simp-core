@@ -51,6 +51,8 @@
 
 'augeasproviders_mounttab':
   :release: '2016'
+  :requires:
+    - 'pupmod-puppetlabs-mount_providers'
 
 'augeasproviders_nagios':
   :release: '2016'
@@ -63,7 +65,6 @@
 
 'docker':
   :requires:
-    # exclude pupmod-stahnma-epel
     # exclude pupmod-puppetlabs-apt
     - 'pupmod-puppetlabs-stdlib'
 

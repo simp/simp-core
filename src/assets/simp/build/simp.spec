@@ -31,6 +31,7 @@ Requires: pupmod-puppetlabs-inifile >= 1.6.0-2016, pupmod-puppetlabs-inifile < 3
 Requires: pupmod-puppetlabs-java >= 1.2.0-2016, pupmod-puppetlabs-java < 2.0.0
 Requires: pupmod-puppetlabs-java_ks >= 1.4.0-2016, pupmod-puppetlabs-java_ks < 2.0.0
 Requires: pupmod-puppetlabs-motd >= 1.4.0-2016, pupmod-puppetlabs-motd < 2.0.0
+Requires: pupmod-puppetlabs-mount_providers >= 1.0.0, pupmod-puppetlabs-mount_providers < 2.0.0
 Requires: pupmod-puppetlabs-postgresql >= 4.8.0, pupmod-puppetlabs-postgresql < 6.0.0
 Requires: pupmod-puppetlabs-puppetdb >= 5.0.0, pupmod-puppetlabs-puppetdb < 7.0.0
 Requires: pupmod-puppetlabs-puppet_authorization >= 0.2.0, pupmod-puppetlabs-puppet_authorization < 1.0.0
