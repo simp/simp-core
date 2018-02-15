@@ -94,7 +94,7 @@ mod 'herculesteam-augeasproviders_grub',
 
 mod 'herculesteam-augeasproviders_mounttab',
   :git => 'https://github.com/simp/augeasproviders_mounttab',
-  :tag => '2.0.2'
+  :tag => '2.0.3'
 
 mod 'herculesteam-augeasproviders_nagios',
   :git => 'https://github.com/simp/augeasproviders_nagios',
