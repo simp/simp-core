@@ -48,13 +48,8 @@ mod 'cristifalcas-journald',
   :tag => '0.6.0'
 
 mod 'cristifalcas-etcd',
-  :git => 'https://github.com/cristifalcas/puppet-etcd',
-  # FIXME: A patch we need has been made upstream, but not yet
-  # released.  If it does NOT get released, before we need
-  # to release SIMP 6.1.X, we will have to release our own version
-  # of it, as the latest version released to PuppetForge, 1.12.1,
-  # will not work for us.
-  :ref => '9e3bf7f71c2ad3d91351068a51d5db06ff8763fe'
+  :git => 'https://github.com/simp/puppet-etcd',
+  :ref => '1.12.2'
 
 mod 'elastic-elasticsearch',
   :git => 'https://github.com/simp/puppet-elasticsearch',

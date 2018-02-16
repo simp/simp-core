@@ -240,8 +240,8 @@ pssh:
   :rpm_name: pssh-2.3.1.SIMP-5.el7.noarch.rpm
   :source: https://dl.bintray.com/simp/5.1.X-Ext/pssh-2.3.1.SIMP-5.el7.noarch.rpm
 puppet-agent:
-  :rpm_name: puppet-agent-1.8.0-1.el7.x86_64.rpm
-  :source: http://yum.puppetlabs.com/el/7/PC1/x86_64/puppet-agent-1.8.0-1.el7.x86_64.rpm
+  :rpm_name: puppet-agent-1.10.9-1.el7.x86_64.rpm
+  :source: http://yum.puppetlabs.com/el/7/PC1/x86_64/puppet-agent-1.10.9-1.el7.x86_64.rpm
 puppet-client-tools:
   :rpm_name: puppet-client-tools-1.1.0-1.el7.x86_64.rpm
   :source: http://yum.puppetlabs.com/el/7Server/PC1/x86_64/puppet-client-tools-1.1.0-1.el7.x86_64.rpm
@@ -252,11 +252,11 @@ puppetdb-termini:
   :rpm_name: puppetdb-termini-4.2.4-1.el7.noarch.rpm
   :source: http://yum.puppetlabs.com/el/7Server/PC1/x86_64/puppetdb-termini-4.2.4-1.el7.noarch.rpm
 puppetlabs-release-pc1:
-  :rpm_name: puppetlabs-release-pc1-1.1.0-4.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/PC1/x86_64/puppetlabs-release-pc1-1.1.0-4.el7.noarch.rpm
+  :rpm_name: puppetlabs-release-pc1-1.1.0-5.el7.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/7/PC1/x86_64/puppetlabs-release-pc1-1.1.0-5.el7.noarch.rpm
 puppetserver:
-  :rpm_name: puppetserver-2.6.0-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7Server/PC1/x86_64/puppetserver-2.6.0-1.el7.noarch.rpm
+  :rpm_name: puppetserver-2.8.1-1.el7.noarch.rpm
+  :source: http://yum.puppetlabs.com/el/7Server/PC1/x86_64/puppetserver-2.8.1-1.el7.noarch.rpm
 python-elasticsearch:
   :rpm_name: python-elasticsearch-1.2.0-0.el7.centos.noarch.rpm
   :source: https://dl.bintray.com/simp/5.1.X-Ext/python-elasticsearch-1.2.0-0.el7.centos.noarch.rpm
