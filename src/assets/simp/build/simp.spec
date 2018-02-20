@@ -1,6 +1,6 @@
 Summary: SIMP Full Install
 Name: simp
-Version: 6.1.1
+Version: 6.2.0
 Release: RC1%{?dist}%{?snapshot_release}
 License: Apache License, Version 2.0
 Group: Applications/System
@@ -24,6 +24,7 @@ Requires: pupmod-herculesteam-augeasproviders_shellvar >= 2.1.1-2016, pupmod-her
 Requires: pupmod-herculesteam-augeasproviders_ssh >= 2.5.0-2016, pupmod-herculesteam-augeasproviders_ssh < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_sysctl >= 2.1.0-2016, pupmod-herculesteam-augeasproviders_sysctl < 3.0.0
 Requires: pupmod-onyxpoint-gpasswd >= 1.0.0-2016, pupmod-onyxpoint-gpasswd < 2.0.0
+Requires: pupmod-puppet-archive >= 1.1.0, pupmod-puppet-archive < 3.0.0
 Requires: pupmod-puppetlabs-apache >= 1.10.0-2016, pupmod-puppetlabs-apache < 3.0.0
 Requires: pupmod-puppetlabs-concat >= 2.2.0-2016, pupmod-puppetlabs-concat < 4.0.0
 Requires: pupmod-puppetlabs-hocon >= 1.0.0, pupmod-puppetlabs-hocon < 2.0.0
@@ -209,6 +210,9 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Tue Feb 10 2018 Liz Nemsick <lnemsick.simp@gmail.com> - 6.2.0-0
+- Add pupmod-puppet-archive dependency
+
 * Wed Oct 04 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.1.0-0
 - Removed pupmod-herculesteam-augeasproviders_base as a SIMP dependency
 - Removed the 'dist' from the /etc/simp/simp.version file

@@ -82,14 +82,9 @@
     - 'pupmod-puppetlabs-stdlib'
 
 'grafana':
-  :obsoletes:
-    'pupmod-bfraser-grafana': '2.5.0-2016.1'
-  :requires:
-    # exclude pupmod-garethr-docker
-    # exclude pupmod-maestrodev-wget
-    # exclude pupmod-puppet-archive
-    # exclude pupmod-puppetlabs-apt
-    - 'pupmod-puppetlabs-stdlib'
+  :external_dependencies:
+    'rubygem-puppetserver-toml':
+      :min: '0.1.2'
 
 'inifile':
   :release: '2016'
