@@ -125,7 +125,7 @@ mod 'onyxpoint-gpasswd',
 
 mod 'puppet-grafana',
   :git => 'https://github.com/simp/puppet-grafana.git',
-  :tag => 'v3.0.0'
+  :tag => 'v4.0.3'
 
 mod 'puppetlabs-apache',
   :git => 'https://github.com/simp/puppetlabs-apache',
@@ -412,10 +412,12 @@ mod 'simp-simp_gitlab',
   :tag => '0.2.0'
 
 mod 'simp-simp_grafana',
+# RELEASE ME
   :git => 'https://github.com/simp/pupmod-simp-simp_grafana',
-  :tag => '1.0.4'
+  :ref => 'master'
 
 mod 'simp-simp_kubernetes',
+# RELEASE ME
   :git => 'https://github.com/simp/pupmod-simp-simp_kubernetes',
   :ref => 'master'
 
@@ -523,6 +525,10 @@ mod 'simp-xinetd',
 mod 'trlinkin-nsswitch',
   :git => 'https://github.com/simp/puppet-nsswitch',
   :ref => 'f1d51eeecf3d95a3d38562a50743ee7c915d0624'
+
+mod 'voxpupuli-archive',
+  :git => 'https://github.com/simp/puppet-archive',
+  :tag => 'v1.3.0'
 
 mod 'voxpupuli-yum',
   :git => 'https://github.com/simp/voxpupuli-yum',
