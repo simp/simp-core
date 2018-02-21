@@ -100,9 +100,6 @@
   :requires:
     - 'pupmod-puppetlabs-stdlib'
 
-'mcollective':
-  :release: '2016'
-
 'motd':
   :requires:
     # exclude pupmod-puppetlabs-registry

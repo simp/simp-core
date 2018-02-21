@@ -1,6 +1,6 @@
 {
   "name": "simp-simp_core",
-  "version": "6.1.0",
+  "version": "6.2.0",
   "author": "SIMP Team",
   "summary": "A Metamodule for SIMP",
   "license": "Apache-2.0",
@@ -68,7 +68,7 @@
     },
     {
       "name": "puppetlabs/hocon",
-      "version_requirement": ">= 0.9.4 < 1.0.0"
+      "version_requirement": ">= 0.9.4 < 2.0.0"
     },
     {
       "name": "puppetlabs/inifile",
@@ -109,10 +109,6 @@
     {
       "name": "simp/acpid",
       "version_requirement": ">= 1.0.1 < 2.0.0"
-    },
-    {
-      "name": "simp/activemq",
-      "version_requirement": ">= 4.0.0 < 5.0.0"
     },
     {
       "name": "simp/aide",
@@ -181,10 +177,6 @@
     {
       "name": "simp/logrotate",
       "version_requirement": ">= 6.0.0 < 7.0.0"
-    },
-    {
-      "name": "simp/mcollective",
-      "version_requirement": ">= 3.0.0 < 4.0.0"
     },
     {
       "name": "simp/named",
