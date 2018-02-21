@@ -13,6 +13,15 @@ Requires: simp-adapter
 Requires: httpd >= 2.2
 Obsoletes: simp-hiera < 3.0.2
 
+# These 2 lines are required for upgrades from simp-6.1.0 to
+# simp-6.2.0. Otherwise, we will have conflicting, derived dependencies
+# caused by obsolete pupmod-simp-activemq and pupmod-simp-mcollective
+# packages.  pupmod-simp-activemq and pupmod-simp-mcollective were
+# erroneously required by simp-6.1.0, even though they did not work in
+# simp-6.1.0 and have been effectively abandoned by their authors.
+Obsoletes: pupmod-simp-activemq <= 4.0.1
+Obsoletes: pupmod-simp-mcollective <= 3.0.0
+
 # Core SIMP Requirements
 Requires: pupmod-camptocamp-kmod >= 2.1.0, pupmod-camptocamp-kmod < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_apache >= 2.0.1-2016, pupmod-herculesteam-augeasproviders_apache < 3.0.0
@@ -39,7 +48,6 @@ Requires: pupmod-puppetlabs-puppet_authorization >= 0.2.0, pupmod-puppetlabs-pup
 Requires: pupmod-puppetlabs-stdlib >= 4.13.1, pupmod-puppetlabs-stdlib < 5.0.0
 Requires: pupmod-richardc-datacat >= 0.6.2, pupmod-richardc-datacat < 1.0.0
 Requires: pupmod-simp-acpid >= 1.0.1, pupmod-simp-acpid < 2.0.0
-Requires: pupmod-simp-activemq >= 4.0.0, pupmod-simp-activemq < 5.0.0
 Requires: pupmod-simp-aide >= 6.0.0, pupmod-simp-aide < 7.0.0
 Requires: pupmod-simp-at >= 0.0.1, pupmod-simp-at < 1.0.0
 Requires: pupmod-simp-auditd >= 7.0.0, pupmod-simp-auditd < 8.0.0
@@ -57,7 +65,6 @@ Requires: pupmod-simp-iptables >= 6.1.1, pupmod-simp-iptables < 7.0.0
 Requires: pupmod-simp-issue >= 0.0.1, pupmod-simp-issue < 1.0.0
 Requires: pupmod-simp-krb5 >= 7.0.0-2016, pupmod-simp-krb5 < 8.0.0
 Requires: pupmod-simp-logrotate >= 6.0.0-2016, pupmod-simp-logrotate < 7.0.0
-Requires: pupmod-simp-mcollective >= 3.0.0-2016, pupmod-simp-mcollective < 4.0.0
 Requires: pupmod-simp-named >= 6.0.0, pupmod-simp-named < 7.0.0
 Requires: pupmod-simp-network >= 6.0.0, pupmod-simp-network < 7.0.0
 Requires: pupmod-simp-nfs >= 6.0.0, pupmod-simp-nfs < 7.0.0
@@ -209,10 +216,17 @@ fi
 %postun
 # Post uninstall stuff
 
-%changelog
+%change
+
+* Tue Feb 20 2018 Liz Nemsick <lnemsick.simp@gmail.com> - 6.2.0-0
+- Obsolete pupmod-simp-activemq and pupmod-simp-mcollective in
+  simp package
+- Update versions of numerous dependencies of both simp and simp-extras
+  packages.* 
+  
 * Tue Feb 10 2018 Liz Nemsick <lnemsick.simp@gmail.com> - 6.2.0-0
 - Add pupmod-puppet-archive dependency
-
+  
 * Wed Oct 04 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.1.0-0
 - Removed pupmod-herculesteam-augeasproviders_base as a SIMP dependency
 - Removed the 'dist' from the /etc/simp/simp.version file

@@ -220,10 +220,6 @@ mod 'simp-acpid',
   :git => 'https://github.com/simp/pupmod-simp-acpid',
   :tag => '1.0.2'
 
-mod 'simp-activemq',
-  :git => 'https://github.com/simp/pupmod-simp-activemq',
-  :tag => '4.0.1'
-
 mod 'simp-aide',
   :git => 'https://github.com/simp/pupmod-simp-aide',
   :tag => '6.1.1'
@@ -322,13 +318,6 @@ mod 'simp-logrotate',
 mod 'simp-mcafee',
   :git => 'https://github.com/simp/pupmod-simp-mcafee',
   :tag => '6.0.1'
-
-# SIMP has made changes to this module that don't exist upstream
-# So we are working off of simp-master.
-mod 'simp-mcollective',
-  #FIXME Does the module even work?
-  :git => 'https://github.com/simp/pupmod-simp-mcollective',
-  :tag => 'simp-3.0.0'
 
 mod 'simp-mozilla',
   :git => 'https://github.com/simp/pupmod-simp-mozilla',
