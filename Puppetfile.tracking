@@ -129,7 +129,7 @@ mod 'onyxpoint-gpasswd',
 
 mod 'puppet-grafana',
   :git => 'https://github.com/simp/puppet-grafana.git',
-  :tag => 'v4.0.3'
+  :tag => 'v4.1.1'
 
 mod 'puppetlabs-apache',
   :git => 'https://github.com/simp/puppetlabs-apache',
