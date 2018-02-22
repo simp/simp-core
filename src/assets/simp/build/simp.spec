@@ -216,6 +216,7 @@ fi
 %postun
 # Post uninstall stuff
 
+%changelog
 * Tue Feb 20 2018 Liz Nemsick <lnemsick.simp@gmail.com> - 6.2.0-0
 - Obsolete pupmod-simp-activemq and pupmod-simp-mcollective in
   simp package
