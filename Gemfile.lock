@@ -363,7 +363,7 @@ DEPENDENCIES
   ruby-progressbar
   simp-beaker-helpers (~> 1.9)
   simp-build-helpers (>= 0.1.0)
-  simp-rake-helpers (~> 5.0)
+  simp-rake-helpers (>= 5.3, < 6.0)
 
 BUNDLED WITH
    1.16.1

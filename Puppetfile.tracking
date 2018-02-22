@@ -129,7 +129,7 @@ mod 'onyxpoint-gpasswd',
 
 mod 'puppet-grafana',
   :git => 'https://github.com/simp/puppet-grafana.git',
-  :tag => 'v3.0.0'
+  :tag => 'v4.0.3'
 
 mod 'puppetlabs-apache',
   :git => 'https://github.com/simp/puppetlabs-apache',
@@ -428,8 +428,9 @@ mod 'simp-simp_gitlab',
   :ref => 'master'
 
 mod 'simp-simp_grafana',
+# RELEASE ME
   :git => 'https://github.com/simp/pupmod-simp-simp_grafana',
-  :tag => '1.0.4'
+  :ref => 'master'
 
 mod 'simp-simp_kubernetes',
 # FUTURE:  Release and add to simp.spec, to ensure packaged in ISO

@@ -1,10 +1,4 @@
 ---
-activemq:
-  :rpm_name: activemq-5.9.1-2.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/dependencies/x86_64/activemq-5.9.1-2.el7.noarch.rpm
-activemq-info-provider:
-  :rpm_name: activemq-info-provider-5.9.1-2.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/dependencies/x86_64/activemq-info-provider-5.9.1-2.el7.noarch.rpm
 apr-util-ldap:
   :rpm_name: apr-util-ldap-1.5.2-6.el7.x86_64.rpm
   :source: http://denver.gaminghost.co/7.2.1511/os/x86_64/Packages/apr-util-ldap-1.5.2-6.el7.x86_64.rpm
@@ -63,8 +57,8 @@ facter:
   :rpm_name: facter-2.4.6-1.el7.x86_64.rpm
   :source: http://yum.puppetlabs.com/el/7/products/x86_64/facter-2.4.6-1.el7.x86_64.rpm
 grafana:
-  :rpm_name: grafana-4.2.0-1.x86_64.rpm
-  :source: https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-4.2.0-1.x86_64.rpm
+  :rpm_name: grafana-4.6.3-1.x86_64.rpm
+  :source: https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-4.6.3-1.x86_64.rpm
 gweb:
   :rpm_name: gweb-2.1.8-1.noarch.rpm
   :source: https://dl.bintray.com/simp/5.1.X-Ext/gweb-2.1.8-1.noarch.rpm
@@ -107,96 +101,6 @@ libsepol-static:
 logstash:
   :rpm_name: logstash-5.6.7.rpm
   :source: https://artifacts.elastic.co/downloads/logstash/logstash-5.6.7.rpm
-mcollective:
-  :rpm_name: mcollective-2.8.9-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-2.8.9-1.el7.noarch.rpm
-mcollective-actionpolicy-auth:
-  :rpm_name: mcollective-actionpolicy-auth-2.1.0-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-actionpolicy-auth-2.1.0-1.el7.noarch.rpm
-mcollective-client:
-  :rpm_name: mcollective-client-2.8.9-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-client-2.8.9-1.el7.noarch.rpm
-mcollective-common:
-  :rpm_name: mcollective-common-2.8.9-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-common-2.8.9-1.el7.noarch.rpm
-mcollective-filemgr-agent:
-  :rpm_name: mcollective-filemgr-agent-1.1.0-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-filemgr-agent-1.1.0-1.el7.noarch.rpm
-mcollective-filemgr-client:
-  :rpm_name: mcollective-filemgr-client-1.1.0-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-filemgr-client-1.1.0-1.el7.noarch.rpm
-mcollective-filemgr-common:
-  :rpm_name: mcollective-filemgr-common-1.1.0-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-filemgr-common-1.1.0-1.el7.noarch.rpm
-mcollective-iptables-agent:
-  :rpm_name: mcollective-iptables-agent-3.0.2-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-iptables-agent-3.0.2-1.el7.noarch.rpm
-mcollective-iptables-client:
-  :rpm_name: mcollective-iptables-client-3.0.2-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-iptables-client-3.0.2-1.el7.noarch.rpm
-mcollective-iptables-common:
-  :rpm_name: mcollective-iptables-common-3.0.2-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-iptables-common-3.0.2-1.el7.noarch.rpm
-mcollective-nettest-agent:
-  :rpm_name: mcollective-nettest-agent-3.0.4-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-nettest-agent-3.0.4-1.el7.noarch.rpm
-mcollective-nettest-client:
-  :rpm_name: mcollective-nettest-client-3.0.4-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-nettest-client-3.0.4-1.el7.noarch.rpm
-mcollective-nettest-common:
-  :rpm_name: mcollective-nettest-common-3.0.4-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-nettest-common-3.0.4-1.el7.noarch.rpm
-mcollective-nrpe-agent:
-  :rpm_name: mcollective-nrpe-agent-3.1.0-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-nrpe-agent-3.1.0-1.el7.noarch.rpm
-mcollective-nrpe-client:
-  :rpm_name: mcollective-nrpe-client-3.1.0-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-nrpe-client-3.1.0-1.el7.noarch.rpm
-mcollective-nrpe-common:
-  :rpm_name: mcollective-nrpe-common-3.1.0-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-nrpe-common-3.1.0-1.el7.noarch.rpm
-mcollective-package-agent:
-  :rpm_name: mcollective-package-agent-4.4.0-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-package-agent-4.4.0-1.el7.noarch.rpm
-mcollective-package-client:
-  :rpm_name: mcollective-package-client-4.4.0-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-package-client-4.4.0-1.el7.noarch.rpm
-mcollective-package-common:
-  :rpm_name: mcollective-package-common-4.4.0-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-package-common-4.4.0-1.el7.noarch.rpm
-mcollective-puppet-agent:
-  :rpm_name: mcollective-puppet-agent-1.11.1-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-puppet-agent-1.11.1-1.el7.noarch.rpm
-mcollective-puppet-client:
-  :rpm_name: mcollective-puppet-client-1.11.1-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-puppet-client-1.11.1-1.el7.noarch.rpm
-mcollective-puppet-common:
-  :rpm_name: mcollective-puppet-common-1.11.1-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-puppet-common-1.11.1-1.el7.noarch.rpm
-mcollective-service-agent:
-  :rpm_name: mcollective-service-agent-3.1.3-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-service-agent-3.1.3-1.el7.noarch.rpm
-mcollective-service-client:
-  :rpm_name: mcollective-service-client-3.1.3-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-service-client-3.1.3-1.el7.noarch.rpm
-mcollective-service-common:
-  :rpm_name: mcollective-service-common-3.1.3-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-service-common-3.1.3-1.el7.noarch.rpm
-mcollective-shell-agent:
-  :rpm_name: mcollective-shell-agent-0.0.2-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-shell-agent-0.0.2-1.el7.noarch.rpm
-mcollective-shell-client:
-  :rpm_name: mcollective-shell-client-0.0.2-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-shell-client-0.0.2-1.el7.noarch.rpm
-mcollective-shell-common:
-  :rpm_name: mcollective-shell-common-0.0.2-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-shell-common-0.0.2-1.el7.noarch.rpm
-mcollective-sshkey-security:
-  :rpm_name: mcollective-sshkey-security-0.5.0-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-sshkey-security-0.5.0-1.el7.noarch.rpm
-mcollective-sysctl-data:
-  :rpm_name: mcollective-sysctl-data-2.0.1-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/products/x86_64/mcollective-sysctl-data-2.0.1-1.el7.noarch.rpm
 mod_ldap:
   :rpm_name: mod_ldap-2.4.6-40.el7.centos.x86_64.rpm
   :source: http://mirror.cogentco.com/pub/linux/centos/7.2.1511/os/x86_64/Packages/mod_ldap-2.4.6-40.el7.centos.x86_64.rpm
@@ -308,6 +212,24 @@ rubygem-net-ping:
 rubygem-puppet-lint:
   :rpm_name: rubygem-puppet-lint-1.1.0-1.el7.noarch.rpm
   :source: http://yum.puppetlabs.com/el/7/dependencies/x86_64/rubygem-puppet-lint-1.1.0-1.el7.noarch.rpm
+rubygem-puppetserver-blankslate:
+  :rpm_name: rubygem-puppetserver-blankslate-2.1.2.4-1.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/rubygem-puppetserver-blankslate-2.1.2.4-1.noarch.rpm
+rubygem-puppetserver-blankslate-doc:
+  :rpm_name: rubygem-puppetserver-blankslate-doc-2.1.2.4-1.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/rubygem-puppetserver-blankslate-doc-2.1.2.4-1.noarch.rpm
+rubygem-puppetserver-parslet:
+  :rpm_name: rubygem-puppetserver-parslet-1.5.0-1.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/rubygem-puppetserver-parslet-1.5.0-1.noarch.rpm
+rubygem-puppetserver-parslet-doc:
+  :rpm_name: rubygem-puppetserver-parslet-doc-1.5.0-1.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/rubygem-puppetserver-parslet-doc-1.5.0-1.noarch.rpm
+rubygem-puppetserver-toml:
+  :rpm_name: rubygem-puppetserver-toml-0.1.2-1.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/rubygem-puppetserver-toml-0.1.2-1.noarch.rpm
+rubygem-puppetserver-toml-doc:
+  :rpm_name: rubygem-puppetserver-toml-doc-0.1.2-1.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/rubygem-puppetserver-toml-doc-0.1.2-1.noarch.rpm
 rubygem-rake:
   :rpm_name: rubygem-rake-0.9.6-25.el7_1.noarch.rpm
   :source: http://mirrors.advancedhosters.com/centos/7.2.1511/os/x86_64/Packages/rubygem-rake-0.9.6-25.el7_1.noarch.rpm

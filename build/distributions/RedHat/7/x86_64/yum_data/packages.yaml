@@ -1,10 +1,4 @@
 ---
-activemq:
-  :rpm_name: activemq-5.9.1-2.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/dependencies/x86_64/activemq-5.9.1-2.el7.noarch.rpm
-activemq-info-provider:
-  :rpm_name: activemq-info-provider-5.9.1-2.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/dependencies/x86_64/activemq-info-provider-5.9.1-2.el7.noarch.rpm
 apr-util-ldap:
   :rpm_name: apr-util-ldap-1.5.2-6.el7.x86_64.rpm
   :source: Red Hat Optional Repository
@@ -57,8 +51,8 @@ elasticsearch-curator:
   :rpm_name: elasticsearch-curator-5.4.1-1.x86_64.rpm
   :source: https://packages.elastic.co/curator/5/centos/7/Packages/elasticsearch-curator-5.4.1-1.x86_64.rpm
 grafana:
-  :rpm_name: grafana-4.2.0-1.x86_64.rpm
-  :source: https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-4.2.0-1.x86_64.rpm
+  :rpm_name: grafana-4.6.3-1.x86_64.rpm
+  :source: https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-4.6.3-1.x86_64.rpm
 gweb:
   :rpm_name: gweb-2.1.8-1.noarch.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/gweb-2.1.8-1.noarch.rpm
@@ -185,6 +179,24 @@ rubygem-net-ping:
 rubygem-puppet-lint:
   :rpm_name: rubygem-puppet-lint-1.1.0-1.el7.noarch.rpm
   :source: http://yum.puppetlabs.com/el/7/dependencies/x86_64/rubygem-puppet-lint-1.1.0-1.el7.noarch.rpm
+rubygem-puppetserver-blankslate:
+  :rpm_name: rubygem-puppetserver-blankslate-2.1.2.4-1.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/rubygem-puppetserver-blankslate-2.1.2.4-1.noarch.rpm
+rubygem-puppetserver-blankslate-doc:
+  :rpm_name: rubygem-puppetserver-blankslate-doc-2.1.2.4-1.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/rubygem-puppetserver-blankslate-doc-2.1.2.4-1.noarch.rpm
+rubygem-puppetserver-parslet:
+  :rpm_name: rubygem-puppetserver-parslet-1.5.0-1.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/rubygem-puppetserver-parslet-1.5.0-1.noarch.rpm
+rubygem-puppetserver-parslet-doc:
+  :rpm_name: rubygem-puppetserver-parslet-doc-1.5.0-1.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/rubygem-puppetserver-parslet-doc-1.5.0-1.noarch.rpm
+rubygem-puppetserver-toml:
+  :rpm_name: rubygem-puppetserver-toml-0.1.2-1.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/rubygem-puppetserver-toml-0.1.2-1.noarch.rpm
+rubygem-puppetserver-toml-doc:
+  :rpm_name: rubygem-puppetserver-toml-doc-0.1.2-1.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/rubygem-puppetserver-toml-doc-0.1.2-1.noarch.rpm
 rubygem-rake:
   :rpm_name: rubygem-rake-0.9.6-30.el7.noarch.rpm
   :source: Red Hat Optional Repository

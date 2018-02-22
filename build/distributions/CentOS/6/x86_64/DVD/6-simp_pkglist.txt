@@ -1089,6 +1089,12 @@ rubygem-minitest
 rubygem-mongrel
 rubygem-passenger
 rubygem-polyglot
+rubygem-puppetserver-blankslate
+rubygem-puppetserver-blankslate-doc
+rubygem-puppetserver-parslet
+rubygem-puppetserver-parslet-doc
+rubygem-puppetserver-toml
+rubygem-puppetserver-toml-doc
 rubygem-rack
 rubygem-rake
 rubygem-rspec
