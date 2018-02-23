@@ -34,12 +34,13 @@ Requires: pupmod-herculesteam-augeasproviders_ssh >= 2.5.0-2016, pupmod-hercules
 Requires: pupmod-herculesteam-augeasproviders_sysctl >= 2.1.0-2016, pupmod-herculesteam-augeasproviders_sysctl < 3.0.0
 Requires: pupmod-onyxpoint-gpasswd >= 1.0.0-2016, pupmod-onyxpoint-gpasswd < 2.0.0
 Requires: pupmod-puppet-archive >= 1.1.0, pupmod-puppet-archive < 3.0.0
-Requires: pupmod-puppetlabs-apache >= 1.10.0-2016, pupmod-puppetlabs-apache < 3.0.0
-Requires: pupmod-puppetlabs-concat >= 2.2.0-2016, pupmod-puppetlabs-concat < 4.0.0
+Requires: pupmod-puppet-yum >= 2.0.0, pupmod-puppet-yum < 3.0.0
+Requires: pupmod-puppetlabs-apache >= 1.10.0-2016, pupmod-puppetlabs-apache < 4.0.0
+Requires: pupmod-puppetlabs-concat >= 2.2.0-2016, pupmod-puppetlabs-concat < 5.0.0
 Requires: pupmod-puppetlabs-hocon >= 1.0.0, pupmod-puppetlabs-hocon < 2.0.0
 Requires: pupmod-puppetlabs-inifile >= 1.6.0-2016, pupmod-puppetlabs-inifile < 3.0.0
-Requires: pupmod-puppetlabs-java >= 1.2.0-2016, pupmod-puppetlabs-java < 2.0.0
-Requires: pupmod-puppetlabs-java_ks >= 1.4.0-2016, pupmod-puppetlabs-java_ks < 2.0.0
+Requires: pupmod-puppetlabs-java >= 1.2.0-2016, pupmod-puppetlabs-java < 3.0.0
+Requires: pupmod-puppetlabs-java_ks >= 1.4.0-2016, pupmod-puppetlabs-java_ks < 3.0.0
 Requires: pupmod-puppetlabs-motd >= 1.4.0-2016, pupmod-puppetlabs-motd < 2.0.0
 Requires: pupmod-puppetlabs-mount_providers >= 1.0.0, pupmod-puppetlabs-mount_providers < 2.0.0
 Requires: pupmod-puppetlabs-postgresql >= 4.8.0, pupmod-puppetlabs-postgresql < 6.0.0
@@ -97,7 +98,7 @@ Requires: pupmod-simp-swap >= 0.1.0, pupmod-simp-swap < 1.0.0
 Requires: pupmod-simp-tcpwrappers >= 6.0.0, pupmod-simp-tcpwrappers < 7.0.0
 Requires: pupmod-simp-tftpboot >= 6.0.0, pupmod-simp-tftpboot < 7.0.0
 Requires: pupmod-simp-timezone >= 4.0.0, pupmod-simp-timezone < 5.0.0
-Requires: pupmod-simp-tpm >= 1.0.0, pupmod-simp-tpm < 2.0.0
+Requires: pupmod-simp-tpm >= 1.0.0, pupmod-simp-tpm < 3.0.0
 Requires: pupmod-simp-tuned >= 0.0.1, pupmod-simp-tuned < 1.0.0
 Requires: pupmod-simp-upstart >= 6.0.0, pupmod-simp-upstart < 7.0.0
 Requires: pupmod-simp-useradd >= 0.0.1, pupmod-simp-useradd < 1.0.0
@@ -127,10 +128,9 @@ Requires: pupmod-herculesteam-augeasproviders_nagios >= 2.0.1-2016
 Requires: pupmod-herculesteam-augeasproviders_pam >= 2.0.3-2016
 Requires: pupmod-vshn-gitlab >= 1.13.3
 Requires: pupmod-puppet-grafana >= 3.0.0
-Requires: pupmod-puppet-yum >= 2.0.0
 Requires: pupmod-puppetlabs-docker >= 1.0.5
 Requires: pupmod-puppetlabs-mysql >= 2.2.3-2016
-Requires: pupmod-puppetlabs-translate >= 1.1.0
+Requires: pupmod-puppetlabs-translate >= 1.0.0
 Requires: pupmod-razorsedge-snmp >= 3.8.1
 Requires: pupmod-simp-gdm >= 6.0.0-2016
 Requires: pupmod-simp-gnome >= 6.0.0-2016
@@ -216,16 +216,15 @@ fi
 %postun
 # Post uninstall stuff
 
-%change
-
+%changelog
 * Tue Feb 20 2018 Liz Nemsick <lnemsick.simp@gmail.com> - 6.2.0-0
 - Obsolete pupmod-simp-activemq and pupmod-simp-mcollective in
   simp package
 - Update versions of numerous dependencies of both simp and simp-extras
   packages.* 
-  
-* Tue Feb 10 2018 Liz Nemsick <lnemsick.simp@gmail.com> - 6.2.0-0
-- Add pupmod-puppet-archive dependency
+- Add pupmod-puppet-archive dependency to simp package
+- Move pupmod-puppet-yum from simp-extras package to simp packages, as
+  required by pupmod-simp-tpm
   
 * Wed Oct 04 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.1.0-0
 - Removed pupmod-herculesteam-augeasproviders_base as a SIMP dependency
