@@ -21,6 +21,11 @@ RUN yum install -y yum-utils
 RUN yum-config-manager --disable \*
 RUN echo -e "[legacy]\nname=Legacy\nbaseurl=http://vault.centos.org/7.0.1406/os/x86_64\ngpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-7\ngpgcheck=1" > /etc/yum.repos.d/legacy.repo
 RUN cd /root; yum downgrade -y *
+
+# Work around bug https://bugzilla.redhat.com/show_bug.cgi?id=1217477
+# This does *not* update the SELinux packages, so it is safe
+RUN yum --enablerepo=updates --enablerepo=base update -y git curl nss
+
 RUN yum install -y sudo selinux-policy-targeted selinux-policy-devel policycoreutils policycoreutils-python
 
 # Ensure that the 'build_user' can sudo to root for RVM

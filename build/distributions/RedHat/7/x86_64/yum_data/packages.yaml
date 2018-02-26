@@ -45,11 +45,11 @@ clamav-update:
   :rpm_name: clamav-update-0.99.2-1.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/c/clamav-update-0.99.2-1.el7.x86_64.rpm
 elasticsearch:
-  :rpm_name: elasticsearch-5.6.2.rpm
-  :source: https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.6.2.rpm
+  :rpm_name: elasticsearch-5.6.7.rpm
+  :source: https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.6.7.rpm
 elasticsearch-curator:
-  :rpm_name: elasticsearch-curator-5.0.2-1.x86_64.rpm
-  :source: https://packages.elastic.co/curator/5/centos/7/Packages/elasticsearch-curator-5.0.2-1.x86_64.rpm
+  :rpm_name: elasticsearch-curator-5.4.1-1.x86_64.rpm
+  :source: https://packages.elastic.co/curator/5/centos/7/Packages/elasticsearch-curator-5.4.1-1.x86_64.rpm
 grafana:
   :rpm_name: grafana-4.6.3-1.x86_64.rpm
   :source: https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-4.6.3-1.x86_64.rpm
@@ -72,8 +72,8 @@ libev:
   :rpm_name: libev-4.15-3.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/l/libev-4.15-3.el7.x86_64.rpm
 logstash:
-  :rpm_name: logstash-5.6.2.rpm
-  :source: https://artifacts.elastic.co/downloads/logstash/logstash-5.6.2.rpm
+  :rpm_name: logstash-5.6.7.rpm
+  :source: https://artifacts.elastic.co/downloads/logstash/logstash-5.6.7.rpm
 pdsh:
   :rpm_name: pdsh-2.29-1el7.x86_64.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/pdsh-2.29-1el7.x86_64.rpm
@@ -128,9 +128,6 @@ puppetlabs-release-pc1:
 puppetserver:
   :rpm_name: puppetserver-2.8.1-1.el7.noarch.rpm
   :source: https://yum.puppetlabs.com/el/7/PC1/x86_64/puppetserver-2.8.1-1.el7.noarch.rpm
-python-elasticsearch:
-  :rpm_name: python-elasticsearch-1.2.0-0.el7.centos.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/python-elasticsearch-1.2.0-0.el7.centos.noarch.rpm
 python-linecache2:
   :rpm_name: python-linecache2-1.0.0-1.el7.noarch.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/p/python-linecache2-1.0.0-1.el7.noarch.rpm

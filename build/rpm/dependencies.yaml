@@ -28,21 +28,6 @@
 # NOTE: This file is only used for simp-rake-helpers >= 5.3.0
 ---
 
-'augeasproviders':
-  :requires:
-    # exclude pupmod-herculesteam-augeasproviders_syslog"
-    - 'pupmod-herculesteam-augeasproviders_apache'
-    - 'pupmod-herculesteam-augeasproviders_base'
-    - 'pupmod-herculesteam-augeasproviders_grub'
-    - 'pupmod-herculesteam-augeasproviders_mounttab'
-    - 'pupmod-herculesteam-augeasproviders_nagios'
-    - 'pupmod-herculesteam-augeasproviders_pam'
-    - 'pupmod-herculesteam-augeasproviders_postgresql'
-    - 'pupmod-herculesteam-augeasproviders_puppet'
-    - 'pupmod-herculesteam-augeasproviders_shellvar'
-    - 'pupmod-herculesteam-augeasproviders_ssh'
-    - 'pupmod-herculesteam-augeasproviders_sysctl'
-
 'augeasproviders_base':
   :release: '2016'
 
@@ -62,10 +47,9 @@
   :requires:
     # exclude pupmod-puppetlabs-apt
     - 'pupmod-puppetlabs-stdlib'
+    - 'pupmod-puppetlabs-translate'
 
 'elasticsearch':
-  :obsoletes:
-    'pupmod-elasticsearch-elasticsearch': '0.11.0-2016.1'
   :requires:
     # exclude pupmod-puppetlabs-apt
     - 'pupmod-richardc-datacat'
@@ -86,15 +70,6 @@
     'rubygem-puppetserver-toml':
       :min: '0.1.2'
 
-'inifile':
-  :release: '2016'
-
-'logstash':
-  :obsoletes:
-    'pupmod-elasticsearch-logstash': '2.0.0-2016'
-  :requires:
-    - 'pupmod-puppetlabs-stdlib'
-
 'motd':
   :requires:
     # exclude pupmod-puppetlabs-registry
@@ -104,6 +79,7 @@
   :requires:
     # exclude pupmod-puppet-staging
     - 'pupmod-puppetlabs-stdlib'
+    - 'pupmod-puppetlabs-translate'
 
 'postgresql':
   :requires:
