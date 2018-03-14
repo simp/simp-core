@@ -10,7 +10,7 @@ GEM
       json (~> 1.4)
       nokogiri (~> 1)
     bcrypt_pbkdf (1.0.0)
-    beaker (3.32.0)
+    beaker (3.33.0)
       beaker-abs (~> 0.4)
       beaker-aws (~> 0.1)
       beaker-docker (~> 0.1)
@@ -86,7 +86,7 @@ GEM
       colored (~> 1.2)
     deep_merge (1.2.1)
     diff-lcs (1.3)
-    docker-api (1.34.0)
+    docker-api (1.34.1)
       excon (>= 0.47.0)
       multi_json
     domain_name (0.5.20170404)
@@ -99,7 +99,7 @@ GEM
     faraday_middleware (0.12.2)
       faraday (>= 0.7.4, < 1.0)
     fast_gettext (1.1.2)
-    ffi (1.9.22)
+    ffi (1.9.23)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
     fog-core (1.45.0)
@@ -114,7 +114,7 @@ GEM
       fog-json (>= 1.0)
       ipaddress (>= 0.8)
     formatador (0.2.5)
-    gettext (3.2.6)
+    gettext (3.2.9)
       locale (>= 2.0.5)
       text (>= 1.3.0)
     gettext-setup (0.30)
@@ -190,7 +190,7 @@ GEM
     os (0.9.6)
     pager (1.0.1)
     parallel (1.12.1)
-    parallel_tests (2.21.1)
+    parallel_tests (2.21.2)
       parallel
     pry (0.11.3)
       coderay (~> 1.1.0)
@@ -198,7 +198,7 @@ GEM
     pry-byebug (3.4.3)
       byebug (>= 9.0, < 9.1)
       pry (~> 0.10)
-    pry-doc (0.13.1)
+    pry-doc (0.13.3)
       pry (~> 0.11)
       yard (~> 0.9.11)
     public_suffix (3.0.2)
@@ -212,7 +212,8 @@ GEM
       puppet (>= 2.7.16)
       rest-client (~> 1.8.0)
     puppet-lint (2.3.3)
-    puppet-strings (1.1.1)
+    puppet-strings (1.2.1)
+      rgen
       yard (~> 0.9.5)
     puppet-syntax (2.4.1)
       rake
@@ -235,7 +236,7 @@ GEM
       multi_json (~> 1.10)
       puppet_forge (~> 2.2.8)
     rake (12.3.0)
-    rb-fsevent (0.10.2)
+    rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
     rb-readline (0.5.5)
@@ -243,7 +244,7 @@ GEM
       ffi
     rbnacl-libsodium (1.0.15.1)
       rbnacl (>= 3.0.1)
-    rbvmomi (1.11.6)
+    rbvmomi (1.11.7)
       builder (~> 3.0)
       json (>= 1.8)
       nokogiri (~> 1.5)
@@ -255,6 +256,7 @@ GEM
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
     retriable (2.1.0)
+    rgen (0.8.2)
     rspec (3.7.0)
       rspec-core (~> 3.7.0)
       rspec-expectations (~> 3.7.0)
@@ -270,7 +272,7 @@ GEM
     rspec-mocks (3.7.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.7.0)
-    rspec-puppet (2.6.9)
+    rspec-puppet (2.6.11)
       rspec
     rspec-puppet-facts (0.12.0)
       facter
@@ -281,8 +283,7 @@ GEM
       ansi
       ast
     ruby-progressbar (1.9.0)
-    semantic_puppet (1.0.1)
-      gettext-setup (>= 0.3)
+    semantic_puppet (1.0.2)
     serverspec (2.41.3)
       multi_json
       rspec (~> 3.0)
@@ -299,7 +300,7 @@ GEM
       beaker-puppet (~> 0.8.0)
       beaker-puppet_install_helper (~> 0.6)
     simp-build-helpers (0.1.1)
-    simp-rake-helpers (5.3.0)
+    simp-rake-helpers (5.4.1)
       beaker (~> 3.14)
       beaker-rspec (~> 6.1)
       bundler (~> 1.14)
