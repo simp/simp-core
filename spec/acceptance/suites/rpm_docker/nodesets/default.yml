@@ -114,6 +114,10 @@ HOSTS:
       # ...except yum and python-urlgrabber, which yum-plugin-ovl has dependencies on
       - 'cd /root; yum -x yum -x python-urlgrabber downgrade -y *'
 
+      # Work around bug https://bugzilla.redhat.com/show_bug.cgi?id=1217477
+      # This does *not* update the SELinux packages, so it is safe
+      - 'yum --enablerepo=updates --enablerepo=base update -y git curl nss'
+
       # Getting rid of package conflicts
       - '\cp -a /etc/ssh /root'
       - 'yum install -y openssh-server'
