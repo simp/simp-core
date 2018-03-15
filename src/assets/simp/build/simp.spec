@@ -122,7 +122,6 @@ Requires: pupmod-camptocamp-systemd >= 1.0.0
 Requires: pupmod-cristifalcas-journald >= 0.5.0
 Requires: pupmod-elastic-elasticsearch >= 5.2.0
 Requires: pupmod-elastic-logstash >= 5.2.1
-Requires: pupmod-electrical-file_concat >= 1.0.1-2016
 Requires: pupmod-herculesteam-augeasproviders_mounttab >= 2.0.1-2016
 Requires: pupmod-herculesteam-augeasproviders_nagios >= 2.0.1-2016
 Requires: pupmod-herculesteam-augeasproviders_pam >= 2.0.3-2016
@@ -149,6 +148,11 @@ Requires: pupmod-simp-simp_nfs >= 0.0.3
 Requires: pupmod-simp-simp_snmpd >= 0.0.1
 Requires: pupmod-simp-vnc >= 6.0.0-2016
 Requires: pupmod-simp-vsftpd >= 7.0.0-2016
+
+# The following line ensures the OBE pupmod-electrical-file_concat
+# package is removed when simp-extras package is upgraded from
+# 6.0.0 or 6.1.0.
+Obsoletes: pupmod-electrical-file_concat <= 1.0.1-2016
 
 %description
 Metapackage for installing everything needed for a full SIMP system
@@ -217,6 +221,9 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Thu Mar 15 2018 Liz Nemsick <lnemsick.simp@gmail.com> - 6.2.0-0
+- Obsolete pupmod-electrical-file_concat in simp-extras package
+
 * Tue Feb 20 2018 Liz Nemsick <lnemsick.simp@gmail.com> - 6.2.0-0
 - Obsolete pupmod-simp-activemq and pupmod-simp-mcollective in
   simp package
