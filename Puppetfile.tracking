@@ -63,22 +63,6 @@ mod 'elastic-logstash',
   :git => 'https://github.com/simp/puppet-logstash',
   :tag => '5.3.0'
 
-mod 'electrical-file_concat',
-  #FIXME NOW.  WE NEED TO RELEASE A 'simp' VERSION
-  # This is a bit messy.  This project has 3 tags that are
-  # all version 1.0.1, but slightly different IN MEANINGFUL
-  # WAYS:
-  #   '1.0.1 from the owner
-  #   'simp6.0.0-1.0.1' from SIMP team for SIMP6 adds ensure_newline
-  #     and autorequire in file_concat type
-  #   'simp-1.0.1' from SIMP team also for SIMP6 adds ensure_newline
-  #     and autorequire in file_concat type
-  # We are going to use the last SIMP team release, until
-  # file_concat gets updated and we can get out
-  # of this mess.
-  :git => 'https://github.com/simp/puppet-lib-file_concat',
-  :tag => 'simp-1.0.1'
-
 mod 'herculesteam-augeasproviders_apache',
   :git => 'https://github.com/simp/augeasproviders_apache',
   :tag => '2.0.2'
