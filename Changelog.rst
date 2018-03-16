@@ -72,7 +72,10 @@ Known Bugs
 * The ``krb5`` module may have issues in some cases, validation pending
 * The graphical ``switch user`` functionality does not work. We are working
   with the vendor to discover a solution
-
+* simp_options::selinux does not control if the simp selinux module is included
+  when the simp scenario is used. The knockout prefix must also be used
+  to remove it from the scenario maps.  - `SIMP-3858`_
 
 .. _FACT-1732: https://tickets.puppetlabs.com/browse/FACT-1732
+.. _SIMP-3858: https://simp-project.atlassian.net/browse/SIMP-3858
 .. _file bugs: https://simp-project.atlassian.net
