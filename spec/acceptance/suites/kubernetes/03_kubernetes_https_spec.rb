@@ -90,7 +90,7 @@ describe 'simp_kubernetes' do
 
   context 'use kubernetes' do
     it 'should deploy a nginx service' do
-      scp_to(controller, 'spec/acceptance/suites/kubernetes/files/test-nginx_deployment.yaml','/root/test-nginx_deployment.yaml')
+      scp_to(controller, 'spec/acceptance/suites/kubernetes/manifests/test-nginx_deployment.yaml','/root/test-nginx_deployment.yaml')
       on(controller, 'kubectl create -f /root/test-nginx_deployment.yaml')
     end
     it 'should delete it' do

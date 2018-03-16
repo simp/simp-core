@@ -78,15 +78,24 @@ if not File.directory?(File.join(fixture_path,'modules',module_name)) then
   FileUtils.mkdir_p(File.join(fixture_path,'modules',module_name))
 end
 
+# Set up some default facts
+default_facts = {
+  puppetversion: Puppet.version,
+  facterversion: Facter.version,
+}
+default_facts_path = File.expand_path(File.join(File.dirname(__FILE__), 'default_facts.yml'))
+default_module_facts_path = File.expand_path(File.join(File.dirname(__FILE__), 'default_module_facts.yml'))
+
+if File.exist?(default_facts_path) && File.readable?(default_facts_path)
+  default_facts.merge!(YAML.safe_load(File.read(default_facts_path)))
+end
+
+if File.exist?(default_module_facts_path) && File.readable?(default_module_facts_path)
+  default_facts.merge!(YAML.safe_load(File.read(default_module_facts_path)))
+end
+
 RSpec.configure do |c|
-  # If nothing else...
-  c.default_facts = {
-    :production => {
-      #:fqdn           => 'production.rspec.test.localdomain',
-      :path           => '/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin',
-      :concat_basedir => '/tmp'
-    }
-  }
+  c.default_facts = default_facts
 
   c.mock_framework = :rspec
   c.mock_with :mocha

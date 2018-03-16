@@ -14,7 +14,8 @@ describe 'simp_kubernetes' do
   cluster      = kube_masters.map{|h| fact_on(h,'fqdn') }
 
   it 'classify nodes' do
-    base_hiera = YAML.load_file('spec/acceptance/suites/kubernetes/files/hieradata.yaml').merge({
+    base_hiera = YAML.load_file('spec/acceptance/suites/kubernetes/files/hieradata.yaml').merge(
+      {
         'simp_options::puppet::server'  => master_fqdn,
         'simp_options::puppet::ca'      => master_fqdn,
         'simp::yum::servers'            => [master_fqdn],
@@ -47,8 +48,6 @@ describe 'simp_kubernetes' do
       }
     EOF
     create_remote_file(master, '/etc/puppetlabs/code/environments/production/manifests/site.pp', site_pp)
-
-    # fix perms
     on(master, 'chown -R root.puppet /etc/puppetlabs/code/environments/production/{hieradata,manifests}')
   end
 
@@ -76,7 +75,7 @@ describe 'simp_kubernetes' do
 
   context 'use kubernetes' do
     it 'should deploy a nginx service' do
-      scp_to(controller, 'spec/acceptance/suites/kubernetes/files/test-nginx_deployment.yaml','/root/test-nginx_deployment.yaml')
+      scp_to(controller, 'spec/acceptance/suites/kubernetes/manifests/test-nginx_deployment.yaml','/root/test-nginx_deployment.yaml')
       on(controller, 'kubectl create -f /root/test-nginx_deployment.yaml')
     end
     it 'should delete it' do
