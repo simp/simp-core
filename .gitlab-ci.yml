@@ -1,48 +1,73 @@
 ---
+.cache_bundler: &cache_bundler
+  cache:
+    untracked: true
+    # A broad attempt at caching between runs (ala Travis CI)
+    key: "${CI_PROJECT_NAMESPACE}__bundler"
+    paths:
+      - '.vendor'
+      - 'vendor'
+
+.setup_bundler_env: &setup_bundler_env
+  before_script:
+    - 'echo Files in cache: $(find .vendor | wc -l) || :'
+    - 'export GEM_HOME=.vendor/gem_install'
+    - 'export BUNDLE_CACHE_PATH=.vendor/bundler'
+    - 'declare GEM_BUNDLER_VER=(-v ''~> ${BUNDLER_VERSION:-1.16.0}'')'
+    - declare GEM_INSTALL=(gem install --no-document)
+    - declare BUNDLER_INSTALL=(bundle install --no-binstubs --jobs $(nproc) --path=.vendor "${FLAGS[@]}")
+    - gem list -ie "${GEM_BUNDLE_VER[@]}" --silent bundler || "${GEM_INSTALL[@]}" --local "${GEM_BUNDLE_VER[@]}" bundler || "${GEM_INSTALL[@]}" "${GEM_BUNDLE_VER[@]}" bundler
+    - 'rm -rf pkg/ || :'
+    - bundle check || rm -f Gemfile.lock && ("${BUNDLER_INSTALL[@]}" --local || "${BUNDLER_INSTALL[@]}")
+
 stages:
   - acceptance
 
-default-test:
+
+
+default:
   stage: acceptance
   tags:
     - beaker
+  <<: *cache_bundler
+  <<: *setup_bundler_env
   script:
-    - rm Gemfile.lock || true
-    - bundle install --no-binstubs --path=vendor
     - bundle exec rake beaker:suites[default]
 
-rpm_el6-test:
+forge_install:
   stage: acceptance
   tags:
     - beaker
+  <<: *cache_bundler
+  <<: *setup_bundler_env
   script:
-    - rm Gemfile.lock || true
-    - bundle install --no-binstubs --path=vendor
-    - bundle exec rake beaker:suites[rpm_el6]
-
-rpm_el7-test:
-  stage: acceptance
-  tags:
-    - beaker
-  script:
-    - rm Gemfile.lock || true
-    - bundle install --no-binstubs --path=vendor
-    - bundle exec rake beaker:suites[rpm_el7]
-
-forge_install-test:
-  stage: acceptance
-  tags:
-    - beaker
-  script:
-    - rm Gemfile.lock || true
-    - bundle install --no-binstubs --path=vendor
     - bundle exec rake beaker:suites[forge_install]
+
+rpm_el6:
+  stage: acceptance
+  tags:
+    - beaker
+  <<: *cache_bundler
+  <<: *setup_bundler_env
+  script:
+    - bundle exec rake beaker:suites[install_from_rpm,el6_server]
+
+rpm_el7:
+  stage: acceptance
+  tags:
+    - beaker
+  <<: *cache_bundler
+  <<: *setup_bundler_env
+  script:
+    - bundle exec rake beaker:suites[install_from_rpm,el7_server]
 
 # Just gonna comment this one out for now...
 # acceptance-rpm_docker:
 #   stage: acceptance
 #   tags:
 #     - beaker
+#   <<: *cache_bundler
+#   <<: *setup_bundler_env
 #   script:
 #     - rm Gemfile.lock || true
 #     - bundle install --no-binstubs --path=vendor
