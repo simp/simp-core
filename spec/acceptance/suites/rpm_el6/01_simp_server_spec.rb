@@ -17,7 +17,7 @@
 #
 # BEAKER_puppet_repo
 #     default = false; this means that your repos include a version of puppet
-#              in them to install.  (The package cloud dependency repo has 
+#              in them to install.  (The package cloud dependency repo has
 #              a version of puppet in it.)
 #     true    = It downloads and installs the puppet repo definition and will use
 #             the latest version of puppet.
@@ -43,7 +43,7 @@ describe 'install SIMP via rpm' do
   end
 
   context 'master' do
-    let(:simp_conf_template) { File.read(File.open('spec/acceptance/suites/rpm_el6/files/simp_conf.yaml.erb')) }
+    let(:simp_conf_template) { File.read(File.open('spec/acceptance/suites/common_files/simp_conf.yaml.erb')) }
     masters.each do |master|
       it 'should set up SIMP repositories' do
         master.install_package('epel-release')

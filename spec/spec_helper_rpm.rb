@@ -28,13 +28,12 @@ end
 # Install the packagecloud yum repos
 # See https://packagecloud.io/simp-project/ for the reponame key
 def internet_simprepo(host, reponame)
-    warn('='*72)
-    warn("Using Internet repos from packagecloud for testing version #{reponame}")
-    warn('='*72)
+  warn('='*72)
+  warn("Using Internet repos from packagecloud for testing version #{reponame}")
+  warn('='*72)
 
-    on(host, "curl -s https://packagecloud.io/install/repositories/simp-project/#{reponame}/script.rpm.sh | bash")
-    on(host, "curl -s https://packagecloud.io/install/repositories/simp-project/#{reponame}_Dependencies/script.rpm.sh | bash")
-    internet_repo = true
+  on(host, "curl -s https://packagecloud.io/install/repositories/simp-project/#{reponame}/script.rpm.sh | bash")
+  on(host, "curl -s https://packagecloud.io/install/repositories/simp-project/#{reponame}_Dependencies/script.rpm.sh | bash")
 end
 
 def copy_repo(host,reponame)
