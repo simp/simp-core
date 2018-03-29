@@ -1,1 +1,0 @@
-../default/00_simp_server_install_spec.rb

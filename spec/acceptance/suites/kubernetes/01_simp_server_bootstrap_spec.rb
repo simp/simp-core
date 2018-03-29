@@ -1,1 +1,0 @@
-../default/01_simp_server_bootstrap_spec.rb
