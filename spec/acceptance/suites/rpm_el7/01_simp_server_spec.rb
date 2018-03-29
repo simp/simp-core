@@ -54,7 +54,11 @@ describe 'install SIMP via rpm' do
       use_puppet_repo = ENV['BEAKER_puppet_repo'] || false
 
       if use_puppet_repo
-        master.install_package('http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm')
+        if agent.host_hash[:platform] =~ /el-7/
+          agent.install_package('http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm')
+        else
+          agent.install_package('http://yum.puppetlabs.com/puppetlabs-release-pc1-el-6.noarch.rpm')
+        end
       end
 
       it 'should install simp' do
@@ -66,39 +70,24 @@ describe 'install SIMP via rpm' do
         # grub password: H.SxdcuyF56G75*3ww*HF#9i-eDM3Dp5
         # ldap root password: Q*AsdtFlHSLp%Q3tsSEc3vFbFx5Vwe58
         create_remote_file(master, '/root/simp_conf.yaml', ERB.new(simp_conf_template).result(binding))
-        on(master, 'simp config -a /root/simp_conf.yaml --quiet --skip-safety-save')
+        cmd = [
+          'simp config',
+          '-a /root/simp_conf.yaml',
+          '--quiet',
+          '--skip-safety-save',
+          'grub::password=s00persekr3t%',
+          'simp_openldap::server::conf::rootpw=s00persekr3t%'
+        ].join(' ')
+        on(master, cmd)
       end
 
       it 'should provide default hieradata to make beaker happy' do
-        create_remote_file(master, '/etc/puppetlabs/code/environments/simp/hieradata/default.yaml', {
-          'sudo::user_specifications' => {
-            'vagrant_all' => {
-              'user_list' =>  ['vagrant'],
-              'cmnd'      =>  ['ALL'],
-              'passwd'    =>  false,
-            },
-          },
-          'pam::access::users' => {
-            'defaults' => {
-              'origins'    => ['ALL'],
-              'permission' =>  '+'
-            },
-            'vagrant' => nil
-          },
-          'ssh::server::conf::permitrootlogin'    =>  true,
-          'ssh::server::conf::authorizedkeysfile' =>  '.ssh/authorized_keys',
-          # The following settings are because $server_facts['serverip'] is
-          # incorrect in a beaker/vagrant (mutli-interface) environment
-          'simp::puppet_server_hosts_entry'       => false,
-          'simp::rsync_stunnel'                   => master_fqdn,
-          # Make sure puppet doesn't run (hopefully)
-          'pupmod::agent::cron::minute'           => '0',
-          'pupmod::agent::cron::hour'             => '0',
-          'pupmod::agent::cron::weekday'          => '0',
-          'pupmod::agent::cron::month'            => '1',
-          }.to_yaml
-        )
+        beaker_hiera = YAML.load(File.read('spec/acceptance/common_files/beaker_hiera.yaml'))
+        hiera        = beaker_hiera.merge( 'simp::rsync_stunnel' => master_fqdn )
+
+        create_remote_file(master, '/etc/puppetlabs/code/environments/simp/hieradata/default.yaml', hiera)
       end
+
       it 'should enable autosign' do
         on(master, 'puppet config --section master set autosign true')
       end
@@ -114,8 +103,11 @@ describe 'install SIMP via rpm' do
         master.reboot
         sleep(240)
       end
-      it 'should have puppet runs with no changes' do
+
+      it 'should settle after reboot' do
         on(master, '/opt/puppetlabs/bin/puppet agent -t', :acceptable_exit_codes => [0,2,4,6])
+      end
+      it 'should have puppet runs with no changes' do
         on(master, '/opt/puppetlabs/bin/puppet agent -t', :acceptable_exit_codes => [0] )
       end
       it 'should generate agent certs' do
@@ -129,9 +121,6 @@ describe 'install SIMP via rpm' do
     end
   end
 
-  # context 'classify nodes' do
-  # end
-
   context 'agents' do
     agents.each do |agent|
       it 'should install the agent' do
@@ -139,15 +128,13 @@ describe 'install SIMP via rpm' do
           agent.install_package('http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm')
         else
           agent.install_package('http://yum.puppetlabs.com/puppetlabs-release-pc1-el-6.noarch.rpm')
-          # the portreserve service will fail unless something is configured
-          on(agent, 'mkdir -p /etc/portreserve')
-          on(agent, 'echo rndc/tcp > /etc/portreserve/named')
         end
         agent.install_package('epel-release')
         agent.install_package('puppet-agent')
         agent.install_package('net-tools')
         setup_repo(agent)
       end
+
       it 'should run the agent' do
         # require 'pry';binding.pry if fact_on(agent, 'hostname') == 'agent'
         on(agent, "/opt/puppetlabs/bin/puppet agent -t --ca_port 8141 --masterport 8140 --server #{master_fqdn}", :acceptable_exit_codes => [0,2,4,6])
@@ -156,6 +143,7 @@ describe 'install SIMP via rpm' do
         sleep(240)
         on(agent, '/opt/puppetlabs/bin/puppet agent -t', :acceptable_exit_codes => [0,2])
       end
+
       it 'should be idempotent' do
         sleep(30)
         on(agent, '/opt/puppetlabs/bin/puppet agent -t', :acceptable_exit_codes => [0])
