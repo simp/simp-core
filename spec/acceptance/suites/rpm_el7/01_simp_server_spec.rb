@@ -43,7 +43,7 @@ describe 'install SIMP via rpm' do
   end
 
   context 'master' do
-    let(:simp_conf_template) { File.read(File.open('spec/acceptance/suites/common_files/simp_conf.yaml.erb')) }
+    let(:simp_conf_template) { File.read(File.open('spec/acceptance/common_files/simp_conf.yaml.erb')) }
     masters.each do |master|
       it 'should set up SIMP repositories' do
         master.install_package('epel-release')

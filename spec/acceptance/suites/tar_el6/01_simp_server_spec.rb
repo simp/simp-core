@@ -56,8 +56,6 @@ describe 'install SIMP via tar' do
       use_puppet_repo = ENV['BEAKER_puppet_repo'] || false
       if use_puppet_repo
         master.install_package('http://yum.puppetlabs.com/puppetlabs-release-pc1-el-6.noarch.rpm')
-        on(master, 'mkdir -p /etc/portreserve')
-        on(master, 'echo rndc/tcp > /etc/portreserve/named')
       end
 
       #Set up the simp project dependency repo

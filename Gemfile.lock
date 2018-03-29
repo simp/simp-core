@@ -48,7 +48,7 @@ GEM
       stringify-hash (~> 0.0.0)
     beaker-hiera (0.1.1)
       stringify-hash (~> 0.0.0)
-    beaker-hostgenerator (1.1.8)
+    beaker-hostgenerator (1.1.9)
       deep_merge (~> 1.0)
       stringify-hash (~> 0.0.0)
     beaker-openstack (0.2.0)
