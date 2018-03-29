@@ -5,6 +5,12 @@ require 'simp/beaker_helpers'
 require 'beaker/puppet_install_helper'
 include Simp::BeakerHelpers
 
+if ENV['PUPPET_VERSION']
+  # have to tell run_puppet_install_helper the version of
+  # puppet-agent that corresponds to PUPPET_VERSION
+  ENV['PUPPET_INSTALL_VERSION'] = latest_puppet_agent_version_for(ENV['PUPPET_VERSION'])
+end
+
 unless ENV['BEAKER_provision'] == 'no'
   run_puppet_install_helper
 end
