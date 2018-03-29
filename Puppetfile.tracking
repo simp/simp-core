@@ -49,12 +49,6 @@ mod 'cristifalcas-journald',
   :git => 'https://github.com/simp/pupmod-simp-journald.git',
   :tag => '0.6.0'
 
-# This module is a dependency of simp-simp_kubernetes
-# FUTURE:  Add to simp.spec, to ensure packaged in ISO
-mod 'cristifalcas-etcd',
-  :git => 'https://github.com/simp/puppet-etcd',
-  :ref => '1.12.2'
-
 mod 'elastic-elasticsearch',
   :git => 'https://github.com/simp/puppet-elasticsearch',
   :tag => '5.5.0'
