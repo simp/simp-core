@@ -45,7 +45,7 @@ default_el7:
     - bundle exec rake beaker:suites[default,el7_server]
   retry: 2
 
-install_from_core_module_el6:
+forge_install_el6:
   stage: acceptance
   tags:
     - beaker
@@ -54,7 +54,7 @@ install_from_core_module_el6:
   script:
     - bundle exec rake beaker:suites[install_from_core_module,el6_server]
 
-install_from_core_module_el7:
+forge_install_el7:
   stage: acceptance
   tags:
     - beaker
