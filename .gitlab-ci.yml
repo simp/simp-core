@@ -45,14 +45,23 @@ default_el7:
     - bundle exec rake beaker:suites[default,el7_server]
   retry: 2
 
-forge_install:
+forge_install_el6:
   stage: acceptance
   tags:
     - beaker
   <<: *cache_bundler
   <<: *setup_bundler_env
   script:
-    - bundle exec rake beaker:suites[forge_install]
+    - bundle exec rake beaker:suites[forge_install,el6_server]
+
+forge_install_el7:
+  stage: acceptance
+  tags:
+    - beaker
+  <<: *cache_bundler
+  <<: *setup_bundler_env
+  script:
+    - bundle exec rake beaker:suites[forge_install,el7_server]
 
 rpm_el6:
   stage: acceptance
