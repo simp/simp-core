@@ -38,10 +38,10 @@ describe 'install SIMP via tarball' do
       end
 
       if use_puppet_repo
-        if agent.host_hash[:platform] =~ /el-7/
-          agent.install_package('http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm')
+        if master.host_hash[:platform] =~ /el-7/
+          master.install_package('http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm')
         else
-          agent.install_package('http://yum.puppetlabs.com/puppetlabs-release-pc1-el-6.noarch.rpm')
+          master.install_package('http://yum.puppetlabs.com/puppetlabs-release-pc1-el-6.noarch.rpm')
         end
       end
 
