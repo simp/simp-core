@@ -60,8 +60,8 @@ describe 'install SIMP via tarball' do
         cmd = [
           'simp config',
           '-a /root/simp_conf.yaml',
-          '--quiet',
-          '--skip-safety-save',
+          # '--quiet',
+          # '--skip-safety-save',
           'grub::password=s00persekr3t%',
           'simp_openldap::server::conf::rootpw=s00persekr3t%'
         ].join(' ')
