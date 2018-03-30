@@ -281,6 +281,24 @@ rubygem-net-ldap-doc:
 rubygem-net-ping:
   :rpm_name: rubygem-net-ping-1.6.2-1.el6.noarch.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-net-ping-1.6.2-1.el6.noarch.rpm
+rubygem-puppetserver-blankslate:
+  :rpm_name: rubygem-puppetserver-blankslate-2.1.2.4-1.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-puppetserver-blankslate-2.1.2.4-1.noarch.rpm
+rubygem-puppetserver-blankslate-doc:
+  :rpm_name: rubygem-puppetserver-blankslate-doc-2.1.2.4-1.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-puppetserver-blankslate-doc-2.1.2.4-1.noarch.rpm
+rubygem-puppetserver-parslet:
+  :rpm_name: rubygem-puppetserver-parslet-1.5.0-1.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-puppetserver-parslet-1.5.0-1.noarch.rpm
+rubygem-puppetserver-parslet-doc:
+  :rpm_name: rubygem-puppetserver-parslet-doc-1.5.0-1.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-puppetserver-parslet-doc-1.5.0-1.noarch.rpm
+rubygem-puppetserver-toml:
+  :rpm_name: rubygem-puppetserver-toml-0.1.2-1.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-puppetserver-toml-0.1.2-1.noarch.rpm
+rubygem-puppetserver-toml-doc:
+  :rpm_name: rubygem-puppetserver-toml-doc-0.1.2-1.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-puppetserver-toml-doc-0.1.2-1.noarch.rpm
 rubygem-rake:
   :rpm_name: rubygem-rake-0.8.7-2.1.el6.noarch.rpm
   :source: Red Hat Optional Repo

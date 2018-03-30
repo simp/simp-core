@@ -175,15 +175,15 @@ mod 'puppetlabs-puppet_authorization',
   :git => 'https://github.com/simp/puppetlabs-puppet_authorization.git',
   :tag => '0.4.0'
 
+mod 'puppetlabs-stdlib',
+  :git => 'https://github.com/simp/puppetlabs-stdlib',
+  :tag => '4.24.0'
+
 mod 'puppetlabs-translate',
   # FIXME LATER:  Can't use latest version, because puppetlabs-docker 1.0.5
   # requires puppetlabs-translate < 1.1.0.
   :git => 'https://github.com/simp/pupmod-puppetlabs-translate',
   :tag => '1.0.0'
-
-mod 'puppetlabs-stdlib',
-  :git => 'https://github.com/simp/puppetlabs-stdlib',
-  :tag => '4.24.0'
 
 mod 'razorsedge-snmp',
   :git => 'https://github.com/simp/puppet-snmp',
@@ -267,10 +267,10 @@ mod 'simp-gnome',
   :tag => '7.0.1'
 
 # SIMP has made changes to this module that don't exist upstream
-# and owns this version.  Beginnin with version 0.4.4, all module
+# and owns this version.  Beginning with version 0.4.4, all module
 # changes will be done on the 'master' branch.
 mod 'simp-haveged',
-  :git => 'https://github.com/simp/puppet-haveged',
+  :git => 'https://github.com/simp/pupmod-simp-haveged',
   :tag => '0.4.5'
 
 mod 'simp-incron',
@@ -480,6 +480,8 @@ mod 'simp-timezone',
   :tag => '4.0.0'
 
 mod 'simp-tpm',
+# FUTURE: Release 2.0.0 (version on master)
+# This functionality requires RedHat releases to tpm2-tools and tpm2-tss.
   :git => 'https://github.com/simp/pupmod-simp-tpm',
   :tag => '1.1.0'
 
@@ -507,19 +509,24 @@ mod 'simp-xinetd',
   :git => 'https://github.com/simp/pupmod-simp-xinetd',
   :tag => '4.0.2'
 
-# The code we need has not been released.  Until it is released,
-# we are using a ref spec that has that code.
+# FIXME: The code we have already packaged and published as an RPM
+# has not been released by trlinkin. Our RPM-packaged version contains
+# 1 non-essential commit beyond the 2.0.0 tag. Until trlinkin releases
+# a later version of this module, for RPM-generation, we are stuck with
+# this odd version only accessible via a git ref spec. For non-RPM
+# SIMP installs, however, the '2.0.0' version available on PuppetForge
+# will work just fine.
 mod 'trlinkin-nsswitch',
   :git => 'https://github.com/simp/puppet-nsswitch',
   :ref => 'f1d51eeecf3d95a3d38562a50743ee7c915d0624'
 
-mod 'voxpupuli-yum',
-  :git => 'https://github.com/simp/voxpupuli-yum',
-  :tag => 'v2.1.0'
-
 mod 'voxpupuli-archive',
   :git => 'https://github.com/simp/puppet-archive',
   :tag => 'v1.3.0'
+
+mod 'voxpupuli-yum',
+  :git => 'https://github.com/simp/voxpupuli-yum',
+  :tag => 'v2.1.0'
 
 mod 'vshn-gitlab',
   :git => 'https://github.com/simp/puppet-gitlab.git',
