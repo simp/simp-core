@@ -125,7 +125,7 @@ mod 'puppet-grafana',
 
 mod 'puppetlabs-apache',
   :git => 'https://github.com/simp/puppetlabs-apache',
-  :tag => '2.1.0'
+  :tag => '2.3.1'
 
 mod 'puppetlabs-concat',
   :git => 'https://github.com/simp/puppetlabs-concat',
@@ -136,14 +136,6 @@ mod 'puppetlabs-hocon',
   :tag => '0.9.4'
 
 mod 'puppetlabs-inifile',
-  #FIXME LATER
-  # This is a bit messy.  This project has 2 tags that are
-  # both version 1.6.0, but slightly different:
-  #   '1.6.0 from the owner
-  #   'simp6.0.0-1.6.0' from SIMP team for SIMP6
-  # We are going to use the last SIMP team release, until
-  # all the modules that uses inifile (e.g. puppetdb) update
-  # to 2.0.0 (already released) or later.
   :git => 'https://github.com/simp/puppetlabs-inifile',
   :tag => '2.2.0'
 
@@ -160,12 +152,6 @@ mod 'puppetlabs-java_ks',
   :tag => '1.6.0'
 
 mod 'puppetlabs-motd',
-  #FIXME Next motd release.
-  # Another messy problem. The 'simp6.0.0-1.4.0' tag has
-  # changes beyond the official 1.4.0 release from puppetlabs.
-  # Since the changes appear to be Debian-related, we're going
-  # to stay with the last SIMP-released version, and live with
-  # this inconsistency until the next motd release.
   :git => 'https://github.com/simp/puppetlabs-motd',
   :tag => '1.7.0'
 
