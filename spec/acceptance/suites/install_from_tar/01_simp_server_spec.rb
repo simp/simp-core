@@ -6,7 +6,7 @@ test_name 'puppetserver via tarball'
 
 describe 'install SIMP via tarball' do
 
-  use_puppet_repo = ENV['BEAKER_puppet_repo'] || false
+  use_puppet_repo = ENV['BEAKER_puppet_repo'] || true
 
   masters = hosts_with_role(hosts, 'master')
   agents  = hosts_with_role(hosts, 'agent')

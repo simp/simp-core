@@ -33,6 +33,7 @@ default:
   <<: *setup_bundler_env
   script:
     - bundle exec rake beaker:suites[default]
+  retry: 2
 
 forge_install:
   stage: acceptance
@@ -51,6 +52,7 @@ rpm_el6:
   <<: *setup_bundler_env
   script:
     - bundle exec rake beaker:suites[install_from_rpm,el6_server]
+  retry: 2
 
 rpm_el7:
   stage: acceptance
@@ -60,6 +62,7 @@ rpm_el7:
   <<: *setup_bundler_env
   script:
     - bundle exec rake beaker:suites[install_from_rpm,el7_server]
+  retry: 2
 
 # Just gonna comment this one out for now...
 # acceptance-rpm_docker:
