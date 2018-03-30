@@ -25,14 +25,24 @@ stages:
 
 
 
-default:
+default_el6:
   stage: acceptance
   tags:
     - beaker
   <<: *cache_bundler
   <<: *setup_bundler_env
   script:
-    - bundle exec rake beaker:suites[default]
+    - bundle exec rake beaker:suites[default,el6_server]
+  retry: 2
+
+default_el7:
+  stage: acceptance
+  tags:
+    - beaker
+  <<: *cache_bundler
+  <<: *setup_bundler_env
+  script:
+    - bundle exec rake beaker:suites[default,el7_server]
   retry: 2
 
 forge_install:
