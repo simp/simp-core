@@ -54,8 +54,6 @@ describe 'install SIMP via tarball' do
       end
 
       it 'should run simp config' do
-        # grub password: H.SxdcuyF56G75*3ww*HF#9i-eDM3Dp5
-        # ldap root password: Q*AsdtFlHSLp%Q3tsSEc3vFbFx5Vwe58
         create_remote_file(master, '/root/simp_conf.yaml', ERB.new(simp_conf_template).result(binding))
         cmd = [
           'simp config',
@@ -72,7 +70,7 @@ describe 'install SIMP via tarball' do
         beaker_hiera = YAML.load(File.read('spec/acceptance/common_files/beaker_hiera.yaml'))
         hiera        = beaker_hiera.merge( 'simp::rsync_stunnel' => master_fqdn )
 
-        create_remote_file(master, '/etc/puppetlabs/code/environments/simp/hieradata/default.yaml', hiera)
+        create_remote_file(master, '/etc/puppetlabs/code/environments/simp/hieradata/default.yaml', hiera.to_yaml)
       end
 
       it 'should enable autosign' do
