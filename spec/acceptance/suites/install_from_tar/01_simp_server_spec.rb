@@ -6,6 +6,8 @@ test_name 'puppetserver via tarball'
 
 describe 'install SIMP via tarball' do
 
+  use_puppet_repo = ENV['BEAKER_puppet_repo'] || false
+
   masters = hosts_with_role(hosts, 'master')
   agents  = hosts_with_role(hosts, 'agent')
   let(:domain)      { fact_on(master, 'domain') }
@@ -34,8 +36,6 @@ describe 'install SIMP via tarball' do
         end
         on(master, 'yum makecache')
       end
-
-      use_puppet_repo = ENV['BEAKER_puppet_repo'] || false
 
       if use_puppet_repo
         if agent.host_hash[:platform] =~ /el-7/
@@ -106,43 +106,36 @@ describe 'install SIMP via tarball' do
     end
   end
 
-  # context 'classify nodes' do
-  # end
-
   context 'agents' do
     agents.each do |agent|
       it 'should install the agent' do
-        use_puppet_repo = ENV['BEAKER_puppet_repo'] || false
         if use_puppet_repo
           if agent.host_hash[:platform] =~ /el-7/
             agent.install_package('http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm')
           else
             agent.install_package('http://yum.puppetlabs.com/puppetlabs-release-pc1-el-6.noarch.rpm')
-            # the portreserve service will fail unless something is configured
-            on(agent, 'mkdir -p /etc/portreserve')
-            on(agent, 'echo rndc/tcp > /etc/portreserve/named')
           end
         end
-        internet_deprepo(agent)
         agent.install_package('epel-release')
         agent.install_package('puppet-agent')
         agent.install_package('net-tools')
         internet_deprepo(agent)
       end
+
       it 'should run the agent' do
         sleep(30)
-        # require 'pry';binding.pry if fact_on(agent, 'hostname') == 'agent'
+
         on(agent, "/opt/puppetlabs/bin/puppet agent -t --ca_port 8141 --masterport 8140 --server #{master_fqdn}", :acceptable_exit_codes => [0,2,4,6])
         on(agent, '/opt/puppetlabs/bin/puppet agent -t', :acceptable_exit_codes => [0,2,4,6])
         agent.reboot
         sleep(240)
         on(agent, '/opt/puppetlabs/bin/puppet agent -t', :acceptable_exit_codes => [0,2])
       end
+
       it 'should be idempotent' do
         sleep(30)
         on(agent, '/opt/puppetlabs/bin/puppet agent -t', :acceptable_exit_codes => [0])
       end
     end
   end
-
 end

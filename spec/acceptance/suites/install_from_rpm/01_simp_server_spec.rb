@@ -6,6 +6,8 @@ test_name 'puppetserver via rpm'
 
 describe 'install SIMP via rpm' do
 
+  use_puppet_repo = ENV['BEAKER_puppet_repo'] || false
+
   masters = hosts_with_role(hosts, 'master')
   agents  = hosts_with_role(hosts, 'agent')
   let(:domain)      { fact_on(master, 'domain') }
@@ -26,8 +28,6 @@ describe 'install SIMP via rpm' do
         setup_repo(master)
         on(master, 'yum makecache')
       end
-
-      use_puppet_repo = ENV['BEAKER_puppet_repo'] || false
 
       if use_puppet_repo
         if agent.host_hash[:platform] =~ /el-7/
@@ -98,10 +98,12 @@ describe 'install SIMP via rpm' do
   context 'agents' do
     agents.each do |agent|
       it 'should install the agent' do
-        if agent.host_hash[:platform] =~ /el-7/
-          agent.install_package('http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm')
-        else
-          agent.install_package('http://yum.puppetlabs.com/puppetlabs-release-pc1-el-6.noarch.rpm')
+        if use_puppet_repo
+          if agent.host_hash[:platform] =~ /el-7/
+            agent.install_package('http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm')
+          else
+            agent.install_package('http://yum.puppetlabs.com/puppetlabs-release-pc1-el-6.noarch.rpm')
+          end
         end
         agent.install_package('epel-release')
         agent.install_package('puppet-agent')
@@ -110,7 +112,8 @@ describe 'install SIMP via rpm' do
       end
 
       it 'should run the agent' do
-        # require 'pry';binding.pry if fact_on(agent, 'hostname') == 'agent'
+        sleep(30)
+
         on(agent, "/opt/puppetlabs/bin/puppet agent -t --ca_port 8141 --masterport 8140 --server #{master_fqdn}", :acceptable_exit_codes => [0,2,4,6])
         on(agent, '/opt/puppetlabs/bin/puppet agent -t', :acceptable_exit_codes => [0,2,4,6])
         agent.reboot
@@ -124,5 +127,4 @@ describe 'install SIMP via rpm' do
       end
     end
   end
-
 end
