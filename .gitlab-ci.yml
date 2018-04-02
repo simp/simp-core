@@ -21,12 +21,12 @@
     - bundle check || rm -f Gemfile.lock && ("${BUNDLER_INSTALL[@]}" --local || "${BUNDLER_INSTALL[@]}")
 
 stages:
-  - acceptance
+  - integration
 
 
 
 default_el6:
-  stage: acceptance
+  stage: integration
   tags:
     - beaker
   <<: *cache_bundler
@@ -36,7 +36,7 @@ default_el6:
   retry: 2
 
 default_el7:
-  stage: acceptance
+  stage: integration
   tags:
     - beaker
   <<: *cache_bundler
@@ -45,26 +45,8 @@ default_el7:
     - bundle exec rake beaker:suites[default,el7_server]
   retry: 2
 
-forge_install_el6:
-  stage: acceptance
-  tags:
-    - beaker
-  <<: *cache_bundler
-  <<: *setup_bundler_env
-  script:
-    - bundle exec rake beaker:suites[install_from_core_module,el6_server]
-
-forge_install_el7:
-  stage: acceptance
-  tags:
-    - beaker
-  <<: *cache_bundler
-  <<: *setup_bundler_env
-  script:
-    - bundle exec rake beaker:suites[install_from_core_module,el7_server]
-
 rpm_el6:
-  stage: acceptance
+  stage: integration
   tags:
     - beaker
   <<: *cache_bundler
@@ -74,7 +56,7 @@ rpm_el6:
   retry: 2
 
 rpm_el7:
-  stage: acceptance
+  stage: integration
   tags:
     - beaker
   <<: *cache_bundler
@@ -82,6 +64,27 @@ rpm_el7:
   script:
     - bundle exec rake beaker:suites[install_from_rpm,el7_server]
   retry: 2
+
+forge_install_el6:
+  stage: integration
+  tags:
+    - beaker
+  <<: *cache_bundler
+  <<: *setup_bundler_env
+  script:
+    - bundle exec rake beaker:suites[install_from_core_module,el6_server]
+  retry: 2
+
+forge_install_el7:
+  stage: integration
+  tags:
+    - beaker
+  <<: *cache_bundler
+  <<: *setup_bundler_env
+  script:
+    - bundle exec rake beaker:suites[install_from_core_module,el7_server]
+  retry: 2
+
 
 # Just gonna comment this one out for now...
 # acceptance-rpm_docker:

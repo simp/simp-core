@@ -86,20 +86,28 @@ describe 'install puppetserver from puppet modules' do
       on(master, 'chmod -R g+rX /etc/puppetlabs/code/environments/production/{hieradata,manifests} /var/simp/environments/production/site_files/modules/pki_files/files/keydist')
       on(master, 'chown -R puppet.puppet /var/simp/environments/production/simp_autofiles')
       on(master, 'puppet resource service puppetserver ensure=running')
+
+      on(master, 'puppet generate types', :accept_all_exit_codes => true)
     end
   end
 
   context 'agents' do
     agents.each do |agent|
+      it 'should configure the agent' do
+        on(agent, "puppet config set server #{master_fqdn}")
+        on(agent, 'puppet config set masterport 8140')
+        on(agent, 'puppet config set ca_port 8141')
+      end
       it "should run the agent on #{agent}" do
         # In the install_from_core_module test, pluginsync causes a failure here
         #   due to https://github.com/voxpupuli/puppet-archive/issues/320
         #   puppet/archive is not typically in the SIMP distro
         # Also get a cert and sign it
-        on(agent, "puppet agent -t --ca_port 8141 --masterport 8140 --server #{master_fqdn}", :acceptable_exit_codes => [0,1,2,4,6])
+        on(agent, 'puppet agent -t --noop', :acceptable_exit_codes => [0,1])
+        on(agent, 'puppet agent -t --noop', :acceptable_exit_codes => [0,1,4])
         Simp::TestHelpers.wait(10)
         # Run puppet and expect changes
-        on(agent, "puppet agent -t --ca_port 8141 --masterport 8140 --server #{master_fqdn}", :acceptable_exit_codes => [0,2,4,6])
+        on(agent, 'puppet agent -t', :acceptable_exit_codes => [0,2,4,6])
         # Allow failures one more time...
         on(agent, 'puppet agent -t', :acceptable_exit_codes => [0,2,4,6])
 
