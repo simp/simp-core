@@ -12,7 +12,7 @@ describe 'install puppetserver from PuppetForge' do
     # Set up a puppetserver
     class { 'pupmod::master':
       firewall     => true,
-      trusted_nets => ['ALL'],
+      trusted_nets => ['0.0.0.0/0'],
     }
     # pupmod::master::autosign { '*': entry => '*' }
     exec { 'set autosign':
@@ -89,17 +89,16 @@ describe 'install puppetserver from PuppetForge' do
   context 'agents' do
     agents.each do |agent|
       it "should run the agent on #{agent}" do
-        # require 'pry';binding.pry if fact_on(agent, 'hostname') == 'agent'
         on(agent, "puppet agent -t --ca_port 8141 --server #{master_fqdn}", :acceptable_exit_codes => [0,2,4,6])
-        Simp::TestHelpers.wait(30)
+        # Simp::TestHelpers.wait(30)
         on(agent, "puppet agent -t --ca_port 8141 --server #{master_fqdn}", :acceptable_exit_codes => [0,2,4,6])
         agent.reboot
-        Simp::TestHelpers.wait(240)
-        on(agent, "puppet agent -t --ca_port 8141 --server #{master_fqdn}", :acceptable_exit_codes => [0,2])
-      end
-      it 'should be idempotent' do
-        Simp::TestHelpers.wait(30)
-        on(agent, 'puppet agent -t', :acceptable_exit_codes => [0])
+        # Simp::TestHelpers.wait(240)
+        retry_on(agent, 'puppet agent -t',
+          :desired_exit_codes => [0,2],
+          :retry_interval     => 15,
+          :max_retries        => 3
+         )
       end
     end
   end

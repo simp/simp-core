@@ -27,7 +27,7 @@ describe 'use the simp::server::ldap class to create and ldap environment' do
           }
         EOF
 
-        hiera = YAML.load(on(master, 'cat /etc/puppetlabs/code/environments/production/hieradata/default.yaml'))
+        hiera = YAML.load(on(master, 'cat /etc/puppetlabs/code/environments/production/hieradata/default.yaml').stdout)
         default_yaml = hiera.merge(
           'simp_options::ldap' => true,
           'simp_options::sssd' => true,

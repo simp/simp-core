@@ -69,7 +69,6 @@ describe 'install SIMP via rpm' do
       it 'should run simp bootstrap' do
         # Remove the lock file because we've already added the vagrant user stuff
         on(master, 'rm -f /root/.simp/simp_bootstrap_start_lock')
-
         on(master, 'simp bootstrap --no-verbose -u --remove_ssldir > /dev/null')
       end
 
@@ -112,18 +111,15 @@ describe 'install SIMP via rpm' do
       end
 
       it 'should run the agent' do
-        sleep(30)
-
         on(agent, "/opt/puppetlabs/bin/puppet agent -t --ca_port 8141 --masterport 8140 --server #{master_fqdn}", :acceptable_exit_codes => [0,2,4,6])
         on(agent, '/opt/puppetlabs/bin/puppet agent -t', :acceptable_exit_codes => [0,2,4,6])
         agent.reboot
-        sleep(240)
-        on(agent, '/opt/puppetlabs/bin/puppet agent -t', :acceptable_exit_codes => [0,2])
-      end
-
-      it 'should be idempotent' do
-        sleep(30)
-        on(agent, '/opt/puppetlabs/bin/puppet agent -t', :acceptable_exit_codes => [0])
+        # sleep(240)
+        retry_on(agent, '/opt/puppetlabs/bin/puppet agent -t',
+          :desired_exit_codes => [0,2],
+          :retry_interval     => 15,
+          :max_retries        => 3
+         )
       end
     end
   end

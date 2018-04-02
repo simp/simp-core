@@ -49,7 +49,7 @@ describe 'install rsync from GitHub (not rpm) and test simp::server::rsync_share
       end
 
       it 'classify nodes' do
-        hiera = YAML.load(on(master, 'cat /etc/puppetlabs/code/environments/production/hieradata/default.yaml'))
+        hiera = YAML.load(on(master, 'cat /etc/puppetlabs/code/environments/production/hieradata/default.yaml').stdout)
         default_yaml = hiera.merge(
           'simp_options::rsync' => true,
           'simp_options::clamav' => true,
