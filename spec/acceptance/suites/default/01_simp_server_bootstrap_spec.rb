@@ -103,9 +103,10 @@ describe 'install puppetserver from puppet modules' do
         #   due to https://github.com/voxpupuli/puppet-archive/issues/320
         #   puppet/archive is not typically in the SIMP distro
         # Also get a cert and sign it
-        on(agent, 'puppet agent -t --noop', :acceptable_exit_codes => [0,1])
+        Simp::TestHelpers.wait(30)
         on(agent, 'puppet agent -t --noop', :acceptable_exit_codes => [0,1,4])
-        Simp::TestHelpers.wait(10)
+        on(agent, 'puppet agent -t --noop', :acceptable_exit_codes => [0,1,4])
+        Simp::TestHelpers.wait(30)
         # Run puppet and expect changes
         on(agent, 'puppet agent -t', :acceptable_exit_codes => [0,2,4,6])
         # Allow failures one more time...
