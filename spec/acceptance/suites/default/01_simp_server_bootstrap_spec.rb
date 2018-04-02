@@ -8,8 +8,9 @@ describe 'install puppetserver from PuppetForge' do
 
   agents      = hosts_with_role(hosts, 'agent')
   master_fqdn = fact_on(master, 'fqdn')
+
   master_manifest = <<-EOF
-    # Set up a puppetserver
+    # Use our puppet module to set up puppetserver
     class { 'pupmod::master':
       firewall     => true,
       trusted_nets => ['0.0.0.0/0'],
@@ -56,9 +57,11 @@ describe 'install puppetserver from PuppetForge' do
 
   context 'classify nodes' do
     site_pp = <<-EOF
+      # All nodes
       node default {
         include 'simp'
       }
+      # The puppetserver
       node /puppet/ {
         include 'simp'
         include 'simp::server'
@@ -89,15 +92,16 @@ describe 'install puppetserver from PuppetForge' do
   context 'agents' do
     agents.each do |agent|
       it "should run the agent on #{agent}" do
-        on(agent, "puppet agent -t --ca_port 8141 --server #{master_fqdn}", :acceptable_exit_codes => [0,2,4,6])
+        on(agent, "puppet agent -t --ca_port 8141 --masterport 8140 --server #{master_fqdn}", :acceptable_exit_codes => [0,2,4,6])
         # Simp::TestHelpers.wait(30)
-        on(agent, "puppet agent -t --ca_port 8141 --server #{master_fqdn}", :acceptable_exit_codes => [0,2,4,6])
+        on(agent, "puppet agent -t --ca_port 8141 --masterport 8140 --server #{master_fqdn}", :acceptable_exit_codes => [0,2,4,6])
         agent.reboot
         # Simp::TestHelpers.wait(240)
         retry_on(agent, 'puppet agent -t',
           :desired_exit_codes => [0,2],
           :retry_interval     => 15,
-          :max_retries        => 3
+          :max_retries        => 3,
+          :verbose            => true
          )
       end
     end

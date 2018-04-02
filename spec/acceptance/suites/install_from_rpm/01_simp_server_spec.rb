@@ -118,7 +118,8 @@ describe 'install SIMP via rpm' do
         retry_on(agent, '/opt/puppetlabs/bin/puppet agent -t',
           :desired_exit_codes => [0,2],
           :retry_interval     => 15,
-          :max_retries        => 3
+          :max_retries        => 3,
+          :verbose            => true
          )
       end
     end
