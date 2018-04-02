@@ -110,9 +110,20 @@ describe 'install SIMP via rpm' do
         setup_repo(agent)
       end
 
+      it 'should configure the agent' do
+        on(agent, "puppet config set server #{master_fqdn}")
+        on(agent, 'puppet config set masterport 8140')
+        on(agent, 'puppet config set ca_port 8141')
+      end
+
       it 'should run the agent' do
-        on(agent, "/opt/puppetlabs/bin/puppet agent -t --ca_port 8141 --masterport 8140 --server #{master_fqdn}", :acceptable_exit_codes => [0,2,4,6])
-        on(agent, '/opt/puppetlabs/bin/puppet agent -t', :acceptable_exit_codes => [0,2,4,6])
+        # Run puppet and expect changes
+        retry_on(agent, 'puppet agent -t',
+          :desired_exit_codes => [0,2],
+          :retry_interval     => 15,
+          :max_retries        => 5,
+          :verbose            => true
+        )
 
         agent.reboot
         # Wait for machine to come back up
@@ -120,10 +131,10 @@ describe 'install SIMP via rpm' do
 
         retry_on(agent, '/opt/puppetlabs/bin/puppet agent -t',
           :desired_exit_codes => [0,2],
-          :retry_interval     => 40,
+          :retry_interval     => 15,
           :max_retries        => 3,
           :verbose            => true
-         )
+        )
       end
     end
   end

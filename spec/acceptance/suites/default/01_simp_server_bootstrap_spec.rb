@@ -107,10 +107,14 @@ describe 'install puppetserver from puppet modules' do
         on(agent, 'puppet agent -t --noop', :acceptable_exit_codes => [0,1,4])
         on(agent, 'puppet agent -t --noop', :acceptable_exit_codes => [0,1,4])
         Simp::TestHelpers.wait(30)
+
         # Run puppet and expect changes
-        on(agent, 'puppet agent -t', :acceptable_exit_codes => [0,2,4,6])
-        # Allow failures one more time...
-        on(agent, 'puppet agent -t', :acceptable_exit_codes => [0,2,4,6])
+        retry_on(agent, 'puppet agent -t',
+          :desired_exit_codes => [0,2],
+          :retry_interval     => 15,
+          :max_retries        => 5,
+          :verbose            => true
+        )
 
         agent.reboot
         # Wait for machine to come back up
@@ -122,7 +126,7 @@ describe 'install puppetserver from puppet modules' do
           :retry_interval     => 15,
           :max_retries        => 3,
           :verbose            => true
-         )
+        )
       end
     end
   end
