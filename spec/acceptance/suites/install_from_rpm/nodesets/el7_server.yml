@@ -5,6 +5,7 @@ HOSTS:
       - master
       - default
       - simp_server
+      - agent
     platform:   el-7-x86_64
     box:        centos/7
     hypervisor: vagrant
