@@ -125,11 +125,14 @@ describe 'install SIMP via tarball' do
       it 'should run the agent' do
         on(agent, "/opt/puppetlabs/bin/puppet agent -t --ca_port 8141 --masterport 8140 --server #{master_fqdn}", :acceptable_exit_codes => [0,2,4,6])
         on(agent, '/opt/puppetlabs/bin/puppet agent -t', :acceptable_exit_codes => [0,2,4,6])
+
         agent.reboot
-        # sleep(240)
+        # Wait for machine to come back up
+        retry_on(agent, 'uptime', :retry_interval => 15 )
+
         retry_on(agent, '/opt/puppetlabs/bin/puppet agent -t',
           :desired_exit_codes => [0,2],
-          :retry_interval     => 15,
+          :retry_interval     => 30,
           :max_retries        => 3
          )
       end

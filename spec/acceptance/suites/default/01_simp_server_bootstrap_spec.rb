@@ -2,9 +2,9 @@ require 'spec_helper_integration'
 require 'beaker/puppet_install_helper'
 require 'yaml'
 
-test_name 'puppetserver via PuppetForge'
+test_name 'puppetserver'
 
-describe 'install puppetserver from PuppetForge' do
+describe 'install puppetserver from puppet modules' do
 
   agents      = hosts_with_role(hosts, 'agent')
   master_fqdn = fact_on(master, 'fqdn')
@@ -92,11 +92,22 @@ describe 'install puppetserver from PuppetForge' do
   context 'agents' do
     agents.each do |agent|
       it "should run the agent on #{agent}" do
+        # In the install_from_core_module test, pluginsync causes a failure here
+        #   due to https://github.com/voxpupuli/puppet-archive/issues/320
+        #   puppet/archive is not typically in the SIMP distro
+        # Also get a cert and sign it
+        on(agent, "puppet agent -t --ca_port 8141 --masterport 8140 --server #{master_fqdn}", :acceptable_exit_codes => [0,1,2,4,6])
+        Simp::TestHelpers.wait(10)
+        # Run puppet and expect changes
         on(agent, "puppet agent -t --ca_port 8141 --masterport 8140 --server #{master_fqdn}", :acceptable_exit_codes => [0,2,4,6])
-        # Simp::TestHelpers.wait(30)
-        on(agent, "puppet agent -t --ca_port 8141 --masterport 8140 --server #{master_fqdn}", :acceptable_exit_codes => [0,2,4,6])
+        # Allow failures one more time...
+        on(agent, 'puppet agent -t', :acceptable_exit_codes => [0,2,4,6])
+
         agent.reboot
-        # Simp::TestHelpers.wait(240)
+        # Wait for machine to come back up
+        retry_on(agent, 'uptime', :retry_interval => 15 )
+
+        # Wait for things to settle and stop making changes
         retry_on(agent, 'puppet agent -t',
           :desired_exit_codes => [0,2],
           :retry_interval     => 15,
