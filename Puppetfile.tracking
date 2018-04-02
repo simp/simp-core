@@ -410,10 +410,12 @@ mod 'simp-simp_grafana',
   :git => 'https://github.com/simp/pupmod-simp-simp_grafana',
   :ref => 'master'
 
-mod 'simp-simp_kubernetes',
-# FUTURE:  Release and add to simp.spec, to ensure packaged in ISO
-  :git => 'https://github.com/simp/pupmod-simp-simp_kubernetes',
-  :ref => 'master'
+# FIXME: This is commented out until the module is ready to be released.
+#  It has depencencies that have already been removed from the distribution.
+# mod 'simp-simp_kubernetes',
+# # FUTURE:  Release and add to simp.spec, to ensure packaged in ISO
+#   :git => 'https://github.com/simp/pupmod-simp-simp_kubernetes',
+#   :ref => 'master'
 
 mod 'simp-simp_logstash',
 # RELEASE ME

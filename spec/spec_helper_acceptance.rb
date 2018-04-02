@@ -2,18 +2,19 @@ require 'beaker-rspec'
 require 'tmpdir'
 require 'yaml'
 require 'simp/beaker_helpers'
-require 'beaker/puppet_install_helper'
 include Simp::BeakerHelpers
 
-if ENV['PUPPET_VERSION']
-  # have to tell run_puppet_install_helper the version of
-  # puppet-agent that corresponds to PUPPET_VERSION
-  ENV['PUPPET_INSTALL_VERSION'] = latest_puppet_agent_version_for(ENV['PUPPET_VERSION'])
+unless ENV['BEAKER_provision'] == 'no'
+  hosts.each do |host|
+    # Install Puppet
+    if host.is_pe?
+      install_pe
+    else
+      install_puppet
+    end
+  end
 end
 
-unless ENV['BEAKER_provision'] == 'no'
-  run_puppet_install_helper
-end
 
 RSpec.configure do |c|
   # ensure that environment OS is ready on each host
@@ -30,13 +31,12 @@ RSpec.configure do |c|
 
       # Generate and install PKI certificates on each SUT
       Dir.mktmpdir do |cert_dir|
-        run_fake_pki_ca_on( default, hosts, cert_dir )
-        hosts.each do |sut|
-          copy_pki_to( sut, cert_dir, '/etc/pki/simp-testing' )
-          on( sut, 'chown -R root:root /etc/pki/simp-testing')
-          on( sut, 'chmod -R ugo=rX /etc/pki/simp-testing')
-        end
+        run_fake_pki_ca_on(default, hosts, cert_dir )
+        hosts.each{ |sut| copy_pki_to(sut, cert_dir, '/etc/pki/simp-testing' )}
       end
+
+      # add PKI keys
+      copy_keydist_to(default)
     rescue StandardError, ScriptError => e
       if ENV['PRY']
         require 'pry'; binding.pry
