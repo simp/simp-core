@@ -29,15 +29,6 @@ rpm_el7-test:
     - bundle install --no-binstubs --path=vendor
     - bundle exec rake beaker:suites[rpm_el7]
 
-kubernetes-test:
-  stage: acceptance
-  tags:
-    - beaker
-  script:
-    - rm Gemfile.lock || true
-    - bundle install --no-binstubs --path=vendor
-    - bundle exec rake beaker:suites[kubernetes]
-
 forge_install-test:
   stage: acceptance
   tags:
