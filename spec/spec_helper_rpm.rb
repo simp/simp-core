@@ -18,9 +18,9 @@ def setup_repo(host)
   reponame = ENV['BEAKER_repo']
   reponame ||= '6_X'
   if reponame[0] == '/'
-    setup_repo=copy_repo(host,reponame)
+    setup_repo = copy_repo(host,reponame)
   else
-    setup_repo=internet_simprepo(host, reponame)
+    setup_repo = internet_simprepo(host, reponame)
   end
   setup_repo
 end

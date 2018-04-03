@@ -22,10 +22,10 @@ describe 'install SIMP via tarball' do
     end
     it 'should install the puppet repo' do
       if use_puppet_repo
-        if master.host_hash[:platform] =~ /el-7/
-          master.install_package('http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm')
+        if host.host_hash[:platform] =~ /el-7/
+          on(host, 'rpm -q puppetlabs-release-pc1 || yum install http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm -y')
         else
-          master.install_package('http://yum.puppetlabs.com/puppetlabs-release-pc1-el-6.noarch.rpm')
+          on(host, 'rpm -q puppetlabs-release-pc1 || yum install http://yum.puppetlabs.com/puppetlabs-release-pc1-el-6.noarch.rpm -y')
         end
       end
     end
