@@ -18,6 +18,15 @@ describe 'install SIMP via rpm' do
       on(host, "sed -i 's/enforce_for_root//g' /etc/pam.d/*")
       on(host, 'echo password | passwd root --stdin')
     end
+    it 'should install the puppet repo' do
+      if use_puppet_repo
+        if master.host_hash[:platform] =~ /el-7/
+          master.install_package('http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm')
+        else
+          master.install_package('http://yum.puppetlabs.com/puppetlabs-release-pc1-el-6.noarch.rpm')
+        end
+      end
+    end
   end
 
   context 'master' do
@@ -27,14 +36,6 @@ describe 'install SIMP via rpm' do
         master.install_package('epel-release')
         setup_repo(master)
         on(master, 'yum makecache')
-      end
-
-      if use_puppet_repo
-        if master.host_hash[:platform] =~ /el-7/
-          master.install_package('http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm')
-        else
-          master.install_package('http://yum.puppetlabs.com/puppetlabs-release-pc1-el-6.noarch.rpm')
-        end
       end
 
       it 'should install simp' do
@@ -97,13 +98,6 @@ describe 'install SIMP via rpm' do
   context 'agents' do
     agents.each do |agent|
       it 'should install the agent' do
-        if use_puppet_repo
-          if agent.host_hash[:platform] =~ /el-7/
-            agent.install_package('http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm')
-          else
-            agent.install_package('http://yum.puppetlabs.com/puppetlabs-release-pc1-el-6.noarch.rpm')
-          end
-        end
         agent.install_package('epel-release')
         agent.install_package('puppet-agent')
         agent.install_package('net-tools')
