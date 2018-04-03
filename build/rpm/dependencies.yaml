@@ -49,7 +49,14 @@
     - 'pupmod-puppetlabs-stdlib'
     - 'pupmod-puppetlabs-translate'
 
+# Make sure we create an RPM that fixes the obsoletes problem of
+# pupmod-elastic-elasticsearch-5.2.0-0 packaged for SIMP 6.1.0.
+# Since we are releasing a newer version, 5.4.0-0, we can fix
+# the problem by using the same obsoletes, here, but a newer
+# version of simp-rake-helpers.
 'elasticsearch':
+  :obsoletes:
+    'pupmod-elasticsearch-elasticsearch': '0.11.0-2016.1'
   :requires:
     # exclude pupmod-puppetlabs-apt
     - 'pupmod-richardc-datacat'
@@ -65,10 +72,26 @@
     # exclude pupmod-puppetlabs-apt
     - 'pupmod-puppetlabs-stdlib'
 
+# Make sure we create an RPM that fixes the obsoletes problem of
+# pupmod-puppet-grafana-3.0.0-0 packaged for SIMP 6.1.0.
+# Since we are releasing a newer version, 4.1.1-0, we can fix
+# the problem by using the same obsoletes, here, but a newer
+# version of simp-rake-helpers.
 'grafana':
+  :obsoletes:
+    'pupmod-bfraser-grafana': '2.5.0-2016.1'
   :external_dependencies:
     'rubygem-puppetserver-toml':
       :min: '0.1.2'
+
+# Make sure we create an RPM that fixes the obsoletes problem of
+# pupmod-elastic-logstash-5.2.1-0 packaged for SIMP 6.1.0.
+# Since we are releasing a newer version, 5.3.0-0, we can fix
+# the problem by using the same obsoletes, here, but a newer
+# version of simp-rake-helpers.
+'logstash':
+  :obsoletes:
+    'pupmod-elasticsearch-logstash': '2.0.0-2016'
 
 'motd':
   :requires:
@@ -94,9 +117,16 @@
     - 'pupmod-puppetlabs-postgresql'
     - 'pupmod-puppetlabs-stdlib'
 
+# Make sure we create an RPM that fixes the obsoletes problem of
+# pupmod-simp-timezone-4.0.0-0 packaged for SIMP 6.1.0.  Since
+# we are not yet releasing a newer version, we can fix the
+# problem by using the same obsoletes, here, but a newer release
+# (packaging version 1 instead of 0) and a newer version of
+# simp-rake-helpers.
 'timezone':
   :obsoletes:
     'pupmod-saz-timezone': '3.3.0-2016.1'
+  :release: '1'
   :requires:
-    # exclude pupmod-puppet-debconf
+    # exclude pupmod-stm-debconf
     - 'pupmod-puppetlabs-stdlib'
