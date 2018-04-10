@@ -18,9 +18,9 @@ def setup_repo(host)
   reponame = ENV['BEAKER_repo']
   reponame ||= '6_X'
   if reponame[0] == '/'
-    setup_repo=copy_repo(host,reponame)
+    setup_repo = copy_repo(host,reponame)
   else
-    setup_repo=internet_simprepo(host, reponame)
+    setup_repo = internet_simprepo(host, reponame)
   end
   setup_repo
 end
@@ -28,13 +28,12 @@ end
 # Install the packagecloud yum repos
 # See https://packagecloud.io/simp-project/ for the reponame key
 def internet_simprepo(host, reponame)
-    warn('='*72)
-    warn("Using Internet repos from packagecloud for testing version #{reponame}")
-    warn('='*72)
+  warn('='*72)
+  warn("Using Internet repos from packagecloud for testing version #{reponame}")
+  warn('='*72)
 
-    on(host, "curl -s https://packagecloud.io/install/repositories/simp-project/#{reponame}/script.rpm.sh | bash")
-    on(host, "curl -s https://packagecloud.io/install/repositories/simp-project/#{reponame}_Dependencies/script.rpm.sh | bash")
-    internet_repo = true
+  on(host, "curl -s https://packagecloud.io/install/repositories/simp-project/#{reponame}/script.rpm.sh | bash")
+  on(host, "curl -s https://packagecloud.io/install/repositories/simp-project/#{reponame}_Dependencies/script.rpm.sh | bash")
 end
 
 def copy_repo(host,reponame)

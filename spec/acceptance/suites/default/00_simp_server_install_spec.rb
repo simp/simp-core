@@ -26,7 +26,7 @@ test_name 'puppetserver via r10k'
 
 describe 'install environment via r10k and puppetserver' do
 
-  masters     = hosts_with_role(hosts, 'master')
+  masters = hosts_with_role(hosts, 'master')
 
   hosts.each do |host|
     it 'should set the root password' do

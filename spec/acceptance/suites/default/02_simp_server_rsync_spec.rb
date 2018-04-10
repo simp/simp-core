@@ -1,5 +1,6 @@
 require 'spec_helper_integration'
 require 'json'
+require 'yaml'
 
 test_name 'simp::server::rsync_shares'
 
@@ -48,66 +49,13 @@ describe 'install rsync from GitHub (not rpm) and test simp::server::rsync_share
       end
 
       it 'classify nodes' do
-        default_yaml = <<-EOF
-          # Options
-          simp_options::dns::servers: ['8.8.8.8']
-          simp_options::puppet::server: #{master_fqdn}
-          simp_options::puppet::ca: #{master_fqdn}
-          simp_options::ntpd::servers: ['time.nist.gov']
-          simp_options::ldap::bind_pw: 's00per sekr3t!'
-          simp_options::ldap::bind_hash: '{SSHA}foobarbaz!!!!'
-          simp_options::ldap::sync_pw: 's00per sekr3t!'
-          simp_options::ldap::sync_hash: '{SSHA}foobarbaz!!!!'
-          simp_options::ldap::root_hash: '{SSHA}foobarbaz!!!!'
-          simp_options::auditd: true
-          simp_options::haveged: true
-          simp_options::fips: false
-          fips::enabled: false # TODO remove when fips pr is merged
-          simp_options::pam: true
-          simp_options::logrotate: true
-          simp_options::selinux: true
-          simp_options::tcpwrappers: true
-          simp_options::stunnel: true
-          simp_options::firewall: true
-
-          # simp_options::log_servers: ['#{master_fqdn}']
-          sssd::domains: ['LOCAL']
-          simp::yum::servers: ['#{master_fqdn}']
-
-          # Settings required for acceptance test, some may be required
-          simp::scenario: simp
-          simp_options::rsync: true
-          simp_options::clamav: true
-          simp_options::pki: true
-          simp_options::pki::source: '/etc/pki/simp-testing/pki'
-          simp_options::trusted_nets: ['10.0.0.0/8']
-          simp::yum::os_update_url: http://mirror.centos.org/centos/$releasever/os/$basearch/
-          simp::yum::enable_simp_repos: false
-          simp::scenario::base::puppet_server_hosts_entry: false
-          simp::scenario::base::rsync_stunnel: #{master_fqdn}
-
-          # Make sure puppet doesn't run (hopefully)
-          pupmod::agent::cron::minute: '0'
-          pupmod::agent::cron::hour: '0'
-          pupmod::agent::cron::weekday: '0'
-          pupmod::agent::cron::month: '1'
-
-          # Settings to make beaker happy
-          sudo::user_specifications:
-            vagrant_all:
-              user_list: ['vagrant']
-              cmnd: ['ALL']
-              passwd: false
-          pam::access::users:
-            defaults:
-              origins:
-                - ALL
-              permission: '+'
-            vagrant:
-          ssh::server::conf::permitrootlogin: true
-          ssh::server::conf::authorizedkeysfile: .ssh/authorized_keys
-        EOF
-        create_remote_file(master, '/etc/puppetlabs/code/environments/production/hieradata/default.yaml', default_yaml)
+        hiera = YAML.load(on(master, 'cat /etc/puppetlabs/code/environments/production/hieradata/default.yaml').stdout)
+        default_yaml = hiera.merge(
+          'simp_options::rsync' => true,
+          'simp_options::clamav' => true,
+          'simp::scenario::base::rsync_stunnel' => master_fqdn
+        )
+        create_remote_file(master, '/etc/puppetlabs/code/environments/production/hieradata/default.yaml', default_yaml.to_yaml)
       end
       it 'should configure the system' do
         on(master, 'puppet agent -t', :acceptable_exit_codes => [0,2,4,6])
@@ -130,5 +78,4 @@ describe 'install rsync from GitHub (not rpm) and test simp::server::rsync_share
       end
     end
   end
-
 end

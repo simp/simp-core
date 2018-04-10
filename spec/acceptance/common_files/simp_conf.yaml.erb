@@ -85,13 +85,6 @@ cli::simp::scenario: simp
 # SIMP repositories.
 cli::use_internet_simp_yum_repos: false
 
-# === grub::password ===
-# The password to access GRUB.
-#
-# The value entered is used to set the GRUB password and to generate a hash
-# stored in grub::password.
-grub::password: "$6$afe9x7w$bw.BOlrkTraU8E/62/ydiv1S/pTU5whs02WRLn0hNH6NgSUN/lFVEKdI8v/r1ffAVmF44Pc/TJU5XzzwsNZHT1"
-
 # === puppetdb::master::config::puppetdb_port ===
 # The PuppetDB server port number.
 puppetdb::master::config::puppetdb_port: 8139
@@ -124,13 +117,6 @@ simp::yum::servers:
 # === simp::yum::simp_update_url ===
 # Full URL to a YUM repo for SIMP packages
 simp::yum::simp_update_url: https://packagecloud.io/simp-project/6_X/el/$releasever/$basearch
-
-# === simp_openldap::server::conf::rootpw ===
-# The LDAP Root password hash.
-#
-# When set via 'simp config', it is generated from the password
-# entered on the command line.
-simp_openldap::server::conf::rootpw: "{SSHA}NfxMc48/wlZJ9cAVzdsBcl0nvYJrggeZ"
 
 # === simp_options::dns::search ===
 # The DNS domain search string.
@@ -238,7 +224,7 @@ simp_options::syslog::log_servers: []
 # If you need this to be more (or less) restrictive for a given class,
 # you can override it in Hiera.
 simp_options::trusted_nets:
-- 10.0.0.0/8
+- 0.0.0.0/0
 
 # === sssd::domains ===
 # A list of domains for SSSD to use.
@@ -266,5 +252,7 @@ sssd::domains:
 # aware that, if you do this, svckill will stop ALL services that are
 # not referenced in your Puppet configuration.
 svckill::mode: warning
-useradd::securetty: []
-
+useradd::securetty:
+- tty1
+- tty2
+- tty3

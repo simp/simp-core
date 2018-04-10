@@ -1,0 +1,26 @@
+---
+sudo::user_specifications:
+  vagrant_all:
+    user_list:
+    - vagrant
+    cmnd:
+    - ALL
+    passwd: false
+pam::access::users:
+  defaults:
+    origins:
+    - ALL
+    permission: "+"
+  vagrant:
+ssh::server::conf::permitrootlogin: true
+ssh::server::conf::authorizedkeysfile: ".ssh/authorized_keys"
+
+# The following settings are because $server_facts['serverip'] is
+# incorrect in a beaker/vagrant (mutli-interface) environment
+simp::puppet_server_hosts_entry: false
+
+# Make sure puppet doesn't run automatically (hopefully)
+pupmod::agent::cron::minute: '0'
+pupmod::agent::cron::hour: '0'
+pupmod::agent::cron::weekday: '0'
+pupmod::agent::cron::month: '1'

@@ -5,22 +5,23 @@ HOSTS:
       - master
       - default
       - simp_server
+      - agent
     platform:   el-7-x86_64
     box:        centos/7
     hypervisor: vagrant
-    vagrant_memsize: 4608
+    vagrant_memsize: 4096
     vagrant_cpus: 2
-  agent-el6:
-    roles:
-      - agent
-    platform:   el-6-x86_64
-    box:        centos/6
-    hypervisor: vagrant
   agent-el7:
     roles:
       - agent
     platform:   el-7-x86_64
     box:        centos/7
+    hypervisor: vagrant
+  agent-el6:
+    roles:
+      - agent
+    platform:   el-6-x86_64
+    box:        centos/6
     hypervisor: vagrant
 CONFIG:
   log_level: verbose
