@@ -8,10 +8,19 @@ describe 'install SIMP via rpm' do
 
   use_puppet_repo = ENV['BEAKER_puppet_repo'] || true
 
-  masters = hosts_with_role(hosts, 'master')
-  agents  = hosts_with_role(hosts, 'agent')
-  let(:domain)      { fact_on(master, 'domain') }
-  let(:master_fqdn) { fact_on(master, 'fqdn') }
+  masters     = hosts_with_role(hosts, 'master')
+  agents      = hosts_with_role(hosts, 'agent')
+  domain      = fact_on(master, 'domain')
+  master_fqdn = fact_on(master, 'fqdn')
+  puppetserver_status_cmd = [
+    'curl -sk',
+    "--cert /etc/puppetlabs/puppet/ssl/certs/#{master_fqdn}.pem",
+    "--key /etc/puppetlabs/puppet/ssl/private_keys/#{master_fqdn}.pem",
+    "https://#{master_fqdn}:8140/status/v1/services",
+    '| python -m json.tool',
+    '| grep state',
+    '| grep running'
+  ].join(' ')
 
   hosts.each do |host|
     it 'should set the root password' do
@@ -73,17 +82,16 @@ describe 'install SIMP via rpm' do
         on(master, 'simp bootstrap --no-verbose -u --remove_ssldir > /dev/null')
       end
 
-      it 'should reboot the host' do
+      it 'should reboot the master' do
         master.reboot
-        sleep(240)
+        retry_on(master, puppetserver_status_cmd, :retry_interval => 10)
       end
 
       it 'should settle after reboot' do
         on(master, '/opt/puppetlabs/bin/puppet agent -t', :acceptable_exit_codes => [0,2,4,6])
-      end
-      it 'should have puppet runs with no changes' do
         on(master, '/opt/puppetlabs/bin/puppet agent -t', :acceptable_exit_codes => [0] )
       end
+
       it 'should generate agent certs' do
         togen = []
         agents.each do |agent|
@@ -97,20 +105,20 @@ describe 'install SIMP via rpm' do
 
   context 'agents' do
     agents.each do |agent|
-      it 'should install the agent' do
+      it "should install puppet and deps on #{agent}" do
         agent.install_package('epel-release')
         agent.install_package('puppet-agent')
         agent.install_package('net-tools')
         setup_repo(agent)
       end
 
-      it 'should configure the agent' do
+      it "should configure puppet on host #{agent}" do
         on(agent, "puppet config set server #{master_fqdn}")
         on(agent, 'puppet config set masterport 8140')
         on(agent, 'puppet config set ca_port 8141')
       end
 
-      it 'should run the agent' do
+      it "should run puppet on #{agent}" do
         # Run puppet and expect changes
         retry_on(agent, 'puppet agent -t',
           :desired_exit_codes => [0,2],
@@ -119,10 +127,12 @@ describe 'install SIMP via rpm' do
           :verbose            => true
         )
 
-        agent.reboot
         # Wait for machine to come back up
+        agent.reboot
+        retry_on(master, puppetserver_status_cmd, :retry_interval => 10)
         retry_on(agent, 'uptime', :retry_interval => 15 )
 
+        # Wait for things to settle and stop making changes
         retry_on(agent, '/opt/puppetlabs/bin/puppet agent -t',
           :desired_exit_codes => [0,2],
           :retry_interval     => 15,
