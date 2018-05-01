@@ -2,11 +2,10 @@ require 'spec_helper_integration'
 require 'beaker/puppet_install_helper'
 require 'yaml'
 
-test_name 'puppetserver via PuppetForge'
+test_name 'puppetserver'
 
-describe 'install puppetserver from PuppetForge' do
+describe 'install puppetserver from puppet modules' do
 
-  masters     = hosts_with_role(hosts, 'master')
   agents      = hosts_with_role(hosts, 'agent')
   master_fqdn = fact_on(master, 'fqdn')
   puppetserver_status_cmd = [

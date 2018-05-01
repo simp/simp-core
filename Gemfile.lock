@@ -65,7 +65,7 @@ GEM
       rspec (~> 3.0)
       serverspec (~> 2)
       specinfra (~> 2)
-    beaker-vagrant (0.2.1)
+    beaker-vagrant (0.4.0)
       stringify-hash (~> 0.0.0)
     beaker-vcloud (0.2.0)
       beaker-vmpooler
@@ -109,7 +109,7 @@ GEM
     fog-json (1.0.2)
       fog-core (~> 1.0)
       multi_json (~> 1.10)
-    fog-openstack (0.1.23)
+    fog-openstack (0.1.25)
       fog-core (~> 1.40)
       fog-json (>= 1.0)
       ipaddress (>= 0.8)
@@ -199,10 +199,14 @@ GEM
       byebug (>= 9.0, < 9.1)
       pry (~> 0.10)
 <<<<<<< HEAD
+<<<<<<< HEAD
     pry-doc (0.13.4)
 =======
     pry-doc (0.13.0)
 >>>>>>> had to use pp for iptables
+=======
+    pry-doc (0.13.3)
+>>>>>>> reset more things to master
       pry (~> 0.11)
       yard (~> 0.9.11)
     public_suffix (3.0.2)
@@ -300,10 +304,14 @@ GEM
       jwt (>= 1.5, < 3.0)
       multi_json (~> 1.10)
 <<<<<<< HEAD
+<<<<<<< HEAD
     simp-beaker-helpers (1.10.5)
 =======
     simp-beaker-helpers (1.10.0)
 >>>>>>> had to use pp for iptables
+=======
+    simp-beaker-helpers (1.10.3)
+>>>>>>> reset more things to master
       beaker (~> 3.14)
       beaker-puppet (~> 0.8.0)
       beaker-puppet_install_helper (~> 0.6)

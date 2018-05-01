@@ -37,15 +37,14 @@ describe 'install environment via r10k and puppetserver' do
       host.install_package('epel-release')
       on(host, 'curl -s https://packagecloud.io/install/repositories/simp-project/6_X_Dependencies/script.rpm.sh | bash')
     end
+    it 'should install the r10k gem' do
+      master.install_package('git')
+      on(master, 'puppet resource package r10k ensure=present provider=puppet_gem')
+    end
   end
 
   context 'install and start a standard puppetserver' do
     masters.each do |master|
-      it 'should install the r10k gem' do
-        master.install_package('git')
-        on(master, 'puppet resource package r10k ensure=present provider=puppet_gem')
-      end
-
       it 'should install puppetserver' do
         master.install_package('puppetserver')
       end
