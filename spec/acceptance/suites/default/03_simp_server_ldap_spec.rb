@@ -43,8 +43,8 @@ describe 'use the simp::server::ldap class to create and ldap environment' do
     agents.each do |agent|
       it "should run puppet on #{agent}" do
         retry_on(agent, 'puppet agent -t',
-          :desired_exit_codes => [0,2],
-          :retry_interval     => 20,
+          :desired_exit_codes => [0],
+          :retry_interval     => 15,
           :max_retries        => 3,
           :verbose            => true
         )

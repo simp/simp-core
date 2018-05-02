@@ -140,7 +140,7 @@ describe 'install SIMP via tarball' do
       it "should run puppet on #{agent}" do
         # Run puppet and expect changes
         retry_on(agent, 'puppet agent -t',
-          :desired_exit_codes => [0,2],
+          :desired_exit_codes => [0],
           :retry_interval     => 15,
           :max_retries        => 5,
           :verbose            => true
@@ -153,7 +153,7 @@ describe 'install SIMP via tarball' do
 
         # Wait for things to settle and stop making changes
         retry_on(agent, 'puppet agent -t',
-          :desired_exit_codes => [0,2],
+          :desired_exit_codes => [0],
           :retry_interval     => 15,
           :max_retries        => 3,
           :verbose            => true

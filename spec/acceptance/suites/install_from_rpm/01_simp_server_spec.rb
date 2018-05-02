@@ -100,6 +100,23 @@ describe 'install SIMP via rpm' do
         create_remote_file(master, '/var/simp/environments/production/FakeCA/togen', togen.join("\n"))
         on(master, 'cd /var/simp/environments/production/FakeCA; ./gencerts_nopass.sh')
       end
+
+      it 'should mock freshclam' do
+        master.install_package('clamav-update')
+        ## # Uncomment to use real FreshClam data from the internet
+        ## create_remote_file(master, '/tmp/freshclam.conf', <<-EOF.gsub(/^\s+/,'')
+        ##     DatabaseDirectory /var/simp/environments/production/rsync/Global/clamav
+        ##     DatabaseMirror database.clamav.net
+        ##     Bytecode yes
+        ##   EOF
+        ## )
+        ## on(master, 'freshclam -u root --config-file=/tmp/freshclam.conf')
+        ## on(master, 'chown clam.clam /var/simp/environments/production/rsync/Global/clamav/*')
+        ## on(master, 'chmod u=rw,g=rw,o=r /var/simp/environments/production/rsync/Global/clamav/*')
+
+        # Mock ClamAV data by just `touch`ing the data files
+        on(master, 'touch /var/simp/environments/production/rsync/Global/clamav/{daily,bytecode,main}.cvd')
+      end
     end
   end
 
@@ -121,7 +138,7 @@ describe 'install SIMP via rpm' do
       it "should run puppet on #{agent}" do
         # Run puppet and expect changes
         retry_on(agent, 'puppet agent -t',
-          :desired_exit_codes => [0,2],
+          :desired_exit_codes => [0],
           :retry_interval     => 15,
           :max_retries        => 5,
           :verbose            => true
@@ -134,7 +151,7 @@ describe 'install SIMP via rpm' do
 
         # Wait for things to settle and stop making changes
         retry_on(agent, '/opt/puppetlabs/bin/puppet agent -t',
-          :desired_exit_codes => [0,2],
+          :desired_exit_codes => [0],
           :retry_interval     => 15,
           :max_retries        => 3,
           :verbose            => true
