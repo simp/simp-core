@@ -57,7 +57,7 @@ mod 'elastic-logstash',
 
 mod 'herculesteam-augeasproviders_apache',
   :git => 'https://github.com/simp/augeasproviders_apache',
-  :tag => '2.0.2'
+  :tag => '3.0.0'
 
 mod 'herculesteam-augeasproviders_core',
   :git => 'https://github.com/simp/augeasproviders_core',
@@ -65,7 +65,7 @@ mod 'herculesteam-augeasproviders_core',
 
 mod 'herculesteam-augeasproviders_grub',
   :git => 'https://github.com/simp/augeasproviders_grub',
-  :tag => '3.0.0'
+  :tag => '3.0.1'
 
 mod 'herculesteam-augeasproviders_mounttab',
   :git => 'https://github.com/simp/augeasproviders_mounttab',
@@ -81,19 +81,19 @@ mod 'herculesteam-augeasproviders_pam',
 
 mod 'herculesteam-augeasproviders_postgresql',
   :git => 'https://github.com/simp/augeasproviders_postgresql',
-  :tag => '2.0.4'
+  :tag => '3.0.0'
 
 mod 'herculesteam-augeasproviders_puppet',
   :git => 'https://github.com/simp/augeasproviders_puppet',
-  :tag => '2.1.1'
+  :tag => '3.0.0'
 
 mod 'herculesteam-augeasproviders_shellvar',
   :git => 'https://github.com/simp/augeasproviders_shellvar',
-  :tag => '2.2.2'
+  :tag => '3.0.0'
 
 mod 'herculesteam-augeasproviders_ssh',
   :git => 'https://github.com/simp/augeasproviders_ssh',
-  :tag => '2.5.3'
+  :tag => '3.0.0'
 
 mod 'herculesteam-augeasproviders_sysctl',
   :git => 'https://github.com/simp/augeasproviders_sysctl',
