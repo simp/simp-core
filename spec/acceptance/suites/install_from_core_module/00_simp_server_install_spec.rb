@@ -5,7 +5,7 @@ test_name 'puppetserver module install via PuppetForge'
 
 describe 'install puppetserver modules from PuppetForge' do
 
-  masters     = hosts_with_role(hosts, 'master')
+  masters = hosts_with_role(hosts, 'master')
 
   hosts.each do |host|
     it 'should set the root password' do

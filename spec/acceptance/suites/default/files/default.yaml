@@ -16,6 +16,7 @@ simp_options::selinux: true
 simp_options::stunnel: true
 simp_options::tcpwrappers: true
 simp_options::firewall: true
+simp_options::package_ensure: installed
 sssd::domains: ['LOCAL']
 
 # Settings required for acceptance test, some may be required
@@ -27,6 +28,8 @@ simp_options::trusted_nets: ['0.0.0.0/0']
 simp::yum::os_update_url: http://mirror.centos.org/centos/$releasever/os/$basearch/
 simp::yum::enable_simp_repos: false
 simp::scenario::base::puppet_server_hosts_entry: false
+
+pupmod::master::log_level: INFO
 # Make sure puppet doesn't run (hopefully)
 pupmod::agent::cron::minute: '0'
 pupmod::agent::cron::hour: '0'
