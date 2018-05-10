@@ -118,7 +118,7 @@ describe 'install puppetserver from puppet modules' do
       it "should run puppet on #{agent}" do
         # Run puppet and expect changes
         retry_on(agent, 'puppet agent -t',
-          :desired_exit_codes => [0],
+          :desired_exit_codes => [0,2],
           :retry_interval     => 15,
           :max_retries        => 5,
           :verbose            => true
