@@ -85,7 +85,7 @@ mod 'herculesteam-augeasproviders_postgresql',
 
 mod 'herculesteam-augeasproviders_puppet',
   :git => 'https://github.com/simp/augeasproviders_puppet',
-  :tag => '3.0.0'
+  :tag => '2.1.1'
 
 mod 'herculesteam-augeasproviders_shellvar',
   :git => 'https://github.com/simp/augeasproviders_shellvar',
