@@ -9,7 +9,7 @@ HOSTS:
     platform:   el-6-x86_64
     box:        centos/6
     hypervisor: vagrant
-    vagrant_memsize: 4096
+    vagrant_memsize: 4608
     vagrant_cpus: 2
   agent-el7:
     roles:
