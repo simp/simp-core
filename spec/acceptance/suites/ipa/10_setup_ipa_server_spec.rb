@@ -78,17 +78,6 @@ describe 'set up an IPA server' do
           'autofs',
         ],
         'simp_options::uid::max'      => 0,
-        'iptables::ports'             => {
-          80  => nil,
-          88  => nil,
-          389 => nil,
-          443 => nil,
-          464 => nil,
-          53  => { 'proto' => 'udp' },
-          88  => { 'proto' => 'udp' },
-          123 => { 'proto' => 'udp' },
-          464 => { 'proto' => 'udp' },
-        },
         'pam::access::users'          => {
           'defaults'   => {
             'origins'    => ['ALL'],
@@ -98,15 +87,19 @@ describe 'set up an IPA server' do
           '(posixusers)' => nil
         },
         'ssh::server::conf::passwordauthentication' => true
-        # 'simp::scenario::base::ldap'  => false,
-        # 'class_exclusions'            => [
-        #   'simp_nfs',
-        #   'simp_grafana',
-        #   'simp_openldap',
-        #   'simp_openldap::client',
-        # ]
       })
       create_remote_file(master, '/etc/puppetlabs/code/environments/production/hieradata/default.yaml', hiera.to_yaml)
+      pp = <<-EOF
+        iptables::listen::udp { 'ipa':
+          dports => [53,88,123,464]
+        }
+        iptables::listen::tcp_stateful { 'ipa':
+          dports => [53,80,88,389,443,464]
+        }
+      EOF
+      create_remote_file(master, '/etc/puppetlabs/code/environments/production/manifests/iptables.pp', pp)
+      on(master, 'chown root.puppet /etc/puppetlabs/code/environments/production/manifests/*')
+      on(master, 'chmod g+rX /etc/puppetlabs/code/environments/production/manifests/*')
     end
     # it 'should add a dnsaltname to the puppetserver cert' do
     #   on(master, 'puppet config set autosign true --section master')
