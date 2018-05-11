@@ -6,6 +6,7 @@ HOSTS:
       - default
       - simp_server
       - agent
+      - ipa_client
     platform:   el-7-x86_64
     box:        centos/7
     hypervisor: vagrant
@@ -13,7 +14,7 @@ HOSTS:
     vagrant_cpus: 2
   ipa:
     roles:
-      - ipa-server
+      - ipa_server
       - agent
     platform:   el-7-x86_64
     box:        centos/7
@@ -28,12 +29,14 @@ HOSTS:
   agent-el7:
     roles:
       - agent
+      - ipa_client
     platform:   el-7-x86_64
     box:        centos/7
     hypervisor: vagrant
   agent-el6:
     roles:
       - agent
+      - ipa_client
     platform:   el-6-x86_64
     box:        centos/6
     hypervisor: vagrant

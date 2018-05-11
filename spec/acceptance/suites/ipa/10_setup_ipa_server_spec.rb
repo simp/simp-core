@@ -1,4 +1,5 @@
 require 'spec_helper_integration'
+require 'yaml'
 
 test_name 'set up an IPA server'
 
@@ -11,72 +12,68 @@ def skip_fips(host)
 end
 
 describe 'set up an IPA server' do
-  domain         = fact_on(hosts_with_role(hosts, 'master').first, 'domain')
+
+  agents         = hosts_with_role(hosts, 'agent')
+  ipa_server     = hosts_with_role(hosts, 'ipa_server').first
+  ipa_clients    = hosts_with_role(hosts, 'ipa_client')
+  master_fqdn    = fact_on(master, 'fqdn')
+  domain         = fact_on(master, 'domain')
+
   admin_password = '@dm1n=P@ssw0r'
   ipa_domain     = 'test.case'
   ipa_realm      = ipa_domain.upcase
-  ipa_fqdn       = fact_on(hosts_with_role(hosts, 'ipa-server').first, 'fqdn')
-  ipa_ip         = fact_on(hosts_with_role(hosts, 'ipa-server').first, 'ipaddress_eth1')
+  ipa_fqdn       = fact_on(ipa_server, 'fqdn')
+  ipa_ip         = fact_on(ipa_server, 'ipaddress_eth1')
 
-  hosts.each do |host|
-    # it 'should be running haveged for entropy' do
-    #   # IPA requires entropy, so use haveged service
-    #   on(host, 'puppet resource package haveged ensure=present')
-    #   on(host, 'puppet resource service haveged ensure=running enable=true')
-    # end
-    it 'should install ipa client tools' do
-      # Install the IPA client on all hosts
-      on(host, 'puppet resource package ipa-client ensure=present')
-      # Admintools for EL6
-      on(host, 'puppet resource package ipa-admintools ensure=present', accept_all_exit_codes: true)
-    end
-    it 'should install ipa server packages' do
-      on(host, 'puppet resource package ipa-server ensure=present')
-      on(host, 'puppet resource package ipa-server-dns ensure=present')
-    end
-    # it 'should set up dnsmasq for now' do
-    #   on(host, 'puppet resource package dnsmasq ensure=present')
-    #   on(host, 'puppet resource service dnsmasq ensure=running enable=true')
-    # end
-    it 'should make sure the hostname is fully qualified' do
-      fqdn = "#{host}.#{domain}"
-      # Ensure that the hostname is set to the FQDN
-      on(host, "hostname #{fqdn}")
-      create_remote_file(host, '/etc/hostname', fqdn)
-      create_remote_file(host, '/etc/sysconfig/network', <<-EOF.gsub(/ {10}/,'')
-          NETWORKING=yes
-          HOSTNAME=#{fqdn}
-          PEERDNS=no
-        EOF
-      )
-      host.reboot
+  agents.each do |agent|
+    context 'every node prep' do
+      # it 'should be running haveged for entropy' do
+      #   # IPA requires entropy, so use haveged service
+      #   on(agent, 'puppet resource package haveged ensure=present')
+      #   on(agent, 'puppet resource service haveged ensure=running enable=true')
+      # end
+      it 'should install ipa client tools' do
+        # Install the IPA client on all hosts
+        on(agent, 'puppet resource package ipa-client ensure=present')
+        # Admintools for EL6
+        on(agent, 'puppet resource package ipa-admintools ensure=present', accept_all_exit_codes: true)
+      end
+      # it 'should set up dnsmasq for now' do
+      #   on(agent, 'puppet resource package dnsmasq ensure=present')
+      #   on(agent, 'puppet resource service dnsmasq ensure=running enable=true')
+      # end
+      it 'should make sure the hostname is fully qualified' do
+        fqdn = "#{agent}.#{domain}"
+        # Ensure that the hostname is set to the FQDN
+        on(agent, "hostname #{fqdn}")
+        create_remote_file(agent, '/etc/hostname', fqdn)
+        create_remote_file(agent, '/etc/sysconfig/network', <<-EOF.gsub(/^\s+/,'')
+            NETWORKING=yes
+            HOSTNAME=#{fqdn}
+            PEERDNS=no
+          EOF
+        )
+        agent.reboot
+      end
     end
   end
 
-  hosts_with_role(hosts, 'master').each do |master|
-    it 'should munge the hieradata' do
-      require 'yaml'
-      existing = YAML.load(on(master, 'cat /etc/puppetlabs/code/environments/production/hieradata/default.yaml').stdout)
-      hiera = existing.merge({
-        'sssd::domains'               => ['LOCAL',ipa_domain],
+  context 'classify nodes' do
+    it 'modify the existing hieradata' do
+      hiera = YAML.load(on(master, 'cat /etc/puppetlabs/code/environments/production/hieradata/default.yaml').stdout)
+      default_yaml = hiera.merge(
         'simp_options::sssd'          => true,
         'simp_options::ldap'          => true,
-        'simp_options::ldap::master'  => "ldap://#{ipa_fqdn}",
-        'simp_options::ldap::uri'     => ["ldap://#{ipa_fqdn}"],
-        'simp_options::ldap::base_dn' => 'gerbidge',
-        'simp_options::ldap::bind_dn' => 'gerbidge',
+        # 'simp_options::ldap::master'  => "ldap://#{ipa_fqdn}",
+        # 'simp_options::ldap::uri'     => ["ldap://#{ipa_fqdn}"],
+        # 'simp_options::ldap::base_dn' => 'gerbidge',
+        # 'simp_options::ldap::bind_dn' => 'gerbidge',
         'simp_options::dns::servers'  => [ipa_ip],
         'simp_options::dns::search'   => [ipa_domain],
+        'sssd::domains'               => ['LOCAL',ipa_domain],
         'resolv::named_autoconf'      => false,
         'resolv::caching'             => false,
         'resolv::resolv_domain'       => ipa_domain,
-        'sssd::services'              => [
-          'nss',
-          'pam',
-          'ssh',
-          'sudo',
-          'autofs',
-        ],
         'simp_options::uid::max'      => 0,
         'pam::access::users'          => {
           'defaults'   => {
@@ -87,17 +84,20 @@ describe 'set up an IPA server' do
           '(posixusers)' => nil
         },
         'ssh::server::conf::passwordauthentication' => true
-      })
-      create_remote_file(master, '/etc/puppetlabs/code/environments/production/hieradata/default.yaml', hiera.to_yaml)
+      ).to_yaml
+      create_remote_file(master, '/etc/puppetlabs/code/environments/production/hieradata/default.yaml', default_yaml)
+    end
+
+    it 'should open ports' do
       pp = <<-EOF
-        iptables::listen::udp { 'ipa':
+        iptables::listen::udp { 'ipa server':
           dports => [53,88,123,464]
         }
-        iptables::listen::tcp_stateful { 'ipa':
+        iptables::listen::tcp_stateful { 'ipa server':
           dports => [53,80,88,389,443,464]
         }
       EOF
-      create_remote_file(master, '/etc/puppetlabs/code/environments/production/manifests/iptables.pp', pp)
+      create_remote_file(master, '/etc/puppetlabs/code/environments/production/manifests/ipa-iptables.pp', pp)
       on(master, 'chown root.puppet /etc/puppetlabs/code/environments/production/manifests/*')
       on(master, 'chmod g+rX /etc/puppetlabs/code/environments/production/manifests/*')
     end
@@ -108,20 +108,30 @@ describe 'set up an IPA server' do
     #   on(master, "puppet cert --allow-dns-alt-names sign puppet.#{ipa_domain}")
     # end
   end
-  hosts.each do |host|
+
+  agents.each do |agent|
+    # on(agent, "puppet config set certname #{agent}.#{domain}")
     it 'should run puppet to apply above changes' do
-      # on(host, "puppet config set certname #{host}.#{domain}")
-      on(host, 'puppet agent -t --server puppet', acceptable_exit_codes: [0,2,4,6])
+      retry_on(agent, 'puppet agent -t',
+        :desired_exit_codes => [0],
+        :retry_interval     => 15,
+        :max_retries        => 3,
+        :verbose            => true
+      )
     end
   end
 
-  hosts_with_role(hosts, 'ipa-server').each do |ipa|
+  context 'IPA server prep' do
     it 'should bootstrap the IPA server' do
+      # Install the server packages
+      on(ipa_server, 'puppet resource package ipa-server ensure=present')
+      on(ipa_server, 'puppet resource package ipa-server-dns ensure=present')
+
       # correct dns configuration
-      on(ipa, 'service network restart')
+      on(ipa_server, 'service network restart')
       # remove existing ldap client configuration
-      on(ipa, 'mv /etc/openldap/ldap.conf{,.bak}')
-      on(ipa, 'mv /root/.ldaprc{,.bak}')
+      on(ipa_server, 'mv /etc/openldap/ldap.conf{,.bak}', :accept_all_exit_codes => true)
+      on(ipa_server, 'mv /root/.ldaprc{,.bak}',           :accept_all_exit_codes => true)
 
       cmd = [
         'ipa-server-install',
@@ -140,39 +150,28 @@ describe 'set up an IPA server' do
         '--no-ui-redirect'
       ]
       puts "\e[1;34m>>>>> The next step takes a very long time ... Please be patient! \e[0m"
-      on(ipa, cmd.join(' '))
-      on(ipa, 'ipactl status')
+      on(ipa_server, cmd.join(' '))
+      on(ipa_server, 'ipactl status')
     end
   end
 
-
-  hosts_with_role(hosts, 'ipa-client').each do |client|
+  ipa_clients.each do |client|
     next if skip_fips(client)
 
     context 'as an IPA client' do
       it 'should register with the IPA server' do
         fqdn = "#{client}.#{ipa_domain}"
         ipa_command = [
-          # Unattended installation
-          'ipa-client-install -U',
-          # IPA directory domain
-          "--domain=#{ipa_domain}",
-          # IPA server to use
-          "--server=#{ipa_fqdn}",
-          # DNS settings
-          '--enable-dns-updates',
-          # Set hostname
-          "--hostname=#{fqdn}",
-          # Only point at this server and don't use SRV
-          '--fixed-primary',
-          # IPA krb5 realm
-          "--realm=#{ipa_realm}",
-          # Krb5 principal name to use
-          '--principal=admin',
-          # Admin password
-          "--password='#{admin_password}'",
-          # Don't update using authconfig
-          '--noac'
+          'ipa-client-install --unattended', # Unattended installation
+          "--domain=#{ipa_domain}",          # IPA directory domain
+          "--server=#{ipa_fqdn}",            # IPA server to use
+          '--enable-dns-updates',            # DNS settings
+          "--hostname=#{fqdn}",              # Set hostname
+          '--fixed-primary',                 # Only point at this server and don't use SRV
+          "--realm=#{ipa_realm}",            # IPA krb5 realm
+          '--principal=admin',               # Krb5 principal name to use
+          "--password='#{admin_password}'",  # Admin password
+          '--noac'                           # Don't update using authconfig
         ].join(' ')
 
         on(client, ipa_command)

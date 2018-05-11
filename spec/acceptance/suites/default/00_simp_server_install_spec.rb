@@ -26,8 +26,6 @@ test_name 'puppetserver via r10k'
 
 describe 'install environment via r10k and puppetserver' do
 
-  masters = hosts_with_role(hosts, 'master')
-
   hosts.each do |host|
     it 'should set the root password' do
       on(host, "sed -i 's/enforce_for_root//g' /etc/pam.d/*")
@@ -44,18 +42,16 @@ describe 'install environment via r10k and puppetserver' do
   end
 
   context 'install and start a standard puppetserver' do
-    masters.each do |master|
-      it 'should install puppetserver' do
-        master.install_package('puppetserver')
-      end
+    it 'should install puppetserver' do
+      master.install_package('puppetserver')
+    end
 
-      it 'should start puppetserver' do
-        on(master, 'puppet resource service puppetserver ensure=running')
-      end
+    it 'should start puppetserver' do
+      on(master, 'puppet resource service puppetserver ensure=running')
+    end
 
-      it 'should enable trusted_server_facts' do
-        on(master, 'puppet config --section master set trusted_server_facts true')
-      end
+    it 'should enable trusted_server_facts' do
+      on(master, 'puppet config --section master set trusted_server_facts true')
     end
   end
 
