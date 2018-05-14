@@ -1,0 +1,140 @@
+require 'spec_helper_integration'
+require 'yaml'
+
+test_name 'set up an IPA server'
+
+describe 'set up an IPA server' do
+
+  agents     = hosts_with_role(hosts, 'agent')
+  ipa_server = hosts_with_role(hosts, 'ipa_server').first
+  domain     = fact_on(master, 'domain')
+
+  admin_password = '@dm1n=P@ssw0r'
+  ipa_domain     = 'test.case'
+  ipa_realm      = ipa_domain.upcase
+  ipa_fqdn       = fact_on(ipa_server, 'fqdn')
+  ipa_ip         = fact_on(ipa_server, 'ipaddress_eth1')
+
+  context 'fixup the ipa server before messing with dns' do
+    it 'should install ipa-server' do
+      # Install the server packages
+      on(ipa_server, 'puppet resource package ipa-server ensure=present')
+      on(ipa_server, 'puppet resource package ipa-server-dns ensure=present')
+    end
+    it 'should make sure the hostname is fully qualified' do
+      fqdn = "#{ipa_server}.#{domain}"
+      # Ensure that the hostname is set to the FQDN
+      on(client, "hostname #{fqdn}")
+      create_remote_file(client, '/etc/hostname', fqdn)
+      create_remote_file(client, '/etc/sysconfig/network', <<-EOF.gsub(/^\s+/,'')
+          NETWORKING=yes
+          HOSTNAME=#{fqdn}
+          PEERDNS=no
+        EOF
+      )
+      client.reboot
+      retry_on(agent, 'uptime', :retry_interval => 15 )
+    end
+  end
+
+  context 'classify nodes' do
+    it 'modify the existing hieradata' do
+      hiera = YAML.load(on(master, 'cat /etc/puppetlabs/code/environments/production/hieradata/default.yaml').stdout)
+      default_yaml = hiera.merge(
+        'simp_options::sssd'           => true,
+        'simp_options::ldap'           => true,
+        # 'simp_options::ldap::master'  => "ldap://#{ipa_fqdn}",
+        # 'simp_options::ldap::uri'     => ["ldap://#{ipa_fqdn}"],
+        # 'simp_options::ldap::base_dn' => 'gerbidge',
+        # 'simp_options::ldap::bind_dn' => 'gerbidge',
+        'simp_options::dns::servers'   => [ipa_ip],
+        'simp_options::dns::search'    => [ipa_domain],
+        'sssd::domains'                => ['LOCAL',ipa_domain],
+        'resolv::named_autoconf'       => false,
+        'resolv::caching'              => false,
+        'resolv::resolv_domain'        => ipa_domain,
+        'simp_options::uid::max'       => 2000000000,
+        'simp::ipa::install::ensure'   => 'present',
+        'simp::ipa::install::password' => 'enrollmentpassword',
+        'simp::ipa::install::server'   => ipa_server,
+        'simp::ipa::install::domain'   => ipa_domain,
+        'simp::ipa::install::realm'    => ipa_realm,
+        'pam::access::users'           => {
+          'defaults'   => {
+            'origins'    => ['ALL'],
+            'permission' => '+'
+          },
+          'testuser'     => nil,
+          '(posixusers)' => nil
+        },
+        'ssh::server::conf::passwordauthentication' => true,
+      ).to_yaml
+      create_remote_file(master, '/etc/puppetlabs/code/environments/production/hieradata/default.yaml', default_yaml)
+    end
+
+    it 'should open ports' do
+      pp = <<-EOF
+        iptables::listen::udp { 'ipa server':
+          dports => [53,88,123,464]
+        }
+        iptables::listen::tcp_stateful { 'ipa server':
+          dports => [53,80,88,389,443,464]
+        }
+      EOF
+      create_remote_file(master, '/etc/puppetlabs/code/environments/production/manifests/ipa-iptables.pp', pp)
+      on(master, 'chown root.puppet /etc/puppetlabs/code/environments/production/manifests/*')
+      on(master, 'chmod g+rX /etc/puppetlabs/code/environments/production/manifests/*')
+    end
+    # it 'should add a dnsaltname to the puppetserver cert' do
+    #   on(master, 'puppet config set autosign true --section master')
+    #   on(master, "puppet cert -c puppet.#{domain}")
+    #   on(master, "puppet cert -g puppet.#{domain} --dns_alt_names=puppet.#{domain},puppet.#{ipa_domain},puppet", acceptable_exit_codes: [0,24])
+    #   on(master, "puppet cert --allow-dns-alt-names sign puppet.#{ipa_domain}")
+    # end
+  end
+
+  agents.each do |agent|
+    context 'should run puppet to apply above changes' do
+      # on(agent, "puppet config set certname #{agent}.#{domain}")
+      it "should run the agent on #{agent}" do
+        retry_on(agent, 'puppet agent -t',
+          :desired_exit_codes => [0],
+          :retry_interval     => 15,
+          :max_retries        => 3,
+          :verbose            => true
+        )
+      end
+    end
+  end
+
+  context 'IPA server prep' do
+    it 'should bootstrap the IPA server' do
+      # correct dns configuration
+      # on(ipa_server, 'service network restart')
+
+      # remove existing ldap client configuration
+      on(ipa_server, 'mv /etc/openldap/ldap.conf{,.bak}', :accept_all_exit_codes => true)
+      on(ipa_server, 'mv /root/.ldaprc{,.bak}',           :accept_all_exit_codes => true)
+
+      cmd = [
+        'ipa-server-install',
+        # IPA realm and domain do not have to match hostname
+        "--domain #{ipa_domain}",
+        '--setup-dns',
+        '--forwarder=8.8.8.8',
+        # '--no-reverse',
+        # '--reverse-zone=229.255.10.in-addr.arpa.',
+        "--realm #{ipa_realm}",
+        "--hostname #{ipa_fqdn}",
+        "--ip-address #{ipa_ip}",
+        '--ds-password "d1r3ct0ry=P@ssw0r"',
+        "--admin-password '#{admin_password}'",
+        '--unattended',
+        '--no-ui-redirect'
+      ].join(' ')
+      puts "\e[1;34m>>>>> The next step takes a very long time ... Please be patient! \e[0m"
+      on(ipa_server, cmd)
+      on(ipa_server, 'ipactl status')
+    end
+  end
+end
