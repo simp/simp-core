@@ -14,6 +14,9 @@ describe 'validate the ipa server' do
   ipa_server     = hosts_with_role(hosts, 'ipa_server').first
   ipa_clients    = hosts_with_role(hosts, 'ipa_client')
 
+  domain     = fact_on(master, 'domain')
+  ipa_domain = domain
+
   context 'server' do
     it 'should have 4 hosts in the inventory' do
       out   = run_ipa_cmd(ipa_server, admin_password, 'ipa host-find')
@@ -23,7 +26,7 @@ describe 'validate the ipa server' do
     end
 
     it 'should have dns entries for each host' do
-      out     = run_ipa_cmd(ipa_server, admin_password, 'ipa dnsrecord-find test.case')
+      out     = run_ipa_cmd(ipa_server, admin_password, "ipa dnsrecord-find #{ipa_domain}")
       records = out.stdout.split("\n").grep(/Record name/).map {|h|h.split(': ').last}
 
       expect(records).to include %w[ puppet ipa el6-client el7-client ]

@@ -24,7 +24,7 @@ describe 'sets up IPA clients' do
 
   admin_password = '@dm1n=P@ssw0r'
   enroll_pass    = 'enrollmentpassword'
-  ipa_domain     = 'test.case'
+  ipa_domain     = domain
   ipa_realm      = ipa_domain.upcase
   ipa_fqdn       = fact_on(ipa_server, 'fqdn')
 
@@ -33,8 +33,8 @@ describe 'sets up IPA clients' do
       it "should run host-add for #{client}" do
         client_ip = fact_on(client,'ipaddress_eth1')
         cmd = [
-          'ipa host-add',
-          client,
+          'ipa -v host-add',
+          "#{client}.#{ipa_domain}",
           "--ip-address=#{client_ip}",
           "--password=#{enroll_pass}"
         ].join(' ')
@@ -95,10 +95,10 @@ describe 'sets up IPA clients' do
 
         on(client, ipa_command)
       end
-      it 'should rename the FakeCA certs' do
-        on(client, "cp /etc/pki/simp-testing/pki/private/* /etc/pki/simp-testing/pki/private/#{client}.#{ipa_domain}.pem")
-        on(client, "cp /etc/pki/simp-testing/pki/public/* /etc/pki/simp-testing/pki/public/#{client}.#{ipa_domain}.pub")
-      end
+      # it 'should rename the FakeCA certs' do
+      #   on(client, "cp /etc/pki/simp-testing/pki/private/* /etc/pki/simp-testing/pki/private/#{client}.#{ipa_domain}.pem")
+      #   on(client, "cp /etc/pki/simp-testing/pki/public/* /etc/pki/simp-testing/pki/public/#{client}.#{ipa_domain}.pub")
+      # end
     end
 
     context 'run puppet' do

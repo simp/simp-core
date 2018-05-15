@@ -10,30 +10,33 @@ describe 'set up an IPA server' do
   domain     = fact_on(master, 'domain')
 
   admin_password = '@dm1n=P@ssw0r'
-  ipa_domain     = 'test.case'
+  ipa_domain     = domain
   ipa_realm      = ipa_domain.upcase
   ipa_fqdn       = fact_on(ipa_server, 'fqdn')
   ipa_ip         = fact_on(ipa_server, 'ipaddress_eth1')
 
   context 'fixup the ipa server before messing with dns' do
     it 'should install ipa-server' do
-      # Install the server packages
       on(ipa_server, 'puppet resource package ipa-server ensure=present')
       on(ipa_server, 'puppet resource package ipa-server-dns ensure=present')
     end
     it 'should make sure the hostname is fully qualified' do
       fqdn = "#{ipa_server}.#{domain}"
-      # Ensure that the hostname is set to the FQDN
-      on(client, "hostname #{fqdn}")
-      create_remote_file(client, '/etc/hostname', fqdn)
-      create_remote_file(client, '/etc/sysconfig/network', <<-EOF.gsub(/^\s+/,'')
+      on(ipa_server, "hostname #{fqdn}")
+      create_remote_file(ipa_server, '/etc/hostname', fqdn)
+      create_remote_file(ipa_server, '/etc/sysconfig/network', <<-EOF.gsub(/^\s+/,'')
           NETWORKING=yes
           HOSTNAME=#{fqdn}
           PEERDNS=no
         EOF
       )
-      client.reboot
-      retry_on(agent, 'uptime', :retry_interval => 15 )
+    end
+    it 'should have only fqdns in the hosts file' do
+      on(ipa_server, 'puppet resource host ipa ensure=absent')
+    end
+    it 'should reboot the server' do
+      ipa_server.reboot
+      retry_on(ipa_server, 'uptime', :retry_interval => 15 )
     end
   end
 
@@ -53,10 +56,10 @@ describe 'set up an IPA server' do
         'resolv::named_autoconf'       => false,
         'resolv::caching'              => false,
         'resolv::resolv_domain'        => ipa_domain,
-        'simp_options::uid::max'       => 2000000000,
+        # 'simp_options::uid::max'       => 2000000000,
         'simp::ipa::install::ensure'   => 'present',
         'simp::ipa::install::password' => 'enrollmentpassword',
-        'simp::ipa::install::server'   => ipa_server,
+        'simp::ipa::install::server'   => ipa_fqdn,
         'simp::ipa::install::domain'   => ipa_domain,
         'simp::ipa::install::realm'    => ipa_realm,
         'pam::access::users'           => {
@@ -118,22 +121,24 @@ describe 'set up an IPA server' do
 
       cmd = [
         'ipa-server-install',
-        # IPA realm and domain do not have to match hostname
-        "--domain #{ipa_domain}",
-        '--setup-dns',
-        '--forwarder=8.8.8.8',
-        # '--no-reverse',
-        # '--reverse-zone=229.255.10.in-addr.arpa.',
-        "--realm #{ipa_realm}",
-        "--hostname #{ipa_fqdn}",
-        "--ip-address #{ipa_ip}",
-        '--ds-password "d1r3ct0ry=P@ssw0r"',
-        "--admin-password '#{admin_password}'",
         '--unattended',
-        '--no-ui-redirect'
+        "--domain=#{ipa_domain}",
+        "--realm=#{ipa_realm}",
+        '--idstart=5000',
+        '--setup-dns',
+        # '--forwarder=8.8.8.8',
+        '--auto-forwarders',
+        '--auto-reverse',
+        "--hostname=#{ipa_fqdn}",
+        "--ip-address=#{ipa_ip}",
+        '--ds-password="d1r3ct0ry=P@ssw0r"',
+        "--admin-password='#{admin_password}'",
       ].join(' ')
+
       puts "\e[1;34m>>>>> The next step takes a very long time ... Please be patient! \e[0m"
       on(ipa_server, cmd)
+
+      ipa_server.reboot
       on(ipa_server, 'ipactl status')
     end
   end

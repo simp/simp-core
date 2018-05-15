@@ -23,7 +23,10 @@ HOSTS:
     vagrant_cpus: 2
     # probably broken
     forwarded_ports:
-      ipa:
+      http:
+        from: 7442
+        to: 80
+      https:
         from: 7443
         to: 443
   agent-el7:
