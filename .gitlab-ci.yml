@@ -26,7 +26,6 @@ before_script:
   - 'apt update && apt install -y rpm'
   - 'gem list -ie --silent -v "$BUNDLER_VERSION" bundler && bundle -v || gem install bundler --no-document -v "$BUNDLER_VERSION"'
   - 'bundle install -j $(nproc) --no-binstubs --path vendor'
-  - 'bundle update'
 
 #=======================================================================
 # Anchors
@@ -35,6 +34,7 @@ before_script:
   stage: 'lint'
   tags: ['docker']
   script:
+    - 'bundle update'
     - 'bundle exec rake syntax'
     - 'bundle exec rake lint'
     - 'bundle exec rake spec'
@@ -58,6 +58,7 @@ before_script:
       - 'Gemfile.lock'
   retry: 1
   script:
+    - 'bundle update'
     - 'bundle exec rake beaker:suites[${BEAKER_SUITE:=default},${BEAKER_SUITE_NODESET:=default}]'
 
 # ----------------------------------------------------------------------

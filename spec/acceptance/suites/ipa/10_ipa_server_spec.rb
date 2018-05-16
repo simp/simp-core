@@ -1,4 +1,4 @@
-require 'spec_helper_integration'
+# require 'spec_helper_integration'
 require 'yaml'
 
 test_name 'set up an IPA server'

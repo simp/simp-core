@@ -1,4 +1,4 @@
-require 'spec_helper_integration'
+# require 'spec_helper_integration'
 
 def skip_fips(host)
   if fips_enabled(host) && host.host_hash[:roles].include?('no_fips')

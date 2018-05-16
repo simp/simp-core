@@ -1,4 +1,4 @@
-require 'spec_helper_integration'
+# require 'spec_helper_integration'
 
 describe 'run puppet on every node' do
 
