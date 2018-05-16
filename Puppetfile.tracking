@@ -11,19 +11,19 @@ moduledir 'src/assets'
 
 mod 'rubygem-rubygem_simp_cli',
   :git => 'https://github.com/simp/rubygem-simp-cli',
-  :tag => '4.0.5'
+  :ref => 'master'
 
 mod 'simp-rsync_data',
   :git => 'https://github.com/simp/simp-rsync-skeleton',
-  :tag => '6.2.0'
+  :ref => 'master'
 
 mod 'simp-adapter',
   :git => 'https://github.com/simp/simp-adapter',
-  :tag => '0.0.5'
+  :ref => 'master'
 
 mod 'simp-environment',
   :git => 'https://github.com/simp/simp-environment-skeleton',
-  :tag => '6.2.8'
+  :ref => 'master'
 
 mod 'simp-gpgkeys',
   :git => 'https://github.com/simp/simp-gpgkeys',
@@ -57,7 +57,7 @@ mod 'elastic-logstash',
 
 mod 'herculesteam-augeasproviders_apache',
   :git => 'https://github.com/simp/augeasproviders_apache',
-  :tag => '2.0.2'
+  :tag => '3.0.0'
 
 mod 'herculesteam-augeasproviders_core',
   :git => 'https://github.com/simp/augeasproviders_core',
@@ -65,7 +65,7 @@ mod 'herculesteam-augeasproviders_core',
 
 mod 'herculesteam-augeasproviders_grub',
   :git => 'https://github.com/simp/augeasproviders_grub',
-  :tag => '3.0.0'
+  :tag => '3.0.1'
 
 mod 'herculesteam-augeasproviders_mounttab',
   :git => 'https://github.com/simp/augeasproviders_mounttab',
@@ -81,7 +81,7 @@ mod 'herculesteam-augeasproviders_pam',
 
 mod 'herculesteam-augeasproviders_postgresql',
   :git => 'https://github.com/simp/augeasproviders_postgresql',
-  :tag => '2.0.4'
+  :tag => '3.0.0'
 
 mod 'herculesteam-augeasproviders_puppet',
   :git => 'https://github.com/simp/augeasproviders_puppet',
@@ -89,11 +89,11 @@ mod 'herculesteam-augeasproviders_puppet',
 
 mod 'herculesteam-augeasproviders_shellvar',
   :git => 'https://github.com/simp/augeasproviders_shellvar',
-  :tag => '2.2.2'
+  :tag => '3.0.0'
 
 mod 'herculesteam-augeasproviders_ssh',
   :git => 'https://github.com/simp/augeasproviders_ssh',
-  :tag => '2.5.3'
+  :tag => '3.0.0'
 
 mod 'herculesteam-augeasproviders_sysctl',
   :git => 'https://github.com/simp/augeasproviders_sysctl',
@@ -117,7 +117,7 @@ mod 'puppetlabs-concat',
 
 mod 'puppetlabs-docker',
   :git => 'https://github.com/simp/puppetlabs-docker',
-  :tag => '1.0.5'
+  :tag => '1.1.0'
 
 mod 'puppetlabs-hocon',
   :git => 'https://github.com/simp/pupmod-puppetlabs-hocon',
@@ -219,7 +219,7 @@ mod 'simp-clamav',
 
 mod 'simp-compliance_markup',
   :git => 'https://github.com/simp/pupmod-simp-compliance_markup',
-  :tag => '2.3.3'
+  :ref => 'master'
 
 mod 'simp-cron',
   :git => 'https://github.com/simp/pupmod-simp-cron',
@@ -258,7 +258,7 @@ mod 'simp-haveged',
 
 mod 'simp-incron',
   :git => 'https://github.com/simp/pupmod-simp-incron',
-  :tag => '0.1.0'
+  :ref => 'master'
 
 mod 'simp-iptables',
   :git => 'https://github.com/simp/pupmod-simp-iptables',
@@ -306,7 +306,7 @@ mod 'simp-network',
 
 mod 'simp-nfs',
   :git => 'https://github.com/simp/pupmod-simp-nfs',
-  :tag => '6.1.0'
+  :ref => 'master'
 
 mod 'simp-ntpd',
   :git => 'https://github.com/simp/pupmod-simp-ntpd',
@@ -322,11 +322,11 @@ mod 'simp-openscap',
 
 mod 'simp-pam',
   :git => 'https://github.com/simp/pupmod-simp-pam',
-  :tag => '6.2.0'
+  :ref => 'master'
 
 mod 'simp-pki',
   :git => 'https://github.com/simp/pupmod-simp-pki',
-  :tag => '6.0.2'
+  :ref => 'master'
 
 mod 'simp-polkit',
   :git => 'https://github.com/simp/pupmod-simp-polkit',
@@ -338,7 +338,7 @@ mod 'simp-postfix',
 
 mod 'simp-pupmod',
   :git => 'https://github.com/simp/pupmod-simp-pupmod',
-  :tag => '7.5.0'
+  :ref => 'master'
 
 mod 'simp-resolv',
   :git => 'https://github.com/simp/pupmod-simp-resolv',
@@ -346,7 +346,7 @@ mod 'simp-resolv',
 
 mod 'simp-rsync',
   :git => 'https://github.com/simp/pupmod-simp-rsync',
-  :tag => '6.0.5'
+  :ref => 'master'
 
 mod 'simp-rsyslog',
   :git => 'https://github.com/simp/pupmod-simp-rsyslog',
@@ -354,11 +354,11 @@ mod 'simp-rsyslog',
 
 mod 'simp-selinux',
   :git => 'https://github.com/simp/pupmod-simp-selinux',
-  :tag => '2.1.2'
+  :ref => 'master'
 
 mod 'simp-simp',
   :git => 'https://github.com/simp/pupmod-simp-simp',
-  :tag => '4.4.1'
+  :ref => 'master'
 
 mod 'simp-simpcat',
   :git => 'https://github.com/simp/pupmod-simp-simpcat',
@@ -366,15 +366,15 @@ mod 'simp-simpcat',
 
 mod 'simp-simplib',
   :git => 'https://github.com/simp/pupmod-simp-simplib',
-  :tag => '3.9.0'
+  :ref => 'master'
 
 mod 'simp-simp_apache',
   :git => 'https://github.com/simp/pupmod-simp-simp_apache',
-  :tag => '6.0.1'
+  :ref => 'master'
 
 mod 'simp-simp_docker',
   :git => 'https://github.com/simp/pupmod-simp-simp_docker',
-  :tag => '0.1.0'
+  :ref => 'master'
 
 mod 'simp-simp_elasticsearch',
   :git => 'https://github.com/simp/pupmod-simp-simp_elasticsearch',
@@ -382,7 +382,7 @@ mod 'simp-simp_elasticsearch',
 
 mod 'simp-simp_gitlab',
   :git => 'https://github.com/simp/pupmod-simp-simp_gitlab',
-  :tag => '0.3.1'
+  :ref => 'master'
 
 mod 'simp-simp_grafana',
   :git => 'https://github.com/simp/pupmod-simp-simp_grafana',
@@ -401,7 +401,7 @@ mod 'simp-simp_logstash',
 
 mod 'simp-simp_nfs',
   :git => 'https://github.com/simp/pupmod-simp-simp_nfs',
-  :tag => '0.0.4'
+  :ref => 'master'
 
 mod 'simp-simp_openldap',
   :git => 'https://github.com/simp/pupmod-simp-simp_openldap',
@@ -409,7 +409,7 @@ mod 'simp-simp_openldap',
 
 mod 'simp-simp_options',
   :git => 'https://github.com/simp/pupmod-simp-simp_options',
-  :tag => '1.1.0'
+  :ref => 'master'
 
 mod 'simp-simp_rsyslog',
   :git => 'https://github.com/simp/pupmod-simp-simp_rsyslog',
@@ -425,7 +425,7 @@ mod 'simp-site',
 
 mod 'simp-ssh',
   :git => 'https://github.com/simp/pupmod-simp-ssh',
-  :tag => '6.4.1'
+  :ref => 'master'
 
 mod 'simp-sssd',
   :git => 'https://github.com/simp/pupmod-simp-sssd',
@@ -433,7 +433,7 @@ mod 'simp-sssd',
 
 mod 'simp-stunnel',
   :git => 'https://github.com/simp/pupmod-simp-stunnel',
-  :tag => '6.3.0'
+  :ref => 'master'
 
 mod 'simp-sudo',
   :git => 'https://github.com/simp/pupmod-simp-sudo',
@@ -457,7 +457,7 @@ mod 'simp-tcpwrappers',
 
 mod 'simp-tftpboot',
   :git => 'https://github.com/simp/pupmod-simp-tftpboot',
-  :tag => '6.0.2'
+  :ref => 'master'
 
 # SIMP has made changes to this module that don't exist upstream
 # yet. (PR pending). Since may revert to saz/puppet-timezone at a
@@ -486,7 +486,7 @@ mod 'simp-useradd',
 
 mod 'simp-vnc',
   :git => 'https://github.com/simp/pupmod-simp-vnc',
-  :tag => '6.0.2'
+  :ref => 'master'
 
 mod 'simp-vsftpd',
   :git => 'https://github.com/simp/pupmod-simp-vsftpd',

@@ -1,7 +1,7 @@
 Summary: SIMP Full Install
 Name: simp
 Version: 6.2.0
-Release: RC1%{?dist}%{?snapshot_release}
+Release: Beta%{?dist}%{?snapshot_release}
 License: Apache License, Version 2.0
 Group: Applications/System
 
@@ -24,13 +24,13 @@ Obsoletes: pupmod-simp-mcollective <= 3.0.0
 
 # Core SIMP Requirements
 Requires: pupmod-camptocamp-kmod >= 2.1.0, pupmod-camptocamp-kmod < 3.0.0
-Requires: pupmod-herculesteam-augeasproviders_apache >= 2.0.1-2016, pupmod-herculesteam-augeasproviders_apache < 3.0.0
+Requires: pupmod-herculesteam-augeasproviders_apache >= 3.0.0, pupmod-herculesteam-augeasproviders_apache < 4.0.0
 Requires: pupmod-herculesteam-augeasproviders_core >= 2.1.1-2016, pupmod-herculesteam-augeasproviders_core < 3.0.0
-Requires: pupmod-herculesteam-augeasproviders_grub >= 2.3.1-2016, pupmod-herculesteam-augeasproviders_grub < 4.0.0
-Requires: pupmod-herculesteam-augeasproviders_postgresql >= 2.0.3-2016, pupmod-herculesteam-augeasproviders_postgresql < 3.0.0
-Requires: pupmod-herculesteam-augeasproviders_puppet >= 2.1.0-2016, pupmod-herculesteam-augeasproviders_puppet < 3.0.0
-Requires: pupmod-herculesteam-augeasproviders_shellvar >= 2.1.1-2016, pupmod-herculesteam-augeasproviders_shellvar < 3.0.0
-Requires: pupmod-herculesteam-augeasproviders_ssh >= 2.5.0-2016, pupmod-herculesteam-augeasproviders_ssh < 3.0.0
+Requires: pupmod-herculesteam-augeasproviders_grub >= 3.0.0, pupmod-herculesteam-augeasproviders_grub < 4.0.0
+Requires: pupmod-herculesteam-augeasproviders_postgresql >= 3.0.0, pupmod-herculesteam-augeasproviders_postgresql < 4.0.0
+Requires: pupmod-herculesteam-augeasproviders_puppet >= 2.1.1, pupmod-herculesteam-augeasproviders_puppet < 3.0.0
+Requires: pupmod-herculesteam-augeasproviders_shellvar >= 3.0.0, pupmod-herculesteam-augeasproviders_shellvar < 4.0.0
+Requires: pupmod-herculesteam-augeasproviders_ssh >= 3.0.0, pupmod-herculesteam-augeasproviders_ssh < 4.0.0
 Requires: pupmod-herculesteam-augeasproviders_sysctl >= 2.1.0-2016, pupmod-herculesteam-augeasproviders_sysctl < 3.0.0
 Requires: pupmod-onyxpoint-gpasswd >= 1.0.0-2016, pupmod-onyxpoint-gpasswd < 2.0.0
 Requires: pupmod-puppet-archive >= 1.1.0, pupmod-puppet-archive < 3.0.0
@@ -221,18 +221,19 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Wed May 09 2018 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.2.0-0
+- Update augeasproviders dependencies
+
 * Thu Mar 15 2018 Liz Nemsick <lnemsick.simp@gmail.com> - 6.2.0-0
 - Obsolete pupmod-electrical-file_concat in simp-extras package
-
-* Tue Feb 20 2018 Liz Nemsick <lnemsick.simp@gmail.com> - 6.2.0-0
 - Obsolete pupmod-simp-activemq and pupmod-simp-mcollective in
   simp package
 - Update versions of numerous dependencies of both simp and simp-extras
-  packages.* 
+  packages.*
 - Add pupmod-puppet-archive dependency to simp package
 - Move pupmod-puppet-yum from simp-extras package to simp packages, as
   required by pupmod-simp-tpm
-  
+
 * Wed Oct 04 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.1.0-0
 - Removed pupmod-herculesteam-augeasproviders_base as a SIMP dependency
 - Removed the 'dist' from the /etc/simp/simp.version file
