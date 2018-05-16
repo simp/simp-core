@@ -25,7 +25,8 @@ before_script:
   - 'ruby -v'
   - 'apt update && apt install -y rpm'
   - 'gem list -ie --silent -v "$BUNDLER_VERSION" bundler && bundle -v || gem install bundler --no-document -v "$BUNDLER_VERSION"'
-  - 'bundle update -j $(nproc) --path vendor'
+  - 'bundle install -j $(nproc) --no-binstubs --path vendor'
+  - 'bundle update'
 
 #=======================================================================
 # Anchors
