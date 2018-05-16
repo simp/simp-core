@@ -15,7 +15,7 @@ describe 'set up an IPA server' do
   ipa_fqdn       = fact_on(ipa_server, 'fqdn')
   ipa_ip         = fact_on(ipa_server, 'ipaddress_eth1')
 
-  context 'fixup the ipa server before messing with dns' do
+  context 'prepare ipa server' do
     it 'should install ipa-server' do
       on(ipa_server, 'puppet resource package ipa-server ensure=present')
       on(ipa_server, 'puppet resource package ipa-server-dns ensure=present')
