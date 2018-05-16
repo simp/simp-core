@@ -106,8 +106,6 @@ sanity_checks:
   script:
     - 'bundle exec rake check:dot_underscore'
     - 'bundle exec rake check:test_file'
-    - 'bundle exec rake pkg:check_version'
-    - 'bundle exec rake pkg:compare_latest_tag'
 
 tag_check:
   stage: 'sanity'
