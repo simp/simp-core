@@ -11,7 +11,7 @@ stages:
 # version requirements, even if they match these defaults.
 image: 'ruby:2.1'
 variables:
-  PUPPET_VERSION: '~> 4.10.0'
+  PUPPET_VERSION: '~> 4.10.7'
   BUNDLER_VERSION: '1.16.1'
   MODULE_NAME: "$(ruby -r json -e 'JSON.load(File.read('metadata.json'))['name']')"
   MODULE_VERSION: "$(ruby -r json -e 'JSON.load(File.read('metadata.json'))['version']')"
@@ -25,7 +25,7 @@ before_script:
   - 'ruby -v'
   - 'apt update && apt install -y rpm'
   - 'gem list -ie --silent -v "$BUNDLER_VERSION" bundler && bundle -v || gem install bundler --no-document -v "$BUNDLER_VERSION"'
-  - 'bundle install -j $(nproc) --no-binstubs --path vendor'
+  - 'bundle update -j $(nproc) --path vendor'
 
 #=======================================================================
 # Anchors
@@ -94,7 +94,6 @@ before_script:
 #=======================================================================
 # Basic Sanity Checks
 #
-
 # Execute simple sanity checks on the environment before proceeding to more
 # resource-intensive jobs.  Besides running checks, this condenses the initial
 # cache generation into a single job for the later stages.  The first stage,
