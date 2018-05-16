@@ -24,6 +24,7 @@ before_script:
   - 'ruby -v'
   - 'apt update && apt install -y rpm'
   - 'bundle -v || gem install bundler'
+  - 'bundle config path vendor'
   - 'bundle update puppet'
   - 'bundle install -j $(nproc) --no-binstubs --path vendor'
 
