@@ -1,101 +1,197 @@
 ---
-.cache_bundler: &cache_bundler
-  cache:
-    untracked: true
-    # A broad attempt at caching between runs (ala Travis CI)
-    key: "${CI_PROJECT_NAMESPACE}__bundler"
-    paths:
-      - '.vendor'
-      - 'vendor'
-
-.setup_bundler_env: &setup_bundler_env
-  before_script:
-    - 'echo Files in cache: $(find .vendor | wc -l) || :'
-    - 'export GEM_HOME=.vendor/gem_install'
-    - 'export BUNDLE_CACHE_PATH=.vendor/bundler'
-    - 'declare GEM_BUNDLER_VER=(-v ''~> ${BUNDLER_VERSION:-1.16.0}'')'
-    - declare GEM_INSTALL=(gem install --no-document)
-    - declare BUNDLER_INSTALL=(bundle install --no-binstubs --jobs $(nproc) --path=.vendor "${FLAGS[@]}")
-    - gem list -ie "${GEM_BUNDLE_VER[@]}" --silent bundler || "${GEM_INSTALL[@]}" --local "${GEM_BUNDLE_VER[@]}" bundler || "${GEM_INSTALL[@]}" "${GEM_BUNDLE_VER[@]}" bundler
-    - 'rm -rf pkg/ || :'
-    - bundle check || rm -f Gemfile.lock && ("${BUNDLER_INSTALL[@]}" --local || "${BUNDLER_INSTALL[@]}")
-
+#=======================================================================
+# Global stuff
 stages:
+  - sanity
+  - lint
   - integration
 
+# Default versions are set only as fallbacks for jobs that don't care which
+# version they use.  Versions should be explicitly set in any job with specific
+# version requirements, even if they match these defaults.
+image: 'ruby:2.1'
+variables:
+  PUPPET_VERSION: '~> 4.10.0'
+  BUNDLER_VERSION: '1.16.1'
+  MODULE_NAME: "$(ruby -r json -e 'JSON.load(File.read('metadata.json'))['name']')"
+  MODULE_VERSION: "$(ruby -r json -e 'JSON.load(File.read('metadata.json'))['version']')"
 
+cache:
+  key: '${CI_COMMIT_REF_SLUG}'
+  paths:
+    - 'vendor/ruby'
 
-default_el6:
-  stage: integration
-  tags:
-    - beaker
-  <<: *cache_bundler
-  <<: *setup_bundler_env
-  variables:
-    PUPPET_VERSION: '4.10.7'
+before_script:
+  - 'ruby -v'
+  - 'gem list -ie --silent -v "$BUNDLER_VERSION" bundler && bundle -v || gem install bundler --no-document -v "$BUNDLER_VERSION"'
+  - 'bundle install -j $(nproc) --no-binstubs --path vendor'
+
+#=======================================================================
+# Anchors
+
+.lint_base: &lint_base
+  stage: 'lint'
+  tags: ['docker']
   script:
-    - bundle exec rake beaker:suites[default,el6_server]
-  retry: 1
+    - 'bundle exec rake syntax'
+    - 'bundle exec rake lint'
+    - 'bundle exec rake spec'
+  cache:
+    policy: 'pull'
+  dependencies: []
+  artifacts:
+    when: 'always'
+    paths:
+      - 'Gemfile.lock'
 
-default_el7:
-  stage: integration
-  tags:
-    - beaker
-  <<: *cache_bundler
-  <<: *setup_bundler_env
-  variables:
-    PUPPET_VERSION: '4.10.7'
-  script:
-    - bundle exec rake beaker:suites[default,el7_server]
+.integration_base: &integration_base
+  stage: 'integration'
+  tags: ['beaker']
+  cache:
+    policy: 'pull'
+  dependencies: []
+  artifacts:
+    when: 'always'
+    paths:
+      - 'Gemfile.lock'
   retry: 1
+  script:
+    - 'bundle exec rake beaker:suites[${BEAKER_SUITE:=default},${BEAKER_SUITE_NODESET:=default}]'
 
-rpm_el6:
-  stage: integration
-  tags:
-    - beaker
-  <<: *cache_bundler
-  <<: *setup_bundler_env
-  variables:
-    PUPPET_VERSION: '4.10.7'
-  script:
-    - bundle exec rake beaker:suites[install_from_rpm,el6_server]
-  retry: 1
+# ----------------------------------------------------------------------
+# Version Matrix
+#
+# It would be too expensive, both in time and compute resources, to test
+# against every last version combination, so we restrict it to this subset.
+# Version sets are selected based on current support policies for major platform
+# software, such as Puppet and Ruby.  Namely, we use the version combinations
+# bundled in Puppet Enterprise.
+#
+# For more information see:
+#  * https://puppet.com/docs/pe/latest/overview/component_versions_in_recent_pe_releases.html
+#  * https://puppet.com/misc/puppet-enterprise-lifecycle
+#  * https://puppet.com/docs/pe/latest/overview/getting_support_for_pe.html#standard-releases-and-long-term-support-releases
+#
+# ----------------------------------------------
+# | Release | Puppet | Ruby | End-of-Life Date |
+# ----------|--------|------|------------------|
+# PE 2016.4   4.7      2.1    2018-10
+# PE 2016.5   4.8      2.1    2017-05
+# SIMP 6.0    4.8      2.1    TBD
+# PE 2017.1   4.9      2.1    2017-10
+# PE 2017.2   4.10     2.1    2018-02
+# PE 2017.3   5.3      2.4    2018-08
+# PE 2018.1   5.5      2.4    2020-05
+#
 
-rpm_el7:
-  stage: integration
-  tags:
-    - beaker
-  <<: *cache_bundler
-  <<: *setup_bundler_env
+.simp_6_1: &simp_6_1
   variables:
-    PUPPET_VERSION: '4.10.7'
-  script:
-    - bundle exec rake beaker:suites[install_from_rpm,el7_server]
-  retry: 1
+    PUPPET_VERSION: '~> 4.10.7'
+    # BEAKER_PUPPET_COLLECTION: 'pc1'
+    BEAKER_PUPPET_AGENT_VERSION: '1.10.7'
 
-forge_install_el6:
-  stage: integration
-  tags:
-    - beaker
-  <<: *cache_bundler
-  <<: *setup_bundler_env
-  variables:
-    PUPPET_VERSION: '4.10.7'
-  script:
-    - bundle exec rake beaker:suites[install_from_core_module,el6_server]
-  retry: 1
+#=======================================================================
+# Basic Sanity Checks
+#
 
-forge_install_el7:
-  stage: integration
-  tags:
-    - beaker
-  <<: *cache_bundler
-  <<: *setup_bundler_env
-  variables:
-    PUPPET_VERSION: '4.10.7'
+# Execute simple sanity checks on the environment before proceeding to more
+# resource-intensive jobs.  Besides running checks, this condenses the initial
+# cache generation into a single job for the later stages.  The first stage,
+# in particular, would otherwise suffer a heavy cache-miss penalty as its
+# jobs kick off in parallel.
+sanity_checks:
+  stage: 'sanity'
+  tags: ['docker']
   script:
-    - bundle exec rake beaker:suites[install_from_core_module,el7_server]
-  retry: 1
+    - 'bundle exec rake check:dot_underscore'
+    - 'bundle exec rake check:test_file'
+    - 'bundle exec rake pkg:check_version'
+    - 'bundle exec rake pkg:compare_latest_tag'
+
+tag_check:
+  stage: 'sanity'
+  only: ['tags']
+  tags: ['docker']
+  script: '[ "$CI_COMMIT_TAG" = "$MODULE_VERSION" ] || echo "ERROR: Tag does not match metadata version" && exit 1'
+
+#=======================================================================
+# Lint Tests
+#
+
+# Linting, for the most part, isn't affected by version changes in Puppet,
+# so we only test against the latest version for each MAJOR release.
+pup4_x-lint:
+  <<: *lint_base
+  image: 'ruby:2.1'
+  variables:
+    PUPPET_VERSION: '~> 4.0'
+
+pup5_x-lint:
+  <<: *lint_base
+  image: 'ruby:2.4'
+  variables:
+    PUPPET_VERSION: '~> 5.0'
+
+# ==============================================================================
+# Integration tests
+#
+el-simp_6_1-default-el6:
+  <<: *integration_base
+  <<: *simp_6_1
+  variables:
+    BEAKER_SUITE: default
+    BEAKER_SUITE_NODESET: el6_server
+
+el-simp_6_1-default-el7:
+  <<: *integration_base
+  <<: *simp_6_1
+  variables:
+    BEAKER_SUITE: default
+    BEAKER_SUITE_NODESET: el7_server
+
+
+el-simp_6_1-rpm-el6:
+  <<: *integration_base
+  <<: *simp_6_1
+  variables:
+    BEAKER_SUITE: install_from_rpm
+    BEAKER_SUITE_NODESET: el6_server
+
+el-simp_6_1-rpm-el7:
+  <<: *integration_base
+  <<: *simp_6_1
+  variables:
+    BEAKER_SUITE: install_from_rpm
+    BEAKER_SUITE_NODESET: el7_server
+
+
+el-simp_6_1-forge-el6:
+  <<: *integration_base
+  <<: *simp_6_1
+  variables:
+    BEAKER_SUITE: install_from_core_module
+    BEAKER_SUITE_NODESET: el6_server
+
+el-simp_6_1-forge-el7:
+  <<: *integration_base
+  <<: *simp_6_1
+  variables:
+    BEAKER_SUITE: install_from_core_module
+    BEAKER_SUITE_NODESET: el7_server
+
+el-simp_6_1-ipa-el6:
+  <<: *integration_base
+  <<: *simp_6_1
+  variables:
+    BEAKER_SUITE: ipa
+    BEAKER_SUITE_NODESET: el6_server
+
+el-simp_6_1-ipa-el7:
+  <<: *integration_base
+  <<: *simp_6_1
+  variables:
+    BEAKER_SUITE: ipa
+    BEAKER_SUITE_NODESET: el7_server
 
 
 # Just gonna comment this one out for now...
