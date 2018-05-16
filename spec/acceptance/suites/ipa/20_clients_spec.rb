@@ -28,6 +28,39 @@ describe 'sets up IPA clients' do
   ipa_realm      = ipa_domain.upcase
   ipa_fqdn       = fact_on(ipa_server, 'fqdn')
 
+  context 'classify nodes' do
+    it 'modify the existing hieradata' do
+      site_pp = <<-EOF
+        # All nodes
+        node default {
+          include 'simp_options'
+          include 'simp'
+          include 'simp::ipa::install'
+        }
+        # The puppetserver
+        node /puppet/ {
+          include 'simp_options'
+          include 'simp'
+          include 'simp::server'
+          include 'pupmod'
+          include 'pupmod::master'
+          include 'simp::ipa::install'
+        }
+      EOF
+      create_remote_file(master, '/etc/puppetlabs/code/environments/production/manifests/site.pp', site_pp)
+
+      hiera = YAML.load(on(master, 'cat /etc/puppetlabs/code/environments/production/hieradata/default.yaml').stdout)
+      default_yaml = hiera.merge(
+        'simp::ipa::install::ensure'   => 'present',
+        'simp::ipa::install::password' => enroll_pass,
+        'simp::ipa::install::server'   => ipa_fqdn,
+        'simp::ipa::install::domain'   => ipa_domain,
+        'simp::ipa::install::realm'    => ipa_realm
+      ).to_yaml
+      create_remote_file(master, '/etc/puppetlabs/code/environments/production/hieradata/default.yaml', default_yaml)
+    end
+  end
+
   context 'add hosts to ipa server' do
     ipa_clients.each do |client|
       it "should run host-add for #{client}" do
@@ -36,6 +69,7 @@ describe 'sets up IPA clients' do
           'ipa -v host-add',
           "#{client}.#{ipa_domain}",
           "--ip-address=#{client_ip}",
+          '--no-reverse',
           "--password=#{enroll_pass}"
         ].join(' ')
 
@@ -44,7 +78,7 @@ describe 'sets up IPA clients' do
     end
   end
 
-  context 'clients' do
+  context 'client prep' do
     ipa_clients.each do |client|
       next if skip_fips(client)
 
@@ -53,12 +87,12 @@ describe 'sets up IPA clients' do
       #   on(client, 'puppet resource package haveged ensure=present')
       #   on(client, 'puppet resource service haveged ensure=running enable=true')
       # end
-      it 'should install ipa client tools' do
-        # Install the IPA client on all hosts
-        on(client, 'puppet resource package ipa-client ensure=present')
-        # Admintools for EL6
-        on(client, 'puppet resource package ipa-admintools ensure=present', accept_all_exit_codes: true)
-      end
+      # it 'should install ipa client tools' do
+      #   # Install the IPA client on all hosts
+      #   on(client, 'puppet resource package ipa-client ensure=present')
+      #   # Admintools for EL6
+      #   on(client, 'puppet resource package ipa-admintools ensure=present', accept_all_exit_codes: true)
+      # end
       # it 'should set up dnsmasq for now' do
       #   on(client, 'puppet resource package dnsmasq ensure=present')
       #   on(client, 'puppet resource service dnsmasq ensure=running enable=true')
@@ -75,31 +109,32 @@ describe 'sets up IPA clients' do
           EOF
         )
         client.reboot
-        retry_on(agent, 'uptime', :retry_interval => 15 )
+        retry_on(client, 'uptime', :retry_interval => 15 )
       end
-
-      it 'should register with the IPA server' do
-        fqdn = "#{client}.#{ipa_domain}"
-        ipa_command = [
-          'ipa-client-install --unattended', # Unattended installation
-          "--domain=#{ipa_domain}",          # IPA directory domain
-          "--server=#{ipa_fqdn}",            # IPA server to use
-          '--enable-dns-updates',            # DNS settings
-          "--hostname=#{fqdn}",              # Set hostname
-          '--fixed-primary',                 # Only point at this server and don't use SRV
-          "--realm=#{ipa_realm}",            # IPA krb5 realm
-          '--principal=admin',               # Krb5 principal name to use
-          "--password='#{admin_password}'",  # Admin password
-          '--noac'                           # Don't update using authconfig
-        ].join(' ')
-
-        on(client, ipa_command)
-      end
-      # it 'should rename the FakeCA certs' do
-      #   on(client, "cp /etc/pki/simp-testing/pki/private/* /etc/pki/simp-testing/pki/private/#{client}.#{ipa_domain}.pem")
-      #   on(client, "cp /etc/pki/simp-testing/pki/public/* /etc/pki/simp-testing/pki/public/#{client}.#{ipa_domain}.pub")
-      # end
     end
+
+    #   it 'should register with the IPA server' do
+    #     fqdn = "#{client}.#{ipa_domain}"
+    #     ipa_command = [
+    #       'ipa-client-install --unattended', # Unattended installation
+    #       "--domain=#{ipa_domain}",          # IPA directory domain
+    #       "--server=#{ipa_fqdn}",            # IPA server to use
+    #       '--enable-dns-updates',            # DNS settings
+    #       "--hostname=#{fqdn}",              # Set hostname
+    #       '--fixed-primary',                 # Only point at this server and don't use SRV
+    #       "--realm=#{ipa_realm}",            # IPA krb5 realm
+    #       '--principal=admin',               # Krb5 principal name to use
+    #       "--password='#{admin_password}'",  # Admin password
+    #       '--noac'                           # Don't update using authconfig
+    #     ].join(' ')
+    #
+    #     on(client, ipa_command)
+    #   end
+    #   # it 'should rename the FakeCA certs' do
+    #   #   on(client, "cp /etc/pki/simp-testing/pki/private/* /etc/pki/simp-testing/pki/private/#{client}.#{ipa_domain}.pem")
+    #   #   on(client, "cp /etc/pki/simp-testing/pki/public/* /etc/pki/simp-testing/pki/public/#{client}.#{ipa_domain}.pub")
+    #   # end
+    # end
 
     context 'run puppet' do
       agents.each do |agent|

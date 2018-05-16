@@ -57,11 +57,6 @@ describe 'set up an IPA server' do
         'resolv::caching'              => false,
         'resolv::resolv_domain'        => ipa_domain,
         # 'simp_options::uid::max'       => 2000000000,
-        'simp::ipa::install::ensure'   => 'present',
-        'simp::ipa::install::password' => 'enrollmentpassword',
-        'simp::ipa::install::server'   => ipa_fqdn,
-        'simp::ipa::install::domain'   => ipa_domain,
-        'simp::ipa::install::realm'    => ipa_realm,
         'pam::access::users'           => {
           'defaults'   => {
             'origins'    => ['ALL'],
@@ -126,8 +121,8 @@ describe 'set up an IPA server' do
         "--realm=#{ipa_realm}",
         '--idstart=5000',
         '--setup-dns',
-        # '--forwarder=8.8.8.8',
-        '--auto-forwarders',
+        '--forwarder=8.8.8.8',
+        # '--auto-forwarders',
         '--auto-reverse',
         "--hostname=#{ipa_fqdn}",
         "--ip-address=#{ipa_ip}",
