@@ -28,19 +28,7 @@
 # NOTE: This file is only used for simp-rake-helpers >= 5.3.0
 ---
 
-'augeasproviders_base':
-  :release: '2016'
-
-'augeasproviders_apache':
-  :release: '2016'
-
 'augeasproviders_nagios':
-  :release: '2016'
-
-'augeasproviders_puppet':
-  :release: '2016'
-
-'augeasproviders_postgresql':
   :release: '2016'
 
 'docker':
