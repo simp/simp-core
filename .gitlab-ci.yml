@@ -12,7 +12,6 @@ stages:
 image: 'ruby:2.1'
 variables:
   PUPPET_VERSION: '~> 4.10.7'
-  BUNDLER_VERSION: '1.16.1'
   MODULE_NAME: "$(ruby -r json -e 'JSON.load(File.read('metadata.json'))['name']')"
   MODULE_VERSION: "$(ruby -r json -e 'JSON.load(File.read('metadata.json'))['version']')"
 
@@ -24,7 +23,8 @@ cache:
 before_script:
   - 'ruby -v'
   - 'apt update && apt install -y rpm'
-  - 'gem list -ie --silent -v "$BUNDLER_VERSION" bundler && bundle -v || gem install bundler --no-document -v "$BUNDLER_VERSION"'
+  - 'bundle -v || gem install bundler'
+  - 'bundle update puppet'
   - 'bundle install -j $(nproc) --no-binstubs --path vendor'
 
 #=======================================================================
@@ -34,9 +34,8 @@ before_script:
   stage: 'lint'
   tags: ['docker']
   script:
-    - 'bundle update'
-    - 'bundle exec rake syntax'
-    - 'bundle exec rake lint'
+    # - 'bundle exec rake syntax'
+    # - 'bundle exec rake lint'
     - 'bundle exec rake spec'
   cache:
     policy: 'pull'
@@ -58,7 +57,6 @@ before_script:
       - 'Gemfile.lock'
   retry: 1
   script:
-    - 'bundle update'
     - 'bundle exec rake beaker:suites[${BEAKER_SUITE:=default},${BEAKER_SUITE_NODESET:=default}]'
 
 # ----------------------------------------------------------------------
