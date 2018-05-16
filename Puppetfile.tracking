@@ -117,7 +117,7 @@ mod 'puppetlabs-concat',
 
 mod 'puppetlabs-docker',
   :git => 'https://github.com/simp/puppetlabs-docker',
-  :tag => '1.0.5'
+  :tag => '1.1.0'
 
 mod 'puppetlabs-hocon',
   :git => 'https://github.com/simp/pupmod-puppetlabs-hocon',
@@ -382,7 +382,7 @@ mod 'simp-simp_elasticsearch',
 
 mod 'simp-simp_gitlab',
   :git => 'https://github.com/simp/pupmod-simp-simp_gitlab',
-  :tag => '0.3.1'
+  :ref => 'master'
 
 mod 'simp-simp_grafana',
   :git => 'https://github.com/simp/pupmod-simp-simp_grafana',
