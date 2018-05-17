@@ -1,18 +1,30 @@
-# This file holds a list of RPM dependencies/obsoletes that apply
-# to Puppet module RPMs.  Module entries in this file are needed when
-# any of the following conditions occur:
+# This file holds a list of RPM dependencies/obsoletes/releases/external
+# dependencies that apply to Puppet module RPMs.  Module entries in this
+# file are needed when any of the following conditions occur:
 #
-# (1) We need to specify an obsoletes.
+# (1) We need to specify a release qualifier (package version).
+#     - This is necessary for components that have not changed since
+#       they were released with a release version of '2016', the
+#       default release version used when building SIMP-6.0.0 RPMs.
+#       (The current default is '0'.)
+#     - This is necessary when we need to specify RPM metadata-only
+#       package changes, such as a change in puppet module
+#       dependencies, obsoletes, or external dependencies.
+#
+# (2) We need to specify an obsoletes.
 #     This is required when a project has changed owner and
 #     the RPM name will change from pupmod-<old owner>-<module name>
 #     to pupmod-<new owner>-<module name>.
 #
-# (2) We want to restrict the depedencies.
+# (3) We want to restrict the dependencies.
 #     This is useful when modules require modules for OS's other
 #     than RedHat/CentOS or require modules that conflict with SIMP
 #     capabilities. We don't really need the dependencies in this
 #     case, and excluding them has no impact on SIMP system
 #     operations.
+#
+# (4) We want to add external dependencies, i.e., dependencies
+#     that are not Puppet modules.
 #
 # For all modules listed in this file,
 # * The RPM obsoletes will be pulled from this file.
@@ -25,9 +37,28 @@
 # * Both the RPM dependency names and versions will be pulled
 #   from the metadata.json file in the module.
 #
-# NOTE: This file is only used for simp-rake-helpers >= 5.3.0
+# IMPORTANT ADDITIONAL NOTES:
+# (1) One of the main reasons this global file exists, instead of
+#     storing this information in each project, itself, is because we
+#     need to build RPMs of non-SIMP components from their respective
+#     GitHub projects. Maintaining this information in SIMP-owned
+#     forks of non SIMP-components has shown to be untenable.
+#
+# (2) Any time the version of a non-SIMP component changes, you **MUST**
+#     evaluate if that change results in the addition of, removal of,
+#     or change to an entry in this file.
+#
+# (3) Each entry **MUST** remain in this file until a newer version
+#     of the component is to be released.  This is because the
+#     ISO-building process may create a different RPM for the same
+#     version of this component, potentially with incorrect RPM
+#     metadata, instead of using the existing, released RPM.
+#
+# (4) This file is only used for simp-rake-helpers >= 5.3.0
 ---
 
+# This entry can be removed when the augeasproviders_nagios version
+# used advances beyond 2.0.2.
 'augeasproviders_nagios':
   :release: '2016'
 
@@ -52,25 +83,37 @@
     - 'pupmod-puppetlabs-stdlib'
     - 'pupmod-puppet-yum'
 
-'file_concat':
-  :release: '2016'
-
 'gitlab':
   :requires:
     # exclude pupmod-puppetlabs-apt
     - 'pupmod-puppetlabs-stdlib'
 
-# Make sure we create an RPM that fixes the obsoletes problem of
-# pupmod-puppet-grafana-3.0.0-0 packaged for SIMP 6.1.0.
-# Since we are releasing a newer version, 4.1.1-0, we can fix
-# the problem by using the same obsoletes, here, but a newer
-# version of simp-rake-helpers.
+# Three adjustments required for the next 4.1.1 release:
+# (1) (NEW) Up the release qualifier to '1', since 4.1.1-0 was already
+#     released and the change from 4.1.1-0 to 4.1.1-1 is simply a
+#     packaging change,(i.e., dependencies list change).
+# (2) As with 4.1.1-0, make sure we create an RPM that fixes
+#     the obsoletes problem of pupmod-puppet-grafana-3.0.0-0
+#     packaged for SIMP 6.1.0.
+# (3) (NEW) Exclude the problematic puppet-archive module dependency.
+#     
 'grafana':
+  :release: '1'
   :obsoletes:
     'pupmod-bfraser-grafana': '2.5.0-2016.1'
   :external_dependencies:
     'rubygem-puppetserver-toml':
       :min: '0.1.2'
+  :requires:
+    # Exclude the problematic puppet-archive module.
+    # ('puppet generate types' fails with puppet-archive).
+    - 'pupmod-puppetlabs-stdlib'
+
+'java':
+  :requires:
+    # Exclude the problematic puppet-archive module.
+    # ('puppet generate types' fails with puppet-archive).
+    - 'pupmod-puppetlabs-stdlib'
 
 # Make sure we create an RPM that fixes the obsoletes problem of
 # pupmod-elastic-logstash-5.2.1-0 packaged for SIMP 6.1.0.

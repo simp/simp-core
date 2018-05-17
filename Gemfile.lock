@@ -10,7 +10,7 @@ GEM
       json (~> 1.4)
       nokogiri (~> 1)
     bcrypt_pbkdf (1.0.0)
-    beaker (3.34.0)
+    beaker (3.35.0)
       beaker-abs (~> 0.4)
       beaker-aws (~> 0.1)
       beaker-docker (~> 0.1)
@@ -58,14 +58,14 @@ GEM
       in-parallel (~> 0.1)
       oga
       stringify-hash (~> 0.0.0)
-    beaker-puppet_install_helper (0.9.1)
+    beaker-puppet_install_helper (0.9.4)
       beaker (>= 2.0)
     beaker-rspec (6.2.3)
       beaker (~> 3.0)
       rspec (~> 3.0)
       serverspec (~> 2)
       specinfra (~> 2)
-    beaker-vagrant (0.4.0)
+    beaker-vagrant (0.5.0)
       stringify-hash (~> 0.0.0)
     beaker-vcloud (0.2.0)
       beaker-vmpooler
@@ -202,7 +202,7 @@ GEM
       pry (~> 0.11)
       yard (~> 0.9.11)
     public_suffix (3.0.2)
-    puppet (4.10.7)
+    puppet (4.10.11)
       facter (> 2.0, < 4)
       gettext-setup (>= 0.10, < 1)
       hiera (>= 2.0, < 4)
@@ -212,7 +212,7 @@ GEM
       puppet (>= 2.7.16)
       rest-client (~> 1.8.0)
     puppet-lint (2.3.5)
-    puppet-strings (1.2.1)
+    puppet-strings (2.0.0)
       rgen
       yard (~> 0.9.5)
     puppet-syntax (2.4.1)
@@ -295,7 +295,7 @@ GEM
       faraday (~> 0.9)
       jwt (>= 1.5, < 3.0)
       multi_json (~> 1.10)
-    simp-beaker-helpers (1.10.5)
+    simp-beaker-helpers (1.10.7)
       beaker (~> 3.14)
       beaker-puppet (~> 0.8.0)
       beaker-puppet_install_helper (~> 0.6)
@@ -354,7 +354,7 @@ DEPENDENCIES
   parallel
   pry
   pry-doc
-  puppet (= 4.10.7)
+  puppet (~> 4.0)
   puppet-lint
   puppet-strings
   puppetlabs_spec_helper
