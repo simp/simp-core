@@ -33,7 +33,6 @@ Requires: pupmod-herculesteam-augeasproviders_shellvar >= 3.0.0, pupmod-hercules
 Requires: pupmod-herculesteam-augeasproviders_ssh >= 3.0.0, pupmod-herculesteam-augeasproviders_ssh < 4.0.0
 Requires: pupmod-herculesteam-augeasproviders_sysctl >= 2.1.0-2016, pupmod-herculesteam-augeasproviders_sysctl < 3.0.0
 Requires: pupmod-onyxpoint-gpasswd >= 1.0.0-2016, pupmod-onyxpoint-gpasswd < 2.0.0
-Requires: pupmod-puppet-archive >= 1.1.0, pupmod-puppet-archive < 3.0.0
 Requires: pupmod-puppet-yum >= 2.0.0, pupmod-puppet-yum < 3.0.0
 Requires: pupmod-puppetlabs-apache >= 1.10.0-2016, pupmod-puppetlabs-apache < 4.0.0
 Requires: pupmod-puppetlabs-concat >= 2.2.0-2016, pupmod-puppetlabs-concat < 5.0.0
@@ -230,7 +229,6 @@ fi
   simp package
 - Update versions of numerous dependencies of both simp and simp-extras
   packages.*
-- Add pupmod-puppet-archive dependency to simp package
 - Move pupmod-puppet-yum from simp-extras package to simp packages, as
   required by pupmod-simp-tpm
 
