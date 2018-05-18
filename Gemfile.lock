@@ -1,3 +1,13 @@
+GIT
+  remote: https://github.com/jeefberkey/rubygem-simp-beaker-helpers
+  revision: 44c7a1a6cfe87ec27c43b3e4be299f3c43bef351
+  branch: SIMP-4928-parallel
+  specs:
+    simp-beaker-helpers (1.10.8)
+      beaker (~> 3.14)
+      beaker-puppet (~> 0.8.0)
+      beaker-puppet_install_helper (~> 0.6)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -10,7 +20,7 @@ GEM
       json (~> 1.4)
       nokogiri (~> 1)
     bcrypt_pbkdf (1.0.0)
-    beaker (3.34.0)
+    beaker (3.35.0)
       beaker-abs (~> 0.4)
       beaker-aws (~> 0.1)
       beaker-docker (~> 0.1)
@@ -295,10 +305,6 @@ GEM
       faraday (~> 0.9)
       jwt (>= 1.5, < 3.0)
       multi_json (~> 1.10)
-    simp-beaker-helpers (1.10.7)
-      beaker (~> 3.14)
-      beaker-puppet (~> 0.8.0)
-      beaker-puppet_install_helper (~> 0.6)
     simp-build-helpers (0.1.1)
     simp-rake-helpers (5.4.3)
       beaker (~> 3.14)
@@ -362,7 +368,7 @@ DEPENDENCIES
   rbnacl (~> 3.4.0)
   rbnacl-libsodium (~> 1.0.15.1)
   ruby-progressbar
-  simp-beaker-helpers (~> 1.10)
+  simp-beaker-helpers (~> 1.10)!
   simp-build-helpers (>= 0.1.0)
   simp-rake-helpers (>= 5.3, < 6.0)
 

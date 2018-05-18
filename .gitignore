@@ -2,6 +2,7 @@
 .bundle/
 .r10k_cache/
 .tmp/
+tmp/
 .vagrant/
 Gemfile.lock
 Puppetfile.lock

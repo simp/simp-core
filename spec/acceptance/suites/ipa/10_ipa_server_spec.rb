@@ -1,4 +1,4 @@
-# require 'spec_helper_integration'
+require 'spec_helper_integration'
 require 'yaml'
 
 test_name 'set up an IPA server'
@@ -36,7 +36,7 @@ describe 'set up an IPA server' do
     end
     it 'should reboot the server' do
       ipa_server.reboot
-      retry_on(ipa_server, 'uptime', :retry_interval => 15 )
+      retry_on(ipa_server, 'uptime', retry_interval: 15 )
     end
   end
 
@@ -76,7 +76,7 @@ describe 'set up an IPA server' do
           dports => [53,88,123,464]
         }
         iptables::listen::tcp_stateful { 'ipa server':
-          dports => [53,80,88,389,443,464]
+          dports => [53,80,88,389,443,464,636]
         }
       EOF
       create_remote_file(master, '/etc/puppetlabs/code/environments/production/manifests/ipa-iptables.pp', pp)
@@ -91,15 +91,15 @@ describe 'set up an IPA server' do
     # end
   end
 
-  agents.each do |agent|
-    context 'should run puppet to apply above changes' do
+  context 'should run puppet to apply above changes' do
+    it 'set up and run puppet' do
+      block_on(agents, run_in_parallel: true) do |agent|
       # on(agent, "puppet config set certname #{agent}.#{domain}")
-      it "should run the agent on #{agent}" do
         retry_on(agent, 'puppet agent -t',
-          :desired_exit_codes => [0],
-          :retry_interval     => 15,
-          :max_retries        => 3,
-          :verbose            => true
+          desired_exit_codes: [0],
+          retry_interval:     15,
+          max_retries:        3,
+          verbose:            true
         )
       end
     end
@@ -111,8 +111,8 @@ describe 'set up an IPA server' do
       # on(ipa_server, 'service network restart')
 
       # remove existing ldap client configuration
-      on(ipa_server, 'mv /etc/openldap/ldap.conf{,.bak}', :accept_all_exit_codes => true)
-      on(ipa_server, 'mv /root/.ldaprc{,.bak}',           :accept_all_exit_codes => true)
+      on(ipa_server, 'mv /etc/openldap/ldap.conf{,.bak}', accept_all_exit_codes: true)
+      on(ipa_server, 'mv /root/.ldaprc{,.bak}', accept_all_exit_codes: true)
 
       cmd = [
         'ipa-server-install',
@@ -135,6 +135,22 @@ describe 'set up an IPA server' do
 
       ipa_server.reboot
       on(ipa_server, 'ipactl status')
+    end
+  end
+
+  context 'check connections to all hosts' do
+    it 'reconnect' do
+      # require 'pry';binding.pry
+      # begin
+      #   count ||= 0
+      #   sleep count
+      #   on(hosts, 'uptime')
+      # rescue Beaker::Host::CommandFailure
+      #   retry if (count += 1) < 3
+      # end
+      block_on(hosts) do |host|
+        host.connection.connect
+      end
     end
   end
 end

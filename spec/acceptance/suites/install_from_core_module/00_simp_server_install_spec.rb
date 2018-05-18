@@ -7,19 +7,17 @@ describe 'install puppetserver modules from PuppetForge' do
 
   masters = hosts_with_role(hosts, 'master')
 
-  hosts.each do |host|
-    it 'should set the root password' do
-      on(host, "sed -i 's/enforce_for_root//g' /etc/pam.d/*")
-      on(host, 'echo password | passwd root --stdin')
-    end
-
-    it 'should set up needed repositories' do
-      host.install_package('epel-release')
-      on(host, 'curl -s https://packagecloud.io/install/repositories/simp-project/6_X_Dependencies/script.rpm.sh | bash')
-    end
-
-    it 'should install git' do
-      master.install_package('git')
+  context 'all hosts prep' do
+    block_on(hosts, run_in_parallel: true) do |host|
+      it "should prep #{host}" do
+        # set the root password
+        on(host, "sed -i 's/enforce_for_root//g' /etc/pam.d/*")
+        on(host, 'echo password | passwd root --stdin')
+        # set up needed repositories
+        host.install_package('epel-release')
+        host.install_package('git')
+        on(host, 'curl -s https://packagecloud.io/install/repositories/simp-project/6_X_Dependencies/script.rpm.sh | bash')
+      end
     end
   end
 

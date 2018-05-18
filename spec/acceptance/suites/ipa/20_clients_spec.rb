@@ -1,4 +1,4 @@
-# require 'spec_helper_integration'
+require 'spec_helper_integration'
 
 def skip_fips(host)
   if fips_enabled(host) && host.host_hash[:roles].include?('no_fips')
@@ -23,9 +23,8 @@ describe 'sets up IPA clients' do
   domain      = fact_on(master, 'domain')
 
   admin_password = '@dm1n=P@ssw0r'
-  enroll_pass    = 'enrollmentpassword'
+  enroll_pass    = 'en0llm3ntp@ssWor^'
   ipa_domain     = domain
-  ipa_realm      = ipa_domain.upcase
   ipa_fqdn       = fact_on(ipa_server, 'fqdn')
 
   context 'classify nodes' do
@@ -55,14 +54,16 @@ describe 'sets up IPA clients' do
         'simp::ipa::install::password' => enroll_pass,
         'simp::ipa::install::server'   => ipa_fqdn,
         'simp::ipa::install::domain'   => ipa_domain,
-        'simp::ipa::install::realm'    => ipa_realm
+        # 'simp::ipa::install::install_options' => {
+        #   'verbose' => nil,
+        # }
       ).to_yaml
       create_remote_file(master, '/etc/puppetlabs/code/environments/production/hieradata/default.yaml', default_yaml)
     end
   end
 
   context 'add hosts to ipa server' do
-    ipa_clients.each do |client|
+    block_on(ipa_clients) do |client|
       it "should run host-add for #{client}" do
         client_ip = fact_on(client,'ipaddress_eth1')
         cmd = [
@@ -109,7 +110,7 @@ describe 'sets up IPA clients' do
           EOF
         )
         client.reboot
-        retry_on(client, 'uptime', :retry_interval => 15 )
+        retry_on(client, 'uptime', retry_interval: 5 )
       end
     end
 
@@ -137,13 +138,23 @@ describe 'sets up IPA clients' do
     # end
 
     context 'run puppet' do
-      agents.each do |agent|
-        it "should run the agent on #{agent}" do
+      it 'set up and run puppet' do
+        # on(ipa_server, 'ipactl status')
+        # block_on(agents, run_in_parallel: true) do |agent|
+        #   on(agent, 'puppet agent -t', accept_all_exit_codes: true)
+        # end
+        # sleep 20
+        # block_on(agents, run_in_parallel: true) do |agent|
+        #   on(agent, 'puppet agent -t', catch_failures: true)
+        #   on(agent, 'puppet agent -t', catch_failures: true)
+        #   on(agent, 'puppet agent -t', catch_changes: true)
+        # end
+        block_on(agents, run_in_parallel: true) do |agent|
           retry_on(agent, 'puppet agent -t',
-            :desired_exit_codes => [0],
-            :retry_interval     => 15,
-            :max_retries        => 5,
-            :verbose            => true
+            desired_exit_codes: [0],
+            retry_interval:     15,
+            max_retries:        4,
+            verbose:            true
           )
         end
       end

@@ -26,7 +26,6 @@ before_script:
   - 'bundle -v || gem install bundler'
   - 'bundle config --local path vendor'
   - rm Gemfile.lock
-  # - 'bundle update puppet ||:'
   - 'bundle install -j $(nproc) --no-binstubs'
 
 #=======================================================================
@@ -36,8 +35,6 @@ before_script:
   stage: 'lint'
   tags: ['docker']
   script:
-    # - 'bundle exec rake syntax'
-    # - 'bundle exec rake lint'
     - 'bundle exec rake spec'
   cache:
     policy: 'pull'
