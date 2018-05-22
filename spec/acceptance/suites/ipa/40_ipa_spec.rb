@@ -29,7 +29,7 @@ describe 'validate the ipa server' do
       out     = run_ipa_cmd(ipa_server, admin_password, "ipa dnsrecord-find #{ipa_domain}")
       records = out.stdout.split("\n").grep(/Record name/).map {|h|h.split(': ').last}
 
-      expect(records).to include %w[ puppet ipa el6-client el7-client ]
+      expect(records).to include %w[ puppet ipa agent-el6 agent-el7 ]
     end
 
     it 'should add a test user and a posix group' do
