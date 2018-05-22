@@ -360,7 +360,7 @@ DEPENDENCIES
   parallel
   pry
   pry-doc
-  puppet (= 4.10.7)
+  puppet (~> 4.0)
   puppet-lint
   puppet-strings
   puppetlabs_spec_helper

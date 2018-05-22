@@ -29,23 +29,44 @@ describe 'validate the ipa server' do
       out     = run_ipa_cmd(ipa_server, admin_password, "ipa dnsrecord-find #{ipa_domain}")
       records = out.stdout.split("\n").grep(/Record name/).map {|h|h.split(': ').last}
 
-      expect(records).to include %w[ puppet ipa agent-el6 agent-el7 ]
+      %w[ puppet ipa agent-el6 agent-el7 ].each do |host|
+        expect(records).to include(host)
+      end
     end
 
     it 'should add a test user and a posix group' do
-      out = run_ipa_cmd(ipa_server, admin_password, 'ipa user-add testuser --first=Test --last=User --displayname="Test User" --random')
+      next_year = Time.new.year + 1
+      user_add = [
+        'echo -n password |',
+        'ipa user-add testuser',
+        '--first=Test',
+        '--last=User',
+        '--displayname="Test User"',
+        '--password',
+        "--setattr=KrbPasswordExpiration=#{next_year}0606060606Z"
+      ].join(' ')
+      run_ipa_cmd(ipa_server, admin_password, user_add)
       run_ipa_cmd(ipa_server, admin_password, 'ipa group-add posixusers --desc "A POSIX group is required to log in with the user"')
       run_ipa_cmd(ipa_server, admin_password, 'ipa group-add-member posixusers --users=testuser')
-
-      $pass = out.stdout.split("\n").grep(/Random password/).first.split(': ').last
-      puts $pass
     end
 
+    it 'should install sshpass' do
+      ipa_server.install_package('sshpass')
+    end
     ipa_clients.each do |client|
       it "log into #{client}"  do
-        on(ipa_server, "ssh -o StrictHostKeyChecking=no -l testuser #{client} ls -l")
+        login = [
+          'sshpass -p password',
+          'ssh',
+          '-o StrictHostKeyChecking=no',
+          '-l testuser',
+          client.name,
+          'uptime'
+        ].join(' ')
+
+        result = on(ipa_server, login)
+        expect(result.stdout).to match(/load average:/)
       end
-      # test logins with testuser
     end
   end
 end
