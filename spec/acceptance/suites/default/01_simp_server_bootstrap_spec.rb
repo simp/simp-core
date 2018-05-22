@@ -114,6 +114,7 @@ describe 'install puppetserver from puppet modules' do
         on(agent, "puppet config set server #{master_fqdn}")
         on(agent, 'puppet config set masterport 8140')
         on(agent, 'puppet config set ca_port 8141')
+        
         # Run puppet and expect changes
         retry_on(agent, 'puppet agent -t',
           desired_exit_codes: [0,2],
