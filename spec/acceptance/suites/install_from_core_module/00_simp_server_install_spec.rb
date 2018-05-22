@@ -8,8 +8,8 @@ describe 'install puppetserver modules from PuppetForge' do
   masters = hosts_with_role(hosts, 'master')
 
   context 'all hosts prep' do
-    block_on(hosts, run_in_parallel: true) do |host|
-      it "should prep #{host}" do
+    it "should set passwords and install packages/repositories" do
+      block_on(hosts, run_in_parallel: true) do |host|
         # set the root password
         on(host, "sed -i 's/enforce_for_root//g' /etc/pam.d/*")
         on(host, 'echo password | passwd root --stdin')

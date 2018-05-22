@@ -46,8 +46,8 @@ group :system_tests do
   gem 'beaker'
   gem 'beaker-rspec'
   gem 'simp-beaker-helpers', ENV.fetch('SIMP_BEAKER_HELPERS_VERSION', '~> 1.10'),
-    git: 'https://github.com/jeefberkey/rubygem-simp-beaker-helpers',
-    branch: 'SIMP-4928-parallel'
+    git: 'https://github.com/simp/rubygem-simp-beaker-helpers',
+    branch: 'master'
 end
 
 # nice-to-have gems (for debugging)
