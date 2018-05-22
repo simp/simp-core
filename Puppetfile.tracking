@@ -350,7 +350,7 @@ mod 'simp-rsync',
 
 mod 'simp-rsyslog',
   :git => 'https://github.com/simp/pupmod-simp-rsyslog',
-  :tag => '7.1.1'
+  :ref => 'master'
 
 mod 'simp-selinux',
   :git => 'https://github.com/simp/pupmod-simp-selinux',

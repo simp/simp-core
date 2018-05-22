@@ -24,6 +24,7 @@ Obsoletes: pupmod-simp-mcollective <= 3.0.0
 
 # Core SIMP Requirements
 Requires: pupmod-camptocamp-kmod >= 2.1.0, pupmod-camptocamp-kmod < 3.0.0
+Requires: pupmod-camptocamp-systemd >= 1.1.1, pupmod-camptocamp-systemd < 2.0.0
 Requires: pupmod-herculesteam-augeasproviders_apache >= 3.0.0, pupmod-herculesteam-augeasproviders_apache < 4.0.0
 Requires: pupmod-herculesteam-augeasproviders_core >= 2.1.1-2016, pupmod-herculesteam-augeasproviders_core < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_grub >= 3.0.0, pupmod-herculesteam-augeasproviders_grub < 4.0.0
@@ -117,7 +118,6 @@ Prefix: %{_sysconfdir}/puppet
 %package extras
 Summary: Extra Packages for SIMP
 License: Apache-2.0
-Requires: pupmod-camptocamp-systemd >= 1.0.0
 Requires: pupmod-cristifalcas-journald >= 0.5.0
 Requires: pupmod-elastic-elasticsearch >= 5.2.0
 Requires: pupmod-elastic-logstash >= 5.2.1
