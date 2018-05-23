@@ -23,7 +23,12 @@
 stages:
   - integration
 
-
+# Anchor to disable release flavored tests, and run them only when
+# the environment variable SIMP_RELEASE_TESTS is set in the GitLab repo settings
+.only_with_SIMP_RELEASE_TESTS: &only_with_SIMP_RELEASE_TESTS
+  only:
+    variables:
+      - $SIMP_RELEASE_TESTS
 
 default_el6:
   stage: integration
@@ -49,12 +54,14 @@ default_el7:
     - bundle exec rake beaker:suites[default,el7_server]
   retry: 1
 
+
 rpm_el6:
   stage: integration
   tags:
     - beaker
   <<: *cache_bundler
   <<: *setup_bundler_env
+  <<: *only_with_SIMP_RELEASE_TESTS
   variables:
     PUPPET_VERSION: '4.10.7'
   script:
@@ -67,6 +74,7 @@ rpm_el7:
     - beaker
   <<: *cache_bundler
   <<: *setup_bundler_env
+  <<: *only_with_SIMP_RELEASE_TESTS
   variables:
     PUPPET_VERSION: '4.10.7'
   script:
@@ -79,6 +87,7 @@ forge_install_el6:
     - beaker
   <<: *cache_bundler
   <<: *setup_bundler_env
+  <<: *only_with_SIMP_RELEASE_TESTS
   variables:
     PUPPET_VERSION: '4.10.7'
   script:
@@ -91,6 +100,7 @@ forge_install_el7:
     - beaker
   <<: *cache_bundler
   <<: *setup_bundler_env
+  <<: *only_with_SIMP_RELEASE_TESTS
   variables:
     PUPPET_VERSION: '4.10.7'
   script:
