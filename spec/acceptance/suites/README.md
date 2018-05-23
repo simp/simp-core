@@ -3,13 +3,13 @@
 In this directory there are tests that can be used to test SIMP in it's
 entirety, including all non ISO components.
 
-| Suite                    | Category    | Description                                                                              |
-| ------------------------ | ----------- | ---------------------------------------------------------------------------------------- |
-| default                  | Integration | Uses components from `Puppetfile.tracking`                                               |
-| install_from_rpm         | Release     | Uses RPMs from SIMP's packagecloud.io repos                                              |
-| install_from_tar         | Release     | Uses RPMs using the tarball from the ISO build process                                   |
-| install_from_core_module | Release     | Uses a module build from `metadata.json` and whatever dependencies from the Puppet Forge |
-| rpm_docker               | Build       | Used to build the SIMP ISO                                                               |
+| Suite                    | Category    | Description                                            |
+| ------------------------ | ----------- | ------------------------------------------------------ |
+| default                  | Integration | Uses components from `Puppetfile.tracking`             |
+| install_from_rpm         | Release     | Uses RPMs from SIMP's packagecloud.io repos            |
+| install_from_tar         | Release     | Uses RPMs using the tarball from the ISO build process |
+| install_from_core_module | Release     | Uses the SIMP metamodule and the Puppet Forge          |
+| rpm_docker               | Build       | Used to build the SIMP ISO                             |
 
 
 ## Overview
@@ -23,7 +23,7 @@ In general, integration tests for SIMP follow the same general procedure:
    for more details
 3. Add all the agents to the puppetserver, and run `puppet agent -t`
    until there are no more changes
-4. Modify the puppet environment and run further tests
+4. Modify the Puppet environment and run further tests
 
 ## Running the tests
 
@@ -38,80 +38,97 @@ bundle exec rake beaker:suites[<suite>,<nodeset>]
 ```
 
 There two nodesets per suite, `el7_server` and `el6_server`. They control the
-version of EL on the puppetserver.
+version of EL on the puppetserver. The default nodeset is a symlink to
+`el7_server`.
+
+
 
 ### default
 
-This test runs `puppet module build` in the root directory of `simp_core`,
-building a development version of the simp/simp_core metamodule. Then, it spins
-up a puppetserver and trys to install the development version of the module,
-using the Puppet Forge as a source for all modules.
+_Install method_: `Puppetfile.tracking` and `r10k`
 
-However, if there are unreleased components referenced in the `metadata.json`,
-the `puppet module install` for the module will fail.
+This test parses the current `Puppetfile.tracking` to make a Puppetfile that's
+suitable for a control repo, then uses `r10k` to install the SIMP environment.
+It does not use `simp config` or `simp bootstrap`, but instead just runs Puppet
+directly.
+
+Since the `Puppetfile.tracking` typically is set to the `master` branches of our
+component modules, this test makes sure our most up to date code is compatible.
+
 
 
 ### install_from_rpm
 
-This test attempts to set up two repos:
+_Install method_: RPMs, defaulting to the PackageCloud yum repo
 
-1) the simp repo which contains all the puppet modules for a simp deployment
-2) the dependency repo that contains rpm used by simp.
+This test attempts to set up two repos:
+1. The SIMP repo, containing all the SIMP and the Puppet module RPMs
+2. The dependency repo, containing extra RPMs required by SIMP that aren't in
+   the CentOS Base repos.
+
+It then installs the `simp` RPM and runs `simp config` and `simp bootstrap`.
 
 Use the following ENV variables to configure the test:
 
 #### `BEAKER_repo`
 
-  * **default** - if BEAKER_repo is not set this will default to using the
-    packagecloud repos version 6_X
-  *  **fully qualified path** - if this is set to a fully qualified path, it
-    will assume this is a repo file that contains definitions for both the simp
-    repo and the simp dependencies repo
-  * **version** - if it is defined and does not start with `/` it will assume it
-    is an different version for the simp packagecloud
+* **unset** - If unset, the test will use the 6_X repos on PackageCloud
+* **fully qualified path** - If set to a fully qualified path, the test will
+  assume this is a repo file that contains definitions for both the SIMP
+  repo and the SIMP dependencies repo
+* **version** - If set, and does not start with `/`, the test will assume it
+  is an different version for the SIMP PackageCloud
 
 #### `BEAKER_puppet_repo`
 
-  * **default** - false; this means that your repos include a version of puppet
-    in them to install. (The package cloud dependency repo has a version of
-    puppet in it)
-  * **true** - It downloads and installs the puppet repo definition and will use
-    the latest version of puppet
+* **unset** - If unset, the repos listed in `BEAKER_repo` include Puppet RPMs.
+  * The PackageCloud dependency repo does include a Puppet RPM.
+* **true** - The test will install the Puppet `pc1` repo distribution RPMs from
+  the root of [yum.puppetlabs.com](yum.puppetlabs.com).
+
 
 
 ### install_from_tar
 
-This test attempts to set up two repos:
+_Install method_: RPMs from a release tarball
 
-1) the simp repo which contains all the puppet modules for a simp deployment
-2) the dependency repo that contains rpm used by simp.
+This test attempts to set up two repos:
+1. The SIMP repo, containing all the SIMP and the Puppet module RPMs
+2. The dependency repo, containing extra RPMs required by SIMP that aren't in
+   the CentOS Base repos.
+
+It then installs the `simp` RPM and runs `simp config` and `simp bootstrap`.
 
 Use the following ENV variables to configure the test:
 
 #### `BEAKER_repo`
 
-This is used by 'cloud' set up to determine which package cloud repos to use to
-set up the dependencies repo. It defaults to 6_X.
+* **unset** - If unset, the test will use the 6_X repos on PackageCloud
+* **version** - If set, and does not start with `/`, the test will assume it
+  is an different version for the SIMP PackageCloud
 
 #### `BEAKER_release_tarball`
 
-This can be used to override the simp libraries with either cloud or default.
-It should be either
-  * a url pointing to a tarball to be downloaded (`http:` or `https:`)
-  * a full path to a tarball located on the server running the tests
-  * `default`: in it is not set it will look for the tar ball in the DVD_Overlay
-    directory under the `simp-core/build` directory
+* **unset** - The test will glob for a tarball in the DVD_Overlay directory
+  under the `simp-core/build` directory, where the build process would leave it
+* **url** - A full URL to a tarball
+* **path** - A file location on the machine running this test
+
 
 
 ### install_from_core_module
 
+_Install method_: Puppet Forge, using the metamodule described in `metadata.json`
+
 This test runs `puppet module build` in the root directory of `simp_core`,
 building a development version of the simp/simp_core metamodule. Then, it spins
 up a puppetserver and trys to install the development version of the module,
-using the Puppet Forge as a source for all modules.
+using the Puppet Forge as a source for all modules. It does not use
+`simp config` or `simp bootstrap`, but instead just runs Puppet directly.
 
 However, if there are unreleased components referenced in the `metadata.json`,
 the `puppet module install` for the module will fail.
+
 
 
 ### rpm_docker
