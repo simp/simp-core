@@ -104,7 +104,7 @@ _Install method_: RPMs from a release tarball
 
 This test attempts to set up two repos:
 
-1. The SIMP repo, containing all the SIMP and the Puppet module RPMs packated in
+1. The SIMP repo, containing all the SIMP and the Puppet module RPMs packaged in
    a release tarball.  The release tarball is built as part of an SIMP ISO build.
 2. The dependency repo, containing extra RPMs required by SIMP that aren't in
    the CentOS Base repos.
@@ -130,16 +130,17 @@ Use the following ENV variables to configure the test:
 
 ### `install_from_core_module` Suite
 
-_Install method_: Puppet Forge, using the metamodule described in `metadata.json`
+_Install method_: Puppet Forge, using the `simp/simp_core` metamodule described in `metadata.json`
 
-This test runs `puppet module build` in the root directory of `simp_core`,
-building a development version of the simp/simp_core metamodule. Then, it spins
+This test runs `puppet module build` in the root directory of `simp-core`,
+building a development version of the `simp/simp_core` metamodule. Then, it spins
 up a puppetserver and trys to install the development version of the module,
-using the Puppet Forge as a source for all modules. It does not use
+using the Puppet Forge as a source for all dependent modules. It does not use
 `simp config` or `simp bootstrap`, but instead just runs Puppet directly.
 
-NOTE: If there are unreleased components referenced in the `metadata.json`,
-the `puppet module install` for the module will fail.
+NOTE: If there are unreleased components referenced in the `metadata.json` of
+the `simp/simp_core` metamodule, the `puppet module install` for the module will
+fail.
 
 
 
