@@ -1,45 +1,52 @@
-# simp-core Acceptance and integration tests
+# simp-core Acceptance and Integration Tests
 
-In this directory there are tests that can be used to test SIMP in it's
-entirety, including all non ISO components.
+This directory contains
 
-| Suite                    | Category    | Description                                            |
-| ------------------------ | ----------- | ------------------------------------------------------ |
-| default                  | Integration | Uses components from `Puppetfile.tracking`             |
-| install_from_rpm         | Release     | Uses RPMs from SIMP's packagecloud.io repos            |
-| install_from_tar         | Release     | Uses RPMs using the tarball from the ISO build process |
-| install_from_core_module | Release     | Uses the SIMP metamodule and the Puppet Forge          |
-| rpm_docker               | Build       | Used to build the SIMP ISO                             |
+* Test suites that can be used to test SIMP in its entirety, including all non ISO components. 
+* A test suite that builds a SIMP ISO.
+
+| Suite                    | Category    | Description                                               |
+| ------------------------ | ----------- | --------------------------------------------------------- |
+| default                  | Integration | Uses components from `Puppetfile.tracking`                |
+| install_from_rpm         | Release     | Uses RPMs from SIMP's packagecloud.io repos               |
+| install_from_tar         | Release     | Uses RPMs from the tarball built in the ISO build process |
+| install_from_core_module | Release     | Uses the SIMP metamodule and the Puppet Forge             |
+| rpm_docker               | Build       | Used to build the SIMP ISO                                |
 
 
 ## Overview
 
-In general, integration tests for SIMP follow the same general procedure:
+In general, the SIMP integration/release test suites follow the same general procedure:
 
 1. Spin up 3 vagrant boxes, one puppetserver (EL version changes based on
    nodeset) and two clients (one EL6 and one EL7)
 2. Install, start and configure the puppetserver
-  * This is the step where most tests are different. See the subsections below
-   for more details
+
+   * This is the step where most tests are different. See the subsections below
+     for more details
+     
 3. Add all the agents to the puppetserver, and run `puppet agent -t`
    until there are no more changes
-4. Modify the Puppet environment and run further tests
+4. Modify the Puppet environment and run additional tests
 
-## Running the tests
+The SIMP ISO-building test suite spins up a Docker container for the target OS,
+builds/download RPMs, and then builds the ISO.
+
+## Running a test suite
 
 1. Set up your environment with a [ruby version manager](https://rvm.io/), [vagrant](https://www.vagrantup.com/), and [VirtualBox](https://www.virtualbox.org/)
 2. Install Ruby 2.1.9 (follow the guides from the link above)
 3. Install bundler: `gem install bundler`
-4. Install other dependencies: `gem install`
+4. Install other dependencies: `bundle install`
 5. Run the tests:
 
 ```bash
 bundle exec rake beaker:suites[<suite>,<nodeset>]
 ```
 
-There two nodesets per suite, `el7_server` and `el6_server`. They control the
-version of EL on the puppetserver. The default nodeset is a symlink to
-`el7_server`.
+There two nodesets per integration/release test suite, `el7_server` and `el6_server`.
+They control the version of EL on the puppetserver. The default nodeset is a symlink
+to `el7_server`.
 
 
 
@@ -52,8 +59,8 @@ suitable for a control repo, then uses `r10k` to install the SIMP environment.
 It does not use `simp config` or `simp bootstrap`, but instead just runs Puppet
 directly.
 
-Since the `Puppetfile.tracking` typically is set to the `master` branches of our
-component modules, this test makes sure our most up to date code is compatible.
+When the `Puppetfile.tracking` is set to the `master` branches of our component
+modules, this test makes sure our most up-to-date code is compatible.
 
 
 
@@ -62,6 +69,7 @@ component modules, this test makes sure our most up to date code is compatible.
 _Install method_: RPMs, defaulting to the PackageCloud yum repo
 
 This test attempts to set up two repos:
+
 1. The SIMP repo, containing all the SIMP and the Puppet module RPMs
 2. The dependency repo, containing extra RPMs required by SIMP that aren't in
    the CentOS Base repos.
@@ -82,7 +90,9 @@ Use the following ENV variables to configure the test:
 #### `BEAKER_puppet_repo`
 
 * **unset** - If unset, the repos listed in `BEAKER_repo` include Puppet RPMs.
+
   * The PackageCloud dependency repo does include a Puppet RPM.
+  
 * **true** - The test will install the Puppet `pc1` repo distribution RPMs from
   the root of [yum.puppetlabs.com](yum.puppetlabs.com).
 
@@ -93,7 +103,9 @@ Use the following ENV variables to configure the test:
 _Install method_: RPMs from a release tarball
 
 This test attempts to set up two repos:
-1. The SIMP repo, containing all the SIMP and the Puppet module RPMs
+
+1. The SIMP repo, containing all the SIMP and the Puppet module RPMs packated in
+   a release tarball.  The release tarball is built as part of an SIMP ISO build.
 2. The dependency repo, containing extra RPMs required by SIMP that aren't in
    the CentOS Base repos.
 
@@ -126,7 +138,7 @@ up a puppetserver and trys to install the development version of the module,
 using the Puppet Forge as a source for all modules. It does not use
 `simp config` or `simp bootstrap`, but instead just runs Puppet directly.
 
-However, if there are unreleased components referenced in the `metadata.json`,
+NOTE: If there are unreleased components referenced in the `metadata.json`,
 the `puppet module install` for the module will fail.
 
 
