@@ -1,7 +1,7 @@
 GIT
-  remote: https://github.com/jeefberkey/rubygem-simp-beaker-helpers
-  revision: 17b33b9c1595de40c7900e019d2aedf807e1d6a8
-  branch: SIMP-4928-parallel
+  remote: https://github.com/simp/rubygem-simp-beaker-helpers
+  revision: d5caff4ae439f2f9ef6feb093cf78f38704e8c29
+  branch: master
   specs:
     simp-beaker-helpers (1.10.8)
       beaker (~> 3.14)
@@ -212,7 +212,7 @@ GEM
       pry (~> 0.11)
       yard (~> 0.9.11)
     public_suffix (3.0.2)
-    puppet (4.10.7)
+    puppet (4.10.11)
       facter (> 2.0, < 4)
       gettext-setup (>= 0.10, < 1)
       hiera (>= 2.0, < 4)
