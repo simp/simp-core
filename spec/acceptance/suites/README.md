@@ -44,13 +44,13 @@ builds/download RPMs, and then builds the ISO.
 bundle exec rake beaker:suites[<suite>,<nodeset>]
 ```
 
-There two nodesets per integration/release test suite, `el7_server` and `el6_server`.
+There are two nodesets per integration/release test suite, `el7_server` and `el6_server`.
 They control the version of EL on the puppetserver. The default nodeset is a symlink
 to `el7_server`.
 
 
 
-### default
+### `default` Suite
 
 _Install method_: `Puppetfile.tracking` and `r10k`
 
@@ -64,7 +64,7 @@ modules, this test makes sure our most up-to-date code is compatible.
 
 
 
-### install_from_rpm
+### `install_from_rpm` Suite
 
 _Install method_: RPMs, defaulting to the PackageCloud yum repo
 
@@ -98,7 +98,7 @@ Use the following ENV variables to configure the test:
 
 
 
-### install_from_tar
+### `install_from_tar` Suite
 
 _Install method_: RPMs from a release tarball
 
@@ -128,7 +128,7 @@ Use the following ENV variables to configure the test:
 
 
 
-### install_from_core_module
+### `install_from_core_module` Suite
 
 _Install method_: Puppet Forge, using the metamodule described in `metadata.json`
 
@@ -143,7 +143,7 @@ the `puppet module install` for the module will fail.
 
 
 
-### rpm_docker
+### `rpm_docker` Suite
 
 This suite is used to build a SIMP ISO. Please see the
 [SIMP documentation](https://simp.readthedocs.io/en/master/getting_started_guide/ISO_Build/Building_SIMP_From_Source.html)
