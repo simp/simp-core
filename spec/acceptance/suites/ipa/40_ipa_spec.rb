@@ -55,16 +55,16 @@ describe 'validate the ipa server' do
     end
     ipa_clients.each do |client|
       it "log into #{client}"  do
-        login = [
-          'sshpass -p password',
-          'ssh',
-          '-o StrictHostKeyChecking=no',
-          '-l testuser',
-          client.name,
-          'uptime'
-        ].join(' ')
+        login = []
+        login += 'sshpass -p password'
+        login += 'ssh'
+        login += '-o StrictHostKeyChecking=no'
+        login += '-m hmac-sha1' if client.host_hash.platform =~ /el-6/
+        login += '-l testuser'
+        login += client.name
+        login += 'uptime'
 
-        result = on(ipa_server, login)
+        result = on(ipa_server, login.join(' '))
         expect(result.stdout).to match(/load average:/)
       end
     end

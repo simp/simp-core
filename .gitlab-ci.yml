@@ -224,67 +224,68 @@ el-pup4_10-forge-el7:
     BEAKER_SUITE: install_from_core_module
     BEAKER_SUITE_NODESET: el7_server
 
-# ----------------------------------------------------------------------
-# Puppet 5.5 for PE 2018.1 LTS
-el-pup5_5-default-el6:
-  <<: *integration_base
-  <<: *pe_2018_1
-  variables:
-    BEAKER_SUITE: default
-    BEAKER_SUITE_NODESET: el6_server
-
-el-pup5_5-default-el7:
-  <<: *integration_base
-  <<: *pe_2018_1
-  variables:
-    BEAKER_SUITE: default
-    BEAKER_SUITE_NODESET: el7_server
-
-el-pup5_5-ipa-el6:
-  <<: *integration_base
-  <<: *pe_2018_1
-  variables:
-    BEAKER_SUITE: ipa
-    BEAKER_SUITE_NODESET: el6_server
-
-el-pup5_5-ipa-el7:
-  <<: *integration_base
-  <<: *pe_2018_1
-  variables:
-    BEAKER_SUITE: ipa
-    BEAKER_SUITE_NODESET: el7_server
-
-el-pup5_5-rpm-el6:
-  <<: *integration_base
-  <<: *pe_2018_1
-  <<: *only_with_SIMP_RELEASE_TESTS
-  variables:
-    BEAKER_SUITE: install_from_rpm
-    BEAKER_SUITE_NODESET: el6_server
-
-el-pup5_5-rpm-el7:
-  <<: *integration_base
-  <<: *pe_2018_1
-  <<: *only_with_SIMP_RELEASE_TESTS
-  variables:
-    BEAKER_SUITE: install_from_rpm
-    BEAKER_SUITE_NODESET: el7_server
-
-el-pup5_5-forge-el6:
-  <<: *integration_base
-  <<: *pe_2018_1
-  <<: *only_with_SIMP_RELEASE_TESTS
-  variables:
-    BEAKER_SUITE: install_from_core_module
-    BEAKER_SUITE_NODESET: el6_server
-
-el-pup5_5-forge-el7:
-  <<: *integration_base
-  <<: *pe_2018_1
-  <<: *only_with_SIMP_RELEASE_TESTS
-  variables:
-    BEAKER_SUITE: install_from_core_module
-    BEAKER_SUITE_NODESET: el7_server
+########### Commented out until SIMP-4934 is completed
+# # ----------------------------------------------------------------------
+# # Puppet 5.5 for PE 2018.1 LTS
+# el-pup5_5-default-el6:
+#   <<: *integration_base
+#   <<: *pe_2018_1
+#   variables:
+#     BEAKER_SUITE: default
+#     BEAKER_SUITE_NODESET: el6_server
+#
+# el-pup5_5-default-el7:
+#   <<: *integration_base
+#   <<: *pe_2018_1
+#   variables:
+#     BEAKER_SUITE: default
+#     BEAKER_SUITE_NODESET: el7_server
+#
+# el-pup5_5-ipa-el6:
+#   <<: *integration_base
+#   <<: *pe_2018_1
+#   variables:
+#     BEAKER_SUITE: ipa
+#     BEAKER_SUITE_NODESET: el6_server
+#
+# el-pup5_5-ipa-el7:
+#   <<: *integration_base
+#   <<: *pe_2018_1
+#   variables:
+#     BEAKER_SUITE: ipa
+#     BEAKER_SUITE_NODESET: el7_server
+#
+# el-pup5_5-rpm-el6:
+#   <<: *integration_base
+#   <<: *pe_2018_1
+#   <<: *only_with_SIMP_RELEASE_TESTS
+#   variables:
+#     BEAKER_SUITE: install_from_rpm
+#     BEAKER_SUITE_NODESET: el6_server
+#
+# el-pup5_5-rpm-el7:
+#   <<: *integration_base
+#   <<: *pe_2018_1
+#   <<: *only_with_SIMP_RELEASE_TESTS
+#   variables:
+#     BEAKER_SUITE: install_from_rpm
+#     BEAKER_SUITE_NODESET: el7_server
+#
+# el-pup5_5-forge-el6:
+#   <<: *integration_base
+#   <<: *pe_2018_1
+#   <<: *only_with_SIMP_RELEASE_TESTS
+#   variables:
+#     BEAKER_SUITE: install_from_core_module
+#     BEAKER_SUITE_NODESET: el6_server
+#
+# el-pup5_5-forge-el7:
+#   <<: *integration_base
+#   <<: *pe_2018_1
+#   <<: *only_with_SIMP_RELEASE_TESTS
+#   variables:
+#     BEAKER_SUITE: install_from_core_module
+#     BEAKER_SUITE_NODESET: el7_server
 
 #=======================================================================
 # Deployment Jobs
