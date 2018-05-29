@@ -26,36 +26,35 @@ test_name 'puppetserver via r10k'
 
 describe 'install environment via r10k and puppetserver' do
 
-  masters = hosts_with_role(hosts, 'master')
-
-  hosts.each do |host|
-    it 'should set the root password' do
-      on(host, "sed -i 's/enforce_for_root//g' /etc/pam.d/*")
-      on(host, 'echo password | passwd root --stdin')
-    end
-    it 'should set up needed repositories' do
-      host.install_package('epel-release')
-      on(host, 'curl -s https://packagecloud.io/install/repositories/simp-project/6_X_Dependencies/script.rpm.sh | bash')
-    end
-    it 'should install the r10k gem' do
-      master.install_package('git')
-      on(master, 'puppet resource package r10k ensure=present provider=puppet_gem')
+  context 'all hosts prep' do
+    it 'should install repos and set root pw' do
+      block_on(hosts, run_in_parallel: true) do |host|
+        # set the root password
+        on(host, "sed -i 's/enforce_for_root//g' /etc/pam.d/*")
+        on(host, 'echo password | passwd root --stdin')
+        # set up needed repositories
+        host.install_package('epel-release')
+        on(host, 'curl -s https://packagecloud.io/install/repositories/simp-project/6_X_Dependencies/script.rpm.sh | bash')
+      end
     end
   end
 
   context 'install and start a standard puppetserver' do
-    masters.each do |master|
-      it 'should install puppetserver' do
-        master.install_package('puppetserver')
-      end
+    it 'should install puppetserver' do
+      master.install_package('puppetserver')
+    end
 
-      it 'should start puppetserver' do
-        on(master, 'puppet resource service puppetserver ensure=running')
-      end
+    it 'install the r10k gem' do
+      master.install_package('git')
+      on(master, 'puppet resource package r10k ensure=present provider=puppet_gem')
+    end
 
-      it 'should enable trusted_server_facts' do
-        on(master, 'puppet config --section master set trusted_server_facts true')
-      end
+    it 'should start puppetserver' do
+      on(master, 'puppet resource service puppetserver ensure=running')
+    end
+
+    it 'should enable trusted_server_facts' do
+      on(master, 'puppet config --section master set trusted_server_facts true')
     end
   end
 
