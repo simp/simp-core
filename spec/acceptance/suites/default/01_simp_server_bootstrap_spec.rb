@@ -55,13 +55,13 @@ describe 'install puppetserver from puppet modules' do
 
   context 'bootstrap simp server' do
     it 'should set up a simp server' do
-       apply_manifest_on(master, master_manifest, :accept_all_exit_codes => true)
-       apply_manifest_on(master, master_manifest, :accept_all_exit_codes => true)
+       apply_manifest_on(master, master_manifest, accept_all_exit_codes: true)
+       apply_manifest_on(master, master_manifest, accept_all_exit_codes: true)
        master.reboot
-       apply_manifest_on(master, master_manifest, :catch_failures => true)
+       apply_manifest_on(master, master_manifest, catch_failures: true)
      end
      it 'should be idempotent' do
-       apply_manifest_on(master, master_manifest, :catch_changes => true )
+       apply_manifest_on(master, master_manifest, catch_changes: true )
      end
   end
 
@@ -103,38 +103,37 @@ describe 'install puppetserver from puppet modules' do
       on(master, 'puppet resource service puppetserver ensure=stopped')
       on(master, 'puppet resource service puppetserver ensure=running')
 
-      on(master, 'puppet generate types', :accept_all_exit_codes => true)
-      retry_on(master, puppetserver_status_cmd, :retry_interval => 10)
+      on(master, 'puppet generate types', accept_all_exit_codes: true)
+      retry_on(master, puppetserver_status_cmd, retry_interval: 10)
     end
   end
 
   context 'agents' do
-    agents.each do |agent|
-      it "should configure puppet on host #{agent}" do
+    it 'set up and run puppet' do
+      block_on(agents, run_in_parallel: true) do |agent|
         on(agent, "puppet config set server #{master_fqdn}")
         on(agent, 'puppet config set masterport 8140')
         on(agent, 'puppet config set ca_port 8141')
-      end
-      it "should run puppet on #{agent}" do
+        
         # Run puppet and expect changes
         retry_on(agent, 'puppet agent -t',
-          :desired_exit_codes => [0,2],
-          :retry_interval     => 15,
-          :max_retries        => 5,
-          :verbose            => true
+          desired_exit_codes: [0,2],
+          retry_interval:     15,
+          max_retries:        5,
+          verbose:            true
         )
 
         # Reboot and wait for machine to come back up
         agent.reboot
-        retry_on(master, puppetserver_status_cmd, :retry_interval => 10)
-        retry_on(agent, 'uptime', :retry_interval => 15 )
+        retry_on(master, puppetserver_status_cmd, retry_interval: 10)
+        retry_on(agent, 'uptime', retry_interval: 15 )
 
         # Wait for things to settle and stop making changes
         retry_on(agent, 'puppet agent -t',
-          :desired_exit_codes => [0],
-          :retry_interval     => 15,
-          :max_retries        => 3,
-          :verbose            => true
+          desired_exit_codes: [0],
+          retry_interval:     15,
+          max_retries:        3,
+          verbose:            true
         )
       end
     end

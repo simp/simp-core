@@ -357,8 +357,8 @@ mod 'simp-selinux',
   :ref => 'master'
 
 mod 'simp-simp',
-  :git => 'https://github.com/simp/pupmod-simp-simp',
-  :ref => 'master'
+  :git => 'https://github.com/jeefberkey/pupmod-simp-simp',
+  :branch => 'SIMP-4857-ipa-enrollment'
 
 mod 'simp-simpcat',
   :git => 'https://github.com/simp/pupmod-simp-simpcat',
