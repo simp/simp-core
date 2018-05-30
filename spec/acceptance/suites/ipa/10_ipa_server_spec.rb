@@ -19,6 +19,10 @@ describe 'set up an IPA server' do
     it 'should install ipa-server' do
       on(ipa_server, 'puppet resource package ipa-server ensure=present')
       on(ipa_server, 'puppet resource package ipa-server-dns ensure=present')
+      if ipa_server.host_hash[:platform] =~ /el-6/
+        on(ipa_server, 'puppet resource package bind ensure=present')
+        on(ipa_server, 'puppet resource package bind-dyndb-ldap ensure=present')
+      end
     end
     it 'should make sure the hostname is fully qualified' do
       fqdn = "#{ipa_server}.#{domain}"
@@ -36,7 +40,7 @@ describe 'set up an IPA server' do
     end
     it 'should reboot the server' do
       ipa_server.reboot
-      retry_on(ipa_server, 'uptime', retry_interval: 15 )
+      retry_on(ipa_server, 'uptime', :retry_interval => 15 )
     end
   end
 
@@ -82,12 +86,12 @@ describe 'set up an IPA server' do
 
   context 'should run puppet to apply above changes' do
     it 'set up and run puppet' do
-      block_on(agents, run_in_parallel: true) do |agent|
+      block_on(agents, :run_in_parallel => true) do |agent|
         retry_on(agent, 'puppet agent -t',
-          desired_exit_codes: [0],
-          retry_interval:     15,
-          max_retries:        3,
-          verbose:            true
+          :desired_exit_codes => [0],
+          :retry_interval     => 15,
+          :max_retries        => 3,
+          :verbose            => true
         )
       end
     end
@@ -96,27 +100,25 @@ describe 'set up an IPA server' do
   context 'IPA server prep' do
     it 'should bootstrap the IPA server' do
       # remove existing ldap client configuration
-      on(ipa_server, 'mv /etc/openldap/ldap.conf{,.bak}', accept_all_exit_codes: true)
-      on(ipa_server, 'mv /root/.ldaprc{,.bak}', accept_all_exit_codes: true)
+      on(ipa_server, 'mv /etc/openldap/ldap.conf{,.bak}', :accept_all_exit_codes => true)
+      on(ipa_server, 'mv /root/.ldaprc{,.bak}', :accept_all_exit_codes => true)
 
-      cmd = [
-        'ipa-server-install',
-        '--unattended',
-        "--domain=#{ipa_domain}",
-        "--realm=#{ipa_realm}",
-        '--idstart=5000',
-        '--setup-dns',
-        '--forwarder=8.8.8.8',
-        # '--auto-forwarders',
-        '--auto-reverse',
-        "--hostname=#{ipa_fqdn}",
-        "--ip-address=#{ipa_ip}",
-        '--ds-password="d1r3ct0ry=P@ssw0r"',
-        "--admin-password='#{admin_password}'",
-      ].join(' ')
+      cmd  = []
+      cmd << 'ipa-server-install'
+      cmd << '--unattended'
+      cmd << "--domain=#{ipa_domain}"
+      cmd << "--realm=#{ipa_realm}"
+      cmd << '--idstart=5000'
+      cmd << '--setup-dns'
+      cmd << '--forwarder=8.8.8.8'
+      cmd << '--auto-reverse' if ipa_server.host_hash[:platform] =~ /el-7/
+      cmd << "--hostname=#{ipa_fqdn}"
+      cmd << "--ip-address=#{ipa_ip}"
+      cmd << '--ds-password="d1r3ct0ry=P@ssw0r"'
+      cmd << "--admin-password='#{admin_password}'"
 
       puts "\e[1;34m>>>>> The next step takes a very long time ... Please be patient! \e[0m"
-      on(ipa_server, cmd)
+      on(ipa_server, cmd.join(' '))
 
       ipa_server.reboot
       on(ipa_server, 'ipactl status')

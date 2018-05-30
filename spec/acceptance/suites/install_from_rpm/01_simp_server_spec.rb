@@ -24,7 +24,7 @@ describe 'install SIMP via rpm' do
 
   context 'all hosts prep' do
     it 'should install repos and set root pw' do
-      block_on(hosts, run_in_parallel: true) do |host|
+      block_on(hosts, :run_in_parallel => true) do |host|
         # set the root password
         on(host, "sed -i 's/enforce_for_root//g' /etc/pam.d/*")
         on(host, 'echo password | passwd root --stdin')
@@ -86,12 +86,12 @@ describe 'install SIMP via rpm' do
 
       it 'should reboot the master' do
         master.reboot
-        retry_on(master, puppetserver_status_cmd, retry_interval: 10)
+        retry_on(master, puppetserver_status_cmd, :retry_interval => 10)
       end
 
       it 'should settle after reboot' do
-        on(master, '/opt/puppetlabs/bin/puppet agent -t', acceptable_exit_codes: [0,2,4,6])
-        on(master, '/opt/puppetlabs/bin/puppet agent -t', acceptable_exit_codes: [0] )
+        on(master, '/opt/puppetlabs/bin/puppet agent -t', :acceptable_exit_codes => [0,2,4,6])
+        on(master, '/opt/puppetlabs/bin/puppet agent -t', :acceptable_exit_codes => [0] )
       end
 
       it 'should generate agent certs' do
@@ -124,7 +124,7 @@ describe 'install SIMP via rpm' do
 
   context 'agents' do
     it 'set up and run puppet' do
-      block_on(agents, run_in_parallel: true) do |agent|
+      block_on(agents, :run_in_parallel => true) do |agent|
         agent.install_package('epel-release')
         agent.install_package('puppet-agent')
         agent.install_package('net-tools')
@@ -136,23 +136,23 @@ describe 'install SIMP via rpm' do
 
         # Run puppet and expect changes
         retry_on(agent, '/opt/puppetlabs/bin/puppet agent -t',
-          desired_exit_codes: [0,2],
-          retry_interval:     15,
-          max_retries:        5,
-          verbose:            true
+          :desired_exit_codes => [0,2],
+          :retry_interval     => 15,
+          :max_retries        => 5,
+          :verbose            => true
         )
 
         # Wait for machine to come back up
         agent.reboot
-        retry_on(master, puppetserver_status_cmd, retry_interval: 10)
-        retry_on(agent, 'uptime', retry_interval: 15 )
+        retry_on(master, puppetserver_status_cmd, retry_interval => 10)
+        retry_on(agent, 'uptime', retry_interval => 15 )
 
         # Wait for things to settle and stop making changes
         retry_on(agent, '/opt/puppetlabs/bin/puppet agent -t',
-          desired_exit_codes: [0],
-          retry_interval:     15,
-          max_retries:        3,
-          verbose:            true
+          :desired_exit_codes => [0],
+          :retry_interval     => 15,
+          :max_retries        => 3,
+          :verbose            => true
         )
       end
     end

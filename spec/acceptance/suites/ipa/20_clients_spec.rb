@@ -52,7 +52,7 @@ describe 'sets up IPA clients' do
       default_yaml = hiera.merge(
         'simp::ipa::install::ensure'   => 'present',
         'simp::ipa::install::password' => enroll_pass,
-        'simp::ipa::install::server'   => ipa_fqdn,
+        'simp::ipa::install::server'   => [ipa_fqdn],
         'simp::ipa::install::domain'   => ipa_domain,
         # 'simp::ipa::install::install_options' => {
         #   'verbose' => nil,
@@ -95,18 +95,18 @@ describe 'sets up IPA clients' do
           EOF
         )
         client.reboot
-        retry_on(client, 'uptime', retry_interval: 5 )
+        retry_on(client, 'uptime', :retry_interval => 5 )
       end
     end
 
     context 'run puppet' do
       it 'set up and run puppet' do
-        block_on(agents, run_in_parallel: true) do |agent|
+        block_on(agents, :run_in_parallel => true) do |agent|
           retry_on(agent, 'puppet agent -t',
-            desired_exit_codes: [0],
-            retry_interval:     15,
-            max_retries:        4,
-            verbose:            true
+            :desired_exit_codes => [0],
+            :retry_interval     => 15,
+            :max_retries        => 4,
+            :verbose            => true
           )
         end
       end

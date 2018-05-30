@@ -65,7 +65,7 @@ modules, this test makes sure our most up-to-date code is compatible.
 
 
 
-### `default` Suite
+### `ipa` Suite
 
 _Install method_: `Puppetfile.tracking` and `r10k`
 
