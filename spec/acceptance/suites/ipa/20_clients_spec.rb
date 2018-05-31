@@ -34,7 +34,7 @@ describe 'sets up IPA clients' do
         node default {
           include 'simp_options'
           include 'simp'
-          include 'simp::ipa::install'
+          include 'simp_ipa::client::install'
         }
         # The puppetserver
         node /puppet/ {
@@ -43,19 +43,19 @@ describe 'sets up IPA clients' do
           include 'simp::server'
           include 'pupmod'
           include 'pupmod::master'
-          include 'simp::ipa::install'
+          include 'simp_ipa::client::install'
         }
       EOF
       create_remote_file(master, '/etc/puppetlabs/code/environments/production/manifests/site.pp', site_pp)
 
       hiera = YAML.load(on(master, 'cat /etc/puppetlabs/code/environments/production/hieradata/default.yaml').stdout)
       default_yaml = hiera.merge(
-        'simp::ipa::install::ensure'   => 'present',
-        'simp::ipa::install::password' => enroll_pass,
-        'simp::ipa::install::server'   => [ipa_fqdn],
-        'simp::ipa::install::domain'   => ipa_domain,
-        'simp::ipa::install::hostname' => '%{trusted.certname}',
-        # 'simp::ipa::install::install_options' => {
+        'simp_ipa::client::install::ensure'   => 'present',
+        'simp_ipa::client::install::password' => enroll_pass,
+        'simp_ipa::client::install::server'   => [ipa_fqdn],
+        'simp_ipa::client::install::domain'   => ipa_domain,
+        'simp_ipa::client::install::hostname' => '%{trusted.certname}',
+        # 'simp_ipa::client::install::install_options' => {
         #   'verbose' => nil,
         # }
       ).to_yaml
