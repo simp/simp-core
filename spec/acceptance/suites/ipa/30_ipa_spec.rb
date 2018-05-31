@@ -1,4 +1,4 @@
-# require 'spec_helper_integration'
+require 'spec_helper_integration'
 
 def run_ipa_cmd(host, pass, cmd)
   on(host, "echo \"#{pass}\" | kinit admin")

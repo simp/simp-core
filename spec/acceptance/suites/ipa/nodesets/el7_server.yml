@@ -21,14 +21,6 @@ HOSTS:
     hypervisor: vagrant
     vagrant_memsize: 2048
     vagrant_cpus: 2
-    # probably broken
-    forwarded_ports:
-      http:
-        from: 7442
-        to: 80
-      https:
-        from: 7443
-        to: 443
   agent-el7:
     roles:
       - agent
