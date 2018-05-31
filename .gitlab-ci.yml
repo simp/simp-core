@@ -53,11 +53,6 @@ before_script:
   tags: ['beaker']
   cache:
     policy: 'pull'
-  dependencies: []
-  artifacts:
-    when: 'always'
-    paths:
-      - 'Gemfile.lock'
   retry: 1
   script:
     - 'bundle exec rake beaker:suites[${BEAKER_SUITE:=default},${BEAKER_SUITE_NODESET:=default}]'
@@ -178,12 +173,13 @@ el-pup4_10-default-el7:
     BEAKER_SUITE: default
     BEAKER_SUITE_NODESET: el7_server
 
-el-pup4_10-ipa-el6:
-  <<: *integration_base
-  <<: *simp_6_1
-  variables:
-    BEAKER_SUITE: ipa
-    BEAKER_SUITE_NODESET: el6_server
+# # IPA server has issues on el6
+# el-pup4_10-ipa-el6:
+#   <<: *integration_base
+#   <<: *simp_6_1
+#   variables:
+#     BEAKER_SUITE: ipa
+#     BEAKER_SUITE_NODESET: el6_server
 
 el-pup4_10-ipa-el7:
   <<: *integration_base

@@ -54,6 +54,7 @@ describe 'sets up IPA clients' do
         'simp::ipa::install::password' => enroll_pass,
         'simp::ipa::install::server'   => [ipa_fqdn],
         'simp::ipa::install::domain'   => ipa_domain,
+        'simp::ipa::install::hostname' => '%{trusted.certname}',
         # 'simp::ipa::install::install_options' => {
         #   'verbose' => nil,
         # }
@@ -79,36 +80,15 @@ describe 'sets up IPA clients' do
     end
   end
 
-  context 'client prep' do
-    ipa_clients.each do |client|
-      next if skip_fips(client)
-
-      it 'should make sure the hostname is fully qualified' do
-        fqdn = "#{client}.#{domain}"
-        # Ensure that the hostname is set to the FQDN
-        on(client, "hostname #{fqdn}")
-        create_remote_file(client, '/etc/hostname', fqdn)
-        create_remote_file(client, '/etc/sysconfig/network', <<-EOF.gsub(/^\s+/,'')
-            NETWORKING=yes
-            HOSTNAME=#{fqdn}
-            PEERDNS=no
-          EOF
+  context 'run puppet' do
+    it 'set up and run puppet' do
+      block_on(agents, :run_in_parallel => true) do |agent|
+        retry_on(agent, 'puppet agent -t',
+          :desired_exit_codes => [0],
+          :retry_interval     => 15,
+          :max_retries        => 4,
+          :verbose            => true
         )
-        client.reboot
-        retry_on(client, 'uptime', :retry_interval => 5 )
-      end
-    end
-
-    context 'run puppet' do
-      it 'set up and run puppet' do
-        block_on(agents, :run_in_parallel => true) do |agent|
-          retry_on(agent, 'puppet agent -t',
-            :desired_exit_codes => [0],
-            :retry_interval     => 15,
-            :max_retries        => 4,
-            :verbose            => true
-          )
-        end
       end
     end
   end

@@ -73,6 +73,9 @@ This test parses is very similar to the default test above it, except it adds a
 new host to be an IPA server and adds all the hosts as clients with the
 ``simp::ipa::install`` class.
 
+The IPA server has issues on EL6, so the `el6_server` nodeset should not be run
+and will not pass.
+
 When the `Puppetfile.tracking` is set to the `master` branches of our component
 modules, this test makes sure our most up-to-date code is compatible.
 
