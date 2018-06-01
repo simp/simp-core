@@ -144,8 +144,8 @@ describe 'install SIMP via rpm' do
 
         # Wait for machine to come back up
         agent.reboot
-        retry_on(master, puppetserver_status_cmd, retry_interval => 10)
-        retry_on(agent, 'uptime', retry_interval => 15 )
+        retry_on(master, puppetserver_status_cmd, :retry_interval => 10)
+        retry_on(agent, 'uptime', :retry_interval => 15 )
 
         # Wait for things to settle and stop making changes
         retry_on(agent, '/opt/puppetlabs/bin/puppet agent -t',

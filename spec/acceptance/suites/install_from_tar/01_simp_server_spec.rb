@@ -138,10 +138,10 @@ describe 'install SIMP via tarball' do
 
         # Run puppet and expect changes
         retry_on(agent, 'puppet agent -t',
-          desired_exit_codes => [0],
-          retry_interval =>     15,
-          max_retries =>        5,
-          verbose =>            true
+          :desired_exit_codes => [0],
+          :retry_interval     => 15,
+          :max_retries        => 5,
+          :verbose            => true
         )
 
         # Wait for machine to come back up
