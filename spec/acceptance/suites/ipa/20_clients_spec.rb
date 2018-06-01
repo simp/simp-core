@@ -92,12 +92,4 @@ describe 'sets up IPA clients' do
       end
     end
   end
-
-  context 'check connections to all hosts' do
-    it 'reconnect' do
-      block_on(hosts) do |host|
-        host.connection.connect
-      end
-    end
-  end
 end

@@ -54,7 +54,7 @@ describe 'validate the ipa server' do
       ipa_server.install_package('sshpass')
     end
     ipa_clients.each do |client|
-      it "log into #{client}"  do
+      it "log into #{client}" do
         login = []
         login << 'sshpass -p password'
         login << 'ssh'
@@ -66,14 +66,6 @@ describe 'validate the ipa server' do
 
         result = on(ipa_server, login.join(' '))
         expect(result.stdout).to match(/load average:/)
-      end
-    end
-  end
-
-  context 'check connections to all hosts' do
-    it 'reconnect' do
-      block_on(hosts) do |host|
-        host.connection.connect
       end
     end
   end
