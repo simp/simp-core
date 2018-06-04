@@ -1,13 +1,3 @@
-GIT
-  remote: https://github.com/simp/rubygem-simp-beaker-helpers
-  revision: d5caff4ae439f2f9ef6feb093cf78f38704e8c29
-  branch: master
-  specs:
-    simp-beaker-helpers (1.10.8)
-      beaker (~> 3.14)
-      beaker-puppet (~> 0.8.0)
-      beaker-puppet_install_helper (~> 0.6)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -110,7 +100,7 @@ GEM
     faraday_middleware (0.12.2)
       faraday (>= 0.7.4, < 1.0)
     fast_gettext (1.1.2)
-    ffi (1.9.23)
+    ffi (1.9.25)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
     fog-core (1.45.0)
@@ -132,7 +122,7 @@ GEM
       fast_gettext (~> 1.1.0)
       gettext (>= 3.0.2)
       locale
-    google-api-client (0.22.0)
+    google-api-client (0.23.0)
       addressable (~> 2.5, >= 2.5.1)
       googleauth (>= 0.5, < 0.7.0)
       httpclient (>= 2.8.1, < 3.0)
@@ -148,6 +138,7 @@ GEM
       os (~> 0.9)
       signet (~> 0.7)
     hiera (3.4.3)
+    highline (1.7.10)
     hocon (1.2.5)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
@@ -302,6 +293,11 @@ GEM
       faraday (~> 0.9)
       jwt (>= 1.5, < 3.0)
       multi_json (~> 1.10)
+    simp-beaker-helpers (1.10.8)
+      beaker (~> 3.14)
+      beaker-puppet (~> 0.8.0)
+      beaker-puppet_install_helper (~> 0.6)
+      highline (~> 1.6)
     simp-build-helpers (0.1.1)
     simp-rake-helpers (5.4.3)
       beaker (~> 3.14)
@@ -340,7 +336,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.5)
-    yard (0.9.13)
+    yard (0.9.14)
 
 PLATFORMS
   ruby
@@ -361,7 +357,7 @@ DEPENDENCIES
   puppetlabs_spec_helper
   rake
   ruby-progressbar
-  simp-beaker-helpers (~> 1.10)!
+  simp-beaker-helpers (>= 1.10.8, < 2.0)
   simp-build-helpers (>= 0.1.0)
   simp-rake-helpers (>= 5.3, < 6.0)
 
