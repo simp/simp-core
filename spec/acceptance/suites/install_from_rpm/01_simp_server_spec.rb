@@ -22,17 +22,19 @@ describe 'install SIMP via rpm' do
     '| grep running'
   ].join(' ')
 
-  hosts.each do |host|
-    it 'should set the root password' do
-      on(host, "sed -i 's/enforce_for_root//g' /etc/pam.d/*")
-      on(host, 'echo password | passwd root --stdin')
-    end
-    it 'should install the puppet repo' do
-      if use_puppet_repo
-        if host.host_hash[:platform] =~ /el-7/
-          on(host, 'rpm -q puppetlabs-release-pc1 || yum install http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm -y')
-        else
-          on(host, 'rpm -q puppetlabs-release-pc1 || yum install http://yum.puppetlabs.com/puppetlabs-release-pc1-el-6.noarch.rpm -y')
+  context 'all hosts prep' do
+    it 'should install repos and set root pw' do
+      block_on(hosts, :run_in_parallel => true) do |host|
+        # set the root password
+        on(host, "sed -i 's/enforce_for_root//g' /etc/pam.d/*")
+        on(host, 'echo password | passwd root --stdin')
+        # set up needed repositories
+        if use_puppet_repo
+          if host.host_hash[:platform] =~ /el-7/
+            on(host, 'rpm -q puppetlabs-release-pc1 || yum install http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm -y')
+          else
+            on(host, 'rpm -q puppetlabs-release-pc1 || yum install http://yum.puppetlabs.com/puppetlabs-release-pc1-el-6.noarch.rpm -y')
+          end
         end
       end
     end
@@ -121,24 +123,20 @@ describe 'install SIMP via rpm' do
   end
 
   context 'agents' do
-    agents.each do |agent|
-      it "should install puppet and deps on #{agent}" do
+    it 'set up and run puppet' do
+      block_on(agents, :run_in_parallel => true) do |agent|
         agent.install_package('epel-release')
         agent.install_package('puppet-agent')
         agent.install_package('net-tools')
         setup_repo(agent)
-      end
 
-      it "should configure puppet on host #{agent}" do
         on(agent, "puppet config set server #{master_fqdn}")
         on(agent, 'puppet config set masterport 8140')
         on(agent, 'puppet config set ca_port 8141')
-      end
 
-      it "should run puppet on #{agent}" do
         # Run puppet and expect changes
-        retry_on(agent, 'puppet agent -t',
-          :desired_exit_codes => [0],
+        retry_on(agent, '/opt/puppetlabs/bin/puppet agent -t',
+          :desired_exit_codes => [0,2],
           :retry_interval     => 15,
           :max_retries        => 5,
           :verbose            => true

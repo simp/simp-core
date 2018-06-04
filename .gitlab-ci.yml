@@ -55,6 +55,32 @@ default_el7:
   retry: 1
 
 
+ipa_el7:
+  stage: integration
+  tags:
+    - beaker
+  <<: *cache_bundler
+  <<: *setup_bundler_env
+  variables:
+    PUPPET_VERSION: '4.10.7'
+  script:
+    - bundle exec rake beaker:suites[ipa,el7_server]
+  retry: 1
+
+# # IPA server has issues on el6
+# ipa_el6:
+#   stage: integration
+#   tags:
+#     - beaker
+#   <<: *cache_bundler
+#   <<: *setup_bundler_env
+#   variables:
+#     PUPPET_VERSION: '4.10.7'
+#   script:
+#     - bundle exec rake beaker:suites[ipa,el6_server]
+#   retry: 1
+
+
 rpm_el6:
   stage: integration
   tags:
@@ -106,16 +132,3 @@ forge_install_el7:
   script:
     - bundle exec rake beaker:suites[install_from_core_module,el7_server]
   retry: 1
-
-
-# Just gonna comment this one out for now...
-# acceptance-rpm_docker:
-#   stage: acceptance
-#   tags:
-#     - beaker
-#   <<: *cache_bundler
-#   <<: *setup_bundler_env
-#   script:
-#     - rm Gemfile.lock || true
-#     - bundle install --no-binstubs --path=vendor
-#     - bundle exec rake beaker:suites[rpm_docker]

@@ -109,13 +109,12 @@ describe 'install puppetserver from puppet modules' do
   end
 
   context 'agents' do
-    agents.each do |agent|
-      it "should configure puppet on host #{agent}" do
+    it 'set up and run puppet' do
+      block_on(agents, :run_in_parallel => true) do |agent|
         on(agent, "puppet config set server #{master_fqdn}")
         on(agent, 'puppet config set masterport 8140')
         on(agent, 'puppet config set ca_port 8141')
-      end
-      it "should run puppet on #{agent}" do
+
         # Run puppet and expect changes
         retry_on(agent, 'puppet agent -t',
           :desired_exit_codes => [0,2],

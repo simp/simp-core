@@ -1,0 +1,43 @@
+HOSTS:
+  puppet:
+    roles:
+      - server # Mandatory
+      - master
+      - default
+      - simp_server
+      - agent
+      - ipa_client
+    platform:   el-6-x86_64
+    box:        centos/6
+    hypervisor: vagrant
+    vagrant_memsize: 4608
+    vagrant_cpus: 2
+  ipa:
+    roles:
+      - ipa_server
+      - agent
+    platform:   el-6-x86_64
+    box:        centos/6
+    hypervisor: vagrant
+    vagrant_memsize: 2048
+    vagrant_cpus: 2
+  agent-el7:
+    roles:
+      - agent
+      - ipa_client
+    platform:   el-7-x86_64
+    box:        centos/7
+    hypervisor: vagrant
+  agent-el6:
+    roles:
+      - agent
+      - ipa_client
+    platform:   el-6-x86_64
+    box:        centos/6
+    hypervisor: vagrant
+CONFIG:
+  log_level: verbose
+  type:      aio
+  vagrant_memsize: 256
+  synced_folder: disabled
+  # vb_gui: true

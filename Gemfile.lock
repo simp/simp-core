@@ -9,7 +9,6 @@ GEM
     aws-sdk-v1 (1.67.0)
       json (~> 1.4)
       nokogiri (~> 1)
-    bcrypt_pbkdf (1.0.0)
     beaker (3.35.0)
       beaker-abs (~> 0.4)
       beaker-aws (~> 0.1)
@@ -48,7 +47,7 @@ GEM
       stringify-hash (~> 0.0.0)
     beaker-hiera (0.1.1)
       stringify-hash (~> 0.0.0)
-    beaker-hostgenerator (1.1.12)
+    beaker-hostgenerator (1.1.13)
       deep_merge (~> 1.0)
       stringify-hash (~> 0.0.0)
     beaker-openstack (0.2.0)
@@ -84,6 +83,8 @@ GEM
     colored (1.2)
     cri (2.6.1)
       colored (~> 1.2)
+    declarative (0.0.10)
+    declarative-option (0.1.0)
     deep_merge (1.2.1)
     diff-lcs (1.3)
     docker-api (1.34.2)
@@ -99,7 +100,7 @@ GEM
     faraday_middleware (0.12.2)
       faraday (>= 0.7.4, < 1.0)
     fast_gettext (1.1.2)
-    ffi (1.9.23)
+    ffi (1.9.25)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
     fog-core (1.45.0)
@@ -121,16 +122,13 @@ GEM
       fast_gettext (~> 1.1.0)
       gettext (>= 3.0.2)
       locale
-    google-api-client (0.9.4)
-      addressable (~> 2.3)
-      googleauth (~> 0.5)
-      httpclient (~> 2.7)
-      hurley (~> 0.1)
-      memoist (~> 0.11)
-      mime-types (>= 1.6)
-      representable (~> 2.3.0)
-      retriable (~> 2.0)
-      thor (~> 0.19)
+    google-api-client (0.23.0)
+      addressable (~> 2.5, >= 2.5.1)
+      googleauth (>= 0.5, < 0.7.0)
+      httpclient (>= 2.8.1, < 3.0)
+      mime-types (~> 3.0)
+      representable (~> 3.0)
+      retriable (>= 2.0, < 4.0)
     googleauth (0.6.2)
       faraday (~> 0.12)
       jwt (>= 1.4, < 3.0)
@@ -140,11 +138,11 @@ GEM
       os (~> 0.9)
       signet (~> 0.7)
     hiera (3.4.3)
+    highline (1.7.10)
     hocon (1.2.5)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     httpclient (2.8.3)
-    hurley (0.2)
     in-parallel (0.1.17)
     inifile (3.0.0)
     ipaddress (0.8.3)
@@ -168,7 +166,9 @@ GEM
       json-schema (~> 2.8)
       spdx-licenses (~> 1.0)
     method_source (0.9.0)
-    mime-types (2.99.3)
+    mime-types (3.1)
+      mime-types-data (~> 3.2015)
+    mime-types-data (3.2016.0521)
     mini_portile2 (2.3.0)
     minitar (0.6.1)
     minitest (5.11.3)
@@ -208,9 +208,9 @@ GEM
       hiera (>= 2.0, < 4)
       json_pure (~> 1.8)
       locale (~> 2.1)
-    puppet-blacksmith (3.4.0)
+    puppet-blacksmith (3.3.1)
       puppet (>= 2.7.16)
-      rest-client (~> 1.8.0)
+      rest-client
     puppet-lint (2.3.5)
     puppet-strings (2.0.0)
       rgen
@@ -223,7 +223,7 @@ GEM
       gettext-setup (~> 0.11)
       minitar
       semantic_puppet (~> 1.0)
-    puppetlabs_spec_helper (2.7.0)
+    puppetlabs_spec_helper (2.8.0)
       mocha (~> 1.0)
       puppet-lint (~> 2.0)
       puppet-syntax (~> 2.0)
@@ -240,22 +240,20 @@ GEM
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
     rb-readline (0.5.5)
-    rbnacl (3.4.0)
-      ffi
-    rbnacl-libsodium (1.0.15.1)
-      rbnacl (>= 3.0.1)
     rbvmomi (1.12.0)
       builder (~> 3.0)
       json (>= 1.8)
       nokogiri (~> 1.5)
       trollop (~> 2.1)
-    representable (2.3.0)
-      uber (~> 0.0.7)
-    rest-client (1.8.0)
+    representable (3.0.4)
+      declarative (< 0.1.0)
+      declarative-option (< 0.2.0)
+      uber (< 0.2.0)
+    rest-client (2.0.2)
       http-cookie (>= 1.0.2, < 2.0)
-      mime-types (>= 1.16, < 3.0)
-      netrc (~> 0.7)
-    retriable (2.1.0)
+      mime-types (>= 1.16, < 4.0)
+      netrc (~> 0.8)
+    retriable (3.1.1)
     rgen (0.8.2)
     rspec (3.7.0)
       rspec-core (~> 3.7.0)
@@ -295,10 +293,11 @@ GEM
       faraday (~> 0.9)
       jwt (>= 1.5, < 3.0)
       multi_json (~> 1.10)
-    simp-beaker-helpers (1.10.7)
+    simp-beaker-helpers (1.10.8)
       beaker (~> 3.14)
       beaker-puppet (~> 0.8.0)
       beaker-puppet_install_helper (~> 0.6)
+      highline (~> 1.6)
     simp-build-helpers (0.1.1)
     simp-rake-helpers (5.4.3)
       beaker (~> 3.14)
@@ -323,7 +322,7 @@ GEM
       facter (>= 1.5.0, < 3.0)
       json (~> 1)
       rspec-puppet-facts (~> 0)
-    spdx-licenses (1.1.0)
+    spdx-licenses (1.2.0)
     specinfra (2.73.3)
       net-scp
       net-ssh (>= 2.7, < 5.0)
@@ -333,23 +332,21 @@ GEM
     text (1.3.1)
     thor (0.20.0)
     trollop (2.1.2)
-    uber (0.0.15)
+    uber (0.1.0)
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.5)
-    yard (0.9.12)
+    yard (0.9.14)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  bcrypt_pbkdf
   beaker
   beaker-rspec
   bundler
   coderay
   dotenv
-  google-api-client (= 0.9.4)
   metadata-json-lint
   parallel
   pry
@@ -359,12 +356,10 @@ DEPENDENCIES
   puppet-strings
   puppetlabs_spec_helper
   rake
-  rbnacl (~> 3.4.0)
-  rbnacl-libsodium (~> 1.0.15.1)
   ruby-progressbar
-  simp-beaker-helpers (~> 1.10)
+  simp-beaker-helpers (>= 1.10.8, < 2.0)
   simp-build-helpers (>= 0.1.0)
   simp-rake-helpers (>= 5.3, < 6.0)
 
 BUNDLED WITH
-   1.16.1
+   1.16.2

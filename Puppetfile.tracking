@@ -358,7 +358,7 @@ mod 'simp-selinux',
 
 mod 'simp-simp',
   :git => 'https://github.com/simp/pupmod-simp-simp',
-  :ref => 'master'
+  :branch => 'master'
 
 mod 'simp-simpcat',
   :git => 'https://github.com/simp/pupmod-simp-simpcat',
@@ -387,6 +387,10 @@ mod 'simp-simp_gitlab',
 mod 'simp-simp_grafana',
   :git => 'https://github.com/simp/pupmod-simp-simp_grafana',
   :tag => '1.0.5'
+
+mod 'simp-simp_ipa',
+  :git => 'https://github.com/simp/pupmod-simp-simp_ipa',
+  :branch => 'master'
 
 # FIXME: This is commented out until the module is ready to be released.
 #  It has depencencies that have already been removed from the distribution.

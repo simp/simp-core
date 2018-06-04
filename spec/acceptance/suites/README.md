@@ -2,16 +2,17 @@
 
 This directory contains
 
-* Test suites that can be used to test SIMP in its entirety, including all non ISO components. 
+* Test suites that can be used to test SIMP in its entirety, including all non ISO components.
 * A test suite that builds a SIMP ISO.
 
-| Suite                    | Category    | Description                                               |
-| ------------------------ | ----------- | --------------------------------------------------------- |
-| default                  | Integration | Uses components from `Puppetfile.tracking`                |
-| install_from_rpm         | Release     | Uses RPMs from SIMP's packagecloud.io repos               |
-| install_from_tar         | Release     | Uses RPMs from the tarball built in the ISO build process |
-| install_from_core_module | Release     | Uses the SIMP metamodule and the Puppet Forge             |
-| rpm_docker               | Build       | Used to build the SIMP ISO                                |
+| Suite                    | Category    | Description                                                 |
+| ------------------------ | ----------- | ----------------------------------------------------------- |
+| default                  | Integration | Uses components from `Puppetfile.tracking`                  |
+| ipa                      | Integration | Uses components from `Puppetfile.tracking` with IPA clients |
+| install_from_rpm         | Release     | Uses RPMs from SIMP's packagecloud.io repos                 |
+| install_from_tar         | Release     | Uses RPMs from the tarball built in the ISO build process   |
+| install_from_core_module | Release     | Uses the SIMP metamodule and the Puppet Forge               |
+| rpm_docker               | Build       | Used to build the SIMP ISO                                  |
 
 
 ## Overview
@@ -24,7 +25,7 @@ In general, the SIMP integration/release test suites follow the same general pro
 
    * This is the step where most tests are different. See the subsections below
      for more details
-     
+
 3. Add all the agents to the puppetserver, and run `puppet agent -t`
    until there are no more changes
 4. Modify the Puppet environment and run additional tests
@@ -64,6 +65,22 @@ modules, this test makes sure our most up-to-date code is compatible.
 
 
 
+### `ipa` Suite
+
+_Install method_: `Puppetfile.tracking` and `r10k`
+
+This test parses is very similar to the default test above it, except it adds a
+new host to be an IPA server and adds all the hosts as clients with the
+``simp::ipa::install`` class.
+
+The IPA server has issues on EL6, so the `el6_server` nodeset should not be run
+and will not pass.
+
+When the `Puppetfile.tracking` is set to the `master` branches of our component
+modules, this test makes sure our most up-to-date code is compatible.
+
+
+
 ### `install_from_rpm` Suite
 
 _Install method_: RPMs, defaulting to the PackageCloud yum repo
@@ -92,7 +109,7 @@ Use the following ENV variables to configure the test:
 * **unset** - If unset, the repos listed in `BEAKER_repo` include Puppet RPMs.
 
   * The PackageCloud dependency repo does include a Puppet RPM.
-  
+
 * **true** - The test will install the Puppet `pc1` repo distribution RPMs from
   the root of [yum.puppetlabs.com](yum.puppetlabs.com).
 
