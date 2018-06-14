@@ -217,40 +217,40 @@ simp-ppolicy-check-password:
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/simp-ppolicy-check-password-2.4.39-0el7.x86_64.rpm
 simp-vendored-r10k-2.2.2-0.noarch.rpm:
   :rpm_name: simp-vendored-r10k-2.2.2-0.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X/packages/el/7/simp-vendored-r10k-2.2.2-0.noarch.rpm
+  :source: https://download.simp-project.com/simp/yum/unstable/el/7/x86_64/simp-vendored-r10k-2.2.2-0.noarch.rpm
 simp-vendored-r10k-doc-2.2.2-0.noarch.rpm:
   :rpm_name: simp-vendored-r10k-doc-2.2.2-0.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X/packages/el/7/simp-vendored-r10k-doc-2.2.2-0.noarch.rpm
+  :source: https://download.simp-project.com/simp/yum/unstable/el/7/x86_64/simp-vendored-r10k-doc-2.2.2-0.noarch.rpm
 simp-vendored-r10k-gem-colored-1.2-0.noarch.rpm:
   :rpm_name: simp-vendored-r10k-gem-colored-1.2-0.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X/packages/el/7/simp-vendored-r10k-gem-colored-1.2-0.noarch.rpm
+  :source: https://download.simp-project.com/simp/yum/unstable/el/7/x86_64/simp-vendored-r10k-gem-colored-1.2-0.noarch.rpm
 simp-vendored-r10k-gem-cri-2.6.1-0.noarch.rpm:
   :rpm_name: simp-vendored-r10k-gem-cri-2.6.1-0.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X/packages/el/7/simp-vendored-r10k-gem-cri-2.6.1-0.noarch.rpm
+  :source: https://download.simp-project.com/simp/yum/unstable/el/7/x86_64/simp-vendored-r10k-gem-cri-2.6.1-0.noarch.rpm
 simp-vendored-r10k-gem-faraday-0.9.2-0.noarch.rpm:
   :rpm_name: simp-vendored-r10k-gem-faraday-0.9.2-0.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X/packages/el/7/simp-vendored-r10k-gem-faraday-0.9.2-0.noarch.rpm
+  :source: https://download.simp-project.com/simp/yum/unstable/el/7/x86_64/simp-vendored-r10k-gem-faraday-0.9.2-0.noarch.rpm
 simp-vendored-r10k-gem-faraday_middleware-0.10.1-0.noarch.rpm:
   :rpm_name: simp-vendored-r10k-gem-faraday_middleware-0.10.1-0.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X/packages/el/7/simp-vendored-r10k-gem-faraday_middleware-0.10.1-0.noarch.rpm
+  :source: https://download.simp-project.com/simp/yum/unstable/el/7/x86_64/simp-vendored-r10k-gem-faraday_middleware-0.10.1-0.noarch.rpm
 simp-vendored-r10k-gem-log4r-1.1.10-0.noarch.rpm:
   :rpm_name: simp-vendored-r10k-gem-log4r-1.1.10-0.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X/packages/el/7/simp-vendored-r10k-gem-log4r-1.1.10-0.noarch.rpm
+  :source: https://download.simp-project.com/simp/yum/unstable/el/7/x86_64/simp-vendored-r10k-gem-log4r-1.1.10-0.noarch.rpm
 simp-vendored-r10k-gem-minitar-0.6.1-0.noarch.rpm:
   :rpm_name: simp-vendored-r10k-gem-minitar-0.6.1-0.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X/packages/el/7/simp-vendored-r10k-gem-minitar-0.6.1-0.noarch.rpm
+  :source: https://download.simp-project.com/simp/yum/unstable/el/7/x86_64/simp-vendored-r10k-gem-minitar-0.6.1-0.noarch.rpm
 simp-vendored-r10k-gem-multi_json-1.12.1-0.noarch.rpm:
   :rpm_name: simp-vendored-r10k-gem-multi_json-1.12.1-0.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X/packages/el/7/simp-vendored-r10k-gem-multi_json-1.12.1-0.noarch.rpm
+  :source: https://download.simp-project.com/simp/yum/unstable/el/7/x86_64/simp-vendored-r10k-gem-multi_json-1.12.1-0.noarch.rpm
 simp-vendored-r10k-gem-multipart-post-2.0.0-0.noarch.rpm:
   :rpm_name: simp-vendored-r10k-gem-multipart-post-2.0.0-0.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X/packages/el/7/simp-vendored-r10k-gem-multipart-post-2.0.0-0.noarch.rpm
+  :source: https://download.simp-project.com/simp/yum/unstable/el/7/x86_64/simp-vendored-r10k-gem-multipart-post-2.0.0-0.noarch.rpm
 simp-vendored-r10k-gem-puppet_forge-2.1.5-0.noarch.rpm:
   :rpm_name: simp-vendored-r10k-gem-puppet_forge-2.1.5-0.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X/packages/el/7/simp-vendored-r10k-gem-puppet_forge-2.1.5-0.noarch.rpm
+  :source: https://download.simp-project.com/simp/yum/unstable/el/7/x86_64/simp-vendored-r10k-gem-puppet_forge-2.1.5-0.noarch.rpm
 simp-vendored-r10k-gem-r10k-2.2.2-0.noarch.rpm:
   :rpm_name: simp-vendored-r10k-gem-r10k-2.2.2-0.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X/packages/el/7/simp-vendored-r10k-gem-r10k-2.2.2-0.noarch.rpm
+  :source: https://download.simp-project.com/simp/yum/unstable/el/7/x86_64/simp-vendored-r10k-gem-r10k-2.2.2-0.noarch.rpm
 sudosh2:
   :rpm_name: sudosh2-1.0.2-2el7.x86_64.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/sudosh2-1.0.2-2el7.x86_64.rpm
