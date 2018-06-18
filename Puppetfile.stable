@@ -74,55 +74,55 @@ mod 'puppet-file_concat',
   :git => 'https://github.com/simp/puppet-lib-file_concat',
   :ref => '813132b5d776204e1da169a93e4bc6a1e253f75c'
 
-mod 'herculeasteam-augeasproviders',
+mod 'herculesteam-augeasproviders',
   :git => 'https://github.com/simp/augeasproviders',
   :ref => 'bbfc6ff9fa9acfd39e1ae9aff6341dc07e86a8d4'
 
-mod 'herculeasteam-augeasproviders_apache',
+mod 'herculesteam-augeasproviders_apache',
   :git => 'https://github.com/simp/augeasproviders_apache',
   :ref => 'd2d51f011c845c888151a95d00a4972ec1054a6b'
 
-mod 'herculeasteam-augeasproviders_base',
+mod 'herculesteam-augeasproviders_base',
   :git => 'https://github.com/simp/augeasproviders_base',
   :ref => 'de6152df502f2642003c439195acc438c6da69b3'
 
-mod 'herculeasteam-augeasproviders_core',
+mod 'herculesteam-augeasproviders_core',
   :git => 'https://github.com/simp/augeasproviders_core',
   :ref => '604680cb5fe7e32fd1ad1051fc34ef100a4d6923'
 
-mod 'herculeasteam-augeasproviders_grub',
+mod 'herculesteam-augeasproviders_grub',
   :git => 'https://github.com/simp/augeasproviders_grub',
   :ref => 'aa550a1b1df303eb2a07b80634f5e83b5ad718b8'
 
-mod 'herculeasteam-augeasproviders_mounttab',
+mod 'herculesteam-augeasproviders_mounttab',
   :git => 'https://github.com/simp/augeasproviders_mounttab',
   :ref => '169d2cd9730059fb4dab983b864ba1abab73ed14'
 
-mod 'herculeasteam-augeasproviders_nagios',
+mod 'herculesteam-augeasproviders_nagios',
   :git => 'https://github.com/simp/augeasproviders_nagios',
   :ref => 'bd572653fb3de18c3ae920b9608989d5ca14ff9c'
 
-mod 'herculeasteam-augeasproviders_pam',
+mod 'herculesteam-augeasproviders_pam',
   :git => 'https://github.com/simp/augeasproviders_pam',
   :ref => 'e20796872f094c56a201519bab7716f099c78819'
 
-mod 'herculeasteam-augeasproviders_postgresql',
+mod 'herculesteam-augeasproviders_postgresql',
   :git => 'https://github.com/simp/augeasproviders_postgresql',
   :ref => '39d033fd9fa5ce1d67bbac81148c3d63615378a9'
 
-mod 'herculeasteam-augeasproviders_puppet',
+mod 'herculesteam-augeasproviders_puppet',
   :git => 'https://github.com/simp/augeasproviders_puppet',
   :ref => '5419f7e19c5721f2ed54654e791fd6bbc3be9707'
 
-mod 'herculeasteam-augeasproviders_shellvar',
+mod 'herculesteam-augeasproviders_shellvar',
   :git => 'https://github.com/simp/augeasproviders_shellvar',
   :ref => '67c592af6fdfbee92e61733b5f146c851b93232c'
 
-mod 'herculeasteam-augeasproviders_ssh',
+mod 'herculesteam-augeasproviders_ssh',
   :git => 'https://github.com/simp/augeasproviders_ssh',
   :ref => '44273c14afb678135bf2812550ac982a54c1eab4'
 
-mod 'herculeasteam-augeasproviders_sysctl',
+mod 'herculesteam-augeasproviders_sysctl',
   :git => 'https://github.com/simp/augeasproviders_sysctl',
   :ref => '012cd99bb6f1fdf210a2bc1c3f153138643dfb48'
 
