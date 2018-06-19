@@ -469,19 +469,3 @@ mod 'simp-useradd',
 mod 'puppet-nsswitch',
   :git => 'https://github.com/simp/puppet-nsswitch',
   :ref => '506a7f0fcecc72000f87a42ebf564ccdfd895d37'
-
-mod 'simp-libkv',
-  :git => 'https://github.com/simp/pupmod-simp-libkv',
-  :ref => 'de631cc5c485fd872c719955b780861e76fea6d5'
-
-mod 'simp-simp_consul',
-  :git => 'https://github.com/simp/pupmod-simp-simp_consul',
-  :ref => '4f97881d17c5ce2e294c42a052386c39ad57921d'
-
-mod 'solarkennedy-consul',
-  :git => 'https://github.com/solarkennedy/puppet-consul',
-  :ref => '3ed6c6495e7df079d69c55315eb64c277cfe6314'
-
-mod 'puppet-archive',
-  :git => 'https://github.com/simp/puppet-archive',
-  :ref => '62f42713403dd9102bb1ac687924ea00dab50741'
