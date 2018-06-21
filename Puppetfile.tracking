@@ -513,4 +513,12 @@ mod 'simp-xinetd',
 # will work just fine.
 mod 'trlinkin-nsswitch',
   :git => 'https://github.com/simp/puppet-nsswitch',
-  :ref => '506a7f0fcecc72000f87a42ebf564ccdfd895d37'
+  :ref => 'f1d51eeecf3d95a3d38562a50743ee7c915d0624'
+
+mod 'voxpupuli-yum',
+  :git => 'https://github.com/simp/voxpupuli-yum',
+  :tag => 'v2.1.0'
+
+mod 'vshn-gitlab',
+  :git => 'https://github.com/simp/puppet-gitlab.git',
+  :tag => 'v1.13.3'
