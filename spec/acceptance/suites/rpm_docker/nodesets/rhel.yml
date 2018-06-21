@@ -56,7 +56,9 @@ HOSTS:
       - 'yum install -y openssl util-linux rpm-build augeas-devel createrepo genisoimage git gnupg2 libicu-devel libxml2 libxml2-devel libxslt libxslt-devel rpmdevtools clamav clamav-update which ruby-devel rpm-devel rpm-sign'
 
       # simp doc deps
-      - 'yum -y install centos-release-scl python27 python-pip python-virtualenv fontconfig dejavu-sans-fonts dejavu-sans-mono-fonts dejavu-serif-fonts dejavu-fonts-common libjpeg-devel zlib-devel'
+      - 'yum -y install centos-release-scl python-pip python-virtualenv fontconfig dejavu-sans-fonts dejavu-sans-mono-fonts dejavu-serif-fonts dejavu-fonts-common libjpeg-devel zlib-devel'
+      - 'yum-config-manager --enable rhel-server-rhscl-7-rpms'
+      - 'yum -y install python27'
 
       # RVM build-deps
       - 'yum install -y libyaml-devel glibc-headers autoconf gcc gcc-c++ glibc-devel readline-devel libffi-devel openssl-devel automake libtool bison sqlite-devel'
@@ -132,7 +134,9 @@ HOSTS:
       - 'yum install -y openssl util-linux rpm-build augeas-devel createrepo genisoimage git gnupg2 libicu-devel libxml2 libxml2-devel libxslt libxslt-devel rpmdevtools clamav which ruby-devel rpm-sign acl'
 
       # simp doc deps
-      - 'yum -y install centos-release-scl python27 python-pip python-virtualenv fontconfig dejavu-sans-fonts dejavu-sans-mono-fonts dejavu-serif-fonts dejavu-fonts-common libjpeg-devel zlib-devel'
+      - 'yum -y install centos-release-scl python-pip python-virtualenv fontconfig dejavu-sans-fonts dejavu-sans-mono-fonts dejavu-serif-fonts dejavu-fonts-common libjpeg-devel zlib-devel'
+      - 'yum-config-manager --enable rhel-server-rhscl-6-rpms'
+      - 'yum -y install python27'
 
       # RVM build-deps
       - 'yum install -y libyaml-devel glibc-headers autoconf gcc gcc-c++ glibc-devel readline-devel libffi-devel openssl-devel automake libtool bison sqlite-devel tar'
