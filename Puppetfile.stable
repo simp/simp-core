@@ -10,13 +10,13 @@ mod 'simp-rsync',
 
 moduledir 'src/assets'
 
-mod 'simp-rsync',
-  :git => 'https://github.com/simp/simp-rsync',
-  :ref => '472f8da85d4b6b3d8579e60c168c84c578f818d5'
-
 mod 'rubygem-rubygem_simp_cli',
   :git => 'https://github.com/simp/rubygem-simp-cli',
   :ref => 'ee69ecfab838fc3094bf122b88f7311e443bee40'
+
+mod 'simp-rsync',
+  :git => 'https://github.com/simp/simp-rsync',
+  :ref => '472f8da85d4b6b3d8579e60c168c84c578f818d5'
 
 mod 'simp-adapter',
   :git => 'https://github.com/simp/simp-adapter',
@@ -404,7 +404,7 @@ mod 'simp-site',
 
 mod 'simp-ssh',
   :git => 'https://github.com/simp/pupmod-simp-ssh',
-  :ref => 'b1280e4564b8175780aa4b376ca1b9971cd3afdb'
+  :ref => '8d3db41d8dc7856d9d6b2070a40be3cf0d14d9f3'
 
 mod 'simp-sssd',
   :git => 'https://github.com/simp/pupmod-simp-sssd',
@@ -504,7 +504,7 @@ mod 'simp-simp_apache',
 
 mod 'simp-simp_gitlab',
   :git => 'https://github.com/simp/pupmod-simp-simp_gitlab',
-  :ref => '86d41b81e83edf5ffbdb96da88d37951b950eef3'
+  :ref => '48e3a4a48bed80f144a32b81d4619a235f287046'
 
 mod 'simp-simp_snmpd',
   :git => 'https://github.com/simp/pupmod-simp-simp_snmpd',
@@ -521,3 +521,7 @@ mod 'voxpupuli-yum',
 mod 'vshn-gitlab',
   :git => 'https://github.com/simp/puppet-gitlab.git',
   :ref => '5de09ad4bb8398a336b0651ba1f4f5e2406300cf'
+
+mod 'elastic-elastic_stack',
+  :git => 'https://github.com/elastic/puppet-elastic-stack.git',
+  :ref => '7211cc090a6e999fdbd22f44287cf7ec8621d453'

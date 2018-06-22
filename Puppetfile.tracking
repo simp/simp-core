@@ -10,6 +10,7 @@ mod 'simp-doc',
 moduledir 'src/assets'
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 mod 'rubygem-rubygem_simp_cli',
   :git => 'https://github.com/simp/rubygem-simp-cli',
   :ref => 'master'
@@ -23,9 +24,15 @@ mod 'simp-rsync',
   :ref => '472f8da85d4b6b3d8579e60c168c84c578f818d5'
 >>>>>>> updating puppetfiles
 
+=======
+>>>>>>> Updating puppetfiles to match recent changes to 6.2.0-BETA1
 mod 'rubygem-rubygem_simp_cli',
   :git => 'https://github.com/simp/rubygem-simp-cli',
   :ref => 'ee69ecfab838fc3094bf122b88f7311e443bee40'
+
+mod 'simp-rsync',
+  :git => 'https://github.com/simp/simp-rsync',
+  :ref => '472f8da85d4b6b3d8579e60c168c84c578f818d5'
 
 mod 'simp-adapter',
   :git => 'https://github.com/simp/simp-adapter',
@@ -461,7 +468,11 @@ mod 'simp-site',
 
 mod 'simp-ssh',
   :git => 'https://github.com/simp/pupmod-simp-ssh',
+<<<<<<< HEAD
   :ref => 'master'
+=======
+  :ref => '8d3db41d8dc7856d9d6b2070a40be3cf0d14d9f3'
+>>>>>>> Updating puppetfiles to match recent changes to 6.2.0-BETA1
 
 mod 'simp-sssd',
   :git => 'https://github.com/simp/pupmod-simp-sssd',
@@ -541,7 +552,51 @@ mod 'simp-xinetd',
 # will work just fine.
 mod 'trlinkin-nsswitch',
   :git => 'https://github.com/simp/puppet-nsswitch',
-  :ref => 'f1d51eeecf3d95a3d38562a50743ee7c915d0624'
+  :ref => '506a7f0fcecc72000f87a42ebf564ccdfd895d37'
+
+mod 'simp-rsync_data',
+  :git => 'https://github.com/simp/simp-rsync-skeleton',
+  :ref => '472f8da85d4b6b3d8579e60c168c84c578f818d5'
+
+mod 'camptocamp-systemd',
+  :git => 'https://github.com/simp/puppet-systemd.git',
+  :ref => 'b29c6eb2cee112a031a6780a943d43a5f335609b'
+
+mod 'puppetlabs-hocon',
+  :git => 'https://github.com/simp/pupmod-puppetlabs-hocon',
+  :ref => 'fe4d1aeb8104bbf78606c5a04a18bb1241b3f9fd'
+
+mod 'puppetlabs-mount_providers',
+  :git => 'https://github.com/simp/puppetlabs-mount_providers',
+  :ref => '127bc7d8e7af6e94d3f3513334094c7560372efa'
+
+mod 'puppetlabs-translate',
+  :git => 'https://github.com/simp/pupmod-puppetlabs-translate',
+  :ref => '9455a26726954ad180d910a1269d52eccbfb941c'
+
+mod 'razorsedge-snmp',
+  :git => 'https://github.com/simp/puppet-snmp',
+  :ref => '72e43bfab001b1a6d94bd5d66006e1eeb8471536'
+
+mod 'simp-haveged',
+  :git => 'https://github.com/simp/pupmod-simp-haveged',
+  :ref => '2f16d86710b1dddc47f51e409b094c9a54df8c7b'
+
+mod 'simp-simp_apache',
+  :git => 'https://github.com/simp/pupmod-simp-simp_apache',
+  :ref => '40533b06a1ff38dcd0c6569cbb0f2445d573164e'
+
+mod 'simp-simp_gitlab',
+  :git => 'https://github.com/simp/pupmod-simp-simp_gitlab',
+  :ref => '48e3a4a48bed80f144a32b81d4619a235f287046'
+
+mod 'simp-simp_snmpd',
+  :git => 'https://github.com/simp/pupmod-simp-simp_snmpd',
+  :ref => '9d61971ba2fc858b8d7398acabe4244d729a119a'
+
+mod 'simp-timezone',
+  :git => 'https://github.com/simp/pupmod-simp-timezone',
+  :ref => '7308a0235f6a6cab67e7c5076082a1940c0fd4db'
 
 mod 'voxpupuli-yum',
   :git => 'https://github.com/simp/voxpupuli-yum',
@@ -550,3 +605,7 @@ mod 'voxpupuli-yum',
 mod 'vshn-gitlab',
   :git => 'https://github.com/simp/puppet-gitlab.git',
   :ref => '5de09ad4bb8398a336b0651ba1f4f5e2406300cf'
+
+mod 'elastic-elastic_stack',
+  :git => 'https://github.com/elastic/puppet-elastic-stack.git',
+  :ref => '7211cc090a6e999fdbd22f44287cf7ec8621d453'
