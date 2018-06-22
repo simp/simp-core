@@ -469,3 +469,43 @@ mod 'simp-useradd',
 mod 'puppet-nsswitch',
   :git => 'https://github.com/simp/puppet-nsswitch',
   :ref => '506a7f0fcecc72000f87a42ebf564ccdfd895d37'
+
+mod 'camptocamp-systemd',
+  :git => 'https://github.com/simp/puppet-systemd.git',
+  :ref => 'b29c6eb2cee112a031a6780a943d43a5f335609b'
+
+mod 'puppetlabs-hocon',
+  :git => 'https://github.com/simp/pupmod-puppetlabs-hocon',
+  :ref => 'fe4d1aeb8104bbf78606c5a04a18bb1241b3f9fd'
+
+mod 'puppetlabs-mount_providers',
+  :git => 'https://github.com/simp/puppetlabs-mount_providers',
+  :ref => '127bc7d8e7af6e94d3f3513334094c7560372efa'
+
+mod 'puppetlabs-translate',
+  :git => 'https://github.com/simp/pupmod-puppetlabs-translate',
+  :ref => '9455a26726954ad180d910a1269d52eccbfb941c'
+
+mod 'razorsedge-snmp',
+  :git => 'https://github.com/simp/puppet-snmp',
+  :ref => '72e43bfab001b1a6d94bd5d66006e1eeb8471536'
+
+mod 'simp-simp_gitlab',
+  :git => 'https://github.com/simp/pupmod-simp-simp_gitlab',
+  :ref => '86d41b81e83edf5ffbdb96da88d37951b950eef3'
+
+mod 'simp-simp_snmpd',
+  :git => 'https://github.com/simp/pupmod-simp-simp_snmpd',
+  :ref => '9d61971ba2fc858b8d7398acabe4244d729a119a'
+
+mod 'simp-timezone',
+  :git => 'https://github.com/simp/pupmod-simp-timezone',
+  :ref => '7308a0235f6a6cab67e7c5076082a1940c0fd4db'
+
+mod 'voxpupuli-yum',
+  :git => 'https://github.com/simp/voxpupuli-yum',
+  :ref => '2ada87203ac746e5e431b681068b8a32fb12b88d'
+
+mod 'vshn-gitlab',
+  :git => 'https://github.com/simp/puppet-gitlab.git',
+  :ref => '5de09ad4bb8398a336b0651ba1f4f5e2406300cf'
