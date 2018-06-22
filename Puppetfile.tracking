@@ -9,8 +9,6 @@ mod 'simp-doc',
 
 moduledir 'src/assets'
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 mod 'rubygem-rubygem_simp_cli',
   :git => 'https://github.com/simp/rubygem-simp-cli',
   :ref => 'master'
@@ -18,21 +16,6 @@ mod 'rubygem-rubygem_simp_cli',
 mod 'simp-rsync_data',
   :git => 'https://github.com/simp/simp-rsync-skeleton',
   :ref => 'master'
-=======
-mod 'simp-rsync',
-  :git => 'https://github.com/simp/simp-rsync',
-  :ref => '472f8da85d4b6b3d8579e60c168c84c578f818d5'
->>>>>>> updating puppetfiles
-
-=======
->>>>>>> Updating puppetfiles to match recent changes to 6.2.0-BETA1
-mod 'rubygem-rubygem_simp_cli',
-  :git => 'https://github.com/simp/rubygem-simp-cli',
-  :ref => 'ee69ecfab838fc3094bf122b88f7311e443bee40'
-
-mod 'simp-rsync',
-  :git => 'https://github.com/simp/simp-rsync',
-  :ref => '472f8da85d4b6b3d8579e60c168c84c578f818d5'
 
 mod 'simp-adapter',
   :git => 'https://github.com/simp/simp-adapter',
@@ -48,25 +31,7 @@ mod 'simp-gpgkeys',
 
 mod 'simp-utils',
   :git => 'https://github.com/simp/simp-utils',
-<<<<<<< HEAD
   :tag => '6.1.1'
-=======
-  :ref => 'f43af3ae3a141fab1aa0a8a0fb3e9c914abbebd1'
-
-moduledir 'src/rubygems'
-
-mod 'rubygem-rubygem_simp_cli',
-  :git => 'https://github.com/simp/rubygem-simp-cli',
-  :ref => 'ee69ecfab838fc3094bf122b88f7311e443bee40'
-
-mod 'rubygem-rubygem_simp_metadata',
-  :git => 'https://github.com/simp/rubygem-simp-metadata',
-  :ref => '8a5c7ad045cbe4a25351cedde5c3517b1622a1cd'
-
-mod 'rubygem-rubygem_simp_rake_helpers',
-  :git => 'https://github.com/simp/rubygem-simp-rake-helpers',
-  :ref => '3fe49610299d21720cd86b4bc8815b6ac8f0c964'
->>>>>>> updating puppetfiles
 
 moduledir 'src/puppet/modules'
 
@@ -468,15 +433,7 @@ mod 'simp-site',
 
 mod 'simp-ssh',
   :git => 'https://github.com/simp/pupmod-simp-ssh',
-<<<<<<< HEAD
-<<<<<<< HEAD
   :ref => 'master'
-=======
-  :ref => '8d3db41d8dc7856d9d6b2070a40be3cf0d14d9f3'
->>>>>>> Updating puppetfiles to match recent changes to 6.2.0-BETA1
-=======
-  :ref => 'b1280e4564b8175780aa4b376ca1b9971cd3afdb'
->>>>>>> fixing Puppetfiles
 
 mod 'simp-sssd',
   :git => 'https://github.com/simp/pupmod-simp-sssd',
@@ -556,69 +513,12 @@ mod 'simp-xinetd',
 # will work just fine.
 mod 'trlinkin-nsswitch',
   :git => 'https://github.com/simp/puppet-nsswitch',
-  :ref => '506a7f0fcecc72000f87a42ebf564ccdfd895d37'
-
-mod 'camptocamp-systemd',
-  :git => 'https://github.com/simp/puppet-systemd.git',
-  :ref => 'b29c6eb2cee112a031a6780a943d43a5f335609b'
-
-mod 'puppetlabs-hocon',
-  :git => 'https://github.com/simp/pupmod-puppetlabs-hocon',
-  :ref => 'fe4d1aeb8104bbf78606c5a04a18bb1241b3f9fd'
-
-mod 'puppetlabs-mount_providers',
-  :git => 'https://github.com/simp/puppetlabs-mount_providers',
-  :ref => '127bc7d8e7af6e94d3f3513334094c7560372efa'
-
-mod 'puppetlabs-translate',
-  :git => 'https://github.com/simp/pupmod-puppetlabs-translate',
-  :ref => '9455a26726954ad180d910a1269d52eccbfb941c'
-
-mod 'razorsedge-snmp',
-  :git => 'https://github.com/simp/puppet-snmp',
-  :ref => '72e43bfab001b1a6d94bd5d66006e1eeb8471536'
-
-<<<<<<< HEAD
-mod 'simp-haveged',
-  :git => 'https://github.com/simp/pupmod-simp-haveged',
-  :ref => '2f16d86710b1dddc47f51e409b094c9a54df8c7b'
-
-mod 'simp-simp_apache',
-  :git => 'https://github.com/simp/pupmod-simp-simp_apache',
-  :ref => '40533b06a1ff38dcd0c6569cbb0f2445d573164e'
-
-mod 'simp-simp_gitlab',
-  :git => 'https://github.com/simp/pupmod-simp-simp_gitlab',
-  :ref => '48e3a4a48bed80f144a32b81d4619a235f287046'
-=======
-mod 'simp-simp_gitlab',
-  :git => 'https://github.com/simp/pupmod-simp-simp_gitlab',
-  :ref => '86d41b81e83edf5ffbdb96da88d37951b950eef3'
->>>>>>> updating to include new deps in Puppetfile
-
-mod 'simp-simp_snmpd',
-  :git => 'https://github.com/simp/pupmod-simp-simp_snmpd',
-  :ref => '9d61971ba2fc858b8d7398acabe4244d729a119a'
-
-mod 'simp-timezone',
-  :git => 'https://github.com/simp/pupmod-simp-timezone',
-  :ref => '7308a0235f6a6cab67e7c5076082a1940c0fd4db'
+  :ref => 'f1d51eeecf3d95a3d38562a50743ee7c915d0624'
 
 mod 'voxpupuli-yum',
   :git => 'https://github.com/simp/voxpupuli-yum',
-<<<<<<< HEAD
   :tag => 'v2.1.0'
-=======
-  :ref => '2ada87203ac746e5e431b681068b8a32fb12b88d'
->>>>>>> updating to include new deps in Puppetfile
 
 mod 'vshn-gitlab',
   :git => 'https://github.com/simp/puppet-gitlab.git',
-  :ref => '5de09ad4bb8398a336b0651ba1f4f5e2406300cf'
-<<<<<<< HEAD
-
-mod 'elastic-elastic_stack',
-  :git => 'https://github.com/elastic/puppet-elastic-stack.git',
-  :ref => '7211cc090a6e999fdbd22f44287cf7ec8621d453'
-=======
->>>>>>> updating to include new deps in Puppetfile
+  :tag => 'v1.13.3'
