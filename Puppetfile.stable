@@ -10,13 +10,13 @@ mod 'simp-rsync',
 
 moduledir 'src/assets'
 
-mod 'rubygem-rubygem_simp_cli',
-  :git => 'https://github.com/simp/rubygem-simp-cli',
-  :ref => 'ee69ecfab838fc3094bf122b88f7311e443bee40'
-
 mod 'simp-rsync',
   :git => 'https://github.com/simp/simp-rsync',
   :ref => '472f8da85d4b6b3d8579e60c168c84c578f818d5'
+
+mod 'rubygem-rubygem_simp_cli',
+  :git => 'https://github.com/simp/rubygem-simp-cli',
+  :ref => 'ee69ecfab838fc3094bf122b88f7311e443bee40'
 
 mod 'simp-adapter',
   :git => 'https://github.com/simp/simp-adapter',
@@ -39,6 +39,10 @@ moduledir 'src/rubygems'
 mod 'rubygem-rubygem_simp_cli',
   :git => 'https://github.com/simp/rubygem-simp-cli',
   :ref => 'ee69ecfab838fc3094bf122b88f7311e443bee40'
+
+mod 'rubygem-rubygem_simp_metadata',
+  :git => 'https://github.com/simp/rubygem-simp-metadata',
+  :ref => '8a5c7ad045cbe4a25351cedde5c3517b1622a1cd'
 
 mod 'rubygem-rubygem_simp_rake_helpers',
   :git => 'https://github.com/simp/rubygem-simp-rake-helpers',
@@ -516,4 +520,4 @@ mod 'voxpupuli-yum',
 
 mod 'vshn-gitlab',
   :git => 'https://github.com/simp/puppet-gitlab.git',
-  :ref => '8a5c7ad045cbe4a25351cedde5c3517b1622a1cd'
+  :ref => '5de09ad4bb8398a336b0651ba1f4f5e2406300cf'
