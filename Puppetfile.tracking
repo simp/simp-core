@@ -39,6 +39,10 @@ mod 'camptocamp-kmod',
   :git => 'https://github.com/simp/puppet-kmod.git',
   :tag => '2.2.0'
 
+# We are maintaining a simp-master branch of this module
+# because camptocamp has moved to Hiera 5 and Puppet >=
+# 4.10.10.  We need to release our version of 1.1.1
+# which is on simp-master.
 mod 'simp-systemd',
   :git => 'https://github.com/simp/puppet-systemd.git',
   :tag => 'simp-master'
@@ -219,7 +223,7 @@ mod 'simp-clamav',
 
 mod 'simp-compliance_markup',
   :git => 'https://github.com/simp/pupmod-simp-compliance_markup',
-  :ref => 'master'
+  :tag => '2.3.3'
 
 mod 'simp-cron',
   :git => 'https://github.com/simp/pupmod-simp-cron',
@@ -262,7 +266,7 @@ mod 'simp-incron',
 
 mod 'simp-iptables',
   :git => 'https://github.com/simp/pupmod-simp-iptables',
-  :tag => '6.1.2'
+  :ref => 'master'
 
 mod 'simp-issue',
   :git => 'https://github.com/simp/pupmod-simp-issue',
@@ -318,7 +322,7 @@ mod 'simp-oddjob',
 
 mod 'simp-openscap',
   :git => 'https://github.com/simp/pupmod-simp-openscap',
-  :tag => '6.0.4'
+  :tag => '6.0.5'
 
 mod 'simp-pam',
   :git => 'https://github.com/simp/pupmod-simp-pam',
@@ -334,7 +338,7 @@ mod 'simp-polkit',
 
 mod 'simp-postfix',
   :git => 'https://github.com/simp/pupmod-simp-postfix',
-  :tag => '5.0.3'
+  :ref => 'master'
 
 mod 'simp-pupmod',
   :git => 'https://github.com/simp/pupmod-simp-pupmod',
@@ -437,11 +441,11 @@ mod 'simp-sssd',
 
 mod 'simp-stunnel',
   :git => 'https://github.com/simp/pupmod-simp-stunnel',
-  :ref => 'master'
+  :tag => '6.3.1'
 
 mod 'simp-sudo',
   :git => 'https://github.com/simp/pupmod-simp-sudo',
-  :tag => '5.0.4'
+  :ref => 'master'
 
 mod 'simp-sudosh',
   :git => 'https://github.com/simp/pupmod-simp-sudosh',
@@ -482,7 +486,7 @@ mod 'simp-tuned',
 
 mod 'simp-upstart',
   :git => 'https://github.com/simp/pupmod-simp-upstart',
-  :tag => '6.0.1'
+  :tag => '6.0.2'
 
 mod 'simp-useradd',
   :git => 'https://github.com/simp/pupmod-simp-useradd',
@@ -490,7 +494,7 @@ mod 'simp-useradd',
 
 mod 'simp-vnc',
   :git => 'https://github.com/simp/pupmod-simp-vnc',
-  :ref => 'master'
+  :tag => '6.0.3'
 
 mod 'simp-vsftpd',
   :git => 'https://github.com/simp/pupmod-simp-vsftpd',

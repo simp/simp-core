@@ -128,7 +128,7 @@
     },
     {
       "name": "simp/auditd",
-      "version_requirement": ">= 7.0.0 < 8.0.0"
+      "version_requirement": ">= 7.0.0 < 9.0.0"
     },
     {
       "name": "simp/autofs",
