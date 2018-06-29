@@ -39,8 +39,10 @@ RUN rm -rf /etc/security/limits.d/*.conf
 RUN yum-config-manager --enable extras
 RUN yum install -y epel-release
 RUN yum install -y openssl util-linux rpm-build augeas-devel createrepo genisoimage git gnupg2 libicu-devel libxml2 libxml2-devel libxslt libxslt-devel rpmdevtools clamav which ruby-devel rpm-sign acl
-RUN yum -y install centos-release-scl python27 python-pip python-virtualenv fontconfig dejavu-sans-fonts dejavu-sans-mono-fonts dejavu-serif-fonts dejavu-fonts-common libjpeg-devel zlib-devel
+RUN yum -y install centos-release-scl python-pip python-virtualenv fontconfig dejavu-sans-fonts dejavu-sans-mono-fonts dejavu-serif-fonts dejavu-fonts-common libjpeg-devel zlib-devel
 RUN yum install -y libyaml-devel glibc-headers autoconf gcc gcc-c++ glibc-devel readline-devel libffi-devel openssl-devel automake libtool bison sqlite-devel tar
+RUN yum-config-manager --enable rhel-server-rhscl-6-rpms
+RUN yum -y install python27
 
 # Install helper packages
 RUN yum install -y rubygems vim-enhanced jq
