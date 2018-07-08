@@ -1,4 +1,4 @@
-# refs recorded for SIMP release 6.0.0
+# refs recorded for SIMP release 6.2.0-BETA2
 # vi:syntax=ruby
 
 moduledir 'src'
