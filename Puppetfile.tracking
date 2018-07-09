@@ -9,7 +9,7 @@ mod 'simp-doc',
 
 moduledir 'src/assets'
 
-mod 'simp-rsync-skeleton',
+mod 'rsync-skeleton',
   :git => 'https://github.com/simp/simp-rsync-skeleton',
   :ref => 'aaf439407429acd8a1f07d9f7505eb232a8bcd62'
 
