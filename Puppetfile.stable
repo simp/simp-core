@@ -469,7 +469,7 @@ mod 'simp-tpm',
 #
 # This currently exists on a 1.2.X branch for CHANGELOG fixes
   :git => 'https://github.com/simp/pupmod-simp-tpm',
-  :tag => '1.2.1'
+  :tag => '1.1.0'
 
 mod 'simp-tuned',
   :git => 'https://github.com/simp/pupmod-simp-tuned',
