@@ -98,30 +98,6 @@ haveged:
 incron:
   :rpm_name: incron-0.5.9-1.el6.x86_64.rpm
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/incron-0.5.9-1.el6.x86_64.rpm
-kernel:
-  :rpm_name: kernel-2.6.32-696.1.1.el6.x86_64.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.9/updates/x86_64/Packages/kernel-2.6.32-696.1.1.el6.x86_64.rpm
-kernel-abi-whitelists:
-  :rpm_name: kernel-abi-whitelists-2.6.32-696.1.1.el6.noarch.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.9/updates/x86_64/Packages/kernel-abi-whitelists-2.6.32-696.1.1.el6.noarch.rpm
-kernel-debug:
-  :rpm_name: kernel-debug-2.6.32-696.1.1.el6.x86_64.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.9/updates/x86_64/Packages/kernel-debug-2.6.32-696.1.1.el6.x86_64.rpm
-kernel-debug-devel:
-  :rpm_name: kernel-debug-devel-2.6.32-696.1.1.el6.x86_64.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.9/updates/x86_64/Packages/kernel-debug-devel-2.6.32-696.1.1.el6.x86_64.rpm
-kernel-devel:
-  :rpm_name: kernel-devel-2.6.32-696.1.1.el6.x86_64.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.9/updates/x86_64/Packages/kernel-devel-2.6.32-696.1.1.el6.x86_64.rpm
-kernel-doc:
-  :rpm_name: kernel-doc-2.6.32-696.1.1.el6.noarch.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.9/updates/x86_64/Packages/kernel-doc-2.6.32-696.1.1.el6.noarch.rpm
-kernel-firmware:
-  :rpm_name: kernel-firmware-2.6.32-696.1.1.el6.noarch.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.9/updates/x86_64/Packages/kernel-firmware-2.6.32-696.1.1.el6.noarch.rpm
-kernel-headers:
-  :rpm_name: kernel-headers-2.6.32-696.1.1.el6.x86_64.rpm
-  :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.9/updates/x86_64/Packages/kernel-headers-2.6.32-696.1.1.el6.x86_64.rpm
 lcgdm-libs:
   :rpm_name: lcgdm-libs-1.9.0-1.el6.x86_64.rpm
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/lcgdm-libs-1.9.0-1.el6.x86_64.rpm
