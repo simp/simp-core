@@ -76,12 +76,22 @@ jobs:
         - docker
       script:
         - bundle exec rake deps:checkout
-        - travis_wait 30 unbuffer bundle exec rake beaker:suites[rpm_docker,travis_ci]
-      env: PUPPET_VERSION"~> 4.8.2"
+        - travis_wait 30 unbuffer bundle exec rake beaker:suites[rpm_docker,el6]
+      env: PUPPET_VERSION"~> 4.10"
+
+    - stage: package
+      sudo: required
+      rvm: 2.1.9
+      services:
+        - docker
+      script:
+        - bundle exec rake deps:checkout
+        - travis_wait 30 unbuffer bundle exec rake beaker:suites[rpm_docker,el7]
+      env: PUPPET_VERSION"~> 4.10"
 
     - stage: deploy
       rvm: 2.1.9
-      env: STRICT_VARIABLES=yes TRUSTED_NODE_DATA=yes PUPPET_VERSION="~> 4.8.2"
+      env: STRICT_VARIABLES=yes TRUSTED_NODE_DATA=yes PUPPET_VERSION="~> 4.10"
       script:
         - bundle exec rake spec
       before_deploy:
