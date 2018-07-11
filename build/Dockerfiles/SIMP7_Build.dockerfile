@@ -37,11 +37,11 @@ RUN rm -rf /etc/security/limits.d/*.conf
 # Install necessary packages
 RUN yum-config-manager --enable extras
 RUN yum install -y epel-release
-RUN yum install -y openssl util-linux rpm-build augeas-devel createrepo genisoimage git gnupg2 libicu-devel libxml2 libxml2-devel libxslt libxslt-devel rpmdevtools clamav clamav-update which ruby-devel rpm-devel rpm-sign
+RUN yum install -y openssl util-linux rpm-build augeas-devel createrepo genisoimage git gnupg2 libicu-devel libxml2 libxml2-devel libxslt libxslt-devel rpmdevtools which ruby-devel rpm-devel rpm-sign
 RUN yum -y install centos-release-scl python-pip python-virtualenv fontconfig dejavu-sans-fonts dejavu-sans-mono-fonts dejavu-serif-fonts dejavu-fonts-common libjpeg-devel zlib-devel
 RUN yum install -y libyaml-devel glibc-headers autoconf gcc gcc-c++ glibc-devel readline-devel libffi-devel openssl-devel automake libtool bison sqlite-devel
 RUN yum-config-manager --enable rhel-server-rhscl-7-rpms
-RUN yum -y install python27
+RUN yum --enablerepo=base -y install python27
 RUN ln -sf /bin/true /usr/bin/systemctl
 
 # Install helper packages

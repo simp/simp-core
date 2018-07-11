@@ -86,7 +86,7 @@ describe 'set up an IPA server' do
 
   context 'should run puppet to apply above changes' do
     it 'set up and run puppet' do
-      block_on(agents, :run_in_parallel => true) do |agent|
+      block_on(agents, :run_in_parallel => false) do |agent|
         retry_on(agent, 'puppet agent -t',
           :desired_exit_codes => [0],
           :retry_interval     => 15,

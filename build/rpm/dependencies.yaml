@@ -96,7 +96,7 @@
 #     the obsoletes problem of pupmod-puppet-grafana-3.0.0-0
 #     packaged for SIMP 6.1.0.
 # (3) (NEW) Exclude the problematic puppet-archive module dependency.
-#     
+#
 'grafana':
   :release: '1'
   :obsoletes:

@@ -4,6 +4,7 @@
 .tmp/
 tmp/
 .vagrant/
+.vscode/
 Gemfile.lock
 Puppetfile.lock
 ISO
