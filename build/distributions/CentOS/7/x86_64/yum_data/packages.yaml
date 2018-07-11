@@ -33,11 +33,11 @@ clamav-update:
   :rpm_name: clamav-update-0.100.0-2.el7.x86_64.rpm
   :source: https://lug.mtu.edu/epel/7/x86_64/Packages/c/clamav-update-0.100.0-2.el7.x86_64.rpm
 elasticsearch:
-  :rpm_name: elasticsearch-5.6.7.rpm
-  :source: https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.6.7.rpm
+  :rpm_name: elasticsearch-5.6.10.rpm
+  :source: https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.6.10.rpm
 elasticsearch-curator:
-  :rpm_name: elasticsearch-curator-5.4.1-1.x86_64.rpm
-  :source: https://packages.elastic.co/curator/5/centos/7/Packages/elasticsearch-curator-5.4.1-1.x86_64.rpm
+  :rpm_name: elasticsearch-curator-5.5.1-1.x86_64.rpm
+  :source: https://packages.elastic.co/curator/5/centos/7/Packages/elasticsearch-curator-5.5.1-1.x86_64.rpm
 grafana:
   :rpm_name: grafana-4.6.3-1.x86_64.rpm
   :source: https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-4.6.3-1.x86_64.rpm
@@ -60,8 +60,8 @@ libev:
   :rpm_name: libev-4.15-3.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/l/libev-4.15-3.el7.x86_64.rpm
 logstash:
-  :rpm_name: logstash-5.6.7.rpm
-  :source: https://artifacts.elastic.co/downloads/logstash/logstash-5.6.7.rpm
+  :rpm_name: logstash-5.6.10.rpm
+  :source: https://artifacts.elastic.co/downloads/logstash/logstash-5.6.10.rpm
 pdsh:
   :rpm_name: pdsh-2.29-1el7.x86_64.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/pdsh-2.29-1el7.x86_64.rpm
@@ -84,17 +84,17 @@ pdsh-rcmd-ssh:
   :rpm_name: pdsh-rcmd-ssh-2.29-1el7.x86_64.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/pdsh-rcmd-ssh-2.29-1el7.x86_64.rpm
 postgresql96:
-  :rpm_name: postgresql96-9.6.4-1PGDG.rhel7.x86_64.rpm
-  :source: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/postgresql96-9.6.4-1PGDG.rhel7.x86_64.rpm
+  :rpm_name: postgresql96-9.6.9-1PGDG.rhel7.x86_64.rpm
+  :source: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/postgresql96-9.6.9-1PGDG.rhel7.x86_64.rpm
 postgresql96-contrib:
-  :rpm_name: postgresql96-contrib-9.6.4-1PGDG.rhel7.x86_64.rpm
-  :source: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/postgresql96-contrib-9.6.4-1PGDG.rhel7.x86_64.rpm
+  :rpm_name: postgresql96-contrib-9.6.9-1PGDG.rhel7.x86_64.rpm
+  :source: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/postgresql96-contrib-9.6.9-1PGDG.rhel7.x86_64.rpm
 postgresql96-libs:
-  :rpm_name: postgresql96-libs-9.6.4-1PGDG.rhel7.x86_64.rpm
-  :source: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/postgresql96-libs-9.6.4-1PGDG.rhel7.x86_64.rpm
+  :rpm_name: postgresql96-libs-9.6.9-1PGDG.rhel7.x86_64.rpm
+  :source: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/postgresql96-libs-9.6.9-1PGDG.rhel7.x86_64.rpm
 postgresql96-server:
-  :rpm_name: postgresql96-server-9.6.4-1PGDG.rhel7.x86_64.rpm
-  :source: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/postgresql96-server-9.6.4-1PGDG.rhel7.x86_64.rpm
+  :rpm_name: postgresql96-server-9.6.9-1PGDG.rhel7.x86_64.rpm
+  :source: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/postgresql96-server-9.6.9-1PGDG.rhel7.x86_64.rpm
 pssh:
   :rpm_name: pssh-2.3.1.SIMP-5.el7.noarch.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/pssh-2.3.1.SIMP-5.el7.noarch.rpm
