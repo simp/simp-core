@@ -131,9 +131,6 @@ python-traceback2:
 python-unittest2:
   :rpm_name: python-unittest2-1.1.0-4.el7.noarch.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/p/python-unittest2-1.1.0-4.el7.noarch.rpm
-razor-server:
-  :rpm_name: razor-server-1.6.1-1.el7.noarch.rpm
-  :source: https://yum.puppetlabs.com/el/7/PC1/x86_64/razor-server-1.6.1-1.el7.noarch.rpm
 ruby-augeas:
   :rpm_name: ruby-augeas-0.4.1-3.el7.x86_64.rpm
   :source: http://yum.puppetlabs.com/el/7/dependencies/x86_64/ruby-augeas-0.4.1-3.el7.x86_64.rpm

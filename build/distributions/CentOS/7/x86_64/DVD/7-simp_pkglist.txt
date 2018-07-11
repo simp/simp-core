@@ -1,4 +1,4 @@
-# A list of packages required for the clean base installation of the SIMP DVD
+a A list of packages required for the clean base installation of the SIMP DVD
 # based on CentOS 1611 release.
 #
 # This list is simply used to keep items in the base DVD so having extra
@@ -1454,7 +1454,6 @@ quota
 quota-nls
 rarian
 rarian-compat
-razor-server
 rdma
 rdma-core
 readahead
