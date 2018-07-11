@@ -224,9 +224,6 @@ qstat:
 radiusclient-ng:
   :rpm_name: radiusclient-ng-0.5.6-5.el6.x86_64.rpm
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/radiusclient-ng-0.5.6-5.el6.x86_64.rpm
-razor-server:
-  :rpm_name: razor-server-1.6.1-1.el6.noarch.rpm
-  :source: https://yum.puppetlabs.com/el/6Server/PC1/x86_64/razor-server-1.6.1-1.el6.noarch.rpm
 rlwrap:
   :rpm_name: rlwrap-0.37-3.el6.x86_64.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rlwrap-0.37-3.el6.x86_64.rpm
