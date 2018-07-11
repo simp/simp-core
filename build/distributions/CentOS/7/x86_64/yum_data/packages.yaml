@@ -187,7 +187,7 @@ rubygem-rake:
   :source: http://mirrors.advancedhosters.com/centos/7.4.1708/os/x86_64/Packages/rubygem-rake-0.9.6-33.el7_4.noarch.rpm
 rubygem-rake-compiler:
   :rpm_name: rubygem-rake-compiler-0.9.3-2.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/dependencies/x86_64/rubygem-rake-compiler-0.9.3-2.el7.noarch.rpm
+  :source: https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/r/rubygem-rake-compiler-0.9.3-2.el7.noarch.rpm
 rubygem-stomp:
   :rpm_name: rubygem-stomp-1.3.5-1.el7.noarch.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/r/rubygem-stomp-1.3.5-1.el7.noarch.rpm
