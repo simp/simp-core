@@ -75,7 +75,6 @@ jobs:
       services:
         - docker
       script:
-        - bundle exec rake deps:checkout
         - travis_wait 30 unbuffer bundle exec rake beaker:suites[rpm_docker,el6]
       env: PUPPET_VERSION"~> 4.10"
 
@@ -85,7 +84,6 @@ jobs:
       services:
         - docker
       script:
-        - bundle exec rake deps:checkout
         - travis_wait 30 unbuffer bundle exec rake beaker:suites[rpm_docker,el7]
       env: PUPPET_VERSION"~> 4.10"
 
