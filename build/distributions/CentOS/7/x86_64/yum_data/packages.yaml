@@ -200,12 +200,12 @@ simp-lastbind:
 simp-ppolicy-check-password:
   :rpm_name: simp-ppolicy-check-password-2.4.39-0el7.x86_64.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/simp-ppolicy-check-password-2.4.39-0el7.x86_64.rpm
-simp-vendored-r10k-2.6.2-0.noarch.rpm:
-  :rpm_name: simp-vendored-r10k-2.6.2-0.noarch.rpm
-  :source: https://download.simp-project.com/simp/yum/simp6/el/7/x86_64/simp-vendored-r10k-2.6.2-0.noarch.rpm
-simp-vendored-r10k-doc-2.6.2-0.noarch.rpm:
-  :rpm_name: simp-vendored-r10k-doc-2.6.2-0.noarch.rpm
-  :source: https://download.simp-project.com/simp/yum/simp6/el/7/x86_64/simp-vendored-r10k-doc-2.6.2-0.noarch.rpm
+simp-vendored-r10k-2.6.2-1.noarch.rpm:
+  :rpm_name: simp-vendored-r10k-2.6.2-1.noarch.rpm
+  :source: https://download.simp-project.com/simp/yum/simp6/el/7/x86_64/simp-vendored-r10k-2.6.2-1.noarch.rpm
+simp-vendored-r10k-doc-2.6.2-1.noarch.rpm:
+  :rpm_name: simp-vendored-r10k-doc-2.6.2-1.noarch.rpm
+  :source: https://download.simp-project.com/simp/yum/simp6/el/7/x86_64/simp-vendored-r10k-doc-2.6.2-1.noarch.rpm
 simp-vendored-r10k-gem-colored-1.2-1.noarch.rpm:
   :rpm_name: simp-vendored-r10k-gem-colored-1.2-1.noarch.rpm
   :source: https://download.simp-project.com/simp/yum/simp6/el/7/x86_64/simp-vendored-r10k-gem-colored-1.2-1.noarch.rpm
@@ -245,9 +245,9 @@ simp-vendored-r10k-gem-multipart-post-2.0.0-1.noarch.rpm:
 simp-vendored-r10k-gem-puppet_forge-2.2.8-0.noarch.rpm:
   :rpm_name: simp-vendored-r10k-gem-puppet_forge-2.2.8-0.noarch.rpm
   :source: https://download.simp-project.com/simp/yum/simp6/el/7/x86_64/simp-vendored-r10k-gem-puppet_forge-2.2.8-0.noarch.rpm
-simp-vendored-r10k-gem-r10k-2.6.2-0.noarch.rpm:
-  :rpm_name: simp-vendored-r10k-gem-r10k-2.6.2-0.noarch.rpm
-  :source: https://download.simp-project.com/simp/yum/simp6/el/7/x86_64/simp-vendored-r10k-gem-r10k-2.6.2-0.noarch.rpm
+simp-vendored-r10k-gem-r10k-2.6.2-1.noarch.rpm:
+  :rpm_name: simp-vendored-r10k-gem-r10k-2.6.2-1.noarch.rpm
+  :source: https://download.simp-project.com/simp/yum/simp6/el/7/x86_64/simp-vendored-r10k-gem-r10k-2.6.2-1.noarch.rpm
 simp-vendored-r10k-gem-semantic_puppet-1.0.2-0.noarch.rpm:
   :rpm_name: simp-vendored-r10k-gem-semantic_puppet-1.0.2-0.noarch.rpm
   :source: https://download.simp-project.com/simp/yum/simp6/el/7/x86_64/simp-vendored-r10k-gem-semantic_puppet-1.0.2-0.rpm
