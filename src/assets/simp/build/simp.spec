@@ -111,8 +111,6 @@ Requires: simp-gpgkeys >= 3.0.0-0%{?dist}, simp-gpgkeys < 4.0.0
 Requires: simp-rsync >= 6.0.0-0%{?dist}, simp-rsync < 7.0.0
 Requires: simp-utils >= 6.0.0, simp-utils < 7.0.0
 
-Prefix: %{_sysconfdir}/puppet
-
 # SIMP Extras
 %package extras
 Summary: Extra Packages for SIMP
@@ -184,12 +182,14 @@ chmod u=rwX,g=rX,o=rX -R %{buildroot}%{_sysconfdir}/simp
 # Post installation stuff
 export PATH=/opt/puppetlabs/bin:/opt/puppetlabs/puppet/bin:$PATH
 
-if [ -f /etc/puppetlabs/puppet/autosign.conf ]; then
-  chmod 644 %{prefix}/autosign.conf;
+puppet_confdir=`puppet config print confdir`
+puppet_environmentpath=`puppet config print environmentpath`
+
+if [ -f "${puppet_confdir}/autosign.conf" ]; then
+  chmod 644 "${puppet_confdir}/autosign.conf"
 fi
 
-simp_env="`puppet config print environmentpath`/simp"
-if [[ -d $simp_env && -f '%{_usr}/local/sbin/hiera_upgrade' ]]; then
+if [[ -d "${puppet_environmentpath}/simp" && -f '%{_usr}/local/sbin/hiera_upgrade' ]]; then
   %{_usr}/local/sbin/hiera_upgrade || true
 fi
 
@@ -199,6 +199,8 @@ fi
 
 if [ -x '%{_usr}/local/sbin/puppetserver_reload' ]; then
   %{_usr}/local/sbin/puppetserver_reload
+else
+  puppetserver reload
 fi
 
 rpm_link_target="%{_var}/www/yum/`facter operatingsystem`/`facter operatingsystemmajrelease`"
@@ -219,7 +221,8 @@ fi
 # Post uninstall stuff
 
 %changelog
-* Wed May 09 2018 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.2.0-0
+* Tue Jul 17 2018 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.2.0-0
+- Fix paths to configuration files
 - Update augeasproviders dependencies
 
 * Thu Mar 15 2018 Liz Nemsick <lnemsick.simp@gmail.com> - 6.2.0-0

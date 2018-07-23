@@ -56,7 +56,7 @@ describe 'RPM build' do
     # This needs to happen *prior* to the test selection since the test
     # selection depends on this being present
     if ENV['BEAKER_copyin'] == 'yes'
-      %x(docker cp #{Dir.pwd} #{host.name}:#{build_dir})
+      %x(docker cp #{Dir.pwd} #{host.host_hash[:docker_container].id}:#{build_dir})
     end
 
     it 'should clone the repo if necessary' do
@@ -69,7 +69,7 @@ describe 'RPM build' do
         if ENV['TRAVIS_BUILD_DIR']
           base_dir = File.dirname(ENV['TRAVIS_BUILD_DIR'])
 
-          %x(docker cp #{ENV['TRAVIS_BUILD_DIR']} #{host.name}:#{build_dir})
+          %x(docker cp #{ENV['TRAVIS_BUILD_DIR']} #{host.host_hash[:docker_container].id}:#{build_dir})
 
           host.mkdir_p(base_dir)
           on(host, %(cd #{base_dir}; ln -s #{build_dir} .))

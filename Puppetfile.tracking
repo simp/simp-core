@@ -1,11 +1,10 @@
 # refs recorded for SIMP release 6.0.0
-# vi:syntax=ruby
 
 moduledir 'src'
 
 mod 'simp-doc',
   :git => 'https://github.com/simp/simp-doc',
-  :tag => '6.1.0-0'
+  :tag => 'master'
 
 moduledir 'src/assets'
 
@@ -513,3 +512,5 @@ mod 'voxpupuli-yum',
 mod 'vshn-gitlab',
   :git => 'https://github.com/simp/puppet-gitlab.git',
   :tag => 'v1.13.3'
+
+# vi:syntax=ruby
