@@ -39,8 +39,8 @@ elasticsearch:
   :rpm_name: elasticsearch-5.6.10.rpm
   :source: https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.6.10.rpm
 elasticsearch-curator:
-  :rpm_name: elasticsearch-curator-5.5.1-1.x86_64.rpm
-  :source: https://packages.elastic.co/curator/5/centos/7/Packages/elasticsearch-curator-5.5.1-1.x86_64.rpm
+  :rpm_name: elasticsearch-curator-5.5.4-1.x86_64.rpm
+  :source: https://packages.elastic.co/curator/5/centos/7/Packages/elasticsearch-curator-5.5.4-1.x86_64.rpm
 grafana:
   :rpm_name: grafana-4.6.3-1.x86_64.rpm
   :source: https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-4.6.3-1.x86_64.rpm
@@ -102,8 +102,8 @@ pssh:
   :rpm_name: pssh-2.3.1.SIMP-5.el7.noarch.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/pssh-2.3.1.SIMP-5.el7.noarch.rpm
 puppet-agent:
-  :rpm_name: puppet-agent-1.10.9-1.el7.x86_64.rpm
-  :source: http://yum.puppetlabs.com/el/7/PC1/x86_64/puppet-agent-1.10.9-1.el7.x86_64.rpm
+  :rpm_name: puppet-agent-1.10.14-1.el7.x86_64.rpm
+  :source: http://yum.puppetlabs.com/el/7/PC1/x86_64/puppet-agent-1.10.14-1.el7.x86_64.rpm
 puppet-client-tools:
   :rpm_name: puppet-client-tools-1.2.1-1.el7.x86_64.rpm
   :source: http://yum.puppetlabs.com/el/7Server/PC1/x86_64/puppet-client-tools-1.2.1-1.el7.x86_64.rpm
