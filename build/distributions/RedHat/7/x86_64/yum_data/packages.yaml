@@ -32,6 +32,9 @@ clamav-server-systemd:
 clamav-update:
   :rpm_name: clamav-update-0.100.0-2.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/clamav-update-0.100.0-2.el7.x86_64.rpm
+clamd:
+  :rpm_name: clamd-0.100.0-2.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/clamd-0.100.0-2.el7.x86_64.rpm
 elasticsearch:
   :rpm_name: elasticsearch-5.6.10.rpm
   :source: https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.6.10.rpm
@@ -46,19 +49,19 @@ gweb:
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/gweb-2.1.8-1.noarch.rpm
 haveged:
   :rpm_name: haveged-1.9.1-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/h/haveged-1.9.1-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/h/haveged-1.9.1-1.el7.x86_64.rpm
 incron:
   :rpm_name: incron-0.5.10-8.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/i/incron-0.5.10-8.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/i/incron-0.5.10-8.el7.x86_64.rpm
 libarchive-devel:
   :rpm_name: libarchive-devel-3.1.2-10.el7_2.x86_64.rpm
   :source: Red Hat Optional Repository
 libconfuse:
   :rpm_name: libconfuse-2.7-7.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/l/libconfuse-2.7-7.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/l/libconfuse-2.7-7.el7.x86_64.rpm
 libev:
   :rpm_name: libev-4.15-3.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/l/libev-4.15-3.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/l/libev-4.15-3.el7.x86_64.rpm
 logstash:
   :rpm_name: logstash-5.6.10.rpm
   :source: https://artifacts.elastic.co/downloads/logstash/logstash-5.6.10.rpm
@@ -118,19 +121,19 @@ puppetserver:
   :source: https://yum.puppetlabs.com/el/7/PC1/x86_64/puppetserver-2.8.1-1.el7.noarch.rpm
 python-linecache2:
   :rpm_name: python-linecache2-1.0.0-1.el7.noarch.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/p/python-linecache2-1.0.0-1.el7.noarch.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/p/python-linecache2-1.0.0-1.el7.noarch.rpm
 python-redis:
   :rpm_name: python-redis-2.10.3-1.el7.noarch.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/p/python-redis-2.10.3-1.el7.noarch.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/p/python-redis-2.10.3-1.el7.noarch.rpm
 python-simplejson:
   :rpm_name: python-simplejson-3.3.3-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/p/python-simplejson-3.3.3-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/p/python-simplejson-3.3.3-1.el7.x86_64.rpm
 python-traceback2:
   :rpm_name: python-traceback2-1.4.0-2.el7.noarch.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/python-traceback2-1.4.0-2.el7.noarch.rpm
 python-unittest2:
   :rpm_name: python-unittest2-1.1.0-4.el7.noarch.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/p/python-unittest2-1.1.0-4.el7.noarch.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/p/python-unittest2-1.1.0-4.el7.noarch.rpm
 ruby-augeas:
   :rpm_name: ruby-augeas-0.4.1-3.el7.x86_64.rpm
   :source: http://yum.puppetlabs.com/el/7/dependencies/x86_64/ruby-augeas-0.4.1-3.el7.x86_64.rpm
@@ -151,7 +154,7 @@ rubygem-ffi:
   :source: http://yum.puppetlabs.com/el/7/dependencies/x86_64/rubygem-ffi-1.4.0-2.el7.x86_64.rpm
 rubygem-highline:
   :rpm_name: rubygem-highline-1.6.11-5.el7.noarch.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/r/rubygem-highline-1.6.11-5.el7.noarch.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/r/rubygem-highline-1.6.11-5.el7.noarch.rpm
 rubygem-net-ldap:
   :rpm_name: rubygem-net-ldap-0.16.0-1.el7.noarch.rpm
   :source: https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/r/rubygem-net-ldap-0.16.0-1.el7.noarch.rpm
@@ -190,10 +193,10 @@ rubygem-rake-compiler:
   :source: https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/r/rubygem-rake-compiler-0.9.3-2.el7.noarch.rpm
 rubygem-stomp:
   :rpm_name: rubygem-stomp-1.3.5-1.el7.noarch.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/r/rubygem-stomp-1.3.5-1.el7.noarch.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/r/rubygem-stomp-1.3.5-1.el7.noarch.rpm
 rubygem-stomp-doc:
   :rpm_name: rubygem-stomp-doc-1.3.5-1.el7.noarch.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/r/rubygem-stomp-doc-1.3.5-1.el7.noarch.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/r/rubygem-stomp-doc-1.3.5-1.el7.noarch.rpm
 simp-lastbind:
   :rpm_name: simp-lastbind-2.4.23-0.x86_64.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/simp-lastbind-2.4.23-0.x86_64.rpm

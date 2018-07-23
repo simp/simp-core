@@ -34,7 +34,7 @@ elasticsearch-curator:
   :source: http://packages.elastic.co/curator/5/centos/6/Packages/elasticsearch-curator-5.5.1-1.x86_64.rpm
 fping:
   :rpm_name: fping-2.4b2-10.el6.x86_64.rpm
-  :source: http://mirrors.lug.mtu.edu/epel/6/x86_64/Packages/f/fping-2.4b2-10.el6.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/f/fping-2.4b2-10.el6.x86_64.rpm
 ganglia:
   :rpm_name: ganglia-3.7.2-2.el6.x86_64.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/g/ganglia-3.7.2-2.el6.x86_64.rpm
@@ -319,4 +319,4 @@ tpm-tools-pkcs11:
   :source: http://mirror.ash.fastserv.com/pub/linux/centos/6.9/os/x86_64/Packages/tpm-tools-pkcs11-1.3.4-2.el6.x86_64.rpm
 voms:
   :rpm_name: voms-2.0.14-1.el6.x86_64.rpm
-  :source: http://mirrors.lug.mtu.edu/epel/6/x86_64/Packages/v/voms-2.0.14-1.el6.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/v/voms-2.0.14-1.el6.x86_64.rpm
