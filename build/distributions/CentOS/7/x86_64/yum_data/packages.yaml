@@ -46,7 +46,7 @@ grafana:
   :source: https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-4.6.3-1.x86_64.rpm
 gweb:
   :rpm_name: gweb-2.1.8-1.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/gweb-2.1.8-1.noarch.rpm/download.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/gweb-2.1.8-1.noarch.rpm
 haveged:
   :rpm_name: haveged-1.9.1-1.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/h/haveged-1.9.1-1.el7.x86_64.rpm
@@ -127,7 +127,7 @@ python-redis:
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/p/python-redis-2.10.3-1.el7.noarch.rpm
 python-simplejson:
   :rpm_name: python-simplejson-3.3.3-1.el7.x86_64.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/python-simplejson-3.3.3-1.el7.x86_64.rpm/download.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/python-simplejson-3.3.3-1.el7.x86_64.rpm
 python-traceback2:
   :rpm_name: python-traceback2-1.4.0-2.el7.noarch.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/python-traceback2-1.4.0-2.el7.noarch.rpm

@@ -91,7 +91,7 @@ grafana:
   :source: https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-4.6.3-1.x86_64.rpm
 gweb:
   :rpm_name: gweb-2.1.8-1.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/gweb-2.1.8-1.noarch.rpm/download.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/gweb-2.1.8-1.noarch.rpm
 haveged:
   :rpm_name: haveged-1.9.1-2.el6.x86_64.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/h/haveged-1.9.1-2.el6.x86_64.rpm

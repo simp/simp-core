@@ -127,7 +127,7 @@ python-redis:
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/p/python-redis-2.10.3-1.el7.noarch.rpm
 python-simplejson:
   :rpm_name: python-simplejson-3.3.3-1.el7.x86_64.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/python-simplejson-3.3.3-1.el7.x86_64.rpm/download.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/python-simplejson-3.3.3-1.el7.x86_64.rpm
 python-traceback2:
   :rpm_name: python-traceback2-1.4.0-2.el7.noarch.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/python-traceback2-1.4.0-2.el7.noarch.rpm
