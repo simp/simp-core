@@ -187,7 +187,7 @@ rubygem-puppetserver-toml-doc:
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/rubygem-puppetserver-toml-doc-0.1.2-1.noarch.rpm
 rubygem-rake:
   :rpm_name: rubygem-rake-0.9.6-33.el7_4.noarch.rpm
-  :source: http://vault.centos.org/7.4.1708/os/x86_64/Packages/rubygem-rake-0.9.6-30.el7.noarch.rpm
+  :source: http://mirror.centos.org/centos/7/os/x86_64/Packages/rubygem-rake-0.9.6-33.el7_4.noarch.rpm
 rubygem-rake-compiler:
   :rpm_name: rubygem-rake-compiler-0.9.3-2.el7.noarch.rpm
   :source: https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/r/rubygem-rake-compiler-0.9.3-2.el7.noarch.rpm
