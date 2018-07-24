@@ -1454,7 +1454,6 @@ quota
 quota-nls
 rarian
 rarian-compat
-razor-server
 rdma
 rdma-core
 readahead

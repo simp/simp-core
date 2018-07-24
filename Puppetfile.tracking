@@ -10,7 +10,7 @@ moduledir 'src/assets'
 
 mod 'rubygem-rubygem_simp_cli',
   :git => 'https://github.com/simp/rubygem-simp-cli',
-  :ref => '4.1.0'
+  :ref => '4.2.0'
 
 mod 'simp-rsync_data',
   :git => 'https://github.com/simp/simp-rsync-skeleton',
@@ -22,7 +22,7 @@ mod 'simp-adapter',
 
 mod 'simp-environment',
   :git => 'https://github.com/simp/simp-environment-skeleton',
-  :ref => '6.2.9'
+  :ref => '6.2.10'
 
 mod 'simp-gpgkeys',
   :git => 'https://github.com/simp/simp-gpgkeys',
@@ -191,7 +191,7 @@ mod 'simp-acpid',
 
 mod 'simp-aide',
   :git => 'https://github.com/simp/pupmod-simp-aide',
-  :tag => '6.1.2'
+  :tag => '6.1.3'
 
 mod 'simp-at',
   :git => 'https://github.com/simp/pupmod-simp-at',
@@ -282,7 +282,7 @@ mod 'simp-libvirt',
 
 mod 'simp-logrotate',
   :git => 'https://github.com/simp/pupmod-simp-logrotate',
-  :tag => '6.1.2'
+  :tag => '6.2.0'
 
 mod 'simp-mozilla',
   :git => 'https://github.com/simp/pupmod-simp-mozilla',
@@ -310,7 +310,7 @@ mod 'simp-oddjob',
 
 mod 'simp-openscap',
   :git => 'https://github.com/simp/pupmod-simp-openscap',
-  :tag => '6.1.0'
+  :tag => '6.1.1'
 
 mod 'simp-pam',
   :git => 'https://github.com/simp/pupmod-simp-pam',
@@ -374,7 +374,7 @@ mod 'simp-simp_elasticsearch',
 
 mod 'simp-simp_gitlab',
   :git => 'https://github.com/simp/pupmod-simp-simp_gitlab',
-  :ref => '0.3.2'
+  :ref => '0.3.3'
 
 mod 'simp-simp_grafana',
   :git => 'https://github.com/simp/pupmod-simp-simp_grafana',
@@ -429,7 +429,7 @@ mod 'simp-sssd',
 
 mod 'simp-stunnel',
   :git => 'https://github.com/simp/pupmod-simp-stunnel',
-  :tag => '6.3.1'
+  :tag => '6.3.2'
 
 mod 'simp-sudo',
   :git => 'https://github.com/simp/pupmod-simp-sudo',
