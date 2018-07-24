@@ -189,8 +189,8 @@ pssh:
   :rpm_name: pssh-2.3.1-5.el6.noarch.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/pssh-2.3.1-5.el6.noarch.rpm
 puppet-agent:
-  :rpm_name: puppet-agent-1.10.10-1.el6.x86_64.rpm
-  :source: http://yum.puppetlabs.com/el/6/PC1/x86_64/puppet-agent-1.10.10-1.el6.x86_64.rpm
+  :rpm_name: puppet-agent-1.10.14-1.el6.x86_64.rpm
+  :source: http://yum.puppetlabs.com/el/6/PC1/x86_64/puppet-agent-1.10.14-1.el6.x86_64.rpm
 puppet-client-tools:
   :rpm_name: puppet-client-tools-1.2.1-1.el6.x86_64.rpm
   :source: http://yum.puppetlabs.com/el/6/PC1/x86_64/puppet-client-tools-1.2.1-1.el6.x86_64.rpm

@@ -1,7 +1,7 @@
 ---
 apr-util-ldap:
   :rpm_name: apr-util-ldap-1.5.2-6.el7.x86_64.rpm
-  :source: http://mirror.steadfast.net/centos/7.4.1708/os/x86_64/Packages/apr-util-ldap-1.5.2-6.el7.x86_64.rpm
+  :source: http://vault.centos.org/7.4.1708/os/x86_64/Packages/apr-util-ldap-1.5.2-6.el7.x86_64.rpm
 chkrootkit:
   :rpm_name: chkrootkit-0.50-4el7.x86_64.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/chkrootkit-0.50-4el7.x86_64.rpm
@@ -46,7 +46,7 @@ grafana:
   :source: https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-4.6.3-1.x86_64.rpm
 gweb:
   :rpm_name: gweb-2.1.8-1.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/gweb-2.1.8-1.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/gweb-2.1.8-1.noarch.rpm/download.rpm
 haveged:
   :rpm_name: haveged-1.9.1-1.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/h/haveged-1.9.1-1.el7.x86_64.rpm
@@ -106,7 +106,7 @@ puppet-agent:
   :source: http://yum.puppetlabs.com/el/7/PC1/x86_64/puppet-agent-1.10.14-1.el7.x86_64.rpm
 puppet-client-tools:
   :rpm_name: puppet-client-tools-1.2.1-1.el7.x86_64.rpm
-  :source: http://yum.puppetlabs.com/el/7Server/PC1/x86_64/puppet-client-tools-1.2.1-1.el7.x86_64.rpm
+  :source: http://yum.puppetlabs.com/el/7/PC1/x86_64/puppet-client-tools-1.2.1-1.el7.x86_64.rpm
 puppetdb:
   :rpm_name: puppetdb-4.4.0-1.el7.noarch.rpm
   :source: http://yum.puppetlabs.com/el/7/PC1/x86_64/puppetdb-4.4.0-1.el7.noarch.rpm
@@ -127,7 +127,7 @@ python-redis:
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/p/python-redis-2.10.3-1.el7.noarch.rpm
 python-simplejson:
   :rpm_name: python-simplejson-3.3.3-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/p/python-simplejson-3.3.3-1.el7.x86_64.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/python-simplejson-3.3.3-1.el7.x86_64.rpm/download.rpm
 python-traceback2:
   :rpm_name: python-traceback2-1.4.0-2.el7.noarch.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/python-traceback2-1.4.0-2.el7.noarch.rpm
@@ -187,7 +187,7 @@ rubygem-puppetserver-toml-doc:
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/rubygem-puppetserver-toml-doc-0.1.2-1.noarch.rpm
 rubygem-rake:
   :rpm_name: rubygem-rake-0.9.6-33.el7_4.noarch.rpm
-  :source: http://mirrors.advancedhosters.com/centos/7.4.1708/os/x86_64/Packages/rubygem-rake-0.9.6-33.el7_4.noarch.rpm
+  :source: http://vault.centos.org/7.4.1708/os/x86_64/Packages/rubygem-rake-0.9.6-30.el7.noarch.rpm
 rubygem-rake-compiler:
   :rpm_name: rubygem-rake-compiler-0.9.3-2.el7.noarch.rpm
   :source: https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/r/rubygem-rake-compiler-0.9.3-2.el7.noarch.rpm
@@ -262,4 +262,4 @@ sudosh2:
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/sudosh2-1.0.2-2el7.x86_64.rpm
 syslinux-tftpboot:
   :rpm_name: syslinux-tftpboot-4.05-13.el7.x86_64.rpm
-  :source: http://mirror.steadfast.net/centos/7.4.1708/os/x86_64/Packages/syslinux-tftpboot-4.05-13.el7.x86_64.rpm
+  :source: http://vault.centos.org/7.4.1708/os/x86_64/Packages/syslinux-tftpboot-4.05-13.el7.x86_64.rpm
