@@ -168,7 +168,6 @@ chrony
 cifs-utils
 clamav
 clamav-data
-clamav-data-empty
 clamav-devel
 clamav-filesystem
 clamav-lib
