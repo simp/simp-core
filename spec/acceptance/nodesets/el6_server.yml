@@ -21,32 +21,20 @@ HOSTS:
       - default
       - simp_server
       - agent
-      - ipa_client
     platform:   el-6-x86_64
     box:        <%= box_6 %>
     hypervisor: <%= hypervisor %>
     vagrant_memsize: 4608
     vagrant_cpus: 2
-  ipa:
-    roles:
-      - ipa_server
-      - agent
-    platform:   el-6-x86_64
-    box:        <%= box_6 %>
-    hypervisor: <%= hypervisor %>
-    vagrant_memsize: 2048
-    vagrant_cpus: 2
   agent-el7:
     roles:
       - agent
-      - ipa_client
     platform:   el-7-x86_64
     box:        <%= box_7 %>
     hypervisor: <%= hypervisor %>
   agent-el6:
     roles:
       - agent
-      - ipa_client
     platform:   el-6-x86_64
     box:        <%= box_6 %>
     hypervisor: <%= hypervisor %>

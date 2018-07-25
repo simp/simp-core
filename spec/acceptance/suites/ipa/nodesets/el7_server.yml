@@ -1,3 +1,18 @@
+<%
+  hypervisor = ENV['BEAKER_HYPERVISOR'] || 'vagrant'
+
+  case ENV['BEAKER_OS']
+  when /centos/ || /^el/
+    box_6 = 'centos/6'
+    box_7 = 'centos/7'
+  when /oracle/ || /^oel/
+    box_6 = 'elastic/oel-6-x86_64'
+    box_7 = 'elastic/oel-7-x86_64'
+  else
+    box_6 = 'centos/6'
+    box_7 = 'centos/7'
+  end
+-%>
 HOSTS:
   puppet:
     roles:
@@ -8,8 +23,8 @@ HOSTS:
       - agent
       - ipa_client
     platform:   el-7-x86_64
-    box:        centos/7
-    hypervisor: vagrant
+    box:        <%= box_7 %>
+    hypervisor: <%= hypervisor %>
     vagrant_memsize: 4608
     vagrant_cpus: 2
   ipa:
@@ -17,8 +32,8 @@ HOSTS:
       - ipa_server
       - agent
     platform:   el-7-x86_64
-    box:        centos/7
-    hypervisor: vagrant
+    box:        <%= box_7 %>
+    hypervisor: <%= hypervisor %>
     vagrant_memsize: 2048
     vagrant_cpus: 2
   agent-el7:
@@ -26,18 +41,20 @@ HOSTS:
       - agent
       - ipa_client
     platform:   el-7-x86_64
-    box:        centos/7
-    hypervisor: vagrant
+    box:        <%= box_7 %>
+    hypervisor: <%= hypervisor %>
   agent-el6:
     roles:
       - agent
       - ipa_client
     platform:   el-6-x86_64
-    box:        centos/6
-    hypervisor: vagrant
+    box:        <%= box_6 %>
+    hypervisor: <%= hypervisor %>
 CONFIG:
   log_level: verbose
   type:      aio
   vagrant_memsize: 256
   synced_folder: disabled
-  # vb_gui: true
+<% if ENV['BEAKER_PUPPET_ENVIRONMENT'] -%>
+  puppet_environment: <%= ENV['BEAKER_PUPPET_ENVIRONMENT'] %>
+<% end -%>

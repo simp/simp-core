@@ -92,7 +92,14 @@ describe 'install puppetserver from puppet modules' do
     it 'should install the control repo' do
       on(master, 'mkdir -p /etc/puppetlabs/code/environments/production/{hieradata,manifests} /var/simp/environments/production/{simp_autofiles,site_files/modules/pki_files/files/keydist}')
 
-      scp_to(master, 'spec/acceptance/suites/default/files/hiera.yaml', '/etc/puppetlabs/puppet/hiera.yaml')
+      # use hiera 5 if possible
+      p_version = on(hosts.first,'puppet --version').stdout.strip
+      if Gem::Version.new(p_version) >= Gem::Version.new('4.10')
+        scp_to(master, 'spec/acceptance/suites/default/files/hiera5.yaml', '/etc/puppetlabs/code/environments/production/hiera.yaml')
+      else
+        scp_to(master, 'spec/acceptance/suites/default/files/hiera.yaml', '/etc/puppetlabs/puppet/hiera.yaml')
+      end
+
       create_remote_file(master, '/etc/puppetlabs/code/environments/production/manifests/site.pp', site_pp)
       create_remote_file(master, '/etc/puppetlabs/code/environments/production/hieradata/default.yaml', default_yaml)
 
