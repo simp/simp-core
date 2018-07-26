@@ -49,7 +49,7 @@ RUN yum install -y rubygems vim-enhanced jq
 
 # Set up RVM
 RUN runuser build_user -l -c "echo 'gem: --no-ri --no-rdoc' > .gemrc"
-RUN runuser build_user -l -c "gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3"
+RUN runuser build_user -l -c "gpg2 --keyserver hkp://pgp.mit.edu --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB || gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB"
 RUN runuser build_user -l -c "curl -sSL https://get.rvm.io | bash -s stable"
 RUN runuser build_user -l -c "rvm install 2.1.9 --disable-binary"
 RUN runuser build_user -l -c "rvm use --default 2.1.9"
