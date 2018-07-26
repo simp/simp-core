@@ -54,10 +54,6 @@ RUN runuser build_user -l -c "curl -sSL https://get.rvm.io | bash -s stable"
 RUN runuser build_user -l -c "rvm install 2.1.9 --disable-binary"
 RUN runuser build_user -l -c "rvm use --default 2.1.9"
 RUN runuser build_user -l -c "rvm all do gem install bundler"
-RUN runuser build_user -l -c "rvm use default; gem install simp-rake-helpers"
-RUN runuser build_user -l -c "rvm use default; gem install json"
-RUN runuser build_user -l -c "rvm use default; gem install charlock_holmes"
-RUN runuser build_user -l -c "rvm use default; gem install posix-spawn"
 
 # Check out a copy of simp-core for building
 RUN runuser build_user -l -c "git clone https://github.com/simp/simp-core"
