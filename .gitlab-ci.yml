@@ -132,7 +132,7 @@ default_oel6:
   <<: *only_with_SIMP_FULL_MATRIX
   variables:
     PUPPET_VERSION: '4.10.7'
-    BEAKER_OS: 'oracle'
+    SIMP_BEAKER_OS: 'oracle'
   script:
     - bundle exec rake spec_clean
     - bundle exec rake beaker:suites[default,el6_server]
@@ -147,7 +147,7 @@ default_oel7:
   <<: *only_with_SIMP_FULL_MATRIX
   variables:
     PUPPET_VERSION: '4.10.7'
-    BEAKER_OS: 'oracle'
+    SIMP_BEAKER_OS: 'oracle'
   script:
     - bundle exec rake spec_clean
     - bundle exec rake beaker:suites[default,el7_server]
@@ -163,7 +163,7 @@ ipa_oel7:
   <<: *only_with_SIMP_FULL_MATRIX
   variables:
     PUPPET_VERSION: '4.10.7'
-    BEAKER_OS: 'oracle'
+    SIMP_BEAKER_OS: 'oracle'
   script:
     - bundle exec rake spec_clean
     - bundle exec rake beaker:suites[ipa,el7_server]

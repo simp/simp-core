@@ -34,10 +34,6 @@ describe 'install environment via r10k and puppetserver' do
         on(host, 'echo password | passwd root --stdin')
         # set up needed repositories
         host.install_package('epel-release')
-
-        template = File.read('spec/acceptance/suites/default/files/6_X_Dependencies.repo')
-        repo     = template.gsub(/%RELEASEVER%/, fact_on(host,'operatingsystemmajrelease'))
-        create_remote_file(host, '/etc/yum.repos.d/simp-project_6_X_Dependencies.repo', repo)
       end
     end
   end
@@ -56,12 +52,14 @@ describe 'install environment via r10k and puppetserver' do
       on(master, 'puppet resource service puppetserver ensure=running')
     end
 
-    it 'should do some misc configuration' do
+    it 'should do set trusted_server_facts when appropriate' do
       p_version = on(hosts.first,'puppet --version').stdout.strip
       if Gem::Version.new(p_version) >= Gem::Version.new('5')
         on(master, 'puppet config --section master set trusted_server_facts true')
       end
+    end
 
+    it 'should update openssl to get TLS1.2 if needed'
       # update packages so we can use TLS1.2 to connect to github
       if master.host_hash[:box] =~ /oel/ and master.host_hash[:platform] =~ /el-6/
         on(master,'yum upgrade -y git curl openssl nss')

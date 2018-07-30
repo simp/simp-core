@@ -48,13 +48,13 @@ builds/download RPMs, and then builds the ISO.
 # to run the default suite on OEL using Puppet 5 and an OEL7 simp server
 export PUPPET_VERSION='~> 5.3'
 export BEAKER_PUPPET_COLLECTION='puppet5'
-export BEAKER_OS='oracle'
+export SIMP_BEAKER_OS='oracle'
 bundle exec rake beaker:suites[default,el7_server]
 ```
 
 There are two nodesets per integration/release test suite, `el7_server` and `el6_server`.
 They control the version of EL on the puppetserver. The default nodeset is a symlink
-to `el7_server`. You can also set `BEAKER_OS` to `oracle` to run the tests on OEL.
+to `el7_server`. You can also set `SIMP_BEAKER_OS` to `oracle` to run the tests on OEL.
 
 
 
