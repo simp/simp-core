@@ -59,7 +59,7 @@ describe 'install environment via r10k and puppetserver' do
       end
     end
 
-    it 'should update openssl to get TLS1.2 if needed'
+    it 'should update openssl to get TLS1.2 if needed' do
       # update packages so we can use TLS1.2 to connect to github
       if master.host_hash[:box] =~ /oel/ and master.host_hash[:platform] =~ /el-6/
         on(master,'yum upgrade -y git curl openssl nss')

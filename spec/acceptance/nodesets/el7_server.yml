@@ -30,7 +30,7 @@ HOSTS:
       simp_dependencies:
         baseurl: 'https://packagecloud.io/simp-project/6_X_Dependencies/el/7/$basearch'
         gpgkeys:
-          - gpgkey=https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
+          - https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
           - https://yum.puppet.com/RPM-GPG-KEY-puppetlabs
           - https://yum.puppet.com/RPM-GPG-KEY-puppet
           - https://apt.postgresql.org/pub/repos/yum/RPM-GPG-KEY-PGDG-96
@@ -48,7 +48,7 @@ HOSTS:
       simp_dependencies:
         baseurl: 'https://packagecloud.io/simp-project/6_X_Dependencies/el/7/$basearch'
         gpgkeys:
-          - gpgkey=https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
+          - https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
           - https://yum.puppet.com/RPM-GPG-KEY-puppetlabs
           - https://yum.puppet.com/RPM-GPG-KEY-puppet
           - https://apt.postgresql.org/pub/repos/yum/RPM-GPG-KEY-PGDG-96
@@ -66,7 +66,7 @@ HOSTS:
       simp_dependencies:
         baseurl: 'https://packagecloud.io/simp-project/6_X_Dependencies/el/6/$basearch'
         gpgkeys:
-          - gpgkey=https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
+          - https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
           - https://yum.puppet.com/RPM-GPG-KEY-puppetlabs
           - https://yum.puppet.com/RPM-GPG-KEY-puppet
           - https://apt.postgresql.org/pub/repos/yum/RPM-GPG-KEY-PGDG-96
