@@ -30,6 +30,14 @@ stages:
     variables:
       - $SIMP_RELEASE_TESTS
 
+# To avoid running a prohibitive number of tests every commit,
+# don't set this env var in your gitlab instance
+.only_with_SIMP_FULL_MATRIX: &only_with_SIMP_FULL_MATRIX
+  only:
+    variables:
+      - $SIMP_FULL_MATRIX
+
+
 default_el6:
   stage: integration
   tags:
@@ -39,6 +47,7 @@ default_el6:
   variables:
     PUPPET_VERSION: '4.10.7'
   script:
+    - bundle exec rake spec_clean
     - bundle exec rake beaker:suites[default,el6_server]
   retry: 1
 
@@ -51,6 +60,7 @@ default_el7:
   variables:
     PUPPET_VERSION: '4.10.7'
   script:
+    - bundle exec rake spec_clean
     - bundle exec rake beaker:suites[default,el7_server]
   retry: 1
 
@@ -61,9 +71,101 @@ ipa_el7:
     - beaker
   <<: *cache_bundler
   <<: *setup_bundler_env
+  <<: *only_with_SIMP_FULL_MATRIX
   variables:
     PUPPET_VERSION: '4.10.7'
   script:
+    - bundle exec rake spec_clean
+    - bundle exec rake beaker:suites[ipa,el7_server]
+  retry: 1
+
+default_el6-puppet5:
+  stage: integration
+  tags:
+    - beaker
+  <<: *cache_bundler
+  <<: *setup_bundler_env
+  variables:
+    PUPPET_VERSION: '~> 5.3'
+    BEAKER_PUPPET_COLLECTION: 'puppet5'
+  script:
+    - bundle exec rake spec_clean
+    - bundle exec rake beaker:suites[default,el6_server]
+  retry: 1
+
+default_el7-puppet5:
+  stage: integration
+  tags:
+    - beaker
+  <<: *cache_bundler
+  <<: *setup_bundler_env
+  variables:
+    PUPPET_VERSION: '~> 5.3'
+    BEAKER_PUPPET_COLLECTION: 'puppet5'
+  script:
+    - bundle exec rake spec_clean
+    - bundle exec rake beaker:suites[default,el7_server]
+  retry: 1
+
+
+ipa_el7-puppet5:
+  stage: integration
+  tags:
+    - beaker
+  <<: *cache_bundler
+  <<: *setup_bundler_env
+  <<: *only_with_SIMP_FULL_MATRIX
+  variables:
+    PUPPET_VERSION: '~> 5.3'
+    BEAKER_PUPPET_COLLECTION: 'puppet5'
+  script:
+    - bundle exec rake spec_clean
+    - bundle exec rake beaker:suites[ipa,el7_server]
+  retry: 1
+
+default_oel6:
+  stage: integration
+  tags:
+    - beaker
+  <<: *cache_bundler
+  <<: *setup_bundler_env
+  <<: *only_with_SIMP_FULL_MATRIX
+  variables:
+    PUPPET_VERSION: '4.10.7'
+    SIMP_BEAKER_OS: 'oracle'
+  script:
+    - bundle exec rake spec_clean
+    - bundle exec rake beaker:suites[default,el6_server]
+  retry: 1
+
+default_oel7:
+  stage: integration
+  tags:
+    - beaker
+  <<: *cache_bundler
+  <<: *setup_bundler_env
+  <<: *only_with_SIMP_FULL_MATRIX
+  variables:
+    PUPPET_VERSION: '4.10.7'
+    SIMP_BEAKER_OS: 'oracle'
+  script:
+    - bundle exec rake spec_clean
+    - bundle exec rake beaker:suites[default,el7_server]
+  retry: 1
+
+
+ipa_oel7:
+  stage: integration
+  tags:
+    - beaker
+  <<: *cache_bundler
+  <<: *setup_bundler_env
+  <<: *only_with_SIMP_FULL_MATRIX
+  variables:
+    PUPPET_VERSION: '4.10.7'
+    SIMP_BEAKER_OS: 'oracle'
+  script:
+    - bundle exec rake spec_clean
     - bundle exec rake beaker:suites[ipa,el7_server]
   retry: 1
 
@@ -91,6 +193,7 @@ rpm_el6:
   variables:
     PUPPET_VERSION: '4.10.7'
   script:
+    - bundle exec rake spec_clean
     - bundle exec rake beaker:suites[install_from_rpm,el6_server]
   retry: 1
 
@@ -104,6 +207,7 @@ rpm_el7:
   variables:
     PUPPET_VERSION: '4.10.7'
   script:
+    - bundle exec rake spec_clean
     - bundle exec rake beaker:suites[install_from_rpm,el7_server]
   retry: 1
 
@@ -117,6 +221,7 @@ forge_install_el6:
   variables:
     PUPPET_VERSION: '4.10.7'
   script:
+    - bundle exec rake spec_clean
     - bundle exec rake beaker:suites[install_from_core_module,el6_server]
   retry: 1
 
@@ -130,5 +235,6 @@ forge_install_el7:
   variables:
     PUPPET_VERSION: '4.10.7'
   script:
+    - bundle exec rake spec_clean
     - bundle exec rake beaker:suites[install_from_core_module,el7_server]
   retry: 1

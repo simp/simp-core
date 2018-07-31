@@ -34,7 +34,6 @@ describe 'install environment via r10k and puppetserver' do
         on(host, 'echo password | passwd root --stdin')
         # set up needed repositories
         host.install_package('epel-release')
-        on(host, 'curl -s https://packagecloud.io/install/repositories/simp-project/6_X_Dependencies/script.rpm.sh | bash')
       end
     end
   end
@@ -53,8 +52,18 @@ describe 'install environment via r10k and puppetserver' do
       on(master, 'puppet resource service puppetserver ensure=running')
     end
 
-    it 'should enable trusted_server_facts' do
-      on(master, 'puppet config --section master set trusted_server_facts true')
+    it 'should do set trusted_server_facts when appropriate' do
+      p_version = on(hosts.first,'puppet --version').stdout.strip
+      if Gem::Version.new(p_version) >= Gem::Version.new('5')
+        on(master, 'puppet config --section master set trusted_server_facts true')
+      end
+    end
+
+    it 'should update openssl to get TLS1.2 if needed' do
+      # update packages so we can use TLS1.2 to connect to github
+      if master.host_hash[:box] =~ /oel/ and master.host_hash[:platform] =~ /el-6/
+        on(master,'yum upgrade -y git curl openssl nss')
+      end
     end
   end
 

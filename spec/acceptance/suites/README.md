@@ -39,15 +39,22 @@ builds/download RPMs, and then builds the ISO.
 2. Install Ruby 2.1.9 (follow the guides from the link above)
 3. Install bundler: `gem install bundler`
 4. Install other dependencies: `bundle install`
-5. Run the tests:
+5. If you need to run a test for a different OS or Puppet version, copy the
+  environment variables from whichever job matches what you need from the
+  `.gitlab-ci.yaml`.
+6. Run the tests:
 
 ```bash
-bundle exec rake beaker:suites[<suite>,<nodeset>]
+# to run the default suite on OEL using Puppet 5 and an OEL7 simp server
+export PUPPET_VERSION='~> 5.3'
+export BEAKER_PUPPET_COLLECTION='puppet5'
+export SIMP_BEAKER_OS='oracle'
+bundle exec rake beaker:suites[default,el7_server]
 ```
 
 There are two nodesets per integration/release test suite, `el7_server` and `el6_server`.
 They control the version of EL on the puppetserver. The default nodeset is a symlink
-to `el7_server`.
+to `el7_server`. You can also set `SIMP_BEAKER_OS` to `oracle` to run the tests on OEL.
 
 
 
