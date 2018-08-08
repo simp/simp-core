@@ -59,6 +59,7 @@ HOSTS:
   agent-el6:
     roles:
       - agent
+      - syslog_server
     platform:   el-6-x86_64
     box:        <%= box_6 %>
     hypervisor: <%= hypervisor %>

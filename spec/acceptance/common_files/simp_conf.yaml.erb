@@ -85,6 +85,15 @@ cli::simp::scenario: simp
 # SIMP repositories.
 cli::use_internet_simp_yum_repos: false
 
+# === grub::password ===
+# The password to access GRUB.
+#
+# The value entered is used to set the GRUB password and to generate a hash
+# stored in grub::password.
+#
+# P@ssw0rdP@ssw0rd
+grub::password: grub.pbkdf2.sha512.10000.12F3895DD7ADE63F7FE88A79B00C84BE64E7F5D17DB1642390C2551622F2BE322E76698FF98A726A44D91775E70F8AE9DAFB933FE96342C68997D82F9E558CA0.D22D09E348D94B37120FE9E29A052E97244BCA6A3AD0DC5BA304373BED93026ED0801E4B0E7442C63CC992A6A76DD90948806762FB02204CD5603A7E1A6A2AD6
+
 # === puppetdb::master::config::puppetdb_port ===
 # The PuppetDB server port number.
 puppetdb::master::config::puppetdb_port: 8139
@@ -117,6 +126,15 @@ simp::yum::servers:
 # === simp::yum::simp_update_url ===
 # Full URL to a YUM repo for SIMP packages
 simp::yum::simp_update_url: https://packagecloud.io/simp-project/6_X/el/$releasever/$basearch
+
+# === simp_openldap::server::conf::rootpw ===
+# The salted LDAP Root password hash.
+#
+# When set via 'simp config', this password hash is generated from
+# the password entered on the command line.
+#
+# P@ssw0rdP@ssw0rd
+simp_openldap::server::conf::rootpw: "{SSHA}JuPH7TsHnjSMKhFurGaEHiUuJYiQdjno"
 
 # === simp_options::dns::search ===
 # The DNS domain search string.
@@ -158,6 +176,8 @@ simp_options::dns::servers:
 #     SIMP documentation for instructions on how to safely convert a non-FIPS
 #     system to a FIPS system.
 #
+#  NOTE:  This setting is immaterial, as simp config will set the value
+#         based on the actual system setting.
 simp_options::fips: false
 
 # === simp_options::ldap ===
@@ -168,7 +188,7 @@ simp_options::ldap: true
 
 # === simp_options::ldap::base_dn ===
 # The Base Distinguished Name of the LDAP server.
-# simp_options::ldap::base_dn: dc=camelot,dc=local
+# simp_options::ldap::base_dn: dc=test,dc=local
 
 # === simp_options::ldap::bind_hash ===
 # The salted LDAP Bind password hash.
@@ -216,15 +236,18 @@ simp_options::sssd: true
 #
 # No log forwarding is enabled when this list is empty.  Only use hostnames
 # here if at all possible.
-simp_options::syslog::log_servers: []
+simp_options::syslog::log_servers: <%= (syslog_servers.nil? or syslog_servers.empty?) ? '[]': '[ ' + syslog_servers.join(', ') + ' ]' %>
+
+# === simp_options::syslog::failover_log_servers ===
+# Failover log server(s) in case your log servers(s) fail.
+simp_options::syslog::failover_log_servers: []
 
 # === simp_options::trusted_nets ===
 # A list of subnets to permit, in CIDR notation.
 #
 # If you need this to be more (or less) restrictive for a given class,
 # you can override it in Hiera.
-simp_options::trusted_nets:
-- 0.0.0.0/0
+simp_options::trusted_nets: <%= (trusted_nets.nil? or trusted_nets.empty?) ? '[]': '[ ' + trusted_nets.join(', ') + ' ]' %>
 
 # === sssd::domains ===
 # A list of domains for SSSD to use.

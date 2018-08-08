@@ -10,8 +10,10 @@ describe 'install SIMP via rpm' do
 
   masters     = hosts_with_role(hosts, 'master')
   agents      = hosts_with_role(hosts, 'agent')
+  syslog_servers = []  # needed for simp_conf.yaml template
   domain      = fact_on(master, 'domain')
   master_fqdn = fact_on(master, 'fqdn')
+
   puppetserver_status_cmd = [
     'curl -sk',
     "--cert /etc/puppetlabs/puppet/ssl/certs/#{master_fqdn}.pem",
@@ -21,6 +23,18 @@ describe 'install SIMP via rpm' do
     '| grep state',
     '| grep running'
   ].join(' ')
+
+  # needed for simp_conf.yaml template
+  let(:trusted_nets) do
+    require 'json'
+    require 'ipaddr'
+    networking = JSON.load(on(master, 'facter --json networking').stdout)
+    networking['networking']['interfaces'].delete_if { |key,value| key == 'lo' }
+    trusted_nets = networking['networking']['interfaces'].map do |key,value|
+      net_mask = IPAddr.new(value['netmask']).to_i.to_s(2).count("1")
+      "#{value['network']}/#{net_mask}"
+    end
+  end
 
   context 'all hosts prep' do
     it 'should install repos and set root pw' do
@@ -41,7 +55,7 @@ describe 'install SIMP via rpm' do
   end
 
   context 'master' do
-    let(:simp_conf_template) { File.read(File.open('spec/acceptance/common_files/simp_conf.yaml.erb')) }
+    let(:simp_conf_template) { File.read('spec/acceptance/common_files/simp_conf.yaml.erb') }
     masters.each do |master|
       it 'should set up SIMP repositories' do
         master.install_package('epel-release')
@@ -58,11 +72,7 @@ describe 'install SIMP via rpm' do
         create_remote_file(master, '/root/simp_conf.yaml', ERB.new(simp_conf_template).result(binding))
         cmd = [
           'simp config',
-          '-a /root/simp_conf.yaml',
-          # '--quiet',
-          # '--skip-safety-save',
-          'grub::password=s00persekr3t%',
-          'simp_openldap::server::conf::rootpw=s00persekr3t%'
+          '-a /root/simp_conf.yaml'
         ].join(' ')
         on(master, cmd)
       end
@@ -79,7 +89,8 @@ describe 'install SIMP via rpm' do
       end
 
       it 'should run simp bootstrap' do
-        # Remove the lock file because we've already added the vagrant user stuff
+        # Remove the lock file because we've already added the vagrant user
+        # access and won't be locked out of the VM
         on(master, 'rm -f /root/.simp/simp_bootstrap_start_lock')
         on(master, 'simp bootstrap --no-verbose -u --remove_ssldir > /dev/null')
       end
