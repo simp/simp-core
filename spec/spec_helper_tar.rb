@@ -4,6 +4,13 @@ require 'yaml'
 require 'simp/beaker_helpers'
 include Simp::BeakerHelpers
 
+module SimpCoreTest
+ # NOTE:  These passwords will be enclosed in single quotes when used on
+ #        the shell command line. So, to simplify the code that uses
+ #        them, these passwords should not contain single quotes.
+ TEST_PASSWORDS = [ "P@ssw0rdP@ssw0rd", "Ch@ng3d=P@ssw0r!" ]
+end
+
 unless ENV['BEAKER_provision'] == 'no'
   hosts.each do |host|
     # Install Facter for beaker helpers
@@ -23,7 +30,7 @@ def find_tarball(relver,osname)
   end
 # If it begins with https: then download it from that URL
   if tarball =~ /https/
-    filename = 'SIMP-downloaded-CentOS-7-x86_64.tar.gz'
+    filename = "SIMP-downloaded-#{osname}-#{relver}-x86_64.tar.gz"
     url = "#{tarball}"
     require 'net/http'
     Dir.exists?("spec/fixtures") || Dir.mkdir("spec/fixtures")
@@ -70,6 +77,12 @@ def internet_deprepo(host)
   reponame = ENV['BEAKER_repo']
   reponame ||= '6_X'
   on(host, "curl -s https://packagecloud.io/install/repositories/simp-project/#{reponame}_Dependencies/script.rpm.sh | bash")
+end
+
+# Returns the plain-text, test password for the index specified
+#
+def test_password(index = 0)
+  SimpCoreTest::TEST_PASSWORDS[index]
 end
 
 RSpec.configure do |c|
