@@ -15,7 +15,7 @@ describe 'install SIMP via tarball' do
   syslog_servers_names = syslog_servers.map { |server| fact_on(server, 'fqdn') }
   domain         = fact_on(master, 'domain')
 
-  # use first found 'master' FQDN
+  # Use first found 'master' FQDN
   master_fqdn    = fact_on(master, 'fqdn')
 
   # This command assumes a single Puppet master
@@ -32,7 +32,7 @@ describe 'install SIMP via tarball' do
   let(:majver) { fact_on(master, 'operatingsystemmajrelease') }
   let(:osname) { fact_on(master, 'operatingsystem') }
 
-  # needed for simp_conf.yaml template
+  # Needed for simp_conf.yaml template
   let(:trusted_nets) do
     require 'json'
     require 'ipaddr'
@@ -68,7 +68,7 @@ describe 'install SIMP via tarball' do
       block_on(hosts, :run_in_parallel => false) do |host|
         # set the root password
         on(host, "sed -i 's/enforce_for_root//g' /etc/pam.d/*")
-        on(host, 'echo password | passwd root --stdin')
+        on(host, "echo '#{test_password}' | passwd root --stdin")
         # set up needed repositories
         if use_puppet_repo
           if host.host_hash[:platform] =~ /el-7/
@@ -104,7 +104,7 @@ describe 'install SIMP via tarball' do
         end
       end
 
-      #Set up the simp project dependency repo
+      # Set up the simp project dependency repo
       internet_deprepo(master)
 
       it 'should install simp' do
@@ -114,11 +114,23 @@ describe 'install SIMP via tarball' do
 
       it 'should run simp config' do
         create_remote_file(master, '/root/simp_conf.yaml', ERB.new(simp_conf_template).result(binding))
+
         cmd = [
           'simp config',
-          '-a /root/simp_conf.yaml'
+          '-A /root/simp_conf.yaml'
         ].join(' ')
-        on(master, cmd)
+
+        input = [
+          'no', # do not autogenerate GRUB password
+          test_password,
+          test_password,
+          'no', # do not autogenerate LDAP Root password
+          test_password,
+          test_password,
+          ''  # make sure to end with \n
+        ].join("\n")
+
+        on(master, cmd, { :pty => true, :stdin => input } )
       end
 
       it 'should provide default hieradata' do

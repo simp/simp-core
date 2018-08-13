@@ -85,19 +85,6 @@ cli::simp::scenario: simp
 # SIMP repositories.
 cli::use_internet_simp_yum_repos: false
 
-# === grub::password ===
-# The password to access GRUB.
-#
-# The value entered is used to set the GRUB password and to generate a hash
-# stored in grub::password.
-#
-# P@ssw0rdP@ssw0rd
-grub::password: grub.pbkdf2.sha512.10000.12F3895DD7ADE63F7FE88A79B00C84BE64E7F5D17DB1642390C2551622F2BE322E76698FF98A726A44D91775E70F8AE9DAFB933FE96342C68997D82F9E558CA0.D22D09E348D94B37120FE9E29A052E97244BCA6A3AD0DC5BA304373BED93026ED0801E4B0E7442C63CC992A6A76DD90948806762FB02204CD5603A7E1A6A2AD6
-
-# === puppetdb::master::config::puppetdb_port ===
-# The PuppetDB server port number.
-puppetdb::master::config::puppetdb_port: 8139
-
 # === puppetdb::master::config::puppetdb_server ===
 # The DNS name or IP of the PuppetDB server.
 puppetdb::master::config::puppetdb_server: "%{hiera('simp_options::puppet::server')}"
@@ -126,15 +113,6 @@ simp::yum::servers:
 # === simp::yum::simp_update_url ===
 # Full URL to a YUM repo for SIMP packages
 simp::yum::simp_update_url: https://packagecloud.io/simp-project/6_X/el/$releasever/$basearch
-
-# === simp_openldap::server::conf::rootpw ===
-# The salted LDAP Root password hash.
-#
-# When set via 'simp config', this password hash is generated from
-# the password entered on the command line.
-#
-# P@ssw0rdP@ssw0rd
-simp_openldap::server::conf::rootpw: "{SSHA}JuPH7TsHnjSMKhFurGaEHiUuJYiQdjno"
 
 # === simp_options::dns::search ===
 # The DNS domain search string.

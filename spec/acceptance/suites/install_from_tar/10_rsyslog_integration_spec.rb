@@ -1,5 +1,4 @@
 require 'spec_helper_tar'
-require 'erb'
 
 test_name 'rsyslog integration'
 
@@ -264,26 +263,24 @@ describe 'Validation of rsyslog forwarding' do
       # This test will use an expect script that ssh's to a host as a
       # local user configured with no password sudosh privileges, runs
       # 'sudo sudosh', and then executes a root-level command.
+      # Before the user can login, we need to set the user's password
+      on(hosts, "echo '#{test_password}' | passwd localadmin --stdin")
       scp_to(master, "#{files_dir}/ssh_sudo_sudosh_script", '/usr/local/bin/ssh_sudo_sudosh_script')
       on(master, "chmod +x /usr/local/bin/ssh_sudo_sudosh_script")
       master_os_major = fact_on(master, 'operatingsystemmajrelease')
       hosts.each do |host|
-        os_major = fact_on(host, 'operatingsystemmajrelease')
-        cmd ="/usr/local/bin/ssh_sudo_sudosh_script localadmin #{host.name} P@ssw0rdP@ssw0rd"
+        cmd ="/usr/local/bin/ssh_sudo_sudosh_script localadmin #{host.name} #{test_password}"
 
         # FIXME: Workaround for SIMP-5082
+        os_major = fact_on(host, 'operatingsystemmajrelease')
         if master_os_major.to_s == '7'
-          if (os_major.to_s == '6')
-            cmd +=" '-o MACs=hmac-sha1'"
-          end
+          cmd +=" '-o MACs=hmac-sha1'" if (os_major.to_s == '6')
         elsif master_os_major.to_s == '6'
-          if (os_major.to_s == '7')
-            cmd +=" '-o MACs=hmac-sha2-256'"
-          end
+          cmd +=" '-o MACs=hmac-sha2-256'" if (os_major.to_s == '7')
         end
 
-      hosts.each do |host|
         on(master, cmd)
+
         unless host.host_hash[:roles].include?('syslog_server')
           on(host, "grep 'sudosh: starting session for localadmin as root' /var/log/sudosh.log")
           on(host, "grep 'sudosh: stopping session for localadmin as root' /var/log/sudosh.log")

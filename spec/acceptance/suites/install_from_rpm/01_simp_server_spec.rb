@@ -41,7 +41,7 @@ describe 'install SIMP via rpm' do
       block_on(hosts, :run_in_parallel => false) do |host|
         # set the root password
         on(host, "sed -i 's/enforce_for_root//g' /etc/pam.d/*")
-        on(host, 'echo password | passwd root --stdin')
+        on(host, "echo '#{test_password}' | passwd root --stdin")
         # set up needed repositories
         if use_puppet_repo
           if host.host_hash[:platform] =~ /el-7/
@@ -70,11 +70,23 @@ describe 'install SIMP via rpm' do
 
       it 'should run simp config' do
         create_remote_file(master, '/root/simp_conf.yaml', ERB.new(simp_conf_template).result(binding))
+
         cmd = [
           'simp config',
-          '-a /root/simp_conf.yaml'
+          '-A /root/simp_conf.yaml'
         ].join(' ')
-        on(master, cmd)
+
+        input = [
+          'no', # do not autogenerate GRUB password
+          test_password,
+          test_password,
+          'no', # do not autogenerate LDAP Root password
+          test_password,
+          test_password,
+          ''  # make sure to end with \n
+        ].join("\n")
+
+        on(master, cmd, { :pty => true, :stdin => input } )
       end
 
       it 'should provide default hieradata to make beaker happy' do

@@ -17,8 +17,6 @@ class site::local_users(
     gid        => $local_admin,
     home       => "/var/${local_admin}",
     managehome => true,
-    # P@ssw0rdP@ssw0rd
-    password   => '$6$rounds=10000$hDSthQpS$bo5vJ.QNtf5XzQxJzNi0bq1e2nAjLm8gS1r8zxxb/nFHyllEPdSAismdHxa78V37aJvw8lbc5Ba4Js/ytbUd8.'
   }
 
   pam::access::rule { "allow_${local_admin}":
