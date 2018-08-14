@@ -76,13 +76,13 @@ Significant Updates
 * Many module updates simply added support for Puppet 5 and Oracle Enterprise
   Linux. These changes will not be listed individually below.
 
-* Likewise, many modules were updated simple due to better tests being in
-  place. These improvements will also not be noted below.
+* Likewise, many modules were updated simply to improve tests. These
+  improvements will also not be noted below.
 
 * The ``simp_gitlab`` module no longer supports EL6. This is due to integration
-  issues and the lack of interest from the EL community in fixing minor issues
-  in the platform which make maintenance too burdensome on the module
-  maintenance team.
+  issues with GitLab that cannot be readily fixed by the module maintance team,
+  alone.  The EL community had shown no interest in fixing minor issues with EL6
+  in the GitLab platform.
 
 Security Announcements
 ----------------------
@@ -158,16 +158,16 @@ pupmod-simp-iptables
   by the rules.
 * Fixed some issues in the chain retention and optimization code that would
   cause ``iptables`` to fail to reload in some cases.
-* Fix compilation failures if ``proto`` was specified in the ``defaults``
+* Fixed compilation failures if ``proto`` was specified in the ``defaults``
   section of the options Hash.
-* Fix an issue where a ``jump`` target went to an empty ruleset and the chain
+* Fixed an issue where a ``jump`` target went to an empty ruleset and the chain
   was dropped.
-* Retain all native IPTables ``jump`` points by default.
+* Retained all native IPTables ``jump`` points by default.
 * Added a *deep rule* comparison on rulesets that are identical based on simple
   checks.
-* Remediate potential memory leaks.
-* Fix ordering issues when used with ``firewalld``.
-* Match RPM permissions based on STIG requirements.
+* Remediated potential memory leaks.
+* Fixed ordering issues when used with ``firewalld``.
+* Matched RPM permissions based on STIG requirements.
 
 pupmod-simp-libvirt
 ^^^^^^^^^^^^^^^^^^^
@@ -184,10 +184,11 @@ pupmod-simp-named
 pupmod-simp-pam
 ^^^^^^^^^^^^^^^
 
-* Change the minimum allowed UID to the one defined in ``/etc/ogin.defs`` by
+* Change the minimum allowed UID to the one defined in ``/etc/login.defs`` by
   default or ``1000`` if nothing else is defined.
-* Replace the removal of ``authconfig`` and ``authconfig-tui`` to a no-op
-  script so that tools using ``authconfig`` do not break.
+* Replace the removal of ``authconfig`` and ``authconfig-tui`` with the use of a
+  ``authconfig`` no-op script, so that tools using ``authconfig`` do not
+  break.
 
 pupmod-simp-postfix
 ^^^^^^^^^^^^^^^^^^^
@@ -242,15 +243,17 @@ pupmod-simp-simp
   service restart flapping.
 * Fixed the permissions on the ``ctrl-alt-del-capture`` service file so that
   warnings would no longer be logged.
-* Set the host name in the ``runpuppet`` script to prevent issues that can
-  arise when a ``dhcp`` lease expires.
-* Changed the mode of ``rc.local`` to ``750``.
+* Replace the deprecated ``runpuppet`` script with client Puppet bootstrap scripts
+  that are not inappropriately killed by ``systemd``, when executed in highly-loaded
+  environments.  These scripts allow the ``systemd`` timeout to be specified and
+  provide better error handling and logging.
+* On systems with ``systemd``, set the host name in client Puppet bootstrap scripts,
+  to prevent issues that can arise when a ``dhcp`` lease expires.  This could cause
+  the generated Puppet configuration for the client to use ``localhost`` as the
+  client's hostname.
 * Ensure that running on unsupported operating systems is completely safe.
-* Allow the ``systemd`` timeout to be set for the ``runpuppet`` service.
-* Failed puppet agent runs during ``runpuppet`` are now retried instead of
-  continuing on blindly.
-* All log messages from ``runpuppet`` are now timestamped.
 * No longer deviate from vendor RPM default permissions per the STIG.
+* Changed the mode of ``rc.local`` to ``750``.
 * Removed the explicit setting of the ``host_list`` on all
   ``sudo::user_specification`` resources to let the updated module defaults
   handle it appropriately.
@@ -563,8 +566,7 @@ pupmod-simp-tftpboot
 
 * Added support for UEFI PXEboot
 * Moved the ``tftpboot`` root directory from ``/tftpboot`` to
-  ``/var/lib/tftpboot`` to match the expectations of SELinux and the STIG. This
-  was symlinked back to ``/tftpboot`` for backward compatibility.
+  ``/var/lib/tftpboot`` to match the expectations of SELinux and the STIG.
 * Added a ``tftpboot::tftpboot_root_dir`` parameter to all users to override
   the root directory location.
 
