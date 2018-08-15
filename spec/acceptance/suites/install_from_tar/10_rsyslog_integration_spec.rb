@@ -105,7 +105,7 @@ describe 'Validation of rsyslog forwarding' do
   context 'additional site manifest/hieradata staging' do
     it 'should install additional manifests and update hieradata' do
       dest = "#{site_module_path}/manifests/local_users.pp"
-      scp_to(master, "#{files_dir}/site/local_users.pp", dest)
+      scp_to(master, "#{files_dir}/site/manifests/local_users.pp", dest)
       on(master, "chown root:puppet #{dest}")
       on(master, "chmod 0640 #{dest}")
 
@@ -267,18 +267,11 @@ describe 'Validation of rsyslog forwarding' do
       on(hosts, "echo '#{test_password}' | passwd localadmin --stdin")
       scp_to(master, "#{files_dir}/ssh_sudo_sudosh_script", '/usr/local/bin/ssh_sudo_sudosh_script')
       on(master, "chmod +x /usr/local/bin/ssh_sudo_sudosh_script")
-      master_os_major = fact_on(master, 'operatingsystemmajrelease')
       hosts.each do |host|
-        cmd ="/usr/local/bin/ssh_sudo_sudosh_script localadmin #{host.name} #{test_password}"
+        base_cmd ="/usr/local/bin/ssh_sudo_sudosh_script localadmin #{host.name} #{test_password}"
 
         # FIXME: Workaround for SIMP-5082
-        os_major = fact_on(host, 'operatingsystemmajrelease')
-        if master_os_major.to_s == '7'
-          cmd +=" '-o MACs=hmac-sha1'" if (os_major.to_s == '6')
-        elsif master_os_major.to_s == '6'
-          cmd +=" '-o MACs=hmac-sha2-256'" if (os_major.to_s == '7')
-        end
-
+        cmd = adjust_ssh_ciphers_for_expect_script(base_cmd, master, host)
         on(master, cmd)
 
         unless host.host_hash[:roles].include?('syslog_server')

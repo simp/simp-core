@@ -85,6 +85,26 @@ def test_password(index = 0)
   SimpCoreTest::TEST_PASSWORDS[index]
 end
 
+# FIXME: Workaround for SIMP-5082
+# Using the (ASSUMED) optional, final command line argument in an expect
+# script, adjust ciphers used by that script to ssh from src_host to
+# dest_host, if necessary.  This ugly adjustment is needed in order to
+# deal with different cipher sets configured by SIMP for sshd for CentOS 6
+# versus CentOS 7.
+#
+# Returns the expect command
+def adjust_ssh_ciphers_for_expect_script(expect_cmd, src_host, dest_host)
+  cmd = expect_cmd.dup
+  src_os_major  = fact_on(src_host, 'operatingsystemmajrelease')
+  dest_os_major = fact_on(dest_host, 'operatingsystemmajrelease')
+  if src_os_major.to_s == '7'
+    cmd +=" '-o MACs=hmac-sha1'" if (dest_os_major.to_s == '6')
+  elsif src_os_major.to_s == '6'
+    cmd +=" '-o MACs=hmac-sha2-256'" if (dest_os_major.to_s == '7')
+  end
+  cmd
+end
+
 RSpec.configure do |c|
   # ensure that environment OS is ready on each host
   # fix_errata_on hosts

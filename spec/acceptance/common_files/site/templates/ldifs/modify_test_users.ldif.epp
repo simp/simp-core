@@ -1,0 +1,13 @@
+dn: cn=users,ou=Group,<%= $site::test_ldifs::base_dn %>
+changeType: modify
+add: memberUid
+memberUid: admin1
+memberUid: admin2
+memberUid: user1
+memberUid: user2
+
+dn: cn=administrators,ou=Group,<%= $site::test_ldifs::base_dn %>
+changeType: modify
+add: memberUid
+memberUid: admin1
+memberUid: admin2

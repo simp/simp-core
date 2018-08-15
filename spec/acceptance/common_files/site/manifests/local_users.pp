@@ -10,7 +10,7 @@ class site::local_users(
 
   group {$local_admin:
     ensure => 'present',
-    gid    => 1001
+    gid    => 2001
   }
 
   user { $local_admin:
@@ -18,7 +18,7 @@ class site::local_users(
     gid        => $local_admin,
     home       => "/var/${local_admin}",
     managehome => true,
-    uid        => 1001
+    uid        => 2001
   }
 
   pam::access::rule { "allow_${local_admin}":

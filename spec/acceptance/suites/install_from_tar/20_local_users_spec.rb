@@ -25,73 +25,39 @@ describe 'local user access' do
       # user and then runs 'date'.
       scp_to(master, "#{files_dir}/ssh_cmd_script", '/usr/local/bin/ssh_cmd_script')
       on(master, "chmod +x /usr/local/bin/ssh_cmd_script")
-      master_os_major = fact_on(master, 'operatingsystemmajrelease')
       hosts.each do |host|
-        cmd ="/usr/local/bin/ssh_cmd_script localadmin #{host.name} #{test_password(0)} date"
+        base_cmd ="/usr/local/bin/ssh_cmd_script localadmin #{host.name} #{test_password(0)} date"
 
         # FIXME: Workaround for SIMP-5082
-        os_major = fact_on(host, 'operatingsystemmajrelease')
-        if master_os_major.to_s == '7'
-          cmd +=" '-o MACs=hmac-sha1'" if (os_major.to_s == '6')
-        elsif master_os_major.to_s == '6'
-          cmd +=" '-o MACs=hmac-sha2-256'" if (os_major.to_s == '7')
-        end
-
+        cmd = adjust_ssh_ciphers_for_expect_script(base_cmd, master, host)
         on(master, cmd)
       end
     end
 
     it 'user should be able to change password' do
-begin
       scp_to(master, "#{files_dir}/ssh_change_password_script", '/usr/local/bin/ssh_change_password_script')
       on(master, "chmod +x /usr/local/bin/ssh_change_password_script")
 
       # Allow user to change the password early
       on(hosts, 'passwd --minimum 0 localadmin')
 
-      master_os_major = fact_on(master, 'operatingsystemmajrelease')
       hosts.each do |host|
-        cmd ="/usr/local/bin/ssh_change_password_script localadmin #{host.name} #{test_password(0)} #{test_password(1)}"
+        base_cmd ="/usr/local/bin/ssh_change_password_script localadmin #{host.name} #{test_password(0)} #{test_password(1)}"
 
         # FIXME: Workaround for SIMP-5082
-        os_major = fact_on(host, 'operatingsystemmajrelease')
-        if master_os_major.to_s == '7'
-          cmd +=" '-o MACs=hmac-sha1'" if (os_major.to_s == '6')
-        elsif master_os_major.to_s == '6'
-          cmd +=" '-o MACs=hmac-sha2-256'" if (os_major.to_s == '7')
-        end
-
+        cmd = adjust_ssh_ciphers_for_expect_script(base_cmd, master, host)
         on(master, cmd)
       end
-rescue => e
-puts "#{e}"
-require 'pry-byebug'
-binding.pry
-end
     end
 
     it 'local user should be able to login with new password via ssh' do
-begin
-      master_os_major = fact_on(master, 'operatingsystemmajrelease')
       hosts.each do |host|
-        cmd ="/usr/local/bin/ssh_cmd_script localadmin #{host.name} #{test_password(1)} date"
+        base_cmd ="/usr/local/bin/ssh_cmd_script localadmin #{host.name} #{test_password(1)} date"
 
         # FIXME: Workaround for SIMP-5082
-        os_major = fact_on(host, 'operatingsystemmajrelease')
-        if master_os_major.to_s == '7'
-          cmd +=" '-o MACs=hmac-sha1'" if (os_major.to_s == '6')
-        elsif master_os_major.to_s == '6'
-          cmd +=" '-o MACs=hmac-sha2-256'" if (os_major.to_s == '7')
-        end
-
+        cmd = adjust_ssh_ciphers_for_expect_script(base_cmd, master, host)
         on(master, cmd)
       end
-rescue => e
-puts "#{e}"
-require 'pry-byebug'
-binding.pry
-end
-
     end
   end
 end
