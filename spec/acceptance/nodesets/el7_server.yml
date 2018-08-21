@@ -41,6 +41,7 @@ HOSTS:
   agent-el7:
     roles:
       - agent
+      - syslog_server
     platform:   el-7-x86_64
     box:        <%= box_7 %>
     hypervisor: <%= hypervisor %>

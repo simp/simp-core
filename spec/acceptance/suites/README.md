@@ -133,7 +133,21 @@ This test attempts to set up two repos:
 2. The dependency repo, containing extra RPMs required by SIMP that aren't in
    the CentOS Base repos.
 
-It then installs the `simp` RPM and runs `simp config` and `simp bootstrap`.
+Then, using the repos, it
+
+1. Installs the `simp` RPM and runs `simp config` and `simp bootstrap` on the
+   SIMP server
+2. Runs `puppet agent -t` on the SIMP server and 2 clients (1 CentOS6, 1 CentOS7)
+   until convergence.
+
+In this configuration, one of the clients is also the remote syslog server.
+
+_Tests run_:
+
+1. Verifies rsyslog integration.  Specifically, it stimulates applications
+   to generate events of interest, and then verifies the actual application
+   messages get logged locally and remotely, as expected.
+
 
 Use the following ENV variables to configure the test:
 

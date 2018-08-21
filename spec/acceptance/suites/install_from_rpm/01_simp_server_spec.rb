@@ -10,8 +10,10 @@ describe 'install SIMP via rpm' do
 
   masters     = hosts_with_role(hosts, 'master')
   agents      = hosts_with_role(hosts, 'agent')
+  syslog_servers = []  # needed for simp_conf.yaml template
   domain      = fact_on(master, 'domain')
   master_fqdn = fact_on(master, 'fqdn')
+
   puppetserver_status_cmd = [
     'curl -sk',
     "--cert /etc/puppetlabs/puppet/ssl/certs/#{master_fqdn}.pem",
@@ -22,12 +24,24 @@ describe 'install SIMP via rpm' do
     '| grep running'
   ].join(' ')
 
+  # needed for simp_conf.yaml template
+  let(:trusted_nets) do
+    require 'json'
+    require 'ipaddr'
+    networking = JSON.load(on(master, 'facter --json networking').stdout)
+    networking['networking']['interfaces'].delete_if { |key,value| key == 'lo' }
+    trusted_nets = networking['networking']['interfaces'].map do |key,value|
+      net_mask = IPAddr.new(value['netmask']).to_i.to_s(2).count("1")
+      "#{value['network']}/#{net_mask}"
+    end
+  end
+
   context 'all hosts prep' do
     it 'should install repos and set root pw' do
       block_on(hosts, :run_in_parallel => false) do |host|
         # set the root password
         on(host, "sed -i 's/enforce_for_root//g' /etc/pam.d/*")
-        on(host, 'echo password | passwd root --stdin')
+        on(host, "echo '#{test_password}' | passwd root --stdin")
         # set up needed repositories
         if use_puppet_repo
           if host.host_hash[:platform] =~ /el-7/
@@ -41,7 +55,7 @@ describe 'install SIMP via rpm' do
   end
 
   context 'master' do
-    let(:simp_conf_template) { File.read(File.open('spec/acceptance/common_files/simp_conf.yaml.erb')) }
+    let(:simp_conf_template) { File.read('spec/acceptance/common_files/simp_conf.yaml.erb') }
     masters.each do |master|
       it 'should set up SIMP repositories' do
         master.install_package('epel-release')
@@ -56,15 +70,23 @@ describe 'install SIMP via rpm' do
 
       it 'should run simp config' do
         create_remote_file(master, '/root/simp_conf.yaml', ERB.new(simp_conf_template).result(binding))
+
         cmd = [
           'simp config',
-          '-a /root/simp_conf.yaml',
-          # '--quiet',
-          # '--skip-safety-save',
-          'grub::password=s00persekr3t%',
-          'simp_openldap::server::conf::rootpw=s00persekr3t%'
+          '-A /root/simp_conf.yaml'
         ].join(' ')
-        on(master, cmd)
+
+        input = [
+          'no', # do not autogenerate GRUB password
+          test_password,
+          test_password,
+          'no', # do not autogenerate LDAP Root password
+          test_password,
+          test_password,
+          ''  # make sure to end with \n
+        ].join("\n")
+
+        on(master, cmd, { :pty => true, :stdin => input } )
       end
 
       it 'should provide default hieradata to make beaker happy' do
@@ -79,7 +101,8 @@ describe 'install SIMP via rpm' do
       end
 
       it 'should run simp bootstrap' do
-        # Remove the lock file because we've already added the vagrant user stuff
+        # Remove the lock file because we've already added the vagrant user
+        # access and won't be locked out of the VM
         on(master, 'rm -f /root/.simp/simp_bootstrap_start_lock')
         on(master, 'simp bootstrap --no-verbose -u --remove_ssldir > /dev/null')
       end

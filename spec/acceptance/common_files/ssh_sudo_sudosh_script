@@ -1,0 +1,57 @@
+#!/usr/bin/expect -f
+
+set user [lindex $argv 0]
+set host [lindex $argv 1]
+set pass [lindex $argv 2]
+set extraopts [lindex $argv 3]
+set timeout 10
+
+if { $extraopts == "" } {
+ spawn ssh -o StrictHostKeyChecking=no -o NumberOfPasswordPrompts=1 $host -l $user ;
+} else {
+ spawn ssh -o StrictHostKeyChecking=no -o NumberOfPasswordPrompts=1 $extraopts $host -l $user
+}
+
+# wait for password prompt
+expect "*password:"
+send "$pass\r"
+
+# wait for username in command line prompt before sending each command
+expect "$user@$host "
+send "whoami\r"
+expect "$user@$host "
+send "pwd\r"
+expect "$user@$host "
+send "sudo sudosh\r"
+
+# root may not have /etc/bashrc in its bashrc, so wait
+# for a minimal prompt separator ' ' (yes, a very weak
+# expectation) and then source the /etc/bashrc to get
+# a better expect string
+expect " "
+send "source /etc/bashrc\r"
+
+# wait for root in command line prompt before sending each command
+expect "root@$host "
+send "whoami\r"
+expect "root@$host "
+send "pwd\r"
+expect "root@$host "
+send "tail -n 5 /var/log/messages\r"
+expect "root@$host "
+# sleep allows time for log messages to spew to the screen
+# before closing the connection
+send "sleep 1\r"
+expect "root@$host "
+send "exit 0\r"
+
+# wait for username in command line prompt before sending each command
+expect "$user@$host "
+send "whoami\r"
+expect "$user@$host "
+send "pwd\r"
+expect "$user@$host "
+send "exit 0\r"
+
+catch wait result
+exit [lindex $result 3]
