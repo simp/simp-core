@@ -1,4 +1,4 @@
-SIMP Community Edition (CE) 6.2.0-Beta2
+SIMP Community Edition (CE) 6.2.0-RC1
 =======================================
 
 .. raw:: pdf
@@ -134,6 +134,11 @@ Security Updates
 Fixed Bugs
 ----------
 
+pupmod-simp-aide
+^^^^^^^^^^^^^^^^
+
+* Added /etc/logrotate.simp.d to default rules.
+
 pupmod-simp-compliance_markup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -223,6 +228,8 @@ pupmod-simp-rsyslog
 * Use double quotes to allow evaluation of line returns in strings.
 * Added a ``systemd`` service override that fixes an ordering problem with
   older versions of ``rsyslog``.
+* Fixed bug that did not allow a TLS encrypted server to be configured to forward
+  to a follow-on unencrypted rsyslog server.
 
 pupmod-simp-selinux
 ^^^^^^^^^^^^^^^^^^^
@@ -283,6 +290,11 @@ pupmod-simp-simplib
 
 * Fixed ``runlevel`` enforcement so that it activates properly when called.
   Previously, no action would be taken on the running system.
+* Added logic to prevent respawn of systemctl isolate if already in progress.
+* Added a configurable timeout for changing runlevels based on issues discovered
+  in the field with systemctl.
+* Fixed bugs in the EL6 runlevel persistence where, in some cases, the runlevel
+  line might not be added to /etc/inittab.
 
 pupmod-simp-stunnel
 ^^^^^^^^^^^^^^^^^^^
@@ -291,6 +303,13 @@ pupmod-simp-stunnel
   execute.
 * Only emit errors when errors occur during startup.
 * Removed the ``init.d`` script on ``systemd`` systems.
+
+pupmod-simp-svckill
+^^^^^^^^^^^^^^^^^^^
+
+* Add simp_client_bootstrap service to the ignore list. If this is omitted
+  from the ignore list, svckill will kill the bootstrap process of SIMP clients
+  while they are boostrapping the system.
 
 pupmod-simp-vnc
 ^^^^^^^^^^^^^^^
@@ -485,6 +504,8 @@ pupmod-simp-simp_openldap
 
 * Allow users to set the ``users`` and ``administrators`` ``GID`` values in the
   ``default.ldif`` file.
+* Use concat numeric ordering to allow placement of new modifications in a
+  predictable and reliable order.
 
 pupmod-simp-simp_options
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -533,6 +554,8 @@ pupmod-simp-ssh
 * Removed the no longer required ``sshd.aug`` augeas lens.
 * Added parameter management to the ``sshd_config`` to align with the STIG
   requirements.
+* Default to not configure RhostsRSAAuthentication in sshd_config for versions
+  of openssh that no longer allow that option.
 
 pupmod-simp-sssd
 ^^^^^^^^^^^^^^^^
@@ -560,6 +583,7 @@ pupmod-simp-sudo
 
 * Added both the short ``hostname`` and long ``fqdn`` to the user access
   control by default.
+* Update user_specification define to not accept an empty hostlist.
 
 pupmod-simp-tftpboot
 ^^^^^^^^^^^^^^^^^^^^
