@@ -4,7 +4,7 @@ moduledir 'src'
 
 mod 'simp-doc',
   :git => 'https://github.com/simp/simp-doc',
-  :tag => 'master'
+  :tag => '6.2.0-RC1'
 
 moduledir 'src/assets'
 
@@ -191,7 +191,7 @@ mod 'simp-acpid',
 
 mod 'simp-aide',
   :git => 'https://github.com/simp/pupmod-simp-aide',
-  :tag => '6.1.3'
+  :tag => '6.1.4'
 
 mod 'simp-at',
   :git => 'https://github.com/simp/pupmod-simp-at',
@@ -199,7 +199,7 @@ mod 'simp-at',
 
 mod 'simp-auditd',
   :git => 'https://github.com/simp/pupmod-simp-auditd',
-  :tag => 'master'
+  :tag => '7.1.3'
 
 mod 'simp-autofs',
   :git => 'https://github.com/simp/pupmod-simp-autofs',
@@ -314,7 +314,7 @@ mod 'simp-openscap',
 
 mod 'simp-pam',
   :git => 'https://github.com/simp/pupmod-simp-pam',
-  :branch => 'master'
+  :tag => '6.2.1'
 
 mod 'simp-pki',
   :git => 'https://github.com/simp/pupmod-simp-pki',
@@ -342,15 +342,15 @@ mod 'simp-rsync',
 
 mod 'simp-rsyslog',
   :git => 'https://github.com/simp/pupmod-simp-rsyslog',
-  :ref => '7.1.2'
+  :ref => '7.2.0'
 
 mod 'simp-selinux',
   :git => 'https://github.com/simp/pupmod-simp-selinux',
   :ref => '2.2.0'
 
 mod 'simp-simp',
-  :git => 'https://github.com/jeefberkey/pupmod-simp-simp',
-  :branch => 'SIMP-4009'
+  :git => 'https://github.com/simp/pupmod-simp-simp',
+  :tag => '4.5.0'
 
 mod 'simp-simpcat',
   :git => 'https://github.com/simp/pupmod-simp-simpcat',
@@ -358,7 +358,7 @@ mod 'simp-simpcat',
 
 mod 'simp-simplib',
   :git => 'https://github.com/simp/pupmod-simp-simplib',
-  :ref => '3.10.0'
+  :ref => '3.10.1'
 
 mod 'simp-simp_apache',
   :git => 'https://github.com/simp/pupmod-simp-simp_apache',
@@ -401,7 +401,7 @@ mod 'simp-simp_nfs',
 
 mod 'simp-simp_openldap',
   :git => 'https://github.com/simp/pupmod-simp-simp_openldap',
-  :tag => '6.2.0'
+  :tag => '6.2.1'
 
 mod 'simp-simp_options',
   :git => 'https://github.com/simp/pupmod-simp-simp_options',
@@ -421,7 +421,7 @@ mod 'simp-site',
 
 mod 'simp-ssh',
   :git => 'https://github.com/simp/pupmod-simp-ssh',
-  :ref => '6.4.2'
+  :ref => '6.4.3'
 
 mod 'simp-sssd',
   :git => 'https://github.com/simp/pupmod-simp-sssd',
@@ -433,7 +433,7 @@ mod 'simp-stunnel',
 
 mod 'simp-sudo',
   :git => 'https://github.com/simp/pupmod-simp-sudo',
-  :ref => '5.0.5'
+  :ref => '5.0.6'
 
 mod 'simp-sudosh',
   :git => 'https://github.com/simp/pupmod-simp-sudosh',
@@ -441,7 +441,7 @@ mod 'simp-sudosh',
 
 mod 'simp-svckill',
   :git => 'https://github.com/simp/pupmod-simp-svckill',
-  :tag => '3.2.5'
+  :tag => '3.2.6'
 
 mod 'simp-swap',
   :git => 'https://github.com/simp/pupmod-simp-swap',
