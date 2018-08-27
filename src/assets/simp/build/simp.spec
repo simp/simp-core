@@ -221,6 +221,9 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Mon Aug 27 2018 Chris Tessmer <chris.tessmer@onyxpoint.com> - 6.2.0-0
+- Add logic to auto.cfg to use OS-specific GPG keys in simp_filesystem.repo
+
 * Tue Jul 17 2018 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.2.0-0
 - Fix paths to configuration files
 - Update augeasproviders dependencies

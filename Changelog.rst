@@ -609,6 +609,12 @@ pupmod-simp-useradd
 * Set the min and max ``UID`` and ``GID`` based on what is in ``login.defs``
   and default to something sensible for the platform.
 
+
+simp-core
+^^^^^^^^^
+
+* Add logic to auto.cfg to use OS-specific GPG keys in simp_filesystem.repo
+
 simp-vendored-r10k
 ^^^^^^^^^^^^^^^^^^
 
