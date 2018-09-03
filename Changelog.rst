@@ -94,6 +94,8 @@ RPM Updates
   modules.
 
 * Updated to the latest ``5.X`` release of Elasticsearch and Logstash
+* Updated the ClamAV packages to 0.100.0-2
+* Removed clamav-data-empty which is no longer used
 
 Removed Modules
 ---------------
@@ -138,6 +140,9 @@ pupmod-simp-aide
 ^^^^^^^^^^^^^^^^
 
 * Added /etc/logrotate.simp.d to default rules.
+* Ensure that the ``package`` install comes before dependent ``exec``
+  statements.
+* Allow the ``cron`` command to be customized.
 
 pupmod-simp-compliance_markup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -186,6 +191,12 @@ pupmod-simp-named
 * Properly override the ``systemd`` service file for ``named-chroot`` instead
   of modifying the vendor provided service file.
 
+pupmod-simp-ntpd
+^^^^^^^^^^^^^^^^
+
+* Fixed a bug where ``ntpd::ntpd_options`` was not applied to ``ntpd::servers``
+  when ``ntpd::servers`` is an ``Array``
+
 pupmod-simp-pam
 ^^^^^^^^^^^^^^^
 
@@ -214,6 +225,8 @@ pupmod-simp-pupmod
   FOSS Puppet.
 * Properly disable the ``puppet`` service if running in cron mode. This was not
   disabled before and could contribute to a "thundering herd" issue.
+* Fixed the Java ``tmpdir`` path for the ``puppetserver`` which allows runs on
+  systems that have been pre-hardened
 
 pupmod-simp-rsync
 ^^^^^^^^^^^^^^^^^
@@ -230,6 +243,9 @@ pupmod-simp-rsyslog
   older versions of ``rsyslog``.
 * Fixed bug that did not allow a TLS encrypted server to be configured to forward
   to a follow-on unencrypted rsyslog server.
+* Fixed a bug where removing ``rsyslog::rule`` statements from the catalog
+  would not cause the ``rsyslog`` service to restart.
+* Clarified documentation around adding files to ``/etc/rsyslog.d``.
 
 pupmod-simp-selinux
 ^^^^^^^^^^^^^^^^^^^
@@ -271,6 +287,11 @@ pupmod-simp-simp_apache
 * Fix the ownership of the configuration files to use the ``owner`` variable
   instead of the ``group`` variable for user ownership.
 
+pupmod-simp-simp_elasticsearch
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* Add a missing ``simp/pam`` module dependency.
+
 pupmod-simp-simp_gitlab
 ^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -278,6 +299,8 @@ pupmod-simp-simp_gitlab
 * Dropped all support for CentOS 6 due to issues that kept cropping up during
   integration and the overall lack of support from EL upstream to fix minor
   bugs.
+* Automatically opt-out of the GitLab data collection service in accordance
+  with NIST 800-53r4 AC-20(1) and SC-38.
 
 pupmod-simp-simp_nfs
 ^^^^^^^^^^^^^^^^^^^^
@@ -303,6 +326,8 @@ pupmod-simp-stunnel
   execute.
 * Only emit errors when errors occur during startup.
 * Removed the ``init.d`` script on ``systemd`` systems.
+* Ensure that the ``stunnel`` service name is set correctly in all instances so
+  that ``tcpwrappers`` functions properly.
 
 pupmod-simp-svckill
 ^^^^^^^^^^^^^^^^^^^
@@ -330,6 +355,9 @@ simp-cli
 * Improved validation and error handling.
 * Fix ``simp passgen`` processing of all password files and improved password
   generation.
+* Properly detect Puppet Enterprise on a system and avoid conflicting
+  operations.
+* Fixed some tests that were not safe to run on real operating systems.
 
 simp-core
 ^^^^^^^^^
@@ -345,6 +373,11 @@ simp-core
 * Removed EL7 references to function keys which no longer are honored
 * Fixed the boot directory when ``fips`` is enabled on the ISO
 
+simp-doc
+^^^^^^^^
+
+* Pinned ``reportlab`` to ``3.4.0`` due to a bug in ``3.5.0``
+
 simp-environment
 ^^^^^^^^^^^^^^^^
 
@@ -357,6 +390,7 @@ simp-environment
 * Fixed a bug where the ``cacertkey`` file was not being generated in the
   correct location at install time.
 * Removed ``simp_options::selinux`` from the scenario hieradata.
+* Force a run of ``fixfiles`` in the ``%post`` section of ``simp-environment``.
 
 simp-rsync
 ^^^^^^^^^^
@@ -404,12 +438,17 @@ pupmod-simp-nfs
 * Added ``nfs::client::mount::stunnel`` to allow users to dictate the
   ``stunnel`` state for individual connections.
 
-pupmod-simp-ntp
-^^^^^^^^^^^^^^^
+pupmod-simp-ntpd
+^^^^^^^^^^^^^^^^
 
 * Add optional management of the ``/etc/ntp/step-tickers`` file.
 * Add a ``$package_ensure`` parameter to control the ``ntp`` package version.
 * Add management of ``/etc/sysconfig/ntpdate``
+
+pupmod-simp-openldap
+^^^^^^^^^^^^^^^^^^^^
+
+* Ensure that ``concat`` ordering is set in ``numeric`` order.
 
 pupmod-simp-openscap
 ^^^^^^^^^^^^^^^^^^^^
@@ -542,6 +581,10 @@ pupmod-simp-simplib
   based on a supplied ``Hash``.
 * Added a ``simplib::module_exist`` function to detect the existence of a
   module.
+* Ensure that ``systemctl`` is never spawned more than once when attempting to
+  change the system ``runlevel``.
+* Fixed an issue in EL6 ``runlevel`` persistence where the line may not be
+  written to ``/etc/inittab``.
 
 pupmod-simp-ssh
 ^^^^^^^^^^^^^^^
@@ -613,7 +656,12 @@ pupmod-simp-useradd
 simp-core
 ^^^^^^^^^
 
-* Add logic to auto.cfg to use OS-specific GPG keys in simp_filesystem.repo
+* Add logic to auto.cfg to use OS-specific GPG keys in simp_filesystem.repo.
+
+simp-doc
+^^^^^^^^
+
+* Updated the documentation for UEFI PXE booting.
 
 simp-vendored-r10k
 ^^^^^^^^^^^^^^^^^^
