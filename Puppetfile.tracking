@@ -302,7 +302,7 @@ mod 'simp-nfs',
 
 mod 'simp-ntpd',
   :git => 'https://github.com/simp/pupmod-simp-ntpd',
-  :tag => '6.1.0'
+  :tag => '6.1.1'
 
 mod 'simp-oddjob',
   :git => 'https://github.com/simp/pupmod-simp-oddjob',
@@ -370,7 +370,7 @@ mod 'simp-simp_docker',
 
 mod 'simp-simp_elasticsearch',
   :git => 'https://github.com/simp/pupmod-simp-simp_elasticsearch',
-  :tag => '5.0.1'
+  :tag => '5.0.2'
 
 mod 'simp-simp_gitlab',
   :git => 'https://github.com/simp/pupmod-simp-simp_gitlab',
