@@ -362,10 +362,8 @@ simp-cli
 simp-core
 ^^^^^^^^^
 
-* Enabled GPG checking for the local filesystem repository by default
+* Enabled GPG checking for the ISO-configured local filesystem repository by default
 * Fixed errors in the ``kickstart`` scriptlets
-* EL7 kickstart files were updated to use the latest kickstart API
-* EL6 kickstart files were updated to more closely match the EL7 kickstart files
 * SSD devices are better detected by the ``diskdetect.sh`` script
 * Removed obsolete ``simp-big`` and ``simp-big-disk-crypt`` kickstart options in EL7
 * No longer install ``prelink`` at kickstart time
@@ -376,7 +374,7 @@ simp-core
 simp-doc
 ^^^^^^^^
 
-* Pinned ``reportlab`` to ``3.4.0`` due to a bug in ``3.5.0``
+* Remove OBE MCollective references
 
 simp-environment
 ^^^^^^^^^^^^^^^^
@@ -424,6 +422,14 @@ pupmod-simp-libvirt
 * Use ``kmod::load`` instead of a Ruby script to load the kernel module
 * Added a ``libvirt_br_netfilter_loaded`` fact to determine if the
   ``br_netfilter`` kernel module is loaded
+
+pupmod-simp-logrotate
+^^^^^^^^^^^^^^^^^^^^^
+
+* Move SIMP-specific logrotate rules to a SIMP-managed configuration
+  directory, ``/etc/logrotate.simp.d``, and ensure ``logrotate`` processes
+  that directory first. This ensures SIMP rules take priority, when duplicate
+  rules are specified (e.g., OS and SIMP rules for ``/var/log/boot.log``.
 
 pupmod-simp-nfs
 ^^^^^^^^^^^^^^^
@@ -657,11 +663,23 @@ simp-core
 ^^^^^^^^^
 
 * Add logic to auto.cfg to use OS-specific GPG keys in simp_filesystem.repo.
+* Client kickstart files were updated to use the latest ``simp::server::kickstart``
+  API and to provide support for UEFI PXE boot
+* EL6 kickstart files were updated to more closely match the EL7 kickstart files
 
 simp-doc
 ^^^^^^^^
 
+* Added SIMP 6.1.0 to 6.2.0 upgrade guide
+* Added SIMP on AWS documentation
+* Added a HOWTO for IPA client enrollment
+* Added a HOWTO for customizing settings for SSH
+* Added documentation on how to disconnect from ``puppetDB``
 * Updated the documentation for UEFI PXE booting.
+* Clarified certificate management
+* Restructured pages for better navigation
+* Updated contributors guide to description more details about the development
+  workflow
 
 simp-vendored-r10k
 ^^^^^^^^^^^^^^^^^^
