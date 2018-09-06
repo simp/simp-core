@@ -1,7 +1,7 @@
 Summary: SIMP Full Install
 Name: simp
-Version: 6.2.0
-Release: RC1%{?dist}%{?snapshot_release}
+Version: 6.3.0
+Release: PREBETA%{?dist}%{?snapshot_release}
 License: Apache License, Version 2.0
 Group: Applications/System
 
