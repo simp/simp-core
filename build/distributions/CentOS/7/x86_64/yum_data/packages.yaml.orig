@@ -169,19 +169,19 @@ rubygem-puppetserver-blankslate:
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/rubygem-puppetserver-blankslate-2.1.2.4-1.noarch.rpm
 rubygem-puppetserver-blankslate-doc:
   :rpm_name: rubygem-puppetserver-blankslate-doc-2.1.2.4-1.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/el/7/noarch/rubygem-puppetserver-blankslate-doc-2.1.2.4-1.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/rubygem-puppetserver-blankslate-doc-2.1.2.4-1.noarch.rpm
 rubygem-puppetserver-parslet:
   :rpm_name: rubygem-puppetserver-parslet-1.5.0-1.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/el/7/noarch/rubygem-puppetserver-parslet-1.5.0-1.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/rubygem-puppetserver-parslet-1.5.0-1.noarch.rpm
 rubygem-puppetserver-parslet-doc:
   :rpm_name: rubygem-puppetserver-parslet-doc-1.5.0-1.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/el/7/noarch/rubygem-puppetserver-parslet-doc-1.5.0-1.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/rubygem-puppetserver-parslet-doc-1.5.0-1.noarch.rpm
 rubygem-puppetserver-toml:
   :rpm_name: rubygem-puppetserver-toml-0.1.2-1.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/el/7/noarch/rubygem-puppetserver-toml-0.1.2-1.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/rubygem-puppetserver-toml-0.1.2-1.noarch.rpm
 rubygem-puppetserver-toml-doc:
   :rpm_name: rubygem-puppetserver-toml-doc-0.1.2-1.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/el/7/noarch/rubygem-puppetserver-toml-doc-0.1.2-1.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/rubygem-puppetserver-toml-doc-0.1.2-1.noarch.rpm
 rubygem-rake:
   :rpm_name: rubygem-rake-0.9.6-33.el7_4.noarch.rpm
   :source: http://mirror.centos.org/centos/7/os/x86_64/Packages/rubygem-rake-0.9.6-33.el7_4.noarch.rpm

@@ -577,7 +577,14 @@ libattr
 libavc1394
 libbasicobjects
 libblkid
-libbluray
+libblockdev
+libblockdev-crypto
+libblockdev-fs
+libblockdev-loop
+libblockdev-mdraid
+libblockdev-part
+libblockdev-swap
+libblockdev-utils
 libbonobo
 libbonoboui
 libcanberra
@@ -647,8 +654,10 @@ libidn
 libiec61883
 libimobiledevice
 libini_config
+libinput
 libipa_hbac
 libiptcdata
+libitm
 libjpeg
 libjpeg-turbo
 libjpeg-turbo-devel
@@ -745,6 +754,7 @@ libuser
 libutempter
 libuuid
 libv4l
+libva
 libverto
 libverto-devel
 libverto-tevent
@@ -755,6 +765,9 @@ libvorbis
 libvpx
 libwacom
 libwacom-data
+libwayland-client
+libwayland-cursor
+libwayland-server
 libwbclient
 libwebp
 libwmf
@@ -763,6 +776,7 @@ libwnck
 libwnck3
 libxatracker
 libxcb
+libbytesize
 libxcb-devel
 libxkbcommon
 libxkbcommon-x11
@@ -779,6 +793,7 @@ libzip
 linuxconsoletools
 linux-firmware
 lksctp-tools
+llvm-private
 lm_sensors-libs
 log4cxx
 log4j
@@ -809,6 +824,7 @@ mesa-libGLES
 mesa-libGLU
 mesa-libgbm
 mesa-libglapi
+mesa-libwayland-egl
 mesa-libxatracker
 mesa-private-llvm
 metacity
@@ -886,6 +902,8 @@ openldap-clients
 openldap-devel
 openldap-servers
 openscap
+openscap-containers
+openscap-python
 openscap-scanner
 openscap-utils
 opensp
@@ -1054,7 +1072,6 @@ php-xml
 pinentry
 pinfo
 pixman
-pixman-devel
 pkgconfig
 pki-base
 pki-base-java
@@ -1072,7 +1089,7 @@ policycoreutils-newrole
 policycoreutils-python
 polkit
 polkit-pkla-compat
-polkit-kde
+polkit-qt
 poppler
 poppler-data
 poppler-glib
@@ -1316,6 +1333,8 @@ t1lib
 taglib
 tar
 tboot
+tcp_wrappers
+tcp_wrappers-libs
 tcl
 tcsh
 teamd
@@ -1469,6 +1488,23 @@ zenity
 zip
 zlib
 zlib-devel
+authconfig
+iwl7265-firmware
+lshw
+python2-cryptography
+python2-ipaclient
+python2-ipalib
+python2-ipaserver
+python2-oauthlib
+python2-pyasn1
+python2-pyasn1-modules
+lz4
+NetworkManager-team
+NetworkManager-tui
+qemu-guest-agent
+mod_nss
+hesiod
+
 # Packages not on the ISO but downloaded using packages.yaml
 apr-util-ldap
 chkrootkit

@@ -26,6 +26,7 @@ gem 'puppet', ENV.fetch('PUPPET_VERSION', '~> 5')
 gem 'puppet-lint'
 gem 'puppet-strings'
 gem 'puppetlabs_spec_helper'
+gem 'net-telnet',['< 0.2.0']
 gem 'rake'
 gem 'ruby-progressbar'
 gem 'simp-build-helpers', ENV.fetch('SIMP_BUILD_HELPERS_VERSION', '>= 0.1.0')
