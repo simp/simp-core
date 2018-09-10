@@ -19,6 +19,15 @@ ModemManager-glib
 NetworkManager
 NetworkManager-glib
 NetworkManager-libnm
+NetworkManager-adsl
+NetworkManager-bluetooth
+NetworkManager-libreswan
+NetworkManager-libreswan-gnome
+NetworkManager-ppp
+NetworkManager-team
+NetworkManager-tui
+NetworkManager-wifi
+NetworkManager-wwan
 ORBit2
 OpenIPMI
 OpenIPMI-libs
@@ -818,6 +827,7 @@ mcstrans
 mdadm
 mesa-dri-drivers
 mesa-dri-filesystem
+mesa-filesystem
 mesa-libEGL
 mesa-libGL
 mesa-libGLES
@@ -932,6 +942,7 @@ patch
 pax
 pciutils
 pciutils-libs
+pkgconfig
 pcre
 pcre2
 pcre-devel
@@ -1188,6 +1199,7 @@ python-tdb
 python-tevent
 python-urlgrabber
 python-urllib3
+python-volume_key
 python-yubico
 pyusb
 pyxattr
@@ -1491,6 +1503,7 @@ zlib-devel
 authconfig
 iwl7265-firmware
 lshw
+python2-caribou
 python2-cryptography
 python2-ipaclient
 python2-ipalib
@@ -1499,11 +1512,10 @@ python2-oauthlib
 python2-pyasn1
 python2-pyasn1-modules
 lz4
-NetworkManager-team
-NetworkManager-tui
 qemu-guest-agent
 mod_nss
 hesiod
+libbluray
 
 # Packages not on the ISO but downloaded using packages.yaml
 apr-util-ldap
