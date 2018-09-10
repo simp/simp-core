@@ -796,7 +796,6 @@ libxml2-devel
 libxml2-python
 libxshmfence
 libxslt
-libyami
 libyaml
 libzip
 linuxconsoletools
@@ -1011,6 +1010,7 @@ perl-Locale-Maketext
 perl-Module-Implementation
 perl-Module-Pluggable
 perl-Module-Runtime
+perl-Mozilla-CA
 perl-Mozilla-LDAP
 perl-NetAddr-IP
 perl-Net-Daemon
@@ -1199,7 +1199,6 @@ python-tdb
 python-tevent
 python-urlgrabber
 python-urllib3
-python-volume_key
 python-yubico
 pyusb
 pyxattr
@@ -1407,6 +1406,8 @@ vim-filesystem
 vim-minimal
 vino
 virt-what
+volume_key
+volume_key-libs
 vsftpd
 vte
 vte3
