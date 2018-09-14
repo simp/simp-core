@@ -14,7 +14,6 @@
 389-ds-base-libs
 GConf2
 GeoIP
-MAKEDEV
 ModemManager-glib
 NetworkManager
 NetworkManager-adsl
@@ -127,7 +126,6 @@ caribou
 caribou-gtk2-module
 caribou-gtk3-module
 ca-certificates
-ccid
 cdparanoia-libs
 centos-bookmarks
 centos-indexhtml
@@ -188,14 +186,12 @@ cyrus-sasl-lib
 cyrus-sasl-md5
 cyrus-sasl-plain
 c-ares
-db4
 dbus
 dbus-glib
 dbus-libs
 dbus-python
 dbus-x11
 dconf
-default-yama-scope
 dejavu-fonts-common
 dejavu-sans-fonts
 dejavu-sans-mono-fonts
@@ -261,7 +257,6 @@ festival-speechtools-libs
 festvox-slt-arctic-hts
 file
 filesystem
-file-devel
 file-libs
 findutils
 fipscheck
@@ -269,7 +264,6 @@ fipscheck-lib
 firefox
 firewalld
 firewalld-filesystem
-flac
 flac-libs
 flite
 fltk
@@ -342,12 +336,11 @@ gnome-keyring
 gnome-keyring-pam
 gnome-menus
 gnome-online-accounts
-gnome-session
 gnome-session-xsession
 gnome-settings-daemon
 gnome-shell
 gnome-terminal
-gnome-themes
+gnome-thmes
 gnome-themes-standard
 gnome-user-docs
 gnome-vfs2
@@ -364,9 +357,7 @@ graphite2
 graphite2-devel
 grep
 grilo
-groff
 groff-base
-grub
 grub2
 grub2-common
 grub2-efi-x64
@@ -396,7 +387,6 @@ gucharmap-libs
 gvfs
 gvfs-client
 gzip
-hal
 hamcrest
 hardlink
 harfbuzz
@@ -475,7 +465,6 @@ jakarta-commons-httpclient
 jakarta-oro
 jansson
 jasper-libs
-java
 javamail
 javapackages-tools
 javassist
@@ -607,7 +596,6 @@ libcap-ng
 libcdio
 libcdio-paranoia
 libcgroup
-libcogl-pango
 libcollection
 libcom_err
 libcom_err-devel
@@ -669,7 +657,6 @@ libinput
 libipa_hbac
 libiptcdata
 libitm
-libjpeg
 libjpeg-turbo
 libjpeg-turbo-devel
 libkadm5
@@ -783,9 +770,7 @@ libwbclient
 libwebp
 libwmf
 libwmf-lite
-libwnck
 libwnck3
-libxatracker
 libxcb
 libxcb-devel
 libxkbcommon
@@ -821,14 +806,12 @@ m4
 mailcap
 mailx
 make
-man
 man-db
 man-pages
 mariadb-libs
 mcstrans
 mdadm
 mesa-dri-drivers
-mesa-dri-filesystem
 mesa-filesystem
 mesa-libEGL
 mesa-libGL
@@ -860,7 +843,6 @@ mtdev
 mtools
 mutt
 mutter
-mysql
 nautilus
 nautilus-extensions
 ncurses
@@ -893,7 +875,6 @@ nss-sysinit
 nss-tools
 nss-util
 nss_compat_ossl
-nss_db
 ntp
 ntpdate
 numactl
@@ -1118,9 +1099,7 @@ postfix
 postgresql
 postgresql-libs
 postgresql-server
-ppl
 ppp
-procps
 procps-ng
 psacct
 psmisc
@@ -1134,8 +1113,6 @@ pyOpenSSL
 pyatspi
 pycairo
 pygobject2
-pygobject3
-pygobject3-base
 pygpgme
 pygtk2
 pyldb
@@ -1227,7 +1204,6 @@ quota
 quota-nls
 rarian
 rarian-compat
-rdma
 rdma-core
 readline
 realmd
@@ -1396,12 +1372,9 @@ txw2
 tzdata
 tzdata-java
 ucs-miscfixed-fonts
-udev
 udftools
-udisks
 udisks2
 unbound-libs
-unique
 unixODBC
 unzip
 upower
@@ -1422,7 +1395,6 @@ virt-what
 volume_key
 volume_key-libs
 vsftpd
-vte
 vte3
 vte291
 vte-profile
