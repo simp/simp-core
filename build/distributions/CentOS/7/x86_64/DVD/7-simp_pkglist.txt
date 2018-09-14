@@ -631,7 +631,6 @@ liberation-mono-fonts
 liberation-sans-fonts
 liberation-serif-fonts
 libestr
-libev
 libevdev
 libevent
 libexif
