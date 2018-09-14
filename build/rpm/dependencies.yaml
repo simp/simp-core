@@ -98,13 +98,15 @@
 # (3) (NEW) Exclude the problematic puppet-archive module dependency.
 #
 'grafana':
-  :release: '1'
+#FIXME
+  :release: '2'
   :obsoletes:
     'pupmod-bfraser-grafana': '2.5.0-2016.1'
   :requires:
     # Exclude the problematic puppet-archive module.
     # ('puppet generate types' fails with puppet-archive).
     - 'pupmod-puppetlabs-stdlib'
+# FIXME
 #  :external_dependencies:
 #    'rubygem-puppetserver-toml':
 #      :min: '0.1.2'
