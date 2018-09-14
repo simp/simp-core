@@ -239,7 +239,6 @@ ecj
 ed
 efibootmgr
 efivar-libs
-elasticsearch
 elfutils
 elfutils-default-yama-scope
 elfutils-libelf
@@ -396,7 +395,6 @@ gucharmap
 gucharmap-libs
 gvfs
 gvfs-client
-gweb
 gzip
 hal
 hamcrest
@@ -1133,7 +1131,6 @@ pulseaudio-gdm-hooks
 pulseaudio-libs
 pulseaudio-libs-glib2
 pulseaudio-module-bluetooth
-pupmod-puppet-gitlab
 pyOpenSSL
 pyatspi
 pycairo
@@ -1345,7 +1342,6 @@ subscription-manager
 subversion
 subversion-libs
 sudo
-sudosh2
 svrcore
 symlinks
 sysfsutils
