@@ -327,7 +327,6 @@ gl-manpages
 gmp
 gnome-bluetooth
 gnome-bluetooth-libs
-gnome-desktop
 gnome-desktop3
 gnome-icon-theme
 gnome-icon-theme-legacy
@@ -336,11 +335,11 @@ gnome-keyring
 gnome-keyring-pam
 gnome-menus
 gnome-online-accounts
+gnome-session
 gnome-session-xsession
 gnome-settings-daemon
 gnome-shell
 gnome-terminal
-gnome-thmes
 gnome-themes-standard
 gnome-user-docs
 gnome-vfs2
