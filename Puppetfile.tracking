@@ -17,8 +17,8 @@ mod 'simp-rsync_data',
   :ref => '6.2.1'
 
 mod 'simp-adapter',
-  :git => 'https://github.com/simp/simp-adapter',
-  :ref => '0.0.6'
+ :git => 'https://github.com/simp/simp-adapter',
+ :branch => 'master'
 
 mod 'simp-environment',
   :git => 'https://github.com/simp/simp-environment-skeleton',
