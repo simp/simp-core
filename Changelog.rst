@@ -375,7 +375,7 @@ simp-doc
 ^^^^^^^^
 
 * Remove OBE MCollective references
-* Fixed issues in the ``tftpboot`` puppet code
+* Fixed issues in the sample ``tftpboot`` puppet code
 * Fixed several broken links
 * Rearranged the installation guide to be more user friendly
 
