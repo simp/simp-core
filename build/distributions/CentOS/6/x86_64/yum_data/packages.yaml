@@ -189,23 +189,23 @@ pssh:
   :rpm_name: pssh-2.3.1-5.el6.noarch.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/pssh-2.3.1-5.el6.noarch.rpm
 puppet-agent:
-  :rpm_name: puppet-agent-1.10.14-1.el6.x86_64.rpm
-  :source: http://yum.puppetlabs.com/el/6/PC1/x86_64/puppet-agent-1.10.14-1.el6.x86_64.rpm
+  :rpm_name: puppet-agent-5.5.6-1.el6.x86_64.rpm
+  :source: https://yum.puppetlabs.com/puppet5/el/6/x86_64/puppet-agent-5.5.6-1.el6.x86_64.rpm
 puppet-client-tools:
-  :rpm_name: puppet-client-tools-1.2.1-1.el6.x86_64.rpm
-  :source: http://yum.puppetlabs.com/el/6/PC1/x86_64/puppet-client-tools-1.2.1-1.el6.x86_64.rpm
+  :rpm_name: puppet-client-tools-1.2.4-1.el6.x86_64.rpm
+  :source: https://yum.puppetlabs.com/puppet5/el/6/x86_64/puppet-client-tools-1.2.4-1.el6.x86_64.rpm
+puppet5-release:
+  :rpm_name: puppet5-release-5.0.0-1.el6.noarch.rpm
+  :source: https://yum.puppetlabs.com/puppet5/el/6/x86_64/puppet5-release-5.0.0-1.el6.noarch.rpm
 puppetdb:
-  :rpm_name: puppetdb-4.4.0-1.el6.noarch.rpm
-  :source: https://yum.puppetlabs.com/el/6Server/PC1/x86_64/puppetdb-4.4.0-1.el6.noarch.rpm
+  :rpm_name: puppetdb-5.2.4-1.el6.noarch.rpm
+  :source: https://yum.puppetlabs.com/puppet5/el/6/x86_64/puppetdb-5.2.4-1.el6.noarch.rpm
 puppetdb-termini:
-  :rpm_name: puppetdb-termini-4.4.0-1.el6.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/6/PC1/x86_64/puppetdb-termini-4.4.0-1.el6.noarch.rpm
-puppetlabs-release-pc1:
-  :rpm_name: puppetlabs-release-pc1-1.1.0-5.el6.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/6/PC1/x86_64/puppetlabs-release-pc1-1.1.0-5.el6.noarch.rpm
+  :rpm_name: puppetdb-termini-5.2.4-1.el6.noarch.rpm
+  :source: https://yum.puppetlabs.com/puppet5/el/6/x86_64/puppetdb-termini-5.2.4-1.el6.noarch.rpm
 puppetserver:
-  :rpm_name: puppetserver-2.8.1-1.el6.noarch.rpm
-  :source: https://yum.puppetlabs.com/el/6Server/PC1/x86_64/puppetserver-2.8.1-1.el6.noarch.rpm
+  :rpm_name: puppetserver-5.3.5-1.el6.noarch.rpm
+  :source: https://yum.puppetlabs.com/puppet5/el/6/x86_64/puppetserver-5.3.5-1.el6.noarch.rpm
 python-argparse:
   :rpm_name: python-argparse-1.2.1-2.1.el6.noarch.rpm
   :source: http://mirror.cogentco.com/pub/linux/centos/6/os/x86_64/Packages/python-argparse-1.2.1-2.1.el6.noarch.rpm
@@ -239,33 +239,33 @@ rubygem-net-ldap-doc:
 rubygem-net-ping:
   :rpm_name: rubygem-net-ping-1.6.2-1.el6.noarch.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-net-ping-1.6.2-1.el6.noarch.rpm
-rubygem-puppetserver-blankslate:
-  :rpm_name: rubygem-puppetserver-blankslate-2.1.2.4-1.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-puppetserver-blankslate-2.1.2.4-1.noarch.rpm
-rubygem-puppetserver-blankslate-doc:
-  :rpm_name: rubygem-puppetserver-blankslate-doc-2.1.2.4-1.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-puppetserver-blankslate-doc-2.1.2.4-1.noarch.rpm
-rubygem-puppetserver-parslet:
-  :rpm_name: rubygem-puppetserver-parslet-1.5.0-1.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-puppetserver-parslet-1.5.0-1.noarch.rpm
-rubygem-puppetserver-parslet-doc:
-  :rpm_name: rubygem-puppetserver-parslet-doc-1.5.0-1.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-puppetserver-parslet-doc-1.5.0-1.noarch.rpm
-rubygem-puppetserver-toml:
-  :rpm_name: rubygem-puppetserver-toml-0.1.2-1.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-puppetserver-toml-0.1.2-1.noarch.rpm
-rubygem-puppetserver-toml-doc:
-  :rpm_name: rubygem-puppetserver-toml-doc-0.1.2-1.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-puppetserver-toml-doc-0.1.2-1.noarch.rpm
-rubygem-rake-compiler:
-  :rpm_name: rubygem-rake-compiler-0.9.3-2.el6.noarch.rpm
-  :source: http://http://yum.puppetlabs.com/el/6/dependencies/x86_64/rubygem-rake-compiler-0.9.3-2.el6.noarch.rpm
+#rubygem-puppetserver-blankslate:
+#  :rpm_name: rubygem-puppetserver-blankslate-2.1.2.4-1.noarch.rpm
+#  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-puppetserver-blankslate-2.1.2.4-1.noarch.rpm
+#rubygem-puppetserver-blankslate-doc:
+#  :rpm_name: rubygem-puppetserver-blankslate-doc-2.1.2.4-1.noarch.rpm
+#  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-puppetserver-blankslate-doc-2.1.2.4-1.noarch.rpm
+#rubygem-puppetserver-parslet:
+#  :rpm_name: rubygem-puppetserver-parslet-1.5.0-1.noarch.rpm
+#  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-puppetserver-parslet-1.5.0-1.noarch.rpm
+#rubygem-puppetserver-parslet-doc:
+#  :rpm_name: rubygem-puppetserver-parslet-doc-1.5.0-1.noarch.rpm
+#  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-puppetserver-parslet-doc-1.5.0-1.noarch.rpm
+#rubygem-puppetserver-toml:
+#  :rpm_name: rubygem-puppetserver-toml-0.1.2-1.noarch.rpm
+#  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-puppetserver-toml-0.1.2-1.noarch.rpm
+#rubygem-puppetserver-toml-doc:
+#  :rpm_name: rubygem-puppetserver-toml-doc-0.1.2-1.noarch.rpm
+#  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-puppetserver-toml-doc-0.1.2-1.noarch.rpm
 rubygem-stomp:
   :rpm_name: rubygem-stomp-1.3.2-1.el6.noarch.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-stomp-1.3.2-1.el6.noarch.rpm
 rubygem-stomp-doc:
   :rpm_name: rubygem-stomp-doc-1.3.2-1.el6.noarch.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-stomp-doc-1.3.2-1.el6.noarch.rpm
+rubygev-rake-compiler:
+  :rpm_name: rubygem-rake-compiler-0.9.3-2.el6.noarch.rpm
+  :source: http://http://yum.puppetlabs.com/el/6/dependencies/x86_64/rubygem-rake-compiler-0.9.3-2.el6.noarch.rpm
 simp-lastbind:
   :rpm_name: simp-lastbind-2.4.23-0.x86_64.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/simp-lastbind-2.4.23-0.x86_64.rpm
