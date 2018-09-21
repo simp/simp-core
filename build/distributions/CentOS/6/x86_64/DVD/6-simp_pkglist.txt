@@ -938,7 +938,6 @@ rdma
 readahead
 readline
 redhat-bookmarks
-redhat-indexhtml
 redhat-logos
 redhat-lsb
 redhat-lsb-compat
@@ -946,19 +945,11 @@ redhat-lsb-core
 redhat-lsb-graphics
 redhat-lsb-printing
 redhat-menus
-redhat-release-server
 redhat-rpm-config
-redhat-support-lib-python
-redhat-support-tool
 regexp
 resource-agents
 rgmanager
 rhino
-rhn-check
-rhn-client-tools
-rhn-setup
-rhnlib
-rhnsd
 ricci
 rng-tools
 rootfiles
@@ -1019,7 +1010,6 @@ sinjdoc
 slang
 slapi-nis
 smartmontools
-smgl-common
 smp_utils
 snappy
 sos
@@ -1183,7 +1173,6 @@ xorg-x11-fonts-ISO8859-1-100dpi
 xorg-x11-fonts-ISO8859-1-75dpi
 xorg-x11-fonts-Type1
 xorg-x11-fonts-misc
-xorg-x11-glamor
 xorg-x11-proto-devel
 xorg-x11-server-Xephyr
 xorg-x11-server-Xorg
@@ -1211,7 +1200,6 @@ yum-plugin-tmprepo
 yum-plugin-verify
 yum-plugin-versionlock
 yum-presto
-yum-rhn-plugin
 yum-utils
 zd1211-firmware
 zenity
