@@ -159,8 +159,12 @@
       "version_requirement": ">= 0.1.4 < 1.0.0"
     },
     {
+      "name": "simp/freeradius",
+      "version_requirement": ">= 7.0.1 < 8.0.0"
+    },
+    {
       "name": "simp/haveged",
-      "version_requirement": ">= 0.3.2 < 1.0.0"
+      "version_requirement": ">= 0.4.5 < 1.0.0"
     },
     {
       "name": "simp/incron",
@@ -173,6 +177,10 @@
     {
       "name": "simp/issue",
       "version_requirement": ">= 0.0.2 < 1.0.0"
+    },
+    {
+      "name": "simp/krb5",
+      "version_requirement": ">= 7.0.3 < 8.0.0"
     },
     {
       "name": "simp/logrotate",
@@ -244,7 +252,7 @@
     },
     {
       "name": "simp/simplib",
-      "version_requirement": ">= 3.10.0 < 4.0.0"
+      "version_requirement": ">= 3.10.1 < 4.0.0"
     },
     {
       "name": "simp/simp_apache",
@@ -264,7 +272,7 @@
     },
     {
       "name": "simp/site",
-      "version_requirement": ">= 2.0.2 < 3.0.0"
+      "version_requirement": ">= 2.0.4 < 3.0.0"
     },
     {
       "name": "simp/ssh",

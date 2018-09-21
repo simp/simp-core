@@ -8,10 +8,10 @@ Group: Applications/System
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Buildarch: noarch
 Requires: createrepo
+Requires: facter
 Requires: lsb
 Requires: simp-adapter
 Requires: httpd >= 2.2
-Obsoletes: simp-hiera < 3.0.2
 
 # These 2 lines are required for upgrades from simp-6.1.0 to
 # simp-6.2.0. Otherwise, we will have conflicting, derived dependencies
@@ -58,10 +58,12 @@ Requires: pupmod-simp-compliance_markup >= 2.3.3, pupmod-simp-compliance_markup 
 Requires: pupmod-simp-cron >= 0.0.2, pupmod-simp-cron < 1.0.0
 Requires: pupmod-simp-dhcp >= 6.0.1, pupmod-simp-dhcp < 7.0.0
 Requires: pupmod-simp-fips >= 0.1.4, pupmod-simp-fips < 1.0.0
-Requires: pupmod-simp-haveged >= 0.3.2-2016, pupmod-simp-haveged < 1.0.0
+Requires: pupmod-simp-freeradius >= 7.0.1, pupmod-simp-freeradius < 8.0.0
+Requires: pupmod-simp-haveged >= 0.4.5, pupmod-simp-haveged < 1.0.0
 Requires: pupmod-simp-incron >= 0.3.0, pupmod-simp-incron < 1.0.0
 Requires: pupmod-simp-iptables >= 6.1.5, pupmod-simp-iptables < 7.0.0
 Requires: pupmod-simp-issue >= 0.0.2, pupmod-simp-issue < 1.0.0
+Requires: pupmod-simp-krb5 >= 7.0.3, pupmod-simp-krb5 < 8.0.0
 Requires: pupmod-simp-logrotate >= 6.2.0, pupmod-simp-logrotate < 7.0.0
 Requires: pupmod-simp-named >= 6.0.3, pupmod-simp-named < 7.0.0
 Requires: pupmod-simp-network >= 6.0.2, pupmod-simp-network < 7.0.0
@@ -84,7 +86,7 @@ Requires: pupmod-simp-simp_apache >= 6.0.2, pupmod-simp-simp_apache < 7.0.0
 Requires: pupmod-simp-simp_openldap >= 6.2.1, pupmod-simp-simp_openldap < 7.0.0
 Requires: pupmod-simp-simp_options >= 1.2.0, pupmod-simp-simp_options < 2.0.0
 Requires: pupmod-simp-simp_rsyslog >= 0.2.0, pupmod-simp-simp_rsyslog < 1.0.0
-Requires: pupmod-simp-site >= 2.0.2-2016, pupmod-simp-site < 3.0.0
+Requires: pupmod-simp-site >= 2.0.4, pupmod-simp-site < 3.0.0
 Requires: pupmod-simp-ssh >= 6.4.3, pupmod-simp-ssh < 7.0.0
 Requires: pupmod-simp-sssd >= 6.1.2, pupmod-simp-sssd < 7.0.0
 Requires: pupmod-simp-stunnel >= 6.3.2, pupmod-simp-stunnel < 7.0.0
@@ -121,16 +123,14 @@ Requires: pupmod-herculesteam-augeasproviders_nagios >= 2.0.2-2016
 Requires: pupmod-herculesteam-augeasproviders_pam >= 2.1.1
 Requires: pupmod-vshn-gitlab >= 1.13.3
 Requires: pupmod-puppet-grafana >= 4.1.1
-Requires: pupmod-puppetlabs-docker >= 1.0.5
+Requires: pupmod-puppetlabs-docker >= 1.1.0
 Requires: pupmod-puppetlabs-mysql >= 5.3.0
 Requires: pupmod-puppetlabs-translate >= 1.0.0
 Requires: pupmod-razorsedge-snmp >= 3.9.0
 Requires: pupmod-simp-dconf >= 0.0.1
 Requires: pupmod-simp-dirtycow >= 1.0.3
-Requires: pupmod-simp-freeradius >= 7.0.1
-Requires: pupmod-simp-gdm >= 6.0.0-2016
-Requires: pupmod-simp-gnome >= 6.0.0-2016
-Requires: pupmod-simp-krb5 >= 7.0.3
+Requires: pupmod-simp-gdm >= 7.0.3
+Requires: pupmod-simp-gnome >= 7.0.1
 Requires: pupmod-simp-libreswan >= 3.0.2
 Requires: pupmod-simp-libvirt >= 5.1.0
 Requires: pupmod-simp-mozilla >= 5.0.1
@@ -225,7 +225,20 @@ fi
 * Mon Sep 17 2018 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.2.0-0
 - Update final dependencies for 6.2.0
 - Fix paths to configuration files
-- Update augeasproviders dependencies
+- Remove the pupmod-puppetlabs-java_ks dependency from the simp package
+- Add of the following dependencies to the simp package:
+  - pupmod-simp-systemd dependency
+  - pupmod-puppetlabs-mount_providers
+- Remove the following dependencies from the simp-extras package:
+  - pupmod-simp-jenkins
+  - pupmod-simp-mcafee
+- Add the following dependencies to the simp-extras package:
+  - pupmod-puppetlabs-docker
+  - pupmod-puppetlabs-translate
+  - pupmod-simp-dconf
+  - pupmod-simp-dirtycow
+  - pupmod-simp-simp_docker
+  - pupmod-simp-simp_ipa
 
 * Thu Mar 15 2018 Liz Nemsick <lnemsick.simp@gmail.com> - 6.2.0-0
 - Obsolete pupmod-electrical-file_concat in simp-extras package
