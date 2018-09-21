@@ -21,6 +21,25 @@ simp_releases:
             checksum: '3f961576e9f81ea118566f73f98d7bdf3287671c35436a13787c1ffd5078cf8e'
         build_command: 'bundle exec rake build:auto[/path/to/RedHat/DVDS,6.X]'
         os_version:   '6.9'
+  6.2.0-0:
+    flavors:
+      CentOS:
+        isos:
+          - name:     'CentOS-6.9-x86_64-bin-DVD1.iso'
+            size:     3972005888
+            checksum: 'd27cf37a40509c17ad70f37bc743f038c1feba00476fe6b69682aa424c399ea6'
+          - name:     'CentOS-6.9-x86_64-bin-DVD2.iso'
+            size:     2177677312
+            checksum: '631b8640460f46a8139a6a7cbbac5f3594d08c32945449b6bbd65234929ce7a4'
+        build_command: 'bundle exec rake build:auto[/path/to/CentOS-6.9/DVDs,6.X]'
+        os_version:   '6.9'
+      RedHat:
+        isos:
+          - name:     'rhel-server-6.9-x86_64-dvd.iso'
+            size:     3887071232
+            checksum: '3f961576e9f81ea118566f73f98d7bdf3287671c35436a13787c1ffd5078cf8e'
+        build_command: 'bundle exec rake build:auto[/path/to/RedHat/DVDS,6.X]'
+        os_version:   '6.9'
   6.1.0-0:
     flavors:
       CentOS:
