@@ -302,7 +302,7 @@ mod 'simp-nfs',
 
 mod 'simp-ntpd',
   :git => 'https://github.com/simp/pupmod-simp-ntpd',
-  :tag => '6.1.1'
+  :tag => '6.2.0'
 
 mod 'simp-oddjob',
   :git => 'https://github.com/simp/pupmod-simp-oddjob',

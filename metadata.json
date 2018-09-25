@@ -200,7 +200,7 @@
     },
     {
       "name": "simp/ntpd",
-      "version_requirement": ">= 6.1.1 < 7.0.0"
+      "version_requirement": ">= 6.2.0 < 7.0.0"
     },
     {
       "name": "simp/oddjob",
