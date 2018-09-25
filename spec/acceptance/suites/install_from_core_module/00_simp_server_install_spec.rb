@@ -52,9 +52,6 @@ describe 'install puppetserver modules from PuppetForge' do
     end
 
     it 'should install the module' do
-      # move residual PKI files that will cause puppet module install to fail
-      on(master, 'mv /etc/puppetlabs/code/environments/production/modules/pki /root/pki_backup')
-
       # install simp-simp_core and all its dependencies
       on(master, 'puppet module install /tmp/simp-simp_core*.tar.gz')
 
