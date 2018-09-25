@@ -1,4 +1,4 @@
 ---
 fixtures:
   symlinks:
-    garbage: "#{source_dir}/spec/fixtures/modules"
+    garbage: "#{source_dir}/spec/fixtures/modules/test_tmp"
