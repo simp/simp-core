@@ -17,14 +17,6 @@ describe 'compliance enforcement' do
         EOS
       }
 
-      let(:manifest) {
-        <<-EOS
-          include 'pam'
-
-          #{compliance_report_hook}
-        EOS
-      }
-
       let(:hieradata_dir) { '/etc/puppetlabs/code/environments/production/hieradata' }
       let(:hiera_yaml) { <<-EOM
 ---
