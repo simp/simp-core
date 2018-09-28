@@ -1,5 +1,5 @@
-SIMP Community Edition (CE) 6.2.0-RC1
-=====================================
+SIMP Community Edition (CE) 6.2.0-0
+===================================
 
 .. raw:: pdf
 

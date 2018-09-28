@@ -16,15 +16,15 @@ The latest release is [![GitHub release](https://img.shields.io/github/release/s
 
 ## Supported Releases
 
-  - [Red Hat Enterprise Linux 7.3](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/7.3_Release_Notes/index.html)
-  - [CentOS 7 1611](http://isoredirect.centos.org/centos/7/isos/x86_64/CentOS-7-x86_64-DVD-1611.iso)
+  * [Red Hat Enterprise Linux 7.4](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/7.4_Release_Notes/index.html)
+  * [CentOS 7 1708](http://vault.centos.org/7.4.1708/isos/x86_64/)
   * [Red Hat Enterprise Linux 6.9](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/6.9_Release_Notes/index.html)
-  * [CentOS 6.9](http://mirror.centos.org/centos/6/isos/x86_64/)
+  * [CentOS 6.9](http://vault.centos.org/6.9/isos/x86_64/)
 
 
 ## Getting Started
 
-Please take a look at the [SIMP Documentation](http://simp.readthedocs.io/en/6.0.0-0/)
+Please take a look at the [SIMP Documentation](http://simp.readthedocs.io/en/6.2.0-0/)
 for this release for full details on using the SIMP system.
 
 We recommend that you also reference the
