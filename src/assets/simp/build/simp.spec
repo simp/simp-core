@@ -81,7 +81,7 @@ Requires: pupmod-simp-rsyslog >= 7.2.0, pupmod-simp-rsyslog < 8.0.0
 Requires: pupmod-simp-selinux >= 2.2.0, pupmod-simp-selinux < 3.0.0
 Requires: pupmod-simp-simp >= 4.5.0, pupmod-simp-simp < 5.0.0
 Requires: pupmod-simp-simpcat >= 6.0.1, pupmod-simp-simpcat < 7.0.0
-Requires: pupmod-simp-simplib >= 3.10.1, pupmod-simp-simplib < 4.0.0
+Requires: pupmod-simp-simplib >= 3.11.0, pupmod-simp-simplib < 4.0.0
 Requires: pupmod-simp-simp_apache >= 6.0.2, pupmod-simp-simp_apache < 7.0.0
 Requires: pupmod-simp-simp_openldap >= 6.2.1, pupmod-simp-simp_openldap < 7.0.0
 Requires: pupmod-simp-simp_options >= 1.2.0, pupmod-simp-simp_options < 2.0.0
@@ -222,7 +222,7 @@ fi
 # Post uninstall stuff
 
 %changelog
-* Mon Sep 17 2018 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.2.0-0
+*  Fri Sep 28 2018 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.2.0-0
 - Update final dependencies for 6.2.0
 - Fix paths to configuration files
 - Remove the pupmod-puppetlabs-java_ks dependency from the simp package
@@ -239,6 +239,8 @@ fi
   - pupmod-simp-dirtycow
   - pupmod-simp-simp_docker
   - pupmod-simp-simp_ipa
+- Update the pupmod-simp-simplib version due to a bug that potentially
+  permanently breaks the puppetserver configuration
 
 * Thu Mar 15 2018 Liz Nemsick <lnemsick.simp@gmail.com> - 6.2.0-0
 - Obsolete pupmod-electrical-file_concat in simp-extras package

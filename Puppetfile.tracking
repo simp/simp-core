@@ -358,7 +358,7 @@ mod 'simp-simpcat',
 
 mod 'simp-simplib',
   :git => 'https://github.com/simp/pupmod-simp-simplib',
-  :ref => '3.10.1'
+  :ref => '3.11.0'
 
 mod 'simp-simp_apache',
   :git => 'https://github.com/simp/pupmod-simp-simp_apache',
