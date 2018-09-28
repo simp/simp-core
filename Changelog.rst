@@ -313,7 +313,7 @@ pupmod-simp-simplib
 
 * Fixed the ``puppet_settings`` fact so that the different sections are
   appropriately filled out.
-  If not updated, this has been shown to cause the puppetserver process to be
+  If not updated, this has been shown to cause the ``puppetserver`` process to be
   unable to restart on package update.
 * Fixed ``runlevel`` enforcement so that it activates properly when called.
   Previously, no action would be taken on the running system.
