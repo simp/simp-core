@@ -1341,6 +1341,7 @@ rubygem-io-console
 rubygem-json
 rubygem-psych
 rubygem-rdoc
+rubygems
 sabayon-apply
 samba
 samba-client
