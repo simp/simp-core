@@ -107,7 +107,7 @@ Requires: rubygem-simp-cli >= 4.2.0, rubygem-simp-cli < 5.0.0
 Requires: rubygem-simp-cli-doc >= 4.2.0, rubygem-simp-cli-doc < 5.0.0
 Requires: simp-adapter >= 0.0.6, simp-adapter < 1.0.0
 Requires: simp-environment >= 6.2.10, simp-environment < 7.0.0
-Requires: simp-gpgkeys >= 3.0.3-0%{?dist}, simp-gpgkeys < 4.0.0
+Requires: simp-gpgkeys >= 3.0.3, simp-gpgkeys < 4.0.0
 Requires: simp-rsync >= 6.2.1-0%{?dist}, simp-rsync < 7.0.0
 Requires: simp-utils >= 6.1.1, simp-utils < 7.0.0
 
