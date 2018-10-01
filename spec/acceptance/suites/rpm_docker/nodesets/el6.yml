@@ -67,7 +67,7 @@ HOSTS:
       - 'yum install -y ntpdate rubygems'
 
       # RVM
-      - 'runuser build_user -l -c "gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3"'
+      - 'runuser build_user -l -c "gpg2 --keyserver hkp://pgp.mit.edu --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3"'
       - 'runuser build_user -l -c "curl -sSL https://get.rvm.io | bash -s stable"'
       - 'runuser build_user -l -c "rvm install 2.1.9 --disable-binary"'
       - 'runuser build_user -l -c "rvm use --default 2.1.9"'
@@ -80,9 +80,11 @@ HOSTS:
       - 'runuser build_user -l -c "rvm use default; gem install --no-ri --no-rdoc posix-spawn"'
 
 CONFIG:
+<% unless ENV['TRAVIS'] -%>
   mount_folders:
     simp_core:
       host_path: './'
       container_path: '/simp-core'
+<% end -%>
   log_level: verbose
   type: aio
