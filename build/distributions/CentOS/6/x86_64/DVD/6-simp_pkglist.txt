@@ -11,6 +11,12 @@
 #
 # (NOTE:  The packages are listed in 'sort -V 'order.)
 
+389-ds-base
+389-ds-base-libs
+ConsoleKit
+ConsoleKit-libs
+ConsoleKit-x11
+DeviceKit-power
 GConf2
 GConf2-gtk
 MAKEDEV
@@ -257,6 +263,7 @@ glibc-devel
 glibc-headers
 glibc-static
 glibc-utils
+glib-networking
 gmp
 gnome-applets
 gnome-desktop
@@ -776,7 +783,6 @@ perl-Class-Accessor
 perl-Class-Singleton
 perl-Compress-Raw-Zlib
 perl-Compress-Zlib
-perl-Config-Simple
 perl-Config-Tiny
 perl-Crypt-SSLeay
 perl-DBD-MySQL
@@ -793,7 +799,6 @@ perl-Error
 perl-ExtUtils-MakeMaker
 perl-ExtUtils-ParseXS
 perl-File-Slurp
-perl-File-Which
 perl-Git
 perl-HTML-Parser
 perl-HTML-Tagset
@@ -948,11 +953,6 @@ regexp
 resource-agents
 rgmanager
 rhino
-rhn-check
-rhn-client-tools
-rhn-setup
-rhnlib
-rhnsd
 ricci
 rng-tools
 rootfiles
@@ -980,8 +980,8 @@ ruby-rdoc
 ruby-ri
 ruby-static
 ruby-tcltk
-rubygem-flexmock
 rubygem-rake
+rubygem-flexmock
 rubygems
 rubygems-devel
 sabayon-apply
