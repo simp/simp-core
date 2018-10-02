@@ -281,6 +281,8 @@ fprintd-pam
 freeradius
 freetype
 freetype-devel
+fuse
+fuse-libs
 fxload
 gamin
 gawk
@@ -947,6 +949,7 @@ perl-Class-Singleton
 perl-Compress-Raw-Bzip2
 perl-Compress-Raw-Zlib
 perl-DBD-MySQL
+perl-DBD-SQLite
 perl-DBI
 perl-DB_File
 perl-Data-Dumper
@@ -1206,6 +1209,7 @@ rarian-compat
 rdma-core
 readline
 realmd
+recode
 redhat-lsb
 redhat-lsb-core
 redhat-lsb-cxx
@@ -1416,6 +1420,8 @@ xcb-util-keysyms
 xcb-util-renderutil
 xcb-util-wm
 xdg-utils
+xdg-user-dirs
+xdg-user-dirs-gtk
 xerces-c
 xerces-j2
 xfsprogs

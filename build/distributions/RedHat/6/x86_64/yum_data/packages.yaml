@@ -35,6 +35,9 @@ elasticsearch-curator:
 fping:
   :rpm_name: fping-2.4b2-10.el6.x86_64.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/f/fping-2.4b2-10.el6.x86_64.rpm
+fuse-sshfs:
+  :rpm_name: fuse-sshfs-2.4-1.el6.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/f/fuse-sshfs-2.4-1.el6.x86_64.rpm
 ganglia:
   :rpm_name: ganglia-3.7.2-2.el6.x86_64.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/g/ganglia-3.7.2-2.el6.x86_64.rpm
@@ -110,12 +113,57 @@ lfc-libs:
 lfc-python:
   :rpm_name: lfc-python-1.10.0-5.el6.x86_64.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/l/lfc-python-1.10.0-5.el6.x86_64.rpm
+libNX_X11:
+  :rpm_name: libNX_X11-3.5.0.32-3.el6.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/l/libNX_X11-3.5.0.32-3.el6.x86_64.rpm
+libNX_Xcomposite:
+  :rpm_name: libNX_Xcomposite-3.5.0.32-3.el6.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/l/libNX_Xcomposite-3.5.0.32-3.el6.x86_64.rpm
+libNX_Xdamage:
+  :rpm_name: libNX_Xdamage-3.5.0.32-3.el6.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/l/libNX_Xdamage-3.5.0.32-3.el6.x86_64.rpm
+libNX_Xdmcp:
+  :rpm_name: libNX_Xdmcp-3.5.0.32-3.el6.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/l/libNX_Xdmcp-3.5.0.32-3.el6.x86_64.rpm
+libNX_Xext:
+  :rpm_name: libNX_Xext-3.5.0.32-3.el6.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/l/libNX_Xext-3.5.0.32-3.el6.x86_64.rpm
+libNX_Xfixes:
+  :rpm_name: libNX_Xfixes-3.5.0.32-3.el6.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/l/libNX_Xfixes-3.5.0.32-3.el6.x86_64.rpm
+libNX_Xinerama:
+  :rpm_name: libNX_Xinerama-3.5.0.32-3.el6.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/l/libNX_Xinerama-3.5.0.32-3.el6.x86_64.rpm
+libNX_Xpm:
+  :rpm_name: libNX_Xpm-3.5.0.32-3.el6.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/l/libNX_Xpm-3.5.0.32-3.el6.x86_64.rpm
+libNX_Xrandr:
+  :rpm_name: libNX_Xrandr-3.5.0.32-3.el6.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/l/libNX_Xrandr-3.5.0.32-3.el6.x86_64.rpm
+libNX_Xrender:
+  :rpm_name: libNX_Xrender-3.5.0.32-3.el6.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/l/libNX_Xrender-3.5.0.32-3.el6.x86_64.rpm
+libNX_Xtst:
+  :rpm_name: libNX_Xtst-3.5.0.32-3.el6.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/l/libNX_Xtst-3.5.0.32-3.el6.x86_64.rpm
+libXcomp:
+  :rpm_name: libXcomp-3.5.0.32-3.el6.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/l/libXcomp-3.5.0.32-3.el6.x86_64.rpm
+libXcompext:
+  :rpm_name: libXcompext-3.5.0.32-3.el6.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/l/libXcompext-3.5.0.32-3.el6.x86_64.rpm
+libXcompshad:
+  :rpm_name: libXcompshad-3.5.0.32-3.el6.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/l/libXcompshad-3.5.0.32-3.el6.x86_64.rpm
 libconfuse:
   :rpm_name: libconfuse-2.7-4.el6.x86_64.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/l/libconfuse-2.7-4.el6.x86_64.rpm
 libev:
   :rpm_name: libev-4.03-3.el6.x86_64.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/l/libev-4.03-3.el6.x86_64.rpm
+libssh:
+  :rpm_name: libssh-0.5.5-5.el6.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/l/libssh-0.5.5-5.el6.x86_64.rpm
 libyaml:
   :rpm_name: libyaml-0.1.4-2.el6.x86_64.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/libyaml-0.1.4-2.el6.x86_64.rpm
@@ -131,6 +179,15 @@ mrepo:
 mysql-connector-python:
   :rpm_name: mysql-connector-python-1.1.6-1.el6.noarch.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/m/mysql-connector-python-1.1.6-1.el6.noarch.rpm
+nx-libs:
+  :rpm_name: nx-libs-3.5.0.32-3.el6.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/n/nx-libs-3.5.0.32-3.el6.x86_64.rpm
+nxagent:
+  :rpm_name: nxagent-3.5.0.32-3.el6.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/n/nxagent-3.5.0.32-3.el6.x86_64.rpm
+nxproxy:
+  :rpm_name: nxproxy-3.5.0.32-3.el6.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/n/nxproxy-3.5.0.32-3.el6.x86_64.rpm
 pdsh:
   :rpm_name: pdsh-2.28-0.x86_64.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/pdsh-2.28-0.x86_64.rpm
@@ -149,9 +206,15 @@ pdsh-rcmd-exec:
 pdsh-rcmd-ssh:
   :rpm_name: pdsh-rcmd-ssh-2.28-0.x86_64.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/pdsh-rcmd-ssh-2.28-0.x86_64.rpm
+perl-Capture-Tiny:
+  :rpm_name: perl-Capture-Tiny-0.23-1.el6.noarch.rpm
+  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/p/perl-Capture-Tiny-0.23-1.el6.noarch.rpm
 perl-Crypt-DES:
   :rpm_name: perl-Crypt-DES-2.05-9.el6.x86_64.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/p/perl-Crypt-DES-2.05-9.el6.x86_64.rpm
+perl-File-BaseDir:
+  :rpm_name: perl-File-BaseDir-0.03-13.el6.noarch.rpm
+  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/p/perl-File-BaseDir-0.03-13.el6.noarch.rpm
 perl-File-RsyncP:
   :rpm_name: perl-File-RsyncP-0.72-1.el6.x86_64.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/p/perl-File-RsyncP-0.72-1.el6.x86_64.rpm
@@ -206,6 +269,9 @@ puppetlabs-release-pc1:
 puppetserver:
   :rpm_name: puppetserver-2.8.1-1.el6.noarch.rpm
   :source: https://yum.puppetlabs.com/el/6Server/PC1/x86_64/puppetserver-2.8.1-1.el6.noarch.rpm
+pwgen:
+  :rpm_name: pwgen-2.07-1.el6.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/p/pwgen-2.07-1.el6.x86_64.rpm
 python-argparse:
   :rpm_name: python-argparse-1.2.1-2.1.el6.noarch.rpm
   :source: Red Hat Base Repository
@@ -335,3 +401,12 @@ tpm-tools-pkcs11:
 voms:
   :rpm_name: voms-2.0.14-1.el6.x86_64.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/v/voms-2.0.14-1.el6.x86_64.rpm
+x2goagent:
+  :rpm_name: x2goagent-3.5.0.32-3.el6.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/x/x2goagent-3.5.0.32-3.el6.x86_64.rpm
+x2goclient:
+  :rpm_name: x2goclient-4.0.1.4-1.el6.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/x/x2goclient-4.0.1.4-1.el6.x86_64.rpm
+x2goserver:
+  :rpm_name: x2goserver-4.0.1.20-1.el6.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/x/x2goserver-4.0.1.20-1.el6.x86_64.rpm

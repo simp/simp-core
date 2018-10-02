@@ -58,8 +58,11 @@ HOSTS:
       - 'yum install -y epel-release'
       - 'yum install -y openssl util-linux rpm-build augeas-devel createrepo genisoimage git gnupg2 libicu-devel libxml2 libxml2-devel libxslt libxslt-devel rpmdevtools which ruby-devel rpm-devel rpm-sign'
 
+      # simp doc deps
+      - 'yum -y install centos-release-scl python27 python-pip python-virtualenv fontconfig dejavu-sans-fonts dejavu-sans-mono-fonts dejavu-serif-fonts dejavu-fonts-common libjpeg-devel zlib-devel'
+
       # RVM build-deps
-      - 'yum install -y libyaml-devel glibc-headers autoconf gcc gcc-c++ glibc-devel readline-devel libffi-devel automake libtool bison sqlite-devel openssl-devel'
+      - 'yum install -y libyaml-devel glibc-headers autoconf gcc gcc-c++ glibc-devel readline-devel libffi-devel openssl-devel automake libtool bison sqlite-devel'
 
       # For things that want to call systemctl - we don't need them for this
       - 'ln -sf /bin/true /usr/bin/systemctl'
@@ -67,26 +70,25 @@ HOSTS:
       # Puppet Deps
       - 'yum install -y ntpdate rubygems'
 
-      # simp doc deps
-      # These need to come last due to some strangeness that can occur with SCL
-      - 'yum -y install centos-release-scl python-pip python-virtualenv fontconfig dejavu-sans-fonts dejavu-sans-mono-fonts dejavu-serif-fonts dejavu-fonts-common libjpeg-devel zlib-devel'
-      - 'yum-config-manager --enable rhel-server-rhscl-7-rpms'
-      - 'yum --enablerepo=base -y install python27'
-
       # RVM
-      #      - 'runuser build_user -l -c "gpg2 --keyserver hkp://pgp.mit.edu --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB || gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB"'
-      - 'runuser build_user -l -c "gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB || gpg2 --keyserver hkp://pgp.mit.edu --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB "'
+      - 'runuser build_user -l -c "gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3"'
       - 'runuser build_user -l -c "curl -sSL https://get.rvm.io | bash -s stable"'
       - 'runuser build_user -l -c "rvm install 2.1.9 --disable-binary"'
       - 'runuser build_user -l -c "rvm use --default 2.1.9"'
       - 'runuser build_user -l -c "rvm all do gem install bundler --no-ri --no-rdoc"'
 
+      # Add some gems that will drag along 90% of what the build requires
+      - 'runuser build_user -l -c "rvm use default; gem install --no-ri --no-rdoc simp-rake-helpers"'
+      - 'runuser build_user -l -c "rvm use default; gem install --no-ri --no-rdoc json"'
+      - 'runuser build_user -l -c "rvm use default; gem install --no-ri --no-rdoc charlock_holmes"'
+      - 'runuser build_user -l -c "rvm use default; gem install --no-ri --no-rdoc posix-spawn"'
+
 CONFIG:
-  log_level: verbose
-  type: aio
 <% unless ENV['TRAVIS'] -%>
   mount_folders:
     simp_core:
       host_path: './'
       container_path: '/simp-core'
 <% end -%>
+  log_level: verbose
+  type: aio

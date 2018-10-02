@@ -229,6 +229,8 @@ freeradius-ldap
 freeradius-utils
 freetype
 freetype-devel
+fuse
+fuse-libs
 gamin
 gamin-python
 gawk
@@ -784,6 +786,7 @@ perl-Compress-Zlib
 perl-Config-Tiny
 perl-Crypt-SSLeay
 perl-DBD-MySQL
+perl-DBD-SQLite
 perl-DBI
 perl-Date-Manip
 perl-DateTime

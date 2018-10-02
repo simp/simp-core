@@ -9,3 +9,9 @@ name=updates
 enabled=1
 mirrorlist=http://mirrorlist.centos.org/?release=7&arch=x86_64&repo=updates&country=US
 failovermethod=priority
+
+[extras]
+name=extras
+enabled=1
+mirrorlist=http://mirrorlist.centos.org/?release=7&arch=x86_64&repo=extras&country=US
+failovermethod=priority
