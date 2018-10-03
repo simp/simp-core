@@ -23,8 +23,8 @@
       "version_requirement": ">= 2.2.0 < 3.0.0"
     },
     {
-      "name": "simp/systemd",
-      "version_requirement": ">= 1.1.1 < 2.0.0"
+      "name": "camptocamp/systemd",
+      "version_requirement": ">= 2.1.0 < 3.0.0"
     },
     {
       "name": "herculesteam/augeasproviders_apache",
@@ -151,6 +151,10 @@
       "version_requirement": ">= 0.0.2 < 1.0.0"
     },
     {
+      "name": "simp/deferred_resources",
+      "version_requirement": ">= 0.1.0 < 1.0.0"
+    },
+    {
       "name": "simp/dhcp",
       "version_requirement": ">= 6.0.1 < 7.0.0"
     },
@@ -165,6 +169,10 @@
     {
       "name": "simp/haveged",
       "version_requirement": ">= 0.4.5 < 1.0.0"
+    },
+    {
+      "name": "simp/ima",
+      "version_requirement": ">= 0.1.0 < 1.0.0"
     },
     {
       "name": "simp/incron",
@@ -259,6 +267,10 @@
       "version_requirement": ">= 6.0.2 < 7.0.0"
     },
     {
+      "name": "simp/simp_banners",
+      "version_requirement": ">= 0.1.0 < 1.0.0"
+    },
+    {
       "name": "simp/simp_openldap",
       "version_requirement": ">= 6.2.1 < 7.0.0"
     },
@@ -311,12 +323,16 @@
       "version_requirement": ">= 6.1.0 < 7.0.0"
     },
     {
-      "name": "simp/timezone",
-      "version_requirement": ">= 4.0.0 < 5.0.0"
+      "name": "saz/timezone",
+      "version_requirement": ">= 5.0.0 < 6.0.0"
     },
     {
       "name": "simp/tpm",
       "version_requirement": ">= 1.2.1 < 3.0.0"
+    },
+    {
+      "name": "simp/tpm2",
+      "version_requirement": ">= 0.1.0 < 1.0.0"
     },
     {
       "name": "simp/tuned",
@@ -329,6 +345,10 @@
     {
       "name": "simp/useradd",
       "version_requirement": ">= 0.2.1 < 1.0.0"
+    },
+    {
+      "name": "simp/vox_selinux",
+      "version_requirement": ">= 1.5.2 < 2.0.0"
     },
     {
       "name": "simp/xinetd",

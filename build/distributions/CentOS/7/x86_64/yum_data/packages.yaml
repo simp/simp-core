@@ -389,6 +389,9 @@ sudosh2:
 syslinux-tftpboot:
   :rpm_name: syslinux-tftpboot-4.05-13.el7.x86_64.rpm
   :source: http://vault.centos.org/7.4.1708/os/x86_64/Packages/syslinux-tftpboot-4.05-13.el7.x86_64.rpm
+tlog:
+  :rpm_name: tlog-4-1.el7.x86_64.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/tlog-4-1.el7.x86_64.rpm
 tpm2-abrmd:
   :rpm_name: tpm2-abrmd-1.1.0-8.el7.x86_64.rpm
   :source: http://mirror.centos.org/centos/7/os/x86_64/Packages/tpm2-abrmd-1.1.0-8.el7.x86_64.rpm

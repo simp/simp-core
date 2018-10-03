@@ -14,7 +14,7 @@ Requires: simp-adapter
 Requires: httpd >= 2.2
 
 # These 2 lines are required for upgrades from simp-6.1.0 to
-# simp-6.2.0. Otherwise, we will have conflicting, derived dependencies
+# simp-6.[2,3].0. Otherwise, we will have conflicting, derived dependencies
 # caused by obsolete pupmod-simp-activemq and pupmod-simp-mcollective
 # packages.  pupmod-simp-activemq and pupmod-simp-mcollective were
 # erroneously required by simp-6.1.0, even though they did not work in
@@ -24,7 +24,7 @@ Obsoletes: pupmod-simp-mcollective <= 3.0.0
 
 # Core SIMP Requirements
 Requires: pupmod-camptocamp-kmod >= 2.2.0, pupmod-camptocamp-kmod < 3.0.0
-Requires: pupmod-simp-systemd >= 1.1.1, pupmod-simp-systemd < 2.0.0
+Requires: pupmod-camptocamp-systemd >= 2.1.0, pupmod-camptocamp-systemd < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_apache >= 3.0.0, pupmod-herculesteam-augeasproviders_apache < 4.0.0
 Requires: pupmod-herculesteam-augeasproviders_core >= 2.1.4, pupmod-herculesteam-augeasproviders_core < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_grub >= 3.0.1, pupmod-herculesteam-augeasproviders_grub < 4.0.0
@@ -32,7 +32,7 @@ Requires: pupmod-herculesteam-augeasproviders_postgresql >= 3.0.0, pupmod-hercul
 Requires: pupmod-herculesteam-augeasproviders_puppet >= 2.1.1, pupmod-herculesteam-augeasproviders_puppet < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_shellvar >= 3.0.0, pupmod-herculesteam-augeasproviders_shellvar < 4.0.0
 Requires: pupmod-herculesteam-augeasproviders_ssh >= 3.0.0, pupmod-herculesteam-augeasproviders_ssh < 4.0.0
-Requires: pupmod-herculesteam-augeasproviders_sysctl >= 2.2.0, pupmod-herculesteam-augeasproviders_sysctl < 3.0.0
+Requires: pupmod-herculesteam-augeasproviders_sysctl >= 2.2.1, pupmod-herculesteam-augeasproviders_sysctl < 3.0.0
 Requires: pupmod-onyxpoint-gpasswd >= 1.0.5, pupmod-onyxpoint-gpasswd < 2.0.0
 Requires: pupmod-puppet-yum >= 2.2.1, pupmod-puppet-yum < 3.0.0
 Requires: pupmod-puppetlabs-apache >= 3.0.0, pupmod-puppetlabs-apache < 4.0.0
@@ -56,10 +56,12 @@ Requires: pupmod-simp-chkrootkit >= 0.0.2, pupmod-simp-chkrootkit < 1.0.0
 Requires: pupmod-simp-clamav >= 6.0.2, pupmod-simp-clamav < 7.0.0
 Requires: pupmod-simp-compliance_markup >= 2.3.3, pupmod-simp-compliance_markup < 3.0.0
 Requires: pupmod-simp-cron >= 0.0.2, pupmod-simp-cron < 1.0.0
+Requires: pupmod-simp-deferred_resources >= 0.1.0, pupmod-simp-deferred_resources < 1.0.0
 Requires: pupmod-simp-dhcp >= 6.0.1, pupmod-simp-dhcp < 7.0.0
 Requires: pupmod-simp-fips >= 0.1.4, pupmod-simp-fips < 1.0.0
 Requires: pupmod-simp-freeradius >= 7.0.1, pupmod-simp-freeradius < 8.0.0
 Requires: pupmod-simp-haveged >= 0.4.5, pupmod-simp-haveged < 1.0.0
+Requires: pupmod-simp-ima >= 0.1.0, pupmod-simp-ima < 1.0.0
 Requires: pupmod-simp-incron >= 0.3.0, pupmod-simp-incron < 1.0.0
 Requires: pupmod-simp-iptables >= 6.1.5, pupmod-simp-iptables < 7.0.0
 Requires: pupmod-simp-issue >= 0.0.2, pupmod-simp-issue < 1.0.0
@@ -83,6 +85,7 @@ Requires: pupmod-simp-simp >= 4.5.0, pupmod-simp-simp < 5.0.0
 Requires: pupmod-simp-simpcat >= 6.0.1, pupmod-simp-simpcat < 7.0.0
 Requires: pupmod-simp-simplib >= 3.11.0, pupmod-simp-simplib < 4.0.0
 Requires: pupmod-simp-simp_apache >= 6.0.2, pupmod-simp-simp_apache < 7.0.0
+Requires: pupmod-simp-simp_banners >= 0.1.0, pupmod-simp-simp_banners < 1.0.0
 Requires: pupmod-simp-simp_openldap >= 6.2.1, pupmod-simp-simp_openldap < 7.0.0
 Requires: pupmod-simp-simp_options >= 1.2.0, pupmod-simp-simp_options < 2.0.0
 Requires: pupmod-simp-simp_rsyslog >= 0.2.0, pupmod-simp-simp_rsyslog < 1.0.0
@@ -96,18 +99,21 @@ Requires: pupmod-simp-svckill >= 3.2.6, pupmod-simp-svckill < 4.0.0
 Requires: pupmod-simp-swap >= 0.1.1, pupmod-simp-swap < 1.0.0
 Requires: pupmod-simp-tcpwrappers >= 6.0.3, pupmod-simp-tcpwrappers < 7.0.0
 Requires: pupmod-simp-tftpboot >= 6.1.0, pupmod-simp-tftpboot < 7.0.0
-Requires: pupmod-simp-timezone >= 4.0.0, pupmod-simp-timezone < 5.0.0
+Requires: pupmod-saz-timezone >= 5.0.2, pupmod-saz-timezone < 6.0.0
+Requires: pupmod-simp-tlog >= 0.0.1, pupmod-simp-tlog < 1.0.0
 Requires: pupmod-simp-tpm >= 1.2.1, pupmod-simp-tpm < 3.0.0
+Requires: pupmod-simp-tpm2 >= 0.1.0, pupmod-simp-tpm2 < 1.0.0
 Requires: pupmod-simp-tuned >= 0.0.2, pupmod-simp-tuned < 1.0.0
 Requires: pupmod-simp-upstart >= 6.0.2, pupmod-simp-upstart < 7.0.0
 Requires: pupmod-simp-useradd >= 0.2.1, pupmod-simp-useradd < 1.0.0
+Requires: pupmod-simp-vox_selinux >= 1.5.2, pupmod-simp-vox_selinux < 2.0.0
 Requires: pupmod-simp-xinetd >= 4.0.2, pupmod-simp-xinetd < 5.0.0
 Requires: pupmod-trlinkin-nsswitch >= 2.0.0, pupmod-trlinkin-nsswitch < 3.0.0
 Requires: rubygem-simp-cli >= 4.2.0, rubygem-simp-cli < 5.0.0
 Requires: rubygem-simp-cli-doc >= 4.2.0, rubygem-simp-cli-doc < 5.0.0
-Requires: simp-adapter >= 0.1.0, simp-adapter < 1.0.0
+Requires: simp-adapter >= 0.0.6, simp-adapter < 1.0.0
 Requires: simp-environment >= 6.2.10, simp-environment < 7.0.0
-Requires: simp-gpgkeys >= 3.1.0-0%{?dist}, simp-gpgkeys < 4.0.0
+Requires: simp-gpgkeys >= 3.0.3, simp-gpgkeys < 4.0.0
 Requires: simp-rsync >= 6.2.1-0%{?dist}, simp-rsync < 7.0.0
 Requires: simp-utils >= 6.1.1, simp-utils < 7.0.0
 
@@ -133,6 +139,7 @@ Requires: pupmod-simp-gdm >= 7.0.3
 Requires: pupmod-simp-gnome >= 7.0.1
 Requires: pupmod-simp-libreswan >= 3.0.2
 Requires: pupmod-simp-libvirt >= 5.1.0
+Requires: pupmod-simp-mate >= 1.0.0
 Requires: pupmod-simp-mozilla >= 5.0.1
 Requires: pupmod-simp-openscap >= 6.1.1
 Requires: pupmod-simp-simp_docker >= 0.1.1
@@ -142,9 +149,11 @@ Requires: pupmod-simp-simp_grafana >= 1.0.5
 Requires: pupmod-simp-simp_ipa >= 0.0.1
 Requires: pupmod-simp-simp_logstash >= 5.0.1
 Requires: pupmod-simp-simp_nfs >= 0.0.5
+Requires: pupmod-simp-simp_pki_service >= 0.1.0
 Requires: pupmod-simp-simp_snmpd >= 0.0.3
 Requires: pupmod-simp-vnc >= 6.0.3
 Requires: pupmod-simp-vsftpd >= 7.1.0
+Requires: pupmod-simp-x2go >= 0.1.0
 
 # The following line ensures the OBE pupmod-electrical-file_concat
 # package is removed when simp-extras package is upgraded from
@@ -222,6 +231,22 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Wed Oct 05 2018 Liz Nemsick <lnemsick.simp@gmail.com> - 6.3.0-0
+- Add the following dependencies to the simp package
+  - pupmod-simp-deferred_resources
+  - pupmod-simp-ima
+  - pupmod-simp-simp_banners
+  - pupmod-simp-tlog
+  - pupmod-simp-tpm2
+  - pupmod-simp-vox_selinux
+- Replace the following dependencies in the simp package
+  - pupmod-simp-systemd has been replaced with pupmod-camptocamp-systemd
+  - pupmod-simp-timezone has been replaced with pupmod-saz-timezone
+- Add the following dependencies to the simp-extras package
+  - pupmod-simp-mate
+  - pupmod-simp-simp_pki_service
+  - pupmod-simp-x2go
+
 *  Fri Sep 28 2018 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.2.0-0
 - Update final dependencies for 6.2.0
 - Fix paths to configuration files

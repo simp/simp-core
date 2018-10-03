@@ -380,6 +380,9 @@ simp-vendored-r10k-gem-text:
 sudosh2:
   :rpm_name: sudosh2-1.0.2-2.el6.x86_64.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/sudosh2-1.0.2-2.el6.x86_64.rpm
+tlog:
+  :rpm_name: tlog-4-1.el6.x86_64.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/tlog-4-1.el6.x86_64.rpm
 voms:
   :rpm_name: voms-2.0.14-1.el6.x86_64.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/v/voms-2.0.14-1.el6.x86_64.rpm

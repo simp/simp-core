@@ -1,36 +1,39 @@
-# refs recorded for SIMP release 6.0.0
-
 moduledir 'src'
 
 mod 'simp-doc',
   :git => 'https://github.com/simp/simp-doc',
-  :tag => '6.2.0-0'
+  :branch => 'master'
 
 moduledir 'src/assets'
 
 mod 'rubygem-rubygem_simp_cli',
   :git => 'https://github.com/simp/rubygem-simp-cli',
-  :ref => '4.2.0'
+  :branch => 'master'
+
+# FIXME Doesn't have RPM packaging yet
+#mod 'rubygem-rubygem_simp_processgraph',
+#  :git => 'https://github.com/simp/rubygem-simp-processgraph',
+#  :ref => 'master'
 
 mod 'simp-rsync_data',
   :git => 'https://github.com/simp/simp-rsync-skeleton',
-  :ref => '6.2.1'
+  :branch => 'master'
 
 mod 'simp-adapter',
- :git => 'https://github.com/simp/simp-adapter',
- :branch => 'master'
+  :git => 'https://github.com/simp/simp-adapter',
+  :branch => 'master'
 
 mod 'simp-environment',
   :git => 'https://github.com/simp/simp-environment-skeleton',
-  :ref => '6.2.10'
+  :branch => 'master'
 
 mod 'simp-gpgkeys',
   :git => 'https://github.com/simp/simp-gpgkeys',
-  :tag => '3.0.3'
+  :branch => 'master'
 
 mod 'simp-utils',
   :git => 'https://github.com/simp/simp-utils',
-  :tag => '6.1.1'
+  :branch => 'master'
 
 moduledir 'src/puppet/modules'
 
@@ -38,22 +41,22 @@ mod 'camptocamp-kmod',
   :git => 'https://github.com/simp/puppet-kmod.git',
   :tag => '2.2.0'
 
-# We are maintaining a simp-master branch of this module
-# because camptocamp has moved to Hiera 5 and Puppet >=
-# 4.10.10.  We need to release our version of 1.1.1
-# which is on simp-master.
-mod 'simp-systemd',
+# Revert to camptocamp/systemd for Puppet 5
+# TODO Verify upgrade works switching from simp-systemd to camptocamp-systemd
+mod 'camptocamp-systemd',
   :git => 'https://github.com/simp/puppet-systemd.git',
-  :tag => 'simp-1.1.1'
+  :tag => '2.1.0'
 
 mod 'cristifalcas-journald',
   :git => 'https://github.com/simp/pupmod-simp-journald.git',
   :tag => '0.6.0'
 
+#FIXME does not support Puppet 5 yet.  Support added with version 6.0.0.
 mod 'elastic-elasticsearch',
   :git => 'https://github.com/simp/puppet-elasticsearch',
   :tag => '5.5.0'
 
+#FIXME does not support Puppet 5 yet.  Support added with version 6.0.0.
 mod 'elastic-logstash',
   :git => 'https://github.com/simp/puppet-logstash',
   :tag => '5.3.0'
@@ -100,7 +103,7 @@ mod 'herculesteam-augeasproviders_ssh',
 
 mod 'herculesteam-augeasproviders_sysctl',
   :git => 'https://github.com/simp/augeasproviders_sysctl',
-  :tag => '2.2.0'
+  :tag => '2.2.1'
 
 mod 'onyxpoint-gpasswd',
   :git => 'https://github.com/simp/puppet-gpasswd',
@@ -138,6 +141,8 @@ mod 'puppetlabs-motd',
   :git => 'https://github.com/simp/puppetlabs-motd',
   :tag => '1.9.0'
 
+#FIXME does not support Puppet 5 yet
+# Required by herculesteam-augeasproviders_mounttab
 mod 'puppetlabs-mount_providers',
   :git => 'https://github.com/simp/puppetlabs-mount_providers',
   :tag => '1.0.0'
@@ -168,6 +173,9 @@ mod 'puppetlabs-translate',
   :git => 'https://github.com/simp/pupmod-puppetlabs-translate',
   :tag => '1.0.0'
 
+#FIXME does not support Puppet 5 yet.  Support added to
+# master branch of voxpupuli/snmp
+# Required by simp-simp_snmpd
 mod 'razorsedge-snmp',
   :git => 'https://github.com/simp/puppet-snmp',
   :tag => '3.9.0'
@@ -187,202 +195,220 @@ mod 'richardc-datacat',
 
 mod 'simp-acpid',
   :git => 'https://github.com/simp/pupmod-simp-acpid',
-  :tag => '1.0.2'
+  :branch => 'master'
 
 mod 'simp-aide',
   :git => 'https://github.com/simp/pupmod-simp-aide',
-  :tag => '6.1.4'
+  :branch => 'master'
 
 mod 'simp-at',
   :git => 'https://github.com/simp/pupmod-simp-at',
-  :tag => '0.0.4'
+  :branch => 'master'
 
 mod 'simp-auditd',
   :git => 'https://github.com/simp/pupmod-simp-auditd',
-  :tag => '7.1.3'
+  :branch => 'master'
 
 mod 'simp-autofs',
   :git => 'https://github.com/simp/pupmod-simp-autofs',
-  :tag => '6.1.1'
+  :branch => 'master'
 
 mod 'simp-chkrootkit',
   :git => 'https://github.com/simp/pupmod-simp-chkrootkit',
-  :tag => '0.0.2'
+  :branch => 'master'
 
 mod 'simp-clamav',
   :git => 'https://github.com/simp/pupmod-simp-clamav',
-  :tag => '6.0.2'
+  :branch => 'master'
 
 mod 'simp-compliance_markup',
   :git => 'https://github.com/simp/pupmod-simp-compliance_markup',
-  :tag => '2.3.3'
+  :branch => 'master'
 
 mod 'simp-cron',
   :git => 'https://github.com/simp/pupmod-simp-cron',
-  :tag => '0.0.2'
+  :branch => 'master'
 
 mod 'simp-dconf',
   :git => 'https://github.com/simp/pupmod-simp-dconf',
-  :tag => '0.0.1'
+  :branch => 'master'
+
+mod 'simp-deferred_resources',
+  :git => 'https://github.com/simp/pupmod-simp-deferred_resources',
+  :branch => 'master'
 
 mod 'simp-dhcp',
   :git => 'https://github.com/simp/pupmod-simp-dhcp',
-  :tag => '6.0.1'
+  :branch => 'master'
 
 mod 'simp-dirtycow',
   :git => 'https://github.com/simp/pupmod-simp-dirtycow.git',
-  :tag => '1.0.3'
+  :branch => 'master'
 
 mod 'simp-fips',
   :git => 'https://github.com/simp/pupmod-simp-fips',
-  :tag => '0.1.4'
+  :branch => 'master'
 
+#FIXME does not support Puppet 5 yet
 mod 'simp-freeradius',
   :git => 'https://github.com/simp/pupmod-simp-freeradius',
-  :tag => '7.0.1'
+  :branch => 'master'
 
 mod 'simp-gdm',
   :git => 'https://github.com/simp/pupmod-simp-gdm',
-  :tag => '7.0.3'
+  :branch => 'master'
 
 mod 'simp-gnome',
   :git => 'https://github.com/simp/pupmod-simp-gnome',
-  :tag => '7.0.1'
+  :branch => 'master'
 
 # SIMP has made changes to this module that don't exist upstream
 # and owns this version.  Beginning with version 0.4.4, all module
 # changes will be done on the 'master' branch.
 mod 'simp-haveged',
   :git => 'https://github.com/simp/pupmod-simp-haveged',
-  :tag => '0.4.5'
+  :branch => 'master'
+
+mod 'simp-ima',
+  :git => 'https://github.com/simp/pupmod-simp-ima',
+  :branch => 'master'
 
 mod 'simp-incron',
   :git => 'https://github.com/simp/pupmod-simp-incron',
-  :ref => '0.3.0'
+  :branch => 'master'
 
 mod 'simp-iptables',
   :git => 'https://github.com/simp/pupmod-simp-iptables',
-  :ref => '6.1.5'
+  :branch => 'master'
 
 mod 'simp-issue',
   :git => 'https://github.com/simp/pupmod-simp-issue',
-  :tag => '0.0.2'
+  :branch => 'master'
 
 mod 'simp-krb5',
   :git => 'https://github.com/simp/pupmod-simp-krb5',
-  :tag => '7.0.3'
+  :branch => 'master'
 
 mod 'simp-libreswan',
   :git => 'https://github.com/simp/pupmod-simp-libreswan',
-  :tag => '3.0.2'
+  :branch => 'master'
 
 mod 'simp-libvirt',
   :git => 'https://github.com/simp/pupmod-simp-libvirt',
-  :tag => '5.1.0'
+  :branch => 'master'
 
 mod 'simp-logrotate',
   :git => 'https://github.com/simp/pupmod-simp-logrotate',
-  :tag => '6.2.0'
+  :branch => 'master'
+
+mod 'simp-mate',
+  :git => 'https://github.com/simp/pupmod-simp-mate',
+  :branch => 'master'
 
 mod 'simp-mozilla',
   :git => 'https://github.com/simp/pupmod-simp-mozilla',
-  :tag => '5.0.1'
+  :branch => 'master'
 
 mod 'simp-named',
   :git => 'https://github.com/simp/pupmod-simp-named',
-  :tag => '6.0.3'
+  :branch => 'master'
 
 mod 'simp-network',
   :git => 'https://github.com/simp/pupmod-simp-network',
-  :tag => '6.0.2'
+  :branch => 'master'
 
 mod 'simp-nfs',
   :git => 'https://github.com/simp/pupmod-simp-nfs',
-  :ref => '6.1.1'
+  :branch => 'master'
 
 mod 'simp-ntpd',
   :git => 'https://github.com/simp/pupmod-simp-ntpd',
-  :tag => '6.2.0'
+  :branch => 'master'
 
 mod 'simp-oddjob',
   :git => 'https://github.com/simp/pupmod-simp-oddjob',
-  :tag => '2.0.1'
+  :branch => 'master'
 
 mod 'simp-openscap',
   :git => 'https://github.com/simp/pupmod-simp-openscap',
-  :tag => '6.1.1'
+  :branch => 'master'
 
 mod 'simp-pam',
   :git => 'https://github.com/simp/pupmod-simp-pam',
-  :tag => '6.2.1'
+  :branch => 'master'
 
 mod 'simp-pki',
   :git => 'https://github.com/simp/pupmod-simp-pki',
-  :ref => '6.0.3'
+  :branch => 'master'
 
 mod 'simp-polkit',
   :git => 'https://github.com/simp/pupmod-simp-polkit',
-  :tag => '6.1.0'
+  :branch => 'master'
 
 mod 'simp-postfix',
   :git => 'https://github.com/simp/pupmod-simp-postfix',
-  :ref => '5.1.0'
+  :branch => 'master'
 
 mod 'simp-pupmod',
   :git => 'https://github.com/simp/pupmod-simp-pupmod',
-  :ref => '7.6.1'
+  :branch => 'master'
 
 mod 'simp-resolv',
   :git => 'https://github.com/simp/pupmod-simp-resolv',
-  :tag => '0.1.0'
+  :branch => 'master'
 
 mod 'simp-rsync',
   :git => 'https://github.com/simp/pupmod-simp-rsync',
-  :ref => '6.0.6'
+  :branch => 'master'
 
 mod 'simp-rsyslog',
   :git => 'https://github.com/simp/pupmod-simp-rsyslog',
-  :ref => '7.2.0'
+  :branch => 'master'
 
 mod 'simp-selinux',
   :git => 'https://github.com/simp/pupmod-simp-selinux',
-  :ref => '2.2.0'
+  :branch => 'master'
 
 mod 'simp-simp',
   :git => 'https://github.com/simp/pupmod-simp-simp',
-  :tag => '4.5.0'
+  :branch => 'master'
 
 mod 'simp-simpcat',
   :git => 'https://github.com/simp/pupmod-simp-simpcat',
-  :tag => '6.0.1'
+  :branch => 'master'
 
 mod 'simp-simplib',
   :git => 'https://github.com/simp/pupmod-simp-simplib',
-  :ref => '3.11.0'
+  :branch => 'master'
 
 mod 'simp-simp_apache',
   :git => 'https://github.com/simp/pupmod-simp-simp_apache',
-  :ref => '6.0.2'
+  :branch => 'master'
+
+mod 'simp-simp_banners',
+  :git => 'https://github.com/simp/pupmod-simp-simp_banners',
+  :branch => 'master'
 
 mod 'simp-simp_docker',
   :git => 'https://github.com/simp/pupmod-simp-simp_docker',
-  :ref => '0.1.1'
+  :branch => 'master'
 
 mod 'simp-simp_elasticsearch',
   :git => 'https://github.com/simp/pupmod-simp-simp_elasticsearch',
-  :tag => '5.0.2'
+  :branch => 'master'
 
+#FIXME does not support Puppet 5 yet
 mod 'simp-simp_gitlab',
   :git => 'https://github.com/simp/pupmod-simp-simp_gitlab',
-  :ref => '0.3.3'
+  :branch => 'master'
 
 mod 'simp-simp_grafana',
   :git => 'https://github.com/simp/pupmod-simp-simp_grafana',
-  :tag => '1.0.5'
+  :branch => 'master'
 
 mod 'simp-simp_ipa',
   :git => 'https://github.com/simp/pupmod-simp-simp_ipa',
-  :branch => '0.0.1'
+  :branch => 'master'
 
 # FIXME: This is commented out until the module is ready to be released.
 #  It has depencencies that have already been removed from the distribution.
@@ -391,124 +417,144 @@ mod 'simp-simp_ipa',
 #   :git => 'https://github.com/simp/pupmod-simp-simp_kubernetes',
 #   :ref => 'master'
 
+#FIXME does not support Puppet 5 yet
 mod 'simp-simp_logstash',
   :git => 'https://github.com/simp/pupmod-simp-simp_logstash',
-  :tag => '5.0.1'
+  :branch => 'master'
 
 mod 'simp-simp_nfs',
   :git => 'https://github.com/simp/pupmod-simp-simp_nfs',
-  :ref => '0.0.5'
+  :branch => 'master'
 
 mod 'simp-simp_openldap',
   :git => 'https://github.com/simp/pupmod-simp-simp_openldap',
-  :tag => '6.2.1'
+  :branch => 'master'
 
 mod 'simp-simp_options',
   :git => 'https://github.com/simp/pupmod-simp-simp_options',
-  :ref => '1.2.0'
+  :branch => 'master'
+
+mod 'simp-simp_pki_service',
+  :git => 'https://github.com/simp/pupmod-simp-simp_pki_service',
+  :branch => 'master'
 
 mod 'simp-simp_rsyslog',
   :git => 'https://github.com/simp/pupmod-simp-simp_rsyslog',
-  :tag => '0.2.0'
+  :branch => 'master'
 
+#FIXME does not support Puppet 5 yet
 mod 'simp-simp_snmpd',
   :git => 'https://github.com/simp/pupmod-simp-simp_snmpd',
-  :tag => '0.0.3'
+  :branch => 'master'
 
 mod 'simp-site',
   :git => 'https://github.com/simp/pupmod-simp-site',
-  :tag => '2.0.4'
+  :branch => 'master'
 
 mod 'simp-ssh',
   :git => 'https://github.com/simp/pupmod-simp-ssh',
-  :ref => '6.4.3'
+  :branch => 'master'
 
 mod 'simp-sssd',
   :git => 'https://github.com/simp/pupmod-simp-sssd',
-  :tag => '6.1.2'
+  :branch => 'master'
 
 mod 'simp-stunnel',
   :git => 'https://github.com/simp/pupmod-simp-stunnel',
-  :tag => '6.3.2'
+  :branch => 'master'
 
 mod 'simp-sudo',
   :git => 'https://github.com/simp/pupmod-simp-sudo',
-  :ref => '5.0.6'
+  :branch => 'master'
 
 mod 'simp-sudosh',
   :git => 'https://github.com/simp/pupmod-simp-sudosh',
-  :tag => '6.0.1'
+  :branch => 'master'
 
 mod 'simp-svckill',
   :git => 'https://github.com/simp/pupmod-simp-svckill',
-  :tag => '3.2.6'
+  :branch => 'master'
 
 mod 'simp-swap',
   :git => 'https://github.com/simp/pupmod-simp-swap',
-  :tag => '0.1.1'
+  :branch => 'master'
 
 mod 'simp-tcpwrappers',
   :git => 'https://github.com/simp/pupmod-simp-tcpwrappers',
-  :tag => '6.0.3'
+  :branch => 'master'
 
 mod 'simp-tftpboot',
   :git => 'https://github.com/simp/pupmod-simp-tftpboot',
-  :ref => '6.1.0'
+  :branch => 'master'
 
-# SIMP has made changes to this module that don't exist upstream
-# yet. (PR pending). Since may revert to saz/puppet-timezone at a
-# later date, working off of simp-master.
-mod 'simp-timezone',
+# Revert to saz/puppet-timezone for Puppet 5
+# TODO Get RPM triggers to work so that can upgrade from
+#      simp-timezone to saz-timezone
+mod 'saz-timezone',
   :git => 'https://github.com/simp/pupmod-simp-timezone',
-  :tag => '4.0.0'
+  :ref => 'v5.0.2'
+
+mod 'simp-tlog',
+  :git => 'https://github.com/simp/pupmod-simp-tlog',
+  :branch => 'master'
 
 mod 'simp-tpm',
-# FUTURE: Release 2.0.0 (version on master)
-# This functionality requires RedHat releases to tpm2-tools and tpm2-tss.
-#
-# This currently exists on a 1.2.X branch for CHANGELOG fixes
   :git => 'https://github.com/simp/pupmod-simp-tpm',
   :tag => '1.2.1'
 
+mod 'simp-tpm2',
+  :git => 'https://github.com/simp/pupmod-simp-tpm2',
+  :branch => 'master'
+
 mod 'simp-tuned',
   :git => 'https://github.com/simp/pupmod-simp-tuned',
-  :tag => '0.0.2'
+  :branch => 'master'
 
 mod 'simp-upstart',
   :git => 'https://github.com/simp/pupmod-simp-upstart',
-  :tag => '6.0.2'
+  :branch => 'master'
 
 mod 'simp-useradd',
   :git => 'https://github.com/simp/pupmod-simp-useradd',
-  :tag => '0.2.1'
+  :branch => 'master'
 
 mod 'simp-vnc',
   :git => 'https://github.com/simp/pupmod-simp-vnc',
-  :tag => '6.0.3'
+  :branch => 'master'
+
+# We have forked voxpupuli/selinux temporarily, renaming
+# their selinux namesace to vox_selinux.  This change
+# allows us to use their module in simp/selinux, as its
+# capabililites are orthogonal to simp/selinux.  The long
+# term plan is to get our functionality merged into
+# voxpupuli/selinux.
+# Our changes are on simp-master.
+mod 'simp-vox_selinux',
+  :git => 'https://github.com/simp/pupmod-voxpupuli-selinux',
+  :ref => 'simp-master'
 
 mod 'simp-vsftpd',
   :git => 'https://github.com/simp/pupmod-simp-vsftpd',
-  :tag => '7.1.0'
+  :branch => 'master'
+
+mod 'simp-x2go',
+  :git => 'https://github.com/simp/pupmod-simp-x2go',
+  :branch => 'master'
 
 mod 'simp-xinetd',
   :git => 'https://github.com/simp/pupmod-simp-xinetd',
-  :tag => '4.0.2'
+  :branch => 'master'
 
-# FIXME: The code we have already packaged and published as an RPM
-# has not been released by trlinkin. Our RPM-packaged version contains
-# 1 non-essential commit beyond the 2.0.0 tag. Until trlinkin releases
-# a later version of this module, for RPM-generation, we are stuck with
-# this odd version only accessible via a git ref spec. For non-RPM
-# SIMP installs, however, the '2.0.0' version available on PuppetForge
-# will work just fine.
 mod 'trlinkin-nsswitch',
   :git => 'https://github.com/simp/puppet-nsswitch',
-  :ref => 'simp6.0.0-2.0.0'
+  :ref => '2.1.0'
 
 mod 'voxpupuli-yum',
   :git => 'https://github.com/simp/voxpupuli-yum',
   :tag => 'v2.2.1'
 
+#FIXME does not support Puppet 5 yet.  Support added with Vox Pupuli
+# version 2.0.0.
 mod 'vshn-gitlab',
   :git => 'https://github.com/simp/puppet-gitlab.git',
   :tag => 'v1.13.3'
