@@ -1,7 +1,7 @@
 Summary: SIMP Full Install
 Name: simp
-Version: 6.2.0
-Release: 0%{?dist}%{?snapshot_release}
+Version: 6.3.0
+Release: BETA%{?dist}%{?snapshot_release}
 License: Apache License, Version 2.0
 Group: Applications/System
 
@@ -105,9 +105,9 @@ Requires: pupmod-simp-xinetd >= 4.0.2, pupmod-simp-xinetd < 5.0.0
 Requires: pupmod-trlinkin-nsswitch >= 2.0.0, pupmod-trlinkin-nsswitch < 3.0.0
 Requires: rubygem-simp-cli >= 4.2.0, rubygem-simp-cli < 5.0.0
 Requires: rubygem-simp-cli-doc >= 4.2.0, rubygem-simp-cli-doc < 5.0.0
-Requires: simp-adapter >= 0.0.6, simp-adapter < 1.0.0
+Requires: simp-adapter >= 0.1.0, simp-adapter < 1.0.0
 Requires: simp-environment >= 6.2.10, simp-environment < 7.0.0
-Requires: simp-gpgkeys >= 3.0.3, simp-gpgkeys < 4.0.0
+Requires: simp-gpgkeys >= 3.1.0-0%{?dist}, simp-gpgkeys < 4.0.0
 Requires: simp-rsync >= 6.2.1-0%{?dist}, simp-rsync < 7.0.0
 Requires: simp-utils >= 6.1.1, simp-utils < 7.0.0
 

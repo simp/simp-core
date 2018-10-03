@@ -2,6 +2,21 @@
 apr-util-ldap:
   :rpm_name: apr-util-ldap-1.5.2-6.el7.x86_64.rpm
   :source: http://vault.centos.org/7.4.1708/os/x86_64/Packages/apr-util-ldap-1.5.2-6.el7.x86_64.rpm
+caja:
+  :rpm_name: caja-1.16.6-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/caja-1.16.6-1.el7.x86_64.rpm
+caja-extensions:
+  :rpm_name: caja-extensions-1.16.6-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/caja-extensions-1.16.6-1.el7.x86_64.rpm
+caja-extensions-common:
+  :rpm_name: caja-extensions-common-1.16.0-1.el7.noarch.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/caja-extensions-common-1.16.0-1.el7.noarch.rpm
+caja-open-terminal:
+  :rpm_name: caja-open-terminal-1.16.0-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/caja-open-terminal-1.16.0-1.el7.x86_64.rpm
+caja-schemas:
+  :rpm_name: caja-schemas-1.16.6-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/caja-schemas-1.16.6-1.el7.x86_64.rpm
 chkrootkit:
   :rpm_name: chkrootkit-0.50-4el7.x86_64.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/chkrootkit-0.50-4el7.x86_64.rpm
@@ -21,11 +36,11 @@ clamav-lib:
   :rpm_name: clamav-lib-0.100.1-3.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/clamav-lib-0.100.1-3.el7.x86_64.rpm
 clamav-scanner-systemd:
-  :rpm_name: clamav-scanner-systemd-0.100.1-3.el7.noarch.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/clamav-scanner-systemd-0.100.1-3.el7.x86_64.rpm
+  :rpm_name: clamav-scanner-systemd-0.100.1-3.el7.x86_64.rpm
+  :source: https://mirror.umd.edu/fedora/epel/7/x86_64/Packages/c/clamav-scanner-systemd-0.100.1-3.el7.x86_64.rpm
 clamav-server-systemd:
-  :rpm_name: clamav-server-systemd-0.100.1-3.el7.noarch.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/clamav-server-systemd-0.100.1-3.el7.x86_64.rpm
+  :rpm_name: clamav-server-systemd-0.100.1-3.el7.x86_64.rpm
+  :source: https://mirror.umd.edu/fedora/epel/7/x86_64/Packages/c/clamav-server-systemd-0.100.1-3.el7.x86_64.rpm
 clamav-update:
   :rpm_name: clamav-update-0.100.1-3.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/clamav-update-0.100.1-3.el7.x86_64.rpm
@@ -38,9 +53,21 @@ elasticsearch:
 elasticsearch-curator:
   :rpm_name: elasticsearch-curator-5.5.4-1.x86_64.rpm
   :source: https://packages.elastic.co/curator/5/centos/7/Packages/elasticsearch-curator-5.5.4-1.x86_64.rpm
+fortune-mod:
+  :rpm_name: fortune-mod-1.99.1-17.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/f/fortune-mod-1.99.1-17.el7.x86_64.rpm
+fuse-sshfs:
+  :rpm_name: fuse-sshfs-2.10-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/f/fuse-sshfs-2.10-1.el7.x86_64.rpm
 grafana:
   :rpm_name: grafana-4.6.3-1.x86_64.rpm
   :source: https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-4.6.3-1.x86_64.rpm
+gtk-murrine-engine:
+  :rpm_name: gtk-murrine-engine-0.98.2-10.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/g/gtk-murrine-engine-0.98.2-10.el7.x86_64.rpm
+gtk2-engines:
+  :rpm_name: gtk2-engines-2.20.2-7.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/g/gtk2-engines-2.20.2-7.el7.x86_64.rpm
 gweb:
   :rpm_name: gweb-2.1.8-1.noarch.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/gweb-2.1.8-1.noarch.rpm
@@ -50,6 +77,15 @@ haveged:
 incron:
   :rpm_name: incron-0.5.10-8.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/i/incron-0.5.10-8.el7.x86_64.rpm
+libNX_X11:
+  :rpm_name: libNX_X11-3.5.99.16-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/l/libNX_X11-3.5.99.16-1.el7.x86_64.rpm
+libXcomp:
+  :rpm_name: libXcomp-3.5.99.16-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/l/libXcomp-3.5.99.16-1.el7.x86_64.rpm
+libXcompshad:
+  :rpm_name: libXcompshad-3.5.99.16-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/l/libXcompshad-3.5.99.16-1.el7.x86_64.rpm
 libarchive-devel:
   :rpm_name: libarchive-devel-3.1.2-10.el7_2.x86_64.rpm
   :source: http://mirror.steadfast.net/centos/7.4.1708/os/x86_64/Packages/libarchive-devel-3.1.2-10.el7_2.x86_64.rpm
@@ -59,9 +95,93 @@ libconfuse:
 libev:
   :rpm_name: libev-4.15-3.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/l/libev-4.15-3.el7.x86_64.rpm
+libmatekbd:
+  :rpm_name: libmatekbd-1.16.0-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/l/libmatekbd-1.16.0-1.el7.x86_64.rpm
+libmatemixer:
+  :rpm_name: libmatemixer-1.16.0-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/l/libmatemixer-1.16.0-1.el7.x86_64.rpm
+libmateweather:
+  :rpm_name: libmateweather-1.16.1-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/l/libmateweather-1.16.1-1.el7.x86_64.rpm
+libmateweather-data:
+  :rpm_name: libmateweather-data-1.16.1-1.el7.noarch.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/l/libmateweather-data-1.16.1-1.el7.noarch.rpm
+libssh:
+  :rpm_name: libssh-0.7.1-3.el7.x86_64.rpm
+  :source: http://mirror.centos.org/centos/7/extras/x86_64/Packages/libssh-0.7.1-3.el7.x86_64.rpm
+libwnck:
+  :rpm_name: libwnck-2.31.0-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/l/libwnck-2.31.0-1.el7.x86_64.rpm
 logstash:
-  :rpm_name: logstash-5.6.10.rpm
-  :source: https://artifacts.elastic.co/downloads/logstash/logstash-5.6.10.rpm
+  :rpm_name: logstash-5.6.7.rpm
+  :source: https://artifacts.elastic.co/downloads/logstash/logstash-5.6.7.rpm
+lyx-fonts:
+  :rpm_name: lyx-fonts-2.2.3-1.el7.noarch.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/l/lyx-fonts-2.2.3-1.el7.noarch.rpm
+marco:
+  :rpm_name: marco-1.16.1-3.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/marco-1.16.1-3.el7.x86_64.rpm
+mate-control-center:
+  :rpm_name: mate-control-center-1.16.1-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/mate-control-center-1.16.1-1.el7.x86_64.rpm
+mate-control-center-filesystem:
+  :rpm_name: mate-control-center-filesystem-1.16.1-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/mate-control-center-filesystem-1.16.1-1.el7.x86_64.rpm
+mate-desktop:
+  :rpm_name: mate-desktop-1.16.2-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/mate-desktop-1.16.2-1.el7.x86_64.rpm
+mate-desktop-libs:
+  :rpm_name: mate-desktop-libs-1.16.2-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/mate-desktop-libs-1.16.2-1.el7.x86_64.rpm
+mate-icon-theme:
+  :rpm_name: mate-icon-theme-1.16.2-1.el7.noarch.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/mate-icon-theme-1.16.2-1.el7.noarch.rpm
+mate-menus:
+  :rpm_name: mate-menus-1.16.0-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/mate-menus-1.16.0-1.el7.x86_64.rpm
+mate-menus-libs:
+  :rpm_name: mate-menus-libs-1.16.0-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/mate-menus-libs-1.16.0-1.el7.x86_64.rpm
+mate-notification-daemon:
+  :rpm_name: mate-notification-daemon-1.16.1-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/mate-notification-daemon-1.16.1-1.el7.x86_64.rpm
+mate-panel:
+  :rpm_name: mate-panel-1.16.2-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/mate-panel-1.16.2-1.el7.x86_64.rpm
+mate-panel-libs:
+  :rpm_name: mate-panel-libs-1.16.2-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/mate-panel-libs-1.16.2-1.el7.x86_64.rpm
+mate-polkit:
+  :rpm_name: mate-polkit-1.16.0-2.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/mate-polkit-1.16.0-2.el7.x86_64.rpm
+mate-power-manager:
+  :rpm_name: mate-power-manager-1.16.2-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/mate-power-manager-1.16.2-1.el7.x86_64.rpm
+mate-screensaver:
+  :rpm_name: mate-screensaver-1.16.1-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/mate-screensaver-1.16.1-1.el7.x86_64.rpm
+mate-session-manager:
+  :rpm_name: mate-session-manager-1.16.1-3.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/mate-session-manager-1.16.1-3.el7.x86_64.rpm
+mate-settings-daemon:
+  :rpm_name: mate-settings-daemon-1.16.2-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/mate-settings-daemon-1.16.2-1.el7.x86_64.rpm
+mate-themes:
+  :rpm_name: mate-themes-3.22.18-1.el7.noarch.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/mate-themes-3.22.18-1.el7.noarch.rpm
+mate-user-guide:
+  :rpm_name: mate-user-guide-1.16.0-1.el7.noarch.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/mate-user-guide-1.16.0-1.el7.noarch.rpm
+nx-libs:
+  :rpm_name: nx-libs-3.5.99.16-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/n/nx-libs-3.5.99.16-1.el7.x86_64.rpm
+nxagent:
+  :rpm_name: nxagent-3.5.99.16-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/n/nxagent-3.5.99.16-1.el7.x86_64.rpm
+nxproxy:
+  :rpm_name: nxproxy-3.5.99.16-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/n/nxproxy-3.5.99.16-1.el7.x86_64.rpm
 pdsh:
   :rpm_name: pdsh-2.29-1el7.x86_64.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/pdsh-2.29-1el7.x86_64.rpm
@@ -83,6 +203,30 @@ pdsh-rcmd-exec:
 pdsh-rcmd-ssh:
   :rpm_name: pdsh-rcmd-ssh-2.29-1el7.x86_64.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/pdsh-rcmd-ssh-2.29-1el7.x86_64.rpm
+perl-Capture-Tiny:
+  :rpm_name: perl-Capture-Tiny-0.24-1.el7.noarch.rpm
+  :source: http://mirror.centos.org/centos/7/os/x86_64/Packages/perl-Capture-Tiny-0.24-1.el7.noarch.rpm
+perl-Config-Simple:
+  :rpm_name: perl-Config-Simple-4.59-15.el7.noarch.rpm
+  :source: http://mirror.centos.org/centos/7/os/x86_64/Packages/perl-Config-Simple-4.59-15.el7.noarch.rpm
+perl-File-BaseDir:
+  :rpm_name: perl-File-BaseDir-0.03-14.el7.noarch.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/p/perl-File-BaseDir-0.03-14.el7.noarch.rpm
+perl-File-Which:
+  :rpm_name: perl-File-Which-1.09-12.el7.noarch.rpm
+  :source: http://mirror.centos.org/centos/7.5.1804/os/x86_64/Packages/perl-File-Which-1.09-12.el7.noarch.rpm
+perl-Switch:
+  :rpm_name: perl-Switch-2.16-7.el7.noarch.rpm
+  :source: http://mirror.centos.org/centos/7.5.1804/os/x86_64/Packages/perl-Switch-2.16-7.el7.noarch.rpm
+perl-X2go-Log:
+  :rpm_name: perl-X2Go-Log-4.1.0.0-1.el7.noarch.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/p/perl-X2Go-Log-4.1.0.0-1.el7.noarch.rpm
+perl-X2go-Server:
+  :rpm_name: perl-X2Go-Server-4.1.0.0-1.el7.noarch.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/p/perl-X2Go-Server-4.1.0.0-1.el7.noarch.rpm
+perl-X2go-Server-DB:
+  :rpm_name: perl-X2Go-Server-DB-4.1.0.0-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/p/perl-X2Go-Server-DB-4.1.0.0-1.el7.x86_64.rpm
 postgresql96:
   :rpm_name: postgresql96-9.6.9-1PGDG.rhel7.x86_64.rpm
   :source: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/postgresql96-9.6.9-1PGDG.rhel7.x86_64.rpm
@@ -99,26 +243,29 @@ pssh:
   :rpm_name: pssh-2.3.1.SIMP-5.el7.noarch.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/pssh-2.3.1.SIMP-5.el7.noarch.rpm
 puppet-agent:
-  :rpm_name: puppet-agent-1.10.14-1.el7.x86_64.rpm
-  :source: http://yum.puppetlabs.com/el/7/PC1/x86_64/puppet-agent-1.10.14-1.el7.x86_64.rpm
+  :rpm_name: puppet-agent-5.5.6-1.el7.x86_64.rpm
+  :source: https://yum.puppetlabs.com/puppet5/el/7/x86_64/puppet-agent-5.5.6-1.el7.x86_64.rpm
 puppet-client-tools:
-  :rpm_name: puppet-client-tools-1.2.1-1.el7.x86_64.rpm
-  :source: http://yum.puppetlabs.com/el/7/PC1/x86_64/puppet-client-tools-1.2.1-1.el7.x86_64.rpm
+  :rpm_name: puppet-client-tools-1.2.4-1.el7.x86_64.rpm
+  :source: https://yum.puppetlabs.com/puppet5/el/7/x86_64/puppet-client-tools-1.2.4-1.el7.x86_64.rpm
+puppet5-release:
+  :rpm_name: puppet5-release-5.0.0-1.el7.noarch.rpm
+  :source: https://yum.puppetlabs.com/puppet5/el/7/x86_64/puppet5-release-5.0.0-1.el7.noarch.rpm
 puppetdb:
-  :rpm_name: puppetdb-4.4.0-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/PC1/x86_64/puppetdb-4.4.0-1.el7.noarch.rpm
+  :rpm_name: puppetdb-5.2.4-1.el7.noarch.rpm
+  :source: https://yum.puppetlabs.com/puppet5/el/7/x86_64/puppetdb-5.2.4-1.el7.noarch.rpm
 puppetdb-termini:
-  :rpm_name: puppetdb-termini-4.4.0-1.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/PC1/x86_64/puppetdb-termini-4.4.0-1.el7.noarch.rpm
-puppetlabs-release-pc1:
-  :rpm_name: puppetlabs-release-pc1-1.1.0-5.el7.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/7/PC1/x86_64/puppetlabs-release-pc1-1.1.0-5.el7.noarch.rpm
+  :rpm_name: puppetdb-termini-5.2.4-1.el7.noarch.rpm
+  :source: https://yum.puppetlabs.com/puppet5/el/7/x86_64/puppetdb-termini-5.2.4-1.el7.noarch.rpm
 puppetserver:
-  :rpm_name: puppetserver-2.8.1-1.el7.noarch.rpm
-  :source: https://yum.puppetlabs.com/el/7/PC1/x86_64/puppetserver-2.8.1-1.el7.noarch.rpm
+  :rpm_name: puppetserver-5.3.5-1.el7.noarch.rpm
+  :source: https://yum.puppetlabs.com/puppet5/el/7/x86_64/puppetserver-5.3.5-1.el7.noarch.rpm
+pwgen:
+  :rpm_name: pwgen-2.08-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/p/pwgen-2.08-1.el7.x86_64.rpm
 python-linecache2:
   :rpm_name: python-linecache2-1.0.0-1.el7.noarch.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/p/python-linecache2-1.0.0-1.el7.noarch.rpm
+  :source: https://lug.mtu.edu/epel/7/x86_64/Packages/p/python-linecache2-1.0.0-1.el7.noarch.rpm
 python-redis:
   :rpm_name: python-redis-2.10.3-1.el7.noarch.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/p/python-redis-2.10.3-1.el7.noarch.rpm
@@ -164,24 +311,6 @@ rubygem-net-ping:
 rubygem-puppet-lint:
   :rpm_name: rubygem-puppet-lint-1.1.0-1.el7.noarch.rpm
   :source: http://yum.puppetlabs.com/el/7/dependencies/x86_64/rubygem-puppet-lint-1.1.0-1.el7.noarch.rpm
-rubygem-puppetserver-blankslate:
-  :rpm_name: rubygem-puppetserver-blankslate-2.1.2.4-1.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/rubygem-puppetserver-blankslate-2.1.2.4-1.noarch.rpm
-rubygem-puppetserver-blankslate-doc:
-  :rpm_name: rubygem-puppetserver-blankslate-doc-2.1.2.4-1.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/rubygem-puppetserver-blankslate-doc-2.1.2.4-1.noarch.rpm
-rubygem-puppetserver-parslet:
-  :rpm_name: rubygem-puppetserver-parslet-1.5.0-1.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/rubygem-puppetserver-parslet-1.5.0-1.noarch.rpm
-rubygem-puppetserver-parslet-doc:
-  :rpm_name: rubygem-puppetserver-parslet-doc-1.5.0-1.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/rubygem-puppetserver-parslet-doc-1.5.0-1.noarch.rpm
-rubygem-puppetserver-toml:
-  :rpm_name: rubygem-puppetserver-toml-0.1.2-1.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/rubygem-puppetserver-toml-0.1.2-1.noarch.rpm
-rubygem-puppetserver-toml-doc:
-  :rpm_name: rubygem-puppetserver-toml-doc-0.1.2-1.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/rubygem-puppetserver-toml-doc-0.1.2-1.noarch.rpm
 rubygem-rake:
   :rpm_name: rubygem-rake-0.9.6-33.el7_4.noarch.rpm
   :source: http://mirror.centos.org/centos/7/os/x86_64/Packages/rubygem-rake-0.9.6-33.el7_4.noarch.rpm
@@ -260,3 +389,33 @@ sudosh2:
 syslinux-tftpboot:
   :rpm_name: syslinux-tftpboot-4.05-13.el7.x86_64.rpm
   :source: http://vault.centos.org/7.4.1708/os/x86_64/Packages/syslinux-tftpboot-4.05-13.el7.x86_64.rpm
+tpm2-abrmd:
+  :rpm_name: tpm2-abrmd-1.1.0-8.el7.x86_64.rpm
+  :source: http://mirror.centos.org/centos/7/os/x86_64/Packages/tpm2-abrmd-1.1.0-8.el7.x86_64.rpm
+tpm2-tools:
+  :rpm_name: tpm2-tools-3.0.1-1.el7.x86_64.rpm
+  :source: http://mirror.centos.org/centos/7/os/x86_64/Packages/tpm2-tools-3.0.1-1.el7.x86_64.rpm
+tpm2-tss:
+  :rpm_name: tpm2-tss-1.3.0-2.el7.x86_64.rpm
+  :source: http://mirror.centos.org/centos/7/os/x86_64/Packages/tpm2-tss-1.3.0-2.el7.x86_64.rpm
+tpm2-tss-devel:
+  :rpm_name: tpm2-tss-devel-1.3.0-2.el7.x86_64.rpm
+  :source: http://mirror.centos.org/centos/7/os/x86_64/Packages/tpm2-tss-devel-1.3.0-2.el7.x86_64.rpm
+unique:
+  :rpm_name: unique-1.1.6-10.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/u/unique-1.1.6-10.el7.x86_64.rpm
+x2goagent:
+  :rpm_name: x2goagent-4.1.0.0-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/x/x2goagent-4.1.0.0-1.el7.x86_64.rpm
+x2goclient:
+  :rpm_name: x2goclient-4.1.1.1-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/x/x2goclient-4.1.1.1-1.el7.x86_64.rpm
+x2goserver:
+  :rpm_name: x2goserver-4.1.0.0-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/x/x2goserver-4.1.0.0-1.el7.x86_64.rpm
+x2goserver-common:
+  :rpm_name: x2goserver-common-4.1.0.0-1.el7.noarch.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/x/x2goserver-common-4.1.0.0-1.el7.noarch.rpm
+x2goserver-xsession:
+  :rpm_name: x2goserver-xsession-4.1.0.0-1.el7.noarch.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/x/x2goserver-xsession-4.1.0.0-1.el7.noarch.rpm

@@ -77,7 +77,6 @@ GEM
     json (1.8.6)
     json-schema (2.8.0)
       addressable (>= 2.4)
-    json_pure (1.8.6)
     locale (2.1.2)
     log4r (1.1.10)
     metaclass (0.0.4)
@@ -118,12 +117,12 @@ GEM
       pry (~> 0.11)
       yard (~> 0.9.11)
     public_suffix (3.0.3)
-    puppet (4.10.12)
-      facter (> 2.0, < 4)
-      gettext-setup (>= 0.10, < 1)
-      hiera (>= 2.0, < 4)
-      json_pure (~> 1.8)
+    puppet (5.5.6)
+      facter (> 2.0.1, < 4)
+      fast_gettext (~> 1.1.2)
+      hiera (>= 3.2.1, < 4)
       locale (~> 2.1)
+      multi_json (~> 1.10)
     puppet-blacksmith (3.4.0)
       puppet (>= 2.7.16)
       rest-client (~> 1.8.0)
@@ -242,29 +241,3 @@ GEM
     unf_ext (0.0.7.5)
     unicode-display_width (1.4.0)
     yard (0.9.16)
-
-PLATFORMS
-  ruby
-
-DEPENDENCIES
-  beaker
-  beaker-rspec
-  bundler
-  coderay
-  dotenv
-  metadata-json-lint
-  parallel
-  pry
-  pry-doc
-  puppet (~> 4.0)
-  puppet-lint
-  puppet-strings
-  puppetlabs_spec_helper
-  rake
-  ruby-progressbar
-  simp-beaker-helpers (>= 1.10.8, < 2.0)
-  simp-build-helpers (>= 0.1.0)
-  simp-rake-helpers (>= 5.3, < 6.0)
-
-BUNDLED WITH
-   1.16.2
