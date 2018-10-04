@@ -41,25 +41,30 @@ mod 'camptocamp-kmod',
   :git => 'https://github.com/simp/puppet-kmod.git',
   :tag => '2.2.0'
 
-# Revert to camptocamp/systemd for Puppet 5
-# TODO Verify upgrade works switching from simp-systemd to camptocamp-systemd
-mod 'camptocamp-systemd',
+# We are maintaining a simp-master branch of this module
+# because we needed changes earlier, and, due to a simp-adapter
+# bug WRT RPM upgrades with name changes, can't revert back
+# to camptocamp/systemd.  We will revert when we redesign module
+# RPM packaging (SIMP-6.4.0 or later).
+mod 'simp-systemd',
   :git => 'https://github.com/simp/puppet-systemd.git',
-  :tag => '2.1.0'
+  :branch => 'simp-master'
 
 mod 'cristifalcas-journald',
   :git => 'https://github.com/simp/pupmod-simp-journald.git',
   :tag => '0.6.0'
 
-#FIXME does not support Puppet 5 yet.  Support added with version 6.0.0.
-mod 'elastic-elasticsearch',
-  :git => 'https://github.com/simp/puppet-elasticsearch',
-  :tag => '5.5.0'
+#FIXME 5.x does not support Puppet 5.  Support added with
+# version 6.0.0, which we have not evaluated yet.
+#mod 'elastic-elasticsearch',
+#  :git => 'https://github.com/simp/puppet-elasticsearch',
+#  :tag => '5.5.0'
 
-#FIXME does not support Puppet 5 yet.  Support added with version 6.0.0.
-mod 'elastic-logstash',
-  :git => 'https://github.com/simp/puppet-logstash',
-  :tag => '5.3.0'
+#FIXME 5.x does not support Puppet 5.  Support added with
+# version 6.0.0, which we have not evaluated yet.
+#mod 'elastic-logstash',
+#  :git => 'https://github.com/simp/puppet-logstash',
+#  :tag => '5.3.0'
 
 mod 'herculesteam-augeasproviders_apache',
   :git => 'https://github.com/simp/augeasproviders_apache',
@@ -141,7 +146,8 @@ mod 'puppetlabs-motd',
   :git => 'https://github.com/simp/puppetlabs-motd',
   :tag => '1.9.0'
 
-#FIXME does not support Puppet 5 yet
+#FIXME does not support Puppet 5 yet. Ticket entered:
+# https://tickets.puppetlabs.com/browse/MODULES-8043
 # Required by herculesteam-augeasproviders_mounttab
 mod 'puppetlabs-mount_providers',
   :git => 'https://github.com/simp/puppetlabs-mount_providers',
@@ -168,13 +174,14 @@ mod 'puppetlabs-stdlib',
   :tag => '4.25.1'
 
 mod 'puppetlabs-translate',
-  # FIXME LATER:  Can't use latest version, because puppetlabs-docker 1.0.5
+  # FIXME LATER:  Can't use latest version, because puppetlabs-docker 1.1.0
   # requires puppetlabs-translate < 1.1.0.
   :git => 'https://github.com/simp/pupmod-puppetlabs-translate',
   :tag => '1.0.0'
 
-#FIXME does not support Puppet 5 yet.  Support added to
-# master branch of voxpupuli/snmp
+#FIXME Does not support Puppet 5 yet.  Support is currently being
+# added to the master branch by Vox Pupuli, who have changed the
+# name from razorsedge/snmp to puppet/snmp.
 # Required by simp-simp_snmpd
 mod 'razorsedge-snmp',
   :git => 'https://github.com/simp/puppet-snmp',
@@ -249,7 +256,7 @@ mod 'simp-fips',
   :git => 'https://github.com/simp/pupmod-simp-fips',
   :branch => 'master'
 
-#FIXME does not support Puppet 5 yet
+#FIXME Does not support Puppet 5 yet
 mod 'simp-freeradius',
   :git => 'https://github.com/simp/pupmod-simp-freeradius',
   :branch => 'master'
@@ -393,11 +400,16 @@ mod 'simp-simp_docker',
   :git => 'https://github.com/simp/pupmod-simp-simp_docker',
   :branch => 'master'
 
-mod 'simp-simp_elasticsearch',
-  :git => 'https://github.com/simp/pupmod-simp-simp_elasticsearch',
-  :branch => 'master'
+#FIXME Need to ensure interoperability with elastic/elasticsearch
+# 6.0.0 or later before we can include this in a Puppet 5.x release.
+#mod 'simp-simp_elasticsearch',
+#  :git => 'https://github.com/simp/pupmod-simp-simp_elasticsearch',
+#  :branch => 'master'
 
-#FIXME does not support Puppet 5 yet
+#FIXME Does not support Puppet 5 yet.  Also, needs to be tested with
+# Vox Pupuli puppet/gitlab 2.0.0, which does support Puppet 5.
+# puppet/gitlab is the new name for vshn/gitlab.  When Vox Pupuli
+# took over that project, they changed the name.
 mod 'simp-simp_gitlab',
   :git => 'https://github.com/simp/pupmod-simp-simp_gitlab',
   :branch => 'master'
@@ -417,10 +429,11 @@ mod 'simp-simp_ipa',
 #   :git => 'https://github.com/simp/pupmod-simp-simp_kubernetes',
 #   :ref => 'master'
 
-#FIXME does not support Puppet 5 yet
-mod 'simp-simp_logstash',
-  :git => 'https://github.com/simp/pupmod-simp-simp_logstash',
-  :branch => 'master'
+#FIXME Does not support Puppet 5 yet.  Also, need to ensure interoperability
+# with elastic/logstash 6.0.0 or later.
+#mod 'simp-simp_logstash',
+#  :git => 'https://github.com/simp/pupmod-simp-simp_logstash',
+#  :branch => 'master'
 
 mod 'simp-simp_nfs',
   :git => 'https://github.com/simp/pupmod-simp-simp_nfs',
@@ -442,7 +455,10 @@ mod 'simp-simp_rsyslog',
   :git => 'https://github.com/simp/pupmod-simp-simp_rsyslog',
   :branch => 'master'
 
-#FIXME does not support Puppet 5 yet
+#FIXME Does not support Puppet 5 yet.  Also, depends upon the
+# state of puppet/snmp (new name for razorsedge/snmp, being
+# maintained by Vox Pupupli). Puppet 5 support is currently
+# being added to the master branch of puppet/snmp
 mod 'simp-simp_snmpd',
   :git => 'https://github.com/simp/pupmod-simp-simp_snmpd',
   :branch => 'master'
@@ -487,12 +503,14 @@ mod 'simp-tftpboot',
   :git => 'https://github.com/simp/pupmod-simp-tftpboot',
   :branch => 'master'
 
-# Revert to saz/puppet-timezone for Puppet 5
-# TODO Get RPM triggers to work so that can upgrade from
-#      simp-timezone to saz-timezone
+# We are maintaining a simp-master branch of this module
+# because we needed changes earlier, and, due to a simp-adapter
+# bug WRT RPM upgrades with name changes, can't revert back
+# to saz/timezone.  We will revert when we redesign module
+# RPM packaging (SIMP-6.4.0 or later).
 mod 'saz-timezone',
   :git => 'https://github.com/simp/pupmod-simp-timezone',
-  :ref => 'v5.0.2'
+  :branch => 'simp-master'
 
 mod 'simp-tlog',
   :git => 'https://github.com/simp/pupmod-simp-tlog',
@@ -553,8 +571,9 @@ mod 'voxpupuli-yum',
   :git => 'https://github.com/simp/voxpupuli-yum',
   :tag => 'v2.2.1'
 
-#FIXME does not support Puppet 5 yet.  Support added with Vox Pupuli
-# version 2.0.0.
+#FIXME vshn/gitlab does not support Puppet 5, However, puppet/gitlab
+# 2.0.0 does.  puppet/gitlab is the new name for vshn/gitlab.  When
+# Vox Pupuli took over that project, they changed the name.
 mod 'vshn-gitlab',
   :git => 'https://github.com/simp/puppet-gitlab.git',
   :tag => 'v1.13.3'

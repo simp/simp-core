@@ -24,7 +24,7 @@ Obsoletes: pupmod-simp-mcollective <= 3.0.0
 
 # Core SIMP Requirements
 Requires: pupmod-camptocamp-kmod >= 2.2.0, pupmod-camptocamp-kmod < 3.0.0
-Requires: pupmod-camptocamp-systemd >= 2.1.0, pupmod-camptocamp-systemd < 3.0.0
+Requires: pupmod-simp-systemd >= 1.1.1, pupmod-simp-systemd < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_apache >= 3.0.0, pupmod-herculesteam-augeasproviders_apache < 4.0.0
 Requires: pupmod-herculesteam-augeasproviders_core >= 2.1.4, pupmod-herculesteam-augeasproviders_core < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_grub >= 3.0.1, pupmod-herculesteam-augeasproviders_grub < 4.0.0
@@ -99,7 +99,7 @@ Requires: pupmod-simp-svckill >= 3.2.6, pupmod-simp-svckill < 4.0.0
 Requires: pupmod-simp-swap >= 0.1.1, pupmod-simp-swap < 1.0.0
 Requires: pupmod-simp-tcpwrappers >= 6.0.3, pupmod-simp-tcpwrappers < 7.0.0
 Requires: pupmod-simp-tftpboot >= 6.1.0, pupmod-simp-tftpboot < 7.0.0
-Requires: pupmod-saz-timezone >= 5.0.2, pupmod-saz-timezone < 6.0.0
+Requires: pupmod-simp-timezone >= 4.0.0, pupmod-simp-timezone < 6.0.0
 Requires: pupmod-simp-tlog >= 0.0.1, pupmod-simp-tlog < 1.0.0
 Requires: pupmod-simp-tpm >= 1.2.1, pupmod-simp-tpm < 3.0.0
 Requires: pupmod-simp-tpm2 >= 0.1.0, pupmod-simp-tpm2 < 1.0.0
@@ -122,8 +122,8 @@ Requires: simp-utils >= 6.1.1, simp-utils < 7.0.0
 Summary: Extra Packages for SIMP
 License: Apache-2.0
 Requires: pupmod-cristifalcas-journald >= 0.6.0
-Requires: pupmod-elastic-elasticsearch >= 5.5.0
-Requires: pupmod-elastic-logstash >= 5.3.0
+#Requires: pupmod-elastic-elasticsearch >= 5.5.0
+#Requires: pupmod-elastic-logstash >= 5.3.0
 Requires: pupmod-herculesteam-augeasproviders_mounttab >= 2.0.3
 Requires: pupmod-herculesteam-augeasproviders_nagios >= 2.0.2-2016
 Requires: pupmod-herculesteam-augeasproviders_pam >= 2.1.1
@@ -143,11 +143,11 @@ Requires: pupmod-simp-mate >= 1.0.0
 Requires: pupmod-simp-mozilla >= 5.0.1
 Requires: pupmod-simp-openscap >= 6.1.1
 Requires: pupmod-simp-simp_docker >= 0.1.1
-Requires: pupmod-simp-simp_elasticsearch >= 5.0.2
+#Requires: pupmod-simp-simp_elasticsearch >= 5.0.2
 Requires: pupmod-simp-simp_gitlab >= 0.3.3
 Requires: pupmod-simp-simp_grafana >= 1.0.5
 Requires: pupmod-simp-simp_ipa >= 0.0.1
-Requires: pupmod-simp-simp_logstash >= 5.0.1
+#Requires: pupmod-simp-simp_logstash >= 5.0.1
 Requires: pupmod-simp-simp_nfs >= 0.0.5
 Requires: pupmod-simp-simp_pki_service >= 0.1.0
 Requires: pupmod-simp-simp_snmpd >= 0.0.3
@@ -239,13 +239,16 @@ fi
   - pupmod-simp-tlog
   - pupmod-simp-tpm2
   - pupmod-simp-vox_selinux
-- Replace the following dependencies in the simp package
-  - pupmod-simp-systemd has been replaced with pupmod-camptocamp-systemd
-  - pupmod-simp-timezone has been replaced with pupmod-saz-timezone
 - Add the following dependencies to the simp-extras package
   - pupmod-simp-mate
   - pupmod-simp-simp_pki_service
   - pupmod-simp-x2go
+- Removed the following dependencies from the simp-extras
+  package, as they have not yet been updated to Puppet 5
+  - pupmod-elastic-elasticsearch
+  - pupmod-elastic-logstash
+  - pupmod-simp-simp_elasticsearch
+  - pupmod-simp-simp_logstash
 
 *  Fri Sep 28 2018 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.2.0-0
 - Update final dependencies for 6.2.0
