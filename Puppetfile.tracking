@@ -144,7 +144,7 @@ mod 'puppetlabs-java',
 
 mod 'puppetlabs-motd',
   :git => 'https://github.com/simp/puppetlabs-motd',
-  :tag => '1.9.0'
+  :tag => '2.0.0'
 
 #FIXME does not support Puppet 5 yet. Ticket entered:
 # https://tickets.puppetlabs.com/browse/MODULES-8043
