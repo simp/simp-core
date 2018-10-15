@@ -157,6 +157,8 @@
 # (packaging version 1 instead of 0) and a newer version of
 # simp-rake-helpers.
 'timezone':
+  :obsoletes:
+    -    'pupmod-saz-timezone': '3.3.0-2016.1'
   :requires:
     # exclude pupmod-stm-debconf
     - 'pupmod-puppetlabs-stdlib'
