@@ -159,7 +159,6 @@
 'timezone':
   :obsoletes:
     'pupmod-saz-timezone': '3.3.0-2016.1'
-  :release: '1'
   :requires:
     # exclude pupmod-stm-debconf
     - 'pupmod-puppetlabs-stdlib'

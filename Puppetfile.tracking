@@ -48,7 +48,7 @@ mod 'camptocamp-kmod',
 # RPM packaging (SIMP-6.4.0 or later).
 mod 'simp-systemd',
   :git => 'https://github.com/simp/puppet-systemd.git',
-  :branch => 'simp-master'
+  :tag => 'simp-2.1.0'
 
 mod 'cristifalcas-journald',
   :git => 'https://github.com/simp/pupmod-simp-journald.git',
@@ -503,9 +503,9 @@ mod 'simp-tftpboot',
 # bug WRT RPM upgrades with name changes, can't revert back
 # to saz/timezone.  We will revert when we redesign module
 # RPM packaging (SIMP-6.4.0 or later).
-mod 'saz-timezone',
+mod 'simp-timezone',
   :git => 'https://github.com/simp/pupmod-simp-timezone',
-  :branch => 'simp-master'
+  :tag => 'simp-5.0.2'
 
 mod 'simp-tlog',
   :git => 'https://github.com/simp/pupmod-simp-tlog',
