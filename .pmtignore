@@ -9,6 +9,7 @@ Puppetfile*
 build/
 junit/
 log/
+sec_results/
 spec/
 src/
 vendor/

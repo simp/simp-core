@@ -27,7 +27,7 @@ describe 'LDAP user access' do
     }
 
     let(:puppet_master_yaml) {
-      "/etc/puppetlabs/code/environments/simp/hieradata/hosts/#{master_fqdn}.yaml"
+      "/etc/puppetlabs/code/environments/simp/data/hosts/#{master_fqdn}.yaml"
     }
 
     let(:puppet_master_hieradata) do
@@ -85,19 +85,18 @@ describe 'LDAP user access' do
   context 'LDAP user login' do
 
     it 'should install expect scripts on master' do
-      # This test will use an expect script that ssh's to a host as a
-      # user and then runs 'date'.
-      scp_to(master, "#{files_dir}/ssh_cmd_script", '/usr/local/bin/ssh_cmd_script')
-      on(master, "chmod +x /usr/local/bin/ssh_cmd_script")
+      # This expect script ssh's to a host as a user and then runs 'date'.
+      install_expect_script(master, "#{files_dir}/ssh_cmd_script")
 
-      scp_to(master, "#{files_dir}/ssh_password_change_required_script", '/usr/local/bin/ssh_password_change_required_script')
-      on(master, "chmod +x /usr/local/bin/ssh_password_change_required_script")
+      # This expect script ssh's to a host as a user and changes the user's password
+      # at login
+      install_expect_script(master, "#{files_dir}/ssh_password_change_required_script")
     end
 
     ldap_users.each do |ldap_user|
-      it 'LDAP user #{ldap_user} should be able to login via ssh' do
+      it "LDAP user #{ldap_user} should be able to login via ssh" do
         hosts.each do |host|
-          base_cmd ="/usr/local/bin/ssh_cmd_script #{ldap_user} #{host.name} #{test_password(0)} date"
+          base_cmd ="#{EXPECT_SCRIPT_DIR}/ssh_cmd_script #{ldap_user} #{host.name} #{test_password(0)} date"
 
           # FIXME: Workaround for SIMP-5082
           cmd = adjust_ssh_ciphers_for_expect_script(base_cmd, master, host)
@@ -113,7 +112,7 @@ describe 'LDAP user access' do
 
     ldap_users.each do |ldap_user|
       it "LDAP user #{ldap_user} should be forced to change password upon login via ssh" do
-        base_cmd ="/usr/local/bin/ssh_password_change_required_script #{ldap_user} #{agents[0].name} #{test_password(0)} #{test_password(1)}"
+        base_cmd ="#{EXPECT_SCRIPT_DIR}/ssh_password_change_required_script #{ldap_user} #{agents[0].name} #{test_password(0)} #{test_password(1)}"
 
         # FIXME: Workaround for SIMP-5082
         cmd = adjust_ssh_ciphers_for_expect_script(base_cmd, master, agents[0])
@@ -122,9 +121,9 @@ describe 'LDAP user access' do
     end
 
     ldap_users.each do |ldap_user|
-      it 'LDAP user #{ldap_user} should be able to login with new password via ssh' do
+      it "LDAP user #{ldap_user} should be able to login with new password via ssh" do
         hosts.each do |host|
-          base_cmd ="/usr/local/bin/ssh_cmd_script #{ldap_user} #{host.name} #{test_password(1)} date"
+          base_cmd ="#{EXPECT_SCRIPT_DIR}/ssh_cmd_script #{ldap_user} #{host.name} #{test_password(1)} date"
 
           # FIXME: Workaround for SIMP-5082
           cmd = adjust_ssh_ciphers_for_expect_script(base_cmd, master, host)

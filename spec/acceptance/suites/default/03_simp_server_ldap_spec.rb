@@ -3,7 +3,7 @@ require 'yaml'
 
 test_name 'simp::server::ldap'
 
-describe 'use the simp::server::ldap class to create and ldap environment' do
+describe 'use the simp::server::ldap class to create an ldap environment' do
   masters = hosts_with_role(hosts, 'master')
   agents  = hosts_with_role(hosts, 'agent')
 
@@ -26,15 +26,15 @@ describe 'use the simp::server::ldap class to create and ldap environment' do
           }
         EOF
 
-        hiera = YAML.load(on(master, 'cat /etc/puppetlabs/code/environments/production/hieradata/default.yaml').stdout)
+        hiera = YAML.load(on(master, 'cat /etc/puppetlabs/code/environments/production/data/default.yaml').stdout)
         default_yaml = hiera.merge(
           'simp_options::ldap' => true,
           'simp_options::sssd' => true,
+#FIXME This should be a password hash
           'simp_openldap::server::conf::rootpw' => 's00persekr3t!',
-          # 'simp_options::ldap::uri' => ['ldap://#{master_fqdn}']
         ).to_yaml
         create_remote_file(master, '/etc/puppetlabs/code/environments/production/manifests/site.pp', site_pp)
-        create_remote_file(master, '/etc/puppetlabs/code/environments/production/hieradata/default.yaml', default_yaml)
+        create_remote_file(master, '/etc/puppetlabs/code/environments/production/data/default.yaml', default_yaml)
       end
     end
   end
@@ -46,7 +46,7 @@ describe 'use the simp::server::ldap class to create and ldap environment' do
           :desired_exit_codes => [0],
           :retry_interval     => 15,
           :max_retries        => 3,
-          :verbose            => true
+          :verbose            => true.to_s # work around beaker bug
         )
       end
     end

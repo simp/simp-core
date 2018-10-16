@@ -1,7 +1,7 @@
 ---
 version: 5
 defaults:
-  datadir: hieradata
+  datadir: data
   data_hash: yaml_data
 
 hierarchy:
@@ -18,7 +18,7 @@ hierarchy:
 
   - name: Per-OS data
     paths:
-    - "%{facts.os.family}"
+    - "%{facts.os.family}.yaml"
     - "%{facts.os.name}/%{facts.os.release.full}.yaml"
     - "%{facts.os.name}/%{facts.os.release.major}.yaml"
     - "%{facts.os.name}.yaml"
@@ -34,6 +34,5 @@ hierarchy:
 
   - name: SIMP specific data - Please do not modify
     paths:
-    - "compliance_profiles/%{::compliance_profile}.yaml"
     - "simp_config_settings.yaml"
     - "scenarios/%{::simp_scenario}.yaml"

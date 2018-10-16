@@ -13,7 +13,7 @@ mod 'rubygem-rubygem_simp_cli',
 # FIXME Doesn't have RPM packaging yet
 #mod 'rubygem-rubygem_simp_processgraph',
 #  :git => 'https://github.com/simp/rubygem-simp-processgraph',
-#  :ref => 'master'
+#  :branch => 'master'
 
 mod 'simp-rsync_data',
   :git => 'https://github.com/simp/simp-rsync-skeleton',
@@ -112,7 +112,7 @@ mod 'herculesteam-augeasproviders_sysctl',
 
 mod 'onyxpoint-gpasswd',
   :git => 'https://github.com/simp/puppet-gpasswd',
-  :tag => '1.0.5'
+  :tag => '1.0.6'
 
 mod 'puppet-grafana',
   :git => 'https://github.com/simp/puppet-grafana.git',
@@ -422,7 +422,7 @@ mod 'simp-simp_ipa',
 # mod 'simp-simp_kubernetes',
 # # FUTURE:  Release and add to simp.spec, to ensure packaged in ISO
 #   :git => 'https://github.com/simp/pupmod-simp-simp_kubernetes',
-#   :ref => 'master'
+#   :branch => 'master'
 
 #FIXME Does not support Puppet 5 yet.  Also, need to ensure interoperability
 # with elastic/logstash 6.0.0 or later.
@@ -536,7 +536,7 @@ mod 'simp-vnc',
   :branch => 'master'
 
 # We have forked voxpupuli/selinux temporarily, renaming
-# their selinux namesace to vox_selinux.  This change
+# their selinux namespace to vox_selinux.  This change
 # allows us to use their module in simp/selinux, as its
 # capabililites are orthogonal to simp/selinux.  The long
 # term plan is to get our functionality merged into
@@ -560,7 +560,7 @@ mod 'simp-xinetd',
 
 mod 'trlinkin-nsswitch',
   :git => 'https://github.com/simp/puppet-nsswitch',
-  :ref => '2.1.0'
+  :tag => '2.1.0'
 
 mod 'voxpupuli-yum',
   :git => 'https://github.com/simp/voxpupuli-yum',
