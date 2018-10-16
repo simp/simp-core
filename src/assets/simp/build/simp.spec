@@ -59,7 +59,6 @@ Requires: pupmod-simp-cron >= 0.0.2, pupmod-simp-cron < 1.0.0
 Requires: pupmod-simp-deferred_resources >= 0.1.0, pupmod-simp-deferred_resources < 1.0.0
 Requires: pupmod-simp-dhcp >= 6.0.1, pupmod-simp-dhcp < 7.0.0
 Requires: pupmod-simp-fips >= 0.1.4, pupmod-simp-fips < 1.0.0
-Requires: pupmod-simp-freeradius >= 7.0.1, pupmod-simp-freeradius < 8.0.0
 Requires: pupmod-simp-haveged >= 0.4.5, pupmod-simp-haveged < 1.0.0
 Requires: pupmod-simp-ima >= 0.1.0, pupmod-simp-ima < 1.0.0
 Requires: pupmod-simp-incron >= 0.3.0, pupmod-simp-incron < 1.0.0

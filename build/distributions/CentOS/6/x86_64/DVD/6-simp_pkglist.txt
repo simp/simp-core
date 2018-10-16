@@ -224,9 +224,6 @@ foomatic-db-filesystem
 foomatic-db-ppds
 fprintd
 fprintd-pam
-freeradius
-freeradius-ldap
-freeradius-utils
 freetype
 freetype-devel
 fuse

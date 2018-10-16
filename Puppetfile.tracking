@@ -256,11 +256,6 @@ mod 'simp-fips',
   :git => 'https://github.com/simp/pupmod-simp-fips',
   :branch => 'master'
 
-#FIXME Does not support Puppet 5 yet
-mod 'simp-freeradius',
-  :git => 'https://github.com/simp/pupmod-simp-freeradius',
-  :branch => 'master'
-
 mod 'simp-gdm',
   :git => 'https://github.com/simp/pupmod-simp-gdm',
   :branch => 'master'
