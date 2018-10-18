@@ -23,12 +23,6 @@ clamd:
 clamsmtp:
   :rpm_name: clamsmtp-1.10-7.el6.x86_64.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/c/clamsmtp-1.10-7.el6.x86_64.rpm
-elasticsearch:
-  :rpm_name: elasticsearch-5.6.10.rpm
-  :source: https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.6.10.rpm
-elasticsearch-curator:
-  :rpm_name: elasticsearch-curator-5.5.4-1.x86_64.rpm
-  :source: http://packages.elastic.co/curator/5/centos/6/Packages/elasticsearch-curator-5.5.4-1.x86_64.rpm
 fping:
   :rpm_name: fping-2.4b2-10.el6.x86_64.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/f/fping-2.4b2-10.el6.x86_64.rpm
@@ -86,9 +80,6 @@ globus-gssapi-gsi:
 globus-openssl-module:
   :rpm_name: globus-openssl-module-4.8-1.el6.x86_64.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/g/globus-openssl-module-4.8-1.el6.x86_64.rpm
-grafana:
-  :rpm_name: grafana-4.6.3-1.x86_64.rpm
-  :source: https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-4.6.3-1.x86_64.rpm
 gweb:
   :rpm_name: gweb-2.1.8-1.noarch.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/gweb-2.1.8-1.noarch.rpm
@@ -167,9 +158,6 @@ libyaml:
 libyaml-devel:
   :rpm_name: libyaml-devel-0.1.4-2.el6.x86_64.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/libyaml-devel-0.1.4-2.el6.x86_64.rpm
-logstash:
-  :rpm_name: logstash-5.6.10.rpm
-  :source: https://artifacts.elastic.co/downloads/logstash/logstash-5.6.10.rpm
 mrepo:
   :rpm_name: mrepo-0.8.7-2.el6.noarch.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/m/mrepo-0.8.7-2.el6.noarch.rpm

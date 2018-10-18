@@ -47,21 +47,12 @@ clamav-update:
 clamd:
   :rpm_name: clamd-0.100.2-2.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/clamd-0.100.2-2.el7.x86_64.rpm
-elasticsearch:
-  :rpm_name: elasticsearch-5.6.10.rpm
-  :source: https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.6.10.rpm
-elasticsearch-curator:
-  :rpm_name: elasticsearch-curator-5.5.4-1.x86_64.rpm
-  :source: https://packages.elastic.co/curator/5/centos/7/Packages/elasticsearch-curator-5.5.4-1.x86_64.rpm
 fortune-mod:
   :rpm_name: fortune-mod-1.99.1-17.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/f/fortune-mod-1.99.1-17.el7.x86_64.rpm
 fuse-sshfs:
   :rpm_name: fuse-sshfs-2.10-1.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/f/fuse-sshfs-2.10-1.el7.x86_64.rpm
-grafana:
-  :rpm_name: grafana-4.6.3-1.x86_64.rpm
-  :source: https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-4.6.3-1.x86_64.rpm
 gtk-murrine-engine:
   :rpm_name: gtk-murrine-engine-0.98.2-10.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/g/gtk-murrine-engine-0.98.2-10.el7.x86_64.rpm
@@ -113,9 +104,6 @@ libssh:
 libwnck:
   :rpm_name: libwnck-2.31.0-1.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/l/libwnck-2.31.0-1.el7.x86_64.rpm
-logstash:
-  :rpm_name: logstash-5.6.7.rpm
-  :source: https://artifacts.elastic.co/downloads/logstash/logstash-5.6.7.rpm
 lyx-fonts:
   :rpm_name: lyx-fonts-2.2.3-1.el7.noarch.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/l/lyx-fonts-2.2.3-1.el7.noarch.rpm
