@@ -9,6 +9,8 @@ This is the [SIMP](https://simp-project.com) supermodule.
 
 The latest release is [![GitHub release](https://img.shields.io/github/release/simp/simp-core.svg)](https://github.com/simp/simp-core/releases)
 
+You can find all full SIMP changelogs on [Read The Docs](https://simp.readthedocs.io/en/master/changelogs)
+
 1. [Supported releases](#supported-releases)
 2. [Getting Started](#getting-started)
 3. [Relevant Links](#relevant-links)
