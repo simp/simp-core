@@ -73,8 +73,8 @@ HOSTS:
       # RVM
       - 'runuser build_user -l -c "gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3"'
       - 'runuser build_user -l -c "curl -sSL https://get.rvm.io | bash -s stable"'
-      - 'runuser build_user -l -c "rvm install 2.1.9 --disable-binary"'
-      - 'runuser build_user -l -c "rvm use --default 2.1.9"'
+      - 'runuser build_user -l -c "rvm install 2.4.4 --disable-binary"'
+      - 'runuser build_user -l -c "rvm use --default 2.4.4"'
       - 'runuser build_user -l -c "rvm all do gem install bundler --no-ri --no-rdoc"'
 
       # Add some gems that will drag along 90% of what the build requires
