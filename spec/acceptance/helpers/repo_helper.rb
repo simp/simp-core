@@ -75,7 +75,7 @@ module Acceptance
             gpgkey=https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
                    https://download.simp-project.com/simp/GPGKEYS/RPM-GPG-KEY-SIMP-6
             sslverify=1
-            sslcacert=/etc/pki/tls/certs/c
+            sslcacert=/etc/pki/tls/certs/ca-bundle.crt
             metadata_expire=300
           EOM
         when :deps
