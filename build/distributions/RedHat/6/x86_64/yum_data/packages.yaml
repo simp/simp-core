@@ -47,42 +47,6 @@ ganglia-gmond:
 ganglia-gmond-python:
   :rpm_name: ganglia-gmond-python-3.7.2-2.el6.x86_64.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/g/ganglia-gmond-python-3.7.2-2.el6.x86_64.rpm
-globus-callout:
-  :rpm_name: globus-callout-3.15-1.el6.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/g/globus-callout-3.15-1.el6.x86_64.rpm
-globus-common:
-  :rpm_name: globus-common-17.4-1.el6.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/g/globus-common-17.4-1.el6.x86_64.rpm
-globus-gsi-callback:
-  :rpm_name: globus-gsi-callback-5.13-1.el6.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/g/globus-gsi-callback-5.13-1.el6.x86_64.rpm
-globus-gsi-cert-utils:
-  :rpm_name: globus-gsi-cert-utils-9.16-1.el6.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/g/globus-gsi-cert-utils-9.16-1.el6.x86_64.rpm
-globus-gsi-credential:
-  :rpm_name: globus-gsi-credential-7.14-1.el6.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/g/globus-gsi-credential-7.14-1.el6.x86_64.rpm
-globus-gsi-openssl-error:
-  :rpm_name: globus-gsi-openssl-error-3.8-1.el6.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/g/globus-gsi-openssl-error-3.8-1.el6.x86_64.rpm
-globus-gsi-proxy-core:
-  :rpm_name: globus-gsi-proxy-core-8.6-1.el6.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/g/globus-gsi-proxy-core-8.6-1.el6.x86_64.rpm
-globus-gsi-proxy-ssl:
-  :rpm_name: globus-gsi-proxy-ssl-5.10-1.el6.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/g/globus-gsi-proxy-ssl-5.10-1.el6.x86_64.rpm
-globus-gsi-sysconfig:
-  :rpm_name: globus-gsi-sysconfig-8.1-3.el6.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/g/globus-gsi-sysconfig-8.1-3.el6.x86_64.rpm
-globus-gss-assist:
-  :rpm_name: globus-gss-assist-11.2-1.el6.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/g/globus-gss-assist-11.2-1.el6.x86_64.rpm
-globus-gssapi-gsi:
-  :rpm_name: globus-gssapi-gsi-13.10-1.el6.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/g/globus-gssapi-gsi-13.10-1.el6.x86_64.rpm
-globus-openssl-module:
-  :rpm_name: globus-openssl-module-4.8-1.el6.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/g/globus-openssl-module-4.8-1.el6.x86_64.rpm
 gweb:
   :rpm_name: gweb-2.1.8-1.noarch.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/gweb-2.1.8-1.noarch.rpm
@@ -92,18 +56,9 @@ haveged:
 incron:
   :rpm_name: incron-0.5.9-1.el6.x86_64.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/i/incron-0.5.9-1.el6.x86_64.rpm
-lcgdm-libs:
-  :rpm_name: lcgdm-libs-1.10.0-5.el6.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/l/lcgdm-libs-1.10.0-5.el6.x86_64.rpm
 leiningen:
   :rpm_name: leiningen-2.0.0-0.2preview10.el6.noarch.rpm
   :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/leiningen-2.0.0-0.2preview10.el6.noarch.rpm
-lfc-libs:
-  :rpm_name: lfc-libs-1.10.0-5.el6.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/l/lfc-libs-1.10.0-5.el6.x86_64.rpm
-lfc-python:
-  :rpm_name: lfc-python-1.10.0-5.el6.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/l/lfc-python-1.10.0-5.el6.x86_64.rpm
 libNX_X11:
   :rpm_name: libNX_X11-3.5.0.32-3.el6.x86_64.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/l/libNX_X11-3.5.0.32-3.el6.x86_64.rpm
@@ -240,26 +195,26 @@ pssh:
   :rpm_name: pssh-2.3.1-5.el6.noarch.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/pssh-2.3.1-5.el6.noarch.rpm
 puppet-agent:
-  :rpm_name: puppet-agent-1.10.14-1.el6.x86_64.rpm
-  :source: http://yum.puppetlabs.com/el/6/PC1/x86_64/puppet-agent-1.10.14-1.el6.x86_64.rpm
+  :rpm_name: puppet-agent-5.5.7-1.el6.x86_64.rpm
+  :source: https://yum.puppetlabs.com/puppet5/el/6/x86_64/puppet-agent-5.5.7-1.el6.x86_64.rpm
 puppet-client-tools:
-  :rpm_name: puppet-client-tools-1.2.1-1.el6.x86_64.rpm
-  :source: http://yum.puppetlabs.com/el/6/PC1/x86_64/puppet-client-tools-1.2.1-1.el6.x86_64.rpm
+  :rpm_name: puppet-client-tools-1.2.4-1.el6.x86_64.rpm
+  :source: https://yum.puppetlabs.com/puppet5/el/6/x86_64/puppet-client-tools-1.2.4-1.el6.x86_64.rpm
+puppet5-release:
+  :rpm_name: puppet5-release-5.0.0-1.el6.noarch.rpm
+  :source: https://yum.puppetlabs.com/puppet5/el/6/x86_64/puppet5-release-5.0.0-1.el6.noarch.rpm
 puppetdb:
-  :rpm_name: puppetdb-4.4.0-1.el6.noarch.rpm
-  :source: https://yum.puppetlabs.com/el/6Server/PC1/x86_64/puppetdb-4.4.0-1.el6.noarch.rpm
+  :rpm_name: puppetdb-5.2.4-1.el6.noarch.rpm
+  :source: https://yum.puppetlabs.com/puppet5/el/6/x86_64/puppetdb-5.2.4-1.el6.noarch.rpm
 puppetdb-termini:
-  :rpm_name: puppetdb-termini-4.4.0-1.el6.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/6/PC1/x86_64/puppetdb-termini-4.4.0-1.el6.noarch.rpm
-puppetlabs-release-pc1:
-  :rpm_name: puppetlabs-release-pc1-1.1.0-5.el6.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/6/PC1/x86_64/puppetlabs-release-pc1-1.1.0-5.el6.noarch.rpm
+  :rpm_name: puppetdb-termini-5.2.4-1.el6.noarch.rpm
+  :source: https://yum.puppetlabs.com/puppet5/el/6/x86_64/puppetdb-termini-5.2.4-1.el6.noarch.rpm
 puppetserver:
-  :rpm_name: puppetserver-2.8.1-1.el6.noarch.rpm
-  :source: https://yum.puppetlabs.com/el/6Server/PC1/x86_64/puppetserver-2.8.1-1.el6.noarch.rpm
+  :rpm_name: puppetserver-5.3.5-1.el6.noarch.rpm
+  :source: https://yum.puppetlabs.com/puppet5/el/6/x86_64/puppetserver-5.3.5-1.el6.noarch.rpm
 pwgen:
-  :rpm_name: pwgen-2.07-1.el6.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/p/pwgen-2.07-1.el6.x86_64.rpm
+  :rpm_name: pwgen-2.08-1.el6.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/p/pwgen-2.08-1.el6.x86_64.rpm
 python-argparse:
   :rpm_name: python-argparse-1.2.1-2.1.el6.noarch.rpm
   :source: Red Hat Base Repository
