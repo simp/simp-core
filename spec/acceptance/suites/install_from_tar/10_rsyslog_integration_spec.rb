@@ -114,15 +114,12 @@ describe 'Validation of rsyslog forwarding' do
     '/etc/puppetlabs/code/environments/simp/modules/site'
   }
 
+  let(:original_default_hieradata) {
+    YAML.load(on(master, "cat #{default_yaml_filename}").stdout)
+  }
+
   let(:default_hieradata) {
-    # hieradata that allows beaker operations access
-    beaker_hiera = YAML.load(File.read("#{files_dir}/beaker_hiera.yaml"))
-
-    hiera        = beaker_hiera.merge( {
-      'simp::rsync_stunnel'         => master_fqdn,
-      'rsyslog::enable_tls_logging' => true,
-      'simp_rsyslog::forward_logs'  => true,
-
+    hiera = original_default_hieradata.merge( {
       # to ensure all hosts have a cron that runs every minute for a test below
       'swap::cron_step'             => 1,
 
@@ -419,7 +416,7 @@ describe 'Validation of rsyslog forwarding' do
 
     # turn off audit forwarding for future tests, as it can be prolific
     it 'should disable audit log forwarding' do
-      create_remote_file(master, default_yaml_filename, default_hieradata.to_yaml)
+      create_remote_file(master, default_yaml_filename, original_default_hieradata.to_yaml)
       on(hosts, 'puppet agent -t', :accept_all_exit_codes => true)
 
       # FIXME: Workaround for SIMP-5161 bug

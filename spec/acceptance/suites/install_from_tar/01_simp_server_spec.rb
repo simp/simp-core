@@ -28,6 +28,21 @@ describe 'install SIMP via release tarball' do
       'rsyslog::enable_tls_logging' => true,
       'simp_rsyslog::forward_logs'  => true
     } )
+
+    # Work around 128-bit cipher problems
+    # TODO:  Once SIMP-5507 is addressed, this workaround is *only*
+    # required when the el6 LDAP server is not in FIPS mode.
+    if master.host_hash[:platform] =~ /el-6/
+      hiera.merge!( {
+        'simp_openldap::server::conf::security' => [
+          'ssf=128',
+          'tls=128',
+          'update_ssf=128',
+          'simple_bind=128',
+          'update_tls=128',
+        ]
+      } )
+    end
     hiera
   }
 
