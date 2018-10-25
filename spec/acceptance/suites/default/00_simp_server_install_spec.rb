@@ -32,6 +32,7 @@ describe 'install environment via r10k and puppetserver' do
         # set the root password
         on(host, "sed -i 's/enforce_for_root//g' /etc/pam.d/*")
         on(host, 'echo password | passwd root --stdin')
+
         # set up needed repositories
         host.install_package('epel-release')
       end
@@ -50,13 +51,6 @@ describe 'install environment via r10k and puppetserver' do
 
     it 'should start puppetserver' do
       on(master, 'puppet resource service puppetserver ensure=running')
-    end
-
-    it 'should do set trusted_server_facts when appropriate' do
-      p_version = on(hosts.first,'puppet --version').stdout.strip
-      if Gem::Version.new(p_version) >= Gem::Version.new('5')
-        on(master, 'puppet config --section master set trusted_server_facts true')
-      end
     end
 
     it 'should update openssl to get TLS1.2 if needed' do

@@ -271,6 +271,7 @@ DEPENDENCIES
   net-telnet (< 0.2.0)
   parallel
   pry
+  pry-byebug
   pry-doc
   puppet (~> 5)
   puppet-lint
@@ -278,7 +279,7 @@ DEPENDENCIES
   puppetlabs_spec_helper
   rake
   ruby-progressbar
-  simp-beaker-helpers (>= 1.10.8, < 2.0)
+  simp-beaker-helpers (>= 1.11.2, < 2.0)
   simp-build-helpers (>= 0.1.0)
   simp-rake-helpers (>= 5.6.1, < 6.0)
 

@@ -48,7 +48,7 @@ describe 'sets up IPA clients' do
       EOF
       create_remote_file(master, '/etc/puppetlabs/code/environments/production/manifests/site.pp', site_pp)
 
-      hiera = YAML.load(on(master, 'cat /etc/puppetlabs/code/environments/production/hieradata/default.yaml').stdout)
+      hiera = YAML.load(on(master, 'cat /etc/puppetlabs/code/environments/production/data/default.yaml').stdout)
       default_yaml = hiera.merge(
         'simp_ipa::client::install::ensure'   => 'present',
         'simp_ipa::client::install::password' => enroll_pass,
@@ -59,14 +59,16 @@ describe 'sets up IPA clients' do
         #   'verbose' => nil,
         # }
       ).to_yaml
-      create_remote_file(master, '/etc/puppetlabs/code/environments/production/hieradata/default.yaml', default_yaml)
+      create_remote_file(master, '/etc/puppetlabs/code/environments/production/data/default.yaml', default_yaml)
     end
   end
 
   context 'add hosts to ipa server' do
     block_on(ipa_clients) do |client|
       it "should run host-add for #{client}" do
-        client_ip = fact_on(client,'ipaddress_eth1')
+        client_ip = internal_network_address(client)
+        expect(client_ip).to_not be_nil
+
         cmd = [
           'ipa -v host-add',
           "#{client}.#{ipa_domain}",
@@ -87,7 +89,7 @@ describe 'sets up IPA clients' do
           :desired_exit_codes => [0],
           :retry_interval     => 15,
           :max_retries        => 4,
-          :verbose            => true
+          :verbose            => true.to_s # work around beaker bug
         )
       end
     end

@@ -13,17 +13,29 @@ describe 'set up an IPA server' do
   ipa_domain     = domain
   ipa_realm      = ipa_domain.upcase
   ipa_fqdn       = fact_on(ipa_server, 'fqdn')
-  ipa_ip         = fact_on(ipa_server, 'ipaddress_eth1')
+  ipa_ip         = internal_network_address(ipa_server)
 
   context 'prepare ipa server' do
+    it 'ipa-server should have an internal network IP address' do
+      expect(ipa_ip).to_not be_nil
+    end
+
     it 'should install ipa-server' do
-      on(ipa_server, 'puppet resource package ipa-server ensure=present')
-      on(ipa_server, 'puppet resource package ipa-server-dns ensure=present')
+      result = on(ipa_server, 'cat /etc/oracle-release', :accept_all_exit_codes => true)
+      if result.exit_code == 0
+        # problem with OEL repos...need optional repos enabled in order
+        # for all the dependencies of the ipa-server package to resolve
+        ipa_server.install_package('yum-utils')
+        on(ipa_server, 'yum-config-manager --enable ol7_optional_latest')
+      end
+      ipa_server.install_package('ipa-server')
+      ipa_server.install_package('ipa-server-dns')
       if ipa_server.host_hash[:platform] =~ /el-6/
-        on(ipa_server, 'puppet resource package bind ensure=present')
-        on(ipa_server, 'puppet resource package bind-dyndb-ldap ensure=present')
+        ipa_server.install_package('bind')
+        ipa_server.install_package('bind-dyndb-ldap')
       end
     end
+
     it 'should make sure the hostname is fully qualified' do
       fqdn = "#{ipa_server}.#{domain}"
       on(ipa_server, "hostname #{fqdn}")
@@ -35,9 +47,12 @@ describe 'set up an IPA server' do
         EOF
       )
     end
+
     it 'should have only fqdns in the hosts file' do
       on(ipa_server, 'puppet resource host ipa ensure=absent')
+      on(ipa_server, 'cat /etc/hosts')
     end
+
     it 'should reboot the server' do
       ipa_server.reboot
       retry_on(ipa_server, 'uptime', :retry_interval => 15 )
@@ -46,7 +61,7 @@ describe 'set up an IPA server' do
 
   context 'classify nodes' do
     it 'modify the existing hieradata' do
-      hiera = YAML.load(on(master, 'cat /etc/puppetlabs/code/environments/production/hieradata/default.yaml').stdout)
+      hiera = YAML.load(on(master, 'cat /etc/puppetlabs/code/environments/production/data/default.yaml').stdout)
       default_yaml = hiera.merge(
         'simp_options::sssd'           => true,
         'simp_options::ldap'           => true,
@@ -66,7 +81,7 @@ describe 'set up an IPA server' do
         },
         'ssh::server::conf::passwordauthentication' => true,
       ).to_yaml
-      create_remote_file(master, '/etc/puppetlabs/code/environments/production/hieradata/default.yaml', default_yaml)
+      create_remote_file(master, '/etc/puppetlabs/code/environments/production/data/default.yaml', default_yaml)
     end
 
     it 'should open ports' do
@@ -91,7 +106,7 @@ describe 'set up an IPA server' do
           :desired_exit_codes => [0],
           :retry_interval     => 15,
           :max_retries        => 3,
-          :verbose            => true
+          :verbose            => true.to_s # work around beaker bug
         )
       end
     end
