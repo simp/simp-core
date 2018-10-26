@@ -1,4 +1,3 @@
-require 'spec_helper_tar'
 
 test_name 'rsyslog integration'
 
@@ -15,16 +14,26 @@ test_name 'rsyslog integration'
 #    fragile, as application syslog message identity, level, and content are
 #    all subject to change.  This means the test, and possibly simp_rsyslog,
 #    may need to be updated when applications are updated.
-# 2) There are numerous inconsistencies in the names of local and
+# 2) FIXME: Sometimes a restart of the rsyslog service on the remote rsyslog
+#    servers is required in order for the messages to be forwarded.
+#    Don't know why this happens sporadically. A test workaround has been
+#    implemented.
+# 3) FIXME: Have had problems with auditd logs not being forwarded and
+#    the only solution is to restart auditd.  Examination of the auditd
+#    source code does not show an obvious reason why the dispatch stops
+#    working.  Events to the syslog dispatcher that can't be sent to syslog
+#    are simply discarded and the syslog C api is being used normally...
+#    A test workaround has been implemented.
+# 4) SIMP-3480: There are numerous inconsistencies in the names of local and
 #    remote logs, and into which local/remote log messages are written.
-#    (See SIMP-3480).  The tests are written for the *current* rsyslog
-#    configuration, not the *desired* rsyslog configuration.
-# 3) In most cases, messages from a syslog server, itself, that would
+#    The tests are written for the *current* rsyslog configuration, not the
+#    *desired* rsyslog configuration.
+# 5) In most cases, messages from a syslog server, itself, that would
 #    have been forwarded if the host was not a syslog server, are written
 #    to /var/log/hosts/<syslog server fqdn>, instead of the local file
 #    to which other hosts write their messages. This provides consistency
 #    for the sysadmins examining host logs on the syslog server.
-# 4) More tests need to be done...Notes can be found in a
+# 6) More tests need to be done...Notes can be found in a
 #    commented out block at the end of the file.
 #
 describe 'Validation of rsyslog forwarding' do
@@ -35,18 +44,52 @@ describe 'Validation of rsyslog forwarding' do
   domain         = fact_on(master, 'domain')
   master_fqdn    = fact_on(master, 'fqdn')
 
-  # messages       = array of message search strings
-  # remote_log     = basename of remote log file
-  # hosts          = hosts for which messages should exist
-  # domain         = domain of test servers
+  # Restarts rsyslog service on syslog_servers if that has not already
+  # been done
+  #
+  # +validation_failure+: original exception from validation of forwarded messages
+  # +retried+:            whether restart has already been tried
+  # +syslog_servers+:     array of remote syslog server hosts (objects)
+  #
+  # @raise original exception if rsyslog service restart has already been tried
+  def handle_failed_message_forwarding(validation_failure, retried, syslog_servers)
+    if retried
+      $stderr.puts '#'*80
+      $stderr.puts 'Restart of rsyslog on the remote rsyslog servers did not allow logs to be forwarded'
+      $stderr.puts '#'*80
+      raise validation_failure
+    end
+
+    $stderr.puts '>'*80
+    $stderr.puts 'WARNING: Failed to forward logs.'
+    $stderr.puts 'WARNING: Restarting rsyslog on the remote rsyslog servers.'
+    $stderr.puts '<'*80
+    restart_rsyslog(syslog_servers)
+  end
+
+  # Verifies messages are persisted on the remote syslog servers
+  #
+  # +messages+:   array of message search strings
+  # +remote_log+: basename of remote log file
+  # +hosts+:      hosts for which messages should exist
+  # +domain+:     domain of test servers
+  #
+  # Will restart rsyslog service on remote syslog servers, once,
+  # if the messages are not found and then rerun the verification
   def verify_remote_log_messages(messages, remote_log, hosts, domain)
     syslog_servers = hosts_with_role(hosts, 'syslog_server')
-
-    hosts.each do |host|
-      logdir = "/var/log/hosts/#{host.name}.#{domain}"
-      messages.each do |message|
-        on(syslog_servers, "egrep '#{message}' #{logdir}/#{remote_log}")
+    retried = false
+    begin
+      hosts.each do |host|
+        logdir = "/var/log/hosts/#{host.name}.#{domain}"
+        messages.each do |message|
+          on(syslog_servers, "egrep '#{message}' #{logdir}/#{remote_log}")
+        end
       end
+    rescue Beaker::Host::CommandFailure => e
+      handle_failed_message_forwarding(e, retried, syslog_servers)
+      retried = true
+      retry
     end
   end
 
@@ -64,22 +107,19 @@ describe 'Validation of rsyslog forwarding' do
   let(:files_dir) { 'spec/acceptance/common_files' }
 
   let(:default_yaml_filename) {
-    '/etc/puppetlabs/code/environments/simp/hieradata/default.yaml'
+    '/etc/puppetlabs/code/environments/simp/data/default.yaml'
   }
 
   let(:site_module_path) {
     '/etc/puppetlabs/code/environments/simp/modules/site'
   }
 
+  let(:original_default_hieradata) {
+    YAML.load(on(master, "cat #{default_yaml_filename}").stdout)
+  }
+
   let(:default_hieradata) {
-    # hieradata that allows beaker operations access
-    beaker_hiera = YAML.load(File.read("#{files_dir}/beaker_hiera.yaml"))
-
-    hiera        = beaker_hiera.merge( {
-      'simp::rsync_stunnel'         => master_fqdn,
-      'rsyslog::enable_tls_logging' => true,
-      'simp_rsyslog::forward_logs'  => true,
-
+    hiera = original_default_hieradata.merge( {
       # to ensure all hosts have a cron that runs every minute for a test below
       'swap::cron_step'             => 1,
 
@@ -138,9 +178,16 @@ describe 'Validation of rsyslog forwarding' do
     end
 
     it 'should forward puppetserver logs' do
-      logdir = "/var/log/hosts/#{master.name}.#{domain}"
-      on(syslog_servers, "ls #{logdir}/puppetserver.log")
-      on(syslog_servers, "grep 'Could not find class ::oops ' #{logdir}/puppetserver_error.log")
+      retried = false
+      begin
+        logdir = "/var/log/hosts/#{master.name}.#{domain}"
+        on(syslog_servers, "ls #{logdir}/puppetserver.log")
+        on(syslog_servers, "grep 'Could not find class ::oops ' #{logdir}/puppetserver_error.log")
+      rescue Beaker::Host::CommandFailure => e
+        handle_failed_message_forwarding(e, retried, syslog_servers)
+        retried = true
+        retry
+      end
     end
 
     it 'should generate systemd log messages in the local secure log' do
@@ -159,15 +206,22 @@ describe 'Validation of rsyslog forwarding' do
     end
 
     it 'should forward systemd logs' do
-      hosts.each do |host|
-        facts = JSON.load(on(host, 'puppet facts').stdout)
-        if facts['values']['systemd']
-          logdir = "/var/log/hosts/#{host.name}.#{domain}"
-          on(syslog_servers, "grep 'systemd: Stopping Entropy Daemon based on the HAVEGE' #{logdir}/secure.log")
-          on(syslog_servers, "grep 'systemd: Starting Entropy Daemon based on the HAVEGE' #{logdir}/secure.log")
-        else
-          puts "Skipping host #{host.name}, which does not use systemd"
+      retried = false
+      begin
+        hosts.each do |host|
+          facts = JSON.load(on(host, 'puppet facts').stdout)
+          if facts['values']['systemd']
+            logdir = "/var/log/hosts/#{host.name}.#{domain}"
+            on(syslog_servers, "grep 'systemd: Stopping Entropy Daemon based on the HAVEGE' #{logdir}/secure.log")
+            on(syslog_servers, "grep 'systemd: Starting Entropy Daemon based on the HAVEGE' #{logdir}/secure.log")
+          else
+            puts "Skipping host #{host.name}, which does not use systemd"
+          end
         end
+      rescue Beaker::Host::CommandFailure => e
+        handle_failed_message_forwarding(e, retried, syslog_servers)
+        retried = true
+        retry
       end
     end
 
@@ -259,44 +313,40 @@ describe 'Validation of rsyslog forwarding' do
       verify_remote_log_messages(['kernel: IPT:'], 'iptables.log', hosts, domain)
     end
 
-    it 'should generate a local sudosh.log' do
+    it 'should generate a local tlog.log' do
       # This test will use an expect script that ssh's to a host as a
-      # local user configured with no password sudosh privileges, runs
-      # 'sudo sudosh', and then executes a root-level command.
+      # local user configured with no password sudo privileges, runs
+      # 'sudo su - root', and then executes a root-level command.
       # Before the user can login, we need to set the user's password
       on(hosts, "echo '#{test_password}' | passwd localadmin --stdin")
-      scp_to(master, "#{files_dir}/ssh_sudo_sudosh_script", '/usr/local/bin/ssh_sudo_sudosh_script')
-      on(master, "chmod +x /usr/local/bin/ssh_sudo_sudosh_script")
+      remote_script = install_expect_script(master, "#{files_dir}/ssh_sudo_su_root_script")
       hosts.each do |host|
-        base_cmd ="/usr/local/bin/ssh_sudo_sudosh_script localadmin #{host.name} #{test_password}"
+        base_cmd ="#{remote_script} localadmin #{host.name} #{test_password}"
 
         # FIXME: Workaround for SIMP-5082
         cmd = adjust_ssh_ciphers_for_expect_script(base_cmd, master, host)
         on(master, cmd)
 
         unless host.host_hash[:roles].include?('syslog_server')
-          on(host, "grep 'sudosh: starting session for localadmin as root' /var/log/sudosh.log")
-          on(host, "grep 'sudosh: stopping session for localadmin as root' /var/log/sudosh.log")
+          on(host, "egrep '(tlog-rec-session|tlog): .*,.user.:.root.,' /var/log/tlog.log")
         end
       end
     end
 
-    it 'should forward sudosh logs' do
+    it 'should forward tlog logs' do
       verify_remote_log_messages(
-        [ 'sudosh: starting session for localadmin as root',
-          'sudosh: stopping session for localadmin as root'
-        ],
-        'sudosh.log', hosts, domain)
+        [ '(tlog-rec-session|tlog): .*,.user.:.root.,' ],  'tlog.log',
+        hosts, domain)
     end
 
     it 'should generate sudo messages in the local secure log' do
-      # The previous test should have generated sudo logs about 'sudo sudosh'
-      on(non_syslog_servers, "grep 'sudo: localadmin : .* COMMAND=.*/sudosh' /var/log/secure")
+      # The previous test should have generated sudo logs about 'sudo su - root'
+      on(non_syslog_servers, "grep 'sudo: localadmin : .* COMMAND=.*/su - root' /var/log/secure")
     end
 
     it 'should forward sudo logs' do
       verify_remote_log_messages(
-        ['sudo: localadmin : .* COMMAND=.*/sudosh'], 'secure.log',
+        ['sudo: localadmin : .* COMMAND=.*/su - root'], 'secure.log',
         hosts, domain)
     end
 
@@ -366,7 +416,7 @@ describe 'Validation of rsyslog forwarding' do
 
     # turn off audit forwarding for future tests, as it can be prolific
     it 'should disable audit log forwarding' do
-      create_remote_file(master, default_yaml_filename, default_hieradata.to_yaml)
+      create_remote_file(master, default_yaml_filename, original_default_hieradata.to_yaml)
       on(hosts, 'puppet agent -t', :accept_all_exit_codes => true)
 
       # FIXME: Workaround for SIMP-5161 bug

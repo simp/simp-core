@@ -163,10 +163,6 @@
       "version_requirement": ">= 0.1.4 < 1.0.0"
     },
     {
-      "name": "simp/freeradius",
-      "version_requirement": ">= 7.0.1 < 8.0.0"
-    },
-    {
       "name": "simp/haveged",
       "version_requirement": ">= 0.4.5 < 1.0.0"
     },

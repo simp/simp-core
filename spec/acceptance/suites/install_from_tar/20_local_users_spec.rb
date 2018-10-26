@@ -21,12 +21,10 @@ describe 'local user access' do
     end
 
     it 'local user should be able to login via ssh' do
-      # This test will use an expect script that ssh's to a host as a
-      # user and then runs 'date'.
-      scp_to(master, "#{files_dir}/ssh_cmd_script", '/usr/local/bin/ssh_cmd_script')
-      on(master, "chmod +x /usr/local/bin/ssh_cmd_script")
+      # This expect script ssh's to a host as a user and then runs 'date'.
+      remote_script = install_expect_script(master, "#{files_dir}/ssh_cmd_script")
       hosts.each do |host|
-        base_cmd ="/usr/local/bin/ssh_cmd_script localadmin #{host.name} #{test_password(0)} date"
+        base_cmd ="#{remote_script} localadmin #{host.name} #{test_password(0)} date"
 
         # FIXME: Workaround for SIMP-5082
         cmd = adjust_ssh_ciphers_for_expect_script(base_cmd, master, host)
@@ -35,14 +33,15 @@ describe 'local user access' do
     end
 
     it 'user should be able to change password' do
-      scp_to(master, "#{files_dir}/ssh_change_password_script", '/usr/local/bin/ssh_change_password_script')
-      on(master, "chmod +x /usr/local/bin/ssh_change_password_script")
+      # This expect script ssh's to a host as a user and changes the user's password
+      # after login
+      remote_script = install_expect_script(master, "#{files_dir}/ssh_change_password_script")
 
       # Allow user to change the password early
       on(hosts, 'passwd --minimum 0 localadmin')
 
       hosts.each do |host|
-        base_cmd ="/usr/local/bin/ssh_change_password_script localadmin #{host.name} #{test_password(0)} #{test_password(1)}"
+        base_cmd ="#{remote_script} localadmin #{host.name} #{test_password(0)} #{test_password(1)}"
 
         # FIXME: Workaround for SIMP-5082
         cmd = adjust_ssh_ciphers_for_expect_script(base_cmd, master, host)
@@ -52,7 +51,7 @@ describe 'local user access' do
 
     it 'local user should be able to login with new password via ssh' do
       hosts.each do |host|
-        base_cmd ="/usr/local/bin/ssh_cmd_script localadmin #{host.name} #{test_password(1)} date"
+        base_cmd ="#{EXPECT_SCRIPT_DIR}/ssh_cmd_script localadmin #{host.name} #{test_password(1)} date"
 
         # FIXME: Workaround for SIMP-5082
         cmd = adjust_ssh_ciphers_for_expect_script(base_cmd, master, host)

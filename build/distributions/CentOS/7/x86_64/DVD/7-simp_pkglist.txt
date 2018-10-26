@@ -278,7 +278,6 @@ foomatic-db-ppds
 foomatic-filters
 fprintd
 fprintd-pam
-freeradius
 freetype
 freetype-devel
 fuse

@@ -6,8 +6,8 @@
     box_6 = 'centos/6'
     box_7 = 'centos/7'
   when /oracle/ || /^oel/
-    box_6 = 'elastic/oel-6-x86_64'
-    box_7 = 'elastic/oel-7-x86_64'
+    box_6 = 'onyxpoint/oel-6-x86_64'
+    box_7 = 'onyxpoint/oel-7-x86_64'
   else
     box_6 = 'centos/6'
     box_7 = 'centos/7'
@@ -31,6 +31,7 @@ HOSTS:
         baseurl: 'https://packagecloud.io/simp-project/6_X_Dependencies/el/7/$basearch'
         gpgkeys:
           - https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
+          - https://download.simp-project.com/simp/GPGKEYS/RPM-GPG-KEY-SIMP-6
           - https://yum.puppet.com/RPM-GPG-KEY-puppetlabs
           - https://yum.puppet.com/RPM-GPG-KEY-puppet
           - https://apt.postgresql.org/pub/repos/yum/RPM-GPG-KEY-PGDG-96
@@ -50,6 +51,7 @@ HOSTS:
         baseurl: 'https://packagecloud.io/simp-project/6_X_Dependencies/el/7/$basearch'
         gpgkeys:
           - https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
+          - https://download.simp-project.com/simp/GPGKEYS/RPM-GPG-KEY-SIMP-6
           - https://yum.puppet.com/RPM-GPG-KEY-puppetlabs
           - https://yum.puppet.com/RPM-GPG-KEY-puppet
           - https://apt.postgresql.org/pub/repos/yum/RPM-GPG-KEY-PGDG-96
@@ -68,6 +70,7 @@ HOSTS:
         baseurl: 'https://packagecloud.io/simp-project/6_X_Dependencies/el/6/$basearch'
         gpgkeys:
           - https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
+          - https://download.simp-project.com/simp/GPGKEYS/RPM-GPG-KEY-SIMP-6
           - https://yum.puppet.com/RPM-GPG-KEY-puppetlabs
           - https://yum.puppet.com/RPM-GPG-KEY-puppet
           - https://apt.postgresql.org/pub/repos/yum/RPM-GPG-KEY-PGDG-96
@@ -80,6 +83,8 @@ CONFIG:
   type:      aio
   vagrant_memsize: 256
   synced_folder: disabled
-<% if ENV['BEAKER_PUPPET_ENVIRONMENT'] -%>
-  puppet_environment: <%= ENV['BEAKER_PUPPET_ENVIRONMENT'] %>
+<% if ENV['BEAKER_PUPPET_COLLECTION'] -%>
+  puppet_collection: <%= ENV['BEAKER_PUPPET_COLLECTION'] %>
+<% else -%>
+  puppet_collection: puppet5
 <% end -%>

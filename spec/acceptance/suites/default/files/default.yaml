@@ -1,52 +1,57 @@
 ---
-# Options
-simp_options::dns::servers: ['8.8.8.8']
-simp_options::ntpd::servers: ['time.nist.gov']
-simp_options::ldap::bind_pw: 's00per sekr3t!'
-simp_options::ldap::bind_hash: '{SSHA}foobarbaz!!!!'
-simp_options::ldap::sync_pw: 's00per sekr3t!'
-simp_options::ldap::sync_hash: '{SSHA}foobarbaz!!!!'
-simp_options::ldap::root_hash: '{SSHA}foobarbaz!!!!'
-simp_options::auditd: true
-simp_options::fips: false
-simp_options::haveged: true
-simp_options::logrotate: true
-simp_options::pam: true
-simp_options::selinux: true
-simp_options::stunnel: true
-simp_options::tcpwrappers: true
-simp_options::firewall: true
-simp_options::package_ensure: installed
-sssd::domains: ['LOCAL']
-
-# Settings required for acceptance test, some may be required
+# Options that would normally have been pre-set or queried for if
+# rubygem-simp-cli had been installed an 'simp config' had been run
 simp::scenario: simp
+simp_options::auditd: true
 simp_options::clamav: false
+simp_options::dns::servers: ['8.8.8.8']
+simp_options::firewall: true
+simp_options::haveged: true
+simp_options::ldap::bind_hash: "{SSHA}zzIihXlCUh9ejl6mGhIPyvIfG8I8yTsL"
+simp_options::ldap::bind_pw: m-Y2PFhrUE6Y.dx0joLicL%IUm5I9TtO
+simp_options::ldap::sync_hash: "{SSHA}oeKnIem05NR8lTVonEdj+TBIryxdhNal"
+simp_options::ldap::sync_pw: OLIffaIr5pkZgvLYfqR%2W6+VtQvlAjy
+simp_options::logrotate: true
+simp_options::ntpd::servers: ['time.nist.gov']
+simp_options::package_ensure: installed
+simp_options::pam: true
 simp_options::pki: true
 simp_options::pki::source: '/etc/pki/simp-testing/pki'
-simp_options::trusted_nets: ['0.0.0.0/0']
-simp::yum::os_update_url: http://mirror.centos.org/centos/$releasever/os/$basearch/
-simp::yum::enable_simp_repos: false
-simp::scenario::base::puppet_server_hosts_entry: false
+simp_options::stunnel: true
+simp_options::tcpwrappers: true
+sssd::domains: ['LOCAL']
 
 pupmod::master::log_level: INFO
-# Make sure puppet doesn't run (hopefully)
+
+# Settings to make beaker happy
+sudo::user_specifications:
+  vagrant_all:
+    user_list:
+    - vagrant
+    cmnd:
+    - ALL
+    passwd: false
+pam::access::users:
+  defaults:
+    origins:
+    - ALL
+    permission: '+'
+  vagrant:
+ssh::server::conf::permitrootlogin: true
+ssh::server::conf::authorizedkeysfile: '.ssh/authorized_keys'
+
+# The following setting is because $server_facts['serverip'] is
+# incorrect in a beaker/vagrant (multi-interface) environment
+simp::puppet_server_hosts_entry: false
+
+# Make sure puppet doesn't run automatically (hopefully)
 pupmod::agent::cron::minute: '0'
 pupmod::agent::cron::hour: '0'
 pupmod::agent::cron::weekday: '0'
 pupmod::agent::cron::month: '1'
 
-# Settings to make beaker happy
-sudo::user_specifications:
-  vagrant_all:
-    user_list: ['vagrant']
-    cmnd: ['ALL']
-    passwd: false
-pam::access::users:
-  defaults:
-    origins:
-      - ALL
-    permission: '+'
-  vagrant:
-ssh::server::conf::permitrootlogin: true
-ssh::server::conf::authorizedkeysfile: .ssh/authorized_keys
+#TODO Figure out why these aren't set in the tests?
+#puppetdb::master::config::puppetdb_port: 8139
+#puppetdb::master::config::puppetdb_server: "%{hiera('simp_options::puppet::server')}"
+#simp_options::puppet::ca_port
+

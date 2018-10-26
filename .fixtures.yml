@@ -1,0 +1,5 @@
+---
+# Workaround SIMP-5498 (BEAKER_fips=yes requires a .fixtures.yaml)
+fixtures:
+  symlinks:
+    garbage: "#{source_dir}/spec/fixtures/modules"

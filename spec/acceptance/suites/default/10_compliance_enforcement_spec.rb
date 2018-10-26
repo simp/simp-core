@@ -1,4 +1,4 @@
-require 'spec_helper_acceptance'
+require 'spec_helper_integration'
 
 test_name 'compliance enforcement'
 
@@ -17,7 +17,7 @@ describe 'compliance enforcement' do
         EOS
       }
 
-      let(:hieradata_dir) { '/etc/puppetlabs/code/environments/production/hieradata' }
+      let(:hieradata_dir) { '/etc/puppetlabs/code/environments/production/data' }
       let(:hiera_yaml) { <<-EOM
 ---
 version: 5

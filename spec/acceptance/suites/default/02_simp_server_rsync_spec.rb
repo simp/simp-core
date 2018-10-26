@@ -13,6 +13,7 @@ describe 'install rsync from GitHub (not rpm) and test simp::server::rsync_share
   context 'master' do
     masters.each do |master|
       it 'should prepare the rsync server environment' do
+        # FIXME This test does not adequately set up the rsync environment
         tmpdir = create_tmpdir_on(master)
         # master.install_package('selinux-policy-devel')
 
@@ -52,13 +53,13 @@ describe 'install rsync from GitHub (not rpm) and test simp::server::rsync_share
       end
 
       it 'modify the existing hieradata' do
-        hiera = YAML.load(on(master, 'cat /etc/puppetlabs/code/environments/production/hieradata/default.yaml').stdout)
+        hiera = YAML.load(on(master, 'cat /etc/puppetlabs/code/environments/production/data/default.yaml').stdout)
         default_yaml = hiera.merge(
           'simp_options::rsync'  => true,
           'simp_options::clamav' => true,
           'simp::scenario::base::rsync_stunnel' => master_fqdn
         ).to_yaml
-        create_remote_file(master, '/etc/puppetlabs/code/environments/production/hieradata/default.yaml', default_yaml)
+        create_remote_file(master, '/etc/puppetlabs/code/environments/production/data/default.yaml', default_yaml)
       end
     end
   end
@@ -70,7 +71,7 @@ describe 'install rsync from GitHub (not rpm) and test simp::server::rsync_share
           :desired_exit_codes => [0],
           :retry_interval     => 15,
           :max_retries        => 3,
-          :verbose            => true
+          :verbose            => true.to_s # work around beaker bug
         )
       end
     end

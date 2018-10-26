@@ -22,7 +22,7 @@ send "whoami\r"
 expect "$user@$host "
 send "pwd\r"
 expect "$user@$host "
-send "sudo sudosh\r"
+send "sudo su - root\r"
 
 # root may not have /etc/bashrc in its bashrc, so wait
 # for a minimal prompt separator ' ' (yes, a very weak

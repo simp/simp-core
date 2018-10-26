@@ -6,29 +6,18 @@ test_name 'puppetserver'
 
 describe 'install puppetserver from puppet modules' do
 
-  agents      = hosts_with_role(hosts, 'agent')
-  master_fqdn = fact_on(master, 'fqdn')
-  puppetserver_status_cmd = [
-    'curl -sk',
-    "--cert /etc/puppetlabs/puppet/ssl/certs/#{master_fqdn}.pem",
-    "--key /etc/puppetlabs/puppet/ssl/private_keys/#{master_fqdn}.pem",
-    "https://#{master_fqdn}:8140/status/v1/services",
-    '| python -m json.tool',
-    '| grep state',
-    '| grep running'
-  ].join(' ')
+  domain       = fact_on(master, 'domain')
+  trusted_nets = host_networks(master)
+  master_fqdn  = fact_on(master, 'fqdn')
+  agents       = hosts_with_role(hosts, 'agent')
+  puppetserver_status_cmd = puppetserver_status_command(master_fqdn)
 
   master_manifest = <<-EOF
     # Use our puppet module to set up puppetserver
     class { 'pupmod::master':
       firewall     => true,
-      trusted_nets => ['0.0.0.0/0'],
+      trusted_nets => ['#{trusted_nets.join("', '")}'],
       log_level    => 'INFO'
-    }
-    # pupmod::master::autosign { '*': entry => '*' }
-    exec { 'set autosign':
-      command => '/opt/puppetlabs/bin/puppet config --section master set autosign true',
-      unless  => '/opt/puppetlabs/bin/puppet config --section master print autosign | grep true'
     }
 
     # Maintain connection to the VM
@@ -55,14 +44,20 @@ describe 'install puppetserver from puppet modules' do
 
   context 'bootstrap simp server' do
     it 'should set up a simp server' do
-       apply_manifest_on(master, master_manifest, :accept_all_exit_codes => true)
-       apply_manifest_on(master, master_manifest, :accept_all_exit_codes => true)
-       master.reboot
-       apply_manifest_on(master, master_manifest, :catch_failures => true)
-     end
-     it 'should be idempotent' do
-       apply_manifest_on(master, master_manifest, :catch_changes => true )
-     end
+      apply_manifest_on(master, master_manifest, :accept_all_exit_codes => true)
+      apply_manifest_on(master, master_manifest, :accept_all_exit_codes => true)
+      master.reboot
+      apply_manifest_on(master, master_manifest, :catch_failures => true)
+    end
+
+    it 'should be idempotent' do
+      apply_manifest_on(master, master_manifest, :catch_changes => true )
+    end
+
+    it 'should enable autosign' do
+      enable_puppet_autosign(master, domain)
+    end
+
   end
 
   context 'classify nodes' do
@@ -84,27 +79,22 @@ describe 'install puppetserver from puppet modules' do
 
     yaml         = YAML.load(File.read('spec/acceptance/suites/default/files/default.yaml'))
     default_yaml = yaml.merge(
+      'simp_options::fips'           => (ENV['BEAKER_fips'] == 'yes'),
       'simp_options::puppet::server' => master_fqdn,
       'simp_options::puppet::ca'     => master_fqdn,
-      'simp::yum::servers'           => [master_fqdn]
+      'simp_options::trusted_nets'   => trusted_nets
     ).to_yaml
 
     it 'should install the control repo' do
-      on(master, 'mkdir -p /etc/puppetlabs/code/environments/production/{hieradata,manifests} /var/simp/environments/production/{simp_autofiles,site_files/modules/pki_files/files/keydist}')
+      on(master, 'mkdir -p /etc/puppetlabs/code/environments/production/{data,manifests} /var/simp/environments/production/{simp_autofiles,site_files/modules/pki_files/files/keydist}')
 
-      # use hiera 5 if possible
-      p_version = on(hosts.first,'puppet --version').stdout.strip
-      if Gem::Version.new(p_version) >= Gem::Version.new('4.10')
-        scp_to(master, 'spec/acceptance/suites/default/files/hiera5.yaml', '/etc/puppetlabs/code/environments/production/hiera.yaml')
-      else
-        scp_to(master, 'spec/acceptance/suites/default/files/hiera.yaml', '/etc/puppetlabs/puppet/hiera.yaml')
-      end
+      scp_to(master, 'spec/acceptance/suites/default/files/hiera5.yaml', '/etc/puppetlabs/code/environments/production/hiera.yaml')
 
       create_remote_file(master, '/etc/puppetlabs/code/environments/production/manifests/site.pp', site_pp)
-      create_remote_file(master, '/etc/puppetlabs/code/environments/production/hieradata/default.yaml', default_yaml)
+      create_remote_file(master, '/etc/puppetlabs/code/environments/production/data/default.yaml', default_yaml)
 
-      on(master, 'chown -R root.puppet /etc/puppetlabs/code/environments/production/{hieradata,manifests} /var/simp/environments/production/site_files/modules/pki_files/files/keydist')
-      on(master, 'chmod -R g+rX /etc/puppetlabs/code/environments/production/{hieradata,manifests} /var/simp/environments/production/site_files/modules/pki_files/files/keydist')
+      on(master, 'chown -R root.puppet /etc/puppetlabs/code/environments/production/{data,manifests} /var/simp/environments/production/site_files/modules/pki_files/files/keydist')
+      on(master, 'chmod -R g+rX /etc/puppetlabs/code/environments/production/{data,manifests} /var/simp/environments/production/site_files/modules/pki_files/files/keydist')
       on(master, 'chown -R puppet.puppet /var/simp/environments/production/simp_autofiles')
 
       on(master, 'puppet resource service puppetserver ensure=stopped')
@@ -127,7 +117,7 @@ describe 'install puppetserver from puppet modules' do
           :desired_exit_codes => [0,2],
           :retry_interval     => 15,
           :max_retries        => 5,
-          :verbose            => true
+          :verbose            => true.to_s # work around beaker bug
         )
 
         # Reboot and wait for machine to come back up
@@ -140,7 +130,7 @@ describe 'install puppetserver from puppet modules' do
           :desired_exit_codes => [0],
           :retry_interval     => 15,
           :max_retries        => 3,
-          :verbose            => true
+          :verbose            => true.to_s # work around beaker bug
         )
       end
     end
