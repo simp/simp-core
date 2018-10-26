@@ -106,10 +106,9 @@
     # Exclude the problematic puppet-archive module.
     # ('puppet generate types' fails with puppet-archive).
     - 'pupmod-puppetlabs-stdlib'
-# FIXME
-#  :external_dependencies:
-#    'rubygem-puppetserver-toml':
-#      :min: '0.1.2'
+  :external_dependencies:
+    'rubygem-puppetserver-toml':
+      :min: '0.2.0'
 
 'java':
   :requires:
