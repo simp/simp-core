@@ -260,7 +260,6 @@ glibc-devel
 glibc-headers
 glibc-static
 glibc-utils
-glib-networking
 gmp
 gnome-applets
 gnome-desktop
@@ -977,8 +976,8 @@ ruby-rdoc
 ruby-ri
 ruby-static
 ruby-tcltk
-rubygem-rake
 rubygem-flexmock
+rubygem-rake
 rubygems
 rubygems-devel
 sabayon-apply
