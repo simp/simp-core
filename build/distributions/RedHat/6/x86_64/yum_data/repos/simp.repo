@@ -22,9 +22,7 @@ gpgkey=https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGK
 [simp-legacy-base]
 name=simp-legacy-base
 baseurl=https://dl.bintray.com/simp/4.2.X
-enabled=0
 
 [simp-legacy-ext]
 name=simp-legacy-ext
 baseurl=https://dl.bintray.com/simp/4.2.X-Ext
-enabled=0
