@@ -1222,7 +1222,7 @@ redhat-lsb-printing
 redhat-lsb-submod-multimedia
 redhat-lsb-submod-security
 redhat-menus
-redhat-release
+redhat-release-server
 redhat-rpm-config
 regexp
 relaxngDatatype

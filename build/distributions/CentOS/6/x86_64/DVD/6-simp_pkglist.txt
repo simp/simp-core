@@ -946,7 +946,7 @@ redhat-lsb-graphics
 redhat-lsb-printing
 redhat-menus
 redhat-rpm-config
-redhat-release
+redhat-release-server
 regexp
 resource-agents
 rgmanager
