@@ -937,6 +937,7 @@ rdma
 readahead
 readline
 redhat-bookmarks
+redhat-indexhtml
 redhat-logos
 redhat-lsb
 redhat-lsb-compat
@@ -945,6 +946,7 @@ redhat-lsb-graphics
 redhat-lsb-printing
 redhat-menus
 redhat-rpm-config
+redhat-release
 regexp
 resource-agents
 rgmanager

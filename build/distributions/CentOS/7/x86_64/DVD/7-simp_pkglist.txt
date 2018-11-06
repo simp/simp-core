@@ -10,6 +10,7 @@
 # rpm -qa --qf "%{NAME}\n" | sort -u
 #
 # (NOTE:  The packages are listed in 'sort -V 'order.)
+
 389-ds-base
 389-ds-base-libs
 GConf2
@@ -1210,6 +1211,8 @@ rdma-core
 readline
 realmd
 recode
+redhat-indexhtml
+redhat-logos
 redhat-lsb
 redhat-lsb-core
 redhat-lsb-cxx
@@ -1219,6 +1222,7 @@ redhat-lsb-printing
 redhat-lsb-submod-multimedia
 redhat-lsb-submod-security
 redhat-menus
+redhat-release
 redhat-rpm-config
 regexp
 relaxngDatatype
