@@ -98,7 +98,8 @@
 # (3) (NEW) Exclude the problematic puppet-archive module dependency.
 #
 'grafana':
-#FIXME
+# Release version is bumped to 2 because of a version bump
+# in the external dependencies.
   :release: '2'
   :obsoletes:
     'pupmod-bfraser-grafana': '2.5.0-2016.1'
