@@ -88,18 +88,17 @@
     # exclude pupmod-puppetlabs-apt
     - 'pupmod-puppetlabs-stdlib'
 
-# Three adjustments required for the next 4.1.1 release:
-# (1) (NEW) Up the release qualifier to '1', since 4.1.1-0 was already
-#     released and the change from 4.1.1-0 to 4.1.1-1 is simply a
-#     packaging change,(i.e., dependencies list change).
-# (2) As with 4.1.1-0, make sure we create an RPM that fixes
+# THree adjustments required for the next 4.1.1 release:
+# (1) (NEW) Up the release qualifier to '2', since 4.1.1-1 was already
+#     released and the change from 4.1.1-1 to 4.1.1-2 is simply a
+#     packaging change, (i.e., rubygem-puppetserver-toml dependency
+#     version change).
+# (2) As with 4.1.1-0 and 4.1.1-1, make sure we create an RPM that fixes
 #     the obsoletes problem of pupmod-puppet-grafana-3.0.0-0
 #     packaged for SIMP 6.1.0.
-# (3) (NEW) Exclude the problematic puppet-archive module dependency.
+# (3) Exclude the problematic puppet-archive module dependency.
 #
 'grafana':
-# Release version is bumped to 2 because of a version bump
-# in the external dependencies.
   :release: '2'
   :obsoletes:
     'pupmod-bfraser-grafana': '2.5.0-2016.1'
