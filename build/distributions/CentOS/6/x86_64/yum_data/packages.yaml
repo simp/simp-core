@@ -3,23 +3,23 @@ chkrootkit:
   :rpm_name: chkrootkit-0.49-9.el6.x86_64.rpm
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/Packages/c/chkrootkit-0.49-9.el6.x86_64.rpm
 clamav:
-  :rpm_name: clamav-0.100.1-2.el6.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/c/clamav-0.100.1-2.el6.x86_64.rpm
+  :rpm_name: clamav-0.100.2-1.el6.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/c/clamav-0.100.2-1.el6.x86_64.rpm
 clamav-db:
-  :rpm_name: clamav-db-0.100.1-2.el6.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/c/clamav-db-0.100.1-2.el6.x86_64.rpm
+  :rpm_name: clamav-db-0.100.2-1.el6.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/c/clamav-db-0.100.2-1.el6.x86_64.rpm
 clamav-devel:
-  :rpm_name: clamav-devel-0.100.1-2.el6.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/c/clamav-devel-0.100.1-2.el6.x86_64.rpm
+  :rpm_name: clamav-devel-0.100.2-1.el6.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/c/clamav-devel-0.100.2-1.el6.x86_64.rpm
 clamav-milter:
-  :rpm_name: clamav-milter-0.100.1-2.el6.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/c/clamav-milter-0.100.1-2.el6.x86_64.rpm
+  :rpm_name: clamav-milter-0.100.2-1.el6.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/c/clamav-milter-0.100.2-1.el6.x86_64.rpm
 clamav-unofficial-sigs:
   :rpm_name: clamav-unofficial-sigs-3.7.1-7.el6.noarch.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/c/clamav-unofficial-sigs-3.7.1-7.el6.noarch.rpm
 clamd:
-  :rpm_name: clamd-0.100.1-2.el6.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/c/clamd-0.100.1-2.el6.x86_64.rpm
+  :rpm_name: clamd-0.100.2-1.el6.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/c/clamd-0.100.2-1.el6.x86_64.rpm
 clamsmtp:
   :rpm_name: clamsmtp-1.10-7.el6.x86_64.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/c/clamsmtp-1.10-7.el6.x86_64.rpm
@@ -257,15 +257,15 @@ rubygem-net-ldap-doc:
 rubygem-net-ping:
   :rpm_name: rubygem-net-ping-1.6.2-1.el6.noarch.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-net-ping-1.6.2-1.el6.noarch.rpm
+rubygem-rake-compiler:
+  :rpm_name: rubygem-rake-compiler-0.9.3-2.el6.noarch.rpm
+  :source: http://http://yum.puppetlabs.com/el/6/dependencies/x86_64/rubygem-rake-compiler-0.9.3-2.el6.noarch.rpm
 rubygem-stomp:
   :rpm_name: rubygem-stomp-1.3.2-1.el6.noarch.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-stomp-1.3.2-1.el6.noarch.rpm
 rubygem-stomp-doc:
   :rpm_name: rubygem-stomp-doc-1.3.2-1.el6.noarch.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-stomp-doc-1.3.2-1.el6.noarch.rpm
-rubygev-rake-compiler:
-  :rpm_name: rubygem-rake-compiler-0.9.3-2.el6.noarch.rpm
-  :source: http://http://yum.puppetlabs.com/el/6/dependencies/x86_64/rubygem-rake-compiler-0.9.3-2.el6.noarch.rpm
 simp-lastbind:
   :rpm_name: simp-lastbind-2.4.23-0.x86_64.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/simp-lastbind-2.4.23-0.x86_64.rpm

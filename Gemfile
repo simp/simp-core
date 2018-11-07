@@ -22,11 +22,11 @@ gem 'coderay'
 gem 'dotenv'
 gem 'metadata-json-lint'
 gem 'parallel'
-gem 'puppet', ENV.fetch('PUPPET_VERSION', '~> 5')
+gem 'puppet', ENV.fetch('PUPPET_VERSION', '~> 5.5')
 gem 'puppet-lint'
 gem 'puppet-strings'
 gem 'puppetlabs_spec_helper'
-gem 'net-telnet',['< 0.2.0']
+gem 'net-telnet'
 gem 'rake'
 gem 'ruby-progressbar'
 gem 'simp-build-helpers', ENV.fetch('SIMP_BUILD_HELPERS_VERSION', '>= 0.1.0')
@@ -36,7 +36,7 @@ gem 'simp-rake-helpers', ENV.fetch('SIMP_RAKE_HELPERS_VERSION', ['>= 5.6.1', '< 
 group :system_tests do
   gem 'beaker'
   gem 'beaker-rspec'
-  gem 'simp-beaker-helpers', ENV.fetch('SIMP_BEAKER_HELPERS_VERSION', ['>= 1.11.2', '< 2.0'])
+  gem 'simp-beaker-helpers', ENV.fetch('SIMP_BEAKER_HELPERS_VERSION', ['>= 1.12.1', '< 2.0'])
 end
 
 # nice-to-have gems (for debugging)

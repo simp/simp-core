@@ -1,5 +1,4 @@
 [epel]
 name=epel
-#mirrorlist=http://mirrors.fedoraproject.org/mirrorlist?repo=epel-7&arch=x86_64&country=US
-baseurl=http://lug.mtu.edu/epel/7/x86_64/
+mirrorlist=http://mirrors.fedoraproject.org/mirrorlist?repo=epel-7&arch=x86_64&country=US
 failovermethod=priority

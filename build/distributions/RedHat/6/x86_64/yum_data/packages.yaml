@@ -1,28 +1,25 @@
 ---
-apr-util-ldap:
-  :rpm_name: apr-util-ldap-1.3.9-3.el6_0.1.x86_64.rpm
-  :source: Red Hat Base Repository
 chkrootkit:
   :rpm_name: chkrootkit-0.49-9.el6.x86_64.rpm
   :source: http://mirror.cogentco.com/pub/linux/epel/6/x86_64/Packages/c/chkrootkit-0.49-9.el6.x86_64.rpm
 clamav:
-  :rpm_name: clamav-0.100.1-2.el6.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/c/clamav-0.100.1-2.el6.x86_64.rpm
+  :rpm_name: clamav-0.100.2-1.el6.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/c/clamav-0.100.2-1.el6.x86_64.rpm
 clamav-db:
-  :rpm_name: clamav-db-0.100.1-2.el6.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/c/clamav-db-0.100.1-2.el6.x86_64.rpm
+  :rpm_name: clamav-db-0.100.2-1.el6.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/c/clamav-db-0.100.2-1.el6.x86_64.rpm
 clamav-devel:
-  :rpm_name: clamav-devel-0.100.1-2.el6.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/c/clamav-devel-0.100.1-2.el6.x86_64.rpm
+  :rpm_name: clamav-devel-0.100.2-1.el6.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/c/clamav-devel-0.100.2-1.el6.x86_64.rpm
 clamav-milter:
-  :rpm_name: clamav-milter-0.100.1-2.el6.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/c/clamav-milter-0.100.1-2.el6.x86_64.rpm
+  :rpm_name: clamav-milter-0.100.2-1.el6.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/c/clamav-milter-0.100.2-1.el6.x86_64.rpm
 clamav-unofficial-sigs:
   :rpm_name: clamav-unofficial-sigs-3.7.1-7.el6.noarch.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/c/clamav-unofficial-sigs-3.7.1-7.el6.noarch.rpm
 clamd:
-  :rpm_name: clamd-0.100.1-2.el6.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/c/clamd-0.100.1-2.el6.x86_64.rpm
+  :rpm_name: clamd-0.100.2-1.el6.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/c/clamd-0.100.2-1.el6.x86_64.rpm
 clamsmtp:
   :rpm_name: clamsmtp-1.10-7.el6.x86_64.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/c/clamsmtp-1.10-7.el6.x86_64.rpm
@@ -152,6 +149,9 @@ pdsh-rcmd-ssh:
 perl-Capture-Tiny:
   :rpm_name: perl-Capture-Tiny-0.23-1.el6.noarch.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/p/perl-Capture-Tiny-0.23-1.el6.noarch.rpm
+perl-Config-Simple:
+  :rpm_name: perl-Config-Simple-4.59-5.el6.noarch.rpm
+  :source: http://mirrors.lug.mtu.edu/epel/6/x86_64/Packages/p/perl-Config-Simple-4.59-5.el6.noarch.rpm
 perl-Crypt-DES:
   :rpm_name: perl-Crypt-DES-2.05-9.el6.x86_64.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/p/perl-Crypt-DES-2.05-9.el6.x86_64.rpm
@@ -161,6 +161,9 @@ perl-File-BaseDir:
 perl-File-RsyncP:
   :rpm_name: perl-File-RsyncP-0.72-1.el6.x86_64.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/p/perl-File-RsyncP-0.72-1.el6.x86_64.rpm
+perl-File-Which:
+  :rpm_name: perl-File-Which-1.09-2.el6.noarch.rpm
+  :source: http://mirror.centos.org/centos/6/os/x86_64/Packages/perl-File-Which-1.09-2.el6.noarch.rpm
 perl-Math-Calc-Units:
   :rpm_name: perl-Math-Calc-Units-1.07-6.el6.noarch.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/p/perl-Math-Calc-Units-1.07-6.el6.noarch.rpm
@@ -254,24 +257,9 @@ rubygem-net-ldap-doc:
 rubygem-net-ping:
   :rpm_name: rubygem-net-ping-1.6.2-1.el6.noarch.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-net-ping-1.6.2-1.el6.noarch.rpm
-rubygem-puppetserver-blankslate:
-  :rpm_name: rubygem-puppetserver-blankslate-2.1.2.4-1.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-puppetserver-blankslate-2.1.2.4-1.noarch.rpm
-rubygem-puppetserver-blankslate-doc:
-  :rpm_name: rubygem-puppetserver-blankslate-doc-2.1.2.4-1.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-puppetserver-blankslate-doc-2.1.2.4-1.noarch.rpm
-rubygem-puppetserver-parslet:
-  :rpm_name: rubygem-puppetserver-parslet-1.5.0-1.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-puppetserver-parslet-1.5.0-1.noarch.rpm
-rubygem-puppetserver-parslet-doc:
-  :rpm_name: rubygem-puppetserver-parslet-doc-1.5.0-1.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-puppetserver-parslet-doc-1.5.0-1.noarch.rpm
-rubygem-puppetserver-toml:
-  :rpm_name: rubygem-puppetserver-toml-0.1.2-1.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-puppetserver-toml-0.1.2-1.noarch.rpm
-rubygem-puppetserver-toml-doc:
-  :rpm_name: rubygem-puppetserver-toml-doc-0.1.2-1.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-puppetserver-toml-doc-0.1.2-1.noarch.rpm
+rubygem-rake:
+  :rpm_name: rubygem-rake-0.8.7-2.1.el6.noarch.rpm
+  :source: Red Hat Optional Repo
 rubygem-rake-compiler:
   :rpm_name: rubygem-rake-compiler-0.9.3-2.el6.noarch.rpm
   :source: http://http://yum.puppetlabs.com/el/6/dependencies/x86_64/rubygem-rake-compiler-0.9.3-2.el6.noarch.rpm
@@ -281,6 +269,9 @@ rubygem-stomp:
 rubygem-stomp-doc:
   :rpm_name: rubygem-stomp-doc-1.3.2-1.el6.noarch.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-stomp-doc-1.3.2-1.el6.noarch.rpm
+sendmail-milter:
+  :rpm_name: sendmail-milter-8.14.4-9.el6_8.1.x86_64.rpm
+  :source: Red Hat Optional Repo
 simp-lastbind:
   :rpm_name: simp-lastbind-2.4.23-0.x86_64.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/simp-lastbind-2.4.23-0.x86_64.rpm

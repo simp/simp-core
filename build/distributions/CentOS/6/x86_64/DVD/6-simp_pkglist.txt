@@ -260,7 +260,6 @@ glibc-devel
 glibc-headers
 glibc-static
 glibc-utils
-glib-networking
 gmp
 gnome-applets
 gnome-desktop
@@ -938,6 +937,7 @@ rdma
 readahead
 readline
 redhat-bookmarks
+redhat-indexhtml
 redhat-logos
 redhat-lsb
 redhat-lsb-compat
@@ -946,6 +946,7 @@ redhat-lsb-graphics
 redhat-lsb-printing
 redhat-menus
 redhat-rpm-config
+redhat-release-server
 regexp
 resource-agents
 rgmanager
@@ -977,8 +978,8 @@ ruby-rdoc
 ruby-ri
 ruby-static
 ruby-tcltk
-rubygem-rake
 rubygem-flexmock
+rubygem-rake
 rubygems
 rubygems-devel
 sabayon-apply
