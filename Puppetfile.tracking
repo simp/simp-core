@@ -54,17 +54,13 @@ mod 'cristifalcas-journald',
   :git => 'https://github.com/simp/pupmod-simp-journald.git',
   :tag => '0.6.0'
 
-#FIXME 5.x does not support Puppet 5.  Support added with
-# version 6.0.0, which we have not evaluated yet.
-#mod 'elastic-elasticsearch',
-#  :git => 'https://github.com/simp/puppet-elasticsearch',
-#  :tag => '5.5.0'
+mod 'elastic-elasticsearch',
+  :git => 'https://github.com/simp/puppet-elasticsearch',
+  :tag => '5.5.0'
 
-#FIXME 5.x does not support Puppet 5.  Support added with
-# version 6.0.0, which we have not evaluated yet.
-#mod 'elastic-logstash',
-#  :git => 'https://github.com/simp/puppet-logstash',
-#  :tag => '5.3.0'
+mod 'elastic-logstash',
+  :git => 'https://github.com/simp/puppet-logstash',
+  :tag => '5.3.0'
 
 mod 'herculesteam-augeasproviders_apache',
   :git => 'https://github.com/simp/augeasproviders_apache',
@@ -395,11 +391,9 @@ mod 'simp-simp_docker',
   :git => 'https://github.com/simp/pupmod-simp-simp_docker',
   :branch => 'master'
 
-#FIXME Need to ensure interoperability with elastic/elasticsearch
-# 6.0.0 or later before we can include this in a Puppet 5.x release.
-#mod 'simp-simp_elasticsearch',
-#  :git => 'https://github.com/simp/pupmod-simp-simp_elasticsearch',
-#  :branch => 'master'
+mod 'simp-simp_elasticsearch',
+  :git => 'https://github.com/simp/pupmod-simp-simp_elasticsearch',
+  :branch => 'master'
 
 #FIXME Does not support Puppet 5 yet.  Also, needs to be tested with
 # Vox Pupuli puppet/gitlab 2.0.0, which does support Puppet 5.
@@ -424,11 +418,9 @@ mod 'simp-simp_ipa',
 #   :git => 'https://github.com/simp/pupmod-simp-simp_kubernetes',
 #   :branch => 'master'
 
-#FIXME Does not support Puppet 5 yet.  Also, need to ensure interoperability
-# with elastic/logstash 6.0.0 or later.
-#mod 'simp-simp_logstash',
-#  :git => 'https://github.com/simp/pupmod-simp-simp_logstash',
-#  :branch => 'master'
+mod 'simp-simp_logstash',
+  :git => 'https://github.com/simp/pupmod-simp-simp_logstash',
+  :branch => 'master'
 
 mod 'simp-simp_nfs',
   :git => 'https://github.com/simp/pupmod-simp-simp_nfs',
