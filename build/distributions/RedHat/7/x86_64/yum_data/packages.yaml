@@ -65,6 +65,9 @@ gweb:
 haveged:
   :rpm_name: haveged-1.9.1-1.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/h/haveged-1.9.1-1.el7.x86_64.rpm
+ima-evm-utils:
+  :rpm_name: ima-evm-utils-1.1-2.el7.x86_64.rpm
+  :source: Red Hat Optional Repository
 incron:
   :rpm_name: incron-0.5.10-8.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/i/incron-0.5.10-8.el7.x86_64.rpm
