@@ -34,6 +34,7 @@ gem 'simp-rake-helpers', ENV.fetch('SIMP_RAKE_HELPERS_VERSION', ['>= 5.6.1', '< 
 #gem 'simp-rake-helpers', :path => './src/rubygems/rubygem-simp-rake-helpers'
 
 group :system_tests do
+  gem 'nokogiri'
   gem 'beaker'
   gem 'beaker-rspec'
   gem 'simp-beaker-helpers', ENV.fetch('SIMP_BEAKER_HELPERS_VERSION', ['>= 1.12.1', '< 2.0'])
