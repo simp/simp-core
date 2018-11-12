@@ -1,21 +1,14 @@
-# The testing matrix considers ruby/puppet versions supported by SIMP and PE:
+# The pipeline considers the ruby/puppet versions supported by the present SIMP:
 # ------------------------------------------------------------------------------
-#  release    pup   ruby      eol
-# PE 2016.4   4.7   2.1.9  TBD (LTS)
-# PE 2016.5   4.8   2.1.9  2017-10-31
-# SIMP6.0.0   4.8   2.1.9  TBD
-# PE 2017.1   4.9   2.1.9  2017-10-31
-# PE 2017.2   4.10  2.1.9  TBD
+# Release       Puppet   Ruby   EOL
+# SIMP 6.3      5.5      2.4.4  TBD***
 ---
 language: ruby
 cache: bundler
 sudo: false
-
 bundler_args: --without development system_tests
-
 notifications:
   email: false
-
 addons:
   apt:
     packages:
@@ -23,73 +16,52 @@ addons:
       # provides unbuffer
       - expect-dev
 
+stages:
+  - check
+  - spec
+  - package
+  - name: deploy
+    if: 'fork = false AND tag = true'
+
 before_install:
   - rm -f Gemfile.lock
+
+global:
+  - STRICT_VARIABLES=yes
+  - PUPPET_VERSION="~> 5.5"
+
+rvm: 2.4.4
 
 jobs:
   allow_failures:
     - stage: package
-    - env: STRICT_VARIABLES=yes TRUSTED_NODE_DATA=yes PUPPET_VERSION="~> 5.0"
 
   include:
     - stage: check
-      rvm: 2.1.9
       script:
         - bundle exec rake check:dot_underscore
         - bundle exec rake check:test_file
         - bundle exec rake metadata_lint
 
     - stage: spec
-      rvm: 2.1.9
-      env: STRICT_VARIABLES=yes TRUSTED_NODE_DATA=yes PUPPET_VERSION="~> 5.0"
-      script:
-        - bundle exec rake spec
-
-    - stage: spec
-      rvm: 2.1.9
-      env: STRICT_VARIABLES=yes TRUSTED_NODE_DATA=yes PUPPET_VERSION="~> 4.10.0"
-      script:
-        - bundle exec rake spec
-
-    - stage: spec
-      rvm: 2.1.9
-      env: STRICT_VARIABLES=yes TRUSTED_NODE_DATA=yes PUPPET_VERSION="~> 4.9.2"
-      script:
-        - bundle exec rake spec
-
-    - stage: spec
-      rvm: 2.1.9
-      env: STRICT_VARIABLES=yes TRUSTED_NODE_DATA=yes PUPPET_VERSION="~> 4.8.2"
-      script:
-        - bundle exec rake spec
-
-    - stage: spec
-      rvm: 2.1.9
-      env: STRICT_VARIABLES=yes TRUSTED_NODE_DATA=yes PUPPET_VERSION="~> 4.7.0"
       script:
         - bundle exec rake spec
 
     - stage: package
       sudo: required
-      rvm: 2.1.9
       services:
         - docker
       script:
         - travis_wait 30 unbuffer bundle exec rake beaker:suites[rpm_docker,el6]
-      env: PUPPET_VERSION"~> 4.10"
 
     - stage: package
       sudo: required
-      rvm: 2.1.9
       services:
         - docker
       script:
         - travis_wait 30 unbuffer bundle exec rake beaker:suites[rpm_docker,el7]
-      env: PUPPET_VERSION"~> 4.10"
 
     - stage: deploy
-      rvm: 2.1.9
-      env: STRICT_VARIABLES=yes TRUSTED_NODE_DATA=yes PUPPET_VERSION="~> 4.10"
       script:
         - bundle exec rake spec
       before_deploy:
@@ -102,7 +74,6 @@ jobs:
             secure: "iqm/z8Aet3wM4LT1Nl5QrLz/q8SBfu3i7YtdTQcrW0nEiwdVsh+nTvSS9Fz5gfub+7vZXx9rABSCh3lj0RNLjq+n17VSJiPQOA8Prvrd239xDmbZPXoHjsjJBbxmbvrwvaLWBZBsNkZsMZ5WUOacKHdyKgJVqxuOQSoreb7ShyqXpC4zhRfzFmPvlWRR03qq9KpHkJkEPA8kyKwmVJw28mfhkuqgDfplp6/8lJhc54FgT67EuhhY2ON73bp4pbA3Usz4+cT/+Ee34J91f7/b6FPydoQgPlfFmLa6ERRe608MZ6S8xpRQDAORFWWucS7qcb+Htn0Grsgl3GEnDMNET2eRAd6TK2XcHaOmZ1m4Ox+72TpYdITDDPBD1k6eV+jvIInVTIeH2VmV8xHeZAlWq8ReY5YOqdVWJDkYGmIyrn/I6vIgyXEARSlrzRhcS1EhrAixMarFTkaP8iHWND96M6zst76s8ETmX+Pnw12sEe5qy/UcKCBpubQh/CGMLzVP59pPvMOScry5COhJdF5Heh98ZekP6rnSIuaYsGM3cLjVaYrrpTo2eRFKThS6cteoPF2QS91xhp0PYA3FlX/PekubKzA1qRUdSnoTYSNVSqAjSJlYIjrK2S7678SJjKs3KAVRgRfkoAMXz+AsvX8LgO1H4JgOchvcm+kCJf01rzM="
           on:
             tags: true
-            rvm: 2.1.9
             condition: '($SKIP_FORGE_PUBLISH != true)'
         - provider: releases
           api_key:
