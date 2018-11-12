@@ -159,8 +159,6 @@ namespace :puppetfile do
         mod[:published]['GitHub'] = 'yes'.green
       else
         mod[:published]['GitHub'] = 'no'.red
-
-        next
       end
 
       # See if we're a module and update the version information if necessary
@@ -227,7 +225,7 @@ namespace :puppetfile do
     puts ''
 
     modules.each do |id, mod|
-      puts "#{mod[:owner]}-#{id} #{mod[:version]}"
+      puts "#{mod[:owner]}-#{id} #{mod[:version]}".bold
       puts mod[:published].to_a.map{|x,y| "  * #{x} => #{y}"}.join("\n")
     end
   end
