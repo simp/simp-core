@@ -76,10 +76,15 @@ HOSTS:
       - 'runuser build_user -l -c "rvm all do gem install bundler --no-ri --no-rdoc"'
 
       # Add some gems that will drag along 90% of what the build requires
-      - 'runuser build_user -l -c "rvm use default; gem install --no-ri --no-rdoc simp-rake-helpers"'
-      - 'runuser build_user -l -c "rvm use default; gem install --no-ri --no-rdoc json"'
-      - 'runuser build_user -l -c "rvm use default; gem install --no-ri --no-rdoc charlock_holmes"'
-      - 'runuser build_user -l -c "rvm use default; gem install --no-ri --no-rdoc posix-spawn"'
+###      - 'runuser build_user -l -c "rvm use default; bundle config path .vendor/bundle"'
+###      - 'runuser build_user -l -c "rvm use default; bundle config cache_path .vendor/bundle"'
+###      - 'runuser build_user -l -c "rvm use default; bundle config bin .vendor/gem_install/bin"'
+###      - 'runuser build_user -l -c "rvm use default; bundle config gem_home .vendor/gem_install/bin"'
+#      - 'runuser build_user -l -c "rvm use default; bundle pristine --all"'
+#      - 'runuser build_user -l -c "rvm use default; gem install --no-ri --no-rdoc simp-rake-helpers"'
+#      - 'runuser build_user -l -c "rvm use default; gem install --no-ri --no-rdoc json"'
+#      - 'runuser build_user -l -c "rvm use default; gem install --no-ri --no-rdoc charlock_holmes"'
+#      - 'runuser build_user -l -c "rvm use default; gem install --no-ri --no-rdoc posix-spawn"'
 
 CONFIG:
 <% unless ENV['TRAVIS'] -%>
