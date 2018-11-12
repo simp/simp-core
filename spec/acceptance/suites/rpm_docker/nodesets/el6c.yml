@@ -1,0 +1,103 @@
+---
+HOSTS:
+  el6-build-server:
+    roles:
+      - primary
+    platform: el-6-x86_64
+    hypervisor: docker
+    # This needs to be the *oldest* image of EL6 to preserve SELinux build compatibility
+    image: centos:6.6
+    docker_preserve_image: true
+    docker_image_commands:
+      # The following 2 commands are intended to solve the problem in
+      # https://github.com/CentOS/sig-cloud-instance-images/issues/15.
+      # However, sometimes these commands cause yum problems, instead
+      # of fixing yum problems.  If the install of yum-plugin-ovl and
+      # yum-utils fails, try commenting out these commands.
+      - 'rm -f /var/lib/rpm/__db*'
+      - 'yum clean all'
+      # This is a hack to force an exit code of 0
+      # Sometimes yum-plugin-ovl will install dependencies, which will fail with rpmdb errors
+      # since yum-plugin-ovl is not installed (chicken and egg)
+      - 'yum install -y yum-plugin-ovl || :'
+      - 'rpmdb --rebuilddb'
+      - 'rpm -qi yum-utils || yum install -y yum-utils'
+
+      # We only want to deal with the original distro packages
+      - 'yum-config-manager --disable \*'
+      - 'echo -e "[legacy]\nname=Legacy\nbaseurl=http://vault.centos.org/6.6/os/x86_64\ngpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-6\ngpgcheck=1" > /etc/yum.repos.d/legacy.repo'
+
+      # Downgrade ALL THE THINGS!!!
+      # ...except yum and python-urlgrabber, which yum-plugin-ovl has dependencies on
+      - 'cd /root; yum -x yum -x python-urlgrabber downgrade -y *'
+
+      # Work around bug https://bugzilla.redhat.com/show_bug.cgi?id=1217477
+      # This does *not* update the SELinux packages, so it is safe
+      - 'yum --enablerepo=updates --enablerepo=base update -y git curl nss'
+
+      # Getting rid of package conflicts
+      - '\cp -a /etc/ssh /root'
+      - 'yum install -y openssh-server'
+      - '\cp -a /root/ssh /etc'
+
+      # Add the SELinux Build dependencies
+      - 'yum install -y selinux-policy-targeted selinux-policy-devel policycoreutils policycoreutils-python'
+
+      # Allow the build user to perform privileged operations
+      - "echo 'Defaults:build_user !requiretty' >> /etc/sudoers"
+      - "echo 'build_user ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers"
+
+      # Add the build user
+      - 'useradd -b /home -G wheel -m -c "Build User" -s /bin/bash -U build_user'
+
+      # No limits
+      - 'rm -rf /etc/security/limits.d/*.conf'
+
+      # simp build-deps
+      - 'yum-config-manager --enable extras'
+      - 'yum install -y epel-release'
+      - 'yum install -y openssl util-linux rpm-build augeas-devel createrepo genisoimage git gnupg2 libicu-devel libxml2 libxml2-devel libxslt libxslt-devel rpmdevtools clamav which ruby-devel rpm-sign acl'
+
+      # simp doc deps
+      - 'yum -y install centos-release-scl python27 python-pip python-virtualenv fontconfig dejavu-sans-fonts dejavu-sans-mono-fonts dejavu-serif-fonts dejavu-fonts-common libjpeg-devel zlib-devel'
+
+      # RVM build-deps
+      - 'yum install -y libyaml-devel glibc-headers autoconf gcc gcc-c++ glibc-devel readline-devel libffi-devel openssl-devel automake libtool bison sqlite-devel tar'
+
+      # Puppet Deps
+      - 'yum install -y ntpdate'
+
+      # RVM
+      - 'runuser build_user -l -c "{ gpg2 --keyserver hkp://pgp.mit.edu --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 || gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3; } || { gpg2 --keyserver hkp://pgp.mit.edu --recv-keys 7D2BAF1CF37B13E2069D6956105BD0E739499BDB || gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 7D2BAF1CF37B13E2069D6956105BD0E739499BDB ; }"'
+
+      - "runuser build_user -l -c 'echo \"export GEM_HOME=._vendor/gem_install\" >> $HOME/.bash_profile'"
+      - "runuser build_user -l -c 'echo \"export BUNDLE_CACHE_PATH=._vendor/bundle\" >> $HOME/.bash_profile'"
+      - "runuser build_user -l -c 'echo \"export BUNDLE_PATH=._vendor/bundle\" >> $HOME/.bash_profile'"
+      - "runuser build_user -l -c 'echo \"export BUNDLE_BIN=._vendor/gem_install_bin\" >> $HOME/.bash_profile'"
+
+      - 'runuser build_user -l -c "curl -sSL https://get.rvm.io | bash -s stable"'
+      - 'runuser build_user -l -c "rvm install 2.4.4 --disable-binary"'
+      - 'runuser build_user -l -c "rvm use --default 2.4.4"'
+      - 'runuser build_user -l -c "rvm all do gem install bundler --no-document"'
+
+      - 'echo "========================================================================="'
+      - 'runuser build_user -l -c "rvm use default; bundle config || :"'
+      - 'runuser build_user -l -c "rvm use default; gem env || :"'
+      - 'runuser build_user -l -c "rvm use default; bundle exec gem env || :"'
+      - 'echo "========================================================================="'
+
+      # Add some gems that will drag along 90% of what the build requires
+      - 'runuser build_user -l -c "rvm use default; gem install --no-document simp-rake-helpers"'
+      - 'runuser build_user -l -c "rvm use default; gem install --no-document json"'
+      - 'runuser build_user -l -c "rvm use default; gem install --no-document charlock_holmes"'
+      - 'runuser build_user -l -c "rvm use default; gem install --no-document posix-spawn"'
+
+CONFIG:
+<% unless ENV['TRAVIS'] -%>
+  mount_folders:
+    simp_core:
+      host_path: './'
+      container_path: '/simp-core'
+<% end -%>
+  log_level: verbose
+  type: aio
