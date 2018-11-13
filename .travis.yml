@@ -47,29 +47,16 @@ jobs:
         - bundle exec rake spec
 
     - stage: package
-      name: 'Build EL6 SIMP ISO (experiment a)'
-      sudo: required
-      services:
-        - docker
-      script:
-        - bundle exec rake beaker:suites[rpm_docker,el6a]
-    - stage: package
-      name: 'Build EL6 SIMP ISO (experiment b)'
-      sudo: required
-      services:
-        - docker
-      script:
-        - bundle exec rake beaker:suites[rpm_docker,el6b]
-    - stage: package
       name: 'Build EL6 SIMP ISO'
       if: 'NOT env(TRAVIS_IS_SLOW_TODAY) = yes'
       sudo: required
       services:
         - docker
       script:
-        - bundle exec rake beaker:suites[rpm_docker,el6c]
+        - bundle exec rake beaker:suites[rpm_docker,el6]
+
     - stage: package
-      name: 'Build EL6 SIMP ISO (travis_wait)'
+      name: 'Build EL6 SIMP ISO (using travis_wait)'
       if: 'env(TRAVIS_IS_SLOW_TODAY) = yes'
       sudo: required
       services:
@@ -79,6 +66,16 @@ jobs:
 
     - stage: package
       name: 'Build EL7 SIMP ISO'
+      if: 'NOT env(TRAVIS_IS_SLOW_TODAY) = yes'
+      sudo: required
+      services:
+        - docker
+      script:
+        - bundle exec rake beaker:suites[rpm_docker,el7]
+
+    - stage: package
+      name: 'Build EL7 SIMP ISO (using travis_wait)'
+      if: 'env(TRAVIS_IS_SLOW_TODAY) = yes'
       sudo: required
       services:
         - docker
