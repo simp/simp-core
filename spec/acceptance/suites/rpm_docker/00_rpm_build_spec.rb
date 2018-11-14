@@ -108,6 +108,12 @@ describe 'RPM build' do
 
     it 'should have the latest gems' do
       on(host, "#{run_cmd} 'cd #{local_basedir}; bundle update'")
+
+
+      on(host, "#{run_cmd} 'cd #{local_basedir}; bundle config'")
+      on(host, "#{run_cmd} 'cd #{local_basedir}; bundle exec gem env'")
+      on(host, "#{run_cmd} 'cd #{local_basedir}; gem env'")
+      on(host, "#{run_cmd} 'cd #{local_basedir}; bundle pristine'")
     end
 
     if host.file_exist?("#{build_dir}/ISO")
