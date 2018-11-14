@@ -183,17 +183,17 @@ perl-Time-modules:
   :rpm_name: perl-Time-modules-2006.0814-5.el6.noarch.rpm
   :source: Red Hat Base Repository
 postgresql96:
-  :rpm_name: postgresql96-9.6.9-1PGDG.rhel6.x86_64.rpm
-  :source: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-6.9-x86_64/postgresql96-9.6.9-1PGDG.rhel6.x86_64.rpm
+  :rpm_name: postgresql96-9.6.10-1PGDG.rhel6.x86_64.rpm
+  :source: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-6.9-x86_64/postgresql96-9.6.10-1PGDG.rhel6.x86_64.rpm
 postgresql96-contrib:
-  :rpm_name: postgresql96-contrib-9.6.9-1PGDG.rhel6.x86_64.rpm
-  :source: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-6.9-x86_64/postgresql96-contrib-9.6.9-1PGDG.rhel6.x86_64.rpm
+  :rpm_name: postgresql96-contrib-9.6.10-1PGDG.rhel6.x86_64.rpm
+  :source: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-6.9-x86_64/postgresql96-contrib-9.6.10-1PGDG.rhel6.x86_64.rpm
 postgresql96-libs:
-  :rpm_name: postgresql96-libs-9.6.9-1PGDG.rhel6.x86_64.rpm
-  :source: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-6.9-x86_64/postgresql96-libs-9.6.9-1PGDG.rhel6.x86_64.rpm
+  :rpm_name: postgresql96-libs-9.6.10-1PGDG.rhel6.x86_64.rpm
+  :source: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-6.9-x86_64/postgresql96-libs-9.6.10-1PGDG.rhel6.x86_64.rpm
 postgresql96-server:
-  :rpm_name: postgresql96-server-9.6.9-1PGDG.rhel6.x86_64.rpm
-  :source: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-6.9-x86_64/postgresql96-server-9.6.9-1PGDG.rhel6.x86_64.rpm
+  :rpm_name: postgresql96-server-9.6.10-1PGDG.rhel6.x86_64.rpm
+  :source: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-6.9-x86_64/postgresql96-server-9.6.10-1PGDG.rhel6.x86_64.rpm
 pssh:
   :rpm_name: pssh-2.3.1-5.el6.noarch.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/pssh-2.3.1-5.el6.noarch.rpm

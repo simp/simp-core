@@ -219,17 +219,17 @@ perl-X2go-Server-DB:
   :rpm_name: perl-X2Go-Server-DB-4.1.0.0-1.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/p/perl-X2Go-Server-DB-4.1.0.0-1.el7.x86_64.rpm
 postgresql96:
-  :rpm_name: postgresql96-9.6.9-1PGDG.rhel7.x86_64.rpm
-  :source: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/postgresql96-9.6.9-1PGDG.rhel7.x86_64.rpm
+  :rpm_name: postgresql96-9.6.11-1PGDG.rhel7.x86_64.rpm
+  :source: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/postgresql96-9.6.11-1PGDG.rhel7.x86_64.rpm
 postgresql96-contrib:
-  :rpm_name: postgresql96-contrib-9.6.9-1PGDG.rhel7.x86_64.rpm
-  :source: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/postgresql96-contrib-9.6.9-1PGDG.rhel7.x86_64.rpm
+  :rpm_name: postgresql96-contrib-9.6.11-1PGDG.rhel7.x86_64.rpm
+  :source: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/postgresql96-contrib-9.6.11-1PGDG.rhel7.x86_64.rpm
 postgresql96-libs:
-  :rpm_name: postgresql96-libs-9.6.9-1PGDG.rhel7.x86_64.rpm
-  :source: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/postgresql96-libs-9.6.9-1PGDG.rhel7.x86_64.rpm
+  :rpm_name: postgresql96-libs-9.6.11-1PGDG.rhel7.x86_64.rpm
+  :source: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/postgresql96-libs-9.6.11-1PGDG.rhel7.x86_64.rpm
 postgresql96-server:
-  :rpm_name: postgresql96-server-9.6.9-1PGDG.rhel7.x86_64.rpm
-  :source: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/postgresql96-server-9.6.9-1PGDG.rhel7.x86_64.rpm
+  :rpm_name: postgresql96-server-9.6.11-1PGDG.rhel7.x86_64.rpm
+  :source: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/postgresql96-server-9.6.11-1PGDG.rhel7.x86_64.rpm
 pssh:
   :rpm_name: pssh-2.3.1.SIMP-5.el7.noarch.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/pssh-2.3.1.SIMP-5.el7.noarch.rpm
@@ -290,12 +290,6 @@ rubygem-ffi:
 rubygem-highline:
   :rpm_name: rubygem-highline-1.6.11-5.el7.noarch.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/r/rubygem-highline-1.6.11-5.el7.noarch.rpm
-rubygem-puppetserver-parslet:
-  :rpm_name: rubygem-puppetserver-parslet-1.8.2-0.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/rubygem-puppetserver-parslet-1.8.2-0.noarch.rpm
-rubygem-puppetserver-toml:
-  :rpm_name: rubygem-puppetserver-toml-0.2.0-0.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/rubygem-puppetserver-toml-0.2.0-0.noarch.rpm
 rubygem-net-ldap:
   :rpm_name: rubygem-net-ldap-0.16.0-1.el7.noarch.rpm
   :source: https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/r/rubygem-net-ldap-0.16.0-1.el7.noarch.rpm
@@ -308,6 +302,12 @@ rubygem-net-ping:
 rubygem-puppet-lint:
   :rpm_name: rubygem-puppet-lint-1.1.0-1.el7.noarch.rpm
   :source: http://yum.puppetlabs.com/el/7/dependencies/x86_64/rubygem-puppet-lint-1.1.0-1.el7.noarch.rpm
+rubygem-puppetserver-parslet:
+  :rpm_name: rubygem-puppetserver-parslet-1.8.2-0.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/rubygem-puppetserver-parslet-1.8.2-0.noarch.rpm
+rubygem-puppetserver-toml:
+  :rpm_name: rubygem-puppetserver-toml-0.2.0-0.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/rubygem-puppetserver-toml-0.2.0-0.noarch.rpm
 rubygem-rake:
   :rpm_name: rubygem-rake-0.9.6-33.el7_4.noarch.rpm
   :source: http://mirror.centos.org/centos/7/os/x86_64/Packages/rubygem-rake-0.9.6-33.el7_4.noarch.rpm
