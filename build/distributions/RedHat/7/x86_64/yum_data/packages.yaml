@@ -219,17 +219,17 @@ perl-X2go-Server-DB:
   :rpm_name: perl-X2Go-Server-DB-4.1.0.0-1.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/p/perl-X2Go-Server-DB-4.1.0.0-1.el7.x86_64.rpm
 postgresql96:
-  :rpm_name: postgresql96-9.6.9-1PGDG.rhel7.x86_64.rpm
-  :source: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/postgresql96-9.6.9-1PGDG.rhel7.x86_64.rpm
+  :rpm_name: postgresql96-9.6.11-1PGDG.rhel7.x86_64.rpm
+  :source: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/postgresql96-9.6.11-1PGDG.rhel7.x86_64.rpm
 postgresql96-contrib:
-  :rpm_name: postgresql96-contrib-9.6.9-1PGDG.rhel7.x86_64.rpm
-  :source: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/postgresql96-contrib-9.6.9-1PGDG.rhel7.x86_64.rpm
+  :rpm_name: postgresql96-contrib-9.6.11-1PGDG.rhel7.x86_64.rpm
+  :source: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/postgresql96-contrib-9.6.11-1PGDG.rhel7.x86_64.rpm
 postgresql96-libs:
-  :rpm_name: postgresql96-libs-9.6.9-1PGDG.rhel7.x86_64.rpm
-  :source: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/postgresql96-libs-9.6.9-1PGDG.rhel7.x86_64.rpm
+  :rpm_name: postgresql96-libs-9.6.11-1PGDG.rhel7.x86_64.rpm
+  :source: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/postgresql96-libs-9.6.11-1PGDG.rhel7.x86_64.rpm
 postgresql96-server:
-  :rpm_name: postgresql96-server-9.6.9-1PGDG.rhel7.x86_64.rpm
-  :source: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/postgresql96-server-9.6.9-1PGDG.rhel7.x86_64.rpm
+  :rpm_name: postgresql96-server-9.6.11-1PGDG.rhel7.x86_64.rpm
+  :source: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/postgresql96-server-9.6.11-1PGDG.rhel7.x86_64.rpm
 pssh:
   :rpm_name: pssh-2.3.1.SIMP-5.el7.noarch.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/pssh-2.3.1.SIMP-5.el7.noarch.rpm
