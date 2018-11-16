@@ -21,7 +21,7 @@ stages:
   - spec
   - package
   - name: deploy
-    if: 'fork = false AND tag = true'
+    if: 'tag IS present'
 
 before_install:
   - rm -f Gemfile.lock
@@ -47,7 +47,7 @@ jobs:
         - bundle exec rake spec
 
     - stage: package
-      name: 'Build EL6 SIMP ISO'
+      name: 'Build EL6 SIMP Packages'
       if: 'NOT env(TRAVIS_IS_SLOW_TODAY) = yes'
       sudo: required
       services:
@@ -56,7 +56,7 @@ jobs:
         - bundle exec rake beaker:suites[rpm_docker,el6]
 
     - stage: package
-      name: 'Build EL6 SIMP ISO (using travis_wait)'
+      name: 'Build EL6 SIMP Packages (using travis_wait)'
       if: 'env(TRAVIS_IS_SLOW_TODAY) = yes'
       sudo: required
       services:
@@ -65,7 +65,7 @@ jobs:
         - travis_wait 30 unbuffer bundle exec rake beaker:suites[rpm_docker,el6]
 
     - stage: package
-      name: 'Build EL7 SIMP ISO'
+      name: 'Build EL7 SIMP Packages'
       if: 'NOT env(TRAVIS_IS_SLOW_TODAY) = yes'
       sudo: required
       services:
@@ -74,7 +74,7 @@ jobs:
         - bundle exec rake beaker:suites[rpm_docker,el7]
 
     - stage: package
-      name: 'Build EL7 SIMP ISO (using travis_wait)'
+      name: 'Build EL7 SIMP Packages (using travis_wait)'
       if: 'env(TRAVIS_IS_SLOW_TODAY) = yes'
       sudo: required
       services:

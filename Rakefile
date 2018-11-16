@@ -88,7 +88,184 @@ namespace :pkg do
   end
 end
 
+def load_modules(puppetfile)
+  require 'r10k/puppetfile'
+
+  fail "Could not find file '#{puppetfile}'" unless File.exist?(puppetfile)
+
+  r10k = R10K::Puppetfile.new(Dir.pwd, nil, puppetfile)
+  r10k.load!
+
+  modules = {}
+
+  r10k.modules.each do |mod|
+    # Skip anything that's not pinned
+
+    next unless mod.instance_variable_get('@args').keys.include?(:tag)
+
+    modules[mod.name] = {
+      :id          => mod.name,
+      :owner       => mod.owner,
+      :path        => mod.path.to_s,
+      :remote      => mod.repo.instance_variable_get('@remote'),
+      :desired_ref => mod.desired_ref,
+      :version     => mod.desired_ref,
+      :git_source  => mod.repo.repo.origin,
+      :git_ref     => mod.repo.head,
+      :module_dir  => mod.basedir,
+      :r10k_module => mod,
+      :r10k_cache  => mod.repo.repo.cache_repo
+    }
+  end
+
+  return modules
+end
+
+def update_module_github_status!(mod)
+  require 'json'
+  require 'open-uri'
+
+  require 'highline'
+  HighLine.colorize_strings
+
+  mod[:published] ||= {}
+  mod[:published]['GitHub'] ||= 'unknown'
+  mod[:published]['Puppet Forge'] ||= 'unknown'
+
+  # See if we have a valid release on GitHub
+  github_releases_url = URI.parse(mod[:remote] + '/releases/tag/' + mod[:desired_ref])
+
+  github_releases_req = Net::HTTP.new(github_releases_url.host, github_releases_url.port)
+  github_releases_req.use_ssl = true
+
+  github_releases_res = github_releases_req.request_head(github_releases_url.path)
+
+  if github_releases_res.code == '200'
+    mod[:published]['GitHub'] = 'yes'.green
+  else
+    mod[:published]['GitHub'] = 'no'.red
+  end
+
+  # See if we're a module and update the version information if necessary
+  begin
+    open(
+      mod[:remote].gsub('github.com','raw.githubusercontent.com') +
+      '/' +
+      mod[:desired_ref] +
+      '/' +
+      'metadata.json'
+    ) do |fh|
+      mod_info = JSON.parse(fh.read)
+
+      mod[:version] = mod_info['version']
+    end
+  rescue StandardError => e
+    # If we get here, we're not a module
+    mod[:published]['Puppet Forge'] = 'N/A'
+  end
+end
+
+def update_module_puppet_forge_status!(mod)
+  require 'open-uri'
+
+  require 'highline'
+  HighLine.colorize_strings
+
+  forge_url_base  = 'https://forgeapi.puppet.com/v3/releases/'
+
+  mod[:published] ||= {}
+  mod[:published]['Puppet Forge'] ||= 'unknown'
+
+  unless mod[:published]['Puppet Forge'] == 'N/A'
+    begin
+      # Now, check the Puppet Forge for the released module
+      open(URI.parse(forge_url_base + mod[:owner] + '-' + mod[:id] + '-' + mod[:version])) do |fh|
+        mod[:published]['Puppet Forge'] = 'yes'.green
+      end
+    rescue StandardError => e
+      mod[:published]['Puppet Forge'] = 'no'.red
+    end
+  end
+end
+
+def update_module_package_cloud_status!(mod)
+  require 'open-uri'
+  require 'nokogiri'
+
+  require 'highline'
+  HighLine.colorize_strings
+
+  pcloud_url_base = 'https://packagecloud.io/app/simp-project/6_X/search?'
+
+  mod[:published] ||= {}
+
+  ['6','7'].each do |ver|
+    mod[:published]["Package Cloud #{ver}"] ||= 'unknown'
+
+    # Finally, check to see if we're published on Package Cloud (as best we can)
+    url = pcloud_url_base + 'q='
+
+    unless ['unknown', 'N/A'].include?(mod[:published]['Puppet Forge'])
+      url = url + 'pupmod-'
+    end
+
+    url = url + mod[:owner] + '-' + mod[:id] + '-' + mod[:version]
+
+    url = url + "&dist=el/#{ver}"
+
+    begin
+      package_cloud_query = Nokogiri::HTML(open(url).read)
+
+      pkg_info = package_cloud_query.xpath("//*[contains(@class, 'package-info-details')]")
+
+      if pkg_info.empty?
+        mod[:published]["Package Cloud #{ver}"] = 'no'.red
+      else
+        mod[:published]["Package Cloud #{ver}"] = pkg_info.css('a').first.text.green
+      end
+    rescue StandardError => e
+      mod[:published]["Package Cloud #{ver}"] = 'no'.red
+    end
+  end
+end
+
+def print_module_status(mod)
+  puts "== #{mod[:owner]}-#{mod[:id]} #{mod[:version]} =="
+  puts mod[:published].to_a.map{|x,y| "   * #{x} => #{y}"}.join("\n")
+end
+
 namespace :puppetfile do
+  desc <<-EOM
+  Check the deployment status of a specific item from the puppetfile.
+
+  Usage: puppetfile:check_module[<module name>] (exclude the author)
+  EOM
+  task :check_module, [:module_name, :puppetfile] do |t,args|
+    args.with_defaults(:puppetfile => 'tracking')
+
+    fail 'Need a module name' unless args[:module_name]
+
+    puppetfile = 'Puppetfile.' + args[:puppetfile]
+
+    modules = load_modules(puppetfile)
+
+    target_module = modules.select do |id, mod|
+      id == args[:module_name].strip
+    end
+
+    if target_module.empty?
+      fail "Could not find a tagged version of '#{args[:module_name]}' in '#{puppetfile}'"
+    end
+
+    target_module = target_module[target_module.keys.first]
+
+    update_module_github_status!(target_module)
+    update_module_puppet_forge_status!(target_module)
+    update_module_package_cloud_status!(target_module)
+
+    print_module_status(target_module)
+  end
+
   desc <<-EOM
   Check all tagged modules in the Puppetfile and determine if they have been
   published to the Puppet Forge, GitHub, and/or Package Cloud as appropriate
@@ -96,126 +273,19 @@ namespace :puppetfile do
   task :check, [:puppetfile] do |t,args|
     # TODO: Add local caching for repeated queries
 
-    FORGE_URL_BASE  = 'https://forgeapi.puppet.com/v3/releases/'
-    PCLOUD_URL_BASE = 'https://packagecloud.io/app/simp-project/6_X/search?'
-
-    require 'highline'
-    require 'json'
-    require 'nokogiri'
-    require 'open-uri'
-    require 'r10k/puppetfile'
-
-    HighLine.colorize_strings
-
     args.with_defaults(:puppetfile => 'tracking')
 
     puppetfile = 'Puppetfile.' + args[:puppetfile]
 
-    fail "Could not find file '#{puppetfile}'" unless File.exist?(puppetfile)
-
-    r10k = R10K::Puppetfile.new(Dir.pwd, nil, puppetfile)
-    r10k.load!
-
-    modules = {}
-
-    r10k.modules.each do |mod|
-      # Skip anything that's not pinned
-
-      next unless mod.instance_variable_get('@args').keys.include?(:tag)
-
-      modules[mod.name] = {
-        :owner       => mod.owner,
-        :path        => mod.path.to_s,
-        :remote      => mod.repo.instance_variable_get('@remote'),
-        :desired_ref => mod.desired_ref,
-        :version     => mod.desired_ref,
-        :git_source  => mod.repo.repo.origin,
-        :git_ref     => mod.repo.head,
-        :module_dir  => mod.basedir,
-        :r10k_module => mod,
-        :r10k_cache  => mod.repo.repo.cache_repo,
-        :published   => {
-          'GitHub'          => 'unknown',
-          'Puppet Forge'    => 'unknown',
-          'Package Cloud 6' => 'unknown',
-          'Package Cloud 7' => 'unknown'
-        }
-      }
-    end
+    modules = load_modules(puppetfile)
 
     modules.each do |id, mod|
       print "Processing: #{mod[:owner]}-#{id}".ljust(55,' ') + "\r"
       $stdout.flush
 
-      # First, we need to see if we have a valid release on GitHub
-      github_releases_url = URI.parse(mod[:remote] + '/releases/tag/' + mod[:desired_ref])
-
-      github_releases_req = Net::HTTP.new(github_releases_url.host, github_releases_url.port)
-      github_releases_req.use_ssl = true
-
-      github_releases_res = github_releases_req.request_head(github_releases_url.path)
-
-      if github_releases_res.code == '200'
-        mod[:published]['GitHub'] = 'yes'.green
-      else
-        mod[:published]['GitHub'] = 'no'.red
-      end
-
-      # See if we're a module and update the version information if necessary
-      begin
-        open(
-          mod[:remote].gsub('github.com','raw.githubusercontent.com') +
-          '/' +
-          mod[:desired_ref] +
-          '/' +
-          'metadata.json'
-        ) do |fh|
-          mod_info = JSON.parse(fh.read)
-
-          mod[:version] = mod_info['version']
-        end
-      rescue StandardError => e
-        # If we get here, we're not a module
-        mod[:published]['Puppet Forge'] = 'N/A'
-      end
-
-      unless mod[:published]['Puppet forge'] == 'N/A'
-        begin
-          # Now, check the Puppet Forge for the released module
-          open(URI.parse(FORGE_URL_BASE + mod[:owner] + '-' + id + '-' + mod[:version])) do |fh|
-            mod[:published]['Puppet Forge'] = 'yes'.green
-          end
-        rescue StandardError => e
-          mod[:published]['Puppet Forge'] = 'no'.red
-        end
-      end
-
-      ['6','7'].each do |ver|
-        # Finally, check to see if we're published on Package Cloud (as best we can)
-        url = PCLOUD_URL_BASE + 'q='
-
-        if mod[:published]['Puppet Forge'] == 'yes'
-          url = url + 'pupmod-'
-        end
-
-        url = url + mod[:owner] + '-' + id + '-' + mod[:version]
-
-        url = url + "&dist=el/#{ver}"
-
-        begin
-          package_cloud_query = Nokogiri::HTML(open(url).read)
-
-          pkg_info = package_cloud_query.xpath("//*[contains(@class, 'package-info-details')]")
-
-          if pkg_info.empty?
-            mod[:published]["Package Cloud #{ver}"] = 'no'.red
-          else
-            mod[:published]["Package Cloud #{ver}"] = pkg_info.css('a').first.text.green
-          end
-        rescue StandardError => e
-          mod[:published]["Package Cloud #{ver}"] = 'no'.red
-        end
-      end
+      update_module_github_status!(mod)
+      update_module_puppet_forge_status!(mod)
+      update_module_package_cloud_status!(mod)
 
       # Be kind, rewind...
       sleep 0.5
@@ -225,8 +295,7 @@ namespace :puppetfile do
     puts ''
 
     modules.each do |id, mod|
-      puts "#{mod[:owner]}-#{id} #{mod[:version]}"
-      puts mod[:published].to_a.map{|x,y| "  * #{x} => #{y}"}.join("\n")
+      print_module_status(mod)
     end
   end
 end
