@@ -100,8 +100,10 @@ describe 'install SIMP via release tarball' do
       # The following variables/methods are required by simp_conf.yaml.erb:
       #   domain
       #   gateway
+      #   grub_password_hash
       #   interface
       #   ipaddress
+      #   ldap_root_password_hash
       #   master_fqdn
       #   nameserver
       #   netmask
@@ -122,27 +124,15 @@ describe 'install SIMP via release tarball' do
       nameserver = dns_nameserver(master)
       expect(nameserver).to_not be_nil
 
+      grub_password_hash = encrypt_grub_password(master, test_password)
+      ldap_root_password_hash = encrypt_openldap_password(test_password)
+
       create_remote_file(master, '/root/simp_conf.yaml', ERB.new(simp_conf_template).result(binding))
       on(master, 'cat /root/simp_conf.yaml')
     end
 
     it 'should run simp config' do
-      cmd = [
-        'simp config',
-        '-A /root/simp_conf.yaml'
-      ].join(' ')
-
-      input = [
-        'no', # do not autogenerate GRUB password
-        test_password,
-        test_password,
-        'no', # do not autogenerate LDAP Root password
-        test_password,
-        test_password,
-        ''  # make sure to end with \n
-      ].join("\n")
-
-      on(master, cmd, { :pty => true, :stdin => input } )
+      on(master, 'simp config -a /root/simp_conf.yaml')
       on(master, 'cat /root/.simp/simp_conf.yaml')
     end
 

@@ -87,6 +87,13 @@ cli::simp::scenario: simp
 # SIMP repositories.
 cli::use_internet_simp_yum_repos: false
 
+# === grub::password ===
+# The password to access GRUB.
+#
+# The value entered is used to set the GRUB password and to generate a hash
+# stored in grub::password.
+grub::password: "<%= grub_password_hash %>"
+
 # === puppetdb::master::config::puppetdb_port ===
 # The PuppetDB server port number.
 puppetdb::master::config::puppetdb_port: 8139
@@ -98,6 +105,13 @@ puppetdb::master::config::puppetdb_server: "%{hiera('simp_options::puppet::serve
 # === simp::runlevel ===
 # The default system runlevel (1-5).
 simp::runlevel: 3
+
+# === simp_openldap::server::conf::rootpw ===
+# The salted LDAP Root password hash.
+#
+# When set via 'simp config', this password hash is generated from
+# the password entered on the command line.
+simp_openldap::server::conf::rootpw: "<%= ldap_root_password_hash %>"
 
 # === simp_options::dns::search ===
 # The DNS domain search string.
