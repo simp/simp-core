@@ -436,7 +436,7 @@ mod 'simp-simp_options',
 
 mod 'simp-simp_pki_service',
   :git => 'https://github.com/simp/pupmod-simp-simp_pki_service',
-  :branch => 'master'
+  :tag => '0.1.1'
 
 mod 'simp-simp_rsyslog',
   :git => 'https://github.com/simp/pupmod-simp-simp_rsyslog',
@@ -444,7 +444,7 @@ mod 'simp-simp_rsyslog',
 
 mod 'simp-simp_snmpd',
   :git => 'https://github.com/simp/pupmod-simp-simp_snmpd',
-  :branch => 'master'
+  :tag => '0.1.1'
 
 mod 'simp-site',
   :git => 'https://github.com/simp/pupmod-simp-site',
@@ -505,7 +505,7 @@ mod 'simp-tpm',
 
 mod 'simp-tpm2',
   :git => 'https://github.com/simp/pupmod-simp-tpm2',
-  :branch => 'master'
+  :tag => '0.1.0'
 
 mod 'simp-tuned',
   :git => 'https://github.com/simp/pupmod-simp-tuned',
