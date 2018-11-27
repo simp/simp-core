@@ -69,8 +69,15 @@ describe 'RPM build' do
         if ENV['TRAVIS_BUILD_DIR']
           base_dir = File.dirname(ENV['TRAVIS_BUILD_DIR'])
 
+          if host.host_hash.key?(:docker_container)
 puts host.host_hash
-          %x(docker cp #{ENV['TRAVIS_BUILD_DIR']} #{host.host_hash[:docker_container].id}:#{build_dir})
+            %x(docker cp #{ENV['TRAVIS_BUILD_DIR']} #{host.host_hash[:docker_container].id}:#{build_dir})
+          elsif host.host_hash.key?(:docker_container_id)
+            %x(docker cp #{ENV['TRAVIS_BUILD_DIR']} #{host.host_hash[:docker_container_id]}:#{build_dir})
+          else
+            fail('Unable to copy files into container:  Cannot determine container ID')
+          end
+         
 
           host.mkdir_p(base_dir)
           on(host, %(cd #{base_dir}; ln -s #{build_dir} .))
