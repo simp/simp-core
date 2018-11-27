@@ -30,7 +30,7 @@ Requires: pupmod-herculesteam-augeasproviders_core >= 2.1.4, pupmod-herculesteam
 Requires: pupmod-herculesteam-augeasproviders_grub >= 3.0.1, pupmod-herculesteam-augeasproviders_grub < 4.0.0
 Requires: pupmod-herculesteam-augeasproviders_postgresql >= 3.0.0, pupmod-herculesteam-augeasproviders_postgresql < 4.0.0
 Requires: pupmod-herculesteam-augeasproviders_puppet >= 2.1.1, pupmod-herculesteam-augeasproviders_puppet < 3.0.0
-Requires: pupmod-herculesteam-augeasproviders_ahellvar >= 3.0.0, pupmod-herculesteam-augeasproviders_shellvar < 4.0.0
+Requires: pupmod-herculesteam-augeasproviders_shellvar >= 3.0.0, pupmod-herculesteam-augeasproviders_shellvar < 4.0.0
 Requires: pupmod-herculesteam-augeasproviders_ssh >= 3.0.0, pupmod-herculesteam-augeasproviders_ssh < 4.0.0
 Requires: pupmod-herculesteam-augeasproviders_sysctl >= 2.2.1, pupmod-herculesteam-augeasproviders_sysctl < 3.0.0
 Requires: pupmod-onyxpoint-gpasswd >= 1.0.6, pupmod-onyxpoint-gpasswd < 2.0.0
@@ -98,15 +98,15 @@ Requires: pupmod-simp-tuned >= 0.1.0, pupmod-simp-tuned < 1.0.0
 Requires: pupmod-simp-upstart >= 6.0.3, pupmod-simp-upstart < 7.0.0
 Requires: pupmod-simp-useradd >= 0.2.2, pupmod-simp-useradd < 1.0.0
 Requires: pupmod-simp-vox_selinux >= 1.5.2, pupmod-simp-vox_selinux < 2.0.0
-Requires: pupmod-simp-xinetd >= 4.0.2, pupmod-simp-xinetd < 5.0.0
+Requires: pupmod-simp-xinetd >= 4.1.0, pupmod-simp-xinetd < 5.0.0
 Requires: pupmod-trlinkin-nsswitch >= 2.1.0, pupmod-trlinkin-nsswitch < 3.0.0
-Requires: rubygem-simp-cli >= 4.2.0, rubygem-simp-cli < 5.0.0
-Requires: rubygem-simp-cli-doc >= 4.2.0, rubygem-simp-cli-doc < 5.0.0
-Requires: simp-adapter >= 0.0.6, simp-adapter < 1.0.0
-Requires: simp-environment >= 6.2.10, simp-environment < 7.0.0
-Requires: simp-gpgkeys >= 3.0.3, simp-gpgkeys < 4.0.0
+Requires: rubygem-simp-cli >= 4.3.0, rubygem-simp-cli < 5.0.0
+Requires: rubygem-simp-cli-doc >= 4.3.0, rubygem-simp-cli-doc < 5.0.0
+Requires: simp-adapter >= 0.1.0, simp-adapter < 1.0.0
+Requires: simp-environment >= 6.3.0, simp-environment < 7.0.0
+Requires: simp-gpgkeys >= 3.0.4, simp-gpgkeys < 4.0.0
 Requires: simp-rsync >= 6.2.1-0%{?dist}, simp-rsync < 7.0.0
-Requires: simp-utils >= 6.1.1, simp-utils < 7.0.0
+Requires: simp-utils >= 6.1.2, simp-utils < 7.0.0
 
 # SIMP Extras
 %package extras
@@ -130,15 +130,15 @@ Requires: pupmod-simp-dconf >= 0.0.2
 Requires: pupmod-simp-dirtycow >= 1.0.4
 Requires: pupmod-simp-gdm >= 7.1.0
 Requires: pupmod-simp-gnome >= 8.0.0
-Requires: pupmod-simp-krb5 >= 7.0.4
 Requires: pupmod-simp-ima >= 0.1.0
+Requires: pupmod-simp-krb5 >= 7.0.4
 Requires: pupmod-simp-libreswan >= 3.1.0
 Requires: pupmod-simp-libvirt >= 5.2.0
 Requires: pupmod-simp-mate >= 1.0.1
 Requires: pupmod-simp-mozilla >= 5.1.0
 Requires: pupmod-simp-network >= 6.0.3
 Requires: pupmod-simp-nfs >= 6.2.0
-Requires: pupmod-simp-openscap >= 6.1.1
+Requires: pupmod-simp-openscap >= 6.2.0
 Requires: pupmod-simp-simp_docker >= 0.2.0
 Requires: pupmod-simp-simp_elasticsearch >= 5.0.5
 Requires: pupmod-simp-simp_gitlab >= 0.3.4
@@ -238,6 +238,7 @@ fi
   - pupmod-simp-krb5
   - pupmod-simp-ima
   - pupmod-simp-network
+  - pupmod-simp-nfs
   - pupmod-simp-tpm
   - pupmod-simp-tpm2
 

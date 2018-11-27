@@ -412,7 +412,7 @@ mod 'simp-simp_ipa',
   :tag => '0.0.1'
 
 # FIXME: This is commented out until the module is ready to be released.
-#  It has depencencies that have already been removed from the distribution.
+#  It has dependencies that have already been removed from the distribution.
 # mod 'simp-simp_kubernetes',
 # # FUTURE:  Release and add to simp.spec, to ensure packaged in ISO
 #   :git => 'https://github.com/simp/pupmod-simp-simp_kubernetes',
