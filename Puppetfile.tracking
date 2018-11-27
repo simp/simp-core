@@ -444,7 +444,7 @@ mod 'simp-simp_rsyslog',
 
 mod 'simp-simp_snmpd',
   :git => 'https://github.com/simp/pupmod-simp-simp_snmpd',
-  :tag => '0.1.0'
+  :branch => 'master'
 
 mod 'simp-site',
   :git => 'https://github.com/simp/pupmod-simp-site',
