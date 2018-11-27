@@ -69,6 +69,7 @@ describe 'RPM build' do
         if ENV['TRAVIS_BUILD_DIR']
           base_dir = File.dirname(ENV['TRAVIS_BUILD_DIR'])
 
+puts host.host_hash
           %x(docker cp #{ENV['TRAVIS_BUILD_DIR']} #{host.host_hash[:docker_container].id}:#{build_dir})
 
           host.mkdir_p(base_dir)
