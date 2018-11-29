@@ -123,6 +123,7 @@ end
 
 def update_module_github_status!(mod)
   require 'json'
+  require 'nokogiri'
   require 'open-uri'
 
   require 'highline'
@@ -133,16 +134,17 @@ def update_module_github_status!(mod)
   mod[:published]['Puppet Forge'] ||= 'unknown'
 
   # See if we have a valid release on GitHub
-  github_releases_url = URI.parse(mod[:remote] + '/releases/tag/' + mod[:desired_ref])
+  github_releases_url = mod[:remote] + '/releases'
 
-  github_releases_req = Net::HTTP.new(github_releases_url.host, github_releases_url.port)
-  github_releases_req.use_ssl = true
+  begin
+    github_query = Nokogiri::HTML(open(github_releases_url).read)
 
-  github_releases_res = github_releases_req.request_head(github_releases_url.path)
-
-  if github_releases_res.code == '200'
-    mod[:published]['GitHub'] = 'yes'.green
-  else
+    if github_query.xpath('//a/@title').map(&:value).include?(mod[:version])
+      mod[:published]['GitHub'] = 'yes'.green
+    else
+      mod[:published]['GitHub'] = 'no'.red
+    end
+  rescue
     mod[:published]['GitHub'] = 'no'.red
   end
 
