@@ -1,1 +1,0 @@
-../default/02_simp_server_rsync_spec.rb
