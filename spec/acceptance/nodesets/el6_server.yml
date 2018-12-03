@@ -26,18 +26,6 @@ HOSTS:
     hypervisor: <%= hypervisor %>
     vagrant_memsize: 4608
     vagrant_cpus: 2
-    yum_repos:
-      simp_dependencies:
-        baseurl: 'https://packagecloud.io/simp-project/6_X_Dependencies/el/6/$basearch'
-        gpgkeys:
-          - https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
-          - https://download.simp-project.com/simp/GPGKEYS/RPM-GPG-KEY-SIMP-6
-          - https://yum.puppet.com/RPM-GPG-KEY-puppetlabs
-          - https://yum.puppet.com/RPM-GPG-KEY-puppet
-          - https://apt.postgresql.org/pub/repos/yum/RPM-GPG-KEY-PGDG-96
-          - https://artifacts.elastic.co/GPG-KEY-elasticsearch
-          - https://grafanarel.s3.amazonaws.com/RPM-GPG-KEY-grafana
-          - https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-$releasever
 
   agent-el7:
     roles:
@@ -45,18 +33,6 @@ HOSTS:
     platform:   el-7-x86_64
     box:        <%= box_7 %>
     hypervisor: <%= hypervisor %>
-    yum_repos:
-      simp_dependencies:
-        baseurl: 'https://packagecloud.io/simp-project/6_X_Dependencies/el/7/$basearch'
-        gpgkeys:
-          - https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
-          - https://download.simp-project.com/simp/GPGKEYS/RPM-GPG-KEY-SIMP-6
-          - https://yum.puppet.com/RPM-GPG-KEY-puppetlabs
-          - https://yum.puppet.com/RPM-GPG-KEY-puppet
-          - https://apt.postgresql.org/pub/repos/yum/RPM-GPG-KEY-PGDG-96
-          - https://artifacts.elastic.co/GPG-KEY-elasticsearch
-          - https://grafanarel.s3.amazonaws.com/RPM-GPG-KEY-grafana
-          - https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-$releasever
 
   agent-el6:
     roles:
@@ -65,18 +41,6 @@ HOSTS:
     platform:   el-6-x86_64
     box:        <%= box_6 %>
     hypervisor: <%= hypervisor %>
-    yum_repos:
-      simp_dependencies:
-        baseurl: 'https://packagecloud.io/simp-project/6_X_Dependencies/el/6/$basearch'
-        gpgkeys:
-          - https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
-          - https://download.simp-project.com/simp/GPGKEYS/RPM-GPG-KEY-SIMP-6
-          - https://yum.puppet.com/RPM-GPG-KEY-puppetlabs
-          - https://yum.puppet.com/RPM-GPG-KEY-puppet
-          - https://apt.postgresql.org/pub/repos/yum/RPM-GPG-KEY-PGDG-96
-          - https://artifacts.elastic.co/GPG-KEY-elasticsearch
-          - https://grafanarel.s3.amazonaws.com/RPM-GPG-KEY-grafana
-          - https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-$releasever
 
 CONFIG:
   log_level: verbose

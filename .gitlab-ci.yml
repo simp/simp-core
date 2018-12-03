@@ -47,7 +47,7 @@ default_el6-puppet5:
   <<: *cache_bundler
   <<: *setup_bundler_env
   variables:
-    PUPPET_VERSION: '~> 5.3'
+    PUPPET_VERSION: '~> 5.5'
     BEAKER_PUPPET_COLLECTION: 'puppet5'
   script:
     - bundle exec rake spec_clean
@@ -62,7 +62,7 @@ default_el7-puppet5:
   <<: *cache_bundler
   <<: *setup_bundler_env
   variables:
-    PUPPET_VERSION: '~> 5.3'
+    PUPPET_VERSION: '~> 5.5'
     BEAKER_PUPPET_COLLECTION: 'puppet5'
   script:
     - bundle exec rake spec_clean
@@ -79,12 +79,28 @@ ipa_el7-puppet5:
   <<: *setup_bundler_env
   <<: *only_with_SIMP_FULL_MATRIX
   variables:
-    PUPPET_VERSION: '~> 5.3'
+    PUPPET_VERSION: '~> 5.5'
     BEAKER_PUPPET_COLLECTION: 'puppet5'
   script:
     - bundle exec rake spec_clean
     - bundle exec rake beaker:suites[ipa,el7_server]
   retry: 1
+
+# # IPA server has issues on el6
+# ipa_el6-puppet5:
+#   stage: integration
+#  image: 'ruby:2.4'
+#   tags:
+#     - beaker
+#   <<: *cache_bundler
+#   <<: *setup_bundler_env
+#   variables:
+#     PUPPET_VERSION: '~> 5.5'
+#     BEAKER_PUPPET_COLLECTION: 'puppet5'
+#   script:
+#     - bundle exec rake beaker:suites[ipa,el6_server]
+#   retry: 1
+
 
 default_oel6-puppet5:
   stage: integration
@@ -95,7 +111,7 @@ default_oel6-puppet5:
   <<: *setup_bundler_env
   <<: *only_with_SIMP_FULL_MATRIX
   variables:
-    PUPPET_VERSION: '~> 5.3'
+    PUPPET_VERSION: '~> 5.5'
     BEAKER_PUPPET_COLLECTION: 'puppet5'
     SIMP_BEAKER_OS: 'oracle'
   script:
@@ -112,7 +128,7 @@ default_oel7-puppet5:
   <<: *setup_bundler_env
   <<: *only_with_SIMP_FULL_MATRIX
   variables:
-    PUPPET_VERSION: '~> 5.3'
+    PUPPET_VERSION: '~> 5.5'
     BEAKER_PUPPET_COLLECTION: 'puppet5'
     SIMP_BEAKER_OS: 'oracle'
   script:
@@ -129,28 +145,13 @@ ipa_oel7-puppet5:
   <<: *setup_bundler_env
   <<: *only_with_SIMP_FULL_MATRIX
   variables:
-    PUPPET_VERSION: '~> 5.3'
+    PUPPET_VERSION: '~> 5.5'
     BEAKER_PUPPET_COLLECTION: 'puppet5'
     SIMP_BEAKER_OS: 'oracle'
   script:
     - bundle exec rake spec_clean
     - bundle exec rake beaker:suites[ipa,el7_server]
   retry: 1
-
-# # IPA server has issues on el6
-# ipa_el6-puppet5:
-#   stage: integration
-#  image: 'ruby:2.4'
-#   tags:
-#     - beaker
-#   <<: *cache_bundler
-#   <<: *setup_bundler_env
-#   variables:
-#     PUPPET_VERSION: '~> 5.3'
-#     BEAKER_PUPPET_COLLECTION: 'puppet5'
-#   script:
-#     - bundle exec rake beaker:suites[ipa,el6_server]
-#   retry: 1
 
 
 rpm_el6-puppet5:
@@ -162,7 +163,7 @@ rpm_el6-puppet5:
   <<: *setup_bundler_env
   <<: *only_with_SIMP_RELEASE_TESTS
   variables:
-    PUPPET_VERSION: '~> 5.3'
+    PUPPET_VERSION: '~> 5.5'
     BEAKER_PUPPET_COLLECTION: 'puppet5'
   script:
     - bundle exec rake spec_clean
@@ -178,7 +179,7 @@ rpm_el7-puppet5:
   <<: *setup_bundler_env
   <<: *only_with_SIMP_RELEASE_TESTS
   variables:
-    PUPPET_VERSION: '~> 5.3'
+    PUPPET_VERSION: '~> 5.5'
     BEAKER_PUPPET_COLLECTION: 'puppet5'
   script:
     - bundle exec rake spec_clean
@@ -194,14 +195,14 @@ forge_install_el6-puppet5:
   <<: *setup_bundler_env
   <<: *only_with_SIMP_RELEASE_TESTS
   variables:
-    PUPPET_VERSION: '~> 5.3'
+    PUPPET_VERSION: '~> 5.5'
     BEAKER_PUPPET_COLLECTION: 'puppet5'
   script:
     - bundle exec rake spec_clean
     - bundle exec rake beaker:suites[install_from_core_module,el6_server]
   retry: 1
 
-forge_install_el7-puppet5-puppet5:
+forge_install_el7-puppet5:
   stage: integration
   image: 'ruby:2.4'
   tags:
@@ -210,7 +211,7 @@ forge_install_el7-puppet5-puppet5:
   <<: *setup_bundler_env
   <<: *only_with_SIMP_RELEASE_TESTS
   variables:
-    PUPPET_VERSION: '~> 5.3'
+    PUPPET_VERSION: '~> 5.5'
     BEAKER_PUPPET_COLLECTION: 'puppet5'
   script:
     - bundle exec rake spec_clean
