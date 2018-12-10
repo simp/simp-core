@@ -12,7 +12,20 @@ baseurl=https://packagecloud.io/simp-project/6_X_Dependencies/el/7/$basearch
 gpgcheck=1
 enabled=1
 gpgkey=https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
-       https://download.simp-project.com/simp/GPGKEYS/RPM-GPG-KEY-SIMP-6       
+       https://download.simp-project.com/simp/GPGKEYS/RPM-GPG-KEY-SIMP-6
+       https://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs
+       https://yum.puppetlabs.com/RPM-GPG-KEY-puppet
+       https://download.postgresql.org/pub/repos/yum/RPM-GPG-KEY-PGDG-94
+       https://download.postgresql.org/pub/repos/yum/RPM-GPG-KEY-PGDG-96
+       https://getfedora.org/static/352C64E5.txt
+
+[simp-project_6_X_archive]
+name=simp-project_6_X_dependencies
+baseurl=https://download.simp-project.com/SIMP/archive/yum/6.X/EL7/dependencies/$basearch
+gpgcheck=1
+enabled=1
+gpgkey=https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
+       https://download.simp-project.com/simp/GPGKEYS/RPM-GPG-KEY-SIMP-6
        https://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs
        https://yum.puppetlabs.com/RPM-GPG-KEY-puppet
        https://download.postgresql.org/pub/repos/yum/RPM-GPG-KEY-PGDG-94

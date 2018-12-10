@@ -7,7 +7,7 @@ HOSTS:
     hypervisor: docker
     # This needs to be the *oldest* image of EL7 to preserve SELinux build compatibility
     image: centos:7.0.1406
-    docker_cmd: '/usr/sbin/sshd -D'
+    docker_cmd: '/usr/sbin/sshd -D -E /var/log/sshd.log'
     docker_preserve_image: true
     docker_image_commands:
       # The following 2 commands are intended to solve the problem in
