@@ -111,6 +111,7 @@ Requires: simp-utils >= 6.1.2, simp-utils < 7.0.0
 %package extras
 Summary: Extra Packages for SIMP
 License: Apache-2.0
+Requires: simp-adapter >= 0.1.1, simp-adapter < 1.0.0
 Requires: pupmod-cristifalcas-journald >= 0.6.0
 Requires: pupmod-elastic-elasticsearch >= 5.5.0
 Requires: pupmod-elastic-logstash >= 5.3.0
