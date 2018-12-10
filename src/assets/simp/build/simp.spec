@@ -10,7 +10,6 @@ Buildarch: noarch
 Requires: createrepo
 Requires: facter
 Requires: lsb
-Requires: simp-adapter
 Requires: httpd >= 2.2
 
 # These 2 lines are required for upgrades from simp-6.1.0 to simp-6.2+.
@@ -102,7 +101,7 @@ Requires: pupmod-simp-xinetd >= 4.1.0, pupmod-simp-xinetd < 5.0.0
 Requires: pupmod-trlinkin-nsswitch >= 2.1.0, pupmod-trlinkin-nsswitch < 3.0.0
 Requires: rubygem-simp-cli >= 4.3.1, rubygem-simp-cli < 5.0.0
 Requires: rubygem-simp-cli-doc >= 4.3.1, rubygem-simp-cli-doc < 5.0.0
-Requires: simp-adapter >= 0.1.0, simp-adapter < 1.0.0
+Requires: simp-adapter >= 0.1.1, simp-adapter < 1.0.0
 Requires: simp-environment >= 6.3.0, simp-environment < 7.0.0
 Requires: simp-gpgkeys >= 3.0.4, simp-gpgkeys < 4.0.0
 Requires: simp-rsync >= 6.2.1-0%{?dist}, simp-rsync < 7.0.0
