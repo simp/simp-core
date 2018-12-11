@@ -125,6 +125,7 @@ Requires: pupmod-puppetlabs-mysql >= 5.3.0
 Requires: pupmod-puppetlabs-translate >= 1.0.0
 Requires: pupmod-razorsedge-snmp >= 3.9.0
 Requires: pupmod-richardc-datacat >= 0.6.2
+Requires: pupmod-saz-locales >= 2.5.1
 Requires: pupmod-simp-autofs >= 6.1.2
 Requires: pupmod-simp-dconf >= 0.0.2
 Requires: pupmod-simp-dirtycow >= 1.0.4

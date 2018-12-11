@@ -15,6 +15,10 @@ mod 'rubygem-rubygem_simp_cli',
 #  :git => 'https://github.com/simp/rubygem-simp-processgraph',
 #  :branch => 'master'
 
+mod 'saz-locales',
+  :git => 'https://github.com/simp/pupmod-saz-locales',
+  :tag => 'v2.5.1'
+
 mod 'simp-rsync_data',
   :git => 'https://github.com/simp/simp-rsync-skeleton',
   :tag => '6.2.1'
