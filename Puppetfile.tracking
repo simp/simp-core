@@ -501,7 +501,7 @@ mod 'simp-timezone',
 
 mod 'simp-tlog',
   :git => 'https://github.com/simp/pupmod-simp-tlog',
-  :tag => '0.1.0'
+  :tag => '0.1.1'
 
 mod 'simp-tpm',
   :git => 'https://github.com/simp/pupmod-simp-tpm',

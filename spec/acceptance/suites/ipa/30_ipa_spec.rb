@@ -42,6 +42,7 @@ describe 'validate the ipa server' do
         '--first=Test',
         '--last=User',
         '--displayname="Test User"',
+        "--email=testuser@#{domain}.com",
         '--password',
         "--setattr=KrbPasswordExpiration=#{next_year}0606060606Z"
       ].join(' ')
