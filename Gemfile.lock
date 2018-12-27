@@ -132,7 +132,7 @@ GEM
     pry-byebug (3.4.3)
       byebug (>= 9.0, < 9.1)
       pry (~> 0.10)
-    pry-doc (0.13.5)
+    pry-doc (1.0.0)
       pry (~> 0.11)
       yard (~> 0.9.11)
     public_suffix (3.0.3)
@@ -290,4 +290,4 @@ DEPENDENCIES
   simp-rake-helpers (>= 5.7.1, < 6.0)
 
 BUNDLED WITH
-   1.17.1
+   1.17.3
