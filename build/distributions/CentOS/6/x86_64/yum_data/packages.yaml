@@ -246,8 +246,8 @@ rubygem-puppetserver-parslet:
   :rpm_name: rubygem-puppetserver-parslet-1.8.2-0.noarch.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-puppetserver-parslet-1.8.2-0.noarch.rpm
 rubygem-puppetserver-toml:
-  :rpm_name: rubygem-puppetserver-toml-0.2.0-0.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-puppetserver-toml-0.2.0-0.noarch.rpm
+  :rpm_name: rubygem-puppetserver-toml-0.2.0-1.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-puppetserver-toml-0.2.0-1.noarch.rpm
 rubygem-net-ldap:
   :rpm_name: rubygem-net-ldap-0.6.1-2.el6.1.noarch.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-net-ldap-0.6.1-2.el6.1.noarch.rpm
