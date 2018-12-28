@@ -72,14 +72,14 @@ incron:
   :rpm_name: incron-0.5.10-8.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/i/incron-0.5.10-8.el7.x86_64.rpm
 libNX_X11:
-  :rpm_name: libNX_X11-3.5.99.16-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/l/libNX_X11-3.5.99.16-1.el7.x86_64.rpm
+  :rpm_name: libNX_X11-3.5.99.17-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/l/libNX_X11-3.5.99.17-1.el7.x86_64.rpm
 libXcomp:
-  :rpm_name: libXcomp-3.5.99.16-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/l/libXcomp-3.5.99.16-1.el7.x86_64.rpm
+  :rpm_name: libXcomp-3.5.99.17-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/l/libXcomp-3.5.99.17-1.el7.x86_64.rpm
 libXcompshad:
-  :rpm_name: libXcompshad-3.5.99.16-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/l/libXcompshad-3.5.99.16-1.el7.x86_64.rpm
+  :rpm_name: libXcompshad-3.5.99.17-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/l/libXcompshad-3.5.99.17-1.el7.x86_64.rpm
 libarchive-devel:
   :rpm_name: libarchive-devel-3.1.2-10.el7_2.x86_64.rpm
   :source: Red Hat Optional Repository
@@ -165,14 +165,14 @@ mate-user-guide:
   :rpm_name: mate-user-guide-1.16.0-1.el7.noarch.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/mate-user-guide-1.16.0-1.el7.noarch.rpm
 nx-libs:
-  :rpm_name: nx-libs-3.5.99.16-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/n/nx-libs-3.5.99.16-1.el7.x86_64.rpm
+  :rpm_name: nx-libs-3.5.99.17-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/n/nx-libs-3.5.99.17-1.el7.x86_64.rpm
 nxagent:
-  :rpm_name: nxagent-3.5.99.16-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/n/nxagent-3.5.99.16-1.el7.x86_64.rpm
+  :rpm_name: nxagent-3.5.99.17-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/n/nxagent-3.5.99.17-1.el7.x86_64.rpm
 nxproxy:
-  :rpm_name: nxproxy-3.5.99.16-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/n/nxproxy-3.5.99.16-1.el7.x86_64.rpm
+  :rpm_name: nxproxy-3.5.99.17-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/n/nxproxy-3.5.99.17-1.el7.x86_64.rpm
 pdsh:
   :rpm_name: pdsh-2.29-1el7.x86_64.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/pdsh-2.29-1el7.x86_64.rpm
@@ -210,14 +210,14 @@ perl-Switch:
   :rpm_name: perl-Switch-2.16-7.el7.noarch.rpm
   :source: Red Hat Optional Repository
 perl-X2go-Log:
-  :rpm_name: perl-X2Go-Log-4.1.0.0-1.el7.noarch.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/p/perl-X2Go-Log-4.1.0.0-1.el7.noarch.rpm
+  :rpm_name: perl-X2Go-Log-4.1.0.3-1.el7.noarch.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/p/perl-X2Go-Log-4.1.0.3-1.el7.noarch.rpm
 perl-X2go-Server:
-  :rpm_name: perl-X2Go-Server-4.1.0.0-1.el7.noarch.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/p/perl-X2Go-Server-4.1.0.0-1.el7.noarch.rpm
+  :rpm_name: perl-X2Go-Server-4.1.0.3-1.el7.noarch.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/p/perl-X2Go-Server-4.1.0.3-1.el7.noarch.rpm
 perl-X2go-Server-DB:
-  :rpm_name: perl-X2Go-Server-DB-4.1.0.0-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/p/perl-X2Go-Server-DB-4.1.0.0-1.el7.x86_64.rpm
+  :rpm_name: perl-X2Go-Server-DB-4.1.0.3-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/p/perl-X2Go-Server-DB-4.1.0.3-1.el7.x86_64.rpm
 postgresql96:
   :rpm_name: postgresql96-9.6.11-1PGDG.rhel7.x86_64.rpm
   :source: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/postgresql96-9.6.11-1PGDG.rhel7.x86_64.rpm
@@ -405,17 +405,17 @@ unique:
   :rpm_name: unique-1.1.6-10.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/u/unique-1.1.6-10.el7.x86_64.rpm
 x2goagent:
-  :rpm_name: x2goagent-4.1.0.0-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/x/x2goagent-4.1.0.0-1.el7.x86_64.rpm
+  :rpm_name: x2goagent-4.1.0.3-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/x/x2goagent-4.1.0.3-1.el7.x86_64.rpm
 x2goclient:
   :rpm_name: x2goclient-4.1.1.1-1.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/x/x2goclient-4.1.1.1-1.el7.x86_64.rpm
 x2goserver:
-  :rpm_name: x2goserver-4.1.0.0-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/x/x2goserver-4.1.0.0-1.el7.x86_64.rpm
+  :rpm_name: x2goserver-4.1.0.3-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/x/x2goserver-4.1.0.3-1.el7.x86_64.rpm
 x2goserver-common:
-  :rpm_name: x2goserver-common-4.1.0.0-1.el7.noarch.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/x/x2goserver-common-4.1.0.0-1.el7.noarch.rpm
+  :rpm_name: x2goserver-common-4.1.0.3-1.el7.noarch.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/x/x2goserver-common-4.1.0.3-1.el7.noarch.rpm
 x2goserver-xsession:
-  :rpm_name: x2goserver-xsession-4.1.0.0-1.el7.noarch.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/x/x2goserver-xsession-4.1.0.0-1.el7.noarch.rpm
+  :rpm_name: x2goserver-xsession-4.1.0.3-1.el7.noarch.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/x/x2goserver-xsession-4.1.0.3-1.el7.noarch.rpm
