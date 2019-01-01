@@ -71,6 +71,7 @@ HOSTS:
       - 'yum install -y ntpdate rubygems'
 
       # RVM
+
       #
       # Do our best to get one of the keys from at one of the servers, and to
       # trust the right ones if the GPG keyservers return bad keys
@@ -97,6 +98,7 @@ HOSTS:
       - 'runuser build_user -l -c "gpg2 --refresh-keys"'
       - "runuser build_user -l -c 'echo 409B6B1796C275462A1703113804BB82D39DC0E3:6: | gpg2 --import-ownertrust; key1=$?; echo 7D2BAF1CF37B13E2069D6956105BD0E739499BDB:6: | gpg2 --import-ownertrust; key2=$?; [ \"$key1\" -eq 0 ] || [ \"$key2\" -eq 0 ]'"
       - "runuser build_user -l -c 'curl -sSL https://raw.githubusercontent.com/rvm/rvm/stable/binscripts/rvm-installer -o rvm-installer && curl -sSL https://raw.githubusercontent.com/rvm/rvm/stable/binscripts/rvm-installer.asc -o rvm-installer.asc && gpg2 --verify rvm-installer.asc rvm-installer && bash rvm-installer'"
+
       - 'runuser build_user -l -c "rvm install 2.4.4 --disable-binary"'
       - 'runuser build_user -l -c "rvm use --default 2.4.4"'
       - 'runuser build_user -l -c "rvm all do gem install bundler --no-document"'

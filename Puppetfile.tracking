@@ -497,11 +497,11 @@ mod 'simp-tftpboot',
 # RPM packaging (SIMP-6.4.0 or later).
 mod 'simp-timezone',
   :git => 'https://github.com/simp/pupmod-simp-timezone',
-  :tag => 'simp-5.0.2'
+  :tag => 'simp-5.0.3'
 
 mod 'simp-tlog',
   :git => 'https://github.com/simp/pupmod-simp-tlog',
-  :tag => '0.1.0'
+  :tag => '0.1.1'
 
 mod 'simp-tpm',
   :git => 'https://github.com/simp/pupmod-simp-tpm',
