@@ -1146,6 +1146,7 @@ python-gobject-base
 python-gssapi
 python-idna
 python-iniparse
+python-inotify
 python-ipaddress
 python-javapackages
 python-jwcrypto
@@ -1321,6 +1322,8 @@ stax-ex
 stax2-api
 stunnel
 subscription-manager
+subscription-manager-rhsm
+subscription-manager-rhsm-certificates
 subversion
 subversion-libs
 sudo
