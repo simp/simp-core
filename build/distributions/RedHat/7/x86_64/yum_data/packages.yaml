@@ -147,8 +147,8 @@ mate-polkit:
   :rpm_name: mate-polkit-1.16.0-2.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/mate-polkit-1.16.0-2.el7.x86_64.rpm
 mate-power-manager:
-  :rpm_name: mate-power-manager-1.16.2-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/mate-power-manager-1.16.2-1.el7.x86_64.rpm
+  :rpm_name: mate-power-manager-1.16.2-2.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/mate-power-manager-1.16.2-2.el7.x86_64.rpm
 mate-screensaver:
   :rpm_name: mate-screensaver-1.16.1-1.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/mate-screensaver-1.16.1-1.el7.x86_64.rpm
