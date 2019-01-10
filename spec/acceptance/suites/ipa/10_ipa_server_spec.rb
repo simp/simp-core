@@ -13,7 +13,7 @@ describe 'set up an IPA server' do
   ipa_domain     = domain
   ipa_realm      = ipa_domain.upcase
   ipa_fqdn       = fact_on(ipa_server, 'fqdn')
-  ipa_ip         = internal_network_address(ipa_server)
+  ipa_ip         = ipa_server.reachable_name
 
   context 'prepare ipa server' do
     it 'ipa-server should have an internal network IP address' do
@@ -76,10 +76,19 @@ describe 'set up an IPA server' do
             'origins'    => ['ALL'],
             'permission' => '+'
           },
+          'vagrant'      => nil,
           'testuser'     => nil,
-          '(posixusers)' => nil
+          '(posixusers)' => nil,
         },
         'ssh::server::conf::passwordauthentication' => true,
+        'sudo::user_specifications' => {
+          'vagrant_sudo_nopasswd' => {
+            'user_list' => ['vagrant'],
+            'cmnd'      => ['ALL'],
+            'runas'     => 'root',
+            'passwd'    => false,
+          }
+        }
       ).to_yaml
       create_remote_file(master, '/etc/puppetlabs/code/environments/production/data/default.yaml', default_yaml)
     end

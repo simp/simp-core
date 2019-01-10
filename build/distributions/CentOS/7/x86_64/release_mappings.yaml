@@ -14,7 +14,7 @@ simp_releases:
       RedHat:
         isos:
           - name:     'rhel-server-7.5-x86_64-dvd.iso'
-            size:     4059037696
+            size:     4617928704
             checksum: 'd0dd6ae5e001fb050dafefdfd871e7e648b147fb2d35f0e106e0b34a0163e8f5'
         build_command: 'bundle exec rake build:auto[rhel-server-7.5-x86_64-dvd.iso,6.X]'
         os_version:   '7.5'
@@ -31,7 +31,7 @@ simp_releases:
       RedHat:
         isos:
           - name:     'rhel-server-7.5-x86_64-dvd.iso'
-            size:     4059037696
+            size:     4617928704
             checksum: 'd0dd6ae5e001fb050dafefdfd871e7e648b147fb2d35f0e106e0b34a0163e8f5'
         build_command: 'bundle exec rake build:auto[rhel-server-7.5-x86_64-dvd.iso,6.X]'
         os_version:   '7.5'

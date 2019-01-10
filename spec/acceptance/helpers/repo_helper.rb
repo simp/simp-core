@@ -13,7 +13,7 @@ module Acceptance
           puts('='*72)
           puts("Using repos defined in #{repo_filename}")
           puts('='*72)
-          scp_to(hosts, repo_filename, "/etc/yum.repos.d/#{repo_name}")
+          scp_to(host, repo_filename, "/etc/yum.repos.d/#{repo_name}")
         else
           fail("File #{repo_filename} could not be found")
         end

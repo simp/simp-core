@@ -56,7 +56,13 @@ describe 'RPM build' do
     # This needs to happen *prior* to the test selection since the test
     # selection depends on this being present
     if ENV['BEAKER_copyin'] == 'yes'
-      %x(docker cp #{Dir.pwd} #{host.host_hash[:docker_container].id}:#{build_dir})
+      if host.host_hash.key?(:docker_container)
+        %x(docker cp #{Dir.pwd} #{host.host_hash[:docker_container].id}:#{build_dir})
+      elsif host.host_hash.key?(:docker_container_id)
+        %x(docker cp #{Dir.pwd} #{host.host_hash[:docker_container_id]}:#{build_dir})
+      else
+        fail('Unable to copy files into container:  Cannot determine container ID from host_hash')
+      end
     end
 
     it 'should clone the repo if necessary' do
@@ -69,7 +75,13 @@ describe 'RPM build' do
         if ENV['TRAVIS_BUILD_DIR']
           base_dir = File.dirname(ENV['TRAVIS_BUILD_DIR'])
 
-          %x(docker cp #{ENV['TRAVIS_BUILD_DIR']} #{host.host_hash[:docker_container].id}:#{build_dir})
+          if host.host_hash.key?(:docker_container)
+            %x(docker cp #{ENV['TRAVIS_BUILD_DIR']} #{host.host_hash[:docker_container].id}:#{build_dir})
+          elsif host.host_hash.key?(:docker_container_id)
+            %x(docker cp #{ENV['TRAVIS_BUILD_DIR']} #{host.host_hash[:docker_container_id]}:#{build_dir})
+          else
+            fail('Unable to copy files into container:  Cannot determine container ID from host_hash')
+          end
 
           host.mkdir_p(base_dir)
           on(host, %(cd #{base_dir}; ln -s #{build_dir} .))

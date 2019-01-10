@@ -15,8 +15,6 @@ describe 'install puppetserver modules from PuppetForge' do
         on(host, 'echo password | passwd root --stdin')
         # set up needed repositories
         host.install_package('epel-release')
-        host.install_package('git')
-        on(host, 'curl -s https://packagecloud.io/install/repositories/simp-project/6_X_Dependencies/script.rpm.sh | bash')
       end
     end
   end
@@ -29,10 +27,6 @@ describe 'install puppetserver modules from PuppetForge' do
 
       it 'should start puppetserver' do
         on(master, 'puppet resource service puppetserver ensure=running')
-      end
-
-      it 'should enable trusted_server_facts' do
-        on(master, 'puppet config --section master set trusted_server_facts true')
       end
     end
   end

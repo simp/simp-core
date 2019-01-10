@@ -1,1 +1,0 @@
-../default/03_simp_server_ldap_spec.rb

@@ -35,18 +35,23 @@ describe 'install environment via r10k and puppetserver' do
 
         # set up needed repositories
         host.install_package('epel-release')
+        set_up_simp_repos(host)
       end
+    end
+  end
+
+  context 'install simp-vendored-r10k' do
+    it 'install the simp-vendored-r10k' do
+      master.install_package('simp-vendored-r10k')
+
+      # workaround SIMP-5843
+      master.install_package('git')
     end
   end
 
   context 'install and start a standard puppetserver' do
     it 'should install puppetserver' do
       master.install_package('puppetserver')
-    end
-
-    it 'install the r10k gem' do
-      master.install_package('git')
-      on(master, 'puppet resource package r10k ensure=present provider=puppet_gem')
     end
 
     it 'should start puppetserver' do
@@ -69,8 +74,15 @@ describe 'install environment via r10k and puppetserver' do
     end
 
     it 'should install the Puppetfile' do
-      on(master, 'cd /etc/puppetlabs/code/environments/production; /opt/puppetlabs/puppet/bin/r10k puppetfile install', :accept_all_exit_codes => true)
-      on(master, 'cd /etc/puppetlabs/code/environments/production; /opt/puppetlabs/puppet/bin/r10k puppetfile install')
+      # retry to work around intermittent connectivity issues
+      retry_on(master,
+        'cd /etc/puppetlabs/code/environments/production; /usr/share/simp/bin/r10k puppetfile install -v info',
+        :desired_exit_codes => [0],
+        :retry_interval     => 15,
+        :max_retries        => 3,
+        :verbose            => true.to_s  # work around beaker bug
+      )
+
       on(master, 'chown -R root.puppet /etc/puppetlabs/code/environments/production/modules')
       on(master, 'chmod -R g+rX /etc/puppetlabs/code/environments/production/modules')
     end

@@ -66,7 +66,7 @@ describe 'sets up IPA clients' do
   context 'add hosts to ipa server' do
     block_on(ipa_clients) do |client|
       it "should run host-add for #{client}" do
-        client_ip = internal_network_address(client)
+        client_ip = client.reachable_name
         expect(client_ip).to_not be_nil
 
         cmd = [

@@ -5,6 +5,7 @@ require 'simp/beaker_helpers'
 require_relative 'acceptance/helpers'
 
 include Simp::BeakerHelpers
+include Acceptance::Helpers::RepoHelper
 include Acceptance::Helpers::Utils
 
 unless ENV['BEAKER_provision'] == 'no'

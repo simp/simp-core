@@ -46,7 +46,7 @@ builds/download RPMs, and then builds the ISO.
 
 ```bash
 # to run the default suite on OEL using Puppet 5 and an OEL7 simp server
-export PUPPET_VERSION='~> 5.3'
+export PUPPET_VERSION='~> 5.5'
 export BEAKER_PUPPET_COLLECTION='puppet5'
 export SIMP_BEAKER_OS='oracle'
 bundle exec rake beaker:suites[default,el7_server]
@@ -63,13 +63,23 @@ to `el7_server`. You can also set `SIMP_BEAKER_OS` to `oracle` to run the tests 
 _Install method_: `Puppetfile.tracking` and `r10k`
 
 This test parses the current `Puppetfile.tracking` to make a Puppetfile that's
-suitable for a control repo, then uses `r10k` to install the SIMP environment.
-It does not use `simp config` or `simp bootstrap`, but instead just runs Puppet
-directly.
+suitable for a control repo, then uses `r10k` packaged by SIMP to install the
+SIMP environment.  It does not use `simp config` or `simp bootstrap`, but instead
+just runs Puppet directly.
 
 When the `Puppetfile.tracking` is set to the `master` branches of our component
 modules, this test makes sure our most up-to-date code is compatible.
 
+Use the following ENV variables to configure the test:
+
+#### `BEAKER_repo`
+
+* **unset** - If unset, the test will use the 6_X repos on PackageCloud
+* **fully qualified path** - If set to a fully qualified path, the test will
+  assume this is a repo file that contains definitions for both the SIMP
+  repo and the SIMP dependencies repo
+* **version** - If set, and does not start with `/`, the test will assume it
+  is an different version for the SIMP PackageCloud
 
 
 ### `ipa` Suite
@@ -85,6 +95,17 @@ and will not pass.
 
 When the `Puppetfile.tracking` is set to the `master` branches of our component
 modules, this test makes sure our most up-to-date code is compatible.
+
+Use the following ENV variables to configure the test:
+
+#### `BEAKER_repo`
+
+* **unset** - If unset, the test will use the 6_X repos on PackageCloud
+* **fully qualified path** - If set to a fully qualified path, the test will
+  assume this is a repo file that contains definitions for both the SIMP
+  repo and the SIMP dependencies repo
+* **version** - If set, and does not start with `/`, the test will assume it
+  is an different version for the SIMP PackageCloud
 
 
 
@@ -223,6 +244,16 @@ NOTE: If there are unreleased components referenced in the `metadata.json` of
 the `simp/simp_core` metamodule, the `puppet module install` for the module will
 fail.
 
+Use the following ENV variables to configure the test:
+
+#### `BEAKER_repo`
+
+* **unset** - If unset, the test will use the 6_X repos on PackageCloud
+* **fully qualified path** - If set to a fully qualified path, the test will
+  assume this is a repo file that contains definitions for both the SIMP
+  repo and the SIMP dependencies repo
+* **version** - If set, and does not start with `/`, the test will assume it
+  is an different version for the SIMP PackageCloud
 
 
 ### `rpm_docker` Suite
