@@ -15,6 +15,7 @@ HOSTS:
       # However, sometimes these commands cause yum problems, instead
       # of fixing yum problems.  If the install of yum-plugin-ovl and
       # yum-utils fails, try commenting out these commands.
+      - 'yum clean all'
       - 'rm -f /var/lib/rpm/__db*'
       - 'yum clean all'
       # This is a hack to force an exit code of 0
@@ -41,7 +42,7 @@ HOSTS:
       - '\cp -a /root/ssh /etc'
 
       # Add the SELinux Build dependencies
-      - 'yum install -y selinux-policy-targeted selinux-policy-devel policycoreutils policycoreutils-python'
+      - 'yum install -y sudo selinux-policy-targeted selinux-policy-devel policycoreutils policycoreutils-python'
 
       # Allow the build user to perform privileged operations
       - "echo 'Defaults:build_user !requiretty' >> /etc/sudoers"
@@ -59,10 +60,14 @@ HOSTS:
       - 'yum install -y openssl util-linux rpm-build augeas-devel createrepo genisoimage git gnupg2 libicu-devel libxml2 libxml2-devel libxslt libxslt-devel rpmdevtools which ruby-devel rpm-devel rpm-sign'
 
       # simp doc deps
-      - 'yum -y install centos-release-scl python27 python-pip python-virtualenv fontconfig dejavu-sans-fonts dejavu-sans-mono-fonts dejavu-serif-fonts dejavu-fonts-common libjpeg-devel zlib-devel'
+      - 'yum -y install centos-release-scl python-pip python-virtualenv fontconfig dejavu-sans-fonts dejavu-sans-mono-fonts dejavu-serif-fonts dejavu-fonts-common libjpeg-devel zlib-devel openssl-devel'
 
       # RVM build-deps
-      - 'yum install -y libyaml-devel glibc-headers autoconf gcc gcc-c++ glibc-devel readline-devel libffi-devel openssl-devel automake libtool bison sqlite-devel'
+      - 'yum install -y libyaml-devel glibc-headers autoconf gcc gcc-c++ glibc-devel readline-devel libffi-devel automake libtool bison sqlite-devel'
+
+      # SCL Requirements
+      - 'yum-config-manager --enable rhel-server-rhscl-7-rpms'
+      - 'yum --enablerepo=base -y install python27'
 
       # For things that want to call systemctl - we don't need them for this
       - 'ln -sf /bin/true /usr/bin/systemctl'
@@ -100,13 +105,13 @@ HOSTS:
 
       - 'runuser build_user -l -c "rvm install 2.4.4 --disable-binary"'
       - 'runuser build_user -l -c "rvm use --default 2.4.4"'
-      - 'runuser build_user -l -c "rvm all do gem install bundler --no-document"'
+      - 'runuser build_user -l -c "rvm all do gem install bundler -v \"~> 1.16\" --no-document"'
 
       # Add some gems that will drag along 90% of what the build requires
-      - 'runuser build_user -l -c "rvm use default; gem install --no-ri --no-rdoc simp-rake-helpers"'
-      - 'runuser build_user -l -c "rvm use default; gem install --no-ri --no-rdoc json"'
-      - 'runuser build_user -l -c "rvm use default; gem install --no-ri --no-rdoc charlock_holmes"'
-      - 'runuser build_user -l -c "rvm use default; gem install --no-ri --no-rdoc posix-spawn"'
+      - 'runuser build_user -l -c "rvm use default; gem install --no-document simp-rake-helpers"'
+      - 'runuser build_user -l -c "rvm use default; gem install --no-document json"'
+      - 'runuser build_user -l -c "rvm use default; gem install --no-document charlock_holmes"'
+      - 'runuser build_user -l -c "rvm use default; gem install --no-document posix-spawn"'
 
 CONFIG:
 <% unless ENV['TRAVIS'] -%>

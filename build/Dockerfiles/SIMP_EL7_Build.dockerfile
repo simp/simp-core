@@ -48,7 +48,7 @@ RUN ln -sf /bin/true /usr/bin/systemctl
 RUN yum install -y rubygems vim-enhanced jq
 
 # Set up RVM
-RUN runuser build_user -l -c "echo 'gem: --no-ri --no-rdoc' > .gemrc"
+RUN runuser build_user -l -c "echo 'gem: --no-document' > .gemrc"
 
 # Do our best to get one of the keys from at one of the servers, and to
 # trust the right ones if the GPG keyservers return bad keys
@@ -76,7 +76,7 @@ RUN runuser build_user -l -c "gpg2 --refresh-keys"
 RUN runuser build_user -l -c "curl -sSL https://raw.githubusercontent.com/rvm/rvm/stable/binscripts/rvm-installer -o rvm-installer && curl -sSL https://raw.githubusercontent.com/rvm/rvm/stable/binscripts/rvm-installer.asc -o rvm-installer.asc && gpg2 --verify rvm-installer.asc rvm-installer && bash rvm-installer"
 RUN runuser build_user -l -c "rvm install 2.4.4 --disable-binary"
 RUN runuser build_user -l -c "rvm use --default 2.4.4"
-RUN runuser build_user -l -c "rvm all do gem install bundler"
+RUN runuser build_user -l -c "rvm all do gem install bundler -v '~> 1.16'"
 
 # Check out a copy of simp-core for building
 RUN runuser build_user -l -c "git clone https://github.com/simp/simp-core"
