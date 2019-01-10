@@ -5,7 +5,7 @@
 [![Puppet Forge Modules](https://img.shields.io/puppetforge/mc/simp.svg)](https://forge.puppetlabs.com/simp)
 [![Build Status](https://travis-ci.org/simp/simp-core.svg)](https://travis-ci.org/simp/simp-core)
 
-This is the [SIMP](https://simp-project.com) supermodule.
+This is the [SIMP](https://simp-project.com) supermodule for release 6.3.0-0.
 
 The latest release is [![GitHub release](https://img.shields.io/github/release/simp/simp-core.svg)](https://github.com/simp/simp-core/releases)
 
@@ -18,15 +18,14 @@ You can find all full SIMP changelogs on [Read The Docs](https://simp.readthedoc
 
 ## Supported Releases
 
-  * [Red Hat Enterprise Linux 7.4](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/7.4_Release_Notes/index.html)
-  * [CentOS 7 1708](http://vault.centos.org/7.4.1708/isos/x86_64/)
-  * [Red Hat Enterprise Linux 6.9](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/6.9_Release_Notes/index.html)
-  * [CentOS 6.9](http://vault.centos.org/6.9/isos/x86_64/)
-
+  * [Red Hat Enterprise Linux 7.5](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/7.5_Release_Notes/index.html)
+  * [CentOS 7 1804](https://wiki.centos.org/Manuals/ReleaseNotes/CentOS7.1804)
+  * [Red Hat Enterprise Linux 6.10](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/6.10_Release_Notes/index.html)
+  * [CentOS 6.10](https://wiki.centos.org/Manuals/ReleaseNotes/CentOS6.10)
 
 ## Getting Started
 
-Please take a look at the [SIMP Documentation](http://simp.readthedocs.io/en/6.2.0-0/)
+Please take a look at the [SIMP Documentation](http://simp.readthedocs.io/en/6.3.0-0/)
 for this release for full details on using the SIMP system.
 
 We recommend that you also reference the
