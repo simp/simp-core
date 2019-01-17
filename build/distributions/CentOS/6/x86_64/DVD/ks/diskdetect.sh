@@ -69,6 +69,54 @@ fi
 
 simp_opt=`awk -F "simp_opt=" '{print $2}' /proc/cmdline | cut -f1 -d' '`
 
+# This check to see if any of the simp_disk_* parameters are set and if they are it overrides
+# the value for that parameter to whatever has been passed in.
+
+if grep -q "simp_disk_swapvol=" /proc/cmdline; then
+  simp_disk_swapvol=`awk -F "simp_disk_swapvol=" '{print $2}' /proc/cmdline | cut -f1 -d' '`
+else
+  simp_disk_swapvol=1024
+fi
+if grep -q "simp_disk_rootvol=" /proc/cmdline; then
+  simp_disk_rootvol=`awk -F "simp_disk_rootvol=" '{print $2}' /proc/cmdline | cut -f1 -d' '`
+else
+  simp_disk_rootvol=10240
+fi
+if grep -q "simp_disk_tmpvol=" /proc/cmdline; then
+  simp_disk_tmpvol=`awk -F "simp_disk_tmpvol=" '{print $2}' /proc/cmdline | cut -f1 -d' '`
+else
+  simp_disk_tmpvol=2048
+fi
+if grep -q "simp_disk_homevol=" /proc/cmdline; then
+  simp_disk_homevol=`awk -F "simp_disk_homevol=" '{print $2}' /proc/cmdline | cut -f1 -d' '`
+else
+  simp_disk_homevol=1024
+fi
+if grep -q "simp_disk_varvol=" /proc/cmdline; then
+  simp_disk_varvol=`awk -F "simp_disk_varvol=" '{print $2}' /proc/cmdline | cut -f1 -d' '`
+else
+  simp_disk_varvol=1024
+fi
+if grep -q "simp_disk_varlogvol=" /proc/cmdline; then
+  simp_disk_varlogvol=`awk -F "simp_disk_varlogvol=" '{print $2}' /proc/cmdline | cut -f1 -d' '`
+else
+  simp_disk_varlogvol=4096
+fi
+if grep -q "simp_disk_varlogauditvol=" /proc/cmdline; then
+  simp_disk_varlogauditvol=`awk -F "simp_disk_varlogauditvol=" '{print $2}' /proc/cmdline | cut -f1 -d' '`
+else
+  simp_disk_varlogauditvol=1024
+fi
+
+# This checks to see which disk should grow to fill the rest of the size if any is left over. This defaults
+# to grow VarVol.
+
+if grep -q "simp_grow_vol=" /proc/cmdline; then
+  simp_grow_vol=`awk -F "simp_grow_vol=" '{print $2}' /proc/cmdline | cut -f1 -d' '`
+else
+  simp_grow_vol='VarVol'
+fi
+
 if [ "$simp_opt" != "prompt" ]; then
   cat << EOF > /tmp/part-include
 clearpart --all --initlabel --drives=${DISK}
@@ -86,13 +134,13 @@ fi
 if [ "$simp_opt" != "prompt" ]; then
   cat << EOF >> /tmp/part-include
 volgroup VolGroup00 pv.01
-logvol swap --fstype=swap --name=SwapVol --vgname=VolGroup00 --size=1024
-logvol / --fstype=ext4 --name=RootVol --vgname=VolGroup00 --size=10240 --fsoptions=iversion
-logvol /tmp --fstype=ext4 --name=TmpVol --vgname=VolGroup00 --size=2048 --fsoptions=nosuid,noexec,nodev
-logvol /home --fstype=ext4 --name=HomeVol --vgname=VolGroup00 --size=1024 --fsoptions=nosuid,noexec,nodev,iversion
-logvol /var/log --fstype=ext4 --name=VarLogVol --vgname=VolGroup00 --size=4096 --fsoptions=nosuid,noexec,nodev
-logvol /var/log/audit --fstype=ext4 --name=VarLogAuditVol --vgname=VolGroup00 --size=1024 --fsoptions=nosuid,noexec,nodev
-logvol /var --fstype=ext4 --name=VarVol --vgname=VolGroup00 --size=1024 --grow
+logvol swap --fstype=swap --name=SwapVol --vgname=VolGroup00 --size=${simp_disk_swapvol} `if [[ "$simp_grow_vol" == "SwapVol" ]]; then echo '--grow'; fi`
+logvol / --fstype=ext4 --name=RootVol --vgname=VolGroup00 --size=${simp_disk_rootvol} --fsoptions=iversion `if [[ "$simp_grow_vol" == "RootVol" ]]; then echo '--grow'; fi`
+logvol /tmp --fstype=ext4 --name=TmpVol --vgname=VolGroup00 --size=${simp_disk_tmpvol} --fsoptions=nosuid,noexec,nodev `if [[ "$simp_grow_vol" == "TmpVol" ]]; then echo '--grow'; fi`
+logvol /home --fstype=ext4 --name=HomeVol --vgname=VolGroup00 --size=${simp_disk_homevol} --fsoptions=nosuid,noexec,nodev,iversion `if [[ "$simp_grow_vol" == "HomeVol" ]]; then echo '--grow'; fi`
+logvol /var/log --fstype=ext4 --name=VarLogVol --vgname=VolGroup00 --size=${simp_disk_varlogvol} --fsoptions=nosuid,noexec,nodev `if [[ "$simp_grow_vol" == "VarLogVol" ]]; then echo '--grow'; fi`
+logvol /var/log/audit --fstype=ext4 --name=VarLogAuditVol --vgname=VolGroup00 --size=${simp_disk_varlogauditvol} --fsoptions=nosuid,noexec,nodev `if [[ "$simp_grow_vol" == "VarLogAuditVol" ]]; then echo '--grow'; fi`
+logvol /var --fstype=ext4 --name=VarVol --vgname=VolGroup00 --size=${simp_disk_varvol} `if [[ "$simp_grow_vol" == "VarVol" ]]; then echo '--grow'; fi`
 EOF
 
 fi
