@@ -7,7 +7,7 @@
     - This will erase your existing system!
     - You need at least 50GB of disk space for this to succeed.
     - Partitions will be configured to be STIG compliant.
-    - Add the option 0asimp_disk_crypt07 to encrypt your disk.
+    - Type 0asimp-nocrypt07 to disable disk encryption.
 
  -  To install SIMP with disk prompt, type 0asimp-prompt <ENTER>07.
     - This will erase your existing system!
@@ -17,4 +17,4 @@
     - This will erase your existing system!
     - You need at least 50GB of disk space for this to succeed.
     - Partitions will be configured to be STIG compliant.
-    - Add the option 0asimp_disk_crypt07 to encrypt your disk.
+    - Type 0alinux-min-nocrypt07 to disable disk encryption.
