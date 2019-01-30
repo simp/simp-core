@@ -21,32 +21,32 @@ chkrootkit:
   :rpm_name: chkrootkit-0.50-4el7.x86_64.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/chkrootkit-0.50-4el7.x86_64.rpm
 clamav:
-  :rpm_name: clamav-0.101.0-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/clamav-0.101.0-1.el7.x86_64.rpm
+  :rpm_name: clamav-0.101.1-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/clamav-0.101.1-1.el7.x86_64.rpm
 clamav-data:
-  :rpm_name: clamav-data-0.101.0-1.el7.noarch.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/clamav-data-0.101.0-1.el7.noarch.rpm
+  :rpm_name: clamav-data-0.101.1-1.el7.noarch.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/clamav-data-0.101.1-1.el7.noarch.rpm
 clamav-devel:
-  :rpm_name: clamav-devel-0.101.0-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/clamav-devel-0.101.0-1.el7.x86_64.rpm
+  :rpm_name: clamav-devel-0.101.1-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/clamav-devel-0.101.1-1.el7.x86_64.rpm
 clamav-filesystem:
-  :rpm_name: clamav-filesystem-0.101.0-1.el7.noarch.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/clamav-filesystem-0.101.0-1.el7.noarch.rpm
+  :rpm_name: clamav-filesystem-0.101.1-1.el7.noarch.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/clamav-filesystem-0.101.1-1.el7.noarch.rpm
 clamav-lib:
-  :rpm_name: clamav-lib-0.101.0-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/clamav-lib-0.101.0-1.el7.x86_64.rpm
+  :rpm_name: clamav-lib-0.101.1-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/clamav-lib-0.101.1-1.el7.x86_64.rpm
 clamav-scanner-systemd:
-  :rpm_name: clamav-scanner-systemd-0.101.0-1.el7.x86_64.rpm
-  :source: https://mirror.umd.edu/fedora/epel/7/x86_64/Packages/c/clamav-scanner-systemd-0.101.0-1.el7.x86_64.rpm
+  :rpm_name: clamav-scanner-systemd-0.101.1-1.el7.x86_64.rpm
+  :source: https://mirror.umd.edu/fedora/epel/7/x86_64/Packages/c/clamav-scanner-systemd-0.101.1-1.el7.x86_64.rpm
 clamav-server-systemd:
-  :rpm_name: clamav-server-systemd-0.101.0-1.el7.x86_64.rpm
-  :source: https://mirror.umd.edu/fedora/epel/7/x86_64/Packages/c/clamav-server-systemd-0.101.0-1.el7.x86_64.rpm
+  :rpm_name: clamav-server-systemd-0.101.1-1.el7.x86_64.rpm
+  :source: https://mirror.umd.edu/fedora/epel/7/x86_64/Packages/c/clamav-server-systemd-0.101.1-1.el7.x86_64.rpm
 clamav-update:
-  :rpm_name: clamav-update-0.101.0-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/clamav-update-0.101.0-1.el7.x86_64.rpm
+  :rpm_name: clamav-update-0.101.1-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/clamav-update-0.101.1-1.el7.x86_64.rpm
 clamd:
-  :rpm_name: clamd-0.101.0-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/clamd-0.101.0-1.el7.x86_64.rpm
+  :rpm_name: clamd-0.101.1-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/clamd-0.101.1-1.el7.x86_64.rpm
 fortune-mod:
   :rpm_name: fortune-mod-1.99.1-17.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/f/fortune-mod-1.99.1-17.el7.x86_64.rpm
