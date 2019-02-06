@@ -1,6 +1,6 @@
 Summary: SIMP Full Install
 Name: simp
-Version: 6.3.0
+Version: 6.3.2
 Release: 0%{?dist}%{?snapshot_release}
 License: Apache License, Version 2.0
 Group: Applications/System
@@ -57,7 +57,7 @@ Requires: pupmod-simp-deferred_resources >= 0.1.0, pupmod-simp-deferred_resource
 Requires: pupmod-simp-dhcp >= 6.1.0, pupmod-simp-dhcp < 7.0.0
 Requires: pupmod-simp-fips >= 0.2.0, pupmod-simp-fips < 1.0.0
 Requires: pupmod-simp-haveged >= 0.4.6, pupmod-simp-haveged < 1.0.0
-Requires: pupmod-simp-incron >= 0.3.1, pupmod-simp-incron < 1.0.0
+Requires: pupmod-simp-incron >= 0.4.0, pupmod-simp-incron < 1.0.0
 Requires: pupmod-simp-iptables >= 6.1.6, pupmod-simp-iptables < 7.0.0
 Requires: pupmod-simp-issue >= 0.0.3, pupmod-simp-issue < 1.0.0
 Requires: pupmod-simp-logrotate >= 6.3.0, pupmod-simp-logrotate < 7.0.0
@@ -68,14 +68,14 @@ Requires: pupmod-simp-pam >= 6.3.0, pupmod-simp-pam < 7.0.0
 Requires: pupmod-simp-pki >= 6.0.4, pupmod-simp-pki < 7.0.0
 Requires: pupmod-simp-polkit >= 6.1.1, pupmod-simp-polkit < 7.0.0
 Requires: pupmod-simp-postfix >= 5.2.0, pupmod-simp-postfix < 6.0.0
-Requires: pupmod-simp-pupmod >= 7.7.0, pupmod-simp-pupmod < 8.0.0
+Requires: pupmod-simp-pupmod >= 7.8.0, pupmod-simp-pupmod < 8.0.0
 Requires: pupmod-simp-resolv >= 0.1.1, pupmod-simp-resolv < 1.0.0
 Requires: pupmod-simp-rsync >= 6.1.0, pupmod-simp-rsync < 7.0.0
 Requires: pupmod-simp-rsyslog >= 7.3.0, pupmod-simp-rsyslog < 8.0.0
 Requires: pupmod-simp-selinux >= 2.3.0, pupmod-simp-selinux < 3.0.0
 Requires: pupmod-simp-simp >= 4.6.0, pupmod-simp-simp < 5.0.0
 Requires: pupmod-simp-simpcat >= 6.0.2, pupmod-simp-simpcat < 7.0.0
-Requires: pupmod-simp-simplib >= 3.11.1, pupmod-simp-simplib < 4.0.0
+Requires: pupmod-simp-simplib >= 3.12.0, pupmod-simp-simplib < 4.0.0
 Requires: pupmod-simp-simp_apache >= 6.1.0, pupmod-simp-simp_apache < 7.0.0
 Requires: pupmod-simp-simp_banners >= 0.1.0, pupmod-simp-simp_banners < 1.0.0
 Requires: pupmod-simp-simp_openldap >= 6.3.0, pupmod-simp-simp_openldap < 7.0.0
@@ -83,8 +83,8 @@ Requires: pupmod-simp-simp_options >= 1.2.1, pupmod-simp-simp_options < 2.0.0
 Requires: pupmod-simp-simp_rsyslog >= 0.3.0, pupmod-simp-simp_rsyslog < 1.0.0
 Requires: pupmod-simp-site >= 2.0.5, pupmod-simp-site < 3.0.0
 Requires: pupmod-simp-ssh >= 6.5.1, pupmod-simp-ssh < 7.0.0
-Requires: pupmod-simp-sssd >= 6.1.3, pupmod-simp-sssd < 7.0.0
-Requires: pupmod-simp-stunnel >= 6.3.3, pupmod-simp-stunnel < 7.0.0
+Requires: pupmod-simp-sssd >= 6.1.4, pupmod-simp-sssd < 7.0.0
+Requires: pupmod-simp-stunnel >= 6.4.0, pupmod-simp-stunnel < 7.0.0
 Requires: pupmod-simp-sudo >= 5.1.1, pupmod-simp-sudo < 6.0.0
 Requires: pupmod-simp-sudosh >= 6.1.0, pupmod-simp-sudosh < 7.0.0
 Requires: pupmod-simp-svckill >= 3.3.0, pupmod-simp-svckill < 4.0.0
@@ -99,8 +99,8 @@ Requires: pupmod-simp-useradd >= 0.2.2, pupmod-simp-useradd < 1.0.0
 Requires: pupmod-simp-vox_selinux >= 1.5.2, pupmod-simp-vox_selinux < 2.0.0
 Requires: pupmod-simp-xinetd >= 4.1.0, pupmod-simp-xinetd < 5.0.0
 Requires: pupmod-trlinkin-nsswitch >= 2.1.0, pupmod-trlinkin-nsswitch < 3.0.0
-Requires: rubygem-simp-cli >= 4.3.2, rubygem-simp-cli < 5.0.0
-Requires: rubygem-simp-cli-doc >= 4.3.2, rubygem-simp-cli-doc < 5.0.0
+Requires: rubygem-simp-cli >= 4.4.0, rubygem-simp-cli < 5.0.0
+Requires: rubygem-simp-cli-doc >= 4.4.0, rubygem-simp-cli-doc < 5.0.0
 Requires: simp-adapter >= 0.1.1, simp-adapter < 1.0.0
 Requires: simp-environment >= 6.3.0, simp-environment < 7.0.0
 Requires: simp-gpgkeys >= 3.0.4, simp-gpgkeys < 4.0.0
@@ -231,6 +231,15 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Fri Feb 02 2019 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.3.2-0
+- Updated the following packages to address bug fixes. See the Changelog for
+  relevant information.
+  - pupmod-simp-incron
+  - pupmod-simp-pupmod
+  - pupmod-simp-simplib
+  - pupmod-simp-sssd
+  - pupmod-simp-stunnel
+
 * Tue Nov 11 2018 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.3.0-0
 - Updated package versions for the latest release
 - Moved the following to simp-extras

@@ -8,16 +8,12 @@ moduledir 'src/assets'
 
 mod 'rubygem-rubygem_simp_cli',
   :git => 'https://github.com/simp/rubygem-simp-cli',
-  :tag => '4.3.2'
+  :tag => '4.4.0'
 
 # FIXME Doesn't have RPM packaging yet
 #mod 'rubygem-rubygem_simp_processgraph',
 #  :git => 'https://github.com/simp/rubygem-simp-processgraph',
 #  :branch => 'master'
-
-mod 'saz-locales',
-  :git => 'https://github.com/simp/pupmod-saz-locales',
-  :tag => 'v2.5.1'
 
 mod 'simp-rsync_data',
   :git => 'https://github.com/simp/simp-rsync-skeleton',
@@ -200,6 +196,10 @@ mod 'richardc-datacat',
   :git => 'https://github.com/simp/puppet-datacat',
   :tag => 'simp6.0.0-0.6.2'
 
+mod 'saz-locales',
+  :git => 'https://github.com/simp/pupmod-saz-locales',
+  :tag => 'v2.5.1'
+
 mod 'simp-acpid',
   :git => 'https://github.com/simp/pupmod-simp-acpid',
   :tag => '1.0.3'
@@ -277,7 +277,7 @@ mod 'simp-ima',
 
 mod 'simp-incron',
   :git => 'https://github.com/simp/pupmod-simp-incron',
-  :tag => '0.3.1'
+  :tag => '0.4.0'
 
 mod 'simp-iptables',
   :git => 'https://github.com/simp/pupmod-simp-iptables',
@@ -353,7 +353,7 @@ mod 'simp-postfix',
 
 mod 'simp-pupmod',
   :git => 'https://github.com/simp/pupmod-simp-pupmod',
-  :tag => '7.7.0'
+  :tag => '7.8.0'
 
 mod 'simp-resolv',
   :git => 'https://github.com/simp/pupmod-simp-resolv',
@@ -381,7 +381,7 @@ mod 'simp-simpcat',
 
 mod 'simp-simplib',
   :git => 'https://github.com/simp/pupmod-simp-simplib',
-  :tag => '3.11.1'
+  :tag => '3.12.0'
 
 mod 'simp-simp_apache',
   :git => 'https://github.com/simp/pupmod-simp-simp_apache',
@@ -460,11 +460,11 @@ mod 'simp-ssh',
 
 mod 'simp-sssd',
   :git => 'https://github.com/simp/pupmod-simp-sssd',
-  :tag => '6.1.3'
+  :tag => '6.1.4'
 
 mod 'simp-stunnel',
   :git => 'https://github.com/simp/pupmod-simp-stunnel',
-  :tag => '6.3.3'
+  :tag => '6.4.0'
 
 mod 'simp-sudo',
   :git => 'https://github.com/simp/pupmod-simp-sudo',
