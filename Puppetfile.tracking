@@ -2,7 +2,7 @@ moduledir 'src'
 
 mod 'simp-doc',
   :git => 'https://github.com/simp/simp-doc',
-  :branch => 'master'
+  :tag => '6.3.2'
 
 moduledir 'src/assets'
 
