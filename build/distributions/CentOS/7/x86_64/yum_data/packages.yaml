@@ -70,7 +70,7 @@ ima-evm-utils:
   :source: http://repo1.ash.innoscale.net/centos/7.5.1804/os/x86_64/Packages/ima-evm-utils-1.1-2.el7.x86_64.rpm
 incron:
   :rpm_name: incron-0.5.10-8.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/i/incron-0.5.10-8.el7.x86_64.rpm
+  :source: https://download.simp-project.com/simp/packages/CentOS/el/7/x86_64/incron-0.5.10-8.el7.x86_64.rpm
 libNX_X11:
   :rpm_name: libNX_X11-3.5.99.17-1.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/l/libNX_X11-3.5.99.17-1.el7.x86_64.rpm
