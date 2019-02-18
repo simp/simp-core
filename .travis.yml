@@ -63,7 +63,7 @@ jobs:
       services:
         - docker
       script:
-        - travis_wait 30 unbuffer bundle exec rake beaker:suites[rpm_docker,el6]
+        - travis_wait 45 unbuffer bundle exec rake beaker:suites[rpm_docker,el6]
 
     - stage: package
       name: 'Build EL7 SIMP Packages'
@@ -81,7 +81,7 @@ jobs:
       services:
         - docker
       script:
-        - travis_wait 30 unbuffer bundle exec rake beaker:suites[rpm_docker,el7]
+        - travis_wait 45 unbuffer bundle exec rake beaker:suites[rpm_docker,el7]
 
     - stage: deploy
       script:
