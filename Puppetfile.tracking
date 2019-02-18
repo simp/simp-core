@@ -554,6 +554,10 @@ mod 'trlinkin-nsswitch',
   :git => 'https://github.com/simp/puppet-nsswitch',
   :tag => '2.1.0'
 
+mod 'voxpupuli-posix_acl',
+  :git => 'https://github.com/simp/pupmod-voxpupuli-posix_acl',
+  :tag => 'v0.1.1'
+
 mod 'voxpupuli-yum',
   :git => 'https://github.com/simp/voxpupuli-yum',
   :tag => 'v2.2.1'
