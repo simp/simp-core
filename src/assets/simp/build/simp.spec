@@ -1,7 +1,7 @@
 Summary: SIMP Full Install
 Name: simp
-Version: 6.3.2
-Release: 0%{?dist}%{?snapshot_release}
+Version: 6.4.0
+Release: Alpha%{?dist}%{?snapshot_release}
 License: Apache License, Version 2.0
 Group: Applications/System
 
@@ -120,6 +120,7 @@ Requires: pupmod-herculesteam-augeasproviders_nagios >= 2.0.2-2016
 Requires: pupmod-herculesteam-augeasproviders_pam >= 2.1.1
 Requires: pupmod-vshn-gitlab >= 1.13.3
 Requires: pupmod-puppet-grafana >= 4.1.1
+Requires: pupmod-puppet-posix_acl >= 0.1.1
 Requires: pupmod-puppetlabs-docker >= 1.1.0
 Requires: pupmod-puppetlabs-mysql >= 5.3.0
 Requires: pupmod-puppetlabs-translate >= 1.0.0
@@ -231,6 +232,9 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Tue Feb 19 2019 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.4.0
+- Added pupmod-puppet-posix_acl to the simp-extras package
+
 * Fri Feb 02 2019 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.3.2-0
 - Updated the following packages to address bug fixes. See the Changelog for
   relevant information.
