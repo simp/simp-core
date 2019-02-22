@@ -1,6 +1,6 @@
 {
   "name": "simp-simp_core",
-  "version": "6.3.2",
+  "version": "6.3.3",
   "author": "SIMP Team",
   "summary": "A Metamodule for SIMP",
   "license": "Apache-2.0",
@@ -264,7 +264,7 @@
     },
     {
       "name": "simp/sssd",
-      "version_requirement": ">= 6.1.4 < 7.0.0"
+      "version_requirement": ">= 6.1.5 < 7.0.0"
     },
     {
       "name": "simp/stunnel",

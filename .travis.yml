@@ -88,7 +88,7 @@ jobs:
         - bundle exec rake spec
       before_deploy:
         - "export PUPMOD_METADATA_VERSION=`ruby -r json -e \"puts JSON.parse(File.read('metadata.json')).fetch('version')\"`"
-        - '[[ $TRAVIS_TAG =~ ^simp-${PUPMOD_METADATA_VERSION}$|^${PUPMOD_METADATA_VERSION}$ ]]'
+        - '[[ "${TRAVIS_TAG}" =~ ^simp-${PUPMOD_METADATA_VERSION}(-.+)?$|^${PUPMOD_METADATA_VERSION}(-.+)?$ ]]'
       deploy:
         - provider: puppetforge
           user: simp

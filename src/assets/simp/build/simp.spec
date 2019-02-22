@@ -1,6 +1,6 @@
 Summary: SIMP Full Install
 Name: simp
-Version: 6.3.2
+Version: 6.3.3
 Release: 0%{?dist}%{?snapshot_release}
 License: Apache License, Version 2.0
 Group: Applications/System
@@ -83,7 +83,7 @@ Requires: pupmod-simp-simp_options >= 1.2.1, pupmod-simp-simp_options < 2.0.0
 Requires: pupmod-simp-simp_rsyslog >= 0.3.0, pupmod-simp-simp_rsyslog < 1.0.0
 Requires: pupmod-simp-site >= 2.0.5, pupmod-simp-site < 3.0.0
 Requires: pupmod-simp-ssh >= 6.5.1, pupmod-simp-ssh < 7.0.0
-Requires: pupmod-simp-sssd >= 6.1.4, pupmod-simp-sssd < 7.0.0
+Requires: pupmod-simp-sssd >= 6.1.5, pupmod-simp-sssd < 7.0.0
 Requires: pupmod-simp-stunnel >= 6.4.0, pupmod-simp-stunnel < 7.0.0
 Requires: pupmod-simp-sudo >= 5.1.1, pupmod-simp-sudo < 6.0.0
 Requires: pupmod-simp-sudosh >= 6.1.0, pupmod-simp-sudosh < 7.0.0
@@ -231,6 +231,11 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Fri Feb 22 2019 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.3.3-0
+- Updated the following packages to address bug fixes. See the Changelog for
+  relevant information.
+  - pupmod-simp-sssd
+
 * Fri Feb 02 2019 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.3.2-0
 - Updated the following packages to address bug fixes. See the Changelog for
   relevant information.

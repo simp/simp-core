@@ -2,7 +2,7 @@ moduledir 'src'
 
 mod 'simp-doc',
   :git => 'https://github.com/simp/simp-doc',
-  :tag => '6.3.2'
+  :tag => '6.3.3'
 
 moduledir 'src/assets'
 
@@ -460,7 +460,7 @@ mod 'simp-ssh',
 
 mod 'simp-sssd',
   :git => 'https://github.com/simp/pupmod-simp-sssd',
-  :tag => '6.1.4'
+  :tag => '6.1.5'
 
 mod 'simp-stunnel',
   :git => 'https://github.com/simp/pupmod-simp-stunnel',
