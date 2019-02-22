@@ -232,8 +232,8 @@ fi
 
 %changelog
 * Fri Feb 22 2019 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.3.3-0
-- Updated the following packages to address bug fixes. See the Changelog for
-  relevant information.
+- Updated the following packages to address bug fixes. See the Changelog in
+  the SIMP documentation (simp-doc package) for relevant information.
   - pupmod-simp-sssd
 
 * Fri Feb 02 2019 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.3.2-0
