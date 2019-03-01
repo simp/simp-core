@@ -34,7 +34,7 @@ Requires: pupmod-herculesteam-augeasproviders_ssh >= 3.0.0, pupmod-herculesteam-
 Requires: pupmod-herculesteam-augeasproviders_sysctl >= 2.2.1, pupmod-herculesteam-augeasproviders_sysctl < 3.0.0
 Requires: pupmod-onyxpoint-gpasswd >= 1.0.6, pupmod-onyxpoint-gpasswd < 2.0.0
 Requires: pupmod-puppet-yum >= 2.2.1, pupmod-puppet-yum < 3.0.0
-Requires: pupmod-puppetlabs-apache >= 3.0.0, pupmod-puppetlabs-apache < 4.0.0
+Requires: pupmod-puppetlabs-apache >= 3.0.0, pupmod-puppetlabs-apache < 5.0.0
 Requires: pupmod-puppetlabs-concat >= 4.1.1, pupmod-puppetlabs-concat < 5.0.0
 Requires: pupmod-puppetlabs-hocon >= 1.0.0, pupmod-puppetlabs-hocon < 2.0.0
 Requires: pupmod-puppetlabs-inifile >= 2.2.0, pupmod-puppetlabs-inifile < 3.0.0
@@ -232,7 +232,11 @@ fi
 # Post uninstall stuff
 
 %changelog
-* Tue Feb 19 2019 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.4.0
+* Fri Mar 01 2019 Liz Nemsick <lnemsick.simp@gmail.com> - 6.4.0-0
+- Updated the following packages
+  - pupmod-puppetlabs-apache
+
+* Tue Feb 19 2019 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.4.0-0
 - Added pupmod-puppet-posix_acl to the simp-extras package
 
 * Fri Feb 02 2019 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.3.2-0

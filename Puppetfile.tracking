@@ -116,7 +116,7 @@ mod 'puppet-grafana',
 
 mod 'puppetlabs-apache',
   :git => 'https://github.com/simp/puppetlabs-apache',
-  :tag => '3.0.0'
+  :tag => '4.0.0'
 
 mod 'puppetlabs-concat',
   :git => 'https://github.com/simp/puppetlabs-concat',
