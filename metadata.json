@@ -76,11 +76,11 @@
     },
     {
       "name": "puppetlabs/hocon",
-      "version_requirement": ">= 1.0.0 < 2.0.0"
+      "version_requirement": ">= 1.0.1 < 2.0.0"
     },
     {
       "name": "puppetlabs/inifile",
-      "version_requirement": ">= 2.2.0 < 3.0.0"
+      "version_requirement": ">= 2.5.0 < 3.0.0"
     },
     {
       "name": "puppetlabs/java",
@@ -96,7 +96,7 @@
     },
     {
       "name": "puppetlabs/postgresql",
-      "version_requirement": ">= 5.4.0 < 6.0.0"
+      "version_requirement": ">= 5.12.1 < 6.0.0"
     },
     {
       "name": "puppetlabs/puppetdb",
@@ -104,7 +104,7 @@
     },
     {
       "name": "puppetlabs/puppet_authorization",
-      "version_requirement": ">= 0.4.0 < 1.0.0"
+      "version_requirement": ">= 0.5.0 < 1.0.0"
     },
     {
       "name": "puppetlabs/stdlib",
