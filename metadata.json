@@ -20,7 +20,7 @@
   "dependencies": [
     {
       "name": "camptocamp/kmod",
-      "version_requirement": ">= 2.2.0 < 3.0.0"
+      "version_requirement": ">= 2.3.0 < 3.0.0"
     },
     {
       "name": "simp/systemd",
@@ -28,35 +28,35 @@
     },
     {
       "name": "herculesteam/augeasproviders_apache",
-      "version_requirement": ">= 3.0.0 < 4.0.0"
+      "version_requirement": ">= 3.1.1 < 4.0.0"
     },
     {
       "name": "herculesteam/augeasproviders_core",
-      "version_requirement": ">= 2.1.4 < 3.0.0"
+      "version_requirement": ">= 2.4.0 < 3.0.0"
     },
     {
       "name": "herculesteam/augeasproviders_grub",
-      "version_requirement": ">= 3.0.1 < 4.0.0"
+      "version_requirement": ">= 3.1.0 < 4.0.0"
     },
     {
       "name": "herculesteam/augeasproviders_postgresql",
-      "version_requirement": ">= 3.0.0 < 4.0.0"
+      "version_requirement": ">= 3.1.1 < 4.0.0"
     },
     {
       "name": "herculesteam/augeasproviders_puppet",
-      "version_requirement": ">= 2.1.1 < 3.0.0"
+      "version_requirement": ">= 2.2.1 < 3.0.0"
     },
     {
       "name": "herculesteam/augeasproviders_shellvar",
-      "version_requirement": ">= 3.0.0 < 4.0.0"
+      "version_requirement": ">= 3.1.0 < 4.0.0"
     },
     {
       "name": "herculesteam/augeasproviders_ssh",
-      "version_requirement": ">= 3.0.0 < 4.0.0"
+      "version_requirement": ">= 3.2.1 < 4.0.0"
     },
     {
       "name": "herculesteam/augeasproviders_sysctl",
-      "version_requirement": ">= 2.2.1 < 3.0.0"
+      "version_requirement": ">= 2.3.1 < 3.0.0"
     },
     {
       "name": "onyxpoint/gpasswd",
