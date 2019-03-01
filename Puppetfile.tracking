@@ -39,7 +39,7 @@ moduledir 'src/puppet/modules'
 
 mod 'camptocamp-kmod',
   :git => 'https://github.com/simp/puppet-kmod.git',
-  :tag => '2.2.0'
+  :tag => '2.3.0'
 
 # We are maintaining a simp-master branch of this module
 # because we needed changes earlier, and, due to a simp-adapter
@@ -64,47 +64,47 @@ mod 'elastic-logstash',
 
 mod 'herculesteam-augeasproviders_apache',
   :git => 'https://github.com/simp/augeasproviders_apache',
-  :tag => '3.0.0'
+  :tag => '3.1.1'
 
 mod 'herculesteam-augeasproviders_core',
   :git => 'https://github.com/simp/augeasproviders_core',
-  :tag => '2.1.4'
+  :tag => '2.4.0'
 
 mod 'herculesteam-augeasproviders_grub',
   :git => 'https://github.com/simp/augeasproviders_grub',
-  :tag => '3.0.1'
+  :tag => '3.1.0'
 
 mod 'herculesteam-augeasproviders_mounttab',
   :git => 'https://github.com/simp/augeasproviders_mounttab',
-  :tag => '2.0.3'
+  :tag => '2.1.1'
 
 mod 'herculesteam-augeasproviders_nagios',
   :git => 'https://github.com/simp/augeasproviders_nagios',
-  :tag => '2.0.2'
+  :tag => '2.1.1'
 
 mod 'herculesteam-augeasproviders_pam',
   :git => 'https://github.com/simp/augeasproviders_pam',
-  :tag => '2.1.1'
+  :tag => '2.2.1'
 
 mod 'herculesteam-augeasproviders_postgresql',
   :git => 'https://github.com/simp/augeasproviders_postgresql',
-  :tag => '3.0.0'
+  :tag => '3.1.1'
 
 mod 'herculesteam-augeasproviders_puppet',
   :git => 'https://github.com/simp/augeasproviders_puppet',
-  :tag => '2.1.1'
+  :tag => '2.2.1'
 
 mod 'herculesteam-augeasproviders_shellvar',
   :git => 'https://github.com/simp/augeasproviders_shellvar',
-  :tag => '3.0.0'
+  :tag => '3.1.0'
 
 mod 'herculesteam-augeasproviders_ssh',
   :git => 'https://github.com/simp/augeasproviders_ssh',
-  :tag => '3.0.0'
+  :tag => '3.2.1'
 
 mod 'herculesteam-augeasproviders_sysctl',
   :git => 'https://github.com/simp/augeasproviders_sysctl',
-  :tag => '2.2.1'
+  :tag => '2.3.1'
 
 mod 'onyxpoint-gpasswd',
   :git => 'https://github.com/simp/puppet-gpasswd',

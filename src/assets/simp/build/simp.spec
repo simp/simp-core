@@ -22,16 +22,16 @@ Obsoletes: pupmod-simp-activemq <= 4.0.1
 Obsoletes: pupmod-simp-mcollective <= 3.0.0
 
 # Core SIMP Requirements
-Requires: pupmod-camptocamp-kmod >= 2.2.0, pupmod-camptocamp-kmod < 3.0.0
+Requires: pupmod-camptocamp-kmod >= 2.3.0, pupmod-camptocamp-kmod < 3.0.0
 Requires: pupmod-simp-systemd >= 2.1.0, pupmod-simp-systemd < 3.0.0
-Requires: pupmod-herculesteam-augeasproviders_apache >= 3.0.0, pupmod-herculesteam-augeasproviders_apache < 4.0.0
-Requires: pupmod-herculesteam-augeasproviders_core >= 2.1.4, pupmod-herculesteam-augeasproviders_core < 3.0.0
-Requires: pupmod-herculesteam-augeasproviders_grub >= 3.0.1, pupmod-herculesteam-augeasproviders_grub < 4.0.0
-Requires: pupmod-herculesteam-augeasproviders_postgresql >= 3.0.0, pupmod-herculesteam-augeasproviders_postgresql < 4.0.0
-Requires: pupmod-herculesteam-augeasproviders_puppet >= 2.1.1, pupmod-herculesteam-augeasproviders_puppet < 3.0.0
-Requires: pupmod-herculesteam-augeasproviders_shellvar >= 3.0.0, pupmod-herculesteam-augeasproviders_shellvar < 4.0.0
-Requires: pupmod-herculesteam-augeasproviders_ssh >= 3.0.0, pupmod-herculesteam-augeasproviders_ssh < 4.0.0
-Requires: pupmod-herculesteam-augeasproviders_sysctl >= 2.2.1, pupmod-herculesteam-augeasproviders_sysctl < 3.0.0
+Requires: pupmod-herculesteam-augeasproviders_apache >= 3.1.1, pupmod-herculesteam-augeasproviders_apache < 4.0.0
+Requires: pupmod-herculesteam-augeasproviders_core >= 2.4.0, pupmod-herculesteam-augeasproviders_core < 3.0.0
+Requires: pupmod-herculesteam-augeasproviders_grub >= 3.1.0, pupmod-herculesteam-augeasproviders_grub < 4.0.0
+Requires: pupmod-herculesteam-augeasproviders_postgresql >= 3.1.1, pupmod-herculesteam-augeasproviders_postgresql < 4.0.0
+Requires: pupmod-herculesteam-augeasproviders_puppet >= 2.2.1, pupmod-herculesteam-augeasproviders_puppet < 3.0.0
+Requires: pupmod-herculesteam-augeasproviders_shellvar >= 3.1.0, pupmod-herculesteam-augeasproviders_shellvar < 4.0.0
+Requires: pupmod-herculesteam-augeasproviders_ssh >= 3.2.1, pupmod-herculesteam-augeasproviders_ssh < 4.0.0
+Requires: pupmod-herculesteam-augeasproviders_sysctl >= 2.3.1, pupmod-herculesteam-augeasproviders_sysctl < 3.0.0
 Requires: pupmod-onyxpoint-gpasswd >= 1.0.6, pupmod-onyxpoint-gpasswd < 2.0.0
 Requires: pupmod-puppet-yum >= 2.2.1, pupmod-puppet-yum < 3.0.0
 Requires: pupmod-puppetlabs-apache >= 3.0.0, pupmod-puppetlabs-apache < 4.0.0
@@ -115,9 +115,9 @@ Requires: simp-adapter >= 0.1.1, simp-adapter < 1.0.0
 Requires: pupmod-cristifalcas-journald >= 0.6.0
 Requires: pupmod-elastic-elasticsearch >= 5.5.0
 Requires: pupmod-elastic-logstash >= 5.3.0
-Requires: pupmod-herculesteam-augeasproviders_mounttab >= 2.0.3
-Requires: pupmod-herculesteam-augeasproviders_nagios >= 2.0.2-2016
-Requires: pupmod-herculesteam-augeasproviders_pam >= 2.1.1
+Requires: pupmod-herculesteam-augeasproviders_mounttab >= 2.1.1
+Requires: pupmod-herculesteam-augeasproviders_nagios >= 2.1.1
+Requires: pupmod-herculesteam-augeasproviders_pam >= 2.2.1
 Requires: pupmod-vshn-gitlab >= 1.13.3
 Requires: pupmod-puppet-grafana >= 4.1.1
 Requires: pupmod-puppet-posix_acl >= 0.1.1
@@ -232,6 +232,21 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Fri Mar 01 2019 Liz Nemsick <lnemsick.simp@gmail.com> - 6.4.0-0
+- Updated the following packages
+  - pupmod-camptocamp-kmod
+  - pupmod-herculesteam-augeasproviders_apache
+  - pupmod-herculesteam-augeasproviders_core
+  - pupmod-herculesteam-augeasproviders_grub
+  - pupmod-herculesteam-augeasproviders_mounttab
+  - pupmod-herculesteam-augeasproviders_nagios
+  - pupmod-herculesteam-augeasproviders_pam
+  - pupmod-herculesteam-augeasproviders_postgresql
+  - pupmod-herculesteam-augeasproviders_puppet
+  - pupmod-herculesteam-augeasproviders_shellvar
+  - pupmod-herculesteam-augeasproviders_ssh
+  - pupmod-herculesteam-augeasproviders_sysctl
+
 * Tue Feb 19 2019 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.4.0
 - Added pupmod-puppet-posix_acl to the simp-extras package
 
