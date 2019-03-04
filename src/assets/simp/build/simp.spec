@@ -36,14 +36,14 @@ Requires: pupmod-onyxpoint-gpasswd >= 1.0.6, pupmod-onyxpoint-gpasswd < 2.0.0
 Requires: pupmod-puppet-yum >= 2.2.1, pupmod-puppet-yum < 3.0.0
 Requires: pupmod-puppetlabs-apache >= 3.0.0, pupmod-puppetlabs-apache < 5.0.0
 Requires: pupmod-puppetlabs-concat >= 4.1.1, pupmod-puppetlabs-concat < 5.0.0
-Requires: pupmod-puppetlabs-hocon >= 1.0.0, pupmod-puppetlabs-hocon < 2.0.0
-Requires: pupmod-puppetlabs-inifile >= 2.2.0, pupmod-puppetlabs-inifile < 3.0.0
+Requires: pupmod-puppetlabs-hocon >= 1.0.1, pupmod-puppetlabs-hocon < 2.0.0
+Requires: pupmod-puppetlabs-inifile >= 2.5.0, pupmod-puppetlabs-inifile < 3.0.0
 Requires: pupmod-puppetlabs-java >= 2.4.0, pupmod-puppetlabs-java < 3.0.0
 Requires: pupmod-puppetlabs-motd >= 2.0.0, pupmod-puppetlabs-motd < 3.0.0
 Requires: pupmod-puppetlabs-mount_providers >= 1.0.0, pupmod-puppetlabs-mount_providers < 2.0.0
-Requires: pupmod-puppetlabs-postgresql >= 5.4.0, pupmod-puppetlabs-postgresql < 6.0.0
+Requires: pupmod-puppetlabs-postgresql >= 5.12.1, pupmod-puppetlabs-postgresql < 6.0.0
 Requires: pupmod-puppetlabs-puppetdb >= 6.0.2, pupmod-puppetlabs-puppetdb < 7.0.0
-Requires: pupmod-puppetlabs-puppet_authorization >= 0.4.0, pupmod-puppetlabs-puppet_authorization < 1.0.0
+Requires: pupmod-puppetlabs-puppet_authorization >= 0.5.0, pupmod-puppetlabs-puppet_authorization < 1.0.0
 Requires: pupmod-puppetlabs-stdlib >= 4.25.1, pupmod-puppetlabs-stdlib < 5.0.0
 Requires: pupmod-simp-acpid >= 1.0.3, pupmod-simp-acpid < 2.0.0
 Requires: pupmod-simp-aide >= 6.2.0, pupmod-simp-aide < 7.0.0
@@ -247,6 +247,10 @@ fi
   - pupmod-herculesteam-augeasproviders_ssh
   - pupmod-herculesteam-augeasproviders_sysctl
   - pupmod-puppetlabs-apache
+  - pupmod-puppetlabs-hocon
+  - pupmod-puppetlabs-inifile
+  - pupmod-puppetlabs-postgresql
+  - pupmod-puppetlabs-puppet_authorization
 
 * Tue Feb 19 2019 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.4.0-0
 - Added pupmod-puppet-posix_acl to the simp-extras package

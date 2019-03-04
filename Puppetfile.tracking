@@ -128,11 +128,11 @@ mod 'puppetlabs-docker',
 
 mod 'puppetlabs-hocon',
   :git => 'https://github.com/simp/pupmod-puppetlabs-hocon',
-  :tag => '1.0.0'
+  :tag => '1.0.1'
 
 mod 'puppetlabs-inifile',
   :git => 'https://github.com/simp/puppetlabs-inifile',
-  :tag => '2.2.0'
+  :tag => '2.5.0'
 
 mod 'puppetlabs-java',
   :git => 'https://github.com/simp/puppetlabs-java',
@@ -155,7 +155,7 @@ mod 'puppetlabs-mysql',
 
 mod 'puppetlabs-postgresql',
   :git => 'https://github.com/simp/puppetlabs-postgresql',
-  :tag => '5.4.0'
+  :tag => '5.12.1'
 
 mod 'puppetlabs-puppetdb',
   :git => 'https://github.com/simp/puppetlabs-puppetdb',
@@ -163,7 +163,7 @@ mod 'puppetlabs-puppetdb',
 
 mod 'puppetlabs-puppet_authorization',
   :git => 'https://github.com/simp/puppetlabs-puppet_authorization.git',
-  :tag => '0.4.0'
+  :tag => '0.5.0'
 
 mod 'puppetlabs-stdlib',
   :git => 'https://github.com/simp/puppetlabs-stdlib',
