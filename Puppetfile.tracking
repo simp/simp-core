@@ -151,7 +151,7 @@ mod 'puppetlabs-mount_providers',
 
 mod 'puppetlabs-mysql',
   :git => 'https://github.com/simp/puppetlabs-mysql',
-  :tag => '5.3.0'
+  :tag => '8.0.0'
 
 mod 'puppetlabs-postgresql',
   :git => 'https://github.com/simp/puppetlabs-postgresql',
