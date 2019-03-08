@@ -33,7 +33,7 @@ Requires: pupmod-herculesteam-augeasproviders_shellvar >= 3.1.0, pupmod-hercules
 Requires: pupmod-herculesteam-augeasproviders_ssh >= 3.2.1, pupmod-herculesteam-augeasproviders_ssh < 4.0.0
 Requires: pupmod-herculesteam-augeasproviders_sysctl >= 2.3.1, pupmod-herculesteam-augeasproviders_sysctl < 3.0.0
 Requires: pupmod-onyxpoint-gpasswd >= 1.0.6, pupmod-onyxpoint-gpasswd < 2.0.0
-Requires: pupmod-puppet-yum >= 2.2.1, pupmod-puppet-yum < 3.0.0
+Requires: pupmod-puppet-yum >= 3.1.1, pupmod-puppet-yum < 4.0.0
 Requires: pupmod-puppetlabs-apache >= 3.0.0, pupmod-puppetlabs-apache < 5.0.0
 Requires: pupmod-puppetlabs-concat >= 4.1.1, pupmod-puppetlabs-concat < 5.0.0
 Requires: pupmod-puppetlabs-hocon >= 1.0.1, pupmod-puppetlabs-hocon < 2.0.0
@@ -111,21 +111,29 @@ Requires: simp-utils >= 6.1.2, simp-utils < 7.0.0
 %package extras
 Summary: Extra Packages for SIMP
 License: Apache-2.0
+
+# These 7 lines are required for upgrades from simp-6.[1-3].X to simp-6.4+.
+# Otherwise, we will have conflicting, derived dependencies caused by obsolete
+# ELG-related packages.
+Obsoletes: pupmod-elastic-elasticsearch <= 5.5.0
+Obsoletes: pupmod-elastic-logstash <= 5.3.0
+Obsoletes: pupmod-simp-simp_elasticsearch <= 5.0.5
+Obsoletes: pupmod-simp-simp_logstash <= 5.0.2
+Obsoletes: pupmod-richardc-datacat <= 0.6.2
+Obsoletes: pupmod-puppet-grafana <= 4.1.1
+Obsoletes: pupmod-simp-simp_grafana <= 1.0.6
+
 Requires: simp-adapter >= 0.1.1, simp-adapter < 1.0.0
 Requires: pupmod-cristifalcas-journald >= 0.6.0
-Requires: pupmod-elastic-elasticsearch >= 5.5.0
-Requires: pupmod-elastic-logstash >= 5.3.0
 Requires: pupmod-herculesteam-augeasproviders_mounttab >= 2.1.1
 Requires: pupmod-herculesteam-augeasproviders_nagios >= 2.1.1
 Requires: pupmod-herculesteam-augeasproviders_pam >= 2.2.1
 Requires: pupmod-vshn-gitlab >= 1.13.3
-Requires: pupmod-puppet-grafana >= 4.1.1
 Requires: pupmod-puppet-posix_acl >= 0.1.1
 Requires: pupmod-puppetlabs-docker >= 1.1.0
 Requires: pupmod-puppetlabs-mysql >= 5.3.0
 Requires: pupmod-puppetlabs-translate >= 1.0.0
 Requires: pupmod-razorsedge-snmp >= 3.9.0
-Requires: pupmod-richardc-datacat >= 0.6.2
 Requires: pupmod-saz-locales >= 2.5.1
 Requires: pupmod-simp-autofs >= 6.1.2
 Requires: pupmod-simp-dconf >= 0.0.2
@@ -142,15 +150,12 @@ Requires: pupmod-simp-network >= 6.0.3
 Requires: pupmod-simp-nfs >= 6.2.0
 Requires: pupmod-simp-openscap >= 6.2.0
 Requires: pupmod-simp-simp_docker >= 0.2.0
-Requires: pupmod-simp-simp_elasticsearch >= 5.0.5
 Requires: pupmod-simp-simp_gitlab >= 0.3.4
-Requires: pupmod-simp-simp_grafana >= 1.0.6
 Requires: pupmod-simp-simp_ipa >= 0.0.1
-Requires: pupmod-simp-simp_logstash >= 5.0.2
 Requires: pupmod-simp-simp_nfs >= 0.1.0
 Requires: pupmod-simp-simp_pki_service >= 0.1.1
 Requires: pupmod-simp-simp_snmpd >= 0.1.1
-Requires: pupmod-simp-tpm >= 3.1.0
+Requires: pupmod-simp-tpm >= 3.1.1
 Requires: pupmod-simp-tpm2 >= 0.1.0
 Requires: pupmod-simp-vnc >= 7.0.0
 Requires: pupmod-simp-vsftpd >= 7.2.0
@@ -246,11 +251,22 @@ fi
   - pupmod-herculesteam-augeasproviders_shellvar
   - pupmod-herculesteam-augeasproviders_ssh
   - pupmod-herculesteam-augeasproviders_sysctl
+  - pupmod-puppet-yum
   - pupmod-puppetlabs-apache
   - pupmod-puppetlabs-hocon
   - pupmod-puppetlabs-inifile
   - pupmod-puppetlabs-postgresql
   - pupmod-puppetlabs-puppet_authorization
+  - pupmod-simp-tpm
+- Removed the following from simp-extras because the
+  versions supported are EOL
+  - pupmod-elastic-elasticsearch
+  - pupmod-elastic-logstash
+  - pupmod-simp-simp_elasticsearch
+  - pupmod-simp-simp_logstash
+  - pupmod-richardc-datacat
+  - pupmod-puppet-grafana
+  - pupmod-simp-simp_grafana
 
 * Tue Feb 19 2019 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.4.0-0
 - Added pupmod-puppet-posix_acl to the simp-extras package
@@ -288,12 +304,6 @@ fi
   - pupmod-simp-mate
   - pupmod-simp-simp_pki_service
   - pupmod-simp-x2go
-- Removed the following dependencies from the simp-extras
-  package, as they have not yet been updated to Puppet 5
-  - pupmod-elastic-elasticsearch
-  - pupmod-elastic-logstash
-  - pupmod-simp-simp_elasticsearch
-  - pupmod-simp-simp_logstash
 
 *  Fri Sep 28 2018 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.2.0-0
 - Update final dependencies for 6.2.0

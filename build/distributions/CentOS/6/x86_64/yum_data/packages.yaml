@@ -251,12 +251,6 @@ rubygem-net-ldap-doc:
 rubygem-net-ping:
   :rpm_name: rubygem-net-ping-1.6.2-1.el6.noarch.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-net-ping-1.6.2-1.el6.noarch.rpm
-rubygem-puppetserver-parslet:
-  :rpm_name: rubygem-puppetserver-parslet-1.8.2-0.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-puppetserver-parslet-1.8.2-0.noarch.rpm
-rubygem-puppetserver-toml:
-  :rpm_name: rubygem-puppetserver-toml-0.2.0-1.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-puppetserver-toml-0.2.0-1.noarch.rpm
 rubygem-rake-compiler:
   :rpm_name: rubygem-rake-compiler-0.9.3-2.el6.noarch.rpm
   :source: http://http://yum.puppetlabs.com/el/6/dependencies/x86_64/rubygem-rake-compiler-0.9.3-2.el6.noarch.rpm

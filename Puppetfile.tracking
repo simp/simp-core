@@ -54,14 +54,6 @@ mod 'cristifalcas-journald',
   :git => 'https://github.com/simp/pupmod-simp-journald.git',
   :tag => '0.6.0'
 
-mod 'elastic-elasticsearch',
-  :git => 'https://github.com/simp/puppet-elasticsearch',
-  :tag => '5.5.0'
-
-mod 'elastic-logstash',
-  :git => 'https://github.com/simp/puppet-logstash',
-  :tag => '5.3.0'
-
 mod 'herculesteam-augeasproviders_apache',
   :git => 'https://github.com/simp/augeasproviders_apache',
   :tag => '3.1.1'
@@ -109,10 +101,6 @@ mod 'herculesteam-augeasproviders_sysctl',
 mod 'onyxpoint-gpasswd',
   :git => 'https://github.com/simp/puppet-gpasswd',
   :tag => '1.0.6'
-
-mod 'puppet-grafana',
-  :git => 'https://github.com/simp/puppet-grafana.git',
-  :tag => 'v4.1.1'
 
 mod 'puppetlabs-apache',
   :git => 'https://github.com/simp/puppetlabs-apache',
@@ -182,19 +170,6 @@ mod 'puppetlabs-translate',
 mod 'razorsedge-snmp',
   :git => 'https://github.com/simp/puppet-snmp',
   :tag => '3.9.0'
-
-mod 'richardc-datacat',
-  # FIXME Next datacat release.
-  # This is a bit messy.  This project has 3 tags that are
-  # all version 0.6.2, but slightly different:
-  #   '0.6.2 from the owner
-  #   'simp-0.6.2' from SIMP team for SIMP4/SIMP5
-  #   'simp6.0.0-0.6.2' from SIMP team for SIMP6
-  # We are going to use the last SIMP team release, until
-  # datacat gets updated and we can get out
-  # of this mess.
-  :git => 'https://github.com/simp/puppet-datacat',
-  :tag => 'simp6.0.0-0.6.2'
 
 mod 'saz-locales',
   :git => 'https://github.com/simp/pupmod-saz-locales',
@@ -353,7 +328,7 @@ mod 'simp-postfix',
 
 mod 'simp-pupmod',
   :git => 'https://github.com/simp/pupmod-simp-pupmod',
-  :tag => '7.8.0'
+  :branch => 'master'
 
 mod 'simp-resolv',
   :git => 'https://github.com/simp/pupmod-simp-resolv',
@@ -395,10 +370,6 @@ mod 'simp-simp_docker',
   :git => 'https://github.com/simp/pupmod-simp-simp_docker',
   :tag => '0.2.0'
 
-mod 'simp-simp_elasticsearch',
-  :git => 'https://github.com/simp/pupmod-simp-simp_elasticsearch',
-  :tag => '5.0.5'
-
 #FIXME Does not support Puppet 5 yet.  Also, needs to be tested with
 # Vox Pupuli puppet/gitlab 2.0.0, which does support Puppet 5.
 # puppet/gitlab is the new name for vshn/gitlab.  When Vox Pupuli
@@ -406,10 +377,6 @@ mod 'simp-simp_elasticsearch',
 mod 'simp-simp_gitlab',
   :git => 'https://github.com/simp/pupmod-simp-simp_gitlab',
   :tag => '0.3.4'
-
-mod 'simp-simp_grafana',
-  :git => 'https://github.com/simp/pupmod-simp-simp_grafana',
-  :tag => '1.0.6'
 
 mod 'simp-simp_ipa',
   :git => 'https://github.com/simp/pupmod-simp-simp_ipa',
@@ -421,10 +388,6 @@ mod 'simp-simp_ipa',
 # # FUTURE:  Release and add to simp.spec, to ensure packaged in ISO
 #   :git => 'https://github.com/simp/pupmod-simp-simp_kubernetes',
 #   :branch => 'master'
-
-mod 'simp-simp_logstash',
-  :git => 'https://github.com/simp/pupmod-simp-simp_logstash',
-  :tag => '5.0.2'
 
 mod 'simp-simp_nfs',
   :git => 'https://github.com/simp/pupmod-simp-simp_nfs',
@@ -505,7 +468,7 @@ mod 'simp-tlog',
 
 mod 'simp-tpm',
   :git => 'https://github.com/simp/pupmod-simp-tpm',
-  :tag => '3.1.0'
+  :branch => 'master'
 
 mod 'simp-tpm2',
   :git => 'https://github.com/simp/pupmod-simp-tpm2',
@@ -560,7 +523,7 @@ mod 'voxpupuli-posix_acl',
 
 mod 'voxpupuli-yum',
   :git => 'https://github.com/simp/voxpupuli-yum',
-  :tag => 'v2.2.1'
+  :tag => 'v3.1.1'
 
 #FIXME vshn/gitlab does not support Puppet 5, However, puppet/gitlab
 # 2.0.0 does.  puppet/gitlab is the new name for vshn/gitlab.  When

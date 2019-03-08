@@ -296,12 +296,6 @@ rubygem-net-ping:
 rubygem-puppet-lint:
   :rpm_name: rubygem-puppet-lint-1.1.0-1.el7.noarch.rpm
   :source: http://yum.puppetlabs.com/el/7/dependencies/x86_64/rubygem-puppet-lint-1.1.0-1.el7.noarch.rpm
-rubygem-puppetserver-parslet:
-  :rpm_name: rubygem-puppetserver-parslet-1.8.2-0.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/rubygem-puppetserver-parslet-1.8.2-0.noarch.rpm
-rubygem-puppetserver-toml:
-  :rpm_name: rubygem-puppetserver-toml-0.2.0-1.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/rubygem-puppetserver-toml-0.2.0-1.noarch.rpm
 rubygem-rake:
   :rpm_name: rubygem-rake-0.9.6-33.el7_4.noarch.rpm
   :source: Red Hat Optional Repository
