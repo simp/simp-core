@@ -73,7 +73,8 @@ namespace :pkg do
 
     dirs_to_remove = [
       Dir.glob(File.join(distr_glob, 'SIMP*')),
-      Dir.glob(File.join(distr_glob, 'DVD_Overlay'))
+      Dir.glob(File.join(distr_glob, 'DVD_Overlay')),
+      File.join(base_dir, 'src', 'assets', 'simp', 'dist')
     ]
 
     if args[:remove_yum_cache] == 'true'
