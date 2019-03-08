@@ -163,9 +163,14 @@ Requires: pupmod-simp-vsftpd >= 7.2.0
 Requires: pupmod-simp-x2go >= 0.2.0
 
 # The following line ensures the OBE pupmod-electrical-file_concat
-# package is removed when simp-extras package is upgraded from
+# package is removed when the simp-extras package is upgraded from
 # 6.0.0 or 6.1.0.
 Obsoletes: pupmod-electrical-file_concat <= 1.0.1-2016
+
+# The following line ensures the OBE pupmod-simp-dirtycow
+# package is removed when the simp-extras package is upgraded from
+# 6.[2-3].X to 6.4+
+Obsoletes: pupmod-simp-dirtycow <= 1.0.4
 
 %description
 Metapackage for installing everything needed for a full SIMP system
