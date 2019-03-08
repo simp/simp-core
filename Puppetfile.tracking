@@ -108,7 +108,7 @@ mod 'puppetlabs-apache',
 
 mod 'puppetlabs-concat',
   :git => 'https://github.com/simp/puppetlabs-concat',
-  :tag => '4.1.1'
+  :tag => '5.3.0'
 
 mod 'puppetlabs-docker',
   :git => 'https://github.com/simp/puppetlabs-docker',
@@ -124,7 +124,7 @@ mod 'puppetlabs-inifile',
 
 mod 'puppetlabs-java',
   :git => 'https://github.com/simp/puppetlabs-java',
-  :tag => '2.4.0'
+  :tag => '3.3.0'
 
 mod 'puppetlabs-motd',
   :git => 'https://github.com/simp/puppetlabs-motd',
@@ -147,7 +147,7 @@ mod 'puppetlabs-postgresql',
 
 mod 'puppetlabs-puppetdb',
   :git => 'https://github.com/simp/puppetlabs-puppetdb',
-  :tag => '6.0.2'
+  :tag => '7.1.0'
 
 mod 'puppetlabs-puppet_authorization',
   :git => 'https://github.com/simp/puppetlabs-puppet_authorization.git',
@@ -193,7 +193,7 @@ mod 'simp-auditd',
 
 mod 'simp-autofs',
   :git => 'https://github.com/simp/pupmod-simp-autofs',
-  :tag => '6.1.2'
+  :branch => 'master'
 
 mod 'simp-chkrootkit',
   :git => 'https://github.com/simp/pupmod-simp-chkrootkit',
@@ -223,13 +223,13 @@ mod 'simp-dhcp',
   :git => 'https://github.com/simp/pupmod-simp-dhcp',
   :tag => '6.1.0'
 
-mod 'simp-dirtycow',
-  :git => 'https://github.com/simp/pupmod-simp-dirtycow.git',
-  :tag => '1.0.4'
-
 mod 'simp-fips',
   :git => 'https://github.com/simp/pupmod-simp-fips',
   :tag => '0.2.0'
+
+mod 'simp-freeradius',
+  :git => 'https://github.com/simp/pupmod-simp-freeradius',
+  :branch => 'master'
 
 mod 'simp-gdm',
   :git => 'https://github.com/simp/pupmod-simp-gdm',
@@ -246,13 +246,17 @@ mod 'simp-haveged',
   :git => 'https://github.com/simp/pupmod-simp-haveged',
   :tag => '0.4.6'
 
+mod 'simp-hirs_provisioner',
+  :git => 'https://github.com/simp/pupmod-simp-hirs_provisioner',
+  :branch => 'master'
+
 mod 'simp-ima',
   :git => 'https://github.com/simp/pupmod-simp-ima',
   :tag => '0.1.0'
 
 mod 'simp-incron',
   :git => 'https://github.com/simp/pupmod-simp-incron',
-  :tag => '0.4.0'
+  :branch => 'master'
 
 mod 'simp-iptables',
   :git => 'https://github.com/simp/pupmod-simp-iptables',
@@ -296,11 +300,11 @@ mod 'simp-network',
 
 mod 'simp-nfs',
   :git => 'https://github.com/simp/pupmod-simp-nfs',
-  :tag => '6.2.0'
+  :branch => 'master'
 
 mod 'simp-ntpd',
   :git => 'https://github.com/simp/pupmod-simp-ntpd',
-  :tag => '6.2.1'
+  :branch => 'master'
 
 mod 'simp-oddjob',
   :git => 'https://github.com/simp/pupmod-simp-oddjob',
@@ -312,7 +316,7 @@ mod 'simp-openscap',
 
 mod 'simp-pam',
   :git => 'https://github.com/simp/pupmod-simp-pam',
-  :tag => '6.3.0'
+  :branch => 'master'
 
 mod 'simp-pki',
   :git => 'https://github.com/simp/pupmod-simp-pki',
@@ -324,7 +328,7 @@ mod 'simp-polkit',
 
 mod 'simp-postfix',
   :git => 'https://github.com/simp/pupmod-simp-postfix',
-  :tag => '5.2.0'
+  :branch => 'master'
 
 mod 'simp-pupmod',
   :git => 'https://github.com/simp/pupmod-simp-pupmod',
@@ -334,9 +338,13 @@ mod 'simp-resolv',
   :git => 'https://github.com/simp/pupmod-simp-resolv',
   :tag => '0.1.1'
 
+#mod 'simp-rkhunter',
+#  :git => 'https://github.com/simp/pupmod-simp-rkhunter',
+#  :branch => 'master'
+
 mod 'simp-rsync',
   :git => 'https://github.com/simp/pupmod-simp-rsync',
-  :tag => '6.1.0'
+  :branch => 'master'
 
 mod 'simp-rsyslog',
   :git => 'https://github.com/simp/pupmod-simp-rsyslog',
@@ -348,7 +356,7 @@ mod 'simp-selinux',
 
 mod 'simp-simp',
   :git => 'https://github.com/simp/pupmod-simp-simp',
-  :tag => '4.6.0'
+  :branch => 'master'
 
 mod 'simp-simpcat',
   :git => 'https://github.com/simp/pupmod-simp-simpcat',
@@ -357,6 +365,10 @@ mod 'simp-simpcat',
 mod 'simp-simplib',
   :git => 'https://github.com/simp/pupmod-simp-simplib',
   :tag => '3.12.0'
+
+#mod 'simp-simp_ad',
+#  :git => 'https://github.com/simp/pupmod-simp-simp_ad',
+#  :branch => 'master'
 
 mod 'simp-simp_apache',
   :git => 'https://github.com/simp/pupmod-simp-simp_apache',
@@ -395,7 +407,7 @@ mod 'simp-simp_nfs',
 
 mod 'simp-simp_openldap',
   :git => 'https://github.com/simp/pupmod-simp-simp_openldap',
-  :tag => '6.3.0'
+  :branch => 'master'
 
 mod 'simp-simp_options',
   :git => 'https://github.com/simp/pupmod-simp-simp_options',
@@ -427,11 +439,11 @@ mod 'simp-sssd',
 
 mod 'simp-stunnel',
   :git => 'https://github.com/simp/pupmod-simp-stunnel',
-  :tag => '6.4.0'
+  :branch => 'master'
 
 mod 'simp-sudo',
   :git => 'https://github.com/simp/pupmod-simp-sudo',
-  :tag => '5.1.1'
+  :branch => 'master'
 
 mod 'simp-sudosh',
   :git => 'https://github.com/simp/pupmod-simp-sudosh',
@@ -439,7 +451,7 @@ mod 'simp-sudosh',
 
 mod 'simp-svckill',
   :git => 'https://github.com/simp/pupmod-simp-svckill',
-  :tag => '3.3.0'
+  :branch => 'master'
 
 mod 'simp-swap',
   :git => 'https://github.com/simp/pupmod-simp-swap',
@@ -447,7 +459,7 @@ mod 'simp-swap',
 
 mod 'simp-tcpwrappers',
   :git => 'https://github.com/simp/pupmod-simp-tcpwrappers',
-  :tag => '6.1.0'
+  :branch => 'master'
 
 mod 'simp-tftpboot',
   :git => 'https://github.com/simp/pupmod-simp-tftpboot',

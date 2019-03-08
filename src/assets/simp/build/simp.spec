@@ -35,14 +35,13 @@ Requires: pupmod-herculesteam-augeasproviders_sysctl >= 2.3.1, pupmod-herculeste
 Requires: pupmod-onyxpoint-gpasswd >= 1.0.6, pupmod-onyxpoint-gpasswd < 2.0.0
 Requires: pupmod-puppet-yum >= 3.1.1, pupmod-puppet-yum < 4.0.0
 Requires: pupmod-puppetlabs-apache >= 3.0.0, pupmod-puppetlabs-apache < 5.0.0
-Requires: pupmod-puppetlabs-concat >= 4.1.1, pupmod-puppetlabs-concat < 5.0.0
+Requires: pupmod-puppetlabs-concat >= 5.3.0, pupmod-puppetlabs-concat < 6.0.0
 Requires: pupmod-puppetlabs-hocon >= 1.0.1, pupmod-puppetlabs-hocon < 2.0.0
 Requires: pupmod-puppetlabs-inifile >= 2.5.0, pupmod-puppetlabs-inifile < 3.0.0
-Requires: pupmod-puppetlabs-java >= 2.4.0, pupmod-puppetlabs-java < 3.0.0
 Requires: pupmod-puppetlabs-motd >= 2.0.0, pupmod-puppetlabs-motd < 3.0.0
 Requires: pupmod-puppetlabs-mount_providers >= 1.0.0, pupmod-puppetlabs-mount_providers < 2.0.0
 Requires: pupmod-puppetlabs-postgresql >= 5.12.1, pupmod-puppetlabs-postgresql < 6.0.0
-Requires: pupmod-puppetlabs-puppetdb >= 6.0.2, pupmod-puppetlabs-puppetdb < 7.0.0
+Requires: pupmod-puppetlabs-puppetdb >= 7.1.0, pupmod-puppetlabs-puppetdb < 8.0.0
 Requires: pupmod-puppetlabs-puppet_authorization >= 0.5.0, pupmod-puppetlabs-puppet_authorization < 1.0.0
 Requires: pupmod-puppetlabs-stdlib >= 4.25.1, pupmod-puppetlabs-stdlib < 5.0.0
 Requires: pupmod-simp-acpid >= 1.0.3, pupmod-simp-acpid < 2.0.0
@@ -131,15 +130,17 @@ Requires: pupmod-herculesteam-augeasproviders_pam >= 2.2.1
 Requires: pupmod-vshn-gitlab >= 1.13.3
 Requires: pupmod-puppet-posix_acl >= 0.1.1
 Requires: pupmod-puppetlabs-docker >= 1.1.0
+Requires: pupmod-puppetlabs-java >= 2.4.0
 Requires: pupmod-puppetlabs-mysql >= 5.3.0
 Requires: pupmod-puppetlabs-translate >= 1.0.0
 Requires: pupmod-razorsedge-snmp >= 3.9.0
 Requires: pupmod-saz-locales >= 2.5.1
 Requires: pupmod-simp-autofs >= 6.1.2
 Requires: pupmod-simp-dconf >= 0.0.2
-Requires: pupmod-simp-dirtycow >= 1.0.4
+Requires: pupmod-simp-freeradius >= 8.0.0
 Requires: pupmod-simp-gdm >= 7.1.0
 Requires: pupmod-simp-gnome >= 8.0.0
+Requires: pupmod-simp-hirs_provisioner >= 0.1.0
 Requires: pupmod-simp-ima >= 0.1.0
 Requires: pupmod-simp-krb5 >= 7.0.4
 Requires: pupmod-simp-libreswan >= 3.1.0
@@ -238,26 +239,12 @@ fi
 
 %changelog
 * Fri Mar 01 2019 Liz Nemsick <lnemsick.simp@gmail.com> - 6.4.0-0
-- Updated the following packages
-  - pupmod-camptocamp-kmod
-  - pupmod-herculesteam-augeasproviders_apache
-  - pupmod-herculesteam-augeasproviders_core
-  - pupmod-herculesteam-augeasproviders_grub
-  - pupmod-herculesteam-augeasproviders_mounttab
-  - pupmod-herculesteam-augeasproviders_nagios
-  - pupmod-herculesteam-augeasproviders_pam
-  - pupmod-herculesteam-augeasproviders_postgresql
-  - pupmod-herculesteam-augeasproviders_puppet
-  - pupmod-herculesteam-augeasproviders_shellvar
-  - pupmod-herculesteam-augeasproviders_ssh
-  - pupmod-herculesteam-augeasproviders_sysctl
-  - pupmod-puppet-yum
-  - pupmod-puppetlabs-apache
-  - pupmod-puppetlabs-hocon
-  - pupmod-puppetlabs-inifile
-  - pupmod-puppetlabs-postgresql
-  - pupmod-puppetlabs-puppet_authorization
-  - pupmod-simp-tpm
+- Updated package versions
+- Moved pupmod-puppetlabs-java from simp to simp-extras, as it is not
+  required by any other packages in the simp package
+- Added the following to simp-extras
+  - pupmod-simp-freeradius
+  - pupmod-simp-hirs_provisioner
 - Removed the following from simp-extras because the
   versions supported are EOL
   - pupmod-elastic-elasticsearch
@@ -267,6 +254,7 @@ fi
   - pupmod-richardc-datacat
   - pupmod-puppet-grafana
   - pupmod-simp-simp_grafana
+- Removed OBE pupmod-simp-dirtycow from simp-extras
 
 * Tue Feb 19 2019 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.4.0-0
 - Added pupmod-puppet-posix_acl to the simp-extras package
