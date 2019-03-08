@@ -50,10 +50,6 @@ mod 'simp-systemd',
   :git => 'https://github.com/simp/puppet-systemd.git',
   :tag => 'simp-2.1.0'
 
-mod 'cristifalcas-journald',
-  :git => 'https://github.com/simp/pupmod-simp-journald.git',
-  :tag => '0.6.0'
-
 mod 'herculesteam-augeasproviders_apache',
   :git => 'https://github.com/simp/augeasproviders_apache',
   :tag => '3.1.1'
@@ -265,6 +261,10 @@ mod 'simp-iptables',
 mod 'simp-issue',
   :git => 'https://github.com/simp/pupmod-simp-issue',
   :tag => '0.0.3'
+
+mod 'simp-journald',
+  :git => 'https://github.com/simp/pupmod-simp-journald.git',
+  :branch => 'master'
 
 mod 'simp-krb5',
   :git => 'https://github.com/simp/pupmod-simp-krb5',

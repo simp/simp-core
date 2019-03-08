@@ -74,6 +74,11 @@
     # ('puppet generate types' fails with puppet-archive).
     - 'pupmod-puppetlabs-stdlib'
 
+# SIMP has assumed ownership of the this project
+'journald':
+  :obsoletes:
+    'pupmod-cristifalcas-journald': '0.6.0-0'
+
 'motd':
   :requires:
     # exclude pupmod-puppetlabs-registry
