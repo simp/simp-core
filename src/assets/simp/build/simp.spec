@@ -123,7 +123,6 @@ Obsoletes: pupmod-puppet-grafana <= 4.1.1
 Obsoletes: pupmod-simp-simp_grafana <= 1.0.6
 
 Requires: simp-adapter >= 0.1.1, simp-adapter < 1.0.0
-Requires: pupmod-cristifalcas-journald >= 0.6.0
 Requires: pupmod-herculesteam-augeasproviders_mounttab >= 2.1.1
 Requires: pupmod-herculesteam-augeasproviders_nagios >= 2.1.1
 Requires: pupmod-herculesteam-augeasproviders_pam >= 2.2.1
@@ -142,6 +141,7 @@ Requires: pupmod-simp-gdm >= 7.1.0
 Requires: pupmod-simp-gnome >= 8.0.0
 Requires: pupmod-simp-hirs_provisioner >= 0.1.0
 Requires: pupmod-simp-ima >= 0.1.0
+Requires: pupmod-simp-journald >= 1.0.0
 Requires: pupmod-simp-krb5 >= 7.0.4
 Requires: pupmod-simp-libreswan >= 3.1.0
 Requires: pupmod-simp-libvirt >= 5.2.0
@@ -247,6 +247,8 @@ fi
 - Updated package versions
 - Moved pupmod-puppetlabs-java from simp to simp-extras, as it is not
   required by any other packages in the simp package
+- Replaced pupmod-cristifalcas-journald with pupmod-simp-journald.
+  The SIMP project has assumed ownership of this project.
 - Added the following to simp-extras
   - pupmod-simp-freeradius
   - pupmod-simp-hirs_provisioner
