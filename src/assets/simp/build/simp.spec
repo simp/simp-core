@@ -128,11 +128,11 @@ Requires: pupmod-herculesteam-augeasproviders_nagios >= 2.1.1
 Requires: pupmod-herculesteam-augeasproviders_pam >= 2.2.1
 Requires: pupmod-vshn-gitlab >= 1.13.3
 Requires: pupmod-puppet-posix_acl >= 0.1.1
+Requires: pupmod-puppet-snmp >= 4.1.0
 Requires: pupmod-puppetlabs-docker >= 1.1.0
 Requires: pupmod-puppetlabs-java >= 2.4.0
 Requires: pupmod-puppetlabs-mysql >= 5.3.0
 Requires: pupmod-puppetlabs-translate >= 1.0.0
-Requires: pupmod-razorsedge-snmp >= 3.9.0
 Requires: pupmod-saz-locales >= 2.5.1
 Requires: pupmod-simp-autofs >= 6.1.2
 Requires: pupmod-simp-dconf >= 0.0.2
@@ -248,7 +248,9 @@ fi
 - Moved pupmod-puppetlabs-java from simp to simp-extras, as it is not
   required by any other packages in the simp package
 - Replaced pupmod-cristifalcas-journald with pupmod-simp-journald.
-  The SIMP project has assumed ownership of this project.
+  The SIMP org has assumed ownership of this project.
+- Replaced pupmod-razorsedge-snmp with pupmod-puppet-snmp.
+  The Vox Pupuli org has assumed ownership of this project.
 - Added the following to simp-extras
   - pupmod-simp-freeradius
   - pupmod-simp-hirs_provisioner
