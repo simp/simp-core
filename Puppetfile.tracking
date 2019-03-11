@@ -159,14 +159,6 @@ mod 'puppetlabs-translate',
   :git => 'https://github.com/simp/pupmod-puppetlabs-translate',
   :tag => '1.0.0'
 
-#FIXME Does not support Puppet 5 yet.  Support is currently being
-# added to the master branch by Vox Pupuli, who have changed the
-# name from razorsedge/snmp to puppet/snmp.
-# Required by simp-simp_snmpd
-mod 'razorsedge-snmp',
-  :git => 'https://github.com/simp/puppet-snmp',
-  :tag => '3.9.0'
-
 mod 'saz-locales',
   :git => 'https://github.com/simp/pupmod-saz-locales',
   :tag => 'v2.5.1'
@@ -423,7 +415,7 @@ mod 'simp-simp_rsyslog',
 
 mod 'simp-simp_snmpd',
   :git => 'https://github.com/simp/pupmod-simp-simp_snmpd',
-  :tag => '0.1.1'
+  :branch => 'master'
 
 mod 'simp-site',
   :git => 'https://github.com/simp/pupmod-simp-site',
@@ -532,6 +524,10 @@ mod 'trlinkin-nsswitch',
 mod 'voxpupuli-posix_acl',
   :git => 'https://github.com/simp/pupmod-voxpupuli-posix_acl',
   :tag => 'v0.1.1'
+
+mod 'voxpupuli-snmp',
+  :git => 'https://github.com/simp/puppet-snmp',
+  :tag => 'v4.1.0'
 
 mod 'voxpupuli-yum',
   :git => 'https://github.com/simp/voxpupuli-yum',
