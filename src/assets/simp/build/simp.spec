@@ -44,6 +44,7 @@ Requires: pupmod-puppetlabs-postgresql >= 5.12.1, pupmod-puppetlabs-postgresql <
 Requires: pupmod-puppetlabs-puppetdb >= 7.1.0, pupmod-puppetlabs-puppetdb < 8.0.0
 Requires: pupmod-puppetlabs-puppet_authorization >= 0.5.0, pupmod-puppetlabs-puppet_authorization < 1.0.0
 Requires: pupmod-puppetlabs-stdlib >= 4.25.1, pupmod-puppetlabs-stdlib < 5.0.0
+Requires: pupmod-saz-timezone >= 5.1.1, pupmod-saz-timezone < 6.0.0
 Requires: pupmod-simp-acpid >= 1.0.3, pupmod-simp-acpid < 2.0.0
 Requires: pupmod-simp-aide >= 6.2.0, pupmod-simp-aide < 7.0.0
 Requires: pupmod-simp-at >= 0.0.5, pupmod-simp-at < 1.0.0
@@ -90,7 +91,6 @@ Requires: pupmod-simp-svckill >= 3.3.0, pupmod-simp-svckill < 4.0.0
 Requires: pupmod-simp-swap >= 0.1.2, pupmod-simp-swap < 1.0.0
 Requires: pupmod-simp-tcpwrappers >= 6.1.0, pupmod-simp-tcpwrappers < 7.0.0
 Requires: pupmod-simp-tftpboot >= 6.2.0, pupmod-simp-tftpboot < 7.0.0
-Requires: pupmod-simp-timezone >= 5.0.2, pupmod-simp-timezone < 6.0.0
 Requires: pupmod-simp-tlog >= 0.1.1, pupmod-simp-tlog < 1.0.0
 Requires: pupmod-simp-tuned >= 0.1.0, pupmod-simp-tuned < 1.0.0
 Requires: pupmod-simp-upstart >= 6.0.3, pupmod-simp-upstart < 7.0.0
@@ -251,6 +251,7 @@ fi
   The SIMP org has assumed ownership of this project.
 - Replaced pupmod-razorsedge-snmp with pupmod-puppet-snmp.
   The Vox Pupuli org has assumed ownership of this project.
+- Replaced pupmod-simp-timezone with pupmod-saz-timezone.
 - Added the following to simp-extras
   - pupmod-simp-freeradius
   - pupmod-simp-hirs_provisioner

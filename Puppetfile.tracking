@@ -163,6 +163,10 @@ mod 'saz-locales',
   :git => 'https://github.com/simp/pupmod-saz-locales',
   :tag => 'v2.5.1'
 
+mod 'saz-timezone',
+  :git => 'https://github.com/simp/pupmod-simp-timezone',
+  :tag => 'v5.1.1'
+
 mod 'simp-acpid',
   :git => 'https://github.com/simp/pupmod-simp-acpid',
   :tag => '1.0.3'
@@ -456,15 +460,6 @@ mod 'simp-tcpwrappers',
 mod 'simp-tftpboot',
   :git => 'https://github.com/simp/pupmod-simp-tftpboot',
   :tag => '6.2.0'
-
-# We are maintaining a simp-master branch of this module
-# because we needed changes earlier, and, due to a simp-adapter
-# bug WRT RPM upgrades with name changes, can't revert back
-# to saz/timezone.  We will revert when we redesign module
-# RPM packaging (SIMP-6.4.0 or later).
-mod 'simp-timezone',
-  :git => 'https://github.com/simp/pupmod-simp-timezone',
-  :tag => 'simp-5.0.3'
 
 mod 'simp-tlog',
   :git => 'https://github.com/simp/pupmod-simp-tlog',
