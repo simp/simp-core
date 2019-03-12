@@ -111,15 +111,10 @@
   :obsoletes:
     'pupmod-razorsedge-snmp': '3.9.0-0'
 
-# Make sure we create an RPM that fixes the obsoletes problem of
-# pupmod-simp-timezone-4.0.0-0 packaged for SIMP 6.1.0.  Since
-# we are not yet releasing a newer version, we can fix the
-# problem by using the same obsoletes, here, but a newer release
-# (packaging version 1 instead of 0) and a newer version of
-# simp-rake-helpers.
+# Reverted back to saz-timezone
 'timezone':
   :obsoletes:
-    'pupmod-saz-timezone': '3.3.0-2016.1'
+    'pupmod-simp-timezone': '5.0.3-0'
   :requires:
     # exclude pupmod-stm-debconf
     - 'pupmod-puppetlabs-stdlib'

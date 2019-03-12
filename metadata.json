@@ -107,6 +107,10 @@
       "version_requirement": ">= 4.25.1 < 5.0.0"
     },
     {
+      "name": "saz/timezone",
+      "version_requirement": ">= 5.1.1 < 6.0.0"
+    },
+    {
       "name": "simp/acpid",
       "version_requirement": ">= 1.0.3 < 2.0.0"
     },
@@ -289,10 +293,6 @@
     {
       "name": "simp/tftpboot",
       "version_requirement": ">= 6.2.0 < 7.0.0"
-    },
-    {
-      "name": "simp/timezone",
-      "version_requirement": ">= 5.0.2 < 6.0.0"
     },
     {
       "name": "simp/tlog",
