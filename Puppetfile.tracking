@@ -124,7 +124,7 @@ mod 'puppetlabs-java',
 
 mod 'puppetlabs-motd',
   :git => 'https://github.com/simp/puppetlabs-motd',
-  :tag => '2.0.0'
+  :tag => '2.1.2'
 
 #FIXME does not support Puppet 5 yet. Ticket entered:
 # https://tickets.puppetlabs.com/browse/MODULES-8043
@@ -360,7 +360,7 @@ mod 'simp-simpcat',
 
 mod 'simp-simplib',
   :git => 'https://github.com/simp/pupmod-simp-simplib',
-  :tag => '3.12.0'
+  :branch => 'master'
 
 #mod 'simp-simp_ad',
 #  :git => 'https://github.com/simp/pupmod-simp-simp_ad',
@@ -498,7 +498,7 @@ mod 'simp-vnc',
 # Our changes are on simp-master.
 mod 'simp-vox_selinux',
   :git => 'https://github.com/simp/pupmod-voxpupuli-selinux',
-  :tag => 'simp-1.5.2'
+  :tag => 'simp-1.6.1'
 
 mod 'simp-vsftpd',
   :git => 'https://github.com/simp/pupmod-simp-vsftpd',
