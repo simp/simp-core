@@ -84,7 +84,7 @@
     },
     {
       "name": "puppetlabs/motd",
-      "version_requirement": ">= 2.0.0 < 3.0.0"
+      "version_requirement": ">= 2.1.2 < 3.0.0"
     },
     {
       "name": "puppetlabs/mount_providers",
@@ -312,7 +312,7 @@
     },
     {
       "name": "simp/vox_selinux",
-      "version_requirement": ">= 1.5.2 < 2.0.0"
+      "version_requirement": ">= 1.6.1 < 2.0.0"
     },
     {
       "name": "simp/xinetd",
