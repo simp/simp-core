@@ -108,7 +108,7 @@ mod 'puppetlabs-concat',
 
 mod 'puppetlabs-docker',
   :git => 'https://github.com/simp/puppetlabs-docker',
-  :tag => '1.1.0'
+  :tag => '3.5.0'
 
 mod 'puppetlabs-hocon',
   :git => 'https://github.com/simp/pupmod-puppetlabs-hocon',
@@ -154,10 +154,8 @@ mod 'puppetlabs-stdlib',
   :tag => '4.25.1'
 
 mod 'puppetlabs-translate',
-  # FIXME LATER:  Can't use latest version, because puppetlabs-docker 1.1.0
-  # requires puppetlabs-translate < 1.1.0.
   :git => 'https://github.com/simp/pupmod-puppetlabs-translate',
-  :tag => '1.0.0'
+  :tag => '1.2.0'
 
 mod 'saz-locales',
   :git => 'https://github.com/simp/pupmod-saz-locales',
@@ -376,7 +374,7 @@ mod 'simp-simp_banners',
 
 mod 'simp-simp_docker',
   :git => 'https://github.com/simp/pupmod-simp-simp_docker',
-  :tag => '0.2.0'
+  :branch => 'master'
 
 #FIXME Does not support Puppet 5 yet.  Also, needs to be tested with
 # Vox Pupuli puppet/gitlab 2.0.0, which does support Puppet 5.

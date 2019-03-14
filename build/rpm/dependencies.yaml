@@ -60,6 +60,9 @@
 'docker':
   :requires:
     # exclude pupmod-puppetlabs-apt
+    # exclude the following modules required for operation on Windows:
+    #   pupmod-puppetlabs-powershell
+    #   pupmod-puppetlabs-reboot
     - 'pupmod-puppetlabs-stdlib'
     - 'pupmod-puppetlabs-translate'
 
