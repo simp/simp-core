@@ -150,7 +150,7 @@ mod 'puppetlabs-puppet_authorization',
   :tag => '0.5.0'
 
 mod 'puppetlabs-ruby_task_helper',
-  :git => 'https://github.com/simp/puppetlabs-ruby_task_helper.git',
+  :git => 'https://github.com/simp/pupmod-puppetlabs-ruby_task_helper.git',
   :tag => '0.3.0'
 
 mod 'puppetlabs-stdlib',
@@ -302,7 +302,7 @@ mod 'simp-nfs',
 
 mod 'simp-ntpd',
   :git => 'https://github.com/simp/pupmod-simp-ntpd',
-  :branch => 'master'
+  :tag => '6.3.0'
 
 mod 'simp-oddjob',
   :git => 'https://github.com/simp/pupmod-simp-oddjob',
@@ -354,7 +354,7 @@ mod 'simp-selinux',
 
 mod 'simp-simp',
   :git => 'https://github.com/simp/pupmod-simp-simp',
-  :branch => 'master'
+  :tag => '4.7.0'
 
 mod 'simp-simpcat',
   :git => 'https://github.com/simp/pupmod-simp-simpcat',
@@ -362,7 +362,7 @@ mod 'simp-simpcat',
 
 mod 'simp-simplib',
   :git => 'https://github.com/simp/pupmod-simp-simplib',
-  :branch => 'master'
+  :tag => '3.14.0'
 
 #mod 'simp-simp_ad',
 #  :git => 'https://github.com/simp/pupmod-simp-simp_ad',
@@ -401,7 +401,7 @@ mod 'simp-simp_nfs',
 
 mod 'simp-simp_openldap',
   :git => 'https://github.com/simp/pupmod-simp-simp_openldap',
-  :branch => 'master'
+  :tag => '6.3.1'
 
 mod 'simp-simp_options',
   :git => 'https://github.com/simp/pupmod-simp-simp_options',
@@ -433,7 +433,7 @@ mod 'simp-sssd',
 
 mod 'simp-stunnel',
   :git => 'https://github.com/simp/pupmod-simp-stunnel',
-  :branch => 'master'
+  :tag => '6.4.1'
 
 mod 'simp-sudo',
   :git => 'https://github.com/simp/pupmod-simp-sudo',
@@ -453,7 +453,7 @@ mod 'simp-swap',
 
 mod 'simp-tcpwrappers',
   :git => 'https://github.com/simp/pupmod-simp-tcpwrappers',
-  :branch => 'master'
+  :tag => '6.1.1'
 
 mod 'simp-tftpboot',
   :git => 'https://github.com/simp/pupmod-simp-tftpboot',
