@@ -233,7 +233,7 @@ GEM
       ruby-progressbar (~> 1.0)
       simp-beaker-helpers (~> 1.11)
       simp-rspec-puppet-facts (~> 2.0)
-    simp-rspec-puppet-facts (2.2.0)
+    simp-rspec-puppet-facts (2.2.1)
       facter (>= 1.5.0, < 3.0)
       json (~> 1)
       rspec-puppet-facts (~> 0)
@@ -257,7 +257,6 @@ PLATFORMS
 DEPENDENCIES
   beaker
   beaker-rspec
-  bundler
   coderay
   dotenv
   metadata-json-lint
