@@ -120,7 +120,7 @@
 # Camptocamp has assumed ownership of the this project
 'systemd':
   :obsoletes:
-    'simp-systemd': '2.1.0-0'
+    'pupmod-simp-systemd': '2.1.0-0'
 
 # Reverted back to saz-timezone
 'timezone':
