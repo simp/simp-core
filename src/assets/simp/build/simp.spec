@@ -23,7 +23,7 @@ Obsoletes: pupmod-simp-mcollective <= 3.0.0
 
 # Core SIMP Requirements
 Requires: pupmod-camptocamp-kmod >= 2.3.0, pupmod-camptocamp-kmod < 3.0.0
-Requires: camptocamp-systemd >= 2.2.0, camptocamp-systemd < 3.0.0
+Requires: pupmod-camptocamp-systemd >= 2.2.0, pupmod-camptocamp-systemd < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_apache >= 3.1.1, pupmod-herculesteam-augeasproviders_apache < 4.0.0
 Requires: pupmod-herculesteam-augeasproviders_core >= 2.4.0, pupmod-herculesteam-augeasproviders_core < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_grub >= 3.1.0, pupmod-herculesteam-augeasproviders_grub < 4.0.0
@@ -246,7 +246,7 @@ fi
 
 %changelog
 * Tue Mar 26 2019 Joseph Sharkey <shark.bruhaha@gmail.com> - 6.4.0-0
-- Replaced pupmod-simp-systemd with camptocamp-systemd.
+- Replaced pupmod-simp-systemd with pupmod-camptocamp-systemd.
   Ownership of this project has reverted to the Camptocamp org.
 
 * Fri Mar 22 2019 Liz Nemsick <lnemsick.simp@gmail.com> - 6.4.0-0
