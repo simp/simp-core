@@ -23,7 +23,7 @@ Obsoletes: pupmod-simp-mcollective <= 3.0.0
 
 # Core SIMP Requirements
 Requires: pupmod-camptocamp-kmod >= 2.3.0, pupmod-camptocamp-kmod < 3.0.0
-Requires: pupmod-simp-systemd >= 2.1.0, pupmod-simp-systemd < 3.0.0
+Requires: pupmod-simp-systemd >= 2.2.0, pupmod-simp-systemd < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_apache >= 3.1.1, pupmod-herculesteam-augeasproviders_apache < 4.0.0
 Requires: pupmod-herculesteam-augeasproviders_core >= 2.4.0, pupmod-herculesteam-augeasproviders_core < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_grub >= 3.1.0, pupmod-herculesteam-augeasproviders_grub < 4.0.0
@@ -245,6 +245,9 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Tue Mar 26 2019 Joseph Sharkey <shark.bruhaha@gmail.com> - 6.4.0-0
+- Updated systemd package version
+
 * Fri Mar 22 2019 Liz Nemsick <lnemsick.simp@gmail.com> - 6.4.0-0
 - Updated package versions
 - Moved pupmod-puppetlabs-java from simp to simp-extras, as it is not
