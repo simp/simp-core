@@ -386,6 +386,9 @@ tpm2-tss:
 tpm2-tss-devel:
   :rpm_name: tpm2-tss-devel-1.4.0-2.el7.x86_64.rpm
   :source: http://mirror.centos.org/centos/7/os/x86_64/Packages/tpm2-tss-devel-1.4.0-2.el7.x86_64.rpm
+unhide:
+  :rpm_name: unhide-20130526-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/u/unhide-20130526-1.el7.x86_64.rpm
 unique:
   :rpm_name: unique-1.1.6-10.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/u/unique-1.1.6-10.el7.x86_64.rpm
