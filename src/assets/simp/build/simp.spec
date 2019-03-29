@@ -22,6 +22,7 @@ Obsoletes: pupmod-simp-activemq <= 4.0.1
 Obsoletes: pupmod-simp-mcollective <= 3.0.0
 
 # Core SIMP Requirements
+Requires: simp-vendored-r10k >= 2.6.2, simp-vendored-r10k < 4.0.0
 Requires: pupmod-camptocamp-kmod >= 2.3.0, pupmod-camptocamp-kmod < 3.0.0
 Requires: pupmod-simp-systemd >= 2.1.0, pupmod-simp-systemd < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_apache >= 3.1.1, pupmod-herculesteam-augeasproviders_apache < 4.0.0
@@ -101,7 +102,7 @@ Requires: pupmod-simp-xinetd >= 4.1.1, pupmod-simp-xinetd < 5.0.0
 Requires: pupmod-trlinkin-nsswitch >= 2.1.0, pupmod-trlinkin-nsswitch < 3.0.0
 Requires: rubygem-simp-cli >= 4.4.0, rubygem-simp-cli < 5.0.0
 Requires: rubygem-simp-cli-doc >= 4.4.0, rubygem-simp-cli-doc < 5.0.0
-Requires: simp-adapter >= 0.1.1, simp-adapter < 1.0.0
+Requires: simp-adapter >= 1.0.0, simp-adapter < 2.0.0
 Requires: simp-environment >= 6.3.0, simp-environment < 7.0.0
 Requires: simp-gpgkeys >= 3.0.4, simp-gpgkeys < 4.0.0
 Requires: simp-rsync >= 6.2.1-0%{?dist}, simp-rsync < 7.0.0
@@ -123,7 +124,7 @@ Obsoletes: pupmod-richardc-datacat <= 0.6.2
 Obsoletes: pupmod-puppet-grafana <= 4.1.1
 Obsoletes: pupmod-simp-simp_grafana <= 1.0.6
 
-Requires: simp-adapter >= 0.1.1, simp-adapter < 1.0.0
+Requires: simp-adapter >= 1.0.0, simp-adapter < 2.0.0
 Requires: pupmod-herculesteam-augeasproviders_mounttab >= 2.1.1
 Requires: pupmod-herculesteam-augeasproviders_nagios >= 2.1.1
 Requires: pupmod-herculesteam-augeasproviders_pam >= 2.2.1
