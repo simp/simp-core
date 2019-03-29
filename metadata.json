@@ -23,8 +23,8 @@
       "version_requirement": ">= 2.3.0 < 3.0.0"
     },
     {
-      "name": "simp/systemd",
-      "version_requirement": ">= 2.1.0 < 3.0.0"
+      "name": "camptocamp/systemd",
+      "version_requirement": ">= 2.2.0 < 3.0.0"
     },
     {
       "name": "herculesteam/augeasproviders_apache",
