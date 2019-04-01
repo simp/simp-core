@@ -414,10 +414,6 @@ mod 'simp-simp_snmpd',
   :git => 'https://github.com/simp/pupmod-simp-simp_snmpd',
   :tag => '0.1.2'
 
-mod 'simp-site',
-  :git => 'https://github.com/simp/pupmod-simp-site',
-  :tag => '2.0.6'
-
 mod 'simp-ssh',
   :git => 'https://github.com/simp/pupmod-simp-ssh',
   :branch => 'master'
