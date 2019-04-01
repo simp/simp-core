@@ -355,10 +355,6 @@ mod 'simp-simp',
   :git => 'https://github.com/simp/pupmod-simp-simp',
   :branch => 'master'
 
-mod 'simp-simpcat',
-  :git => 'https://github.com/simp/pupmod-simp-simpcat',
-  :tag => '6.0.3'
-
 mod 'simp-simplib',
   :git => 'https://github.com/simp/pupmod-simp-simplib',
   :branch => 'master'

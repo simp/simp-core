@@ -76,7 +76,6 @@ Requires: pupmod-simp-rsync >= 6.1.1, pupmod-simp-rsync < 7.0.0
 Requires: pupmod-simp-rsyslog >= 7.3.1, pupmod-simp-rsyslog < 8.0.0
 Requires: pupmod-simp-selinux >= 2.3.1, pupmod-simp-selinux < 3.0.0
 Requires: pupmod-simp-simp >= 4.6.0, pupmod-simp-simp < 5.0.0
-Requires: pupmod-simp-simpcat >= 6.0.3, pupmod-simp-simpcat < 7.0.0
 Requires: pupmod-simp-simplib >= 3.12.0, pupmod-simp-simplib < 4.0.0
 Requires: pupmod-simp-simp_apache >= 6.1.1, pupmod-simp-simp_apache < 7.0.0
 Requires: pupmod-simp-simp_banners >= 0.1.1, pupmod-simp-simp_banners < 1.0.0
@@ -246,6 +245,10 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Mon Apr 01 2019 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.4.0-0
+- Added pupmod-puppet-posix_acl to the simp-extras package
+- Removed pupmod-simp-simpcat from the included module list.
+
 * Tue Mar 26 2019 Joseph Sharkey <shark.bruhaha@gmail.com> - 6.4.0-0
 - Replaced pupmod-simp-systemd with pupmod-camptocamp-systemd.
   Ownership of this project has reverted to the Camptocamp org.
@@ -277,9 +280,6 @@ fi
   - pupmod-puppet-grafana
   - pupmod-simp-simp_grafana
 - Removed OBE pupmod-simp-dirtycow from simp-extras
-
-* Tue Feb 19 2019 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.4.0-0
-- Added pupmod-puppet-posix_acl to the simp-extras package
 
 * Fri Feb 02 2019 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.3.2-0
 - Updated the following packages to address bug fixes. See the Changelog for
