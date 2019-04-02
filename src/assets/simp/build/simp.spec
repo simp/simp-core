@@ -24,7 +24,7 @@ Obsoletes: pupmod-simp-mcollective <= 3.0.0
 # Core SIMP Requirements
 Requires: simp-vendored-r10k >= 2.6.2, simp-vendored-r10k < 4.0.0
 Requires: pupmod-camptocamp-kmod >= 2.3.0, pupmod-camptocamp-kmod < 3.0.0
-Requires: pupmod-simp-systemd >= 2.1.0, pupmod-simp-systemd < 3.0.0
+Requires: pupmod-camptocamp-systemd >= 2.2.0, pupmod-camptocamp-systemd < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_apache >= 3.1.1, pupmod-herculesteam-augeasproviders_apache < 4.0.0
 Requires: pupmod-herculesteam-augeasproviders_core >= 2.4.0, pupmod-herculesteam-augeasproviders_core < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_grub >= 3.1.0, pupmod-herculesteam-augeasproviders_grub < 4.0.0
@@ -83,7 +83,6 @@ Requires: pupmod-simp-simp_banners >= 0.1.1, pupmod-simp-simp_banners < 1.0.0
 Requires: pupmod-simp-simp_openldap >= 6.3.0, pupmod-simp-simp_openldap < 7.0.0
 Requires: pupmod-simp-simp_options >= 1.2.1, pupmod-simp-simp_options < 2.0.0
 Requires: pupmod-simp-simp_rsyslog >= 0.3.0, pupmod-simp-simp_rsyslog < 1.0.0
-Requires: pupmod-simp-site >= 2.0.5, pupmod-simp-site < 3.0.0
 Requires: pupmod-simp-ssh >= 6.5.1, pupmod-simp-ssh < 7.0.0
 Requires: pupmod-simp-sssd >= 6.1.6, pupmod-simp-sssd < 7.0.0
 Requires: pupmod-simp-stunnel >= 6.4.0, pupmod-simp-stunnel < 7.0.0
@@ -246,6 +245,14 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Mon Apr 01 2019 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.4.0-0
+- Added pupmod-puppet-posix_acl to the simp-extras package
+- Removed pupmod-simp-site from the package list
+
+* Tue Mar 26 2019 Joseph Sharkey <shark.bruhaha@gmail.com> - 6.4.0-0
+- Replaced pupmod-simp-systemd with pupmod-camptocamp-systemd.
+  Ownership of this project has reverted to the Camptocamp org.
+
 * Fri Mar 22 2019 Liz Nemsick <lnemsick.simp@gmail.com> - 6.4.0-0
 - Updated package versions
 - Moved pupmod-puppetlabs-java from simp to simp-extras, as it is not
@@ -273,9 +280,6 @@ fi
   - pupmod-puppet-grafana
   - pupmod-simp-simp_grafana
 - Removed OBE pupmod-simp-dirtycow from simp-extras
-
-* Tue Feb 19 2019 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.4.0-0
-- Added pupmod-puppet-posix_acl to the simp-extras package
 
 * Fri Feb 02 2019 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.3.2-0
 - Updated the following packages to address bug fixes. See the Changelog for

@@ -23,8 +23,8 @@
       "version_requirement": ">= 2.3.0 < 3.0.0"
     },
     {
-      "name": "simp/systemd",
-      "version_requirement": ">= 2.1.0 < 3.0.0"
+      "name": "camptocamp/systemd",
+      "version_requirement": ">= 2.2.0 < 3.0.0"
     },
     {
       "name": "herculesteam/augeasproviders_apache",
@@ -257,10 +257,6 @@
     {
       "name": "simp/simp_rsyslog",
       "version_requirement": ">= 0.3.0 < 1.0.0"
-    },
-    {
-      "name": "simp/site",
-      "version_requirement": ">= 2.0.6 < 3.0.0"
     },
     {
       "name": "simp/ssh",

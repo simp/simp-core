@@ -45,14 +45,9 @@ mod 'camptocamp-kmod',
   :git => 'https://github.com/simp/puppet-kmod.git',
   :tag => '2.3.0'
 
-# We are maintaining a simp-master branch of this module
-# because we needed changes earlier, and, due to a simp-adapter
-# bug WRT RPM upgrades with name changes, can't revert back
-# to camptocamp/systemd.  We will revert when we redesign module
-# RPM packaging (SIMP-6.4.0 or later).
-mod 'simp-systemd',
+mod 'camptocamp-systemd',
   :git => 'https://github.com/simp/puppet-systemd.git',
-  :tag => 'simp-2.1.0'
+  :tag => '2.2.0'
 
 mod 'herculesteam-augeasproviders_apache',
   :git => 'https://github.com/simp/augeasproviders_apache',
@@ -421,10 +416,6 @@ mod 'simp-simp_rsyslog',
 
 mod 'simp-simp_snmpd',
   :git => 'https://github.com/simp/pupmod-simp-simp_snmpd',
-  :branch => 'master'
-
-mod 'simp-site',
-  :git => 'https://github.com/simp/pupmod-simp-site',
   :branch => 'master'
 
 mod 'simp-ssh',

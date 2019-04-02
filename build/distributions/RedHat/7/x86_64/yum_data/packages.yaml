@@ -156,8 +156,8 @@ mate-settings-daemon:
   :rpm_name: mate-settings-daemon-1.16.2-1.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/mate-settings-daemon-1.16.2-1.el7.x86_64.rpm
 mate-themes:
-  :rpm_name: mate-themes-3.22.18-1.el7.noarch.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/mate-themes-3.22.18-1.el7.noarch.rpm
+  :rpm_name: mate-themes-3.22.19-1.el7.noarch.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/mate-themes-3.22.19-1.el7.noarch.rpm
 mate-user-guide:
   :rpm_name: mate-user-guide-1.16.0-1.el7.noarch.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/mate-user-guide-1.16.0-1.el7.noarch.rpm
@@ -371,6 +371,9 @@ sudosh2:
 tlog:
   :rpm_name: tlog-4-1.el7.x86_64.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/tlog-4-1.el7.x86_64.rpm
+unhide:
+  :rpm_name: unhide-20130526-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/u/unhide-20130526-1.el7.x86_64.rpm
 unique:
   :rpm_name: unique-1.1.6-10.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/u/unique-1.1.6-10.el7.x86_64.rpm
