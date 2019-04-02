@@ -82,7 +82,6 @@ Requires: pupmod-simp-simp_banners >= 0.1.1, pupmod-simp-simp_banners < 1.0.0
 Requires: pupmod-simp-simp_openldap >= 6.3.0, pupmod-simp-simp_openldap < 7.0.0
 Requires: pupmod-simp-simp_options >= 1.2.1, pupmod-simp-simp_options < 2.0.0
 Requires: pupmod-simp-simp_rsyslog >= 0.3.0, pupmod-simp-simp_rsyslog < 1.0.0
-Requires: pupmod-simp-site >= 2.0.5, pupmod-simp-site < 3.0.0
 Requires: pupmod-simp-ssh >= 6.5.1, pupmod-simp-ssh < 7.0.0
 Requires: pupmod-simp-sssd >= 6.1.6, pupmod-simp-sssd < 7.0.0
 Requires: pupmod-simp-stunnel >= 6.4.0, pupmod-simp-stunnel < 7.0.0
@@ -248,6 +247,7 @@ fi
 * Mon Apr 01 2019 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.4.0-0
 - Added pupmod-puppet-posix_acl to the simp-extras package
 - Removed pupmod-simp-simpcat from the included module list.
+- Removed pupmod-simp-site from the package list
 
 * Tue Mar 26 2019 Joseph Sharkey <shark.bruhaha@gmail.com> - 6.4.0-0
 - Replaced pupmod-simp-systemd with pupmod-camptocamp-systemd.
