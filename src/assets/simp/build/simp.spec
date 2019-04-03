@@ -246,8 +246,12 @@ fi
 %changelog
 * Mon Apr 01 2019 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.4.0-0
 - Added pupmod-puppet-posix_acl to the simp-extras package
-- Removed pupmod-simp-simpcat from the included module list.
-- Removed pupmod-simp-site from the package list
+- Removed the following from the simp package
+  - pupmod-simp-simpcat:  The module has been deprecated and all uses of
+    it within SIMP modules have been replaced with concat.
+  - pupmod-simp-site: Delivery of this module skeleton is longer relevant
+    with the move to local Git repositories for SIMP-packaged puppet
+    modules.
 
 * Tue Mar 26 2019 Joseph Sharkey <shark.bruhaha@gmail.com> - 6.4.0-0
 - Replaced pupmod-simp-systemd with pupmod-camptocamp-systemd.
