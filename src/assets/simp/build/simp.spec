@@ -21,6 +21,9 @@ Requires: httpd >= 2.2
 Obsoletes: pupmod-simp-activemq <= 4.0.1
 Obsoletes: pupmod-simp-mcollective <= 3.0.0
 
+# Required for upgrades to SIMP 6.4+
+Obsoletes: pupmod-simp-simpcat <= 6.0.3
+
 # Core SIMP Requirements
 Requires: simp-vendored-r10k >= 2.6.2, simp-vendored-r10k < 4.0.0
 Requires: pupmod-camptocamp-kmod >= 2.3.0, pupmod-camptocamp-kmod < 3.0.0
