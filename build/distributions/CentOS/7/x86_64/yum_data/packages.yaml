@@ -45,8 +45,8 @@ clamav-update:
   :rpm_name: clamav-update-0.101.2-1.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/clamav-update-0.101.2-1.el7.x86_64.rpm
 clamd:
-  :rpm_name: clamd-0.101.1-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/clamd-0.101.1-1.el7.x86_64.rpm
+  :rpm_name: clamd-0.101.2-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/clamd-0.101.2-1.el7.x86_64.rpm
 fortune-mod:
   :rpm_name: fortune-mod-1.99.1-17.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/f/fortune-mod-1.99.1-17.el7.x86_64.rpm
