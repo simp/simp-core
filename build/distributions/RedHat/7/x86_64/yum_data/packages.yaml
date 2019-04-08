@@ -21,32 +21,32 @@ chkrootkit:
   :rpm_name: chkrootkit-0.50-4el7.x86_64.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/chkrootkit-0.50-4el7.x86_64.rpm
 clamav:
-  :rpm_name: clamav-0.101.1-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/clamav-0.101.1-1.el7.x86_64.rpm
+  :rpm_name: clamav-0.101.2-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/clamav-0.101.2-1.el7.x86_64.rpm
 clamav-data:
-  :rpm_name: clamav-data-0.101.1-1.el7.noarch.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/clamav-data-0.101.1-1.el7.noarch.rpm
+  :rpm_name: clamav-data-0.101.2-1.el7.noarch.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/clamav-data-0.101.2-1.el7.noarch.rpm
 clamav-devel:
-  :rpm_name: clamav-devel-0.101.1-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/clamav-devel-0.101.1-1.el7.x86_64.rpm
+  :rpm_name: clamav-devel-0.101.2-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/clamav-devel-0.101.2-1.el7.x86_64.rpm
 clamav-filesystem:
-  :rpm_name: clamav-filesystem-0.101.1-1.el7.noarch.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/clamav-filesystem-0.101.1-1.el7.noarch.rpm
+  :rpm_name: clamav-filesystem-0.101.2-1.el7.noarch.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/clamav-filesystem-0.101.2-1.el7.noarch.rpm
 clamav-lib:
-  :rpm_name: clamav-lib-0.101.1-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/clamav-lib-0.101.1-1.el7.x86_64.rpm
+  :rpm_name: clamav-lib-0.101.2-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/clamav-lib-0.101.2-1.el7.x86_64.rpm
 clamav-scanner-systemd:
-  :rpm_name: clamav-scanner-systemd-0.101.1-1.el7.x86_64.rpm
-  :source: https://mirror.umd.edu/fedora/epel/7/x86_64/Packages/c/clamav-scanner-systemd-0.101.1-1.el7.x86_64.rpm
+  :rpm_name: clamav-scanner-systemd-0.101.2-1.el7.x86_64.rpm
+  :source: https://mirror.umd.edu/fedora/epel/7/x86_64/Packages/c/clamav-scanner-systemd-0.101.2-1.el7.x86_64.rpm
 clamav-server-systemd:
-  :rpm_name: clamav-server-systemd-0.101.1-1.el7.x86_64.rpm
-  :source: https://mirror.umd.edu/fedora/epel/7/x86_64/Packages/c/clamav-server-systemd-0.101.1-1.el7.x86_64.rpm
+  :rpm_name: clamav-server-systemd-0.101.2-1.el7.x86_64.rpm
+  :source: https://mirror.umd.edu/fedora/epel/7/x86_64/Packages/c/clamav-server-systemd-0.101.2-1.el7.x86_64.rpm
 clamav-update:
-  :rpm_name: clamav-update-0.101.1-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/clamav-update-0.101.1-1.el7.x86_64.rpm
+  :rpm_name: clamav-update-0.101.2-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/clamav-update-0.101.2-1.el7.x86_64.rpm
 clamd:
-  :rpm_name: clamd-0.101.1-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/clamd-0.101.1-1.el7.x86_64.rpm
+  :rpm_name: clamd-0.101.2-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/clamd-0.101.2-1.el7.x86_64.rpm
 fortune-mod:
   :rpm_name: fortune-mod-1.99.1-17.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/f/fortune-mod-1.99.1-17.el7.x86_64.rpm
@@ -231,23 +231,23 @@ pssh:
   :rpm_name: pssh-2.3.1.SIMP-5.el7.noarch.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/pssh-2.3.1.SIMP-5.el7.noarch.rpm
 puppet-agent:
-  :rpm_name: puppet-agent-5.5.7-1.el7.x86_64.rpm
-  :source: https://yum.puppetlabs.com/puppet5/el/7/x86_64/puppet-agent-5.5.7-1.el7.x86_64.rpm
+  :rpm_name: puppet-agent-5.5.10-1.el7.x86_64.rpm
+  :source: https://yum.puppetlabs.com/puppet5/el/7/x86_64/puppet-agent-5.5.10-1.el7.x86_64.rpm
 puppet-client-tools:
-  :rpm_name: puppet-client-tools-1.2.4-1.el7.x86_64.rpm
-  :source: https://yum.puppetlabs.com/puppet5/el/7/x86_64/puppet-client-tools-1.2.4-1.el7.x86_64.rpm
+  :rpm_name: puppet-client-tools-1.2.6-1.el7.x86_64.rpm
+  :source: https://yum.puppetlabs.com/puppet5/el/7/x86_64/puppet-client-tools-1.2.6-1.el7.x86_64.rpm
 puppet5-release:
-  :rpm_name: puppet5-release-5.0.0-1.el7.noarch.rpm
-  :source: https://yum.puppetlabs.com/puppet5/el/7/x86_64/puppet5-release-5.0.0-1.el7.noarch.rpm
+  :rpm_name: puppet5-release-5.0.0-4.el7.noarch.rpm
+  :source: https://yum.puppetlabs.com/puppet5/el/7/x86_64/puppet5-release-5.0.0-4.el7.noarch.rpm
 puppetdb:
-  :rpm_name: puppetdb-5.2.4-1.el7.noarch.rpm
-  :source: https://yum.puppetlabs.com/puppet5/el/7/x86_64/puppetdb-5.2.4-1.el7.noarch.rpm
+  :rpm_name: puppetdb-5.2.7-1.el7.noarch.rpm
+  :source: https://yum.puppetlabs.com/puppet5/el/7/x86_64/puppetdb-5.2.7-1.el7.noarch.rpm
 puppetdb-termini:
-  :rpm_name: puppetdb-termini-5.2.4-1.el7.noarch.rpm
-  :source: https://yum.puppetlabs.com/puppet5/el/7/x86_64/puppetdb-termini-5.2.4-1.el7.noarch.rpm
+  :rpm_name: puppetdb-termini-5.2.7-1.el7.noarch.rpm
+  :source: https://yum.puppetlabs.com/puppet5/el/7/x86_64/puppetdb-termini-5.2.7-1.el7.noarch.rpm
 puppetserver:
-  :rpm_name: puppetserver-5.3.5-1.el7.noarch.rpm
-  :source: https://yum.puppetlabs.com/puppet5/el/7/x86_64/puppetserver-5.3.5-1.el7.noarch.rpm
+  :rpm_name: puppetserver-5.3.7-1.el7.noarch.rpm
+  :source: https://yum.puppetlabs.com/puppet5/el/7/x86_64/puppetserver-5.3.7-1.el7.noarch.rpm
 pwgen:
   :rpm_name: pwgen-2.08-1.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/p/pwgen-2.08-1.el7.x86_64.rpm
