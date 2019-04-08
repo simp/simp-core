@@ -17,7 +17,6 @@ end
 
 
 # mandatory gems
-gem 'bundler'
 gem 'coderay'
 gem 'dotenv'
 gem 'metadata-json-lint'

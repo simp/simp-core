@@ -259,10 +259,6 @@
       "version_requirement": ">= 0.3.0 < 1.0.0"
     },
     {
-      "name": "simp/site",
-      "version_requirement": ">= 2.0.6 < 3.0.0"
-    },
-    {
       "name": "simp/ssh",
       "version_requirement": ">= 6.5.1 < 7.0.0"
     },
