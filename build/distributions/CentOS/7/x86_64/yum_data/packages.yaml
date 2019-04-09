@@ -27,7 +27,7 @@ clamav-data:
   :rpm_name: clamav-data-0.101.2-1.el7.noarch.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/clamav-data-0.101.2-1.el7.noarch.rpm
 clamav-devel:
-  :rpm_name: clamav-devel-0.102.1-1.el7.x86_64.rpm
+  :rpm_name: clamav-devel-0.101.2-1.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/clamav-devel-0.101.2-1.el7.x86_64.rpm
 clamav-filesystem:
   :rpm_name: clamav-filesystem-0.101.2-1.el7.noarch.rpm

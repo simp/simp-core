@@ -21,6 +21,9 @@ Requires: httpd >= 2.2
 Obsoletes: pupmod-simp-activemq <= 4.0.1
 Obsoletes: pupmod-simp-mcollective <= 3.0.0
 
+# Required for upgrades to SIMP 6.4+
+Obsoletes: pupmod-simp-simpcat <= 6.0.3
+
 # Core SIMP Requirements
 Requires: simp-vendored-r10k >= 2.6.2, simp-vendored-r10k < 4.0.0
 Requires: pupmod-camptocamp-kmod >= 2.3.0, pupmod-camptocamp-kmod < 3.0.0
@@ -76,7 +79,6 @@ Requires: pupmod-simp-rsync >= 6.1.1, pupmod-simp-rsync < 7.0.0
 Requires: pupmod-simp-rsyslog >= 7.3.1, pupmod-simp-rsyslog < 8.0.0
 Requires: pupmod-simp-selinux >= 2.3.1, pupmod-simp-selinux < 3.0.0
 Requires: pupmod-simp-simp >= 4.6.0, pupmod-simp-simp < 5.0.0
-Requires: pupmod-simp-simpcat >= 6.0.3, pupmod-simp-simpcat < 7.0.0
 Requires: pupmod-simp-simplib >= 3.12.0, pupmod-simp-simplib < 4.0.0
 Requires: pupmod-simp-simp_apache >= 6.1.1, pupmod-simp-simp_apache < 7.0.0
 Requires: pupmod-simp-simp_banners >= 0.1.1, pupmod-simp-simp_banners < 1.0.0
@@ -247,7 +249,12 @@ fi
 %changelog
 * Mon Apr 01 2019 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.4.0-0
 - Added pupmod-puppet-posix_acl to the simp-extras package
-- Removed pupmod-simp-site from the package list
+- Removed the following from the simp package
+  - pupmod-simp-simpcat:  The module has been deprecated and all uses of
+    it within SIMP modules have been replaced with concat.
+  - pupmod-simp-site: Delivery of this module skeleton is longer relevant
+    with the move to local Git repositories for SIMP-packaged puppet
+    modules.
 
 * Tue Mar 26 2019 Joseph Sharkey <shark.bruhaha@gmail.com> - 6.4.0-0
 - Replaced pupmod-simp-systemd with pupmod-camptocamp-systemd.
