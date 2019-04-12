@@ -247,9 +247,6 @@ fi
 # Post uninstall stuff
 
 %changelog
-* Tue Apr 07 2019 Joseph Sharkey <shark.bruhaha@gmail.com> - 6.4.0-0
-- Removed Elasticsearch and Grafana
-
 * Mon Apr 01 2019 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.4.0-0
 - Added pupmod-puppet-posix_acl to the simp-extras package
 - Removed the following from the simp package
