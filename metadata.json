@@ -231,10 +231,6 @@
       "version_requirement": ">= 4.6.0 < 5.0.0"
     },
     {
-      "name": "simp/simpcat",
-      "version_requirement": ">= 6.0.3 < 7.0.0"
-    },
-    {
       "name": "simp/simplib",
       "version_requirement": ">= 3.12.0 < 4.0.0"
     },
@@ -257,10 +253,6 @@
     {
       "name": "simp/simp_rsyslog",
       "version_requirement": ">= 0.3.0 < 1.0.0"
-    },
-    {
-      "name": "simp/site",
-      "version_requirement": ">= 2.0.6 < 3.0.0"
     },
     {
       "name": "simp/ssh",

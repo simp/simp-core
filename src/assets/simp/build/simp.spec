@@ -21,7 +21,11 @@ Requires: httpd >= 2.2
 Obsoletes: pupmod-simp-activemq <= 4.0.1
 Obsoletes: pupmod-simp-mcollective <= 3.0.0
 
+# Required for upgrades to SIMP 6.4+
+Obsoletes: pupmod-simp-simpcat <= 6.0.3
+
 # Core SIMP Requirements
+Requires: simp-vendored-r10k >= 2.6.2, simp-vendored-r10k < 4.0.0
 Requires: pupmod-camptocamp-kmod >= 2.3.0, pupmod-camptocamp-kmod < 3.0.0
 Requires: pupmod-camptocamp-systemd >= 2.2.0, pupmod-camptocamp-systemd < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_apache >= 3.1.1, pupmod-herculesteam-augeasproviders_apache < 4.0.0
@@ -75,14 +79,12 @@ Requires: pupmod-simp-rsync >= 6.1.1, pupmod-simp-rsync < 7.0.0
 Requires: pupmod-simp-rsyslog >= 7.3.1, pupmod-simp-rsyslog < 8.0.0
 Requires: pupmod-simp-selinux >= 2.3.1, pupmod-simp-selinux < 3.0.0
 Requires: pupmod-simp-simp >= 4.6.0, pupmod-simp-simp < 5.0.0
-Requires: pupmod-simp-simpcat >= 6.0.3, pupmod-simp-simpcat < 7.0.0
 Requires: pupmod-simp-simplib >= 3.12.0, pupmod-simp-simplib < 4.0.0
 Requires: pupmod-simp-simp_apache >= 6.1.1, pupmod-simp-simp_apache < 7.0.0
 Requires: pupmod-simp-simp_banners >= 0.1.1, pupmod-simp-simp_banners < 1.0.0
 Requires: pupmod-simp-simp_openldap >= 6.3.0, pupmod-simp-simp_openldap < 7.0.0
 Requires: pupmod-simp-simp_options >= 1.2.1, pupmod-simp-simp_options < 2.0.0
 Requires: pupmod-simp-simp_rsyslog >= 0.3.0, pupmod-simp-simp_rsyslog < 1.0.0
-Requires: pupmod-simp-site >= 2.0.5, pupmod-simp-site < 3.0.0
 Requires: pupmod-simp-ssh >= 6.5.1, pupmod-simp-ssh < 7.0.0
 Requires: pupmod-simp-sssd >= 6.1.6, pupmod-simp-sssd < 7.0.0
 Requires: pupmod-simp-stunnel >= 6.4.0, pupmod-simp-stunnel < 7.0.0
@@ -101,7 +103,7 @@ Requires: pupmod-simp-xinetd >= 4.1.1, pupmod-simp-xinetd < 5.0.0
 Requires: pupmod-trlinkin-nsswitch >= 2.1.0, pupmod-trlinkin-nsswitch < 3.0.0
 Requires: rubygem-simp-cli >= 4.4.0, rubygem-simp-cli < 5.0.0
 Requires: rubygem-simp-cli-doc >= 4.4.0, rubygem-simp-cli-doc < 5.0.0
-Requires: simp-adapter >= 0.1.1, simp-adapter < 1.0.0
+Requires: simp-adapter >= 1.0.0, simp-adapter < 2.0.0
 Requires: simp-environment >= 6.3.0, simp-environment < 7.0.0
 Requires: simp-gpgkeys >= 3.0.4, simp-gpgkeys < 4.0.0
 Requires: simp-rsync >= 6.2.1-0%{?dist}, simp-rsync < 7.0.0
@@ -123,7 +125,7 @@ Obsoletes: pupmod-richardc-datacat <= 0.6.2
 Obsoletes: pupmod-puppet-grafana <= 4.1.1
 Obsoletes: pupmod-simp-simp_grafana <= 1.0.6
 
-Requires: simp-adapter >= 0.1.1, simp-adapter < 1.0.0
+Requires: simp-adapter >= 1.0.0, simp-adapter < 2.0.0
 Requires: pupmod-herculesteam-augeasproviders_mounttab >= 2.1.1
 Requires: pupmod-herculesteam-augeasproviders_nagios >= 2.1.1
 Requires: pupmod-herculesteam-augeasproviders_pam >= 2.2.1
@@ -248,6 +250,15 @@ fi
 * Tue Apr 07 2019 Joseph Sharkey <shark.bruhaha@gmail.com> - 6.4.0-0
 - Removed Elasticsearch and Grafana
 
+* Mon Apr 01 2019 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.4.0-0
+- Added pupmod-puppet-posix_acl to the simp-extras package
+- Removed the following from the simp package
+  - pupmod-simp-simpcat:  The module has been deprecated and all uses of
+    it within SIMP modules have been replaced with concat.
+  - pupmod-simp-site: Delivery of this module skeleton is longer relevant
+    with the move to local Git repositories for SIMP-packaged puppet
+    modules.
+
 * Tue Mar 26 2019 Joseph Sharkey <shark.bruhaha@gmail.com> - 6.4.0-0
 - Replaced pupmod-simp-systemd with pupmod-camptocamp-systemd.
   Ownership of this project has reverted to the Camptocamp org.
@@ -279,9 +290,6 @@ fi
   - pupmod-puppet-grafana
   - pupmod-simp-simp_grafana
 - Removed OBE pupmod-simp-dirtycow from simp-extras
-
-* Tue Feb 19 2019 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.4.0-0
-- Added pupmod-puppet-posix_acl to the simp-extras package
 
 * Fri Feb 02 2019 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.3.2-0
 - Updated the following packages to address bug fixes. See the Changelog for
