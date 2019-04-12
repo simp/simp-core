@@ -115,7 +115,13 @@ License: Apache-2.0
 # These 7 lines are required for upgrades from simp-6.[1-3].X to simp-6.4+.
 # Otherwise, we will have conflicting, derived dependencies caused by obsolete
 # ELG-related packages.
+Obsoletes: pupmod-elastic-elasticsearch <= 5.5.0
+Obsoletes: pupmod-elastic-logstash <= 5.3.0
+Obsoletes: pupmod-simp-simp_elasticsearch <= 5.0.5
+Obsoletes: pupmod-simp-simp_logstash <= 5.0.2
 Obsoletes: pupmod-richardc-datacat <= 0.6.2
+Obsoletes: pupmod-puppet-grafana <= 4.1.1
+Obsoletes: pupmod-simp-simp_grafana <= 1.0.6
 
 Requires: simp-adapter >= 0.1.1, simp-adapter < 1.0.0
 Requires: pupmod-herculesteam-augeasproviders_mounttab >= 2.1.1
