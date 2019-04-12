@@ -117,31 +117,6 @@ else
   simp_grow_vol='VarVol'
 fi
 
-# This checks to make sure that the / and /boot partitions exist. If
-# they do not, SIMP will fail to install properly. This should only be
-# a potential issue if the user has created a custom partitioning
-# scheme.
-
-$(lsblk | grep "/$" > /dev/null)
-set root_exists=$?
-
-$(lsblk | grep "/boot$" > /dev/null)
-set boot_exists=$?
-
-if [ "$simp_opt" == "prompt" ] && [ "$root_exists" != 0 ]; then
-  echo "You must have a \"/\" partition."
-
-  exit 1
-fi
-
-if [ "$simp_opt" == "prompt" ] && [ "$boot_exists" != 0 ];
-  then
-  echo "You must have a \"/boot\" partition."
-
-  exit 1
-fi
-
-
 if [ "$simp_opt" != "prompt" ]; then
   cat << EOF > /tmp/part-include
 clearpart --all --initlabel --drives=${DISK}
