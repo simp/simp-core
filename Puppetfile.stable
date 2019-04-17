@@ -49,14 +49,6 @@ mod 'cristifalcas-journald',
   :git => 'https://github.com/simp/pupmod-simp-journald.git',
   :tag => '0.6.0'
 
-mod 'elastic-elasticsearch',
-  :git => 'https://github.com/simp/puppet-elasticsearch',
-  :tag => '5.5.0'
-
-mod 'elastic-logstash',
-  :git => 'https://github.com/simp/puppet-logstash',
-  :tag => '5.3.0'
-
 mod 'herculesteam-augeasproviders_apache',
   :git => 'https://github.com/simp/augeasproviders_apache',
   :tag => '3.0.0'
@@ -104,10 +96,6 @@ mod 'herculesteam-augeasproviders_sysctl',
 mod 'onyxpoint-gpasswd',
   :git => 'https://github.com/simp/puppet-gpasswd',
   :tag => '1.0.6'
-
-mod 'puppet-grafana',
-  :git => 'https://github.com/simp/puppet-grafana.git',
-  :tag => 'v4.1.1'
 
 mod 'puppetlabs-apache',
   :git => 'https://github.com/simp/puppetlabs-apache',
@@ -390,10 +378,6 @@ mod 'simp-simp_docker',
   :git => 'https://github.com/simp/pupmod-simp-simp_docker',
   :tag => '0.2.0'
 
-mod 'simp-simp_elasticsearch',
-  :git => 'https://github.com/simp/pupmod-simp-simp_elasticsearch',
-  :tag => '5.0.5'
-
 #FIXME Does not support Puppet 5 yet.  Also, needs to be tested with
 # Vox Pupuli puppet/gitlab 2.0.0, which does support Puppet 5.
 # puppet/gitlab is the new name for vshn/gitlab.  When Vox Pupuli
@@ -401,10 +385,6 @@ mod 'simp-simp_elasticsearch',
 mod 'simp-simp_gitlab',
   :git => 'https://github.com/simp/pupmod-simp-simp_gitlab',
   :tag => '0.3.4'
-
-mod 'simp-simp_grafana',
-  :git => 'https://github.com/simp/pupmod-simp-simp_grafana',
-  :tag => '1.0.6'
 
 mod 'simp-simp_ipa',
   :git => 'https://github.com/simp/pupmod-simp-simp_ipa',
