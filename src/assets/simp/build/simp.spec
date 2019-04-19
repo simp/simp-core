@@ -207,14 +207,9 @@ chmod u=rwX,g=rX,o=rX -R %{buildroot}%{_sysconfdir}/simp
 export PATH=/opt/puppetlabs/bin:/opt/puppetlabs/puppet/bin:$PATH
 
 puppet_confdir=`puppet config print confdir`
-puppet_environmentpath=`puppet config print environmentpath`
 
 if [ -f "${puppet_confdir}/autosign.conf" ]; then
   chmod 644 "${puppet_confdir}/autosign.conf"
-fi
-
-if [[ -d "${puppet_environmentpath}/simp" && -f '%{_usr}/local/sbin/hiera_upgrade' ]]; then
-  %{_usr}/local/sbin/hiera_upgrade || true
 fi
 
 if [ -x '%{_usr}/local/sbin/puppetserver_clear_environment_cache' ]; then
@@ -245,6 +240,9 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Fri Apr 19 2019 Chris Tessmer <chris.tessmer@onyxpoint.com> - 6.4.0-0
+- Removed obsolete `hiera_update` logic from RPM %post section
+
 * Tue Mar 26 2019 Joseph Sharkey <shark.bruhaha@gmail.com> - 6.4.0-0
 - Replaced pupmod-simp-systemd with pupmod-camptocamp-systemd.
   Ownership of this project has reverted to the Camptocamp org.
