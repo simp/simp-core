@@ -240,6 +240,11 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Tue Apr 24 2019 Jim Anderson <thesemicolons@protonmail.com> - 6.4.0-0
+- Added message if 'simp_opt == prompt' where the user is directed to the
+  documentation for partition requirements and prompted to remember to create a
+  /boot partition.
+
 * Fri Apr 19 2019 Chris Tessmer <chris.tessmer@onyxpoint.com> - 6.4.0-0
 - Removed obsolete `hiera_update` logic from RPM %post section
 
