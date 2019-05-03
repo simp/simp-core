@@ -1,7 +1,12 @@
-#  FIXME This Puppetfile points to the master branch for simp
-# modules.  It  is for use in the developemnt branch.  External
-# modules have been locked down to version appropriate for
-# SIMP 6.4
+# This `Puppetfile.branches` file defines the relevant tracking branch for each
+# SIMP component** needed to build a SIMP super-release.   It can be used to:
+#
+# * Check out all components' latest commits
+# * Determine if components have been updated beyond the versions recorded in
+#   `Puppetfile.pinned`.
+#
+# ** NOTE: External (non-SIMP) modules are always pinned to the version intended
+#    for the next SIMP release (6.4.)
 moduledir 'src'
 
 mod 'simp-doc',

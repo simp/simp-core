@@ -1,6 +1,15 @@
-# FIXME Some components in this Puppetfile points to the master branch.
-# External modules have been locked down to version appropriate for
-# SIMP 6.4
+# This `Puppetfile.pinned` file defines each component in the next SIMP
+# super-release.
+#
+# * Components under active development may retain their tracking branches
+#   (as defined in `Puppetfile.branches`)
+# * As the version of each SIMP component is decided for the next release, the
+#   release for each component is pinned in this file.
+# * By the time the next SIMP super-release is ready, all components in this file
+#   will be pinned to their intended version.
+#
+# ** NOTE: External (non-SIMP) modules are always pinned to the version intended
+#    for the next SIMP release (6.4.)
 moduledir 'src'
 
 mod 'simp-doc',
