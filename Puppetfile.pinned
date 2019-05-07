@@ -365,7 +365,7 @@ mod 'simp-selinux',
 
 mod 'simp-simp',
   :git => 'https://github.com/simp/pupmod-simp-simp',
-  :branch => 'master'
+  :tag => '4.8.0'
 
 mod 'simp-simplib',
   :git => 'https://github.com/simp/pupmod-simp-simplib',
@@ -436,7 +436,7 @@ mod 'simp-simp_snmpd',
 
 mod 'simp-ssh',
   :git => 'https://github.com/simp/pupmod-simp-ssh',
-  :branch => 'master'
+  :tag => '6.7.0'
 
 mod 'simp-sssd',
   :git => 'https://github.com/simp/pupmod-simp-sssd',
