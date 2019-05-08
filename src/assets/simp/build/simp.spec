@@ -101,13 +101,13 @@ Requires: pupmod-simp-useradd >= 0.2.3, pupmod-simp-useradd < 1.0.0
 Requires: pupmod-simp-vox_selinux >= 1.6.1, pupmod-simp-vox_selinux < 2.0.0
 Requires: pupmod-simp-xinetd >= 4.1.1, pupmod-simp-xinetd < 5.0.0
 Requires: pupmod-trlinkin-nsswitch >= 2.1.0, pupmod-trlinkin-nsswitch < 3.0.0
-Requires: rubygem-simp-cli >= 4.4.0, rubygem-simp-cli < 5.0.0
-Requires: rubygem-simp-cli-doc >= 4.4.0, rubygem-simp-cli-doc < 5.0.0
+Requires: rubygem-simp-cli >= 5.0.0, rubygem-simp-cli < 6.0.0
+Requires: rubygem-simp-cli-doc >= 5.0.0, rubygem-simp-cli-doc < 6.0.0
 Requires: simp-adapter >= 1.0.0, simp-adapter < 2.0.0
-Requires: simp-environment >= 6.3.0, simp-environment < 7.0.0
+Requires: simp-environment-skeleton >= 7.0.0, simp-environment < 8.0.0
 Requires: simp-gpgkeys >= 3.0.4, simp-gpgkeys < 4.0.0
-Requires: simp-rsync >= 6.2.1-0%{?dist}, simp-rsync < 7.0.0
-Requires: simp-utils >= 6.1.2, simp-utils < 7.0.0
+Requires: simp-rsync-skeleton >= 7.0.0, simp-rsync-skeleton < 8.0.0
+Requires: simp-utils >= 6.2.0, simp-utils < 7.0.0
 
 # SIMP Extras
 %package extras
