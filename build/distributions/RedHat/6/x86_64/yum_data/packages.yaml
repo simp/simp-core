@@ -29,33 +29,12 @@ fping:
 fuse-sshfs:
   :rpm_name: fuse-sshfs-2.4-1.el6.x86_64.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/f/fuse-sshfs-2.4-1.el6.x86_64.rpm
-ganglia:
-  :rpm_name: ganglia-3.7.2-2.el6.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/g/ganglia-3.7.2-2.el6.x86_64.rpm
-ganglia-devel:
-  :rpm_name: ganglia-devel-3.7.2-2.el6.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/g/ganglia-devel-3.7.2-2.el6.x86_64.rpm
-ganglia-gmetad:
-  :rpm_name: ganglia-gmetad-3.7.2-2.el6.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/g/ganglia-gmetad-3.7.2-2.el6.x86_64.rpm
-ganglia-gmond:
-  :rpm_name: ganglia-gmond-3.7.2-2.el6.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/g/ganglia-gmond-3.7.2-2.el6.x86_64.rpm
-ganglia-gmond-python:
-  :rpm_name: ganglia-gmond-python-3.7.2-2.el6.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/g/ganglia-gmond-python-3.7.2-2.el6.x86_64.rpm
-gweb:
-  :rpm_name: gweb-2.1.8-1.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/gweb-2.1.8-1.noarch.rpm
 haveged:
   :rpm_name: haveged-1.9.1-2.el6.x86_64.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/h/haveged-1.9.1-2.el6.x86_64.rpm
 incron:
   :rpm_name: incron-0.5.9-1.el6.x86_64.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/i/incron-0.5.9-1.el6.x86_64.rpm
-leiningen:
-  :rpm_name: leiningen-2.0.0-0.2preview10.el6.noarch.rpm
-  :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/leiningen-2.0.0-0.2preview10.el6.noarch.rpm
 libNX_X11:
   :rpm_name: libNX_X11-3.5.0.32-3.el6.x86_64.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/l/libNX_X11-3.5.0.32-3.el6.x86_64.rpm
@@ -109,10 +88,10 @@ libssh:
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/l/libssh-0.5.5-5.el6.x86_64.rpm
 libyaml:
   :rpm_name: libyaml-0.1.4-2.el6.x86_64.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/libyaml-0.1.4-2.el6.x86_64.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/libyaml-0.1.4-2.el6.x86_64.rpm/download.rpm
 libyaml-devel:
   :rpm_name: libyaml-devel-0.1.4-2.el6.x86_64.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/libyaml-devel-0.1.4-2.el6.x86_64.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/libyaml-devel-0.1.4-2.el6.x86_64.rpm/download.rpm
 mrepo:
   :rpm_name: mrepo-0.8.7-2.el6.noarch.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/m/mrepo-0.8.7-2.el6.noarch.rpm
@@ -130,22 +109,22 @@ nxproxy:
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/n/nxproxy-3.5.0.32-3.el6.x86_64.rpm
 pdsh:
   :rpm_name: pdsh-2.28-0.x86_64.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/pdsh-2.28-0.x86_64.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/pdsh-2.28-0.x86_64.rpm/download.rpm
 pdsh-mod-dshgroup:
   :rpm_name: pdsh-mod-dshgroup-2.28-0.x86_64.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/pdsh-mod-dshgroup-2.28-0.x86_64.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/pdsh-mod-dshgroup-2.28-0.x86_64.rpm/download.rpm
 pdsh-mod-machines:
   :rpm_name: pdsh-mod-machines-2.28-0.x86_64.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/pdsh-mod-machines-2.28-0.x86_64.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/pdsh-mod-machines-2.28-0.x86_64.rpm/download.rpm
 pdsh-mod-netgroup:
   :rpm_name: pdsh-mod-netgroup-2.28-0.x86_64.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/pdsh-mod-netgroup-2.28-0.x86_64.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/pdsh-mod-netgroup-2.28-0.x86_64.rpm/download.rpm
 pdsh-rcmd-exec:
   :rpm_name: pdsh-rcmd-exec-2.28-0.x86_64.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/pdsh-rcmd-exec-2.28-0.x86_64.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/pdsh-rcmd-exec-2.28-0.x86_64.rpm/download.rpm
 pdsh-rcmd-ssh:
   :rpm_name: pdsh-rcmd-ssh-2.28-0.x86_64.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/pdsh-rcmd-ssh-2.28-0.x86_64.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/pdsh-rcmd-ssh-2.28-0.x86_64.rpm/download.rpm
 perl-Capture-Tiny:
   :rpm_name: perl-Capture-Tiny-0.23-1.el6.noarch.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/p/perl-Capture-Tiny-0.23-1.el6.noarch.rpm
@@ -196,7 +175,7 @@ postgresql96-server:
   :source: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-6.9-x86_64/postgresql96-server-9.6.10-1PGDG.rhel6.x86_64.rpm
 pssh:
   :rpm_name: pssh-2.3.1-5.el6.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/pssh-2.3.1-5.el6.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/pssh-2.3.1-5.el6.noarch.rpm/download.rpm
 puppet-agent:
   :rpm_name: puppet-agent-5.5.7-1.el6.x86_64.rpm
   :source: https://yum.puppetlabs.com/puppet5/el/6/x86_64/puppet-agent-5.5.7-1.el6.x86_64.rpm
@@ -223,115 +202,109 @@ python-argparse:
   :source: Red Hat Base Repository
 python-redis:
   :rpm_name: python-redis-2.0.0-1.el6.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/python-redis-2.0.0-1.el6.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/python-redis-2.0.0-1.el6.noarch.rpm/download.rpm
 python-unittest2:
   :rpm_name: python-unittest2-0.5.1-3.el6.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/python-unittest2-0.5.1-3.el6.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/python-unittest2-0.5.1-3.el6.noarch.rpm/download.rpm
 qstat:
   :rpm_name: qstat-2.11-9.20080912svn311.el6.x86_64.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/qstat-2.11-9.20080912svn311.el6.x86_64.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/qstat-2.11-9.20080912svn311.el6.x86_64.rpm/download.rpm
 radiusclient-ng:
   :rpm_name: radiusclient-ng-0.5.6-5.el6.x86_64.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/r/radiusclient-ng-0.5.6-5.el6.x86_64.rpm
 rlwrap:
   :rpm_name: rlwrap-0.42-1.el6.x86_64.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/r/rlwrap-0.42-1.el6.x86_64.rpm
-rubygem-ffi:
-  :rpm_name: rubygem-ffi-1.4.0-2.el6.x86_64.rpm
-  :source: http://yum.puppetlabs.com/el/6/dependencies/x86_64/rubygem-ffi-1.4.0-2.el6.x86_64.rpm
 rubygem-highline:
   :rpm_name: rubygem-highline-1.6.11-1.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-highline-1.6.11-1.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-highline-1.6.11-1.noarch.rpm/download.rpm
 rubygem-net-ldap:
   :rpm_name: rubygem-net-ldap-0.6.1-2.el6.1.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-net-ldap-0.6.1-2.el6.1.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-net-ldap-0.6.1-2.el6.1.noarch.rpm/download.rpm
 rubygem-net-ldap-doc:
   :rpm_name: rubygem-net-ldap-doc-0.6.1-2.el6.1.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-net-ldap-doc-0.6.1-2.el6.1.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-net-ldap-doc-0.6.1-2.el6.1.noarch.rpm/download.rpm
 rubygem-net-ping:
   :rpm_name: rubygem-net-ping-1.6.2-1.el6.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-net-ping-1.6.2-1.el6.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-net-ping-1.6.2-1.el6.noarch.rpm/download.rpm
 rubygem-rake:
   :rpm_name: rubygem-rake-0.8.7-2.1.el6.noarch.rpm
   :source: Red Hat Optional Repo
-rubygem-rake-compiler:
-  :rpm_name: rubygem-rake-compiler-0.9.3-2.el6.noarch.rpm
-  :source: http://http://yum.puppetlabs.com/el/6/dependencies/x86_64/rubygem-rake-compiler-0.9.3-2.el6.noarch.rpm
 rubygem-stomp:
   :rpm_name: rubygem-stomp-1.3.2-1.el6.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-stomp-1.3.2-1.el6.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-stomp-1.3.2-1.el6.noarch.rpm/download.rpm
 rubygem-stomp-doc:
   :rpm_name: rubygem-stomp-doc-1.3.2-1.el6.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-stomp-doc-1.3.2-1.el6.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/rubygem-stomp-doc-1.3.2-1.el6.noarch.rpm/download.rpm
 sendmail-milter:
   :rpm_name: sendmail-milter-8.14.4-9.el6_8.1.x86_64.rpm
   :source: Red Hat Optional Repo
 simp-lastbind:
   :rpm_name: simp-lastbind-2.4.23-0.x86_64.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/simp-lastbind-2.4.23-0.x86_64.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/simp-lastbind-2.4.23-0.x86_64.rpm/download.rpm
 simp-ppolicy-check-password:
   :rpm_name: simp-ppolicy-check-password-2.4.39-0.el6.x86_64.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/simp-ppolicy-check-password-2.4.39-0.el6.x86_64.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/simp-ppolicy-check-password-2.4.39-0.el6.x86_64.rpm/download.rpm
 simp-vendored-r10k:
   :rpm_name: simp-vendored-r10k-2.6.2-1.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X/packages/el/6/simp-vendored-r10k-2.6.2-1.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X/packages/el/6/simp-vendored-r10k-2.6.2-1.noarch.rpm/download.rpm
 simp-vendored-r10k-doc:
   :rpm_name: simp-vendored-r10k-doc-2.6.2-1.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X/packages/el/6/simp-vendored-r10k-doc-2.6.2-1.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X/packages/el/6/simp-vendored-r10k-doc-2.6.2-1.noarch.rpm/download.rpm
 simp-vendored-r10k-gem-colored:
   :rpm_name: simp-vendored-r10k-gem-colored-1.2-1.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X/packages/el/6/simp-vendored-r10k-gem-colored-1.2-1.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X/packages/el/6/simp-vendored-r10k-gem-colored-1.2-1.noarch.rpm/download.rpm
 simp-vendored-r10k-gem-cri:
   :rpm_name: simp-vendored-r10k-gem-cri-2.6.1-1.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X/packages/el/6/simp-vendored-r10k-gem-cri-2.6.1-1.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X/packages/el/6/simp-vendored-r10k-gem-cri-2.6.1-1.noarch.rpm/download.rpm
 simp-vendored-r10k-gem-faraday:
   :rpm_name: simp-vendored-r10k-gem-faraday-0.9.2-1.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X/packages/el/6/simp-vendored-r10k-gem-faraday-0.9.2-1.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X/packages/el/6/simp-vendored-r10k-gem-faraday-0.9.2-1.noarch.rpm/download.rpm
 simp-vendored-r10k-gem-faraday_middleware:
   :rpm_name: simp-vendored-r10k-gem-faraday_middleware-0.10.1-1.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X/packages/el/6/simp-vendored-r10k-gem-faraday_middleware-0.10.1-1.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X/packages/el/6/simp-vendored-r10k-gem-faraday_middleware-0.10.1-1.noarch.rpm/download.rpm
 simp-vendored-r10k-gem-fast_gettext:
   :rpm_name: simp-vendored-r10k-gem-fast_gettext-1.1.2-0.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X/packages/el/6/simp-vendored-r10k-gem-fast_gettext-1.1.2-0.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X/packages/el/6/simp-vendored-r10k-gem-fast_gettext-1.1.2-0.noarch.rpm/download.rpm
 simp-vendored-r10k-gem-gettext:
   :rpm_name: simp-vendored-r10k-gem-gettext-3.2.9-0.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X/packages/el/6/simp-vendored-r10k-gem-gettext-3.2.9-0.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X/packages/el/6/simp-vendored-r10k-gem-gettext-3.2.9-0.noarch.rpm/download.rpm
 simp-vendored-r10k-gem-gettext-setup:
   :rpm_name: simp-vendored-r10k-gem-gettext-setup-0.30-0.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X/packages/el/6/simp-vendored-r10k-gem-gettext-setup-0.30-0.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X/packages/el/6/simp-vendored-r10k-gem-gettext-setup-0.30-0.noarch.rpm/download.rpm
 simp-vendored-r10k-gem-locale:
   :rpm_name: simp-vendored-r10k-gem-locale-2.1.2-0.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X/packages/el/6/simp-vendored-r10k-gem-locale-2.1.2-0.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X/packages/el/6/simp-vendored-r10k-gem-locale-2.1.2-0.noarch.rpm/download.rpm
 simp-vendored-r10k-gem-log4r:
   :rpm_name: simp-vendored-r10k-gem-log4r-1.1.10-1.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X/packages/el/6/simp-vendored-r10k-gem-log4r-1.1.10-1.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X/packages/el/6/simp-vendored-r10k-gem-log4r-1.1.10-1.noarch.rpm/download.rpm
 simp-vendored-r10k-gem-minitar:
   :rpm_name: simp-vendored-r10k-gem-minitar-0.6.1-1.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X/packages/el/6/simp-vendored-r10k-gem-minitar-0.6.1-1.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X/packages/el/6/simp-vendored-r10k-gem-minitar-0.6.1-1.noarch.rpm/download.rpm
 simp-vendored-r10k-gem-multi_json:
   :rpm_name: simp-vendored-r10k-gem-multi_json-1.12.1-1.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X/packages/el/6/simp-vendored-r10k-gem-multi_json-1.12.1-1.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X/packages/el/6/simp-vendored-r10k-gem-multi_json-1.12.1-1.noarch.rpm/download.rpm
 simp-vendored-r10k-gem-multipart-post:
   :rpm_name: simp-vendored-r10k-gem-multipart-post-2.0.0-1.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X/packages/el/6/simp-vendored-r10k-gem-multipart-post-2.0.0-1.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X/packages/el/6/simp-vendored-r10k-gem-multipart-post-2.0.0-1.noarch.rpm/download.rpm
 simp-vendored-r10k-gem-puppet_forge:
   :rpm_name: simp-vendored-r10k-gem-puppet_forge-2.2.8-0.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X/packages/el/6/simp-vendored-r10k-gem-puppet_forge-2.2.8-0.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X/packages/el/6/simp-vendored-r10k-gem-puppet_forge-2.2.8-0.noarch.rpm/download.rpm
 simp-vendored-r10k-gem-r10k:
   :rpm_name: simp-vendored-r10k-gem-r10k-2.6.2-1.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X/packages/el/6/simp-vendored-r10k-gem-r10k-2.6.2-1.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X/packages/el/6/simp-vendored-r10k-gem-r10k-2.6.2-1.noarch.rpm/download.rpm
 simp-vendored-r10k-gem-semantic_puppet:
   :rpm_name: simp-vendored-r10k-gem-semantic_puppet-1.0.2-0.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X/packages/el/6/simp-vendored-r10k-gem-semantic_puppet-1.0.2-0.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X/packages/el/6/simp-vendored-r10k-gem-semantic_puppet-1.0.2-0.noarch.rpm/download.rpm
 simp-vendored-r10k-gem-text:
   :rpm_name: simp-vendored-r10k-gem-text-1.3.1-0.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X/packages/el/6/simp-vendored-r10k-gem-text-1.3.1-0.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X/packages/el/6/simp-vendored-r10k-gem-text-1.3.1-0.noarch.rpm/download.rpm
 sudosh2:
   :rpm_name: sudosh2-1.0.2-2.el6.x86_64.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/sudosh2-1.0.2-2.el6.x86_64.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/sudosh2-1.0.2-2.el6.x86_64.rpm/download.rpm
 tlog:
   :rpm_name: tlog-4-1.el6.x86_64.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/tlog-4-1.el6.x86_64.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/tlog-4-1.el6.x86_64.rpm/download.rpm
 tpm-tools-pkcs11:
   :rpm_name: tpm-tools-pkcs11-1.3.4-2.el6.x86_64.rpm
   :source: Red Hat Base Repository

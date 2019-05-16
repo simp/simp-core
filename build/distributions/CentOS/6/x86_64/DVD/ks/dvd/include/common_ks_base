@@ -18,90 +18,70 @@ clearpart --all
 reboot
 
 %packages --nobase
-redhat-lsb
-xorg-x11-xauth
+# Minimum Requirements
 acl
-aide
 audit
 bzip2
-crontabs
-libutempter
-pciutils
-psacct
-quota
-tmpwatch
-vixie-cron
-amtu
-anacron
-coolkey
 cpuspeed
+crontabs
 cryptsetup-luks
 dhclient
-%include /tmp/dracut_packages
 fipscheck
-git
-gnupg
-gpm
 hal
 hal-storage-addon
 iptables
 iptables-ipv6
 irqbalance
-krb5-workstation
 libaio
-logwatch
+libutempter
 logrotate
 lsof
-lsscsi
-mcstrans
 mdadm
-microcode_ctl
-mutt
-net-snmp
-netlabel_tools
 ntp
-nss_db
 openssh-clients
 openssh-server
-pam_krb5
 pam_passwdqc
-pam_pkcs11
+pciutils
+psacct
+quota
 readahead
 rpm
-rsyslog7
-rubygems
 smartmontools
-stunnel
-subversion
 sudo
-sssd
 sysstat
 tcp_wrappers
+tmpwatch
 unzip
 usbutils
 vconfig
 vim-enhanced
-vlock
 wget
 which
 yum
 zip
--sysklogd
--rsyslog
--sendmail
-# Puppet stuff
-simp
-simp-adapter-foss
-rsync
-puppet-agent
-# Puppet client
-ruby-rdoc
 
-# Puppet Server Complete Load
-simp
-openldap-servers
+# Security Related
+%include /tmp/dracut_packages
+amtu
+anacron
+gnupg
+microcode_ctl
+netlabel_tools
+nss_db
+rsyslog7
+stunnel
+vlock
+
+# Puppet stuff
+git
+puppet-agent
+rsync
+simp-adapter-foss
+
+# SIMP Server Complete Load
 elinks
 mkisofs
+simp
 syslinux-tftpboot
 
 # In case of broken repo, these should be installed.
@@ -116,8 +96,11 @@ sysfsutils
 udftools
 
 # Don't install these
+-rhn-check
 -rhn-setup
 -rhnsd
--rhn-check
--yum-rhn-plugin
+-rsyslog
+-sendmail
 -subscription-manager
+-sysklogd
+-yum-rhn-plugin

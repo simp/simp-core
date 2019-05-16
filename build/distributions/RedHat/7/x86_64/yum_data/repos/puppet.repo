@@ -1,11 +1,3 @@
 [puppet]
 name=puppet
-baseurl=https://yum.puppetlabs.com/el/7/PC1/x86_64/
-
-[puppet-dependencies]
-name=puppet-dependencies
-baseurl=https://yum.puppetlabs.com/el/7/dependencies/x86_64/
-
-[puppet5]
-name=puppet5
 baseurl=https://yum.puppetlabs.com/puppet5/el/7/x86_64/
