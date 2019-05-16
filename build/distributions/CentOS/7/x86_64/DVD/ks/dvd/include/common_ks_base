@@ -17,79 +17,57 @@ clearpart --all
 reboot
 
 %packages
--sendmail
--sysklogd
 acl
-aide
-anacron
 audit
 bzip2
-coolkey
 crontabs
-cryptsetup-luks
 dhclient
-%include /tmp/dracut_packages
 fipscheck
-git
-gnupg
 iptables
 iptables-ipv6
 irqbalance
-krb5-workstation
 libaio
 libutempter
 logrotate
-logwatch
-lsof
-lsscsi
 mdadm
-microcode_ctl
-mutt
-net-snmp
-net-tools
-netlabel_tools
-ntp
 openssh-clients
 openssh-server
-pam_krb5
-pam_pkcs11
-pciutils
-psacct
-python-chardet
-quota
 redhat-lsb
 rpm
-rsync
-rsyslog
 smartmontools
-sssd
-stunnel
-subversion
 sudo
-sysstat
-tcp_wrappers
-tmpwatch
 unzip
 usbutils
 vim-enhanced
-vlock
 wget
 which
-yum-utils
 zip
+
+# Security Related
+%include /tmp/dracut_packages
+anacron
+cryptsetup-luks
+gnupg
+microcode_ctl
+netlabel_tools
+quota
+stunnel
+tcp_wrappers
+tmpwatch
+vlock
+
 # Puppet stuff
+git
+rsync
+
+# Puppet Server Complete Load
 #Make sure adapter for open source puppet is installed
 simp-adapter-foss
 simp
-rsync
-puppet-agent
-
-# Puppet Server Complete Load
 elinks
 mkisofs
-openldap-servers
-simp
 syslinux-tftpboot
+yum-utils
 
 # In case of broken repo, these should be installed.
 hdparm
@@ -106,6 +84,8 @@ udftools
 -rhn-check
 -rhn-setup
 -rhnsd
+-sendmail
 -subscription-manager
+-sysklogd
 -yum-rhn-plugin
 %end

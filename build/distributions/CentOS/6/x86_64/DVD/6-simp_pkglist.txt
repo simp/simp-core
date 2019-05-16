@@ -10,7 +10,6 @@
 # rpm -qa --qf "%{NAME}\n" | sort -u
 #
 # (NOTE:  The packages are listed in 'sort -V 'order.)
-
 389-ds-base
 389-ds-base-libs
 ConsoleKit
