@@ -29,7 +29,8 @@ gem 'net-telnet'
 gem 'rake'
 gem 'ruby-progressbar'
 gem 'simp-build-helpers', ENV.fetch('SIMP_BUILD_HELPERS_VERSION', '>= 0.1.0')
-gem 'simp-rake-helpers', ENV.fetch('SIMP_RAKE_HELPERS_VERSION', ['>= 5.8.3', '< 6.0'])
+#gem 'simp-rake-helpers', ENV.fetch('SIMP_RAKE_HELPERS_VERSION', ['>= 5.8.3', '< 6.0'])
+gem 'simp-rake-helpers', ENV.fetch('SIMP_RAKE_HELPERS_VERSION', ['>= 5.8.3', '< 6.0']), git: 'https://github.com/trevor-vaughan/rubygem-simp-rake-helpers.git', branch:  'SIMP-MAINT-fix-asset-check'
 
 group :system_tests do
   gem 'nokogiri'

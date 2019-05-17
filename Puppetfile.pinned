@@ -35,8 +35,8 @@ mod 'simp-rsync_data',
 
 #FIXME Need to change to  back to simp and tag 6.2.1-1
 mod 'simp-rsync_data_pre64',
-  :git => 'https://github.com/jeannegreulich/simp-rsync-skeleton',
-  :branch => 'SIMP-64-Update'
+  :git => 'https://github.com/simp/simp-rsync-skeleton',
+  :tag => '6.2.1-1'
 
 mod 'simp-adapter',
   :git => 'https://github.com/simp/simp-adapter',
@@ -52,7 +52,7 @@ mod 'simp-gpgkeys',
 
 mod 'simp-utils',
   :git => 'https://github.com/simp/simp-utils',
-  :tag  => '6.2.0'
+  :tag => '6.2.1'
 
 moduledir 'src/puppet/modules'
 
