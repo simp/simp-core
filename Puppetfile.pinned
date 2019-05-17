@@ -33,9 +33,11 @@ mod 'simp-rsync_data',
   :git => 'https://github.com/simp/simp-rsync-skeleton',
   :tag => '7.0.0'
 
-#FIXME Need to change to  back to simp and tag 6.2.1-1
+# Use old name of rsync module for pre64 so its name does
+# not conflict with the name in rsync_data during puppetfile
+# checks in travis and gitlab
 mod 'simp-rsync_data_pre64',
-  :git => 'https://github.com/simp/simp-rsync-skeleton',
+  :git => 'https://github.com/simp/simp-rsync',
   :tag => '6.2.1-1'
 
 mod 'simp-adapter',
