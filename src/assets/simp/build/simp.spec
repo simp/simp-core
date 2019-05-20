@@ -1,7 +1,7 @@
 Summary: SIMP Full Install
 Name: simp
 Version: 6.4.0
-Release: Alpha%{?dist}%{?snapshot_release}
+Release: Beta%{?dist}%{?snapshot_release}
 License: Apache License, Version 2.0
 Group: Applications/System
 
@@ -156,6 +156,7 @@ Requires: pupmod-simp-network >= 6.0.4
 Requires: pupmod-simp-nfs >= 6.2.2
 Requires: pupmod-simp-oath >= 0.1.0
 Requires: pupmod-simp-openscap >= 6.2.1
+Requires: pupmod-simp-simp_bolt >= 0.1.0
 Requires: pupmod-simp-simp_docker >= 0.2.1
 Requires: pupmod-simp-simp_gitlab >= 0.4.0
 Requires: pupmod-simp-simp_grub >= 0.1.0
@@ -254,6 +255,7 @@ fi
 - Added the following to the simp-extras package
   - pupmod-simp-oath
   - pupmod-simp-simp_grub
+  - pupmod-simp-simp_bolt
 
 * Mon Apr 01 2019 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.4.0-0
 - Added pupmod-puppet-posix_acl to the simp-extras package
