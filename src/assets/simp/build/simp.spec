@@ -139,6 +139,7 @@ Requires: pupmod-puppetlabs-mysql >= 5.3.0
 Requires: pupmod-puppetlabs-ruby_task_helper >= 0.3.0
 Requires: pupmod-puppetlabs-translate >= 1.2.0
 Requires: pupmod-saz-locales >= 2.5.1
+Requires: pupmod-treydoc-kdump >= 0.2.0
 Requires: pupmod-simp-autofs >= 6.1.3
 Requires: pupmod-simp-dconf >= 0.0.3
 Requires: pupmod-simp-freeradius >= 8.0.0
