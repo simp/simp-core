@@ -18,11 +18,9 @@ mod 'simp-doc',
 
 moduledir 'src/assets'
 
-# FIXME:  When SIMP-6381 PR is pushed and released this will
-# need to be updated
 mod 'rubygem-rubygem_simp_cli',
-  :git => 'https://github.com/lnemsick-simp/rubygem-simp-cli',
-  :branch => 'SIMP-6381'
+  :git => 'https://github.com/simp/rubygem-simp-cli',
+  :branch => 'master'
 
 # FIXME Doesn't have RPM packaging yet
 #mod 'rubygem-rubygem_simp_processgraph',

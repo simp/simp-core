@@ -1,7 +1,7 @@
 Summary: SIMP Full Install
 Name: simp
 Version: 6.4.0
-Release: Alpha%{?dist}%{?snapshot_release}
+Release: Beta%{?dist}%{?snapshot_release}
 License: Apache License, Version 2.0
 Group: Applications/System
 
@@ -139,6 +139,7 @@ Requires: pupmod-puppetlabs-mysql >= 5.3.0
 Requires: pupmod-puppetlabs-ruby_task_helper >= 0.3.0
 Requires: pupmod-puppetlabs-translate >= 1.2.0
 Requires: pupmod-saz-locales >= 2.5.1
+Requires: pupmod-treydoc-kdump >= 0.2.0
 Requires: pupmod-simp-autofs >= 6.1.3
 Requires: pupmod-simp-dconf >= 0.0.3
 Requires: pupmod-simp-freeradius >= 8.0.0
@@ -156,6 +157,7 @@ Requires: pupmod-simp-network >= 6.0.4
 Requires: pupmod-simp-nfs >= 6.2.2
 Requires: pupmod-simp-oath >= 0.1.0
 Requires: pupmod-simp-openscap >= 6.2.1
+Requires: pupmod-simp-simp_bolt >= 0.1.0
 Requires: pupmod-simp-simp_docker >= 0.2.1
 Requires: pupmod-simp-simp_gitlab >= 0.4.0
 Requires: pupmod-simp-simp_grub >= 0.1.0
@@ -249,6 +251,7 @@ fi
 - Added the following to the simp-extras package
   - pupmod-simp-oath
   - pupmod-simp-simp_grub
+  - pupmod-simp-simp_bolt
 - Updated package versions
 - Moved pupmod-puppetlabs-java from simp to simp-extras, as it is not
   required by any other packages in the simp package
@@ -275,6 +278,19 @@ fi
   - pupmod-puppet-grafana
   - pupmod-simp-simp_grafana
 - Removed OBE pupmod-simp-dirtycow from simp-extras
+
+* Mon Apr 01 2019 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.4.0-0
+- Added pupmod-puppet-posix_acl to the simp-extras package
+- Removed the following from the simp package
+  - pupmod-simp-simpcat:  The module has been deprecated and all uses of
+    it within SIMP modules have been replaced with concat.
+  - pupmod-simp-site: Delivery of this module skeleton is longer relevant
+    with the move to local Git repositories for SIMP-packaged puppet
+    modules.
+
+* Tue Mar 26 2019 Joseph Sharkey <shark.bruhaha@gmail.com> - 6.4.0-0
+- Replaced pupmod-simp-systemd with pupmod-camptocamp-systemd.
+  Ownership of this project has reverted to the Camptocamp org.
 
 * Tue Apr 24 2019 Jim Anderson <thesemicolons@protonmail.com> - 6.4.0-0
 - Added message if 'simp_opt == prompt' where the user is directed to the
