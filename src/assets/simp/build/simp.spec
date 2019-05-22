@@ -125,6 +125,7 @@ Obsoletes: pupmod-simp-simp_logstash <= 5.0.2
 Obsoletes: pupmod-richardc-datacat <= 0.6.2
 Obsoletes: pupmod-puppet-grafana <= 4.1.1
 Obsoletes: pupmod-simp-simp_grafana <= 1.0.6
+Obsoletes: pupmod-simp-site < 3
 
 Requires: simp-adapter >= 1.0.0, simp-adapter < 2.0.0
 Requires: pupmod-herculesteam-augeasproviders_mounttab >= 2.1.1
@@ -266,6 +267,8 @@ fi
   - pupmod-simp-site: Delivery of this module skeleton is longer relevant
     with the move to local Git repositories for SIMP-packaged puppet
     modules.
+  - Obsolete pupmod-simp-site so that it is no longer installed and is removed
+    on upgrade to 6.4.0
 
 * Tue Mar 26 2019 Joseph Sharkey <shark.bruhaha@gmail.com> - 6.4.0-0
 - Replaced pupmod-simp-systemd with pupmod-camptocamp-systemd.
