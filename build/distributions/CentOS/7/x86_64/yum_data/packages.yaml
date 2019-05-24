@@ -207,23 +207,23 @@ postgresql96-server:
   :rpm_name: postgresql96-server-9.6.12-1PGDG.rhel7.x86_64.rpm
   :source: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/postgresql96-server-9.6.12-1PGDG.rhel7.x86_64.rpm
 puppet-agent:
-  :rpm_name: puppet-agent-5.5.7-1.el7.x86_64.rpm
-  :source: https://yum.puppetlabs.com/puppet5/el/7/x86_64/puppet-agent-5.5.7-1.el7.x86_64.rpm
+  :rpm_name: puppet-agent-5.5.14-1.el7.x86_64.rpm
+  :source: https://yum.puppetlabs.com/puppet5/el/7/x86_64/puppet-agent-5.5.14-1.el7.x86_64.rpm
 puppet-client-tools:
-  :rpm_name: puppet-client-tools-1.2.4-1.el7.x86_64.rpm
-  :source: https://yum.puppetlabs.com/puppet5/el/7/x86_64/puppet-client-tools-1.2.4-1.el7.x86_64.rpm
+  :rpm_name: puppet-client-tools-1.2.6-1.el7.x86_64.rpm
+  :source: https://yum.puppetlabs.com/puppet5/el/7/x86_64/puppet-client-tools-1.2.6-1.el7.x86_64.rpm
 puppet5-release:
-  :rpm_name: puppet5-release-5.0.0-1.el7.noarch.rpm
-  :source: https://yum.puppetlabs.com/puppet5/el/7/x86_64/puppet5-release-5.0.0-1.el7.noarch.rpm
+  :rpm_name: puppet5-release-5.0.0-6.el7.noarch.rpm
+  :source: https://yum.puppetlabs.com/puppet5/el/7/x86_64/puppet5-release-5.0.0-6.el7.noarch.rpm
 puppetdb:
-  :rpm_name: puppetdb-5.2.4-1.el7.noarch.rpm
-  :source: https://yum.puppetlabs.com/puppet5/el/7/x86_64/puppetdb-5.2.4-1.el7.noarch.rpm
+  :rpm_name: puppetdb-5.2.8-1.el7.noarch.rpm
+  :source: https://yum.puppetlabs.com/puppet5/el/7/x86_64/puppetdb-5.2.8-1.el7.noarch.rpm
 puppetdb-termini:
-  :rpm_name: puppetdb-termini-5.2.4-1.el7.noarch.rpm
-  :source: https://yum.puppetlabs.com/puppet5/el/7/x86_64/puppetdb-termini-5.2.4-1.el7.noarch.rpm
+  :rpm_name: puppetdb-termini-5.2.8-1.el7.noarch.rpm
+  :source: https://yum.puppetlabs.com/puppet5/el/7/x86_64/puppetdb-termini-5.2.8-1.el7.noarch.rpm
 puppetserver:
-  :rpm_name: puppetserver-5.3.5-1.el7.noarch.rpm
-  :source: https://yum.puppetlabs.com/puppet5/el/7/x86_64/puppetserver-5.3.5-1.el7.noarch.rpm
+  :rpm_name: puppetserver-5.3.8-1.el7.noarch.rpm
+  :source: https://yum.puppetlabs.com/puppet5/el/7/x86_64/puppetserver-5.3.8-1.el7.noarch.rpm
 pwgen:
   :rpm_name: pwgen-2.08-1.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/p/pwgen-2.08-1.el7.x86_64.rpm
