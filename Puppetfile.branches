@@ -28,6 +28,13 @@ mod 'simp-rsync_data',
   :git => 'https://github.com/simp/simp-rsync-skeleton',
   :branch => 'master'
 
+# Use old name of rsync module for pre64 so its name does
+# not conflict with the name in rsync_data during puppetfile
+# checks in travis and gitlab
+mod 'simp-rsync_data_pre64',
+  :git => 'https://github.com/simp/simp-rsync',
+  :tag => '6.2.1-1'
+
 mod 'simp-adapter',
   :git => 'https://github.com/simp/simp-adapter',
   :branch => 'master'
@@ -100,7 +107,7 @@ mod 'herculesteam-augeasproviders_sysctl',
 
 mod 'onyxpoint-gpasswd',
   :git => 'https://github.com/simp/puppet-gpasswd',
-  :tag => '1.0.6'
+  :tag => '1.0.7'
 
 mod 'puppetlabs-apache',
   :git => 'https://github.com/simp/puppetlabs-apache',
@@ -518,9 +525,13 @@ mod 'simp-xinetd',
   :git => 'https://github.com/simp/pupmod-simp-xinetd',
   :branch => 'master'
 
+mod 'treydock-kdump',
+  :git => 'https://github.com/simp/pupmod-treydock-kdump',
+  :tag => '0.2.0'
+
 mod 'trlinkin-nsswitch',
   :git => 'https://github.com/simp/puppet-nsswitch',
-  :tag => '2.1.0'
+  :tag => '2.1.1'
 
 mod 'voxpupuli-posix_acl',
   :git => 'https://github.com/simp/pupmod-voxpupuli-posix_acl',
