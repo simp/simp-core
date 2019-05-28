@@ -183,10 +183,6 @@ mod 'saz-timezone',
   :git => 'https://github.com/simp/pupmod-simp-timezone',
   :tag => 'v5.1.1'
 
-mod 'treydock-kdump',
-  :git => 'https://github.com/simp/pupmod-treydock-kdump',
-  :tag => '0.2.0'
-
 mod 'simp-acpid',
   :git => 'https://github.com/simp/pupmod-simp-acpid',
   :tag => '1.0.4'
@@ -532,9 +528,13 @@ mod 'simp-xinetd',
   :git => 'https://github.com/simp/pupmod-simp-xinetd',
   :tag => '4.1.1'
 
+mod 'treydock-kdump',
+  :git => 'https://github.com/simp/pupmod-treydock-kdump',
+  :tag => '0.2.0'
+
 mod 'trlinkin-nsswitch',
   :git => 'https://github.com/simp/puppet-nsswitch',
-  :tag => '2.1.0'
+  :tag => '2.1.1'
 
 mod 'voxpupuli-posix_acl',
   :git => 'https://github.com/simp/pupmod-voxpupuli-posix_acl',
