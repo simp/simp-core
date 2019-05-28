@@ -229,9 +229,8 @@ if [ -x '%{_usr}/local/sbin/puppetserver_clear_environment_cache' ]; then
   %{_usr}/local/sbin/puppetserver_clear_environment_cache
 fi
 
-if [ -x '%{_usr}/local/sbin/puppetserver_reload' ]; then
-  %{_usr}/local/sbin/puppetserver_reload
-else
+puppet resource service puppetserver | grep -q running
+if [ $? -eq 0 ]; then
   puppetserver reload
 fi
 
