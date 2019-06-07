@@ -76,7 +76,8 @@ vlock
 git
 puppet-agent
 rsync
-simp-adapter-foss
+simp-adapter
+puppetserver
 
 # SIMP Server Complete Load
 elinks
