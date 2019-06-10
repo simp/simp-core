@@ -2,12 +2,6 @@ class site::local_users(
   String $local_admin = 'localadmin'
 ) {
 
-  # Beaker is **NOT** helpful in this case...
-  sshd_config { 'PasswordAuthentication':
-    value => 'yes',
-    notify  => Service['sshd']
-  }
-
   group {$local_admin:
     ensure => 'present',
     gid    => 2001

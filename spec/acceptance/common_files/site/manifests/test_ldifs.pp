@@ -44,7 +44,7 @@ class site::test_ldifs(
     owner   => 'root',
     group   => 'root',
     mode    => '0640',
-    content =>  epp('site/ldifs/add_test_users.ldif.epp')
+    content =>  template('site/ldifs/add_test_users.ldif.erb')
   }
 
   file {  '/root/ldifs/modify_test_users.ldif':
@@ -58,7 +58,7 @@ class site::test_ldifs(
     owner   => 'root',
     group   => 'root',
     mode    => '0640',
-    content =>  epp('site/ldifs/force_test_users_password_reset.ldif.epp')
+    content =>  template('site/ldifs/force_test_users_password_reset.ldif.erb')
   }
 
 }
