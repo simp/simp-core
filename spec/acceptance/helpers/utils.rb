@@ -48,30 +48,35 @@ module Acceptance
         dhcp_info
       end
 
-      # @returns the internal IPV4 network address for a host or nil if
+      # @returns the internal IPV4 network info for a host or nil if
       #   none can be found
       #
       # +host+: Host (object)
       #
       # This method ASSUMES the first non-loopback interface without DHCP
       # configured is the interface used for the internal network.
-      def internal_network_address(host)
+      def internal_network_info(host)
         networking = JSON.load(on(host, 'facter --json networking').stdout)
-        internal_ip_addr = nil
+        internal_ip_info = nil
         networking['networking']['interfaces'].each do |interface,settings|
           next if interface == 'lo'
           unless settings.has_key?('dhcp')
-            internal_ip_addr = settings['ip']
+            internal_ip_info = {
+              :interface => interface,
+              :ip        => settings['ip'],
+              :netmask   => settings['netmask']
+            }
             break
           end
         end
-        internal_ip_addr
+        internal_ip_info
       end
 
       # @returns DNS nameserver used by the host or nil if it cannot be determined
       #
       # +host+: Host (object)
       def dns_nameserver(host)
+        host.install_package('bind-utils') # for dig
         dig_result = on(host, "dig #{host.name}", :accept_all_exit_codes => true)
         nameserver = nil
         if dig_result.exit_code == 0

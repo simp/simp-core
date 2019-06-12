@@ -23,11 +23,11 @@ describe 'LDAP user access' do
   context 'LDAP user creation' do
 
     let(:site_module_path) {
-      '/etc/puppetlabs/code/environments/simp/modules/site'
+      '/etc/puppetlabs/code/environments/production/modules/site'
     }
 
     let(:puppet_master_yaml) {
-      "/etc/puppetlabs/code/environments/simp/data/hosts/#{master_fqdn}.yaml"
+      "/etc/puppetlabs/code/environments/production/data/hosts/#{master_fqdn}.yaml"
     }
 
     let(:puppet_master_hieradata) do
@@ -41,23 +41,7 @@ describe 'LDAP user access' do
       master_hiera
     end
 
-    it 'should install additional manifests and update hieradata' do
-      dest = "#{site_module_path}/manifests/test_ldifs.pp"
-      scp_to(master, "#{files_dir}/site/manifests/test_ldifs.pp", dest)
-
-      on(master, "mkdir -p #{site_module_path}/templates/ldifs")
-      dest = "#{site_module_path}/templates/ldifs/add_test_users.ldif.epp"
-      scp_to(master, "#{files_dir}/site/templates/ldifs/add_test_users.ldif.epp", dest)
-
-      dest = "#{site_module_path}/templates/ldifs/modify_test_users.ldif.epp"
-      scp_to(master, "#{files_dir}/site/templates/ldifs/modify_test_users.ldif.epp", dest)
-
-      dest = "#{site_module_path}/templates/ldifs/force_test_users_password_reset.ldif.epp"
-      scp_to(master, "#{files_dir}/site/templates/ldifs/force_test_users_password_reset.ldif.epp", dest)
-
-      on(master, "chown -R root:puppet #{site_module_path}")
-      on(master, "chmod -R g+rX #{site_module_path}")
-
+    it 'should update hieradata' do
       create_remote_file(master, puppet_master_yaml, puppet_master_hieradata.to_yaml)
     end
 

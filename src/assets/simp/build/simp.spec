@@ -25,7 +25,7 @@ Obsoletes: pupmod-simp-mcollective <= 3.0.0
 Obsoletes: pupmod-simp-simpcat <= 6.0.3
 
 # Core SIMP Requirements
-Requires: simp-vendored-r10k >= 2.6.2, simp-vendored-r10k < 4.0.0
+Requires: simp-vendored-r10k >= 3.1.1, simp-vendored-r10k < 4.0.0
 Requires: pupmod-camptocamp-kmod >= 2.3.0, pupmod-camptocamp-kmod < 3.0.0
 Requires: pupmod-camptocamp-systemd >= 2.2.0, pupmod-camptocamp-systemd < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_apache >= 3.1.1, pupmod-herculesteam-augeasproviders_apache < 4.0.0
