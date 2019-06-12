@@ -61,7 +61,7 @@ git
 rsync
 
 # Puppet Server Complete Load
-# Make open source puppetserver is installed
+# Make sure open source puppetserver is installed
 simp-adapter
 puppetserver
 simp

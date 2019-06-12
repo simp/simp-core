@@ -18,10 +18,10 @@ describe 'install rsync from GitHub (not rpm) and test simp::server::rsync_share
         # master.install_package('selinux-policy-devel')
 
         script = <<-EOF
-          mkdir -p /var/simp/environments/simp/rsync
+          mkdir -p /var/simp/environments/production/rsync
           git clone https://github.com/simp/simp-rsync.git #{tmpdir}
-          rm -rf /var/simp/environments/{simp,production}/rsync
-          mv -f #{tmpdir}/environments/simp/rsync /var/simp/environments/production/
+          rm -rf /var/simp/environments/production/rsync
+          mv -f #{tmpdir}/environments/production/rsync /var/simp/environments/production/
           ln -s /var/simp/environments/production/rsync/RedHat /var/simp/environments/production/rsync/CentOS
           chmod u+rwx,g+rX,o+rX /var/simp{,/environments,/environments/production}
 

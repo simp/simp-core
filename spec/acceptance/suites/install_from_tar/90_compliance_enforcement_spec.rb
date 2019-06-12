@@ -9,30 +9,30 @@ describe 'compliance reporting and enforcement' do
   let(:compliance_profile) { 'disa_stig' }
 
   context 'master setup' do
-    let(:simp_env_dir) { '/etc/puppetlabs/code/environments/simp' }
-    let(:simp_env_hiera_yaml) { File.join(simp_env_dir, 'hiera.yaml') }
-    let(:simp_env_default_yaml) { File.join(simp_env_dir, 'data', 'default.yaml') }
-    let(:simp_env_site_pp) { File.join(simp_env_dir, 'manifests', 'site.pp') }
+    let(:prod_env_dir) { '/etc/puppetlabs/code/environments/production' }
+    let(:prod_env_hiera_yaml) { File.join(prod_env_dir, 'hiera.yaml') }
+    let(:prod_env_default_yaml) { File.join(prod_env_dir, 'data', 'default.yaml') }
+    let(:prod_env_site_pp) { File.join(prod_env_dir, 'manifests', 'site.pp') }
 
     it 'should configure the compliance profile for reporting' do
-      site_pp = on(master, "cat #{simp_env_site_pp}").stdout
+      site_pp = on(master, "cat #{prod_env_site_pp}").stdout
       if site_pp.match(/\n\$compliance_profile\s*=\s/).nil?
         # set profile in hieradata
-        hiera = YAML.load(on(master, "cat #{simp_env_default_yaml}").stdout)
+        hiera = YAML.load(on(master, "cat #{prod_env_default_yaml}").stdout)
         default_yaml = hiera.merge( 'compliance_markup::validate_profiles' => [ compliance_profile])
-        create_remote_file(master, "#{simp_env_default_yaml}", default_yaml.to_yaml)
-        on(master, "cat #{simp_env_default_yaml}")
+        create_remote_file(master, "#{prod_env_default_yaml}", default_yaml.to_yaml)
+        on(master, "cat #{prod_env_default_yaml}")
       else
         # set global $compliance_profile
         site_pp.gsub!(/\n\$compliance_profile\s*=\s.+?\n/,
           "\n$compliance_profile = '#{compliance_profile}'\n")
-        create_remote_file(master, simp_env_site_pp, site_pp)
-        on(master, "cat #{simp_env_site_pp}")
+        create_remote_file(master, prod_env_site_pp, site_pp)
+        on(master, "cat #{prod_env_site_pp}")
       end
     end
 
     it 'should configure the environment for the compliance engine backend' do
-      hiera_yaml = YAML.load( on(master, "cat #{simp_env_hiera_yaml}").stdout )
+      hiera_yaml = YAML.load( on(master, "cat #{prod_env_hiera_yaml}").stdout )
       has_compliance = false
       hiera_yaml['hierarchy'].each do |entry|
         if entry.has_key?('lookup_key') and entry['lookup_key'] == 'compliance_markup::enforcement'
@@ -52,22 +52,22 @@ describe 'compliance reporting and enforcement' do
         hierarchy << {'name' => 'Compliance', 'lookup_key' => 'compliance_markup::enforcement'}
         hierarchy << last
         hiera_yaml['hierarchy'] = hierarchy
-        create_remote_file(master, simp_env_hiera_yaml, hiera_yaml.to_yaml)
-        on(master, "cat #{simp_env_hiera_yaml}")
+        create_remote_file(master, prod_env_hiera_yaml, hiera_yaml.to_yaml)
+        on(master, "cat #{prod_env_hiera_yaml}")
       end
     end
 
     it 'should run puppet successfully' do
       # Add onto the existing hiera
-      hiera = YAML.load(on(master, "cat #{simp_env_default_yaml}").stdout)
+      hiera = YAML.load(on(master, "cat #{prod_env_default_yaml}").stdout)
 
       default_yaml = hiera.merge(
         'compliance_markup::report_types' => ['full'],
         'compliance_markup::enforcement' => [ compliance_profile]
       )
 
-      create_remote_file(master, "#{simp_env_default_yaml}", default_yaml.to_yaml)
-      on(master, "cat #{simp_env_default_yaml}")
+      create_remote_file(master, "#{prod_env_default_yaml}", default_yaml.to_yaml)
+      on(master, "cat #{prod_env_default_yaml}")
 
       result = on(master, 'puppet agent -t', :accept_all_exit_codes => true).output.strip
       expect(result).to_not match /parameter .+ expects .+ got/m

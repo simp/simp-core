@@ -38,7 +38,7 @@ describe 'install SIMP via rpm' do
       # Remove temporary facter workaround needed for beaker host prep
       uninstall_system_factor_gem(master)
 
-      master.install_package('simp-adapter-foss')
+      master.install_package('simp-adapter')
       master.install_package('simp')
     end
 
@@ -92,9 +92,9 @@ describe 'install SIMP via rpm' do
       beaker_hiera = YAML.load(File.read('spec/acceptance/common_files/beaker_hiera.yaml'))
       hiera = beaker_hiera.merge( 'simp::rsync_stunnel' => master_fqdn )
 
-      create_remote_file(master, '/etc/puppetlabs/code/environments/simp/data/default.yaml', hiera.to_yaml)
-      on(master, 'chown root.puppet /etc/puppetlabs/code/environments/simp/data/default.yaml')
-      on(master, 'chmod g+r /etc/puppetlabs/code/environments/simp/data/default.yaml')
+      create_remote_file(master, '/etc/puppetlabs/code/environments/production/data/default.yaml', hiera.to_yaml)
+      on(master, 'chown root.puppet /etc/puppetlabs/code/environments/production/data/default.yaml')
+      on(master, 'chmod g+r /etc/puppetlabs/code/environments/production/data/default.yaml')
     end
 
     it 'should enable autosign' do
