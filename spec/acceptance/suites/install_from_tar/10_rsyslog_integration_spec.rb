@@ -107,11 +107,11 @@ describe 'Validation of rsyslog forwarding' do
   let(:files_dir) { 'spec/acceptance/common_files' }
 
   let(:default_yaml_filename) {
-    '/etc/puppetlabs/code/environments/simp/data/default.yaml'
+    '/etc/puppetlabs/code/environments/production/data/default.yaml'
   }
 
   let(:site_module_path) {
-    '/etc/puppetlabs/code/environments/simp/modules/site'
+    '/etc/puppetlabs/code/environments/production/modules/site'
   }
 
   let(:original_default_hieradata) {
@@ -144,10 +144,9 @@ describe 'Validation of rsyslog forwarding' do
 
   context 'additional site manifest/hieradata staging' do
     it 'should install additional manifests and update hieradata' do
-      dest = "#{site_module_path}/manifests/local_users.pp"
-      scp_to(master, "#{files_dir}/site/manifests/local_users.pp", dest)
-      on(master, "chown root:puppet #{dest}")
-      on(master, "chmod 0640 #{dest}")
+      rsync_to(master, "#{files_dir}/site", site_module_path)
+      on(master, "chown -R root:puppet #{site_module_path}")
+      on(master, "chmod -R g+rX,o-rwX #{site_module_path}")
 
       create_remote_file(master, default_yaml_filename, default_hieradata.to_yaml)
     end
@@ -181,7 +180,7 @@ describe 'Validation of rsyslog forwarding' do
       retried = false
       begin
         logdir = "/var/log/hosts/#{master.name}.#{domain}"
-        on(syslog_servers, "ls #{logdir}/puppetserver.log")
+        on(syslog_servers, "ls #{logdir}")
         on(syslog_servers, "grep 'Could not find class ::oops ' #{logdir}/puppetserver_error.log")
       rescue Beaker::Host::CommandFailure => e
         handle_failed_message_forwarding(e, retried, syslog_servers)
@@ -197,7 +196,7 @@ describe 'Validation of rsyslog forwarding' do
           on(host, 'systemctl restart haveged.service')
           unless host.host_hash[:roles].include?('syslog_server')
             on(host, "grep 'systemd: Stopping Entropy Daemon based on the HAVEGE' /var/log/secure")
-            on(host, "grep 'systemd: Starting Entropy Daemon based on the HAVEGE' /var/log/secure")
+            on(host, "grep 'systemd: Start.* Entropy Daemon based on the HAVEGE' /var/log/secure")
           end
         else
           puts "Skipping host #{host.name}, which does not use systemd"
@@ -213,7 +212,7 @@ describe 'Validation of rsyslog forwarding' do
           if facts['values']['systemd']
             logdir = "/var/log/hosts/#{host.name}.#{domain}"
             on(syslog_servers, "grep 'systemd: Stopping Entropy Daemon based on the HAVEGE' #{logdir}/secure.log")
-            on(syslog_servers, "grep 'systemd: Starting Entropy Daemon based on the HAVEGE' #{logdir}/secure.log")
+            on(syslog_servers, "grep 'systemd: Start.* Entropy Daemon based on the HAVEGE' #{logdir}/secure.log")
           else
             puts "Skipping host #{host.name}, which does not use systemd"
           end
@@ -306,6 +305,8 @@ describe 'Validation of rsyslog forwarding' do
         on(non_syslog_servers.first, cmd, :accept_all_exit_codes => true)
       end
 
+      # NOTE: On the syslog servers, these messages show up locally in
+      #       /var/log/kernel.log, instead.
       on(non_syslog_servers, "grep 'kernel: IPT:' /var/log/iptables.log")
     end
 

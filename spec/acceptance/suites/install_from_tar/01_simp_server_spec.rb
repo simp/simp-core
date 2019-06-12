@@ -68,6 +68,18 @@ describe 'install SIMP via release tarball' do
         install_puppet_repo(host)
       end
     end
+
+    it 'should ensure hostname is set to a FQDN' do
+      block_on(hosts, :run_in_parallel => false) do |host|
+        # FQDN fact seems to be correct even though all places hostname must be
+        # set may not be. This can break apps such as rsyslog.
+        fqdn = fact_on(host, 'fqdn')
+        on(host, "hostname #{fqdn}")
+        on(host, "echo #{fqdn} > /etc/hostname")
+        on(host, "sed -i '/HOSTNAME/d' /etc/sysconfig/network")
+        on(host, "echo HOSTNAME=#{fqdn} >> /etc/sysconfig/network")
+      end
+    end
   end
 
   context 'puppet master' do
@@ -82,11 +94,18 @@ describe 'install SIMP via release tarball' do
       end
     end
 
+    # >>>> NEW WITH SIMP 6.4.0
+    # This has to be done **BEFORE** simp config is run and should
+    # be done before the simp RPM is installed
+    it 'should install puppetserver' do
+      master.install_package('puppetserver')
+    end
+
     it 'should install simp' do
       # Remove temporary facter workaround needed for beaker host prep
       uninstall_system_factor_gem(master)
 
-      master.install_package('simp-adapter-foss')
+      master.install_package('simp-adapter')
       master.install_package('simp')
     end
 
@@ -99,7 +118,6 @@ describe 'install SIMP via release tarball' do
     it 'should run create answers file for simp config' do
       # The following variables/methods are required by simp_conf.yaml.erb:
       #   domain
-      #   gateway
       #   grub_password_hash
       #   interface
       #   ipaddress
@@ -113,14 +131,12 @@ describe 'install SIMP via release tarball' do
       trusted_nets =  host_networks(master)
       expect(trusted_nets).to_not be_empty
 
-      network_info = dhcp_info(master)
+      network_info = internal_network_info(master)
       expect(network_info).to_not be_nil
-      gateway   = network_info[:gateway]
       interface = network_info[:interface]
       ipaddress = network_info[:ip]
       netmask   = network_info[:netmask]
 
-      master.install_package('bind-utils') # for dig
       nameserver = dns_nameserver(master)
       expect(nameserver).to_not be_nil
 
@@ -137,14 +153,14 @@ describe 'install SIMP via release tarball' do
     end
 
     it 'should provide default hieradata' do
-      create_remote_file(master, '/etc/puppetlabs/code/environments/simp/data/default.yaml', default_hieradata.to_yaml)
-      on(master, 'chown root.puppet /etc/puppetlabs/code/environments/simp/data/default.yaml')
-      on(master, 'chmod g+r /etc/puppetlabs/code/environments/simp/data/default.yaml')
+      create_remote_file(master, '/etc/puppetlabs/code/environments/production/data/default.yaml', default_hieradata.to_yaml)
+      on(master, 'chown root.puppet /etc/puppetlabs/code/environments/production/data/default.yaml')
+      on(master, 'chmod g+r /etc/puppetlabs/code/environments/production/data/default.yaml')
     end
 
     it 'should provide syslog server hieradata' do
       syslog_server_fqdns.each do |server|
-        host_yaml_file = "/etc/puppetlabs/code/environments/simp/data/hosts/#{server}.yaml"
+        host_yaml_file = "/etc/puppetlabs/code/environments/production/data/hosts/#{server}.yaml"
         create_remote_file(master, host_yaml_file, syslog_server_hieradata.to_yaml)
         on(master, "chown root.puppet #{host_yaml_file}")
         on(master, "chmod g+r #{host_yaml_file}")
