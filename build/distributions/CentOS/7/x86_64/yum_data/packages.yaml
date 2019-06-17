@@ -224,6 +224,9 @@ postgresql96-libs:
 postgresql96-server:
   :rpm_name: postgresql96-server-9.6.12-1PGDG.rhel7.x86_64.rpm
   :source: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/postgresql96-server-9.6.12-1PGDG.rhel7.x86_64.rpm
+protobuf:
+  :rpm_name: protobuf-2.5.0-8.el7.x86_64.rpm
+  :source: http://mirror.centos.org/centos/7/os/x86_64/Packages/protobuf-2.5.0-8.el7.x86_64.rpm
 puppet-agent:
   :rpm_name: puppet-agent-5.5.14-1.el7.x86_64.rpm
   :source: https://yum.puppetlabs.com/puppet5/el/7/x86_64/puppet-agent-5.5.14-1.el7.x86_64.rpm
