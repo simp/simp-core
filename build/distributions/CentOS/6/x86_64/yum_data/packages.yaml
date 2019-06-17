@@ -32,6 +32,9 @@ fuse-sshfs:
 haveged:
   :rpm_name: haveged-1.9.1-2.el6.x86_64.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/h/haveged-1.9.1-2.el6.x86_64.rpm
+HIRS_Provisioner_TPM_1_2:
+  rpm_name: HIRS_Provisioner_TPM_1_2-1.0.4-1558547257.cedc93.el6.noarch
+  source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/HIRS_Provisioner_TPM_1_2-1.0.4-1558547257.cedc93.el6.noarch.rpm/download.rpm
 incron:
   :rpm_name: incron-0.5.9-1.el6.x86_64.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/i/incron-0.5.9-1.el6.x86_64.rpm
@@ -107,6 +110,9 @@ nxagent:
 nxproxy:
   :rpm_name: nxproxy-3.5.0.32-3.el6.x86_64.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/n/nxproxy-3.5.0.32-3.el6.x86_64.rpm
+paccor:
+  :rpm_name: paccor-1.1.2-1.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/paccor-1.1.2-1.noarch.rpm/download.rpm
 perl-Capture-Tiny:
   :rpm_name: perl-Capture-Tiny-0.23-1.el6.noarch.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/p/perl-Capture-Tiny-0.23-1.el6.noarch.rpm
@@ -218,6 +224,9 @@ simp-lastbind:
 simp-ppolicy-check-password:
   :rpm_name: simp-ppolicy-check-password-2.4.39-0.el6.x86_64.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/simp-ppolicy-check-password-2.4.39-0.el6.x86_64.rpm/download.rpm
+simp-tpm12-simulator:
+  :rpm_name: simp-tpm12-simulator-4769.0.0-0.el6.x86_64.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/simp-tpm12-simulator-4769.0.0-0.el6.x86_64.rpm/download.rpm
 simp-vendored-r10k:
   :rpm_name: simp-vendored-r10k-3.1.1-1.noarch.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/simp-vendored-r10k-3.1.1-1.noarch.rpm/download.rpm
@@ -278,6 +287,9 @@ sudosh2:
 tlog:
   :rpm_name: tlog-4-1.el6.x86_64.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/tlog-4-1.el6.x86_64.rpm/download.rpm
+tpm_module:
+  :rpm_name: tpm_module-1.0.4-1558547257.cedc93.x86_64.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/tpm_module-1.0.4-1558547257.cedc93.x86_64.rpm/download.rpm
 voms:
   :rpm_name: voms-2.0.14-1.el6.x86_64.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/v/voms-2.0.14-1.el6.x86_64.rpm

@@ -62,6 +62,12 @@ gtk2-engines:
 haveged:
   :rpm_name: haveged-1.9.1-1.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/h/haveged-1.9.1-1.el7.x86_64.rpm
+HIRS_Provisioner_TPM_1_2:
+  rpm_name: HIRS_Provisioner_TPM_1_2-1.0.4-1558547257.cedc93.el7.noarch.rpm
+  source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/HIRS_Provisioner_TPM_1_2-1.0.4-1558547257.cedc93.el7.noarch.rpm/download.rpm
+HIRS_Provisioner_TPM_2_0:
+  rpm_name: HIRS_Provisioner_TPM_2_0-1.0.4-1.x86_64.rpm
+  source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/HIRS_Provisioner_TPM_2_0-1.0.4-1.x86_64.rpm/download.rpm
 incron:
   :rpm_name: incron-0.5.10-8.el7.x86_64.rpm
   :source: https://download.simp-project.com/simp/packages/CentOS/el/7/x86_64/incron-0.5.10-8.el7.x86_64.rpm
@@ -167,6 +173,9 @@ nxagent:
 nxproxy:
   :rpm_name: nxproxy-3.5.99.17-1.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/n/nxproxy-3.5.99.17-1.el7.x86_64.rpm
+paccor:
+  :rpm_name: paccor-1.1.2-1.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/paccor-1.1.2-1.noarch.rpm/download.rpm
 perl-Capture-Tiny:
   :rpm_name: perl-Capture-Tiny-0.24-1.el7.noarch.rpm
   :source: Red Hat Optional Repository
@@ -263,6 +272,12 @@ simp-lastbind:
 simp-ppolicy-check-password:
   :rpm_name: simp-ppolicy-check-password-2.4.39-0el7.x86_64.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/simp-ppolicy-check-password-2.4.39-0el7.x86_64.rpm/download.rpm
+simp-tpm12-simulator:
+  :rpm_name: simp-tpm12-simulator-4769.0.0-0.el7.x86_64.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/simp-tpm12-simulator-4769.0.0-0.el7.x86_64.rpm/download.rpm
+simp-tpm2-simulator:
+  :rpm_name: simp-tpm2-simulator-1332.0.0-0.el7.x86_64.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/simp-tpm2-simulator-1332.0.0-0.el7.x86_64.rpm/download.rpm
 simp-vendored-r10k:
   :rpm_name: simp-vendored-r10k-3.1.1-1.noarch.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/simp-vendored-r10k-3.1.1-1.noarch.rpm/download.rpm
@@ -323,6 +338,9 @@ sudosh2:
 tlog:
   :rpm_name: tlog-4-1.el7.x86_64.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/tlog-4-1.el7.x86_64.rpm/download.rpm
+tpm_module:
+  :rpm_name: tpm_module-1.0.4-1558547257.cedc93.x86_64.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/tpm_module-1.0.4-1558547257.cedc93.x86_64.rpm/download.rpm
 unhide:
   :rpm_name: unhide-20130526-1.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/u/unhide-20130526-1.el7.x86_64.rpm
