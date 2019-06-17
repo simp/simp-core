@@ -63,14 +63,17 @@ haveged:
   :rpm_name: haveged-1.9.1-1.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/h/haveged-1.9.1-1.el7.x86_64.rpm
 HIRS_Provisioner_TPM_1_2:
-  rpm_name: HIRS_Provisioner_TPM_1_2-1.0.4-1558547257.cedc93.el7.noarch.rpm
-  source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/HIRS_Provisioner_TPM_1_2-1.0.4-1558547257.cedc93.el7.noarch.rpm/download.rpm
+  :rpm_name: HIRS_Provisioner_TPM_1_2-1.0.4-1558547257.cedc93.el7.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/HIRS_Provisioner_TPM_1_2-1.0.4-1558547257.cedc93.el7.noarch.rpm/download.rpm
 HIRS_Provisioner_TPM_2_0:
-  rpm_name: HIRS_Provisioner_TPM_2_0-1.0.4-1.x86_64.rpm
-  source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/HIRS_Provisioner_TPM_2_0-1.0.4-1.x86_64.rpm/download.rpm
+  :rpm_name: HIRS_Provisioner_TPM_2_0-1.0.4-1.x86_64.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/HIRS_Provisioner_TPM_2_0-1.0.4-1.x86_64.rpm/download.rpm
 incron:
   :rpm_name: incron-0.5.10-8.el7.x86_64.rpm
   :source: https://download.simp-project.com/simp/packages/CentOS/el/7/x86_64/incron-0.5.10-8.el7.x86_64.rpm
+jq:
+  :rpm_name: jq-1.5-1.el7.x86_64.rpm
+  :source: http://mirrors.lug.mtu.edu/epel/7/x86_64/Packages/j/jq-1.5-1.el7.x86_64.rpm
 libNX_X11:
   :rpm_name: libNX_X11-3.5.99.17-1.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/l/libNX_X11-3.5.99.17-1.el7.x86_64.rpm
@@ -107,6 +110,9 @@ libssh:
 libwnck:
   :rpm_name: libwnck-2.31.0-1.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/l/libwnck-2.31.0-1.el7.x86_64.rpm
+log4cplus:
+  :rpm_name: log4cplus-1.1.3-0.4.rc3.el7.x86_64.rpm
+  :source: http://mirrors.lug.mtu.edu/epel/7/x86_64/Packages/l/log4cplus-1.1.3-0.4.rc3.el7.x86_64.rpm
 lyx-fonts:
   :rpm_name: lyx-fonts-2.2.3-1.el7.noarch.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/l/lyx-fonts-2.2.3-1.el7.noarch.rpm
@@ -173,6 +179,9 @@ nxagent:
 nxproxy:
   :rpm_name: nxproxy-3.5.99.17-1.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/n/nxproxy-3.5.99.17-1.el7.x86_64.rpm
+oniguruma:
+  :rpm_name: oniguruma-5.9.5-3.el7.x86_64.rpm
+  :source: http://mirrors.lug.mtu.edu/epel/7/x86_64/Packages/o/oniguruma-5.9.5-3.el7.x86_64.rpm
 paccor:
   :rpm_name: paccor-1.1.2-1.noarch.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/paccor-1.1.2-1.noarch.rpm/download.rpm
@@ -245,6 +254,9 @@ python-traceback2:
 python-unittest2:
   :rpm_name: python-unittest2-1.1.0-4.el7.noarch.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/p/python-unittest2-1.1.0-4.el7.noarch.rpm
+re2:
+  :rpm_name: re2-20160401-2.el7.x86_64.rpm
+  :source: http://mirrors.lug.mtu.edu/epel/7/x86_64/Packages/r/re2-20160401-2.el7.x86_64.rpm
 rkhunter:
   :rpm_name: rkhunter-1.4.6-1.el7.noarch.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/r/rkhunter-1.4.6-1.el7.noarch.rpm
