@@ -98,6 +98,9 @@ libyaml:
 libyaml-devel:
   :rpm_name: libyaml-devel-0.1.4-2.el6.x86_64.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/libyaml-devel-0.1.4-2.el6.x86_64.rpm/download.rpm
+lshw:
+  :rpm_name: lshw-B.02.17-4.el6.x86_64.rpm
+  :source: http://mirror.centos.org/centos/6/os/x86_64/Packages/lshw-B.02.17-4.el6.x86_64.rpm
 mrepo:
   :rpm_name: mrepo-0.8.7-2.el6.noarch.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/m/mrepo-0.8.7-2.el6.noarch.rpm
