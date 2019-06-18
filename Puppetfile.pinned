@@ -256,7 +256,7 @@ mod 'simp-haveged',
 
 mod 'simp-hirs_provisioner',
   :git => 'https://github.com/simp/pupmod-simp-hirs_provisioner',
-  :tag => '0.1.0'
+  :tag => '0.1.1'
 
 mod 'simp-ima',
   :git => 'https://github.com/simp/pupmod-simp-ima',
@@ -268,7 +268,7 @@ mod 'simp-incron',
 
 mod 'simp-iptables',
   :git => 'https://github.com/simp/pupmod-simp-iptables',
-  :tag => '6.2.0'
+  :tag => '6.2.1'
 
 mod 'simp-issue',
   :git => 'https://github.com/simp/pupmod-simp-issue',
@@ -455,7 +455,7 @@ mod 'simp-stunnel',
 
 mod 'simp-sudo',
   :git => 'https://github.com/simp/pupmod-simp-sudo',
-  :tag => '5.1.2'
+  :tag => '5.2.0'
 
 mod 'simp-sudosh',
   :git => 'https://github.com/simp/pupmod-simp-sudosh',
@@ -463,7 +463,7 @@ mod 'simp-sudosh',
 
 mod 'simp-svckill',
   :git => 'https://github.com/simp/pupmod-simp-svckill',
-  :tag => '3.3.1'
+  :tag => '3.4.0'
 
 mod 'simp-swap',
   :git => 'https://github.com/simp/pupmod-simp-swap',
