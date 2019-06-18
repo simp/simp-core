@@ -107,6 +107,7 @@ HOSTS:
       - 'runuser build_user -l -c "rvm install 2.4.4 --disable-binary"'
       - 'runuser build_user -l -c "rvm use --default 2.4.4"'
       - 'runuser build_user -l -c "rvm all do gem install bundler -v \"~> 1.16\" --no-document"'
+      - 'runuser build_user -l -c "rvm all do gem install bundler -v \"~> 2.0\" --no-document"'
 
       # Add some gems that will drag along 90% of what the build requires
       - 'runuser build_user -l -c "rvm use default; gem install --no-document simp-rake-helpers"'
