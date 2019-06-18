@@ -78,6 +78,7 @@ RUN runuser build_user -l -c "curl -sSL https://raw.githubusercontent.com/rvm/rv
 RUN runuser build_user -l -c "rvm install 2.4.4 --disable-binary"
 RUN runuser build_user -l -c "rvm use --default 2.4.4"
 RUN runuser build_user -l -c "rvm all do gem install bundler -v '~> 1.16'"
+RUN runuser build_user -l -c "rvm all do gem install bundler -v '~> 2.0'"
 
 # Check out a copy of simp-core for building
 RUN runuser build_user -l -c "git clone https://github.com/simp/simp-core"
