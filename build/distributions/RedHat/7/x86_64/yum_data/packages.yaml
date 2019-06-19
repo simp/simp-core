@@ -1,4 +1,10 @@
 ---
+HIRS_Provisioner_TPM_1_2:
+  :rpm_name: HIRS_Provisioner_TPM_1_2-1.0.4-1558547257.cedc93.el7.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/HIRS_Provisioner_TPM_1_2-1.0.4-1558547257.cedc93.el7.noarch.rpm/download.rpm
+HIRS_Provisioner_TPM_2_0:
+  :rpm_name: HIRS_Provisioner_TPM_2_0-1.0.4-1.x86_64.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/HIRS_Provisioner_TPM_2_0-1.0.4-1.x86_64.rpm/download.rpm
 apr-util-ldap:
   :rpm_name: apr-util-ldap-1.5.2-6.el7.x86_64.rpm
   :source: Red Hat Optional Repository
@@ -62,12 +68,6 @@ gtk2-engines:
 haveged:
   :rpm_name: haveged-1.9.1-1.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/h/haveged-1.9.1-1.el7.x86_64.rpm
-HIRS_Provisioner_TPM_1_2:
-  :rpm_name: HIRS_Provisioner_TPM_1_2-1.0.4-1558547257.cedc93.el7.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/HIRS_Provisioner_TPM_1_2-1.0.4-1558547257.cedc93.el7.noarch.rpm/download.rpm
-HIRS_Provisioner_TPM_2_0:
-  :rpm_name: HIRS_Provisioner_TPM_2_0-1.0.4-1.x86_64.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/HIRS_Provisioner_TPM_2_0-1.0.4-1.x86_64.rpm/download.rpm
 incron:
   :rpm_name: incron-0.5.10-8.el7.x86_64.rpm
   :source: https://download.simp-project.com/simp/packages/CentOS/el/7/x86_64/incron-0.5.10-8.el7.x86_64.rpm
