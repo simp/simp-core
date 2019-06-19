@@ -368,7 +368,7 @@ mod 'simp-rsyslog',
 
 mod 'simp-selinux',
   :git => 'https://github.com/simp/pupmod-simp-selinux',
-  :tag => '2.4.0'
+  :tag => '2.4.1'
 
 mod 'simp-simp',
   :git => 'https://github.com/simp/pupmod-simp-simp',
