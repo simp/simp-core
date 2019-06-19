@@ -376,7 +376,7 @@ mod 'simp-simp',
 
 mod 'simp-simplib',
   :git => 'https://github.com/simp/pupmod-simp-simplib',
-  :branch => 'master'
+  :tag => '3.15.2'
 
 #mod 'simp-simp_ad',
 #  :git => 'https://github.com/simp/pupmod-simp-simp_ad',
@@ -443,7 +443,7 @@ mod 'simp-simp_snmpd',
 
 mod 'simp-ssh',
   :git => 'https://github.com/simp/pupmod-simp-ssh',
-  :branch => 'master'
+  :tag => '6.7.1'
 
 mod 'simp-sssd',
   :git => 'https://github.com/simp/pupmod-simp-sssd',
