@@ -213,7 +213,7 @@ mod 'simp-clamav',
 
 mod 'simp-compliance_markup',
   :git => 'https://github.com/simp/pupmod-simp-compliance_markup',
-  :tag => '2.4.2'
+  :tag => '2.4.3'
 
 mod 'simp-cron',
   :git => 'https://github.com/simp/pupmod-simp-cron',
@@ -256,7 +256,7 @@ mod 'simp-haveged',
 
 mod 'simp-hirs_provisioner',
   :git => 'https://github.com/simp/pupmod-simp-hirs_provisioner',
-  :tag => '0.1.0'
+  :tag => '0.1.1'
 
 mod 'simp-ima',
   :git => 'https://github.com/simp/pupmod-simp-ima',
@@ -268,7 +268,7 @@ mod 'simp-incron',
 
 mod 'simp-iptables',
   :git => 'https://github.com/simp/pupmod-simp-iptables',
-  :tag => '6.2.0'
+  :tag => '6.2.1'
 
 mod 'simp-issue',
   :git => 'https://github.com/simp/pupmod-simp-issue',
@@ -288,7 +288,7 @@ mod 'simp-libreswan',
 
 mod 'simp-libvirt',
   :git => 'https://github.com/simp/pupmod-simp-libvirt',
-  :tag => '5.2.1'
+  :tag => '5.2.2'
 
 mod 'simp-logrotate',
   :git => 'https://github.com/simp/pupmod-simp-logrotate',
@@ -368,7 +368,7 @@ mod 'simp-rsyslog',
 
 mod 'simp-selinux',
   :git => 'https://github.com/simp/pupmod-simp-selinux',
-  :tag => '2.4.0'
+  :tag => '2.4.1'
 
 mod 'simp-simp',
   :git => 'https://github.com/simp/pupmod-simp-simp',
@@ -376,7 +376,7 @@ mod 'simp-simp',
 
 mod 'simp-simplib',
   :git => 'https://github.com/simp/pupmod-simp-simplib',
-  :branch => 'master'
+  :tag => '3.15.2'
 
 #mod 'simp-simp_ad',
 #  :git => 'https://github.com/simp/pupmod-simp-simp_ad',
@@ -443,7 +443,7 @@ mod 'simp-simp_snmpd',
 
 mod 'simp-ssh',
   :git => 'https://github.com/simp/pupmod-simp-ssh',
-  :branch => 'master'
+  :tag => '6.7.1'
 
 mod 'simp-sssd',
   :git => 'https://github.com/simp/pupmod-simp-sssd',
@@ -455,7 +455,7 @@ mod 'simp-stunnel',
 
 mod 'simp-sudo',
   :git => 'https://github.com/simp/pupmod-simp-sudo',
-  :tag => '5.1.2'
+  :tag => '5.2.0'
 
 mod 'simp-sudosh',
   :git => 'https://github.com/simp/pupmod-simp-sudosh',
@@ -463,7 +463,7 @@ mod 'simp-sudosh',
 
 mod 'simp-svckill',
   :git => 'https://github.com/simp/pupmod-simp-svckill',
-  :tag => '3.3.1'
+  :tag => '3.4.0'
 
 mod 'simp-swap',
   :git => 'https://github.com/simp/pupmod-simp-swap',
