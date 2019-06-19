@@ -288,7 +288,7 @@ mod 'simp-libreswan',
 
 mod 'simp-libvirt',
   :git => 'https://github.com/simp/pupmod-simp-libvirt',
-  :tag => '5.2.1'
+  :tag => '5.2.2'
 
 mod 'simp-logrotate',
   :git => 'https://github.com/simp/pupmod-simp-logrotate',
