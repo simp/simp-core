@@ -1,4 +1,10 @@
 ---
+HIRS_Provisioner_TPM_1_2:
+  :rpm_name: HIRS_Provisioner_TPM_1_2-1.0.4-1558547257.cedc93.el7.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/HIRS_Provisioner_TPM_1_2-1.0.4-1558547257.cedc93.el7.noarch.rpm/download.rpm
+HIRS_Provisioner_TPM_2_0:
+  :rpm_name: HIRS_Provisioner_TPM_2_0-1.0.4-1.x86_64.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/HIRS_Provisioner_TPM_2_0-1.0.4-1.x86_64.rpm/download.rpm
 apr-util-ldap:
   :rpm_name: apr-util-ldap-1.5.2-6.el7.x86_64.rpm
   :source: http://mirror.centos.org/centos/7/os/x86_64/Packages/apr-util-ldap-1.5.2-6.el7.x86_64.rpm
@@ -62,12 +68,6 @@ gtk2-engines:
 haveged:
   :rpm_name: haveged-1.9.1-1.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/h/haveged-1.9.1-1.el7.x86_64.rpm
-HIRS_Provisioner_TPM_1_2:
-  :rpm_name: HIRS_Provisioner_TPM_1_2-1.0.4-1558547257.cedc93.el7.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/HIRS_Provisioner_TPM_1_2-1.0.4-1558547257.cedc93.el7.noarch.rpm/download.rpm
-HIRS_Provisioner_TPM_2_0:
-  :rpm_name: HIRS_Provisioner_TPM_2_0-1.0.4-1.x86_64.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/HIRS_Provisioner_TPM_2_0-1.0.4-1.x86_64.rpm/download.rpm
 ima-evm-utils:
   :rpm_name: ima-evm-utils-1.1-2.el7.x86_64.rpm
   :source: http://mirror.centos.org/centos/7/os/x86_64/Packages/ima-evm-utils-1.1-2.el7.x86_64.rpm
@@ -347,9 +347,6 @@ sudosh2:
 tlog:
   :rpm_name: tlog-4-1.el7.x86_64.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/tlog-4-1.el7.x86_64.rpm/download.rpm
-tpm_module:
-  :rpm_name: tpm_module-1.0.4-1558547257.cedc93.x86_64.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/tpm_module-1.0.4-1558547257.cedc93.x86_64.rpm/download.rpm
 tpm2-abrmd:
   :rpm_name: tpm2-abrmd-1.1.0-10.el7.x86_64.rpm
   :source: http://mirror.centos.org/centos/7/os/x86_64/Packages/tpm2-abrmd-1.1.0-10.el7.x86_64.rpm
@@ -362,6 +359,9 @@ tpm2-tss:
 tpm2-tss-devel:
   :rpm_name: tpm2-tss-devel-1.4.0-2.el7.x86_64.rpm
   :source: http://mirror.centos.org/centos/7/os/x86_64/Packages/tpm2-tss-devel-1.4.0-2.el7.x86_64.rpm
+tpm_module:
+  :rpm_name: tpm_module-1.0.4-1558547257.cedc93.x86_64.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/tpm_module-1.0.4-1558547257.cedc93.x86_64.rpm/download.rpm
 unhide:
   :rpm_name: unhide-20130526-1.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/u/unhide-20130526-1.el7.x86_64.rpm
