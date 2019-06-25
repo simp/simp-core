@@ -124,7 +124,7 @@
     },
     {
       "name": "simp/auditd",
-      "version_requirement": ">= 8.3.1 < 9.0.0"
+      "version_requirement": ">= 8.3.2 < 9.0.0"
     },
     {
       "name": "simp/chkrootkit",
@@ -136,7 +136,7 @@
     },
     {
       "name": "simp/compliance_markup",
-      "version_requirement": ">= 2.4.3 < 3.0.0"
+      "version_requirement": ">= 2.4.4 < 3.0.0"
     },
     {
       "name": "simp/cron",
@@ -144,7 +144,7 @@
     },
     {
       "name": "simp/deferred_resources",
-      "version_requirement": ">= 0.2.0 < 1.0.0"
+      "version_requirement": ">= 0.2.1 < 1.0.0"
     },
     {
       "name": "simp/dhcp",
@@ -164,7 +164,7 @@
     },
     {
       "name": "simp/iptables",
-      "version_requirement": ">= 6.2.1 < 7.0.0"
+      "version_requirement": ">= 6.2.2 < 7.0.0"
     },
     {
       "name": "simp/issue",

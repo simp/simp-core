@@ -197,7 +197,7 @@ mod 'simp-at',
 
 mod 'simp-auditd',
   :git => 'https://github.com/simp/pupmod-simp-auditd',
-  :tag => '8.3.1'
+  :tag => '8.3.2'
 
 mod 'simp-autofs',
   :git => 'https://github.com/simp/pupmod-simp-autofs',
@@ -213,7 +213,7 @@ mod 'simp-clamav',
 
 mod 'simp-compliance_markup',
   :git => 'https://github.com/simp/pupmod-simp-compliance_markup',
-  :tag => '2.4.3'
+  :tag => '2.4.4'
 
 mod 'simp-cron',
   :git => 'https://github.com/simp/pupmod-simp-cron',
@@ -225,7 +225,7 @@ mod 'simp-dconf',
 
 mod 'simp-deferred_resources',
   :git => 'https://github.com/simp/pupmod-simp-deferred_resources',
-  :tag => '0.2.0'
+  :tag => '0.2.1'
 
 mod 'simp-dhcp',
   :git => 'https://github.com/simp/pupmod-simp-dhcp',
@@ -268,7 +268,7 @@ mod 'simp-incron',
 
 mod 'simp-iptables',
   :git => 'https://github.com/simp/pupmod-simp-iptables',
-  :tag => '6.2.1'
+  :tag => '6.2.2'
 
 mod 'simp-issue',
   :git => 'https://github.com/simp/pupmod-simp-issue',
