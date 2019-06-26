@@ -40,7 +40,7 @@ mod 'simp-rsync_data_pre64',
 
 mod 'simp-adapter',
   :git => 'https://github.com/simp/simp-adapter',
-  :branch => 'master'
+  :tag => '1.0.1'
 
 mod 'simp-environment',
   :git => 'https://github.com/simp/simp-environment-skeleton',
@@ -52,7 +52,7 @@ mod 'simp-gpgkeys',
 
 mod 'simp-utils',
   :git => 'https://github.com/simp/simp-utils',
-  :branch => 'master'
+  :tag => '6.2.2'
 
 moduledir 'src/puppet/modules'
 
@@ -316,7 +316,7 @@ mod 'simp-nfs',
 
 mod 'simp-ntpd',
   :git => 'https://github.com/simp/pupmod-simp-ntpd',
-  :tag => '6.3.1'
+  :tag => '6.4.0'
 
 mod 'simp-oath',
   :git => 'https://github.com/simp/pupmod-simp-oath',
@@ -372,7 +372,7 @@ mod 'simp-selinux',
 
 mod 'simp-simp',
   :git => 'https://github.com/simp/pupmod-simp-simp',
-  :tag => '4.8.1'
+  :tag => '4.9.0'
 
 mod 'simp-simplib',
   :git => 'https://github.com/simp/pupmod-simp-simplib',
@@ -392,7 +392,7 @@ mod 'simp-simp_banners',
 
 mod 'simp-simp_bolt',
   :git => 'https://github.com/simp/pupmod-simp-simp_bolt',
-  :branch => 'master'
+  :tag => '0.1.0'
 
 mod 'simp-simp_docker',
   :git => 'https://github.com/simp/pupmod-simp-simp_docker',

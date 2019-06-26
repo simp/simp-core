@@ -66,7 +66,7 @@ Requires: pupmod-simp-iptables >= 6.2.2, pupmod-simp-iptables < 7.0.0
 Requires: pupmod-simp-issue >= 0.0.4, pupmod-simp-issue < 1.0.0
 Requires: pupmod-simp-logrotate >= 6.3.1, pupmod-simp-logrotate < 7.0.0
 Requires: pupmod-simp-named >= 6.1.2, pupmod-simp-named < 7.0.0
-Requires: pupmod-simp-ntpd >= 6.3.1, pupmod-simp-ntpd < 7.0.0
+Requires: pupmod-simp-ntpd >= 6.4.0, pupmod-simp-ntpd < 7.0.0
 Requires: pupmod-simp-oddjob >= 2.1.1, pupmod-simp-oddjob < 3.0.0
 Requires: pupmod-simp-pam >= 6.4.0, pupmod-simp-pam < 7.0.0
 Requires: pupmod-simp-pki >= 6.1.1, pupmod-simp-pki < 7.0.0
@@ -78,7 +78,7 @@ Requires: pupmod-simp-rkhunter >= 0.0.1, pupmod-simp-rkhunter < 1.0.0
 Requires: pupmod-simp-rsync >= 6.1.1, pupmod-simp-rsync < 7.0.0
 Requires: pupmod-simp-rsyslog >= 7.4.0, pupmod-simp-rsyslog < 8.0.0
 Requires: pupmod-simp-selinux >= 2.4.1, pupmod-simp-selinux < 3.0.0
-Requires: pupmod-simp-simp >= 4.6.0, pupmod-simp-simp < 5.0.0
+Requires: pupmod-simp-simp >= 4.9.0, pupmod-simp-simp < 5.0.0
 Requires: pupmod-simp-simplib >= 3.15.2, pupmod-simp-simplib < 4.0.0
 Requires: pupmod-simp-simp_apache >= 6.1.3, pupmod-simp-simp_apache < 7.0.0
 Requires: pupmod-simp-simp_banners >= 0.1.1, pupmod-simp-simp_banners < 1.0.0
@@ -103,12 +103,12 @@ Requires: pupmod-simp-xinetd >= 4.1.1, pupmod-simp-xinetd < 5.0.0
 Requires: pupmod-trlinkin-nsswitch >= 2.1.1, pupmod-trlinkin-nsswitch < 3.0.0
 Requires: rubygem-simp-cli >= 5.0.0, rubygem-simp-cli < 6.0.0
 Requires: rubygem-simp-cli-doc >= 5.0.0, rubygem-simp-cli-doc < 6.0.0
-Requires: simp-adapter >= 1.0.0, simp-adapter < 2.0.0
+Requires: simp-adapter >= 1.0.1, simp-adapter < 2.0.0
 Requires: simp-environment-selinux-policy >= 1.0.0, simp-environment-selinux-policy < 2.0.0
 Requires: simp-environment-skeleton >= 7.0.0, simp-environment-skeleton < 8.0.0
 Requires: simp-gpgkeys >= 3.0.4, simp-gpgkeys < 4.0.0
 Requires: simp-rsync-skeleton >= 7.0.0, simp-rsync-skeleton < 8.0.0
-Requires: simp-utils >= 6.2.0, simp-utils < 7.0.0
+Requires: simp-utils >= 6.2.2, simp-utils < 7.0.0
 
 # SIMP Extras
 %package extras
@@ -127,7 +127,7 @@ Obsoletes: pupmod-puppet-grafana <= 4.1.1
 Obsoletes: pupmod-simp-simp_grafana <= 1.0.6
 Obsoletes: pupmod-simp-site < 3
 
-Requires: simp-adapter >= 1.0.0, simp-adapter < 2.0.0
+Requires: simp-adapter >= 1.0.1, simp-adapter < 2.0.0
 Requires: pupmod-herculesteam-augeasproviders_mounttab >= 2.1.1
 Requires: pupmod-herculesteam-augeasproviders_nagios >= 2.1.1
 Requires: pupmod-herculesteam-augeasproviders_pam >= 2.2.1

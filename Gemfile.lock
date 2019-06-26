@@ -5,7 +5,7 @@ GEM
       public_suffix (>= 2.0.2, < 4.0)
     ansi (1.5.0)
     ast (2.4.0)
-    beaker (4.8.0)
+    beaker (4.9.0)
       beaker-hostgenerator
       hocon (~> 1.0)
       in-parallel (~> 0.1)
@@ -38,7 +38,7 @@ GEM
       beaker-puppet (~> 1.0)
       beaker-vmpooler (~> 1.0)
       stringify-hash (~> 0.0.0)
-    beaker-puppet (1.18.3)
+    beaker-puppet (1.18.4)
       beaker (~> 4.1)
       in-parallel (~> 0.1)
       oga
@@ -66,7 +66,7 @@ GEM
       multi_json
     domain_name (0.5.20180417)
       unf (>= 0.0.5, < 1.0.0)
-    dotenv (2.7.2)
+    dotenv (2.7.4)
     excon (0.64.0)
     facter (2.5.1)
     faraday (0.13.1)
@@ -131,7 +131,7 @@ GEM
     pry-doc (1.0.0)
       pry (~> 0.11)
       yard (~> 0.9.11)
-    public_suffix (3.1.0)
+    public_suffix (3.1.1)
     puppet (5.5.14)
       facter (> 2.0.1, < 4)
       fast_gettext (~> 1.1.2)
@@ -207,7 +207,7 @@ GEM
       rspec-its
       specinfra (~> 2.72)
     sfl (2.3)
-    simp-beaker-helpers (1.14.2)
+    simp-beaker-helpers (1.14.3)
       beaker (~> 4.0)
       beaker-docker (~> 0.3)
       beaker-puppet (~> 1.0)
@@ -265,7 +265,7 @@ DEPENDENCIES
   pry
   pry-byebug
   pry-doc
-  puppet (~> 5.5)
+  puppet (= 5.5.14)
   puppet-lint
   puppet-strings
   puppetlabs_spec_helper
