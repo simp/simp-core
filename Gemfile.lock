@@ -265,7 +265,7 @@ DEPENDENCIES
   pry
   pry-byebug
   pry-doc
-  puppet (= 5.5.14)
+  puppet (~> 5.5)
   puppet-lint
   puppet-strings
   puppetlabs_spec_helper
