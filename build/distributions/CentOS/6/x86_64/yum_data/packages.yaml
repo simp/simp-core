@@ -32,6 +32,9 @@ fuse-sshfs:
 haveged:
   :rpm_name: haveged-1.9.1-2.el6.x86_64.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/h/haveged-1.9.1-2.el6.x86_64.rpm
+HIRS_Provisioner_TPM_1_2:
+  :rpm_name: HIRS_Provisioner_TPM_1_2-1.0.4-1558547257.cedc93.el6.noarch
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/HIRS_Provisioner_TPM_1_2-1.0.4-1558547257.cedc93.el6.noarch.rpm/download.rpm
 incron:
   :rpm_name: incron-0.5.9-1.el6.x86_64.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/i/incron-0.5.9-1.el6.x86_64.rpm
