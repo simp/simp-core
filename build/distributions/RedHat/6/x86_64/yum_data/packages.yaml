@@ -250,8 +250,8 @@ simp-vendored-r10k-doc:
   :rpm_name: simp-vendored-r10k-doc-3.3.0-0.noarch.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/simp-vendored-r10k-doc-3.3.0-0.noarch.rpm/download.rpm
 simp-vendored-r10k-gem-colored:
-  :rpm_name: simp-vendored-r10k-gem-colored-1.2-2.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/simp-vendored-r10k-gem-colored-1.2-2.noarch.rpm/download.rpm
+  :rpm_name: simp-vendored-r10k-gem-colored-1.2-3.noarch.rpm
+  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/simp-vendored-r10k-gem-colored-1.2-3.noarch.rpm/download.rpm
 simp-vendored-r10k-gem-cri:
   :rpm_name: simp-vendored-r10k-gem-cri-2.15.6-0.noarch.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/simp-vendored-r10k-gem-cri-2.15.6-0.noarch.rpm/download.rpm
