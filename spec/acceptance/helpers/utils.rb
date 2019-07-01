@@ -2,18 +2,6 @@ module Acceptance
   module Helpers
     module Utils
 
-      def puppetserver_status_command(master_fqdn)
-        [
-          'curl -sk',
-          "--cert /etc/puppetlabs/puppet/ssl/certs/#{master_fqdn}.pem",
-          "--key /etc/puppetlabs/puppet/ssl/private_keys/#{master_fqdn}.pem",
-          "https://#{master_fqdn}:8140/status/v1/services",
-          '| python -m json.tool',
-          '| grep state',
-          '| grep running'
-        ].join(' ')
-      end
-
       # @returns array of IPV4 networks configured on a host
       #
       # +host+: Host (object)
@@ -54,13 +42,15 @@ module Acceptance
       # +host+: Host (object)
       #
       # This method ASSUMES the first non-loopback interface without DHCP
-      # configured is the interface used for the internal network.
+      # configured or with DHCP that does not matches the outermost 'dhcp'
+      # key is the interface used for the internal network.
       def internal_network_info(host)
         networking = JSON.load(on(host, 'facter --json networking').stdout)
         internal_ip_info = nil
+        main_dhcp = networking['networking']['dhcp']
         networking['networking']['interfaces'].each do |interface,settings|
           next if interface == 'lo'
-          unless settings.has_key?('dhcp')
+          if ( ! settings.has_key?('dhcp') || (settings['dhcp'] != main_dhcp ) )
             internal_ip_info = {
               :interface => interface,
               :ip        => settings['ip'],
@@ -86,19 +76,6 @@ module Acceptance
           end
         end
         nameserver
-      end
-
-      # Enables autosign for any host in the domain on the master
-      #
-      # TODO:  pass in a array of Hosts (objects) and add each one
-      # to the autosign.conf, in lieu of this lazy *.<domain>
-      # configuration
-      def enable_puppet_autosign(master, domain)
-        result = on(master, 'puppet config print --section master autosign')
-        autosign_file = result.stdout.strip
-        on(master, "echo '*.#{domain}' >> #{autosign_file}")
-        on(master, "chmod 644 #{autosign_file}")
-        on(master, "grep #{domain} #{autosign_file}")
       end
 
       # Generates application certs for hosts on the puppet master

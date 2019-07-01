@@ -10,14 +10,12 @@ syslog_servers      = hosts_with_role(hosts, 'syslog_server')
 syslog_server_fqdns = syslog_servers.map { |server| fact_on(server, 'fqdn') }
 domain              = fact_on(master, 'domain')
 
-describe 'Configure and bootstrap SIMP puppetserver with pre-populated SIMP OMNI env' do
+describe 'Configure and bootstrap SIMP puppetserver' do
 
   config = {
-    :domain                 => domain,
-    :master_fqdn            => master_fqdn,
-    :syslog_server_fqdns    => syslog_server_fqdns,
-    # we've already created the environment and deployed the modules
-    :simp_config_extra_args => [ '--force-config' ]
+    :domain              => domain,
+    :master_fqdn         => master_fqdn,
+    :syslog_server_fqdns => syslog_server_fqdns
   }
 
   include_examples 'SIMP server bootstrap', master, config

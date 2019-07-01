@@ -1,0 +1,153 @@
+require_relative '../helpers'
+require 'erb'
+require 'pathname'
+
+include Acceptance::Helpers::PasswordHelper
+include Acceptance::Helpers::PuppetHelper
+include Acceptance::Helpers::Utils
+
+# config keys:
+#   :domain                 - (REQUIRED) test domain
+#   :master_fqdn            - (REQUIRED) FQDN of the puppetmaster
+#   :syslog_server_fqdns    - (REQUIRED) array of syslog server FQDNs
+#   :simp_config_extra_args - (OPTIONAL) array of additional arguments
+#                             to be passed to simp config
+#
+shared_examples 'SIMP server bootstrap' do |master, config|
+
+  let(:domain) { config[:domain] }
+  let(:master_fqdn) { config[:master_fqdn] }
+  let(:puppetserver_status_cmd) { puppetserver_status_command(master_fqdn) }
+  let(:syslog_server_fqdns) { config[:syslog_server_fqdns] }
+  let(:production_env_dir) { '/etc/puppetlabs/code/environments/production' }
+
+  let(:default_hieradata) {
+    # hieradata that allows beaker operations access
+    beaker_hiera = YAML.load(File.read('spec/acceptance/common_files/beaker_hiera.yaml'))
+
+    # set up syslog forwarding
+    hiera = beaker_hiera.merge( {
+      'simp::rsync_stunnel'         => master_fqdn,
+      'rsyslog::enable_tls_logging' => true,
+      'simp_rsyslog::forward_logs'  => true
+    } )
+
+    # Work around 128-bit cipher problems
+    # TODO:  Once SIMP-5507 is addressed, this workaround is *only*
+    # required when the el6 LDAP server is not in FIPS mode.
+    if master.host_hash[:platform] =~ /el-6/
+      hiera.merge!( {
+        'simp_openldap::server::conf::security' => [
+          'ssf=128',
+          'tls=128',
+          'update_ssf=128',
+          'simple_bind=128',
+          'update_tls=128',
+        ]
+      } )
+    end
+    hiera
+  }
+
+  # remote syslog server hieradata
+  let(:syslog_server_hieradata) { {
+    'rsyslog::tls_tcp_server'    => true,
+    'simp_rsyslog::is_server'    => true,
+    'simp_rsyslog::forward_logs' => false
+  } }
+
+  context 'puppet master' do
+    let(:simp_conf_template) {
+      File.read('spec/acceptance/common_files/simp_conf.yaml.erb')
+    }
+
+    it 'should create answers file for simp config' do
+      # The following variables/methods are required by simp_conf.yaml.erb:
+      #   domain
+      #   grub_password_hash
+      #   interface
+      #   ipaddress
+      #   ldap_root_password_hash
+      #   master_fqdn
+      #   nameserver
+      #   netmask
+      #   syslog_server_fqdns
+      #   trusted_nets
+      #
+      trusted_nets =  host_networks(master)
+      expect(trusted_nets).to_not be_empty
+
+      network_info = internal_network_info(master)
+      expect(network_info).to_not be_nil
+      interface = network_info[:interface]
+      ipaddress = network_info[:ip]
+      netmask   = network_info[:netmask]
+
+      nameserver = dns_nameserver(master)
+      expect(nameserver).to_not be_nil
+
+      grub_password_hash = encrypt_grub_password(master, test_password)
+      ldap_root_password_hash = encrypt_openldap_password(test_password)
+
+      create_remote_file(master, '/root/simp_conf.yaml', ERB.new(simp_conf_template).result(binding))
+      on(master, 'cat /root/simp_conf.yaml')
+    end
+
+    it 'should run simp config' do
+      if config.has_key?(:simp_config_extra_args)
+        extra_args = config[:simp_config_extra_args].join(' ')
+      else
+        extra_args = ''
+      end
+
+      on(master, "simp config -a /root/simp_conf.yaml #{extra_args}")
+      on(master, 'cat /root/.simp/simp_conf.yaml')
+    end
+
+    it 'should provide default hieradata' do
+      create_remote_file(master, "#{production_env_dir}/data/default.yaml", default_hieradata.to_yaml)
+      on(master, 'simp environment fix production --no-secondary-env --no-writable-env')
+    end
+
+    it 'should provide syslog server hieradata' do
+      syslog_server_fqdns.each do |server|
+        host_yaml_file = "#{production_env_dir}/data/hosts/#{server}.yaml"
+        create_remote_file(master, host_yaml_file, syslog_server_hieradata.to_yaml)
+      end
+      on(master, 'simp environment fix production --no-secondary-env --no-writable-env')
+    end
+
+    it 'should enable Puppet autosign for hosts on the domain' do
+      enable_puppet_autosign(master, domain)
+    end
+
+    it 'should run simp bootstrap' do
+      # NOTE:
+      # - Remove the lock file because we've already added the vagrant user
+      #   access and won't be locked out of the VM
+      # - Remove the puppet certs for the puppet agent already created
+      #   when the puppetserver RPM was installed
+      # - Allow interruptions so we can kill the test easily during bootstrap
+      on(master, 'rm -f /root/.simp/simp_bootstrap_start_lock')
+      on(master, 'simp bootstrap -u --remove_ssldir', :pty => true)
+    end
+
+    it 'should reboot the master to apply boot time config' do
+      master.reboot
+    end
+
+    it 'should complete the config with a few puppet runs' do
+      # Wait for the puppetserver to be ready to receive requests
+      retry_on(master, puppetserver_status_cmd, :retry_interval => 10)
+
+      # Run puppet until no more changes are required
+      retry_on(master, '/opt/puppetlabs/bin/puppet agent -t',
+        :desired_exit_codes => [0],
+        :retry_interval     => 15,
+        :max_retries        => 3,
+        :verbose            => true.to_s # work around beaker bug
+      )
+    end
+  end
+
+end

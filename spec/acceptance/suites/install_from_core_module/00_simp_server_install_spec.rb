@@ -1,33 +1,61 @@
 require 'spec_helper_integration'
 require 'beaker/puppet_install_helper'
 
-test_name 'puppetserver module install via PuppetForge'
+test_name 'Install SIMP modules from Puppetforge and assets via r10k'
 
-describe 'install puppetserver modules from PuppetForge' do
+describe 'Install SIMP modules from Puppetforge and assets via r10k' do
 
-  masters = hosts_with_role(hosts, 'master')
+  let(:production_env_dir) { '/etc/puppetlabs/code/environments/production' }
+  let(:r10k) { '/opt/puppetlabs/puppet/bin/r10k' }
 
   context 'all hosts prep' do
-    it "should set passwords and install packages/repositories" do
-      block_on(hosts, :run_in_parallel => false) do |host|
-        # set the root password
-        on(host, "sed -i 's/enforce_for_root//g' /etc/pam.d/*")
-        on(host, 'echo password | passwd root --stdin')
-        # set up needed repositories
-        host.install_package('epel-release')
-      end
+    set_up_options = {
+      :root_password => test_password,
+      :repos         => [
+        :epel,
+        :simp,      # TODO verify if this necessary
+        :simp_deps,
+        :puppet
+      ]
+    }
+
+    hosts.each do |host|
+      include_examples 'basic server setup', host, set_up_options
     end
   end
 
-  context 'install and start a standard puppetserver' do
-    masters.each do |master|
-      it 'should install puppetserver' do
-        master.install_package('puppetserver')
-      end
+  # Use r10K to install the SIMP assets listed in Puppetfile.pinned into
+  # a staging directory, and then manually install them where they would
+  # have been installed by their corresponding RPMs.  This allows
+  # us to use rubygem-simp-cli for creating the environment skeleton.
+  context 'manual SIMP assets setup on puppetmaster' do
 
-      it 'should start puppetserver' do
-        on(master, 'puppet resource service puppetserver ensure=running')
-      end
+    master = only_host_with_role(hosts, 'master')
+    assets_to_install = [
+      :environment_skeleton, # simp-environment-skeleton
+      :rsync_data,           # simp-rsync-skeleton
+      :simp_selinux_policy,  # simp-selinux-policy
+      :rubygem_simp_cli      # rubygem-simp-cli
+    ]
+
+    include_examples 'simp asset manual install', master, assets_to_install
+  end
+
+  # We'll use simp cli to create an environment skeleton
+  context 'create the SIMP omni-environment skeleton' do
+    # This has to be done **BEFORE** simp environment new is run
+    # because the 'puppet' group needs to be defined
+    it 'should install puppetserver' do
+      master.install_package('puppetserver')
+    end
+
+    it 'should create a SIMP enviroment skeleton for the production env' do
+      # remove the skeleton production environment installed by puppet-agent
+      on(master, "rm -rf #{production_env_dir}")
+
+      # use simp cli to correctly create SIMP omni environment skeleton without
+      # a Puppetfile
+      on(master, 'simp environment new production --no-puppetfile-gen')
     end
   end
 
@@ -50,8 +78,7 @@ describe 'install puppetserver modules from PuppetForge' do
       on(master, 'puppet module install /tmp/simp-simp_core*.tar.gz')
 
       # fix group and permissions of installed module files
-      on(master, 'chown -R root.puppet /etc/puppetlabs/code/environments/production/modules')
-      on(master, 'chmod -R g+rX /etc/puppetlabs/code/environments/production/modules')
+      on(master, 'simp environment fix production --no-secondary-env --no-writable-env')
     end
   end
 end

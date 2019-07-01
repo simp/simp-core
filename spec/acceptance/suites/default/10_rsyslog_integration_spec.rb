@@ -14,35 +14,40 @@ test_name 'rsyslog integration'
 #    fragile, as application syslog message identity, level, and content are
 #    all subject to change.  This means the test, and possibly simp_rsyslog,
 #    may need to be updated when applications are updated.
-# 2) FIXME: Sometimes a restart of the rsyslog service on the remote rsyslog
-#    servers is required in order for the messages to be forwarded.
-#    Don't know why this happens sporadically. A test workaround has been
-#    implemented.
-# 3) FIXME: Have had problems with auditd logs not being forwarded and
-#    the only solution is to restart auditd.  Examination of the auditd
-#    source code does not show an obvious reason why the dispatch stops
-#    working.  Events to the syslog dispatcher that can't be sent to syslog
-#    are simply discarded and the syslog C api is being used normally...
-#    A test workaround has been implemented.
-# 4) SIMP-3480: There are numerous inconsistencies in the names of local and
+# 2) FIXME: rsyslog forwarding doesn't always work
+#    a) Sometimes a restart of the rsyslog service on the remote rsyslog
+#      servers is required in order for the messages to be forwarded.
+#      Don't know why this happens sporadically. A test workaround has
+#      been implemented to mitigate this.  However the test can still fail.
+#    b) Have had problems with auditd logs not being forwarded and the
+#       only solution is to restart auditd.  Examination of the auditd
+#       source code does not show an obvious reason why the dispatch stops
+#       working.  Events to the syslog dispatcher that can't be sent to syslog
+#       are simply discarded and the syslog C api is being used normally...
+#       A test workaround has been implemented to mitigate this.  However,
+#       the test can still fail.
+# 3) SIMP-3480: There are numerous inconsistencies in the names of local and
 #    remote logs, and into which local/remote log messages are written.
 #    The tests are written for the *current* rsyslog configuration, not the
 #    *desired* rsyslog configuration.
-# 5) In most cases, messages from a syslog server, itself, that would
+# 4) In most cases, messages from a syslog server, itself, that would
 #    have been forwarded if the host was not a syslog server, are written
 #    to /var/log/hosts/<syslog server fqdn>, instead of the local file
 #    to which other hosts write their messages. This provides consistency
 #    for the sysadmins examining host logs on the syslog server.
-# 6) More tests need to be done...Notes can be found in a
+# 5) More tests need to be done...Notes can be found in a
 #    commented out block at the end of the file.
 #
+
+syslog_servers = hosts_with_role(hosts, 'syslog_server')
+non_syslog_servers = hosts - syslog_servers
+
+# facts gathered here are executed when the file first loads and
+# use the factor gem temporarily installed into system ruby
+domain         = fact_on(master, 'domain')
+master_fqdn    = fact_on(master, 'fqdn')
+
 describe 'Validation of rsyslog forwarding' do
-
-  syslog_servers = hosts_with_role(hosts, 'syslog_server')
-  non_syslog_servers = hosts - syslog_servers
-
-  domain         = fact_on(master, 'domain')
-  master_fqdn    = fact_on(master, 'fqdn')
 
   # Restarts rsyslog service on syslog_servers if that has not already
   # been done
@@ -145,8 +150,7 @@ describe 'Validation of rsyslog forwarding' do
   context 'additional site manifest/hieradata staging' do
     it 'should install additional manifests and update hieradata' do
       rsync_to(master, "#{files_dir}/site", site_module_path)
-      on(master, "chown -R root:puppet #{site_module_path}")
-      on(master, "chmod -R g+rX,o-rwX #{site_module_path}")
+      on(master, 'simp environment fix production --no-secondary-env --no-writable-env')
 
       create_remote_file(master, default_yaml_filename, default_hieradata.to_yaml)
     end
