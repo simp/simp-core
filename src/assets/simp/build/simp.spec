@@ -1,7 +1,7 @@
 Summary: SIMP Full Install
 Name: simp
 Version: 6.4.0
-Release: Beta%{?dist}%{?snapshot_release}
+Release: RC%{?dist}%{?snapshot_release}
 License: Apache License, Version 2.0
 Group: Applications/System
 
@@ -36,9 +36,9 @@ Requires: pupmod-herculesteam-augeasproviders_puppet >= 2.2.1, pupmod-herculeste
 Requires: pupmod-herculesteam-augeasproviders_shellvar >= 3.1.0, pupmod-herculesteam-augeasproviders_shellvar < 4.0.0
 Requires: pupmod-herculesteam-augeasproviders_ssh >= 3.2.1, pupmod-herculesteam-augeasproviders_ssh < 4.0.0
 Requires: pupmod-herculesteam-augeasproviders_sysctl >= 2.3.1, pupmod-herculesteam-augeasproviders_sysctl < 3.0.0
-Requires: pupmod-onyxpoint-gpasswd >= 1.0.6, pupmod-onyxpoint-gpasswd < 2.0.0
+Requires: pupmod-onyxpoint-gpasswd >= 1.0.7, pupmod-onyxpoint-gpasswd < 2.0.0
 Requires: pupmod-puppet-yum >= 3.1.1, pupmod-puppet-yum < 4.0.0
-Requires: pupmod-puppetlabs-apache >= 3.0.0, pupmod-puppetlabs-apache < 5.0.0
+Requires: pupmod-puppetlabs-apache >= 4.0.0, pupmod-puppetlabs-apache < 5.0.0
 Requires: pupmod-puppetlabs-concat >= 5.3.0, pupmod-puppetlabs-concat < 6.0.0
 Requires: pupmod-puppetlabs-hocon >= 1.0.1, pupmod-puppetlabs-hocon < 2.0.0
 Requires: pupmod-puppetlabs-inifile >= 2.5.0, pupmod-puppetlabs-inifile < 3.0.0
@@ -68,11 +68,11 @@ Requires: pupmod-simp-logrotate >= 6.3.1, pupmod-simp-logrotate < 7.0.0
 Requires: pupmod-simp-named >= 6.1.2, pupmod-simp-named < 7.0.0
 Requires: pupmod-simp-ntpd >= 6.4.0, pupmod-simp-ntpd < 7.0.0
 Requires: pupmod-simp-oddjob >= 2.1.1, pupmod-simp-oddjob < 3.0.0
-Requires: pupmod-simp-pam >= 6.4.0, pupmod-simp-pam < 7.0.0
+Requires: pupmod-simp-pam >= 6.5.0, pupmod-simp-pam < 7.0.0
 Requires: pupmod-simp-pki >= 6.1.1, pupmod-simp-pki < 7.0.0
 Requires: pupmod-simp-polkit >= 6.1.2, pupmod-simp-polkit < 7.0.0
 Requires: pupmod-simp-postfix >= 5.2.1, pupmod-simp-postfix < 6.0.0
-Requires: pupmod-simp-pupmod >= 7.10.0, pupmod-simp-pupmod < 8.0.0
+Requires: pupmod-simp-pupmod >= 7.10.1, pupmod-simp-pupmod < 8.0.0
 Requires: pupmod-simp-resolv >= 0.1.3, pupmod-simp-resolv < 1.0.0
 Requires: pupmod-simp-rkhunter >= 0.0.1, pupmod-simp-rkhunter < 1.0.0
 Requires: pupmod-simp-rsync >= 6.1.1, pupmod-simp-rsync < 7.0.0
@@ -83,7 +83,7 @@ Requires: pupmod-simp-simplib >= 3.15.2, pupmod-simp-simplib < 4.0.0
 Requires: pupmod-simp-simp_apache >= 6.1.3, pupmod-simp-simp_apache < 7.0.0
 Requires: pupmod-simp-simp_banners >= 0.1.1, pupmod-simp-simp_banners < 1.0.0
 Requires: pupmod-simp-simp_openldap >= 6.3.2, pupmod-simp-simp_openldap < 7.0.0
-Requires: pupmod-simp-simp_options >= 1.2.3, pupmod-simp-simp_options < 2.0.0
+Requires: pupmod-simp-simp_options >= 1.2.4, pupmod-simp-simp_options < 2.0.0
 Requires: pupmod-simp-simp_rsyslog >= 0.3.2, pupmod-simp-simp_rsyslog < 1.0.0
 Requires: pupmod-simp-ssh >= 6.7.1, pupmod-simp-ssh < 7.0.0
 Requires: pupmod-simp-sssd >= 6.1.6, pupmod-simp-sssd < 7.0.0
@@ -105,9 +105,9 @@ Requires: rubygem-simp-cli >= 5.0.0, rubygem-simp-cli < 6.0.0
 Requires: rubygem-simp-cli-doc >= 5.0.0, rubygem-simp-cli-doc < 6.0.0
 Requires: simp-adapter >= 1.0.1, simp-adapter < 2.0.0
 Requires: simp-selinux-policy >= 1.0.0, simp-selinux-policy < 2.0.0
-Requires: simp-environment-skeleton >= 7.0.0, simp-environment-skeleton < 8.0.0
-Requires: simp-gpgkeys >= 3.0.4, simp-gpgkeys < 4.0.0
-Requires: simp-rsync-skeleton >= 7.0.0, simp-rsync-skeleton < 8.0.0
+Requires: simp-environment-skeleton >= 7.1.0, simp-environment-skeleton < 8.0.0
+Requires: simp-gpgkeys >= 3.1.0, simp-gpgkeys < 4.0.0
+Requires: simp-rsync-skeleton >= 7.0.1, simp-rsync-skeleton < 8.0.0
 Requires: simp-utils >= 6.2.2, simp-utils < 7.0.0
 
 # SIMP Extras
@@ -135,8 +135,8 @@ Requires: pupmod-puppet-gitlab >= 3.0.2
 Requires: pupmod-puppet-posix_acl >= 0.1.1
 Requires: pupmod-puppet-snmp >= 4.1.0
 Requires: pupmod-puppetlabs-docker >= 3.5.0
-Requires: pupmod-puppetlabs-java >= 2.4.0
-Requires: pupmod-puppetlabs-mysql >= 5.3.0
+Requires: pupmod-puppetlabs-java >= 3.3.0
+Requires: pupmod-puppetlabs-mysql >= 8.0.0
 Requires: pupmod-puppetlabs-ruby_task_helper >= 0.3.0
 Requires: pupmod-puppetlabs-translate >= 1.2.0
 Requires: pupmod-saz-locales >= 2.5.1
@@ -154,7 +154,7 @@ Requires: pupmod-simp-libreswan >= 3.1.1
 Requires: pupmod-simp-libvirt >= 5.2.2
 Requires: pupmod-simp-mate >= 1.0.2
 Requires: pupmod-simp-mozilla >= 5.1.1
-Requires: pupmod-simp-network >= 6.0.4
+Requires: pupmod-simp-network >= 6.1.0
 Requires: pupmod-simp-nfs >= 6.2.2
 Requires: pupmod-simp-oath >= 0.1.0
 Requires: pupmod-simp-openscap >= 6.2.1
@@ -252,6 +252,9 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Mon Jul 01 2019 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 6.4.0-0
+- update puppetfile and spec file with 6.4.0 RC release versions.
+
 * Thu May 02 2019 Liz Nemsick <lnemsick.simp@gmail.com> - 6.4.0-0
 - Added the following to the simp-extras package
   - pupmod-simp-oath
