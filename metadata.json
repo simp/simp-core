@@ -60,7 +60,7 @@
     },
     {
       "name": "onyxpoint/gpasswd",
-      "version_requirement": ">= 1.0.6 < 2.0.0"
+      "version_requirement": ">= 1.0.7 < 2.0.0"
     },
     {
       "name": "puppet/yum",
@@ -188,7 +188,7 @@
     },
     {
       "name": "simp/pam",
-      "version_requirement": ">= 6.4.0 < 7.0.0"
+      "version_requirement": ">= 6.5.0 < 7.0.0"
     },
     {
       "name": "simp/pki",
@@ -204,7 +204,7 @@
     },
     {
       "name": "simp/pupmod",
-      "version_requirement": ">= 7.10.0 < 8.0.0"
+      "version_requirement": ">= 7.10.1 < 8.0.0"
     },
     {
       "name": "simp/resolv",
@@ -248,7 +248,7 @@
     },
     {
       "name": "simp/simp_options",
-      "version_requirement": ">= 1.2.3 < 2.0.0"
+      "version_requirement": ">= 1.2.4 < 2.0.0"
     },
     {
       "name": "simp/simp_rsyslog",
@@ -316,7 +316,7 @@
     },
     {
       "name": "trlinkin/nsswitch",
-      "version_requirement": ">= 2.1.0 < 3.0.0"
+      "version_requirement": ">= 2.1.1 < 3.0.0"
     }
   ],
   "requirements": [

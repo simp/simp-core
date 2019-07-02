@@ -20,7 +20,7 @@ moduledir 'src/assets'
 
 mod 'rubygem-rubygem_simp_cli',
   :git => 'https://github.com/simp/rubygem-simp-cli',
-  :branch => 'master'
+  :tag => '5.0.0'
 
 # FIXME Doesn't have RPM packaging yet
 #mod 'rubygem-rubygem_simp_processgraph',
@@ -29,14 +29,14 @@ mod 'rubygem-rubygem_simp_cli',
 
 mod 'simp-rsync_data',
   :git => 'https://github.com/simp/simp-rsync-skeleton',
-  :branch => 'master'
+  :tag => '7.0.1'
 
 # Use old name of rsync module for pre64 so its name does
 # not conflict with the name in rsync_data during puppetfile
 # checks in travis and gitlab
 mod 'simp-rsync_data_pre64',
   :git => 'https://github.com/simp/simp-rsync',
-  :branch => '6.2.1-branch'
+  :tag => '6.2.1-2'
 
 mod 'simp-adapter',
   :git => 'https://github.com/simp/simp-adapter',
@@ -44,7 +44,7 @@ mod 'simp-adapter',
 
 mod 'simp-environment',
   :git => 'https://github.com/simp/simp-environment-skeleton',
-  :branch => 'master'
+  :tag => '7.1.0'
 
 mod 'simp-gpgkeys',
   :git => 'https://github.com/simp/simp-gpgkeys',
@@ -52,7 +52,7 @@ mod 'simp-gpgkeys',
 
 mod 'simp-simp_selinux_policy',
   :git => 'https://github.com/simp/simp-selinux-policy',
-  :branch => 'master'
+  :tag => '1.0.0'
 
 mod 'simp-utils',
   :git => 'https://github.com/simp/simp-utils',
@@ -312,7 +312,7 @@ mod 'simp-named',
 
 mod 'simp-network',
   :git => 'https://github.com/simp/pupmod-simp-network',
-  :branch => '6.1.0'
+  :tag => '6.1.0'
 
 mod 'simp-nfs',
   :git => 'https://github.com/simp/pupmod-simp-nfs',
@@ -336,7 +336,7 @@ mod 'simp-openscap',
 
 mod 'simp-pam',
   :git => 'https://github.com/simp/pupmod-simp-pam',
-  :branch => '6.5.0'
+  :tag => '6.5.0'
 
 mod 'simp-pki',
   :git => 'https://github.com/simp/pupmod-simp-pki',
