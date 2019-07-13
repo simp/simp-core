@@ -28,7 +28,6 @@ describe 'Install SIMP modules and assets via r10K' do
   # have been installed by their corresponding RPMs.  This allows
   # us to use rubygem-simp-cli for creating the environment skeleton.
   context 'manual SIMP assets setup on puppetmaster' do
-
     master = only_host_with_role(hosts, 'master')
     assets_to_install = [
       :environment_skeleton, # simp-environment-skeleton

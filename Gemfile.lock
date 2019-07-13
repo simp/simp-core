@@ -65,11 +65,11 @@ GEM
     docker-api (1.34.2)
       excon (>= 0.47.0)
       multi_json
-    domain_name (0.5.20180417)
+    domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     dotenv (2.7.4)
     excon (0.64.0)
-    facter (2.5.1)
+    facter (2.5.4)
     faraday (0.13.1)
       multipart-post (>= 1.2, < 3)
     faraday_middleware (0.12.2)
@@ -147,7 +147,7 @@ GEM
     puppet-strings (2.2.0)
       rgen
       yard (~> 0.9.5)
-    puppet-syntax (2.4.3)
+    puppet-syntax (2.5.0)
       rake
     puppet_forge (2.2.9)
       faraday (>= 0.9.0, < 0.14.0)
@@ -239,7 +239,7 @@ GEM
       json (~> 1)
       rspec-puppet-facts (~> 0)
     spdx-licenses (1.2.0)
-    specinfra (2.78.0)
+    specinfra (2.78.2)
       net-scp
       net-ssh (>= 2.7)
       net-telnet (= 0.1.1)
@@ -267,7 +267,7 @@ DEPENDENCIES
   pry
   pry-byebug
   pry-doc
-  puppet (= 5.5.14)
+  puppet (~> 5.5)
   puppet-lint
   puppet-strings
   puppetlabs_spec_helper

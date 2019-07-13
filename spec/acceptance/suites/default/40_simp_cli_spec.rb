@@ -112,7 +112,7 @@ describe 'simp cli operations' do
     it 'should create a new environment without Puppetfiles' do
       on(master, 'simp environment new dev2 --no-puppetfile-gen')
 
-      # TODO more extensive verification 
+      # TODO more extensive verification
       on(master, "test -d #{puppet_env_dir}/dev2")
       on(master, "test ! -e  #{puppet_env_dir}/dev2/Puppetfile")
       on(master, "test ! -e #{puppet_env_dir}/dev2/Puppetfile.simp")

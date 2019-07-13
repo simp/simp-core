@@ -21,5 +21,4 @@ describe 'Configure and bootstrap SIMP puppetserver with pre-populated SIMP OMNI
   }
 
   include_examples 'SIMP server bootstrap', master, config
-
 end
