@@ -1,4 +1,4 @@
-require 'spec_helper_tar'
+require 'spec_helper_integration'
 
 test_name 'local user access'
 
@@ -59,4 +59,5 @@ describe 'local user access' do
       end
     end
   end
+
 end
