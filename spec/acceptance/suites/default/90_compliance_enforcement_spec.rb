@@ -1,10 +1,11 @@
-require 'spec_helper_tar'
+require 'spec_helper_integration'
 
 test_name 'compliance reporting and enforcement'
 
+master = only_host_with_role(hosts, 'master')
+agents = hosts_with_role(hosts, 'agent')
+
 describe 'compliance reporting and enforcement' do
-  master = only_host_with_role(hosts, 'master')
-  agents = hosts_with_role(hosts, 'agent')
 
   let(:compliance_profile) { 'disa_stig' }
 
@@ -63,7 +64,21 @@ describe 'compliance reporting and enforcement' do
 
       default_yaml = hiera.merge(
         'compliance_markup::report_types' => ['full'],
-        'compliance_markup::enforcement' => [ compliance_profile]
+        'compliance_markup::enforcement' => [ compliance_profile],
+        # This selinux setting will allow vagrant to sudo su to
+        # root after the compliance profile is enforced.  The
+        # command is:
+        #   sudo -r unconfined_r su - root
+        'selinux::login_resources' => {
+          '__default__' => {
+            'seuser'    => 'user_u',
+            'mls_range' => 'SystemLow'
+          },
+          'vagrant'     => {
+            'seuser'    => 'staff_u',
+            'mls_range' => 'SystemLow-SystemHigh'
+          }
+        }
       )
 
       create_remote_file(master, "#{prod_env_default_yaml}", default_yaml.to_yaml)
@@ -125,4 +140,5 @@ describe 'compliance reporting and enforcement' do
       end
     end
   end
+
 end
