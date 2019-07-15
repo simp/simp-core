@@ -26,7 +26,7 @@ GEM
       hocon (~> 1.0)
       require_all (~> 1.3.2)
       stringify-hash (~> 0.0.0)
-    beaker-docker (0.5.3)
+    beaker-docker (0.5.4)
       docker-api
       stringify-hash (~> 0.0.0)
     beaker-hostgenerator (1.1.32)
@@ -39,7 +39,7 @@ GEM
       beaker-puppet (~> 1.0)
       beaker-vmpooler (~> 1.0)
       stringify-hash (~> 0.0.0)
-    beaker-puppet (1.18.5)
+    beaker-puppet (1.18.6)
       beaker (~> 4.1)
       in-parallel (~> 0.1)
       oga
@@ -239,7 +239,7 @@ GEM
       json (~> 1)
       rspec-puppet-facts (~> 0)
     spdx-licenses (1.2.0)
-    specinfra (2.78.2)
+    specinfra (2.79.0)
       net-scp
       net-ssh (>= 2.7)
       net-telnet (= 0.1.1)
@@ -267,7 +267,7 @@ DEPENDENCIES
   pry
   pry-byebug
   pry-doc
-  puppet (~> 5.5)
+  puppet (= 5.5.14)
   puppet-lint
   puppet-strings
   puppetlabs_spec_helper

@@ -1,43 +1,40 @@
 require 'spec_helper_integration'
 
-def run_ipa_cmd(host, pass, cmd)
-  on(host, "echo \"#{pass}\" | kinit admin")
-  result = on(host, cmd)
-  on(host, 'kdestroy')
+describe 'IPA server integration' do
 
-  result
-end
-
-describe 'validate the ipa server' do
-
-  admin_password = '@dm1n=P@ssw0r'
   ipa_server     = hosts_with_role(hosts, 'ipa_server').first
   ipa_clients    = hosts_with_role(hosts, 'ipa_client')
 
   domain     = fact_on(master, 'domain')
   ipa_domain = domain
 
-  context 'server' do
+  context 'hosts in the IPA domain' do
     it 'should have 4 hosts in the inventory' do
-      out   = run_ipa_cmd(ipa_server, admin_password, 'ipa host-find')
+      out   = run_ipa_cmd(ipa_server, 'ipa host-find')
       hosts = out.stdout.split("\n").grep(/Host name/)
 
       expect(hosts.length).to eq 4
     end
 
-    it 'should have dns entries for each host' do
-      out     = run_ipa_cmd(ipa_server, admin_password, "ipa dnsrecord-find #{ipa_domain}")
+    it 'should have DNS entries for each host' do
+      out     = run_ipa_cmd(ipa_server, "ipa dnsrecord-find #{ipa_domain}")
       records = out.stdout.split("\n").grep(/Record name/).map {|h|h.split(': ').last}
 
       %w[ puppet ipa agent-el6 agent-el7 ].each do |host|
         expect(records).to include(host)
       end
     end
+  end
 
-    it 'should add a test user and a posix group' do
+  context 'users in the IPA domain' do
+    let(:default_yaml_filename) {
+      '/etc/puppetlabs/code/environments/production/data/default.yaml'
+    }
+
+    it 'should add a user and group, and then add the user to the group' do
       next_year = Time.new.year + 1
       user_add = [
-        'echo -n password |',
+        "echo -n '#{test_password}' |",
         'ipa user-add testuser',
         '--first=Test',
         '--last=User',
@@ -46,18 +43,45 @@ describe 'validate the ipa server' do
         '--password',
         "--setattr=KrbPasswordExpiration=#{next_year}0606060606Z"
       ].join(' ')
-      run_ipa_cmd(ipa_server, admin_password, user_add)
-      run_ipa_cmd(ipa_server, admin_password, 'ipa group-add posixusers --desc "A POSIX group is required to log in with the user"')
-      run_ipa_cmd(ipa_server, admin_password, 'ipa group-add-member posixusers --users=testuser')
+      run_ipa_cmd(ipa_server, user_add)
+      run_ipa_cmd(ipa_server, 'ipa group-add posixusers --desc "A POSIX group is required to log in with the user"')
+      run_ipa_cmd(ipa_server, 'ipa group-add-member posixusers --users=testuser')
     end
 
-    it 'should install sshpass' do
+    it "should configure default hiera to allow the new IPA group access" do
+      hiera = YAML.load(on(master, "cat #{default_yaml_filename}").stdout)
+      default_yaml = hiera.merge( {
+        'pam::access::users'           => {
+          'defaults'   => {
+            'origins'    => ['ALL'],
+            'permission' => '+'
+          },
+          'vagrant'      => nil,
+          '(posixusers)' => nil,
+        },
+      } ).to_yaml
+      create_remote_file(master, default_yaml_filename, default_yaml)
+    end
+
+    it 'should apply the configuration' do
+      block_on(agents, :run_in_parallel => false) do |agent|
+        retry_on(agent, 'puppet agent -t',
+          :desired_exit_codes => [0],
+          :retry_interval     => 15,
+          :max_retries        => 3,
+          :verbose            => true.to_s # work around beaker bug
+        )
+      end
+    end
+
+    it 'should install sshpass on the IPA server' do
       ipa_server.install_package('sshpass')
     end
+
     ipa_clients.each do |client|
-      it "log into #{client}" do
+      it "should ssh into #{client} from #{ipa_server} using IPA-created user" do
         login = []
-        login << 'sshpass -p password'
+        login << "sshpass -p '#{test_password}'"
         login << 'ssh'
         login << '-o StrictHostKeyChecking=no'
         login << '-m hmac-sha1' if client.host_hash[:platform] =~ /el-6/
