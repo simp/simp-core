@@ -1,4 +1,4 @@
-require 'spec_helper_tar'
+require 'spec_helper_integration'
 
 test_name 'LDAP user access'
 
@@ -6,12 +6,15 @@ test_name 'LDAP user access'
 # have not been able to login when their respective passwords have
 # been changed.  This test is to make sure that regression never occurs!
 
-describe 'LDAP user access' do
-  master_fqdn = fact_on(master, 'fqdn')
-  agents      = hosts_with_role(hosts, 'agent')
+# facts gathered here are executed when the file first loads and
+# use the factor gem temporarily installed into system ruby
+master_fqdn = fact_on(master, 'fqdn')
+agents      = hosts_with_role(hosts, 'agent')
 
-  # subset of LDAP users for whom we want to execute login tests
-  ldap_users  = [ 'admin2', 'auditor1' ]
+# subset of LDAP users for whom we want to execute login tests
+ldap_users  = [ 'admin2', 'auditor1' ]
+
+describe 'LDAP user access' do
 
   let(:files_dir) { 'spec/acceptance/common_files' }
 
@@ -116,4 +119,5 @@ describe 'LDAP user access' do
       end
     end
   end
+
 end

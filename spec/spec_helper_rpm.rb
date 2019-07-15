@@ -4,10 +4,7 @@ require 'simp/beaker_helpers'
 require_relative 'acceptance/helpers'
 
 include Simp::BeakerHelpers
-include Acceptance::Helpers::PasswordHelper
-include Acceptance::Helpers::RepoHelper
 include Acceptance::Helpers::SystemGemHelper
-include Acceptance::Helpers::Utils
 
 
 # Install Facter for beaker helpers
