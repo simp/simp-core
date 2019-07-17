@@ -14,8 +14,7 @@ describe 'Install SIMP modules and assets via RPM from internet repos' do
     set_up_options = {
       :root_password => test_password,
       :repos         => [
-        :epel,
-        # the SIMP repos **SHOULD** include the necessary puppet RPMs
+        # SIMP repos **SHOULD** include the necessary puppet + epel RPMs
         :simp,
         :simp_deps
       ]
@@ -35,7 +34,6 @@ describe 'Install SIMP modules and assets via RPM from internet repos' do
     end
 
     it 'should install simp module and asset RPMs and create local Git module repos' do
-      master.install_package('simp-adapter')
       master.install_package('simp')
     end
   end
