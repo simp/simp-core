@@ -168,8 +168,8 @@ following:
 3. _IPA operation test_:
 
    * Verifies IPA has registered all 4 nodes and created DNS entries for them.
-   * Verifies an IPA-created user can ssh from the IPA server into the other
-     hosts.
+   * Verifies an IPA-created user in an IPA-created group can ssh from the IPA
+     server into the other hosts, when access is allowed for that group.
 
 #### yum repositories enabled
 
@@ -216,9 +216,10 @@ clients.
 
 #### yum repositories enabled
 
-This test enables EPEL, SIMP 6_X and SIMP 6_X_Dependencies repositories.  It
-explicitly does not enable the Puppet repositories, as the test expects
-the Puppet RPMs to be available in the SIMP 6_X_Dependencies repository.
+This test enables SIMP 6_X and SIMP 6_X_Dependencies repositories.  It
+explicitly does not enable the EPEL or Puppet repositories, as the test expects
+the EPEL and Puppet RPMs required for SIMP to be available in the
+SIMP 6_X_Dependencies repository.
 
 #### puppetserver installation
 
@@ -343,10 +344,16 @@ suites.
 * Only applies if SIMP or SIMP dependencies repo is enabled in a test suite.
 * **unset** - If unset, the test will use the SIMP 6_X repos on PackageCloud,
   if those repos are enabled
-* **fully qualified path** - If set to a fully qualified path, the test will
-  assume this is a repo file that contains definitions for the SIMP repo
-  and/or the SIMP dependencies repo.  No SIMP internet repos will be
-  configured.
+* **fully qualified path** -
+
+  - The test will *assume* this is a repo file that contains definitions for the
+    SIMP repo and/or the SIMP dependencies repo.  No SIMP internet repos will be
+    configured.
+  - (Interim) repo files for the yum repos at
+    ``https://download.simp-project.com/simp/yum`` can be found in the
+    ``spec/acceptance/repo_files`` directory.  Since the repositories pointed to
+    by these files are being reconfigured, you may have to update these files.
+
 * **version** - If set, and does not start with `/`, the test will assume it
   is an different version for the SIMP PackageCloud repos.
 
