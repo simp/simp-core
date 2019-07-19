@@ -44,11 +44,18 @@ describe 'IPA server integration' do
         "--setattr=KrbPasswordExpiration=#{next_year}0606060606Z"
       ].join(' ')
       run_ipa_cmd(ipa_server, user_add)
-      run_ipa_cmd(ipa_server, 'ipa group-add posixusers --desc "A POSIX group is required to log in with the user"')
+
+      # This command will create a group with a POSIX attribute by default.
+      # Linux users must be in a POSIX group in order to login.
+      run_ipa_cmd(ipa_server, 'ipa group-add posixusers --desc "A POSIX group"')
+
       run_ipa_cmd(ipa_server, 'ipa group-add-member posixusers --users=testuser')
     end
 
-    it "should configure default hiera to allow the new IPA group access" do
+    it 'should configure default hiera to allow the new IPA group access' do
+      # NOTE: sssd is automatically configured to use the IPA domain, when
+      #       the host is discovered to be on the domain.  So, all we have
+      #       to do is allow the IPA group remote access to the server!
       hiera = YAML.load(on(master, "cat #{default_yaml_filename}").stdout)
       default_yaml = hiera.merge( {
         'pam::access::users'           => {

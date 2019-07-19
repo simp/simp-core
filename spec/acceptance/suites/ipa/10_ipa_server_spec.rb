@@ -75,14 +75,11 @@ describe 'set up an IPA server' do
       on(master, 'simp environment fix production --no-secondary-env --no-writable-env')
     end
 
-    it 'should update default hiera to use IPA for DNS, to use IPA domain in sssd, to allow ports for IPA services' do
+    it 'should update default hiera to use IPA for DNS & allow ports for IPA services' do
       hiera = YAML.load(on(master, "cat #{default_yaml_filename}").stdout)
       updated_hiera = hiera.merge( {
-        'simp_options::sssd'           => true,
-        'simp_options::ldap'           => true,
         'simp_options::dns::servers'   => [ipa_ip],
         'simp_options::dns::search'    => [ipa_domain],
-        'sssd::domains'                => ['LOCAL',ipa_domain],
         'resolv::named_autoconf'       => false,
         'resolv::caching'              => false,
         'resolv::resolv_domain'        => ipa_domain
@@ -120,6 +117,10 @@ describe 'set up an IPA server' do
       cmd << '--unattended'
       cmd << "--domain=#{ipa_domain}"
       cmd << "--realm=#{ipa_realm}"
+
+      # We have to tell IPA to use a reasonable UID/GID start number, or
+      # IPA will generate it randomly and it can be in the billions (i.e.,
+      # larger than the SIMP and SSSD default).
       cmd << '--idstart=5000'
       cmd << '--setup-dns'
       cmd << '--forwarder=8.8.8.8'

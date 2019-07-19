@@ -39,7 +39,7 @@ GEM
       beaker-puppet (~> 1.0)
       beaker-vmpooler (~> 1.0)
       stringify-hash (~> 0.0.0)
-    beaker-puppet (1.18.6)
+    beaker-puppet (1.18.7)
       beaker (~> 4.1)
       in-parallel (~> 0.1)
       oga
@@ -69,7 +69,7 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     dotenv (2.7.4)
     excon (0.64.0)
-    facter (2.5.4)
+    facter (2.5.5)
     faraday (0.13.1)
       multipart-post (>= 1.2, < 3)
     faraday_middleware (0.12.2)
@@ -144,7 +144,7 @@ GEM
       puppet (>= 2.7.16)
       rest-client (~> 1.8.0)
     puppet-lint (2.3.6)
-    puppet-strings (2.2.0)
+    puppet-strings (2.3.0)
       rgen
       yard (~> 0.9.5)
     puppet-syntax (2.5.0)
