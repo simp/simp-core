@@ -76,16 +76,15 @@ describe 'simp cli operations' do
       # the puppetserver!)
     end
 
-    it 'agents should still communicate with the puppetserver' do
+    it 'should re-establish connectivity' do
       agents.each do |agent|
         # FIXME For some reason, beaker's ssh connection can die on the first
         # puppet agent run for a client, even though logs on the client show
-        # no problems and puppet does not detect any changes. For the purposes
-        # of this test, we really only care that any puppet agent run after
-        # the re-bootstrap works. So, we'll retry up to 3 times.
+        # no problems and puppet does not detect any changes.  So, we'll retry
+        # up to 3 times.
         tries = 3
         begin
-          on(agent, 'puppet agent -t')
+          on(agent, 'uptime')
         rescue Beaker::Host::CommandFailure => e
           if e.message.include?('connection failure') && (tries > 0)
             puts "Retrying due to << #{e.message.strip} >>"
@@ -96,6 +95,10 @@ describe 'simp cli operations' do
           end
         end
       end
+    end
+
+    it 'agents should still communicate with the puppetserver' do
+      on(agents, 'puppet agent -t', :catch_failures => true)
     end
   end
 

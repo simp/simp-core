@@ -9,7 +9,6 @@ describe 'set up an IPA server' do
   ipa_server = hosts_with_role(hosts, 'ipa_server').first
   domain     = fact_on(master, 'domain')
 
-  admin_password = '@dm1n=P@ssw0r'
   ipa_domain     = domain
   ipa_realm      = ipa_domain.upcase
   ipa_fqdn       = fact_on(ipa_server, 'fqdn')
@@ -37,9 +36,10 @@ describe 'set up an IPA server' do
     end
 
     it 'should make sure the hostname is fully qualified' do
+      # TODO Is this additional configuration required?  We already set
+      #   the hostname in the basic setup.  This does more by replacing
+      #   the entire contents of the /etc/sysconfig/network file.
       fqdn = "#{ipa_server}.#{domain}"
-      on(ipa_server, "hostname #{fqdn}")
-      create_remote_file(ipa_server, '/etc/hostname', fqdn)
       create_remote_file(ipa_server, '/etc/sysconfig/network', <<-EOF.gsub(/^\s+/,'')
           NETWORKING=yes
           HOSTNAME=#{fqdn}
@@ -59,57 +59,42 @@ describe 'set up an IPA server' do
     end
   end
 
-  context 'classify nodes' do
-    it 'modify the existing hieradata' do
-      hiera = YAML.load(on(master, 'cat /etc/puppetlabs/code/environments/production/data/default.yaml').stdout)
-      default_yaml = hiera.merge(
-        'simp_options::sssd'           => true,
-        'simp_options::ldap'           => true,
+  context 'configure nodes for the IPA services' do
+    let(:files_dir) { 'spec/acceptance/common_files' }
+    let(:site_module_path) {
+      '/etc/puppetlabs/code/environments/production/modules/site'
+    }
+
+    let(:default_yaml_filename) {
+      '/etc/puppetlabs/code/environments/production/data/default.yaml'
+    }
+
+    it 'should install a manifest to allow ports for IPA services' do
+      # grab the whole site module even though we will only use site::ipa
+      rsync_to(master, "#{files_dir}/site", site_module_path)
+      on(master, 'simp environment fix production --no-secondary-env --no-writable-env')
+    end
+
+    it 'should update default hiera to use IPA for DNS & allow ports for IPA services' do
+      hiera = YAML.load(on(master, "cat #{default_yaml_filename}").stdout)
+      updated_hiera = hiera.merge( {
         'simp_options::dns::servers'   => [ipa_ip],
         'simp_options::dns::search'    => [ipa_domain],
-        'sssd::domains'                => ['LOCAL',ipa_domain],
         'resolv::named_autoconf'       => false,
         'resolv::caching'              => false,
-        'resolv::resolv_domain'        => ipa_domain,
-        'pam::access::users'           => {
-          'defaults'   => {
-            'origins'    => ['ALL'],
-            'permission' => '+'
-          },
-          'vagrant'      => nil,
-          'testuser'     => nil,
-          '(posixusers)' => nil,
-        },
-        'ssh::server::conf::passwordauthentication' => true,
-        'sudo::user_specifications' => {
-          'vagrant_sudo_nopasswd' => {
-            'user_list' => ['vagrant'],
-            'cmnd'      => ['ALL'],
-            'runas'     => 'root',
-            'passwd'    => false,
-          }
-        }
-      ).to_yaml
-      create_remote_file(master, '/etc/puppetlabs/code/environments/production/data/default.yaml', default_yaml)
+        'resolv::resolv_domain'        => ipa_domain
+      } )
+
+      # open up ports in iptables for IPA services
+      updated_hiera['classes'] = [] unless updated_hiera.has_key?('classes')
+      updated_hiera['classes'] << 'site::ipa'
+
+      default_yaml = updated_hiera.to_yaml
+      create_remote_file(master, default_yaml_filename, default_yaml)
+      on(master, "cat #{default_yaml_filename}")
     end
 
-    it 'should open ports' do
-      pp = <<-EOF
-        iptables::listen::udp { 'ipa server':
-          dports => [53,88,123,464]
-        }
-        iptables::listen::tcp_stateful { 'ipa server':
-          dports => [53,80,88,389,443,464,636]
-        }
-      EOF
-      create_remote_file(master, '/etc/puppetlabs/code/environments/production/manifests/ipa-iptables.pp', pp)
-      on(master, 'chown root.puppet /etc/puppetlabs/code/environments/production/manifests/*')
-      on(master, 'chmod g+rX /etc/puppetlabs/code/environments/production/manifests/*')
-    end
-  end
-
-  context 'should run puppet to apply above changes' do
-    it 'set up and run puppet' do
+    it 'should apply the configuration' do
       block_on(agents, :run_in_parallel => false) do |agent|
         retry_on(agent, 'puppet agent -t',
           :desired_exit_codes => [0],
@@ -122,7 +107,7 @@ describe 'set up an IPA server' do
   end
 
   context 'IPA server prep' do
-    it 'should bootstrap the IPA server' do
+    it 'should bootstrap the IPA server that will also provide DNS' do
       # remove existing ldap client configuration
       on(ipa_server, 'mv /etc/openldap/ldap.conf{,.bak}', :accept_all_exit_codes => true)
       on(ipa_server, 'mv /root/.ldaprc{,.bak}', :accept_all_exit_codes => true)
@@ -132,14 +117,18 @@ describe 'set up an IPA server' do
       cmd << '--unattended'
       cmd << "--domain=#{ipa_domain}"
       cmd << "--realm=#{ipa_realm}"
+
+      # We have to tell IPA to use a reasonable UID/GID start number, or
+      # IPA will generate it randomly and it can be in the billions (i.e.,
+      # larger than the SIMP and SSSD default).
       cmd << '--idstart=5000'
       cmd << '--setup-dns'
       cmd << '--forwarder=8.8.8.8'
       cmd << '--auto-reverse' if ipa_server.host_hash[:platform] =~ /el-7/
       cmd << "--hostname=#{ipa_fqdn}"
       cmd << "--ip-address=#{ipa_ip}"
-      cmd << '--ds-password="d1r3ct0ry=P@ssw0r"'
-      cmd << "--admin-password='#{admin_password}'"
+      cmd << "--ds-password='#{ipa_directory_service_password}'"
+      cmd << "--admin-password='#{ipa_admin_password}'"
 
       puts "\e[1;34m>>>>> The next step takes a very long time ... Please be patient! \e[0m"
       on(ipa_server, cmd.join(' '))
