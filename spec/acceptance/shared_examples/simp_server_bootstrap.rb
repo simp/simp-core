@@ -12,6 +12,12 @@ include Acceptance::Helpers::Utils
 #   :syslog_server_fqdns    - (REQUIRED) array of syslog server FQDNs
 #   :simp_config_extra_args - (OPTIONAL) array of additional arguments
 #                             to be passed to simp config
+#   :simp_ldap_server       - (OPTIONAL) whether to configure the SIMP
+#                             server as a SIMP LDAP server; defaults
+#                             to true
+#   :other_hiera            - (OPTIONAL) Hash of other hieradata to be
+#                             set.  Will be merged with the standard
+#                             hieradata.
 #
 shared_examples 'SIMP server bootstrap' do |master, config|
 
@@ -32,20 +38,27 @@ shared_examples 'SIMP server bootstrap' do |master, config|
       'simp_rsyslog::forward_logs'  => true
     } )
 
-    # Work around 128-bit cipher problems
-    # TODO:  Once SIMP-5507 is addressed, this workaround is *only*
-    # required when the el6 LDAP server is not in FIPS mode.
-    if master.host_hash[:platform] =~ /el-6/
-      hiera.merge!( {
-        'simp_openldap::server::conf::security' => [
-          'ssf=128',
-          'tls=128',
-          'update_ssf=128',
-          'simple_bind=128',
-          'update_tls=128',
-        ]
-      } )
+    if config.fetch(:simp_ldap_server, true)
+      # Work around 128-bit cipher problems
+      # TODO:  Once SIMP-5507 is addressed, this workaround is *only*
+      # required when the el6 LDAP server is not in FIPS mode.
+      if master.host_hash[:platform] =~ /el-6/
+        hiera.merge!( {
+          'simp_openldap::server::conf::security' => [
+            'ssf=128',
+            'tls=128',
+            'update_ssf=128',
+            'simple_bind=128',
+            'update_tls=128',
+          ]
+        } )
+      end
     end
+
+    if config.has_key?(:other_hiera)
+      hiera.merge!( config[:other_hiera] )
+    end
+
     hiera
   }
 
@@ -58,22 +71,29 @@ shared_examples 'SIMP server bootstrap' do |master, config|
 
   context 'puppet master' do
     let(:simp_conf_template) {
-      File.read('spec/acceptance/common_files/simp_conf.yaml.erb')
+      if config.fetch(:simp_ldap_server, true)
+        File.read('spec/acceptance/common_files/simp_conf.yaml.erb')
+      else
+        File.read('spec/acceptance/common_files/simp_conf.yaml_no_ldap.erb')
+      end
     }
 
     it 'should create answers file for simp config' do
-      # The following variables/methods are required by simp_conf.yaml.erb:
+      # The following variables are required by both simp_conf.yaml.erb:
+      # and simp_conf.yaml_no_ldap.erb
       #   domain
       #   grub_password_hash
       #   interface
       #   ipaddress
-      #   ldap_root_password_hash
       #   master_fqdn
       #   nameserver
       #   netmask
       #   syslog_server_fqdns
       #   trusted_nets
       #
+      # The following variables are require only by simp_conf.yaml.erb
+      #   ldap_root_password_hash
+    
       trusted_nets =  host_networks(master)
       expect(trusted_nets).to_not be_empty
 
@@ -87,7 +107,10 @@ shared_examples 'SIMP server bootstrap' do |master, config|
       expect(nameserver).to_not be_nil
 
       grub_password_hash = encrypt_grub_password(master, test_password)
-      ldap_root_password_hash = encrypt_openldap_password(test_password)
+
+      if config.fetch(:simp_ldap_server, true)
+        ldap_root_password_hash = encrypt_openldap_password(test_password)
+      end
 
       create_remote_file(master, '/root/simp_conf.yaml', ERB.new(simp_conf_template).result(binding))
       on(master, 'cat /root/simp_conf.yaml')

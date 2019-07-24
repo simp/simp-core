@@ -49,6 +49,7 @@ HOSTS:
   agent-el6:
     roles:
       - agent
+      - syslog_server
       - ipa_client
     platform:   el-6-x86_64
     box:        <%= box_6 %>

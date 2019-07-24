@@ -39,6 +39,12 @@ image: 'ruby:2.4'
     variables:
       - $SIMP_FULL_MATRIX
 
+.only_with_SIMP_FULL_MATRIX_or_SIMP_IPA_TEST: &only_with_SIMP_FULL_MATRIX_or_SIMP_IPA_TEST
+  only:
+    variables:
+      - $SIMP_FULL_MATRIX
+      - $SIMP_IPA_TEST
+
 default_el6-puppet5:
   stage: integration
   image: 'ruby:2.4'
@@ -77,7 +83,7 @@ ipa_el7-puppet5:
     - beaker
   <<: *cache_bundler
   <<: *setup_bundler_env
-  <<: *only_with_SIMP_FULL_MATRIX
+  <<: *only_with_SIMP_FULL_MATRIX_or_SIMP_IPA_TEST
   variables:
     PUPPET_VERSION: '~> 5.5'
     BEAKER_PUPPET_COLLECTION: 'puppet5'
@@ -94,6 +100,7 @@ ipa_el7-puppet5:
 #     - beaker
 #   <<: *cache_bundler
 #   <<: *setup_bundler_env
+#   <<: *only_with_SIMP_FULL_MATRIX_or_SIMP_IPA_TEST
 #   variables:
 #     PUPPET_VERSION: '~> 5.5'
 #     BEAKER_PUPPET_COLLECTION: 'puppet5'
@@ -143,7 +150,7 @@ ipa_oel7-puppet5:
     - beaker
   <<: *cache_bundler
   <<: *setup_bundler_env
-  <<: *only_with_SIMP_FULL_MATRIX
+  <<: *only_with_SIMP_FULL_MATRIX_or_SIMP_IPA_TEST
   variables:
     PUPPET_VERSION: '~> 5.5'
     BEAKER_PUPPET_COLLECTION: 'puppet5'
