@@ -7,6 +7,7 @@ require_relative 'acceptance/shared_examples'
 
 include Simp::BeakerHelpers
 include Acceptance::Helpers::ExpectScriptHelper
+include Acceptance::Helpers::IpaHelper
 include Acceptance::Helpers::PasswordHelper
 include Acceptance::Helpers::PuppetHelper
 include Acceptance::Helpers::RepoHelper

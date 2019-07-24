@@ -43,7 +43,6 @@ describe 'Install SIMP modules and assets via release tarball' do
     end
 
     it 'should install simp module and asset RPMs and create local Git module repos' do
-      master.install_package('simp-adapter')
       master.install_package('simp')
     end
   end

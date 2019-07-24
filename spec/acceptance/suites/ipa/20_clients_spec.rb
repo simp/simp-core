@@ -1,71 +1,17 @@
 require 'spec_helper_integration'
 
-def skip_fips(host)
-  if fips_enabled(host) && host.host_hash[:roles].include?('no_fips')
-    return true
-  else
-    return false
-  end
-end
-
-def run_ipa_cmd(host, pass, cmd)
-  on(host, "echo \"#{pass}\" | kinit admin")
-  result = on(host, cmd)
-  on(host, 'kdestroy')
-
-  result
-end
-
-describe 'sets up IPA clients' do
+describe 'set up IPA clients' do
 
   ipa_server  = hosts_with_role(hosts, 'ipa_server').first
   ipa_clients = hosts_with_role(hosts, 'ipa_client')
   domain      = fact_on(master, 'domain')
 
-  admin_password = '@dm1n=P@ssw0r'
-  enroll_pass    = 'en0llm3ntp@ssWor^'
   ipa_domain     = domain
   ipa_fqdn       = fact_on(ipa_server, 'fqdn')
 
-  context 'classify nodes' do
-    it 'modify the existing hieradata' do
-      site_pp = <<-EOF
-        # All nodes
-        node default {
-          include 'simp_options'
-          include 'simp'
-          include 'simp_ipa::client::install'
-        }
-        # The puppetserver
-        node /puppet/ {
-          include 'simp_options'
-          include 'simp'
-          include 'simp::server'
-          include 'pupmod'
-          include 'pupmod::master'
-          include 'simp_ipa::client::install'
-        }
-      EOF
-      create_remote_file(master, '/etc/puppetlabs/code/environments/production/manifests/site.pp', site_pp)
-
-      hiera = YAML.load(on(master, 'cat /etc/puppetlabs/code/environments/production/data/default.yaml').stdout)
-      default_yaml = hiera.merge(
-        'simp_ipa::client::install::ensure'   => 'present',
-        'simp_ipa::client::install::password' => enroll_pass,
-        'simp_ipa::client::install::server'   => [ipa_fqdn],
-        'simp_ipa::client::install::domain'   => ipa_domain,
-        'simp_ipa::client::install::hostname' => '%{trusted.certname}',
-        # 'simp_ipa::client::install::install_options' => {
-        #   'verbose' => nil,
-        # }
-      ).to_yaml
-      create_remote_file(master, '/etc/puppetlabs/code/environments/production/data/default.yaml', default_yaml)
-    end
-  end
-
-  context 'add hosts to ipa server' do
+  context 'add host entries to IPA with an enrollment password' do
     block_on(ipa_clients) do |client|
-      it "should run host-add for #{client}" do
+      it "should run host-add with a OTP for #{client}" do
         client_ip = client.reachable_name
         expect(client_ip).to_not be_nil
 
@@ -74,16 +20,56 @@ describe 'sets up IPA clients' do
           "#{client}.#{ipa_domain}",
           "--ip-address=#{client_ip}",
           '--no-reverse',
-          "--password=#{enroll_pass}"
+          "--password=#{ipa_bulk_enroll_password}"
         ].join(' ')
 
-        run_ipa_cmd(ipa_server, admin_password, cmd)
+        run_ipa_cmd(ipa_server, cmd)
       end
     end
   end
 
-  context 'run puppet' do
-    it 'set up and run puppet' do
+  context 'join hosts to the IPA domain using simp_ipa::client::install' do
+    let(:default_yaml_filename) {
+      '/etc/puppetlabs/code/environments/production/data/default.yaml'
+    }
+
+    it 'should configure hiera for simp_ipa::client::install' do
+      hiera = YAML.load(on(master, "cat #{default_yaml_filename}").stdout)
+      updated_hiera = hiera.merge(
+        'simp_ipa::client::install::ensure'   => 'present',
+        'simp_ipa::client::install::password' => ipa_bulk_enroll_password,
+        'simp_ipa::client::install::server'   => [ipa_fqdn],
+        'simp_ipa::client::install::domain'   => ipa_domain,
+        'simp_ipa::client::install::hostname' => '%{trusted.certname}',
+      )
+      updated_hiera['classes'] << 'simp_ipa::client::install'
+      default_yaml = updated_hiera.to_yaml
+      create_remote_file(master, default_yaml_filename, default_yaml)
+      on(master, "cat #{default_yaml_filename}")
+    end
+
+    it 'should re-establish connectivity' do
+      agents.each do |agent|
+        # FIXME For some reason, beaker's ssh connection can die on the first
+        # puppet agent run for a client, even though logs on the client show
+        # no problems and puppet does not detect any changes.  (Same problem
+        # in default/40_simp_cli_spec.rb).  So, we'll retry up to 3 times.
+        tries = 3
+        begin
+          on(agent, 'uptime')
+        rescue Beaker::Host::CommandFailure => e
+          if e.message.include?('connection failure') && (tries > 0)
+            puts "Retrying due to << #{e.message.strip} >>"
+            tries -= 1
+            retry
+          else
+            raise e
+          end
+        end
+      end
+    end
+
+    it 'should apply the configuration' do
       block_on(agents, :run_in_parallel => false) do |agent|
         retry_on(agent, 'puppet agent -t',
           :desired_exit_codes => [0],

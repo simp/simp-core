@@ -1,0 +1,242 @@
+#========================================================================
+# simp config answers
+#
+# Generated for 'simp' scenario on 2019-05-23 20:42:35
+#------------------------------------------------------------------------
+# You can use these answers to quickly configure subsequent
+# simp installations by running the command:
+#
+#   simp config -A /PATH/TO/THIS/FILE
+#
+# simp config will prompt for any missing items.
+#
+# NOTE:
+# - All YAML keys that begin with 'cli::' are used by
+#   simp config, internally, and are not Puppet hieradata.
+#========================================================================
+---
+# === cli::version ===
+# The version of simp-cli used to generate this file.
+cli::version: "5.0.0"
+
+# === cli::is_simp_ldap_server ===
+# Whether the SIMP server will also be a SIMP-provided LDAP server.
+#
+# Enter 'yes' if want to use SIMP-provided LDAP and have the SIMP
+# server also be the LDAP server.
+#
+# Enter 'no' if you do not want to use LDAP, you want to use some other
+# LDAP implementation, or you want to set up SIMP-provided LDAP in a
+# different configuration.  In these cases, you will need to set up
+# appropriate central authentication services manually before or
+# after bootstrapping.
+cli::is_simp_ldap_server: false
+
+# === cli::network::gateway ===
+# The default gateway.
+# TODO Remove this when SIMP-6625 is completed.  This value is not actually
+# required by simp config when cli::set_up_nic is false.
+cli::network::gateway: 1.2.3.4
+
+# === cli::network::hostname ===
+# The Fully Qualified Domain Name (FQDN) of the system.
+#
+# This *MUST* contain a domain. Simple hostnames are not allowed.
+cli::network::hostname: <%= master_fqdn %>
+
+# === cli::network::interface ===
+# The network interface to use to connect the SIMP server to the network.
+cli::network::interface: <%= interface %>
+
+# === cli::network::ipaddress ===
+# The IP address of the system.
+cli::network::ipaddress: <%= ipaddress %>
+
+# === cli::network::netmask ===
+# The netmask of the system.
+cli::network::netmask: <%= netmask %>
+
+# === cli::network::set_up_nic ===
+# Whether to configure and activate this NIC now. A properly configured
+# NIC with associated hostname is required for SIMP to be bootstrapped.
+#
+# If you enter 'yes', this will immediately, with appropriate prompts for
+# networking information, do the following:
+# - Configure the NIC for static or DHCP operation
+# - Set the hostname associated with the NIC
+# - **RESET** the interface to ensure proper activation of the NIC.
+#
+# If you enter 'no', this will prompt you to enter all the NIC's networking
+# information, including the hostname, and `simp config` will **ASSUME** the
+# network has been configured and activated.
+#
+# You should enter 'yes' if the interface has not yet been configured.
+# You may want to enter 'yes', if you want to reconfigure it and are **NOT**
+# logged into the server via this interface.
+#
+cli::network::set_up_nic: false
+
+# === cli::set_grub_password ===
+# Whether to set the GRUB password on this system.
+cli::set_grub_password: true
+
+# === cli::simp::scenario ===
+# The SIMP scenario: Predetermined set of security features to apply.
+#
+# 'simp'      = Settings for a full SIMP system. Both the SIMP server
+#               (this host) and all clients will be running with
+#               all security features enabled.
+# 'simp_lite' = Settings for a SIMP system in which some security features
+#               are disabled for SIMP clients.  The SIMP server will
+#               be running with all security features enabled.
+# 'poss'      = Settings for a SIMP system in which all security features
+#               for the SIMP clients are disabled.  The SIMP server will
+#               be running with all security features enabled.
+#
+# NOTE:  If your site has different needs than provided by the predetermined
+# scenarios, you can always fine-tune the security settings after you have
+# bootstrapped your SIMP server.
+cli::simp::scenario: simp
+
+# === cli::use_internet_simp_yum_repos ===
+# Whether to configure SIMP nodes to use internet SIMP and
+# SIMP dependency YUM repositories.
+#
+# When this option is enabled, Puppet-managed, YUM repository
+# configurations will be created for both the SIMP server and
+# SIMP clients. These configurations will point to official
+# SIMP repositories.
+cli::use_internet_simp_yum_repos: false
+
+# === grub::password ===
+# The password to access GRUB.
+#
+# The value entered is used to set the GRUB password and to generate a hash
+# stored in grub::password.
+grub::password: "<%= grub_password_hash %>"
+
+# === puppetdb::master::config::puppetdb_port ===
+# The PuppetDB server port number.
+puppetdb::master::config::puppetdb_port: 8139
+
+# === puppetdb::master::config::puppetdb_server ===
+# The DNS name or IP of the PuppetDB server.
+puppetdb::master::config::puppetdb_server: "%{hiera('simp_options::puppet::server')}"
+
+# === simp::runlevel ===
+# The default system runlevel (1-5).
+simp::runlevel: 3
+
+
+# === simp_options::dns::search ===
+# The DNS domain search string.
+#
+# Remember to put these in the appropriate order for your environment!
+simp_options::dns::search: [ <%= domain %> ]
+
+# === simp_options::dns::servers ===
+# A list of DNS servers for the managed hosts.
+#
+# If the first entry of this list is set to '127.0.0.1', then
+# all clients will configure themselves as caching DNS servers
+# pointing to the other entries in the list.
+#
+# If you have a system that's including the 'named' class and
+# is *not* in this list, then you'll need to set a variable at
+# the top of that node entry called $named_server to 'true'.
+# This will get around the convenience logic that was put in
+# place to handle the caching entries and will not attempt to
+# convert your system to a caching DNS server. You'll know
+# that you have this situation if you end up with a duplicate
+# definition for File['/etc/named.conf'].
+simp_options::dns::servers: [ <%= nameserver %> ]
+
+
+# === simp_options::ntpd::servers ===
+# Your network's NTP time servers.
+#
+# A consistent time source is critical to a functioning public key
+# infrastructure, and thus your site security. **DO NOT** attempt to
+# run multiple production systems using individual hardware clocks!
+#
+# For many networks, the default gateway (10.0.2.2) provides an NTP server.
+simp_options::ntpd::servers:
+- 0.pool.ntp.org
+- 1.pool.ntp.org
+- 2.pool.ntp.org
+- 3.pool.ntp.org
+
+# === simp_options::puppet::ca ===
+# The Puppet Certificate Authority.
+simp_options::puppet::ca: <%= master_fqdn %>
+
+# === simp_options::puppet::ca_port ===
+# The port on which the Puppet Certificate Authority will listen
+# (8141 by default).
+simp_options::puppet::ca_port: 8141
+
+# === simp_options::puppet::server ===
+# The Hostname or FQDN of the Puppet server.
+simp_options::puppet::server: <%= master_fqdn %>
+
+# === simp_options::syslog::failover_log_servers ===
+# Failover log server(s) in case your log servers(s) fail.
+simp_options::syslog::failover_log_servers: []
+
+# === simp_options::syslog::log_servers ===
+# The log server(s) to receive forwarded logs.
+#
+# No log forwarding is enabled when this list is empty.  Only use hostnames
+# here if at all possible.
+simp_options::syslog::log_servers: <%= (syslog_server_fqdns.nil? or syslog_server_fqdns.empty?) ? '[]': '[ ' + syslog_server_fqdns.join(', ') + ' ]' %>
+
+# === simp_options::trusted_nets ===
+# A list of subnets to permit, in CIDR notation.
+#
+# If you need this to be more (or less) restrictive for a given class,
+# you can override it in Hiera.
+simp_options::trusted_nets: <%= (trusted_nets.nil? or trusted_nets.empty?) ? '[]': '[ ' + trusted_nets.join(', ') + ' ]' %>
+
+# === sssd::domains ===
+# A list of domains for SSSD to use.
+#
+# * When you are using SIMP-provided LDAP, this field should include `LDAP`,
+#   the name of the SSSD domain SIMP creates.
+# * Otherwise, this field must be a valid domain ('Local' and/or a custom
+#   domain) or the sssd service will fail to start.
+#
+sssd::domains:
+- Local
+
+# === svckill::mode ===
+# Strategy svckill should use when it encounters undeclared services.
+#
+# 'enforcing' = Shut down and disable all services not listed in your
+#               manifests or the exclusion file
+# 'warning'   = Only report what undeclared services should be shut
+#               down and disabled, without actually making the changes
+#               to the system
+#
+# NOTICE: svckill is the mechanism that SIMP uses to comply with the
+# requirement that no unauthorized services are running on your system.
+# If you are fully aware of all services that need to be running on the
+# system, including any custom applications, use 'enforcing'.  If you
+# first need to ascertain which services should be running on the system,
+# use 'warning'.
+svckill::mode: warning
+
+# === useradd::securetty ===
+# A list of TTYs for which the root user can login.
+#
+# When useradd::securetty is an empty list, the system will satisfy FISMA
+# regulations, which require root login via any TTY (including the console)
+# to be disabled.  For some systems, the inability to login as root via the
+# console is problematic.  In that case, you may wish to include at least
+# tty0 to the list of allowed TTYs, despite the security risk.
+#
+useradd::securetty:
+- tty0
+- tty1
+- tty2
+- tty3
+
