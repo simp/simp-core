@@ -96,6 +96,14 @@ describe 'compliance reporting and enforcement' do
         expect(result).to_not match /parameter .+ expects .+ got/m
       end
     end
+
+    it 'should reboot the agents to apply boot time config' do
+      # this will also re-establish beaker's ssh connection with
+      # the correct ciphers
+      block_on(agents, :run_in_parallel => false) do |agent|
+        agent.reboot
+      end
+    end
   end
 
   context 'compliance reports on the master' do
