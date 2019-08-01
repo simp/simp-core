@@ -33,7 +33,7 @@ mod 'simp-rsync_data',
 # checks in travis and gitlab
 mod 'simp-rsync_data_pre64',
   :git => 'https://github.com/simp/simp-rsync',
-  :tag => '6.2.1-1'
+  :tag => '6.2.1-2'
 
 mod 'simp-adapter',
   :git => 'https://github.com/simp/simp-adapter',
@@ -46,6 +46,10 @@ mod 'simp-environment',
 mod 'simp-gpgkeys',
   :git => 'https://github.com/simp/simp-gpgkeys',
   :branch => 'master'
+
+mod 'simp-simp_selinux_policy',
+  :git => 'https://github.com/simp/simp-selinux-policy',
+  :tag => '1.0.0'
 
 mod 'simp-utils',
   :git => 'https://github.com/simp/simp-utils',
