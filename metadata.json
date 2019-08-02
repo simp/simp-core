@@ -132,7 +132,7 @@
     },
     {
       "name": "simp/clamav",
-      "version_requirement": ">= 6.2.0 < 7.0.0"
+      "version_requirement": ">= 6.3.0 < 7.0.0"
     },
     {
       "name": "simp/compliance_markup",
@@ -180,7 +180,7 @@
     },
     {
       "name": "simp/ntpd",
-      "version_requirement": ">= 6.4.0 < 7.0.0"
+      "version_requirement": ">= 6.5.0 < 7.0.0"
     },
     {
       "name": "simp/oddjob",
@@ -204,7 +204,7 @@
     },
     {
       "name": "simp/pupmod",
-      "version_requirement": ">= 7.10.1 < 8.0.0"
+      "version_requirement": ">= 7.11.0 < 8.0.0"
     },
     {
       "name": "simp/resolv",
@@ -212,7 +212,7 @@
     },
     {
       "name": "simp/rkhunter",
-      "version_requirement": ">= 0.0.1 < 1.0.0"
+      "version_requirement": ">= 0.0.2 < 1.0.0"
     },
     {
       "name": "simp/rsync",
@@ -224,7 +224,7 @@
     },
     {
       "name": "simp/selinux",
-      "version_requirement": ">= 2.4.1 < 3.0.0"
+      "version_requirement": ">= 2.5.0 < 3.0.0"
     },
     {
       "name": "simp/simp",

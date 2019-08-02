@@ -213,7 +213,7 @@ mod 'simp-chkrootkit',
 
 mod 'simp-clamav',
   :git => 'https://github.com/simp/pupmod-simp-clamav',
-  :tag => '6.2.0'
+  :tag => '6.3.0'
 
 mod 'simp-compliance_markup',
   :git => 'https://github.com/simp/pupmod-simp-compliance_markup',
@@ -280,7 +280,7 @@ mod 'simp-issue',
 
 mod 'simp-journald',
   :git => 'https://github.com/simp/pupmod-simp-journald.git',
-  :tag => '1.0.0'
+  :tag => '1.1.0'
 
 mod 'simp-krb5',
   :git => 'https://github.com/simp/pupmod-simp-krb5',
@@ -320,11 +320,11 @@ mod 'simp-nfs',
 
 mod 'simp-ntpd',
   :git => 'https://github.com/simp/pupmod-simp-ntpd',
-  :tag => '6.4.0'
+  :tag => '6.5.0'
 
 mod 'simp-oath',
   :git => 'https://github.com/simp/pupmod-simp-oath',
-  :tag => '0.1.0'
+  :tag => '0.1.1'
 
 mod 'simp-oddjob',
   :git => 'https://github.com/simp/pupmod-simp-oddjob',
@@ -352,7 +352,7 @@ mod 'simp-postfix',
 
 mod 'simp-pupmod',
   :git => 'https://github.com/simp/pupmod-simp-pupmod',
-  :tag => '7.10.1'
+  :tag => '7.11.0'
 
 mod 'simp-resolv',
   :git => 'https://github.com/simp/pupmod-simp-resolv',
@@ -360,7 +360,7 @@ mod 'simp-resolv',
 
 mod 'simp-rkhunter',
   :git => 'https://github.com/simp/pupmod-simp-rkhunter',
-  :tag => '0.0.1'
+  :tag => '0.0.2'
 
 mod 'simp-rsync',
   :git => 'https://github.com/simp/pupmod-simp-rsync',
@@ -372,7 +372,7 @@ mod 'simp-rsyslog',
 
 mod 'simp-selinux',
   :git => 'https://github.com/simp/pupmod-simp-selinux',
-  :tag => '2.4.1'
+  :tag => '2.5.0'
 
 mod 'simp-simp',
   :git => 'https://github.com/simp/pupmod-simp-simp',
