@@ -152,11 +152,11 @@
     },
     {
       "name": "simp/fips",
-      "version_requirement": ">= 0.2.2 < 1.0.0"
+      "version_requirement": ">= 0.3.0 < 1.0.0"
     },
     {
       "name": "simp/haveged",
-      "version_requirement": ">= 0.4.7 < 1.0.0"
+      "version_requirement": ">= 0.5.0 < 1.0.0"
     },
     {
       "name": "simp/incron",
@@ -176,7 +176,7 @@
     },
     {
       "name": "simp/named",
-      "version_requirement": ">= 6.1.2 < 7.0.0"
+      "version_requirement": ">= 6.2.0 < 7.0.0"
     },
     {
       "name": "simp/ntpd",
@@ -188,7 +188,7 @@
     },
     {
       "name": "simp/pam",
-      "version_requirement": ">= 6.5.0 < 7.0.0"
+      "version_requirement": ">= 6.6.0 < 7.0.0"
     },
     {
       "name": "simp/pki",
@@ -248,15 +248,15 @@
     },
     {
       "name": "simp/simp_options",
-      "version_requirement": ">= 1.2.4 < 2.0.0"
+      "version_requirement": ">= 1.3.0 < 2.0.0"
     },
     {
       "name": "simp/simp_rsyslog",
-      "version_requirement": ">= 0.3.2 < 1.0.0"
+      "version_requirement": ">= 0.4.0 < 1.0.0"
     },
     {
       "name": "simp/ssh",
-      "version_requirement": ">= 6.7.1 < 7.0.0"
+      "version_requirement": ">= 6.8.0 < 7.0.0"
     },
     {
       "name": "simp/sssd",
@@ -264,7 +264,7 @@
     },
     {
       "name": "simp/stunnel",
-      "version_requirement": ">= 6.4.2 < 7.0.0"
+      "version_requirement": ">= 6.5.0 < 7.0.0"
     },
     {
       "name": "simp/sudo",
@@ -304,7 +304,7 @@
     },
     {
       "name": "simp/useradd",
-      "version_requirement": ">= 0.2.3 < 1.0.0"
+      "version_requirement": ">= 0.3.0 < 1.0.0"
     },
     {
       "name": "simp/vox_selinux",

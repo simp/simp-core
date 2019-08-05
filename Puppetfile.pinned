@@ -237,7 +237,7 @@ mod 'simp-dhcp',
 
 mod 'simp-fips',
   :git => 'https://github.com/simp/pupmod-simp-fips',
-  :tag => '0.2.2'
+  :tag => '0.3.0'
 
 mod 'simp-freeradius',
   :git => 'https://github.com/simp/pupmod-simp-freeradius',
@@ -256,7 +256,7 @@ mod 'simp-gnome',
 # changes will be done on the 'master' branch.
 mod 'simp-haveged',
   :git => 'https://github.com/simp/pupmod-simp-haveged',
-  :tag => '0.4.7'
+  :tag => '0.5.0'
 
 mod 'simp-hirs_provisioner',
   :git => 'https://github.com/simp/pupmod-simp-hirs_provisioner',
@@ -308,7 +308,7 @@ mod 'simp-mozilla',
 
 mod 'simp-named',
   :git => 'https://github.com/simp/pupmod-simp-named',
-  :tag => '6.1.2'
+  :tag => '6.2.0'
 
 mod 'simp-network',
   :git => 'https://github.com/simp/pupmod-simp-network',
@@ -336,7 +336,7 @@ mod 'simp-openscap',
 
 mod 'simp-pam',
   :git => 'https://github.com/simp/pupmod-simp-pam',
-  :tag => '6.5.0'
+  :tag => '6.6.0'
 
 mod 'simp-pki',
   :git => 'https://github.com/simp/pupmod-simp-pki',
@@ -423,7 +423,7 @@ mod 'simp-simp_ipa',
 
 mod 'simp-simp_nfs',
   :git => 'https://github.com/simp/pupmod-simp-simp_nfs',
-  :tag => '0.1.1'
+  :tag => '0.2.0'
 
 mod 'simp-simp_openldap',
   :git => 'https://github.com/simp/pupmod-simp-simp_openldap',
@@ -431,7 +431,7 @@ mod 'simp-simp_openldap',
 
 mod 'simp-simp_options',
   :git => 'https://github.com/simp/pupmod-simp-simp_options',
-  :tag => '1.2.4'
+  :tag => '1.3.0'
 
 mod 'simp-simp_pki_service',
   :git => 'https://github.com/simp/pupmod-simp-simp_pki_service',
@@ -439,7 +439,7 @@ mod 'simp-simp_pki_service',
 
 mod 'simp-simp_rsyslog',
   :git => 'https://github.com/simp/pupmod-simp-simp_rsyslog',
-  :tag => '0.3.2'
+  :tag => '0.4.0'
 
 mod 'simp-simp_snmpd',
   :git => 'https://github.com/simp/pupmod-simp-simp_snmpd',
@@ -447,7 +447,7 @@ mod 'simp-simp_snmpd',
 
 mod 'simp-ssh',
   :git => 'https://github.com/simp/pupmod-simp-ssh',
-  :tag => '6.7.1'
+  :tag => '6.8.0'
 
 mod 'simp-sssd',
   :git => 'https://github.com/simp/pupmod-simp-sssd',
@@ -455,7 +455,7 @@ mod 'simp-sssd',
 
 mod 'simp-stunnel',
   :git => 'https://github.com/simp/pupmod-simp-stunnel',
-  :tag => '6.4.2'
+  :tag => '6.5.0'
 
 mod 'simp-sudo',
   :git => 'https://github.com/simp/pupmod-simp-sudo',
@@ -503,7 +503,7 @@ mod 'simp-upstart',
 
 mod 'simp-useradd',
   :git => 'https://github.com/simp/pupmod-simp-useradd',
-  :tag => '0.2.3'
+  :tag => '0.3.0'
 
 mod 'simp-vnc',
   :git => 'https://github.com/simp/pupmod-simp-vnc',
