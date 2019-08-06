@@ -216,7 +216,7 @@
     },
     {
       "name": "simp/rsync",
-      "version_requirement": ">= 6.1.1 < 7.0.0"
+      "version_requirement": ">= 6.3.0 < 7.0.0"
     },
     {
       "name": "simp/rsyslog",
@@ -228,7 +228,7 @@
     },
     {
       "name": "simp/simp",
-      "version_requirement": ">= 4.9.0 < 5.0.0"
+      "version_requirement": ">= 4.10.0 < 5.0.0"
     },
     {
       "name": "simp/simplib",
@@ -260,7 +260,7 @@
     },
     {
       "name": "simp/sssd",
-      "version_requirement": ">= 6.1.6 < 7.0.0"
+      "version_requirement": ">= 6.2.0 < 7.0.0"
     },
     {
       "name": "simp/stunnel",
