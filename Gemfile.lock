@@ -28,10 +28,10 @@ GEM
     beaker-docker (0.5.4)
       docker-api
       stringify-hash (~> 0.0.0)
-    beaker-hostgenerator (1.1.32)
+    beaker-hostgenerator (1.1.35)
       deep_merge (~> 1.0)
       stringify-hash (~> 0.0.0)
-    beaker-pe (2.1.7)
+    beaker-pe (2.1.8)
       beaker (~> 4.0)
       beaker-abs
       beaker-answers (~> 0.0)
@@ -66,8 +66,8 @@ GEM
       multi_json
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
-    dotenv (2.7.4)
-    excon (0.65.0)
+    dotenv (2.7.5)
+    excon (0.66.0)
     facter (2.5.5)
     faraday (0.13.1)
       multipart-post (>= 1.2, < 3)
@@ -82,7 +82,7 @@ GEM
       gettext (>= 3.0.2)
       locale
     hiera (3.5.0)
-    highline (1.7.10)
+    highline (2.0.2)
     hocon (1.2.5)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
@@ -132,7 +132,7 @@ GEM
       pry (~> 0.11)
       yard (~> 0.9.11)
     public_suffix (3.1.1)
-    puppet (5.5.14)
+    puppet (5.5.16)
       facter (> 2.0.1, < 4)
       fast_gettext (~> 1.1.2)
       hiera (>= 3.2.1, < 4)
@@ -207,18 +207,18 @@ GEM
       rspec-its
       specinfra (~> 2.72)
     sfl (2.3)
-    simp-beaker-helpers (1.14.3)
+    simp-beaker-helpers (1.14.4)
       beaker (~> 4.0)
       beaker-docker (~> 0.3)
       beaker-puppet (~> 1.0)
       beaker-puppet_install_helper (~> 0.9)
       beaker-rspec (~> 6.2)
       beaker-vagrant (~> 0.5)
-      highline (~> 1.6)
+      highline (~> 2.0)
       net-telnet (~> 0.1.1)
       nokogiri (~> 1.8)
     simp-build-helpers (0.1.1)
-    simp-rake-helpers (5.9.0)
+    simp-rake-helpers (5.9.1)
       bundler (>= 1.14, < 3.0)
       pager (~> 1.0)
       parallel (~> 1.0)
@@ -237,7 +237,7 @@ GEM
       json (~> 1)
       rspec-puppet-facts (~> 0)
     spdx-licenses (1.2.0)
-    specinfra (2.79.0)
+    specinfra (2.81.0)
       net-scp
       net-ssh (>= 2.7)
       net-telnet (= 0.1.1)
@@ -265,7 +265,7 @@ DEPENDENCIES
   pry
   pry-byebug
   pry-doc
-  puppet (= 5.5.14)
+  puppet (~> 5.5)
   puppet-lint
   puppet-strings
   puppetlabs_spec_helper
@@ -273,7 +273,7 @@ DEPENDENCIES
   ruby-progressbar
   simp-beaker-helpers (>= 1.12.1, < 2.0)
   simp-build-helpers (>= 0.1.0)
-  simp-rake-helpers (~> 5.9, < 6.0)
+  simp-rake-helpers (>= 5.9.1, < 6.0)
 
 BUNDLED WITH
    1.17.3

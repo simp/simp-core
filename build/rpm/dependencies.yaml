@@ -108,6 +108,14 @@
   :obsoletes:
     'pupmod-cristifalcas-journald': '0.6.0-0'
 
+# pupmod-saz-locales-2.5.1-0 has a packaging bug in which the RPM state
+# directory used contains an unexpanded RPM macro (the string
+# '%{_localstatedir}' instead of '/var').  Need to re-release based
+# on simp-rake-helpers >= 5.9.1, in order to fix the bug.
+# TODO:  Remove this entry when the version advances beyond 2.5.1.
+'locales':
+  :release: '1'
+
 'motd':
   :requires:
     # exclude pupmod-puppetlabs-registry
