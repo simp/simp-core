@@ -20,7 +20,7 @@ moduledir 'src/assets'
 
 mod 'rubygem-rubygem_simp_cli',
   :git => 'https://github.com/simp/rubygem-simp-cli',
-  :tag => '5.0.2'
+  :tag => '5.0.3'
 
 # FIXME Doesn't have RPM packaging yet
 #mod 'rubygem-rubygem_simp_processgraph',
@@ -217,7 +217,7 @@ mod 'simp-clamav',
 
 mod 'simp-compliance_markup',
   :git => 'https://github.com/simp/pupmod-simp-compliance_markup',
-  :tag => '2.4.5'
+  :tag => '3.0.0'
 
 mod 'simp-cron',
   :git => 'https://github.com/simp/pupmod-simp-cron',
@@ -447,7 +447,7 @@ mod 'simp-simp_snmpd',
 
 mod 'simp-ssh',
   :git => 'https://github.com/simp/pupmod-simp-ssh',
-  :tag => '6.8.0'
+  :tag => '6.8.1'
 
 mod 'simp-sssd',
   :git => 'https://github.com/simp/pupmod-simp-sssd',
