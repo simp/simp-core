@@ -116,7 +116,7 @@
     },
     {
       "name": "simp/aide",
-      "version_requirement": ">= 6.2.2 < 7.0.0"
+      "version_requirement": ">= 6.3.0 < 7.0.0"
     },
     {
       "name": "simp/at",
@@ -124,7 +124,7 @@
     },
     {
       "name": "simp/auditd",
-      "version_requirement": ">= 8.3.2 < 9.0.0"
+      "version_requirement": ">= 8.4.0 < 9.0.0"
     },
     {
       "name": "simp/chkrootkit",
@@ -132,11 +132,11 @@
     },
     {
       "name": "simp/clamav",
-      "version_requirement": ">= 6.2.0 < 7.0.0"
+      "version_requirement": ">= 6.3.0 < 7.0.0"
     },
     {
       "name": "simp/compliance_markup",
-      "version_requirement": ">= 2.4.5 < 3.0.0"
+      "version_requirement": ">= 3.0.0 < 4.0.0"
     },
     {
       "name": "simp/cron",
@@ -144,7 +144,7 @@
     },
     {
       "name": "simp/deferred_resources",
-      "version_requirement": ">= 0.2.1 < 1.0.0"
+      "version_requirement": ">= 0.2.2 < 1.0.0"
     },
     {
       "name": "simp/dhcp",
@@ -152,11 +152,11 @@
     },
     {
       "name": "simp/fips",
-      "version_requirement": ">= 0.2.2 < 1.0.0"
+      "version_requirement": ">= 0.3.0 < 1.0.0"
     },
     {
       "name": "simp/haveged",
-      "version_requirement": ">= 0.4.7 < 1.0.0"
+      "version_requirement": ">= 0.5.0 < 1.0.0"
     },
     {
       "name": "simp/incron",
@@ -164,23 +164,23 @@
     },
     {
       "name": "simp/iptables",
-      "version_requirement": ">= 6.2.2 < 7.0.0"
+      "version_requirement": ">= 6.3.0 < 7.0.0"
     },
     {
       "name": "simp/issue",
-      "version_requirement": ">= 0.0.4 < 1.0.0"
+      "version_requirement": ">= 0.1.0 < 1.0.0"
     },
     {
       "name": "simp/logrotate",
-      "version_requirement": ">= 6.3.1 < 7.0.0"
+      "version_requirement": ">= 6.4.0 < 7.0.0"
     },
     {
       "name": "simp/named",
-      "version_requirement": ">= 6.1.2 < 7.0.0"
+      "version_requirement": ">= 6.2.0 < 7.0.0"
     },
     {
       "name": "simp/ntpd",
-      "version_requirement": ">= 6.4.0 < 7.0.0"
+      "version_requirement": ">= 6.5.0 < 7.0.0"
     },
     {
       "name": "simp/oddjob",
@@ -188,7 +188,7 @@
     },
     {
       "name": "simp/pam",
-      "version_requirement": ">= 6.5.0 < 7.0.0"
+      "version_requirement": ">= 6.6.0 < 7.0.0"
     },
     {
       "name": "simp/pki",
@@ -200,71 +200,71 @@
     },
     {
       "name": "simp/postfix",
-      "version_requirement": ">= 5.2.1 < 6.0.0"
+      "version_requirement": ">= 5.3.0 < 6.0.0"
     },
     {
       "name": "simp/pupmod",
-      "version_requirement": ">= 7.10.1 < 8.0.0"
+      "version_requirement": ">= 7.11.0 < 8.0.0"
     },
     {
       "name": "simp/resolv",
-      "version_requirement": ">= 0.1.3 < 1.0.0"
+      "version_requirement": ">= 0.2.0 < 1.0.0"
     },
     {
       "name": "simp/rkhunter",
-      "version_requirement": ">= 0.0.1 < 1.0.0"
+      "version_requirement": ">= 0.0.2 < 1.0.0"
     },
     {
       "name": "simp/rsync",
-      "version_requirement": ">= 6.1.1 < 7.0.0"
+      "version_requirement": ">= 6.3.0 < 7.0.0"
     },
     {
       "name": "simp/rsyslog",
-      "version_requirement": ">= 7.4.0 < 8.0.0"
+      "version_requirement": ">= 7.5.0 < 8.0.0"
     },
     {
       "name": "simp/selinux",
-      "version_requirement": ">= 2.4.1 < 3.0.0"
+      "version_requirement": ">= 2.5.0 < 3.0.0"
     },
     {
       "name": "simp/simp",
-      "version_requirement": ">= 4.9.0 < 5.0.0"
+      "version_requirement": ">= 4.10.0 < 5.0.0"
     },
     {
       "name": "simp/simplib",
-      "version_requirement": ">= 3.15.2 < 4.0.0"
+      "version_requirement": ">= 3.15.3 < 4.0.0"
     },
     {
       "name": "simp/simp_apache",
-      "version_requirement": ">= 6.1.3 < 7.0.0"
+      "version_requirement": ">= 6.2.0 < 7.0.0"
     },
     {
       "name": "simp/simp_banners",
-      "version_requirement": ">= 0.1.1 < 1.0.0"
+      "version_requirement": ">= 0.1.2 < 1.0.0"
     },
     {
       "name": "simp/simp_openldap",
-      "version_requirement": ">= 6.3.2 < 7.0.0"
+      "version_requirement": ">= 6.4.0 < 7.0.0"
     },
     {
       "name": "simp/simp_options",
-      "version_requirement": ">= 1.2.4 < 2.0.0"
+      "version_requirement": ">= 1.3.0 < 2.0.0"
     },
     {
       "name": "simp/simp_rsyslog",
-      "version_requirement": ">= 0.3.2 < 1.0.0"
+      "version_requirement": ">= 0.4.0 < 1.0.0"
     },
     {
       "name": "simp/ssh",
-      "version_requirement": ">= 6.7.1 < 7.0.0"
+      "version_requirement": ">= 6.8.1 < 7.0.0"
     },
     {
       "name": "simp/sssd",
-      "version_requirement": ">= 6.1.6 < 7.0.0"
+      "version_requirement": ">= 6.2.0 < 7.0.0"
     },
     {
       "name": "simp/stunnel",
-      "version_requirement": ">= 6.4.2 < 7.0.0"
+      "version_requirement": ">= 6.5.0 < 7.0.0"
     },
     {
       "name": "simp/sudo",
@@ -276,7 +276,7 @@
     },
     {
       "name": "simp/svckill",
-      "version_requirement": ">= 3.4.0 < 4.0.0"
+      "version_requirement": ">= 3.5.0 < 4.0.0"
     },
     {
       "name": "simp/swap",
@@ -300,11 +300,11 @@
     },
     {
       "name": "simp/upstart",
-      "version_requirement": ">= 6.0.4 < 7.0.0"
+      "version_requirement": ">= 6.0.5 < 7.0.0"
     },
     {
       "name": "simp/useradd",
-      "version_requirement": ">= 0.2.3 < 1.0.0"
+      "version_requirement": ">= 0.3.0 < 1.0.0"
     },
     {
       "name": "simp/vox_selinux",
@@ -312,7 +312,7 @@
     },
     {
       "name": "simp/xinetd",
-      "version_requirement": ">= 4.1.1 < 5.0.0"
+      "version_requirement": ">= 4.2.0 < 5.0.0"
     },
     {
       "name": "trlinkin/nsswitch",
