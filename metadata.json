@@ -136,7 +136,7 @@
     },
     {
       "name": "simp/compliance_markup",
-      "version_requirement": ">= 3.0.0 < 4.0.0"
+      "version_requirement": ">= 3.0.1 < 4.0.0"
     },
     {
       "name": "simp/cron",
