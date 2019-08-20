@@ -168,7 +168,7 @@
     },
     {
       "name": "simp/issue",
-      "version_requirement": ">= 0.1.0 < 1.0.0"
+      "version_requirement": ">= 0.1.1 < 1.0.0"
     },
     {
       "name": "simp/logrotate",
