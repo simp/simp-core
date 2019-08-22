@@ -282,22 +282,7 @@ fi
   - pupmod-simp-simp_grafana
 - Removed OBE pupmod-simp-dirtycow from simp-extras
 
-* Mon Apr 01 2019 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.4.0-0
-- Added pupmod-puppet-posix_acl to the simp-extras package
-- Removed the following from the simp package
-  - pupmod-simp-simpcat:  The module has been deprecated and all uses of
-    it within SIMP modules have been replaced with concat.
-  - pupmod-simp-site: Delivery of this module skeleton is longer relevant
-    with the move to local Git repositories for SIMP-packaged puppet
-    modules.
-  - Obsolete pupmod-simp-site so that it is no longer installed and is removed
-    on upgrade to 6.4.0
-
-* Tue Mar 26 2019 Joseph Sharkey <shark.bruhaha@gmail.com> - 6.4.0-0
-- Replaced pupmod-simp-systemd with pupmod-camptocamp-systemd.
-  Ownership of this project has reverted to the Camptocamp org.
-
-* Tue Apr 24 2019 Jim Anderson <thesemicolons@protonmail.com> - 6.4.0-0
+* Wed Apr 24 2019 Jim Anderson <thesemicolons@protonmail.com> - 6.4.0-0
 - Added message if 'simp_opt == prompt' where the user is directed to the
   documentation for partition requirements and prompted to remember to create a
   /boot partition.
@@ -313,6 +298,8 @@ fi
   - pupmod-simp-site: Delivery of this module skeleton is longer relevant
     with the move to local Git repositories for SIMP-packaged puppet
     modules.
+  - Obsolete pupmod-simp-site so that it is no longer installed and is removed
+    on upgrade to 6.4.0
 
 * Tue Mar 26 2019 Joseph Sharkey <shark.bruhaha@gmail.com> - 6.4.0-0
 - Replaced pupmod-simp-systemd with pupmod-camptocamp-systemd.
