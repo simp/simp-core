@@ -1,0 +1,44 @@
+<%
+  if ENV['BEAKER_HYPERVISOR']
+    hypervisor = ENV['BEAKER_HYPERVISOR']
+  else
+    hypervisor = 'vagrant'
+  end
+-%>
+HOSTS:
+  server-el7:
+    roles:
+      - server
+      - default
+      - master
+      - simp_server
+    platform:   el-7-x86_64
+    box:        generic/rhel7
+    hypervisor: <%= hypervisor %>
+    yum_repos:
+      epel:
+        mirrorlist: 'https://mirrors.fedoraproject.org/metalink?repo=epel-7&arch=$basearch'
+        gpgkeys:
+          - https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7
+      simp:
+        baseurl: 'https://packagecloud.io/simp-project/6_X/el/$releasever/$basearch'
+        gpgkeys:
+          - https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
+          - https://download.simp-project.com/simp/GPGKEYS/RPM-GPG-KEY-SIMP-6
+      simp_dependencies:
+        baseurl: 'https://packagecloud.io/simp-project/6_X_Dependencies/el/$releasever/$basearch'
+        gpgkeys:
+          - https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
+          - https://download.simp-project.com/simp/GPGKEYS/RPM-GPG-KEY-SIMP-6
+          - https://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs
+          - https://yum.puppetlabs.com/RPM-GPG-KEY-puppet
+          - https://apt.postgresql.org/pub/repos/yum/RPM-GPG-KEY-PGDG-94
+          - https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7
+
+CONFIG:
+  validate: false
+  log_level: verbose
+  type: aio
+<% if ENV['BEAKER_PUPPET_COLLECTION'] -%>
+  puppet_collection: <%= ENV['BEAKER_PUPPET_COLLECTION'] %>
+<% end -%>
