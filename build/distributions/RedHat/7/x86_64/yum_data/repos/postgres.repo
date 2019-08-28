@@ -1,6 +1,0 @@
-[pgdg96]
-name=PostgreSQL 9.6 7 - x86_64
-baseurl=https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64
-enabled=1
-gpgcheck=1
-gpgkey=https://download.postgresql.org/pub/repos/yum/RPM-GPG-KEY-PGDG-96

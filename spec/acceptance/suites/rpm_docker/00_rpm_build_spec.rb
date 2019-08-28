@@ -50,7 +50,7 @@ if File.file?(gemfile_path)
 end
 
 describe 'RPM build' do
-  let(:local_basedir) { File.absolute_path(Dir.pwd) }
+  local_basedir = File.absolute_path(Dir.pwd)
 
   # We need a normal user for building the RPMs
   let(:build_user) { 'build_user' }
@@ -70,7 +70,7 @@ describe 'RPM build' do
         if docker_id(host)
           %x(docker cp #{Dir.pwd} #{docker_id(host)}:#{build_dir})
         else
-          copy_to(host, File.absolute_path(Dir.pwd), build_dir)
+          copy_to(host, local_basedir, build_dir)
         end
       end
 
@@ -252,13 +252,26 @@ describe 'RPM build' do
       end
     end
 
-    unless docker_id(host)
-      context 'when running on a VM' do
-        it 'should copy out the resulting ISO files' do
-          isos = on(host, %(find #{build_dir}/build -name "*.iso")).stdout.lines
+    if ENV['BEAKER_copyin'] == 'yes'
+      context 'when extracting the ISOs' do
+        let(:isos) {
+          on(host, %(find #{build_dir}/build -name "*.iso")).stdout
+            .lines
+            .map(&:strip)
+            .delete_if{|x| x.empty?}
+        }
 
-          isos.each do |iso|
-            scp_from(host, iso, '.')
+        if docker_id(host)
+          it 'should copy out the ISO files' do
+            isos.each do |iso|
+              %x(docker cp #{docker_id(host)}:#{build_dir} #{Dir.pwd})
+            end
+          end
+        else
+          it 'should copy out the resulting ISO files' do
+            isos.each do |iso|
+              scp_from(host, iso, local_basedir)
+            end
           end
         end
       end
