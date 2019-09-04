@@ -1,27 +1,26 @@
 require 'beaker-rspec'
 require 'tmpdir'
+require 'yaml'
 require 'simp/beaker_helpers'
-require_relative 'acceptance/helpers'
-
 include Simp::BeakerHelpers
-include Acceptance::Helpers::SystemGemHelper
 
+require 'beaker/puppet_install_helper'
 
-# Install Facter for beaker helpers
 unless ENV['BEAKER_provision'] == 'no'
   hosts.each do |host|
-    # Temporarily install facter for beaker helpers fact_on() calls executed
-    # during server prep. (We don't have puppet's facter, because in this
-    # test, puppet hasn't been installed as part of the prep.)
-    #
-    # WARNING:  Any facter_on() calls outside of an rspec example (it block)
-    #           will be executed as part of server prep with this version of
-    #           facter.  Only basic facts will be available.
-    install_system_factor_gem(host)
+    # Install Puppet
+    if host.is_pe?
+      install_pe
+    else
+      install_puppet
+    end
   end
 end
 
 RSpec.configure do |c|
+  # ensure that environment OS is ready on each host
+  fix_errata_on(hosts)
+
   # Readable test descriptions
   c.formatter = :documentation
 end

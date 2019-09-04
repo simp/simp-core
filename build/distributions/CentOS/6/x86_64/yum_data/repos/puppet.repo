@@ -1,3 +1,0 @@
-[puppet]
-name=puppet
-baseurl=https://yum.puppetlabs.com/puppet5/el/6/x86_64/

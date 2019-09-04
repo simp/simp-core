@@ -24,9 +24,14 @@ shared_examples 'basic server setup' do |host, options|
     on(host, "echo '#{password}' | passwd root --stdin")
   end
 
-  if options.has_key?(:repos) && !options[:repos].empty?
-    it 'should install necessary repos' do
+  it 'should install necessary repos' do
+    install_puppet
 
+    enable_yum_repos_on(host)
+
+    on(host, 'yum remove -y puppet-agent')
+
+    if options.has_key?(:repos) && !options[:repos].empty?
       host.install_package('epel-release') if options[:repos].include?(:epel)
 
       set_up_simp_main = options[:repos].include?(:simp)

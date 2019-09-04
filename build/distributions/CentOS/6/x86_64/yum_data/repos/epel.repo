@@ -1,4 +1,0 @@
-[epel]
-name=epel
-mirrorlist=http://mirrors.fedoraproject.org/mirrorlist?repo=epel-6&arch=x86_64&country=US
-failovermethod=priority
