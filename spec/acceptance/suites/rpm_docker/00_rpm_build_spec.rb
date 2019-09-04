@@ -1,4 +1,4 @@
-# Uses Docker to do a full build of all SIMP packages
+# Uses Docker to do a full build of all SIMP packages for CentOS
 #
 # Also works in Travis CI
 #
@@ -13,6 +13,24 @@
 #   * This mode could be **MUCH** slower but will preserve the sanctity of your
 #     workspace
 #
+# This will also do a full build for RedHat in a vagrant box if the 'rhel7'
+# nodeset is used.
+# To make this work copy only the redhat iso into the simp-core/ISO directory.
+# In order to get the Redhat Build to work you must set the following
+# Environment variables:
+#
+#  BEAKER_RHSM_USER=(Your RedHat developer account name)
+#  BEAKER_RHSM_PASS=(Your RedHat developer account password)
+#  BEAKER_copyin=yes
+#
+# NOTE: if copyin is not set to yes, it will download simp-core from the
+# simp repository and build the rpms from that.  It will not create an ISO
+# even if you have an ISO directory
+#
+# This will create the RedHat ISO and copy it out to simp-core directory.
+# If you need any of the other artifacts set  BEAKER_destroy=no and retrieve them
+# from the VM.
+# 
 require 'spec_helper_rpm'
 
 test_name 'RPM build'
