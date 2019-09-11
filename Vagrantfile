@@ -164,9 +164,12 @@ Vagrant.configure('2') do |c|
 
     If this is your first boot:
 
-    1. Run 'vagrant ssh simp_server' then 'sudo reboot' to restart the system
+    1. Run 'vagrant ssh simp_server' then 'sudo reboot' to restart the server
     2. Run 'vagrant ssh simp_server' to login to the system
     3. Run 'sudo su - root' to elevate privileges
+
+    * Your server can be accessed via 'vagrant ssh simp_server'
+    * Your client can be accessed via 'vagrant ssh simp_client'
 
     The vagrant user password is 'vagrant' should you need it
     EOM
