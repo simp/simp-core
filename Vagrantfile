@@ -212,7 +212,7 @@ Vagrant.configure('2') do |c|
 
     # DNS is not set up, so we need to make the client aware of the server
     v.vm.provision 'shell',
-      inline: 'echo "10.255.239.55 puppet.test.simp client" >> /etc/hosts'
+      inline: 'echo "10.255.239.55 puppet.test.simp puppet" >> /etc/hosts'
 
     # Hook into the puppet server
     v.vm.provision 'shell',
