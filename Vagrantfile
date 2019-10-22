@@ -86,17 +86,51 @@ Vagrant.configure('2') do |c|
     default_yaml.puts(default_hiera_shim.to_yaml)
     default_yaml.close
 
-    at_exit{default_yaml.unlink}
+    if default_yaml && File.exist?(default_yaml.path)
+      at_exit{default_yaml.unlink}
 
-    v.vm.provision 'file',
-      source: default_yaml.path,
-      destination: '/tmp/default.yaml'
+      v.vm.provision 'file',
+        source: default_yaml.path,
+        destination: '/tmp/default.yaml'
 
-    # Overwrite the defaults so that simp config slaps in the necessary file
-    v.vm.provision 'shell',
-      inline: '\mv /tmp/default.yaml /usr/share/simp/environment-skeleton/puppet/data/'
+      # Overwrite the defaults so that simp config slaps in the necessary file
+      v.vm.provision 'shell',
+        inline: '\mv /tmp/default.yaml /usr/share/simp/environment-skeleton/puppet/data/'
+    end
+
+    # Set up a STIG-mode client
+    stig_mode_hiera = {
+      # Enforce in STIG Mode
+      'compliance_markup::enforcement' => 'disa_stig',
+      # Make sure the 'vagrant' user can get to root via sudo
+      'selinux::login_resources' => {
+        'vagrant' => {
+          'seuser'    => 'staff_u',
+          'mls_range' => 's0-s0:c0.c1023'
+        }
+      }
+    }
+
+    stig_yaml = Tempfile.new('stig.yaml')
+    stig_yaml.puts(stig_mode_hiera.to_yaml)
+    stig_yaml.close
+
+
+    if stig_yaml && File.exist?(stig_yaml.path)
+      at_exit{stig_yaml.unlink}
+
+      v.vm.provision 'file',
+        source: stig_yaml.path,
+        destination: '/tmp/stig.test.simp.yaml'
+
+      # Update the node-specific configuration for the stig node
+      v.vm.provision 'shell',
+        inline: '\mv /tmp/stig.test.simp.yaml /usr/share/simp/environment-skeleton/puppet/data/hosts'
+    end
 
     # Run simp config
+    #
+    # This moves the default environment data into place
     v.vm.provision 'shell',
       keep_color: true,
       inline: 'simp config --force-config -f -D -s cli::network::interface=eth1 cli::is_simp_ldap_server=false cli::network::dhcp=static cli::set_grub_password=false svckill::mode=enforcing'
@@ -113,9 +147,15 @@ Vagrant.configure('2') do |c|
     v.vm.provision 'shell',
       inline: 'echo "10.255.239.56 client.test.simp client" >> /etc/hosts'
 
+    v.vm.provision 'shell',
+      inline: 'echo "10.255.239.57 stig.test.simp stig" >> /etc/hosts'
+
     # Set up the *host* PKI certificates in the secondary environment
     v.vm.provision 'shell',
-      inline: 'echo client.test.simp > /var/simp/environments/production/FakeCA/togen'
+      inline: 'echo client.test.simp >> /var/simp/environments/production/FakeCA/togen'
+
+    v.vm.provision 'shell',
+      inline: 'echo stig.test.simp >> /var/simp/environments/production/FakeCA/togen'
 
     v.vm.provision 'shell',
       inline: 'cd /var/simp/environments/production/FakeCA && ./gencerts_nopass.sh'
@@ -126,6 +166,9 @@ Vagrant.configure('2') do |c|
     # example
     v.vm.provision 'shell',
       inline: 'echo client.test.simp >> /etc/puppetlabs/puppet/autosign.conf'
+
+    v.vm.provision 'shell',
+      inline: 'echo stig.test.simp >> /etc/puppetlabs/puppet/autosign.conf'
 
     # This lets the clients get to the necessary information for bootstrapping
     #
@@ -159,7 +202,7 @@ Vagrant.configure('2') do |c|
       keep_color: true,
       inline: 'simp bootstrap && cp -a ~vagrant/.ssh/authorized_keys /etc/ssh/local_keys/vagrant'
 
-    v.vm.post_up_message = <<-EOM
+    v.vm.post_up_message = <<-HEREDOC
     Your SIMP server is ready!
 
     If this is your first boot:
@@ -172,7 +215,7 @@ Vagrant.configure('2') do |c|
     * Your client can be accessed via 'vagrant ssh simp_client'
 
     The vagrant user password is 'vagrant' should you need it
-    EOM
+    HEREDOC
   end
 
   c.vm.define 'simp_client' do |v|
@@ -216,9 +259,65 @@ Vagrant.configure('2') do |c|
 
     # Hook into the puppet server
     v.vm.provision 'shell',
-      inline: 'curl -k -O https://puppet.test.simp/ks/runpuppet'
+      inline: 'curl -k -O https://puppet.test.simp/ks/bootstrap_simp_client'
 
     v.vm.provision 'shell',
-      inline: 'bash runpuppet start'
+      inline: '/opt/puppetlabs/puppet/bin/ruby bootstrap_simp_client --debug --puppet_server=puppet.test.simp --puppet_ca=puppet.test.simp'
+  end
+
+  c.vm.define 'simp_stig', autostart: false do |v|
+    v.vm.hostname = 'stig.test.simp'
+    v.vm.box = 'centos/7'
+    v.vm.box_check_update = 'true'
+
+    v.vm.network 'private_network', ip: '10.255.239.57'
+
+    v.vm.provider :virtualbox do |vb|
+      vb.customize ['modifyvm', :id, '--memory', '512', '--cpus', '1']
+    end
+
+    v.vm.synced_folder '.', '/vagrant', disabled: true
+
+    # Enable the SIMP Repos from the build module
+    v.vm.provision 'file',
+      source: 'build/distributions/CentOS/7/x86_64/yum_data/repos/simp.repo',
+      destination: '/tmp/simp.repo'
+
+    v.vm.provision 'shell',
+      inline: 'mv /tmp/simp.repo /etc/yum.repos.d'
+
+    v.vm.provision 'shell',
+      inline: 'chown root:root /etc/yum.repos.d/simp.repo'
+
+    v.vm.provision 'shell',
+      inline: 'chmod ugo+rX /etc/yum.repos.d/simp.repo'
+
+    # Install the puppet package so that the provisioner script will work
+    v.vm.provision 'shell',
+      inline: 'yum -y install puppet'
+
+    # The server might be churning, so give it a bit
+    v.vm.provision 'shell',
+      inline: 'sleep 120'
+
+    # DNS is not set up, so we need to make the client aware of the server
+    v.vm.provision 'shell',
+      inline: 'echo "10.255.239.55 puppet.test.simp puppet" >> /etc/hosts'
+
+    # Hook into the puppet server
+    v.vm.provision 'shell',
+      inline: 'curl -k -O https://puppet.test.simp/ks/bootstrap_simp_client'
+
+    v.vm.provision 'shell',
+      inline: '/opt/puppetlabs/puppet/bin/ruby bootstrap_simp_client --debug --puppet_server=puppet.test.simp --puppet_ca=puppet.test.simp'
+
+    v.vm.post_up_message = <<-HEREDOC
+    Your  STIG-mode SIMP client is ready!
+
+    * This sytem can be accessed via 'vagrant ssh simp_stig'
+    * The vagrant user password is 'vagrant'.
+
+    IMPORTANT: To get to a root shell, use 'sudo -i -r unconfined_r'
+    HEREDOC
   end
 end
