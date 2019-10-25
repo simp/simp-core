@@ -92,6 +92,11 @@ if grep -q "simp_disk_homevol=" /proc/cmdline; then
 else
   simp_disk_homevol=1024
 fi
+if grep -q "simp_disk_optvol=" /proc/cmdline; then
+  simp_disk_optvol=`awk -F "simp_disk_optvol=" '{print $2}' /proc/cmdline | cut -f1 -d' '`
+else
+  simp_disk_optvol=1024
+fi
 if grep -q "simp_disk_varvol=" /proc/cmdline; then
   simp_disk_varvol=`awk -F "simp_disk_varvol=" '{print $2}' /proc/cmdline | cut -f1 -d' '`
 else
@@ -115,6 +120,12 @@ if grep -q "simp_grow_vol=" /proc/cmdline; then
   simp_grow_vol=`awk -F "simp_grow_vol=" '{print $2}' /proc/cmdline | cut -f1 -d' '`
 else
   simp_grow_vol='VarVol'
+fi
+
+if grep -q "simp_manage_opt=" /proc/cmdline; then
+  simp_manage_opt=`awk -F "simp_manage_opt=" '{print $2}' /proc/cmdline | cut -f1 -d' '`
+else
+  simp_manage_opt='false'
 fi
 
 if [ "$simp_opt" != "prompt" ]; then
@@ -142,4 +153,10 @@ logvol /var --fstype=ext4 --name=VarVol --vgname=VolGroup00 --size=${simp_disk_v
 logvol /var/log --fstype=ext4 --name=VarLogVol --vgname=VolGroup00 --size=${simp_disk_varlogvol} --fsoptions=nosuid,noexec,nodev `if [[ "$simp_grow_vol" == "VarLogVol" ]]; then echo '--grow'; fi`
 logvol /var/log/audit --fstype=ext4 --name=VarLogAuditVol --vgname=VolGroup00 --size=${simp_disk_varlogauditvol} --fsoptions=nosuid,noexec,nodev `if [[ "$simp_grow_vol" == "VarLogAuditVol" ]]; then echo '--grow'; fi`
 EOF
+
+  if [ "$simp_manage_opt" != "false" ]; then
+    cat << EOF >> /tmp/part-include
+logvol /opt --fstype=ext4 --name=OptVol --vgname=VolGroup00 --size=${simp_disk_optvol} `if [[ "$simp_grow_vol" == "OptVol" ]]; then echo '--grow'; fi`
+EOF
+  fi
 fi
