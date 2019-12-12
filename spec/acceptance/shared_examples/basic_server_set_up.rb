@@ -25,8 +25,6 @@ shared_examples 'basic server setup' do |host, options|
   end
 
   it 'should install necessary repos' do
-    enable_yum_repos_on(host)
-
     if options.has_key?(:repos) && !options[:repos].empty?
       host.install_package('epel-release') if options[:repos].include?(:epel)
 
