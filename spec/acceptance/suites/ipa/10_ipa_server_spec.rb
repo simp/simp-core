@@ -29,7 +29,7 @@ describe 'set up an IPA server' do
       end
       # forcing update of nss because ipa-server rpm has incorrect version dependency
       # this can be removed when rpm ipa-server --requires returns nss => 3.44.0
-      #ipa_server.upgrade_package('nss')
+      ipa_server.upgrade_package('nss')
       ipa_server.install_package('ipa-server')
       ipa_server.install_package('ipa-server-dns')
       if ipa_server.host_hash[:platform] =~ /el-6/
