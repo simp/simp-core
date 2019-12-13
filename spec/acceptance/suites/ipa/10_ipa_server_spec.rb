@@ -27,6 +27,9 @@ describe 'set up an IPA server' do
         ipa_server.install_package('yum-utils')
         on(ipa_server, 'yum-config-manager --enable ol7_optional_latest')
       end
+      # forcing update of nss because ipa-server rpm has incorrect version dependency
+      # this can be removed when rpm ipa-server --requires returns nss => 3.44.0
+      ipa_server.upgrade_package('nss')
       ipa_server.install_package('ipa-server')
       ipa_server.install_package('ipa-server-dns')
       if ipa_server.host_hash[:platform] =~ /el-6/
@@ -113,6 +116,8 @@ describe 'set up an IPA server' do
       on(ipa_server, 'mv /root/.ldaprc{,.bak}', :accept_all_exit_codes => true)
 
       cmd  = []
+      # Set umask for ipa test - detailed in Red Hat Bugzilla – Bug 1485217
+      cmd << 'umask 0022 &&'
       cmd << 'ipa-server-install'
       cmd << '--unattended'
       cmd << "--domain=#{ipa_domain}"
