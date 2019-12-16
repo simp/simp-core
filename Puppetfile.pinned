@@ -60,6 +60,10 @@ mod 'simp-utils',
 
 moduledir 'src/puppet/modules'
 
+mod 'aboe76-chrony',
+  :git => 'https://github.com/simp/pupmod-aboe76-chrony',
+  :tag => 'v0.3.1'
+
 mod 'camptocamp-kmod',
   :git => 'https://github.com/simp/puppet-kmod.git',
   :tag => '2.3.0'
@@ -201,7 +205,7 @@ mod 'simp-at',
 
 mod 'simp-auditd',
   :git => 'https://github.com/simp/pupmod-simp-auditd',
-  :tag => '8.4.0'
+  :tag => '8.5.0'
 
 mod 'simp-autofs',
   :git => 'https://github.com/simp/pupmod-simp-autofs',
@@ -376,7 +380,7 @@ mod 'simp-selinux',
 
 mod 'simp-simp',
   :git => 'https://github.com/simp/pupmod-simp-simp',
-  :tag => '4.10.0'
+  :tag => '4.11.0'
 
 mod 'simp-simplib',
   :git => 'https://github.com/simp/pupmod-simp-simplib',
@@ -479,7 +483,7 @@ mod 'simp-tcpwrappers',
 
 mod 'simp-tftpboot',
   :git => 'https://github.com/simp/pupmod-simp-tftpboot',
-  :tag => '6.2.2'
+  :tag => '6.3.0'
 
 mod 'simp-tlog',
   :git => 'https://github.com/simp/pupmod-simp-tlog',
@@ -539,6 +543,10 @@ mod 'treydock-kdump',
 mod 'trlinkin-nsswitch',
   :git => 'https://github.com/simp/puppet-nsswitch',
   :tag => '2.1.1'
+
+mod 'voxpupuli-firewalld',
+  :git => 'https://github.com/simp/pupmod-voxpupuli-firewalld',
+  :tag => 'v4.1.0'
 
 mod 'voxpupuli-posix_acl',
   :git => 'https://github.com/simp/pupmod-voxpupuli-posix_acl',

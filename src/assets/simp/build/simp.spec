@@ -52,7 +52,7 @@ Requires: pupmod-saz-timezone >= 5.1.1, pupmod-saz-timezone < 6.0.0
 Requires: pupmod-simp-acpid >= 1.0.4, pupmod-simp-acpid < 2.0.0
 Requires: pupmod-simp-aide >= 6.3.0, pupmod-simp-aide < 7.0.0
 Requires: pupmod-simp-at >= 0.0.7, pupmod-simp-at < 1.0.0
-Requires: pupmod-simp-auditd >= 8.4.0, pupmod-simp-auditd < 9.0.0
+Requires: pupmod-simp-auditd >= 8.5.0, pupmod-simp-auditd < 9.0.0
 Requires: pupmod-simp-chkrootkit >= 0.2.0, pupmod-simp-chkrootkit < 1.0.0
 Requires: pupmod-simp-clamav >= 6.3.0, pupmod-simp-clamav < 7.0.0
 Requires: pupmod-simp-compliance_markup >= 3.0.1, pupmod-simp-compliance_markup < 4.0.0
@@ -62,7 +62,7 @@ Requires: pupmod-simp-dhcp >= 6.1.1, pupmod-simp-dhcp < 7.0.0
 Requires: pupmod-simp-fips >= 0.3.0, pupmod-simp-fips < 1.0.0
 Requires: pupmod-simp-haveged >= 0.5.0, pupmod-simp-haveged < 1.0.0
 Requires: pupmod-simp-incron >= 0.4.1, pupmod-simp-incron < 1.0.0
-Requires: pupmod-simp-iptables >= 6.3.0, pupmod-simp-iptables < 7.0.0
+Requires: pupmod-simp-iptables >= 6.4.0, pupmod-simp-iptables < 7.0.0
 Requires: pupmod-simp-issue >= 0.1.1, pupmod-simp-issue < 1.0.0
 Requires: pupmod-simp-logrotate >= 6.4.0, pupmod-simp-logrotate < 7.0.0
 Requires: pupmod-simp-named >= 6.2.0, pupmod-simp-named < 7.0.0
@@ -78,8 +78,8 @@ Requires: pupmod-simp-rkhunter >= 0.0.2, pupmod-simp-rkhunter < 1.0.0
 Requires: pupmod-simp-rsync >= 6.3.0, pupmod-simp-rsync < 7.0.0
 Requires: pupmod-simp-rsyslog >= 7.5.0, pupmod-simp-rsyslog < 8.0.0
 Requires: pupmod-simp-selinux >= 2.5.0, pupmod-simp-selinux < 3.0.0
-Requires: pupmod-simp-simp >= 4.10.0, pupmod-simp-simp < 5.0.0
-Requires: pupmod-simp-simplib >= 3.15.3, pupmod-simp-simplib < 4.0.0
+Requires: pupmod-simp-simp >= 4.11.0, pupmod-simp-simp < 5.0.0
+Requires: pupmod-simp-simplib >= 4.0.0, pupmod-simp-simplib < 5.0.0
 Requires: pupmod-simp-simp_apache >= 6.2.0, pupmod-simp-simp_apache < 7.0.0
 Requires: pupmod-simp-simp_banners >= 0.1.2, pupmod-simp-simp_banners < 1.0.0
 Requires: pupmod-simp-simp_openldap >= 6.4.0, pupmod-simp-simp_openldap < 7.0.0
@@ -93,7 +93,7 @@ Requires: pupmod-simp-sudosh >= 6.1.1, pupmod-simp-sudosh < 7.0.0
 Requires: pupmod-simp-svckill >= 3.5.0, pupmod-simp-svckill < 4.0.0
 Requires: pupmod-simp-swap >= 0.1.4, pupmod-simp-swap < 1.0.0
 Requires: pupmod-simp-tcpwrappers >= 6.1.2, pupmod-simp-tcpwrappers < 7.0.0
-Requires: pupmod-simp-tftpboot >= 6.2.2, pupmod-simp-tftpboot < 7.0.0
+Requires: pupmod-simp-tftpboot >= 6.3.r0 pupmod-simp-tftpboot < 7.0.0
 Requires: pupmod-simp-tlog >= 0.1.2, pupmod-simp-tlog < 1.0.0
 Requires: pupmod-simp-tuned >= 0.1.1, pupmod-simp-tuned < 1.0.0
 Requires: pupmod-simp-upstart >= 6.0.5, pupmod-simp-upstart < 7.0.0
@@ -109,6 +109,10 @@ Requires: simp-environment-skeleton >= 7.1.0, simp-environment-skeleton < 8.0.0
 Requires: simp-gpgkeys >= 3.1.0, simp-gpgkeys < 4.0.0
 Requires: simp-rsync-skeleton >= 7.0.1, simp-rsync-skeleton < 8.0.0
 Requires: simp-utils >= 6.2.2, simp-utils < 7.0.0
+%if 0%{rhel} >= 7
+Requires: pupmod-puppet-firewalld => 4.1.0, pupmod-puppet-firewalld < 5.0.0
+Requires: pupmod-aboe-chrony >= 0.3.1, pupmod-aboe-chrony < 1.0.0
+%endif
 
 # SIMP Extras
 %package extras
@@ -247,6 +251,12 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Thu Dec 12 2019 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 6.5.0-ALPHA
+- add firewalld and chrony to the Puppetfile and simp.spec file
+- update the version of simplib required.
+- This is just the start, more updates will be needed before creation of
+  an iso and full tests will work.
+
 * Mon Jul 01 2019 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 6.4.0-0
 - update puppetfile and spec file with 6.4.0 RC release versions.
 
