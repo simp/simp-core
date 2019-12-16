@@ -67,7 +67,7 @@ GEM
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     dotenv (2.7.5)
-    excon (0.67.0)
+    excon (0.71.0)
     facter (2.5.6)
     faraday (0.13.1)
       multipart-post (>= 1.2, < 3)
