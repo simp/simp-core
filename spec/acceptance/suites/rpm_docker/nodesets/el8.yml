@@ -1,13 +1,15 @@
 ---
 HOSTS:
-  el7-build-server:
+  el8-build-server:
     roles:
       - primary
-    platform: el-7-x86_64
+    platform: el-8-x86_64
     hypervisor: docker
-    image: simpproject/simp_build_centos7
+    image: simpproject/simp_build_centos8
     docker_cmd: '/usr/sbin/sshd -D -E /var/log/sshd.log'
     docker_preserve_image: true
+    docker_image_commands:
+      - 'yum -y install initscripts'
 
 CONFIG:
 <% unless ENV['TRAVIS'] -%>

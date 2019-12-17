@@ -5,29 +5,29 @@
 #
 # If you want to save your container for future use, you use use the `docker
 # commit` command
-#   * docker commit <running container ID> el6_build
-#   * docker run -it el6_build
-FROM centos:6.6
+#   * docker commit <running container ID> el7_build
+#   * docker run -it el7_build
+FROM centos:8
 ENV container docker
 
 # Fix issues with overlayfs
 RUN yum clean all
-RUN yum install -y sudo curl ntpdate
 RUN rm -f /var/lib/rpm/__db*
 RUN yum clean all
-RUN yum install -y yum-plugin-ovl || :
 RUN yum install -y yum-utils
 
-# Prep for buidling aginst the oldest SELinux packages
-RUN yum-config-manager --disable \*
-RUN echo -e "[legacy]\nname=Legacy\nbaseurl=http://vault.centos.org/6.6/os/x86_64\ngpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-6\ngpgcheck=1" > /etc/yum.repos.d/legacy.repo
-RUN cd /root; yum -x yum -x python-urlgrabber downgrade -y *
+# Will probably need something like this later
+# Prep for building against the oldest SELinux packages
+# RUN yum-config-manager --disable \*
+# RUN echo -e "[legacy]\nname=Legacy\nbaseurl=http://vault.centos.org/8.0.1905/BaseOS/x86_64\ngpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-8\ngpgcheck=1" > /etc/yum.repos.d/legacy.repo
+
+RUN cd /root; yum downgrade -x 'nss*' -x 'libnss*' -x nspr -y '*'
 
 # Work around bug https://bugzilla.redhat.com/show_bug.cgi?id=1217477
 # This does *not* update the SELinux packages, so it is safe
-RUN yum --enablerepo=updates --enablerepo=base update -y git curl nss
+RUN yum --enablerepo=AppStream --enablerepo=BaseOS update -y git curl nss
 
-RUN yum install -y selinux-policy-targeted selinux-policy-devel policycoreutils policycoreutils-python
+RUN yum install -y sudo selinux-policy-targeted selinux-policy-devel policycoreutils policycoreutils-python-utils
 
 # Ensure that the 'build_user' can sudo to root for RVM
 RUN echo 'Defaults:build_user !requiretty' >> /etc/sudoers
@@ -38,19 +38,19 @@ RUN rm -rf /etc/security/limits.d/*.conf
 # Install necessary packages
 RUN yum-config-manager --enable extras
 RUN yum install -y epel-release
-RUN yum install -y openssl util-linux rpm-build augeas-devel createrepo genisoimage git gnupg2 libicu-devel libxml2 libxml2-devel libxslt libxslt-devel rpmdevtools which ruby-devel rpm-sign acl
-RUN yum -y install centos-release-scl python-pip python-virtualenv fontconfig dejavu-sans-fonts dejavu-sans-mono-fonts dejavu-serif-fonts dejavu-fonts-common libjpeg-devel zlib-devel
-RUN yum install -y libyaml-devel glibc-headers autoconf gcc gcc-c++ glibc-devel readline-devel libffi-devel openssl-devel automake libtool bison sqlite-devel tar
-RUN yum-config-manager --enable rhel-server-rhscl-6-rpms
-RUN yum -y install python27
-
-# Install SSH for CI testing
-RUN if [ -d /etc/ssh ]; then /bin/cp -a /etc/ssh /root; fi
-RUN yum -y install openssh-server
-RUN if [ -d /root/ssh ]; then /bin/cp -a /root/ssh /etc && /bin/rm -rf /root/ssh; fi
+RUN yum install -y openssl util-linux rpm-build augeas-libs createrepo genisoimage git gnupg2 libicu-devel libxml2 libxml2-devel libxslt libxslt-devel rpmdevtools which ruby-devel rpm-devel rpm-sign
+RUN yum -y install scl-utils python2-virtualenv python3-virtualenv fontconfig dejavu-sans-fonts dejavu-sans-mono-fonts dejavu-serif-fonts dejavu-fonts-common libjpeg-devel zlib-devel openssl-devel
+RUN yum install -y libyaml glibc-headers autoconf gcc gcc-c++ glibc-devel readline-devel libffi-devel automake libtool bison sqlite-devel
+RUN ln -sf /bin/true /usr/bin/systemctl
 
 # Install helper packages
 RUN yum install -y rubygems vim-enhanced jq
+
+# Install SSH for CI testing
+RUN yum -y install initscripts
+RUN if [ -d /etc/ssh ]; then /bin/cp -a /etc/ssh /root; fi
+RUN yum -y install openssh-server
+RUN if [ -d /root/ssh ]; then /bin/cp -a /root/ssh /etc && /bin/rm -rf /root/ssh; fi
 
 # Set up RVM
 RUN runuser build_user -l -c "echo 'gem: --no-document' > .gemrc"
