@@ -21,7 +21,7 @@ RUN yum install -y yum-utils
 # RUN yum-config-manager --disable \*
 # RUN echo -e "[legacy]\nname=Legacy\nbaseurl=http://vault.centos.org/8.0.1905/BaseOS/x86_64\ngpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-8\ngpgcheck=1" > /etc/yum.repos.d/legacy.repo
 
-RUN cd /root; yum downgrade -x 'nss*' -x 'libnss*' -x nspr -y '*'
+RUN cd /root; yum downgrade -x 'glibc*' -x 'nss*' -x 'libnss*' -x nspr -y '*' || :
 
 # Work around bug https://bugzilla.redhat.com/show_bug.cgi?id=1217477
 # This does *not* update the SELinux packages, so it is safe
