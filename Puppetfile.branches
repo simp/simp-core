@@ -96,7 +96,7 @@ mod 'puppetlabs-apache',
 
 mod 'puppetlabs-concat',
   :git => 'https://github.com/simp/puppetlabs-concat',
-  :tag => '6.2.0'
+  :tag => 'v6.2.0'
 
 mod 'puppetlabs-hocon',
   :git => 'https://github.com/simp/pupmod-puppetlabs-hocon',
@@ -104,19 +104,19 @@ mod 'puppetlabs-hocon',
 
 mod 'puppetlabs-inifile',
   :git => 'https://github.com/simp/puppetlabs-inifile',
-  :tag => '4.0.0'
+  :tag => 'v4.1.0'
 
 mod 'puppetlabs-java',
   :git => 'https://github.com/simp/puppetlabs-java',
-  :tag => '6.2.0'
+  :tag => 'v6.2.0'
 
 mod 'puppetlabs-motd',
   :git => 'https://github.com/simp/puppetlabs-motd',
-  :tag => '4.1.0'
+  :tag => 'v4.1.0'
 
 mod 'puppetlabs-mysql',
   :git => 'https://github.com/simp/puppetlabs-mysql',
-  :tag => 'v10.3.0'
+  :tag => 'v10.4.0'
 
 mod 'puppetlabs-postgresql',
   :git => 'https://github.com/simp/puppetlabs-postgresql',
