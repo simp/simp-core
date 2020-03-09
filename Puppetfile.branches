@@ -148,7 +148,7 @@ mod 'saz-locales',
 
 mod 'saz-timezone',
   :git => 'https://github.com/simp/pupmod-simp-timezone',
-  :tag => 'v5.1.1'
+  :tag => 'v5.2.0'
 
 mod 'simp-acpid',
   :git => 'https://github.com/simp/pupmod-simp-acpid',
@@ -483,7 +483,7 @@ mod 'trlinkin-nsswitch',
 
 mod 'voxpupuli-firewalld',
   :git => 'https://github.com/simp/pupmod-voxpupuli-firewalld'
-  :branch => 'master'
+  :tag => 'v4.2.3'
 
 mod 'voxpupuli-posix_acl',
   :git => 'https://github.com/simp/pupmod-voxpupuli-posix_acl',
@@ -499,6 +499,6 @@ mod 'voxpupuli-snmp',
 
 mod 'voxpupuli-yum',
   :git => 'https://github.com/simp/voxpupuli-yum',
-  :branch => 'master'
+  :tag => 'v4.1.1'
 
 # vi:syntax=ruby
