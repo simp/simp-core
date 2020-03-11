@@ -67,7 +67,7 @@ mod 'camptocamp-kmod',
 
 mod 'camptocamp-systemd',
   :git => 'https://github.com/simp/puppet-systemd.git',
-  :tag => '2.8.0'
+  :tag => '2.9.0'
 
 mod 'herculesteam-augeasproviders_core',
   :git => 'https://github.com/simp/augeasproviders_core',
