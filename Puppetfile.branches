@@ -156,7 +156,7 @@ mod 'simp-acpid',
 
 mod 'simp-aide',
   :git => 'https://github.com/simp/pupmod-simp-aide',
-  :tag branch => '6.4.0'
+  :tag => '6.4.0'
 
 mod 'simp-at',
   :git => 'https://github.com/simp/pupmod-simp-at',
