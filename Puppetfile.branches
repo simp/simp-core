@@ -482,7 +482,7 @@ mod 'trlinkin-nsswitch',
   :tag => '2.2.0'
 
 mod 'voxpupuli-firewalld',
-  :git => 'https://github.com/simp/pupmod-voxpupuli-firewalld'
+  :git => 'https://github.com/simp/pupmod-voxpupuli-firewalld',
   :tag => 'v4.2.3'
 
 mod 'voxpupuli-posix_acl',
