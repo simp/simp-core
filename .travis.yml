@@ -39,6 +39,7 @@ jobs:
     - stage: check
       name: 'Validation and metadata checks'
       script:
+        - cat /home/travis/.rpmmacros
         - SIMP_RPM_verbose=yes bundle exec rake check:dot_underscore
         - bundle exec rake check:test_file
         - bundle exec rake metadata_lint
