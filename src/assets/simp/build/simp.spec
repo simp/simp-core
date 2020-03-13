@@ -315,7 +315,7 @@ fi
 - Replaced pupmod-simp-systemd with pupmod-camptocamp-systemd.
   Ownership of this project has reverted to the Camptocamp org.
 
-* Fri Feb 02 2019 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.3.2-0
+* Fri Feb 01 2019 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.3.2-0
 - Updated the following packages to address bug fixes. See the Changelog for
   relevant information.
   - pupmod-simp-incron
@@ -324,7 +324,7 @@ fi
   - pupmod-simp-sssd
   - pupmod-simp-stunnel
 
-* Tue Nov 11 2018 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.3.0-0
+* Sun Nov 11 2018 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.3.0-0
 - Updated package versions for the latest release
 - Moved the following to simp-extras
   - pupmod-richardc-datacat
@@ -336,7 +336,7 @@ fi
   - pupmod-simp-tpm
   - pupmod-simp-tpm2
 
-* Wed Oct 05 2018 Liz Nemsick <lnemsick.simp@gmail.com> - 6.3.0-0
+* Fri Oct 05 2018 Liz Nemsick <lnemsick.simp@gmail.com> - 6.3.0-0
 - Add the following dependencies to the simp package
   - pupmod-simp-deferred_resources
   - pupmod-simp-ima
