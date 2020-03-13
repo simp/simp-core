@@ -30,6 +30,7 @@ before_install:
 global:
   - STRICT_VARIABLES=yes
   - PUPPET_VERSION="~> 5.5"
+  - SIMP_RPM_verbose=yes
 
 rvm: 2.4.5
 
