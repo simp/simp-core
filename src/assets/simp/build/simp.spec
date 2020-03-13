@@ -109,7 +109,7 @@ Requires: simp-environment-skeleton >= 7.1.0, simp-environment-skeleton < 8.0.0
 Requires: simp-gpgkeys >= 3.1.1, simp-gpgkeys < 4.0.0
 Requires: simp-rsync-skeleton >= 7.0.1, simp-rsync-skeleton < 8.0.0
 Requires: simp-utils >= 6.2.2, simp-utils < 7.0.0
-%if 0%{rhel} >= 7
+%if 0%{?rhel} >= 7
 Requires: pupmod-puppet-firewalld => 4.1.0, pupmod-puppet-firewalld < 5.0.0
 Requires: pupmod-aboe-chrony >= 0.3.1, pupmod-aboe-chrony < 1.0.0
 %endif
