@@ -25,13 +25,13 @@ stages:
 
 before_install:
   - rm -f Gemfile.lock
-  - gem install -v '~> 1.16' bundler
+  - gem install -v '~> 1.17' bundler
 
 global:
   - STRICT_VARIABLES=yes
   - PUPPET_VERSION="~> 5.5"
 
-rvm: 2.4.4
+rvm: 2.4.5
 
 jobs:
   include:
