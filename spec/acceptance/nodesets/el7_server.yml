@@ -5,12 +5,15 @@
   when /centos/ || /^el/
     box_6 = 'centos/6'
     box_7 = 'centos/7'
+    box_8 = 'centos/8'
   when /oracle/ || /^oel/
     box_6 = 'onyxpoint/oel-6-x86_64'
     box_7 = 'onyxpoint/oel-7-x86_64'
+    box_8 = 'generic/oracle8'
   else
     box_6 = 'centos/6'
     box_7 = 'centos/7'
+    box_8 = 'centos/8'
   end
 -%>
 HOSTS:
@@ -26,6 +29,13 @@ HOSTS:
     hypervisor: <%= hypervisor %>
     vagrant_memsize: 4608
     vagrant_cpus: 2
+
+  agent-el8:
+    roles:
+      - agent
+    platform:   el-8-x86_64
+    box:        <%= box_8 %>
+    hypervisor: <%= hypervisor %>
 
   agent-el7:
     roles:

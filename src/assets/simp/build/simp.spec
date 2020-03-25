@@ -1,7 +1,7 @@
 Summary: SIMP Full Install
 Name: simp
-Version: 6.4.0
-Release: 0%{?dist}%{?snapshot_release}
+Version: 6.5.0
+Release: Alpha%{?dist}%{?snapshot_release}
 License: Apache License, Version 2.0
 Group: Applications/System
 
@@ -68,7 +68,7 @@ Requires: pupmod-simp-logrotate >= 6.4.0, pupmod-simp-logrotate < 7.0.0
 Requires: pupmod-simp-named >= 6.2.0, pupmod-simp-named < 7.0.0
 Requires: pupmod-simp-ntpd >= 6.5.0, pupmod-simp-ntpd < 7.0.0
 Requires: pupmod-simp-oddjob >= 2.1.1, pupmod-simp-oddjob < 3.0.0
-Requires: pupmod-simp-pam >= 6.6.0, pupmod-simp-pam < 7.0.0
+Requires: pupmod-simp-pam >= 6.7.1, pupmod-simp-pam < 7.0.0
 Requires: pupmod-simp-pki >= 6.1.1, pupmod-simp-pki < 7.0.0
 Requires: pupmod-simp-polkit >= 6.1.2, pupmod-simp-polkit < 7.0.0
 Requires: pupmod-simp-postfix >= 5.3.0, pupmod-simp-postfix < 6.0.0

@@ -296,7 +296,7 @@ mod 'simp-openscap',
 
 mod 'simp-pam',
   :git => 'https://github.com/simp/pupmod-simp-pam',
-  :tag => '6.7.0'
+  :tag => '6.7.1'
 
 mod 'simp-pki',
   :git => 'https://github.com/simp/pupmod-simp-pki',
