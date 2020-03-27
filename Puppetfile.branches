@@ -1,3 +1,5 @@
+# DO NOT UPDATE THIS FILE TO TAGS UNLESS THE UPSTREAM ABSOLUTELY REQUIRES IT
+#
 # This `Puppetfile.branches` file defines the relevant tracking branch for each
 # SIMP component** needed to build a SIMP super-release.   It can be used to:
 #
@@ -58,7 +60,7 @@ mod 'simp-utils',
 moduledir 'src/puppet/modules'
 
 mod 'aboe76-chrony',
-  :git => 'https://github.com/simp/pupmod-aboe76-chrony'
+  :git => 'https://github.com/simp/pupmod-aboe76-chrony',
   :tag => 'v0.3.1'
 
 mod 'camptocamp-kmod',
@@ -67,11 +69,7 @@ mod 'camptocamp-kmod',
 
 mod 'camptocamp-systemd',
   :git => 'https://github.com/simp/puppet-systemd.git',
-  :tag => '2.2.0'
-
-mod 'herculesteam-augeasproviders_apache',
-  :git => 'https://github.com/simp/augeasproviders_apache',
-  :tag => '3.1.1'
+  :tag => '2.9.0'
 
 mod 'herculesteam-augeasproviders_core',
   :git => 'https://github.com/simp/augeasproviders_core',
@@ -79,30 +77,6 @@ mod 'herculesteam-augeasproviders_core',
 
 mod 'herculesteam-augeasproviders_grub',
   :git => 'https://github.com/simp/augeasproviders_grub',
-  :tag => '3.1.0'
-
-mod 'herculesteam-augeasproviders_mounttab',
-  :git => 'https://github.com/simp/augeasproviders_mounttab',
-  :tag => '2.1.1'
-
-mod 'herculesteam-augeasproviders_nagios',
-  :git => 'https://github.com/simp/augeasproviders_nagios',
-  :tag => '2.1.1'
-
-mod 'herculesteam-augeasproviders_pam',
-  :git => 'https://github.com/simp/augeasproviders_pam',
-  :tag => '2.2.1'
-
-mod 'herculesteam-augeasproviders_postgresql',
-  :git => 'https://github.com/simp/augeasproviders_postgresql',
-  :tag => '3.1.1'
-
-mod 'herculesteam-augeasproviders_puppet',
-  :git => 'https://github.com/simp/augeasproviders_puppet',
-  :tag => '2.2.1'
-
-mod 'herculesteam-augeasproviders_shellvar',
-  :git => 'https://github.com/simp/augeasproviders_shellvar',
   :tag => '3.1.0'
 
 mod 'herculesteam-augeasproviders_ssh',
@@ -115,7 +89,7 @@ mod 'herculesteam-augeasproviders_sysctl',
 
 mod 'onyxpoint-gpasswd',
   :git => 'https://github.com/simp/puppet-gpasswd',
-  :tag => '1.0.7'
+  :tag => '1.1.1'
 
 mod 'puppetlabs-apache',
   :git => 'https://github.com/simp/puppetlabs-apache',
@@ -123,11 +97,7 @@ mod 'puppetlabs-apache',
 
 mod 'puppetlabs-concat',
   :git => 'https://github.com/simp/puppetlabs-concat',
-  :tag => '5.3.0'
-
-mod 'puppetlabs-docker',
-  :git => 'https://github.com/simp/puppetlabs-docker',
-  :tag => '3.5.0'
+  :tag => 'v6.2.0'
 
 mod 'puppetlabs-hocon',
   :git => 'https://github.com/simp/pupmod-puppetlabs-hocon',
@@ -135,26 +105,19 @@ mod 'puppetlabs-hocon',
 
 mod 'puppetlabs-inifile',
   :git => 'https://github.com/simp/puppetlabs-inifile',
-  :tag => '2.5.0'
+  :tag => 'v4.1.0'
 
 mod 'puppetlabs-java',
   :git => 'https://github.com/simp/puppetlabs-java',
-  :tag => '3.3.0'
+  :tag => 'v6.2.0'
 
 mod 'puppetlabs-motd',
   :git => 'https://github.com/simp/puppetlabs-motd',
-  :tag => '2.1.2'
-
-#FIXME does not support Puppet 5 yet. Ticket entered:
-# https://tickets.puppetlabs.com/browse/MODULES-8043
-# Required by herculesteam-augeasproviders_mounttab
-mod 'puppetlabs-mount_providers',
-  :git => 'https://github.com/simp/puppetlabs-mount_providers',
-  :tag => '1.0.0'
+  :tag => 'v4.1.0'
 
 mod 'puppetlabs-mysql',
   :git => 'https://github.com/simp/puppetlabs-mysql',
-  :tag => '8.0.0'
+  :tag => 'v10.4.0'
 
 mod 'puppetlabs-postgresql',
   :git => 'https://github.com/simp/puppetlabs-postgresql',
@@ -162,7 +125,7 @@ mod 'puppetlabs-postgresql',
 
 mod 'puppetlabs-puppetdb',
   :git => 'https://github.com/simp/puppetlabs-puppetdb',
-  :tag => '7.1.0'
+  :tag => '7.4.0'
 
 mod 'puppetlabs-puppet_authorization',
   :git => 'https://github.com/simp/puppetlabs-puppet_authorization.git',
@@ -174,11 +137,11 @@ mod 'puppetlabs-ruby_task_helper',
 
 mod 'puppetlabs-stdlib',
   :git => 'https://github.com/simp/puppetlabs-stdlib',
-  :tag => '5.2.0'
+  :tag => 'v6.2.0'
 
 mod 'puppetlabs-translate',
   :git => 'https://github.com/simp/pupmod-puppetlabs-translate',
-  :tag => '1.2.0'
+  :tag => 'v2.1.0'
 
 mod 'saz-locales',
   :git => 'https://github.com/simp/pupmod-saz-locales',
@@ -186,7 +149,7 @@ mod 'saz-locales',
 
 mod 'saz-timezone',
   :git => 'https://github.com/simp/pupmod-simp-timezone',
-  :tag => 'v5.1.1'
+  :tag => 'v5.2.0'
 
 mod 'simp-acpid',
   :git => 'https://github.com/simp/pupmod-simp-acpid',
@@ -252,9 +215,6 @@ mod 'simp-gnome',
   :git => 'https://github.com/simp/pupmod-simp-gnome',
   :branch => 'master'
 
-# SIMP has made changes to this module that don't exist upstream
-# and owns this version.  Beginning with version 0.4.4, all module
-# changes will be done on the 'master' branch.
 mod 'simp-haveged',
   :git => 'https://github.com/simp/pupmod-simp-haveged',
   :branch => 'master'
@@ -277,10 +237,6 @@ mod 'simp-iptables',
 
 mod 'simp-issue',
   :git => 'https://github.com/simp/pupmod-simp-issue',
-  :branch => 'master'
-
-mod 'simp-journald',
-  :git => 'https://github.com/simp/pupmod-simp-journald.git',
   :branch => 'master'
 
 mod 'simp-krb5',
@@ -383,10 +339,6 @@ mod 'simp-simplib',
   :git => 'https://github.com/simp/pupmod-simp-simplib',
   :branch => 'master'
 
-#mod 'simp-simp_ad',
-#  :git => 'https://github.com/simp/pupmod-simp-simp_ad',
-#  :branch => 'master'
-
 mod 'simp-simp_apache',
   :git => 'https://github.com/simp/pupmod-simp-simp_apache',
   :branch => 'master'
@@ -397,10 +349,6 @@ mod 'simp-simp_banners',
 
 mod 'simp-simp_bolt',
   :git => 'https://github.com/simp/pupmod-simp-simp_bolt',
-  :branch => 'master'
-
-mod 'simp-simp_docker',
-  :git => 'https://github.com/simp/pupmod-simp-simp_docker',
   :branch => 'master'
 
 mod 'simp-simp_gitlab',
@@ -414,13 +362,6 @@ mod 'simp-simp_grub',
 mod 'simp-simp_ipa',
   :git => 'https://github.com/simp/pupmod-simp-simp_ipa',
   :branch => 'master'
-
-# FIXME: This is commented out until the module is ready to be released.
-#  It has dependencies that have already been removed from the distribution.
-# mod 'simp-simp_kubernetes',
-# # FUTURE:  Release and add to simp.spec, to ensure packaged in ISO
-#   :git => 'https://github.com/simp/pupmod-simp-simp_kubernetes',
-#   :branch => 'master'
 
 mod 'simp-simp_nfs',
   :git => 'https://github.com/simp/pupmod-simp-simp_nfs',
@@ -519,7 +460,7 @@ mod 'simp-vnc',
 # Our changes are on simp-master.
 mod 'simp-vox_selinux',
   :git => 'https://github.com/simp/pupmod-voxpupuli-selinux',
-  :tag => 'simp-1.6.1'
+  :tag => 'simp-3.1.0'
 
 mod 'simp-vsftpd',
   :git => 'https://github.com/simp/pupmod-simp-vsftpd',
@@ -539,12 +480,12 @@ mod 'treydock-kdump',
 
 mod 'trlinkin-nsswitch',
   :git => 'https://github.com/simp/puppet-nsswitch',
-  :tag => '2.1.1'
+  :tag => '2.2.0'
 
 mod 'voxpupuli-firewalld',
-  :git => 'https://github.com/simp/pupmod-voxpupuli-firewalld'
-  :tag => 'v4.1.0'
- 
+  :git => 'https://github.com/simp/pupmod-voxpupuli-firewalld',
+  :tag => 'v4.2.3'
+
 mod 'voxpupuli-posix_acl',
   :git => 'https://github.com/simp/pupmod-voxpupuli-posix_acl',
   :tag => 'v0.1.1'
@@ -559,6 +500,6 @@ mod 'voxpupuli-snmp',
 
 mod 'voxpupuli-yum',
   :git => 'https://github.com/simp/voxpupuli-yum',
-  :tag => 'v3.1.1'
+  :tag => 'v4.1.1'
 
 # vi:syntax=ruby

@@ -1,6 +1,6 @@
 [simp-project-unstable-simp]
 name=simp-project-unstable-$basearch-simp
-baseurl=https://download.simp-project.com/simp/yum/unstable/simp6/el/$releasever/$basearch/simp
+baseurl=https://download.simp-project.com/simp/yum/unstable/6/el/$releasever/$basearch/simp
 enabled=1
 gpgcheck=1
 gpgkey=https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
@@ -11,7 +11,7 @@ metadata_expire=300
 
 [simp-project-unstable-epel]
 name=simp-project-unstable-$basearch-epel
-baseurl=https://download.simp-project.com/simp/yum/unstable/simp6/el/$releasever/$basearch/epel
+baseurl=https://download.simp-project.com/simp/yum/unstable/6/el/$releasever/$basearch/epel
 enabled=1
 gpgcheck=1
 gpgkey=https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-$releasever
@@ -21,7 +21,7 @@ metadata_expire=300
 
 [simp-project-unstable-postgresql]
 name=simp-project-unstable-$basearch-postgresql
-baseurl=https://download.simp-project.com/simp/yum/unstable/simp6/el/$releasever/$basearch/postgresql
+baseurl=https://download.simp-project.com/simp/yum/unstable/6/el/$releasever/$basearch/postgresql
 enabled=1
 gpgcheck=1
 gpgkey=https://apt.postgresql.org/pub/repos/yum/RPM-GPG-KEY-PGDG-96
@@ -31,7 +31,7 @@ metadata_expire=300
 
 [simp-project-unstable-puppet]
 name=simp-project-unstable-$basearch-puppet
-baseurl=https://download.simp-project.com/simp/yum/unstable/simp6/el/$releasever/$basearch/puppet
+baseurl=https://download.simp-project.com/simp/yum/unstable/6/el/$releasever/$basearch/puppet
 enabled=1
 gpgcheck=1
 gpgkey=https://yum.puppet.com/RPM-GPG-KEY-puppetlabs

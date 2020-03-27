@@ -1,7 +1,7 @@
 Summary: SIMP Full Install
 Name: simp
-Version: 6.4.0
-Release: 0%{?dist}%{?snapshot_release}
+Version: 6.5.0
+Release: Alpha%{?dist}%{?snapshot_release}
 License: Apache License, Version 2.0
 Group: Applications/System
 
@@ -68,7 +68,7 @@ Requires: pupmod-simp-logrotate >= 6.4.0, pupmod-simp-logrotate < 7.0.0
 Requires: pupmod-simp-named >= 6.2.0, pupmod-simp-named < 7.0.0
 Requires: pupmod-simp-ntpd >= 6.5.0, pupmod-simp-ntpd < 7.0.0
 Requires: pupmod-simp-oddjob >= 2.1.1, pupmod-simp-oddjob < 3.0.0
-Requires: pupmod-simp-pam >= 6.6.0, pupmod-simp-pam < 7.0.0
+Requires: pupmod-simp-pam >= 6.7.1, pupmod-simp-pam < 7.0.0
 Requires: pupmod-simp-pki >= 6.1.1, pupmod-simp-pki < 7.0.0
 Requires: pupmod-simp-polkit >= 6.1.2, pupmod-simp-polkit < 7.0.0
 Requires: pupmod-simp-postfix >= 5.3.0, pupmod-simp-postfix < 6.0.0
@@ -109,7 +109,7 @@ Requires: simp-environment-skeleton >= 7.1.0, simp-environment-skeleton < 8.0.0
 Requires: simp-gpgkeys >= 3.1.1, simp-gpgkeys < 4.0.0
 Requires: simp-rsync-skeleton >= 7.0.1, simp-rsync-skeleton < 8.0.0
 Requires: simp-utils >= 6.2.2, simp-utils < 7.0.0
-%if 0%{rhel} >= 7
+%if 0%{?rhel} >= 7
 Requires: pupmod-puppet-firewalld => 4.1.0, pupmod-puppet-firewalld < 5.0.0
 Requires: pupmod-aboe-chrony >= 0.3.1, pupmod-aboe-chrony < 1.0.0
 %endif
@@ -315,7 +315,7 @@ fi
 - Replaced pupmod-simp-systemd with pupmod-camptocamp-systemd.
   Ownership of this project has reverted to the Camptocamp org.
 
-* Fri Feb 02 2019 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.3.2-0
+* Fri Feb 01 2019 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.3.2-0
 - Updated the following packages to address bug fixes. See the Changelog for
   relevant information.
   - pupmod-simp-incron
@@ -324,7 +324,7 @@ fi
   - pupmod-simp-sssd
   - pupmod-simp-stunnel
 
-* Tue Nov 11 2018 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.3.0-0
+* Sun Nov 11 2018 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.3.0-0
 - Updated package versions for the latest release
 - Moved the following to simp-extras
   - pupmod-richardc-datacat
@@ -336,7 +336,7 @@ fi
   - pupmod-simp-tpm
   - pupmod-simp-tpm2
 
-* Wed Oct 05 2018 Liz Nemsick <lnemsick.simp@gmail.com> - 6.3.0-0
+* Fri Oct 05 2018 Liz Nemsick <lnemsick.simp@gmail.com> - 6.3.0-0
 - Add the following dependencies to the simp package
   - pupmod-simp-deferred_resources
   - pupmod-simp-ima

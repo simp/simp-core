@@ -36,7 +36,9 @@ module Acceptance
           puts("Using Puppet #{puppet_collection} repo from yum.puppetlabs.com")
           puts('='*72)
 
-          if host.host_hash[:platform] =~ /el-7/
+          if host.host_hash[:platform] =~ /el-8/
+            family = 'el-8'
+          elsif host.host_hash[:platform] =~ /el-7/
             family = 'el-7'
           elsif host.host_hash[:platform] =~ /el-6/
             family = 'el-6'
