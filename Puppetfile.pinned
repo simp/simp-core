@@ -80,7 +80,7 @@ mod 'herculesteam-augeasproviders_core',
 
 mod 'herculesteam-augeasproviders_grub',
   :git => 'https://github.com/simp/augeasproviders_grub',
-  :branch => 'master'
+  :tag => '3.2.0'
 
 mod 'herculesteam-augeasproviders_ssh',
   :git => 'https://github.com/simp/augeasproviders_ssh',
