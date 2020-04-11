@@ -1,0 +1,72 @@
+authconfig --enableshadow --passalgo=sha512
+network --bootproto=dhcp --nodns --hostname=puppet.change.me
+skipx
+rootpw --iscrypted $6$3iLC5g2j9z/UvuAX$wKQy4.T92omIx7aEQ6iVunQHSG0l2eVd7be47kUKC2nWFoJhoARx68h8x.jcR99TZZRrFf8SKzVlvK3JdhKkf0
+bootloader --location=mbr --driveorder=sda,hda --iscrypted --password=grub.pbkdf2.sha512.10000.38F6446B9655E8E98CEA82F10EFE4DA30A963932FE415EC72B744FB04EB3636384BD968004B64E5A900CF7D08C9064725A6F2E8246F5874BC4954F9B489D72BA.EE006A76847C20D226064CB77FEC9C697229DE22C5149331425AB3EEBCB99504F712ACBE101D332B35D8A277C7D7E74D8A905C474533A3C7B0428D3BD416382C
+zerombr
+firewall --enabled --ssh
+firstboot --disable
+logging --level=info
+selinux --permissive
+timezone --utc GMT
+
+clearpart --all
+
+%include /tmp/part-include
+%include /tmp/repo-include
+
+reboot
+
+%packages
+acl
+audit
+bzip2
+crontabs
+cryptsetup-luks
+dhclient
+%include /tmp/dracut_packages
+fipscheck
+git
+gnupg
+iptables
+iptables-ipv6
+irqbalance
+libaio
+libutempter
+logrotate
+mdadm
+microcode_ctl
+netlabel_tools
+ntp
+openssh-clients
+openssh-server
+pciutils
+quota
+rpm
+smartmontools
+stunnel
+sudo
+tcp_wrappers
+tmpwatch
+unzip
+
+# In case of broken repo, these should be installed.
+hdparm
+kbd
+libhugetlbfs
+policycoreutils
+rootfiles
+selinux-policy-targeted
+setserial
+sysfsutils
+udftools
+
+# Don't install these
+-rhn-check
+-rhn-setup
+-rhnsd
+-sendmail
+-subscription-manager
+-sysklogd
+-yum-rhn-plugin
+%end
