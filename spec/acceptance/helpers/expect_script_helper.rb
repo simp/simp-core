@@ -34,6 +34,7 @@ module Acceptance
       #
       # @returns the location of the script on the host
       def install_expect_script(host, script, dest_dir = EXPECT_SCRIPT_DIR)
+        host.install_package('expect')
         dest_script = File.join(dest_dir, File.basename(script))
         scp_to(host, script, dest_script)
         on(host, "chmod +x #{dest_script}")

@@ -33,7 +33,7 @@ gem 'simp-rake-helpers', ENV.fetch('SIMP_RAKE_HELPERS_VERSION', ['>= 5.9.1', '< 
 
 group :system_tests do
   gem 'nokogiri'
-  gem 'beaker', '4.8.0'
+  gem 'beaker'
   gem 'beaker-rspec'
   gem 'simp-beaker-helpers', ENV.fetch('SIMP_BEAKER_HELPERS_VERSION', ['>= 1.15.1', '< 2.0'])
 end

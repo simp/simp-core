@@ -90,6 +90,7 @@ describe 'IPA server integration' do
         login = []
         login << "sshpass -p '#{test_password}'"
         login << 'ssh'
+        login << '-o PubkeyAuthentication=no'
         login << '-o StrictHostKeyChecking=no'
         login << '-m hmac-sha1' if client.host_hash[:platform] =~ /el-6/
         login << '-l testuser'

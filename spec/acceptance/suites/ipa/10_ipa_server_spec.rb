@@ -74,7 +74,7 @@ describe 'set up an IPA server' do
 
     it 'should install a manifest to allow ports for IPA services' do
       # grab the whole site module even though we will only use site::ipa
-      rsync_to(master, "#{files_dir}/site", site_module_path)
+      scp_to(master, "#{files_dir}/site", site_module_path)
       on(master, 'simp environment fix production --no-secondary-env --no-writable-env')
     end
 

@@ -262,7 +262,7 @@ Vagrant.configure('2') do |c|
       inline: 'curl -k -O https://puppet.test.simp/ks/bootstrap_simp_client'
 
     v.vm.provision 'shell',
-      inline: '/opt/puppetlabs/puppet/bin/ruby bootstrap_simp_client --debug --puppet_server=puppet.test.simp --puppet_ca=puppet.test.simp'
+      inline: '/opt/puppetlabs/puppet/bin/ruby bootstrap_simp_client --debug --puppet-wait-for-cert 0 --debug --print-stats --puppet_server=puppet.test.simp --puppet_ca=puppet.test.simp'
   end
 
   c.vm.define 'simp_stig', autostart: false do |v|
