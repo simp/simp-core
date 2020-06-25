@@ -3,7 +3,7 @@ require 'spec_helper_integration'
 test_name 'Bootstrap SIMP clients'
 
 # facts gathered here are executed when the file first loads and
-# use the factor gem temporarily installed into system ruby
+# use the facter gem temporarily installed into system ruby
 master      = only_host_with_role(hosts, 'master')
 master_fqdn = fact_on(master, 'fqdn')
 agents      = hosts_with_role(hosts, 'agent')
@@ -17,5 +17,4 @@ describe 'Bootstrap SIMP clients' do
   }
 
   include_examples 'SIMP client manual bootstrap', agents, config
-
 end

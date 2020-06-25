@@ -44,7 +44,7 @@ non_syslog_servers = hosts - syslog_servers
 
 # facts gathered here are executed when the file first loads and
 # use the factor gem temporarily installed into system ruby
-domain         = fact_on(master, 'domain')
+domain = fact_on(master, 'domain')
 
 describe 'Validation of rsyslog forwarding' do
 
@@ -149,7 +149,7 @@ describe 'Validation of rsyslog forwarding' do
 
   context 'additional site manifest/hieradata staging' do
     it 'should install additional manifests and update hieradata' do
-      rsync_to(master, "#{files_dir}/site", site_module_path)
+      scp_to(master, "#{files_dir}/site", site_module_path)
       on(master, 'simp environment fix production --no-secondary-env --no-writable-env')
 
       create_remote_file(master, default_yaml_filename, default_hieradata.to_yaml)
@@ -199,12 +199,13 @@ describe 'Validation of rsyslog forwarding' do
 
     it 'should generate systemd log messages in the local secure log' do
       hosts.each do |host|
-        facts = JSON.load(on(host, 'puppet facts').stdout)
-        if facts['values']['systemd']
+        if pfact_on(host, 'systemd')
           on(host, 'systemctl restart haveged.service')
+          sleep(20)
+
           unless host.host_hash[:roles].include?('syslog_server')
-            on(host, "grep 'systemd: Stopping Entropy Daemon based on the HAVEGE' /var/log/secure")
-            on(host, "grep 'systemd: Start.* Entropy Daemon based on the HAVEGE' /var/log/secure")
+            on(host, "grep 'systemd.*: Stopping Entropy Daemon based on the HAVEGE' /var/log/secure")
+            on(host, "grep 'systemd.*: Start.* Entropy Daemon based on the HAVEGE' /var/log/secure")
           end
         else
           puts "Skipping host #{host.name}, which does not use systemd"
@@ -216,11 +217,10 @@ describe 'Validation of rsyslog forwarding' do
       retried = false
       begin
         hosts.each do |host|
-          facts = JSON.load(on(host, 'puppet facts').stdout)
-          if facts['values']['systemd']
+          if pfact_on(host, 'systemd')
             logdir = "/var/log/hosts/#{host.name}.#{domain}"
-            on(syslog_servers, "grep 'systemd: Stopping Entropy Daemon based on the HAVEGE' #{logdir}/secure.log")
-            on(syslog_servers, "grep 'systemd: Start.* Entropy Daemon based on the HAVEGE' #{logdir}/secure.log")
+            on(syslog_servers, "grep 'systemd.*: Stopping Entropy Daemon based on the HAVEGE' #{logdir}/secure.log")
+            on(syslog_servers, "grep 'systemd.*: Start.* Entropy Daemon based on the HAVEGE' #{logdir}/secure.log")
           else
             puts "Skipping host #{host.name}, which does not use systemd"
           end
@@ -232,39 +232,65 @@ describe 'Validation of rsyslog forwarding' do
       end
     end
 
-    it 'should generate a local yum log' do
-      hosts.each do |host|
+    hosts.each do |host|
+      # DNF systems don't log to yum.log
+      next if host.which('dnf')
+
+      it 'should generate a local yum log' do
+        skip "#{host} uses 'dnf'" if host.which('dnf')
+
         host.install_package('expect')
         unless host.host_hash[:roles].include?('syslog_server')
           on(host, "grep 'Installed: expect' /var/log/yum.log")
         end
       end
-    end
 
-    it 'should forward yum logs' do
-      begin
-        verify_remote_log_messages(['Installed: expect'], 'secure.log', hosts, domain)
-      rescue Beaker::Host::CommandFailure => e
-        skip "#{self.class.description} failed => #{e}"
+      it 'should forward yum logs' do
+        skip "#{host} uses 'dnf'" if host.which('dnf')
+
+        begin
+          verify_remote_log_messages(['Installed: expect'], 'secure.log', host, domain)
+        rescue Beaker::Host::CommandFailure => e
+          skip "#{self.class.description} failed => #{e}"
+        end
       end
     end
 
-    it 'should generate a local cron log' do
-      # retry_on() is supposed to work on Hosts array, but doesn't
-      non_syslog_servers.each do |host|
-        retry_on(host,
-          "egrep 'CROND.*: .root. CMD ./usr/local/sbin/dynamic_swappiness.rb' /var/log/cron",
-          {:retry_interval =>5, :max_retries => 15}
-        )
-      end
-    end
+    context 'cron logs' do
+      let(:cron_entry) { 'ls /tmp' }
 
-    it 'should forward cron logs' do
-      begin
-        verify_remote_log_messages(['CROND.*: .root. CMD ./usr/local/sbin/dynamic_swappiness.rb'],
-          'cron.log', hosts, domain)
-      rescue Beaker::Host::CommandFailure => e
-        skip "#{self.class.description} failed => #{e}"
+      let(:cron_manifest) {
+        <<~EOM
+          cron { 'rsyslog_beaker':
+            user    => 'root',
+            minute  => '*',
+            command => '#{cron_entry}'
+          }
+        EOM
+      }
+
+      it 'should create the test cron job' do
+        hosts.each do |host|
+          apply_manifest_on(host, cron_manifest)
+        end
+      end
+
+      it 'should generate a local cron log' do
+        non_syslog_servers.each do |host|
+          retry_on(
+            host,
+            "egrep 'CROND.*: .root. CMD .#{cron_entry}' /var/log/cron",
+            {:retry_interval => 5, :max_retries => 15}
+          )
+        end
+      end
+
+      it 'should forward cron logs' do
+        begin
+          verify_remote_log_messages(["CROND.*: .root. CMD .#{cron_entry}"], 'cron.log', hosts, domain)
+        rescue Beaker::Host::CommandFailure => e
+          skip "#{self.class.description} failed => #{e}"
+        end
       end
     end
 
@@ -325,14 +351,28 @@ describe 'Validation of rsyslog forwarding' do
         on(non_syslog_servers.first, cmd, :accept_all_exit_codes => true)
       end
 
-      # NOTE: On the syslog servers, these messages show up locally in
-      #       /var/log/kernel.log, instead.
-      on(non_syslog_servers, "grep 'kernel: IPT:' /var/log/iptables.log")
+      non_syslog_servers.each do |host|
+        firewalld_state = YAML.load(on(host, 'puppet resource service firewalld --to_yaml').stdout.strip).dig('service','firewalld','ensure')
+
+        if firewalld_state == 'running'
+          on(host, "grep 'kernel: IN_99_simp_DROP:' /var/log/messages")
+        else
+          on(host, "grep 'kernel: IPT:' /var/log/iptables.log")
+        end
+      end
     end
 
     it 'should forward iptables dropped packet logs' do
       begin
-        verify_remote_log_messages(['kernel: IPT:'], 'iptables.log', hosts, domain)
+        hosts.each do |host|
+          firewalld_state = YAML.load(on(host, 'puppet resource service firewalld --to_yaml').stdout.strip).dig('service','firewalld','ensure')
+
+          if firewalld_state == 'running'
+            verify_remote_log_messages(['kernel: IN_99_simp_DROP:'], 'messages', [host], domain)
+          else
+            verify_remote_log_messages(['kernel: IPT:'], 'iptables.log', [host], domain)
+          end
+        end
       rescue Beaker::Host::CommandFailure => e
         skip "#{self.class.description} failed => #{e}"
       end

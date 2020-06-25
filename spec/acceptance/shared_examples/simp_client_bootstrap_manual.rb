@@ -53,7 +53,7 @@ shared_examples 'SIMP client manual bootstrap' do |agent, options|
     end
 
     it 'should reboot the clients to apply boot time config' do
-      block_on(agents, :run_in_parallel => false) do |agent|
+      agents.each do |agent|
         agent.reboot
       end
     end

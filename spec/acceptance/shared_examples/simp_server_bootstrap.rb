@@ -50,7 +50,8 @@ shared_examples 'SIMP server bootstrap' do |master, config|
             'update_ssf=128',
             'simple_bind=128',
             'update_tls=128',
-          ]
+          ],
+          'pupmod::master::generate_types::enable' => false
         } )
       end
     end
