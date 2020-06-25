@@ -11,17 +11,29 @@ FROM centos:6.6
 ENV container docker
 
 # Fix issues with overlayfs
-RUN yum clean all
-RUN yum install -y sudo curl ntpdate
-RUN rm -f /var/lib/rpm/__db*
-RUN yum clean all
-RUN yum install -y yum-plugin-ovl || :
-RUN yum install -y yum-utils
+RUN yum clean all && yum history sync
+RUN yum install -y sudo curl ntpdate && yum clean all
+RUN rm -f /var/lib/rpm/__db* && yum clean all && yum history sync
+
+# The `yum-plugin-ovl` package is needed to avoid "copy-up" mistmatch
+# issues problems when using overlayFS.  However, in early releases of
+# EL6, the package was not included—so the `touch /var/lib/rpm/*;`
+# workaround is needed to safely install `yum-plugin-ovl`.
+#
+# See:
+#   - https://docs.docker.com/storage/storagedriver/overlayfs-driver/#limitations-on-overlayfs-compatibility
+#
+RUN touch /var/lib/rpm/*; yum install -y yum-plugin-ovl || true
+RUN touch /var/lib/rpm/*; rpm -qi yum-utils || yum install -y yum-utils
 
 # Prep for buidling aginst the oldest SELinux packages
+# We only want to deal with the original distro packages
 RUN yum-config-manager --disable \*
 RUN echo -e "[legacy]\nname=Legacy\nbaseurl=http://vault.centos.org/6.6/os/x86_64\ngpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-6\ngpgcheck=1" > /etc/yum.repos.d/legacy.repo
-RUN cd /root; yum -x yum -x python-urlgrabber downgrade -y *
+
+# Downgrade ALL THE THINGS!!!
+# ...except yum and python-urlgrabber, which yum-plugin-ovl has dependencies on
+RUN cd /root; yum --verbose --setopt=retries=10 --tolerant -x yum -x python-urlgrabber downgrade -y *
 
 # Work around bug https://bugzilla.redhat.com/show_bug.cgi?id=1217477
 # This does *not* update the SELinux packages, so it is safe
