@@ -92,4 +92,4 @@ RUN runuser build_user -l -c "git clone https://github.com/simp/simp-core"
 RUN runuser build_user -l -c "cd simp-core; bundle install"
 
 # Drop into a shell for building
-CMD /bin/bash -c "su -l build_user"
+ENTRYPOINT /bin/bash -c "su -l build_user"

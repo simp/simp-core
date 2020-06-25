@@ -39,7 +39,7 @@ RUN yum-config-manager --enable extras
 RUN yum install -y epel-release
 RUN yum install -y openssl util-linux rpm-build augeas-devel createrepo genisoimage git gnupg2 libicu-devel libxml2 libxml2-devel libxslt libxslt-devel rpmdevtools which ruby-devel rpm-devel rpm-sign
 RUN yum -y install centos-release-scl python-pip python-virtualenv fontconfig dejavu-sans-fonts dejavu-sans-mono-fonts dejavu-serif-fonts dejavu-fonts-common libjpeg-devel zlib-devel openssl-devel
-RUN yum install -y libyaml-devel glibc-headers autoconf gcc gcc-c++ glibc-devel readline-devel libffi-devel automake libtool bison sqlite-devel
+RUN yum install -y libyaml-devel glibc-headers autoconf gcc gcc-c++ glibc-devel readline-devel libffi-devel automake libtool bison sqlite-devel acl
 RUN yum-config-manager --enable rhel-server-rhscl-7-rpms
 RUN yum --enablerepo=base -y install python27
 RUN ln -sf /bin/true /usr/bin/systemctl
@@ -92,4 +92,4 @@ RUN runuser build_user -l -c "git clone https://github.com/simp/simp-core"
 RUN runuser build_user -l -c "cd simp-core; bundle install"
 
 # Drop into a shell for building
-CMD /bin/bash -c "su -l build_user"
+ENTRYPOINT /bin/bash -c "su -l build_user"
