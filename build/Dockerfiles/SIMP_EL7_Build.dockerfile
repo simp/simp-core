@@ -13,9 +13,18 @@ ENV container docker
 # Fix issues with overlayfs
 RUN yum clean all
 RUN rm -f /var/lib/rpm/__db*
-RUN yum clean all
-RUN yum install -y yum-plugin-ovl || :
-RUN yum install -y yum-utils
+RUN yum clean all && yum history sync
+
+# The `yum-plugin-ovl` package is needed to avoid "copy-up" mistmatch
+# issues problems when using overlayFS.  However, in early releases of
+# EL7, the package was not included—so the `touch /var/lib/rpm/*;`
+# workaround is needed to safely install `yum-plugin-ovl`.
+#
+# See:
+#   - https://docs.docker.com/storage/storagedriver/overlayfs-driver/#limitations-on-overlayfs-compatibility
+#
+RUN touch /var/lib/rpm/*; yum install -y yum-plugin-ovl || true
+RUN touch /var/lib/rpm/*; rpm -qi yum-utils || yum install -y yum-utils
 
 # Prep for building against the oldest SELinux packages
 RUN yum-config-manager --disable \*
@@ -27,6 +36,9 @@ RUN cd /root; yum downgrade -x nss* -x libnss* -x nspr -y *
 RUN yum --enablerepo=updates --enablerepo=base update -y git curl nss
 
 RUN yum install -y sudo selinux-policy-targeted selinux-policy-devel policycoreutils policycoreutils-python
+
+# Ensure that setfacl is available
+RUN command -v setfacl > /dev/null || yum install -y acl
 
 # Ensure that the 'build_user' can sudo to root for RVM
 RUN echo 'Defaults:build_user !requiretty' >> /etc/sudoers
