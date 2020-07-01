@@ -73,7 +73,7 @@ if [ "$simp_opt" != "prompt" ]; then
   cat << EOF > /tmp/part-include
 clearpart --all --initlabel --drives=${DISK}
 part /boot --fstype=ext4 --size=1024 --ondisk ${DISK} --asprimary --fsoptions=nosuid,nodev
-#part /boot/efi --fstype=efi --size=400 --ondisk ${DISK} --asprimary
+part /boot/efi --fstype=efi --size=400 --ondisk ${DISK} --asprimary
 EOF
 
   if [ $encrypt -eq 0 ]; then
