@@ -1,12 +1,34 @@
-# This version of CentOS is needed for the SELinux context builds
+# This Dockerfile begins from an ancient version of CentOS and upgrades itself
+# in order to acquire all the accumulated SELinux contexts starting from EL7.0
+# until the present.
+#
+# To build using docker, run:
+#
+# ```sh
+# docker build \
+#   --tag "simp-core-iso-builder:el7.$(git rev-parse --short HEAD)" \
+#   --file build/Dockerfiles/SIMP_EL7_Build.dockerfile
+# ```
+#
+# To build using podman, run:
+# ```sh
+# podman build \
+#   --tag "simp-core-iso-builder:el7.$(git rev-parse --short HEAD)" \
+#   --file build/Dockerfiles/SIMP_EL7_Build.dockerfile
+# ```
+#
 # After building, you will probably want to mount your ISO directory using
 # something like the following:
-#   * docker run -v $PWD/ISO:/ISO:Z -it <container ID>
+#
+# ```sh
+# docker run -v $PWD/ISO:/ISO:Z -it <container ID>
+# ```
 #
 # If you want to save your container for future use, you use use the `docker
 # commit` command
 #   * docker commit <running container ID> el7_build
 #   * docker run -it el7_build
+
 FROM centos:7.0.1406
 ENV container docker
 
@@ -92,8 +114,8 @@ RUN runuser build_user -l -c "for i in {1..5}; do { gpg2 --keyserver  hkp://pool
 RUN runuser build_user -l -c "for i in {1..5}; do { gpg2 --keyserver  hkp://pool.sks-keyservers.net --recv-keys 7D2BAF1CF37B13E2069D6956105BD0E739499BDB || gpg2 --keyserver hkp://pgp.mit.edu --recv-keys 7D2BAF1CF37B13E2069D6956105BD0E739499BDB || gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 7D2BAF1CF37B13E2069D6956105BD0E739499BDB; } && break || sleep 1; done"
 #RUN runuser build_user -l -c "gpg2 --refresh-keys"
 RUN runuser build_user -l -c "curl -sSL https://raw.githubusercontent.com/rvm/rvm/stable/binscripts/rvm-installer -o rvm-installer && curl -sSL https://raw.githubusercontent.com/rvm/rvm/stable/binscripts/rvm-installer.asc -o rvm-installer.asc && gpg2 --verify rvm-installer.asc rvm-installer && bash rvm-installer"
-RUN runuser build_user -l -c "rvm install 2.4.5 --disable-binary"
-RUN runuser build_user -l -c "rvm use --default 2.4.5"
+RUN runuser build_user -l -c "rvm install 2.4.10 --disable-binary"
+RUN runuser build_user -l -c "rvm use --default 2.4.10"
 RUN runuser build_user -l -c "rvm all do gem install bundler -v '~> 1.16'"
 RUN runuser build_user -l -c "rvm all do gem install bundler -v '~> 2.0'"
 
