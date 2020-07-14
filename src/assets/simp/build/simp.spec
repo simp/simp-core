@@ -82,6 +82,7 @@ Requires: pupmod-simp-simp >= 4.11.0, pupmod-simp-simp < 5.0.0
 Requires: pupmod-simp-simplib >= 4.0.0, pupmod-simp-simplib < 5.0.0
 Requires: pupmod-simp-simp_apache >= 6.2.0, pupmod-simp-simp_apache < 7.0.0
 Requires: pupmod-simp-simp_banners >= 0.1.2, pupmod-simp-simp_banners < 1.0.0
+Requires: pupmod-simp-simp_firewalld >= 0.1.0, pupmod-simp-firewalld < 1.0.0
 Requires: pupmod-simp-simp_openldap >= 6.4.0, pupmod-simp-simp_openldap < 7.0.0
 Requires: pupmod-simp-simp_options >= 1.3.0, pupmod-simp-simp_options < 2.0.0
 Requires: pupmod-simp-simp_rsyslog >= 0.4.0, pupmod-simp-simp_rsyslog < 1.0.0
@@ -251,6 +252,9 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Thu Jul 09 2020 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.5.0-ALPHA
+- Add pupmod-simp-simp_firewalld to the core package list
+
 * Thu Dec 12 2019 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 6.5.0-ALPHA
 - add firewalld and chrony to the Puppetfile and simp.spec file
 - update the version of simplib required.
