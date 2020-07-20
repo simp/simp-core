@@ -334,8 +334,8 @@ mod 'simp-selinux',
   :git => 'https://github.com/simp/pupmod-simp-selinux',
   :tag => '2.5.1'
 
-mod 'simp-simp',
-  :git => 'https://github.com/simp/pupmod-simp-simp',
+mod 'simp-simpkv',
+  :git => 'https://github.com/simp/pupmod-simp-simpkv',
   :branch => 'master'
 
 mod 'simp-simplib',
