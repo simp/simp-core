@@ -5,7 +5,7 @@
 [![Puppet Forge Modules](https://img.shields.io/puppetforge/mc/simp.svg)](https://forge.puppetlabs.com/simp)
 [![Build Status](https://travis-ci.org/simp/simp-core.svg)](https://travis-ci.org/simp/simp-core)
 
-This is the [SIMP](https://simp-project.com) supermodule for release 6.3.0-0.
+This is the [SIMP](https://simp-project.com) supermodule
 
 The latest release is [![GitHub release](https://img.shields.io/github/release/simp/simp-core.svg)](https://github.com/simp/simp-core/releases)
 
@@ -25,7 +25,7 @@ You can find all full SIMP changelogs on [Read The Docs](https://simp.readthedoc
 
 ## Getting Started
 
-Please take a look at the [SIMP Documentation](http://simp.readthedocs.io/en/6.3.0-0/)
+Please take a look at the [SIMP Documentation](http://simp.readthedocs.io/en/)
 for this release for full details on using the SIMP system.
 
 We recommend that you also reference the
