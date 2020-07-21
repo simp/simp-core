@@ -206,6 +206,10 @@ mod 'simp-fips',
   :git => 'https://github.com/simp/pupmod-simp-fips',
   :tag => '0.4.0'
 
+mod 'simp-simp_firewalld',
+  :git => 'https://github.com/simp/pupmod-simp-simp_firewalld',
+  :tag => '0.1.0'
+
 mod 'simp-freeradius',
   :git => 'https://github.com/simp/pupmod-simp-freeradius',
   :branch => 'master'

@@ -1,36 +1,41 @@
-# Uses Docker to do a full build of all SIMP packages for CentOS
+# Uses Beaker+Docker to package a full build of all SIMP packages for CentOS
 #
 # Also works in Travis CI
 #
+# ## Building SIMP ISOs
+#
 # If you have a local 'ISO' directory in 'simp-core' with the necessary ISO
-# images, will attempt to build a full SIMP ISO release.
+# images, this test will attempt to build a full SIMP ISO release.
 #
-# If you set the environment variable BEAKER_copyin=yes will copy in your
-# 'simp-core' repo instead of using the one on the filesystem. You probably
-# want to also set BEAKER_destroy=no if you do this so that you can retrieve
-# any relevant artifacts.
+# If you set the environment variable BEAKER_copyin=yes, it will copy in your
+# local copy of the 'simp-core' repo instead of using the one on the
+# filesystem. You probably want to also set BEAKER_destroy=no if you do this,
+# so that you can retrieve any relevant artifacts.
 #
-#   * This mode could be **MUCH** slower but will preserve the sanctity of your
-#     workspace
+#   * NOTE: This mode could be **MUCH** slower, but will preserve the state of
+#           your workspace (including any local changes you may have made)
+#
+# ## Building RHEL ISOs
 #
 # This will also do a full build for RedHat in a vagrant box if the 'rhel7'
 # nodeset is used.
-# To make this work copy only the redhat iso into the simp-core/ISO directory.
-# In order to get the Redhat Build to work you must set the following
+#
+# To make this work, copy only the redhat iso into the simp-core/ISO directory.
+# In order to get the Redhat Build to work, you must set the following
 # Environment variables:
 #
 #  BEAKER_RHSM_USER=(Your RedHat developer account name)
 #  BEAKER_RHSM_PASS=(Your RedHat developer account password)
 #  BEAKER_copyin=yes
 #
-# NOTE: if copyin is not set to yes, it will download simp-core from the
-# simp repository and build the rpms from that.  It will not create an ISO
-# even if you have an ISO directory
-#
-# This will create the RedHat ISO and copy it out to simp-core directory.
-# If you need any of the other artifacts set  BEAKER_destroy=no and retrieve them
+# This will create the RedHat ISO and copy it out to simp-core directory.  If
+# you need any of the other artifacts, set BEAKER_destroy=no and retrieve them
 # from the VM.
-# 
+#
+# NOTE: BEAKER_copyin *MUST* be set to 'yes',  otherwise it will download
+# simp-core from the simp repository and build the rpms from that, with the
+# result that it will not create an ISO (even if you have an ISO directory)!
+#
 require 'spec_helper_rpm'
 
 test_name 'RPM build'
@@ -155,8 +160,8 @@ describe 'RPM build' do
         end
 
         it 'should set up RVM' do
-          on(host, %(#{run_cmd} "rvm install 2.4.4 --disable-binary"))
-          on(host, %(#{run_cmd} "rvm use --default 2.4.4"))
+          on(host, %(#{run_cmd} "rvm install 2.4.10 --disable-binary"))
+          on(host, %(#{run_cmd} "rvm use --default 2.4.10"))
           on(host, %(#{run_cmd} "rvm all do gem install bundler -v \\"~> 1.16\\" --no-document"))
           on(host, %(#{run_cmd} "rvm all do gem install bundler -v \\"~> 2.0\\" --no-document"))
         end
