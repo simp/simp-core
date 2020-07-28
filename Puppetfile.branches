@@ -65,7 +65,7 @@ mod 'aboe76-chrony',
 
 mod 'camptocamp-kmod',
   :git => 'https://github.com/simp/puppet-kmod.git',
-  :tag => '2.3.0'
+  :tag => '2.5.0'
 
 mod 'camptocamp-systemd',
   :git => 'https://github.com/simp/puppet-systemd.git',
@@ -73,19 +73,19 @@ mod 'camptocamp-systemd',
 
 mod 'herculesteam-augeasproviders_core',
   :git => 'https://github.com/simp/augeasproviders_core',
-  :tag => '2.4.0'
+  :tag => '2.6.0'
 
 mod 'herculesteam-augeasproviders_grub',
   :git => 'https://github.com/simp/augeasproviders_grub',
-  :tag => '3.1.0'
+  :tag => '3.2.0'
 
 mod 'herculesteam-augeasproviders_ssh',
   :git => 'https://github.com/simp/augeasproviders_ssh',
-  :tag => '3.2.1'
+  :tag => '3.3.0'
 
 mod 'herculesteam-augeasproviders_sysctl',
   :git => 'https://github.com/simp/augeasproviders_sysctl',
-  :tag => '2.3.1'
+  :tag => '2.5.0'
 
 mod 'onyxpoint-gpasswd',
   :git => 'https://github.com/simp/puppet-gpasswd',
@@ -93,7 +93,7 @@ mod 'onyxpoint-gpasswd',
 
 mod 'puppetlabs-apache',
   :git => 'https://github.com/simp/puppetlabs-apache',
-  :tag => '4.0.0'
+  :tag => 'v5.5.0'
 
 mod 'puppetlabs-concat',
   :git => 'https://github.com/simp/puppetlabs-concat',
@@ -101,7 +101,7 @@ mod 'puppetlabs-concat',
 
 mod 'puppetlabs-hocon',
   :git => 'https://github.com/simp/pupmod-puppetlabs-hocon',
-  :tag => '1.0.1'
+  :tag => 'v1.1.0'
 
 mod 'puppetlabs-inifile',
   :git => 'https://github.com/simp/puppetlabs-inifile',
@@ -121,15 +121,15 @@ mod 'puppetlabs-mysql',
 
 mod 'puppetlabs-postgresql',
   :git => 'https://github.com/simp/puppetlabs-postgresql',
-  :tag => '5.12.1'
+  :tag => 'v6.6.0'
 
 mod 'puppetlabs-puppetdb',
   :git => 'https://github.com/simp/puppetlabs-puppetdb',
-  :tag => '7.4.0'
+  :tag => '7.5.0'
 
 mod 'puppetlabs-puppet_authorization',
   :git => 'https://github.com/simp/puppetlabs-puppet_authorization.git',
-  :tag => '0.5.0'
+  :tag => '0.5.1'
 
 mod 'puppetlabs-ruby_task_helper',
   :git => 'https://github.com/simp/pupmod-puppetlabs-ruby_task_helper.git',
@@ -201,10 +201,6 @@ mod 'simp-dhcp',
 
 mod 'simp-fips',
   :git => 'https://github.com/simp/pupmod-simp-fips',
-  :branch => 'master'
-
-mod 'simp-simp_firewalld',
-  :git => 'https://github.com/simp/pupmod-simp-simp_firewalld',
   :branch => 'master'
 
 mod 'simp-freeradius',
@@ -359,6 +355,10 @@ mod 'simp-simp_bolt',
   :git => 'https://github.com/simp/pupmod-simp-simp_bolt',
   :branch => 'master'
 
+mod 'simp-simp_firewalld',
+  :git => 'https://github.com/simp/pupmod-simp-simp_firewalld',
+  :branch => 'master'
+
 mod 'simp-simp_gitlab',
   :git => 'https://github.com/simp/pupmod-simp-simp_gitlab',
   :branch => 'master'
@@ -484,7 +484,7 @@ mod 'simp-xinetd',
 
 mod 'treydock-kdump',
   :git => 'https://github.com/simp/pupmod-treydock-kdump',
-  :tag => '0.2.0'
+  :tag => 'v0.4.1'
 
 mod 'trlinkin-nsswitch',
   :git => 'https://github.com/simp/puppet-nsswitch',
@@ -492,19 +492,19 @@ mod 'trlinkin-nsswitch',
 
 mod 'voxpupuli-firewalld',
   :git => 'https://github.com/simp/pupmod-voxpupuli-firewalld',
-  :tag => 'v4.2.3'
+  :tag => 'v4.3.0'
 
 mod 'voxpupuli-posix_acl',
   :git => 'https://github.com/simp/pupmod-voxpupuli-posix_acl',
-  :tag => 'v0.1.1'
+  :tag => 'v1.0.1'
 
 mod 'voxpupuli-gitlab',
   :git => 'https://github.com/simp/puppet-gitlab.git',
-  :tag => 'v3.0.2'
+  :tag => 'v5.0.0'
 
 mod 'voxpupuli-snmp',
   :git => 'https://github.com/simp/puppet-snmp',
-  :tag => 'v4.1.0'
+  :tag => 'v5.1.1'
 
 mod 'voxpupuli-yum',
   :git => 'https://github.com/simp/voxpupuli-yum',
