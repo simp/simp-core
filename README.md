@@ -25,13 +25,8 @@ You can find all full SIMP changelogs on [Read The Docs](https://simp.readthedoc
 
 ## Getting Started
 
-Please take a look at the [SIMP Documentation](http://simp.readthedocs.io/en/)
-for this release for full details on using the SIMP system.
-
-We recommend that you also reference the
-[latest rolling Documentation](http://simp.readthedocs.io/en/latest/)
-for any relevant updates or corrections.
-
+Please take a look at the [SIMP Documentation](http://simp.readthedocs.io) for
+this release for full details on using the SIMP system.
 
 ## Relevant Links
 
