@@ -131,7 +131,17 @@ describe 'RPM build' do
           host.install_package('which')
           host.install_package('ruby-devel')
           host.install_package('rpm-devel')
-          host.install_package('rpm-sign')
+        end
+
+        case host[:platform]
+          when /el-7-x86_64/
+            it 'should install the build utils' do
+              host.install_package('rpm-sign')
+            end
+          when /el-8-x86_64/
+            it 'should install the build utils' do
+              host.install_package('rpm-sign')
+            end
         end
 
         it 'should install RVM deps' do
