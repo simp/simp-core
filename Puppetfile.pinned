@@ -168,7 +168,7 @@ mod 'simp-at',
 
 mod 'simp-auditd',
   :git => 'https://github.com/simp/pupmod-simp-auditd',
-  :tag => '8.5.0'
+  :branch => 'master'
 
 mod 'simp-autofs',
   :git => 'https://github.com/simp/pupmod-simp-autofs',
@@ -300,7 +300,7 @@ mod 'simp-openscap',
 
 mod 'simp-pam',
   :git => 'https://github.com/simp/pupmod-simp-pam',
-  :tag => '6.7.1'
+  :branch => 'master'
 
 mod 'simp-pki',
   :git => 'https://github.com/simp/pupmod-simp-pki',
@@ -348,7 +348,7 @@ mod 'simp-simpkv',
 
 mod 'simp-simplib',
   :git => 'https://github.com/simp/pupmod-simp-simplib',
-  :tag => '4.2.0'
+  :branch => 'master'
 
 mod 'simp-simp_apache',
   :git => 'https://github.com/simp/pupmod-simp-simp_apache',

@@ -1,14 +1,14 @@
 require 'spec_helper_integration'
 
-test_name 'disabling FIPS after fully configured with FIPS enabled'
+test_name 'disabling selinux for compliance enforcement'
 
 master      = only_host_with_role(hosts, 'master')
 master_fqdn = fact_on(master, 'fqdn')
 agents      = hosts_with_role(hosts, 'agent')
 
-describe 'disabling FIPS after fully configured with FIPS enabled' do
+describe 'disabling selinux to ensure that compliance enforcement works' do
 
-  context 'set up hiera to disable FIPS' do
+  context 'set up hiera to disable selinux' do
     let(:prod_env_dir) { '/etc/puppetlabs/code/environments/production' }
     let(:prod_env_default_yaml) { File.join(prod_env_dir, 'data', 'default.yaml') }
 
@@ -19,18 +19,17 @@ describe 'disabling FIPS after fully configured with FIPS enabled' do
       # when no profiles are specified, there is nothing to enforce!
       hiera['compliance_markup::enforcement'] = []
 
-      # disable FIPS
-      hiera['simp_options::fips'] = false
+      hiera['selinux::ensure'] = 'disabled'
 
       create_remote_file(master, "#{prod_env_default_yaml}", hiera.to_yaml)
       on(master, "cat #{prod_env_default_yaml}")
     end
   end
 
-  context 'apply FIPS-disabling changes' do
+  context 'apply selinux-disabling changes' do
     let(:puppetserver_status_cmd) { puppetserver_status_command(master_fqdn) }
 
-    # can't apply most FIPS-related changes until after reboot, but can undo
+    # can't apply most selinux-related changes until after reboot, but can undo
     # all the compliance-enforcement settings
     it 'should undo compliance-enforced settings on agents' do
       block_on(agents, :run_in_parallel => false) do |agent|
@@ -40,7 +39,7 @@ describe 'disabling FIPS after fully configured with FIPS enabled' do
         ensure_ssh_connection(agent)
 
         retry_on(agent, 'puppet agent -t',
-          :desired_exit_codes => [0],
+          :desired_exit_codes => [0,2],
           :retry_interval     => 15,
           :max_retries        => 5,
           :verbose            => true.to_s  # work around beaker bug
@@ -54,13 +53,13 @@ describe 'disabling FIPS after fully configured with FIPS enabled' do
       end
     end
 
-    it 'FIPS should be disabled on each agent' do
+    it 'selinux should be disabled on each agent' do
       block_on(agents, :run_in_parallel => false) do |agent|
-        expect( fips_enabled(agent) ).to be false
+        expect(fact_on(agent, 'os.selinux.enabled')).to eq false
       end
     end
 
-    it 'should apply non-FIPS-mode settings on agents' do
+    it 'should apply non-selinux-mode settings on agents' do
       # Wait for the puppetserver to be ready to receive requests
       retry_on(master, puppetserver_status_cmd, :retry_interval => 10)
 
@@ -69,7 +68,7 @@ describe 'disabling FIPS after fully configured with FIPS enabled' do
         retry_on(agent, 'uptime', :retry_interval => 15 )
 
         retry_on(agent, 'puppet agent -t',
-          :desired_exit_codes => [0],
+          :desired_exit_codes => [0,2],
           :retry_interval     => 15,
           :max_retries        => 5,
           :verbose            => true.to_s  # work around beaker bug
@@ -77,5 +76,4 @@ describe 'disabling FIPS after fully configured with FIPS enabled' do
       end
     end
   end
-
 end

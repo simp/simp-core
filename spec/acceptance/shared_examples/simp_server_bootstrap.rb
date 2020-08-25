@@ -153,7 +153,7 @@ shared_examples 'SIMP server bootstrap' do |master, config|
       #   when the puppetserver RPM was installed
       # - Allow interruptions so we can kill the test easily during bootstrap
       on(master, 'rm -f /root/.simp/simp_bootstrap_start_lock')
-      on(master, 'simp bootstrap -u --remove_ssldir', :pty => true)
+      on(master, 'simp bootstrap -u -w 10 --remove_ssldir', :pty => true)
     end
 
     it 'should reboot the master to apply boot time config' do
