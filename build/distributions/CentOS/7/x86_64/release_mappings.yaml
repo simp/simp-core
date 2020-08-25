@@ -14,8 +14,8 @@ simp_releases:
       RedHat:
         isos:
           - name:     'rhel-server-7.8-x86_64-dvd.iso'
-            size:     4497342464
-            checksum: '42dc39b4e4202da35169be2ab7b515ce35b0cb353978c15d8fdc5fef91253d12'
+            size:     4550819840
+            checksum: '3ca2017f12392fc8acad435c05a941bb88620ece8eb5740278ffa61d8340792d'
         build_command: 'bundle exec rake build:auto[rhel-server-7.8-x86_64-dvd.iso,6.X]'
         os_version:   '7.8'
 
