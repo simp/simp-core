@@ -226,8 +226,8 @@ protobuf:
   :rpm_name: protobuf-2.5.0-8.el7.x86_64.rpm
   :source: http://mirror.centos.org/centos/7/os/x86_64/Packages/protobuf-2.5.0-8.el7.x86_64.rpm
 puppet-agent:
-  :rpm_name: puppet-agent-5.5.14-1.el7.x86_64.rpm
-  :source:
+  :rpm_name: puppet-agent-5.5.21-1.el7.x86_64.rpm
+  :source: https://yum.puppetlabs.com/puppet5/el/7/x86_64/puppet-agent-5.5.21-1.el7.x86_64.rpm
 puppet-client-tools:
   :rpm_name: puppet-client-tools-1.2.6-1.el7.x86_64.rpm
   :source: https://yum.puppetlabs.com/puppet5/el/7/x86_64/puppet-client-tools-1.2.6-1.el7.x86_64.rpm
