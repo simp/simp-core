@@ -15,8 +15,8 @@ simp_releases:
         isos:
           - name:     'rhel-server-7.8-x86_64-dvd.iso'
             size:     4497342464
-            checksum: '60a0be5aeed1f08f2bb7599a578c89ec134b4016cd62a8604b29f15d543a469c'
-        build_command: 'bundle exec rake build:auto[rhel-server-7.6-x86_64-dvd.iso,6.X]'
+            checksum: '42dc39b4e4202da35169be2ab7b515ce35b0cb353978c15d8fdc5fef91253d12'
+        build_command: 'bundle exec rake build:auto[rhel-server-7.8-x86_64-dvd.iso,6.X]'
         os_version:   '7.8'
 
   6.4.0:
