@@ -140,6 +140,7 @@ caribou
 caribou-gtk2-module
 caribou-gtk3-module
 cdrdao
+cdparanoia
 cdparanoia-libs
 # centos-* only in CentOS distribution ISO
 centos-bookmarks
@@ -446,7 +447,7 @@ imsettings-qt
 info
 iniparser
 initscripts
-iotopG
+iotop
 ipa-client
 ipa-client-common
 ipa-common
@@ -592,9 +593,6 @@ libXxf86dga
 libXxf86misc
 libXxf86vm
 libXxf86vm-devel
-vorbis-tools
-cdparanoia
-
 libacl
 libaio
 libao
@@ -1473,6 +1471,7 @@ vino
 virt-what
 volume_key
 volume_key-libs
+vorbis-tools
 vsftpd
 vte-profile
 vte291
