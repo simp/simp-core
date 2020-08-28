@@ -26,7 +26,7 @@
 #    user2   users
 #
 # @param $base_dn The LDAP Base DN
-# @param $user_password_hash The initial password hash used to set the 
+# @param $user_password_hash The initial password hash used to set the
 #   LDAP 'userPassword field for all users
 class site::test_ldifs(
   String      $base_dn               = $::simp_options::ldap::base_dn,

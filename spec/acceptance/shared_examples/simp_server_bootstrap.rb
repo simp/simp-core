@@ -94,7 +94,7 @@ shared_examples 'SIMP server bootstrap' do |master, config|
       #
       # The following variables are require only by simp_conf.yaml.erb
       #   ldap_root_password_hash
-    
+
       trusted_nets =  host_networks(master)
       expect(trusted_nets).to_not be_empty
 
@@ -173,5 +173,4 @@ shared_examples 'SIMP server bootstrap' do |master, config|
       )
     end
   end
-
 end

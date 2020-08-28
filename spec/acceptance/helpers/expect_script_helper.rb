@@ -29,7 +29,7 @@ module Acceptance
       #
       # +host+: Host (object) on which the expect script will be installed
       # +script+: Path to the expect script
-      # +dest_dir+: Destination directory into which the expect script 
+      # +dest_dir+: Destination directory into which the expect script
       #   will be installed
       #
       # @returns the location of the script on the host
