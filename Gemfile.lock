@@ -110,7 +110,7 @@ GEM
     mime-types (2.99.3)
     mini_portile2 (2.4.0)
     minitar (0.9)
-    minitest (5.14.1)
+    minitest (5.14.2)
     mocha (1.11.2)
     multi_json (1.15.0)
     multipart-post (2.1.1)
@@ -223,7 +223,7 @@ GEM
       rspec-its
       specinfra (~> 2.72)
     sfl (2.3)
-    simp-beaker-helpers (1.18.8)
+    simp-beaker-helpers (1.18.9)
       beaker (>= 4.17.0, < 5.0.0)
       beaker-docker (~> 0.3)
       beaker-puppet (>= 1.18.14, < 2.0.0)
@@ -233,6 +233,7 @@ GEM
       highline (~> 2.0)
       net-telnet (~> 0.1.1)
       nokogiri (~> 1.8)
+    simp-build-helpers (0.1.1)
     simp-rake-helpers (5.11.4)
       bundler (>= 1.14, < 3.0)
       pager (~> 1.0)
@@ -285,7 +286,8 @@ DEPENDENCIES
   rspec
   rspec-puppet
   simp-beaker-helpers (>= 1.18.7, < 2)
-  simp-rake-helpers (> 5.11, < 6)
+  simp-build-helpers (> 0.1, < 2.0)
+  simp-rake-helpers (> 5.11, < 6.0)
   simp-rspec-puppet-facts (~> 3.1)
 
 BUNDLED WITH
