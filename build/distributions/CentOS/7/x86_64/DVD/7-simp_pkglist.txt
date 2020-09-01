@@ -892,6 +892,7 @@ ncurses
 ncurses-base
 ncurses-libs
 neon
+netlabel_tools
 net-snmp
 net-snmp-agent-libs
 net-snmp-libs
