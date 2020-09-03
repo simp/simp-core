@@ -52,6 +52,7 @@ Requires: pupmod-simp-chkrootkit >= 0.3.0, pupmod-simp-chkrootkit < 1.0.0
 Requires: pupmod-simp-clamav >= 6.4.0, pupmod-simp-clamav < 7.0.0
 Requires: pupmod-simp-compliance_markup >= 3.1.0, pupmod-simp-compliance_markup < 4.0.0
 Requires: pupmod-simp-cron >= 0.2.0, pupmod-simp-cron < 1.0.0
+Requires: pupmod-simp-crypto_policy >= 0.1.0, pupmod-simp-crypto_policy < 1.0.0
 Requires: pupmod-simp-deferred_resources >= 0.3.0, pupmod-simp-deferred_resources < 1.0.0
 Requires: pupmod-simp-dhcp >= 6.2.0, pupmod-simp-dhcp < 7.0.0
 Requires: pupmod-simp-fips >= 0.4.0, pupmod-simp-fips < 1.0.0
@@ -256,6 +257,7 @@ fi
    augeasproviders_postgresql
    augeasproviders_puppet
    augeasproviders_shellvar
+- added pupmod-simp-crypto_policy to the core package list
 
 * Thu Jul 09 2020 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.5.0-ALPHA
 - Add pupmod-simp-simp_firewalld to the core package list

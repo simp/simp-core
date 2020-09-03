@@ -8,7 +8,7 @@
 #   `Puppetfile.pinned`.
 #
 # ** NOTE: External (non-SIMP) modules are always pinned to the version intended
-#    for the next SIMP release (6.4.)
+#    for the next SIMP release (6.5.)
 moduledir 'src'
 
 mod 'simp-doc',
@@ -185,6 +185,10 @@ mod 'simp-compliance_markup',
 
 mod 'simp-cron',
   :git => 'https://github.com/simp/pupmod-simp-cron',
+  :branch => 'master'
+
+mod 'simp-crypto_policy',
+  :git => 'https://github.com/simp/pupmod-simp-crypto_policy',
   :branch => 'master'
 
 mod 'simp-dconf',
