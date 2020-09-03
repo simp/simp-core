@@ -22,7 +22,7 @@ moduledir 'src/assets'
 
 mod 'rubygem-rubygem_simp_cli',
   :git => 'https://github.com/simp/rubygem-simp-cli',
-  :branch => 'master'
+  :tag => '6.0.1'
 
 # FIXME Doesn't have RPM packaging yet
 #mod 'rubygem-rubygem_simp_processgraph',
@@ -46,7 +46,7 @@ mod 'simp-adapter',
 
 mod 'simp-environment',
   :git => 'https://github.com/simp/simp-environment-skeleton',
-  :branch => 'master'
+  :tag => '7.1.4'
 
 mod 'simp-gpgkeys',
   :git => 'https://github.com/simp/simp-gpgkeys',
@@ -236,7 +236,7 @@ mod 'simp-incron',
 
 mod 'simp-iptables',
   :git => 'https://github.com/simp/pupmod-simp-iptables',
-  :branch => 'master'
+  :tag => '6.5.1'
 
 mod 'simp-issue',
   :git => 'https://github.com/simp/pupmod-simp-issue',
