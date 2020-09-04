@@ -1,6 +1,7 @@
 #!/usr/bin/rake -T
 
 require 'simp/rake/pupmod/helpers'
+require 'simp/rake/build/deps'
 
 Simp::Rake::Beaker.new(File.dirname(__FILE__))
 

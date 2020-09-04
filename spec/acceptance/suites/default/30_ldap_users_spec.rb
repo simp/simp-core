@@ -24,22 +24,28 @@ describe 'LDAP user access' do
   end
 
   context 'LDAP user creation' do
-
-    let(:site_module_path) {
-      '/etc/puppetlabs/code/environments/production/modules/site'
-    }
-
     let(:puppet_master_yaml) {
-      "/etc/puppetlabs/code/environments/production/data/hosts/#{master_fqdn}.yaml"
+      "#{hiera_datadir(master)}/hosts/#{master_fqdn}.yaml"
     }
 
     let(:puppet_master_hieradata) do
-      on(master, "echo -n #{test_password} > /root/slappasswd.tmp")
-      password_hash = on(master, "slappasswd -T /root/slappasswd.tmp 2>/dev/null").stdout.strip
-      on(master, 'rm -rf /root/slappasswd.tmp')
+      require 'digest/sha1'
+      require 'base64'
+
+      salt = 'SALT'.force_encoding('UTF-8')
+      digest = Digest::SHA1.digest( test_password + salt ).force_encoding('UTF-8')
+      password_hash = '{SSHA}' + Base64.encode64( digest + salt ).strip
 
       master_hiera = YAML.load(on(master, "cat #{puppet_master_yaml}").stdout)
-      master_hiera['classes'] << 'site::test_ldifs'
+
+      # Handle legacy layouts
+      if master_hiera['classes']
+        master_hiera['classes'] << 'site::test_ldifs'
+      else
+        master_hiera['simp::server::classes'] ||= []
+        master_hiera['simp::server::classes'] << 'site::test_ldifs'
+      end
+
       master_hiera['site::test_ldifs::user_password_hash'] = password_hash
       master_hiera
     end
@@ -63,14 +69,15 @@ describe 'LDAP user access' do
       on(master, ldap_cmd)
 
       # verify existence of LDAP users we are using in this test
-      ldap_users.each do |ldap_user|
-        on(hosts, "id -u #{ldap_user}")
+      hosts.each do |host|
+        ldap_users.each do |ldap_user|
+          retry_on(host, "id -u #{ldap_user}", :retry_interval => 5, :max_retries => 5)
+        end
       end
     end
   end
 
   context 'LDAP user login' do
-
     it 'should install expect scripts on master' do
       # This expect script ssh's to a host as a user and then runs 'date'.
       install_expect_script(master, "#{files_dir}/ssh_cmd_script")
@@ -119,5 +126,4 @@ describe 'LDAP user access' do
       end
     end
   end
-
 end
