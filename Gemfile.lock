@@ -1,10 +1,8 @@
-GEM
-  remote: https://rubygems.org/
+GIT
+  remote: https://github.com/trevor-vaughan/beaker
+  revision: 18c8d444526fdfa6044512165c929a9d01027168
+  branch: fix_reboot_check_fix
   specs:
-    addressable (2.7.0)
-      public_suffix (>= 2.0.2, < 5.0)
-    ansi (1.5.0)
-    ast (2.4.1)
     beaker (4.27.0)
       beaker-hostgenerator
       hocon (~> 1.0)
@@ -12,7 +10,7 @@ GEM
       inifile (~> 3.0)
       minitar (~> 0.6)
       minitest (~> 5.4)
-      net-scp (~> 1.2)
+      net-scp (>= 1.2, < 4.0)
       net-ssh (>= 5.0)
       open_uri_redirections (~> 0.2.1)
       pry-byebug (~> 3.9)
@@ -20,6 +18,14 @@ GEM
       rsync (~> 1.0.9)
       stringify-hash (~> 0.0)
       thor (>= 1.0.1, < 2.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    addressable (2.7.0)
+      public_suffix (>= 2.0.2, < 5.0)
+    ansi (1.5.0)
+    ast (2.4.1)
     beaker-abs (0.5.0)
     beaker-answers (0.27.0)
       hocon (~> 1.0)
@@ -66,7 +72,6 @@ GEM
       multi_json
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
-    dotenv (2.7.6)
     excon (0.76.0)
     facter (2.5.7)
     facterdb (1.4.0)
@@ -85,6 +90,7 @@ GEM
       gettext (>= 3.0.2, < 3.3.0)
       locale
     hiera (3.6.0)
+    hiera-puppet-helper (1.0.1)
     highline (2.0.3)
     hocon (1.3.1)
     http-cookie (1.0.3)
@@ -108,8 +114,8 @@ GEM
     mocha (1.11.2)
     multi_json (1.15.0)
     multipart-post (2.1.1)
-    net-scp (1.2.1)
-      net-ssh (>= 2.6.5)
+    net-scp (3.0.0)
+      net-ssh (>= 2.6.5, < 7.0.0)
     net-ssh (6.1.0)
     net-telnet (0.1.1)
     netrc (0.11.0)
@@ -133,7 +139,7 @@ GEM
     pry-doc (1.1.0)
       pry (~> 0.11)
       yard (~> 0.9.11)
-    public_suffix (4.0.6)
+    public_suffix (4.0.5)
     puppet (5.5.21)
       facter (> 2.0.1, < 4)
       fast_gettext (~> 1.1.2)
@@ -144,6 +150,10 @@ GEM
       puppet (>= 2.7.16)
       rest-client (~> 1.8.0)
     puppet-lint (2.4.2)
+    puppet-lint-empty_string-check (0.2.2)
+      puppet-lint (>= 1.0, < 3.0)
+    puppet-lint-trailing_comma-check (0.4.2)
+      puppet-lint (>= 1.0, < 3.0)
     puppet-strings (2.5.0)
       rgen
       yard (~> 0.9.5)
@@ -260,26 +270,25 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  beaker
+  beaker!
   beaker-rspec
-  coderay
-  dotenv
+  hiera-puppet-helper
   metadata-json-lint
-  net-telnet
-  nokogiri
-  parallel
   pry
   pry-byebug
   pry-doc
   puppet (~> 5.5)
-  puppet-lint
+  puppet-lint-empty_string-check
+  puppet-lint-trailing_comma-check
   puppet-strings
   puppetlabs_spec_helper
   rake
-  ruby-progressbar
-  simp-beaker-helpers (>= 1.15.1, < 2.0)
-  simp-build-helpers (>= 0.1.0)
-  simp-rake-helpers (>= 5.11.1, < 6.0)
+  rspec
+  rspec-puppet
+  simp-beaker-helpers (>= 1.18.7, < 2)
+  simp-build-helpers (> 0.1, < 2.0)
+  simp-rake-helpers (> 5.11, < 6.0)
+  simp-rspec-puppet-facts (~> 3.1)
 
 BUNDLED WITH
    1.17.3
