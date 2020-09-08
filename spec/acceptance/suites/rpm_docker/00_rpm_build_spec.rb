@@ -97,7 +97,8 @@ describe 'RPM build' do
         end
       end
 
-      unless docker_id(host)
+     # unless docker_id(host)
+      if docker_id(host)
         it 'should install the basic utils' do
           host.install_package('yum-utils')
           host.install_package('git')
@@ -115,6 +116,7 @@ describe 'RPM build' do
           host.install_package('openssl')
           host.install_package('util-linux')
           host.install_package('rpm-build')
+          host.install_package('acl')
           host.install_package('augeas-devel')
           host.install_package('createrepo')
           host.install_package('genisoimage')
@@ -129,7 +131,17 @@ describe 'RPM build' do
           host.install_package('which')
           host.install_package('ruby-devel')
           host.install_package('rpm-devel')
-          host.install_package('rpm-sign')
+        end
+
+        case host[:platform]
+          when /el-7-x86_64/
+            it 'should install the build utils' do
+              host.install_package('rpm-sign')
+            end
+          when /el-8-x86_64/
+            it 'should install the build utils' do
+              host.install_package('rpm-sign')
+            end
         end
 
         it 'should install RVM deps' do
@@ -146,7 +158,9 @@ describe 'RPM build' do
           host.install_package('bison')
           host.install_package('sqlite-devel')
         end
+      end
 
+      unless docker_id(host)
         it 'should set up the build user' do
           on(host, %(echo 'Defaults:build_user !requiretty' >> /etc/sudoers))
           on(host, %(echo 'build_user ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers))

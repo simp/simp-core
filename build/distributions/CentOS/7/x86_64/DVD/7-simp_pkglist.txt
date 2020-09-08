@@ -41,6 +41,9 @@ accountsservice
 accountsservice-libs
 acl
 acpid
+adobe-mappings-cmap
+adobe-mappings-cmap-deprecated
+adobe-mappings-pdf
 adwaita-cursor-theme
 adwaita-gtk2-theme
 adwaita-icon-theme
@@ -65,6 +68,7 @@ apr
 apr-devel
 apr-util
 apr-util-devel
+apr-util-openssl
 args4j
 arpwatch
 at
@@ -97,6 +101,7 @@ bea-stax-api
 bind
 bind-chroot
 bind-dyndb-ldap
+bind-export-libs
 bind-libs
 bind-libs-lite
 bind-license
@@ -116,6 +121,9 @@ boost-random
 boost-regex
 boost-system
 boost-thread
+brasero
+brasero-libs
+brasero-nautilus
 bridge-utils
 brlapi
 brltty
@@ -131,6 +139,8 @@ cal10n
 caribou
 caribou-gtk2-module
 caribou-gtk3-module
+cdrdao
+cdparanoia
 cdparanoia-libs
 # centos-* only in CentOS distribution ISO
 centos-bookmarks
@@ -233,6 +243,7 @@ dracut-config-rescue
 dracut-fips
 dracut-fips-aesni
 dracut-network
+dvd+rw-tools
 dwz
 e2fsprogs
 e2fsprogs-libs
@@ -310,6 +321,7 @@ geoclue
 geoclue2
 geoclue2-libs
 geocode-glib
+geoipupdate
 geronimo-annotation
 geronimo-jms
 geronimo-jta
@@ -424,6 +436,7 @@ ibus-gtk3
 ibus-libs
 ibus-setup
 im-chooser
+icedax
 im-chooser-common
 # ima-evm-utils only in rhel-server distribution ISO
 ima-evm-utils
@@ -604,6 +617,7 @@ libblockdev-utils
 libbluray
 libbonobo
 libbonoboui
+libburn
 libbytesize
 libcanberra
 libcanberra-gtk2
@@ -661,6 +675,7 @@ libgnomekbd
 libgnomeui
 libgomp
 libgpg-error
+libgs
 libgsf
 libgtop2
 libgudev1
@@ -679,6 +694,7 @@ libini_config
 libinput
 libipa_hbac
 libiptcdata
+libisofs
 libitm
 libjpeg-turbo
 libjpeg-turbo-devel
@@ -706,6 +722,7 @@ libnotify
 liboauth
 libogg
 libosinfo
+libpaper
 libpath_utils
 libpcap
 libpciaccess
@@ -875,13 +892,14 @@ ncurses
 ncurses-base
 ncurses-libs
 neon
+netlabel_tools
 net-snmp
 net-snmp-agent-libs
 net-snmp-libs
 net-snmp-utils
 net-tools
 netcf-libs
-netlabel_tools
+netlabprelude-5.1.1-1.el7.x86_64.rpmbel_tools
 nettle
 newt
 newt-python
@@ -918,6 +936,7 @@ opencryptoki-swtok
 opendnssec
 openjade
 openjpeg-libs
+openjpeg2
 openldap
 openldap-clients
 openldap-devel
@@ -1201,10 +1220,12 @@ python-setuptools
 python-six
 python-slip
 python-slip-dbus
+python-srpm-macros
 python-sss
 python-sss-murmur
 python-sssdconfig
 python-suds
+python-syspurpose
 python-tdb
 python-tevent
 python-urlgrabber
@@ -1425,7 +1446,18 @@ unixODBC
 unzip
 upower
 urlview
-urw-fonts
+urw-base35-fonts
+urw-base35-fonts-common
+urw-base35-z003-fonts
+urw-base35-standard-symbols-ps-fonts
+urw-base35-p052-fonts
+urw-base35-nimbus-sans-fonts
+urw-base35-nimbus-roman-fonts
+urw-base35-nimbus-mono-ps-fonts
+urw-base35-gothic-fonts
+urw-base35-d050000l-fonts
+urw-base35-c059-fonts
+urw-base35-bookman-fonts
 usbmuxd
 usbutils
 usermode
@@ -1440,6 +1472,7 @@ vino
 virt-what
 volume_key
 volume_key-libs
+vorbis-tools
 vsftpd
 vte-profile
 vte291
@@ -1452,6 +1485,7 @@ webkitgtk4-plugin-process-gtk2
 webrtc-audio-processing
 wget
 which
+wodim
 words
 wpa_supplicant
 ws-jaxme

@@ -11,7 +11,7 @@
 #   will be pinned to their intended version.
 #
 # ** NOTE: External (non-SIMP) modules are always pinned to the version intended
-#    for the next SIMP release (6.4.)
+#    for the next SIMP release (6.5.)
 moduledir 'src'
 
 mod 'simp-doc',
@@ -22,7 +22,7 @@ moduledir 'src/assets'
 
 mod 'rubygem-rubygem_simp_cli',
   :git => 'https://github.com/simp/rubygem-simp-cli',
-  :branch => 'master'
+  :tag => '6.0.1'
 
 # FIXME Doesn't have RPM packaging yet
 #mod 'rubygem-rubygem_simp_processgraph',
@@ -31,7 +31,7 @@ mod 'rubygem-rubygem_simp_cli',
 
 mod 'simp-rsync_data',
   :git => 'https://github.com/simp/simp-rsync-skeleton',
-  :branch => 'master'
+  :tag => '7.0.2'
 
 # Use old name of rsync module for pre64 so its name does
 # not conflict with the name in rsync_data during puppetfile
@@ -46,11 +46,11 @@ mod 'simp-adapter',
 
 mod 'simp-environment',
   :git => 'https://github.com/simp/simp-environment-skeleton',
-  :branch => 'master'
+  :tag => '7.1.4'
 
 mod 'simp-gpgkeys',
   :git => 'https://github.com/simp/simp-gpgkeys',
-  :branch => 'master'
+  :tag => '3.1.1'
 
 mod 'simp-simp_selinux_policy',
   :git => 'https://github.com/simp/simp-selinux-policy',
@@ -58,7 +58,7 @@ mod 'simp-simp_selinux_policy',
 
 mod 'simp-utils',
   :git => 'https://github.com/simp/simp-utils',
-  :tag => '6.2.2'
+  :tag => '6.2.3'
 
 moduledir 'src/puppet/modules'
 
@@ -68,7 +68,7 @@ mod 'aboe76-chrony',
 
 mod 'camptocamp-kmod',
   :git => 'https://github.com/simp/puppet-kmod.git',
-  :branch => 'master'
+  :tag => '2.5.0'
 
 mod 'camptocamp-systemd',
   :git => 'https://github.com/simp/puppet-systemd.git',
@@ -76,7 +76,7 @@ mod 'camptocamp-systemd',
 
 mod 'herculesteam-augeasproviders_core',
   :git => 'https://github.com/simp/augeasproviders_core',
-  :branch => 'master'
+  :tag => '2.6.0'
 
 mod 'herculesteam-augeasproviders_grub',
   :git => 'https://github.com/simp/augeasproviders_grub',
@@ -84,11 +84,11 @@ mod 'herculesteam-augeasproviders_grub',
 
 mod 'herculesteam-augeasproviders_ssh',
   :git => 'https://github.com/simp/augeasproviders_ssh',
-  :branch => 'master'
+  :tag => '3.3.0'
 
 mod 'herculesteam-augeasproviders_sysctl',
   :git => 'https://github.com/simp/augeasproviders_sysctl',
-  :branch => 'master'
+  :tag => '2.5.0'
 
 mod 'onyxpoint-gpasswd',
   :git => 'https://github.com/simp/puppet-gpasswd',
@@ -96,7 +96,7 @@ mod 'onyxpoint-gpasswd',
 
 mod 'puppetlabs-apache',
   :git => 'https://github.com/simp/puppetlabs-apache',
-  :branch => 'master'
+  :tag => 'v5.5.0'
 
 mod 'puppetlabs-concat',
   :git => 'https://github.com/simp/puppetlabs-concat',
@@ -104,7 +104,7 @@ mod 'puppetlabs-concat',
 
 mod 'puppetlabs-hocon',
   :git => 'https://github.com/simp/pupmod-puppetlabs-hocon',
-  :branch => 'master'
+  :tag => 'v1.1.0'
 
 mod 'puppetlabs-inifile',
   :git => 'https://github.com/simp/puppetlabs-inifile',
@@ -124,19 +124,19 @@ mod 'puppetlabs-mysql',
 
 mod 'puppetlabs-postgresql',
   :git => 'https://github.com/simp/puppetlabs-postgresql',
-  :branch => 'master'
+  :tag => 'v6.6.0'
 
 mod 'puppetlabs-puppetdb',
   :git => 'https://github.com/simp/puppetlabs-puppetdb',
-  :tag => '7.4.0'
+  :tag => '7.5.0'
 
 mod 'puppetlabs-puppet_authorization',
   :git => 'https://github.com/simp/puppetlabs-puppet_authorization.git',
-  :branch => 'master'
+  :tag => '0.5.1'
 
 mod 'puppetlabs-ruby_task_helper',
   :git => 'https://github.com/simp/pupmod-puppetlabs-ruby_task_helper.git',
-  :branch => 'master'
+  :tag => '0.3.0'
 
 mod 'puppetlabs-stdlib',
   :git => 'https://github.com/simp/puppetlabs-stdlib',
@@ -160,7 +160,7 @@ mod 'simp-acpid',
 
 mod 'simp-aide',
   :git => 'https://github.com/simp/pupmod-simp-aide',
-  :tag => '6.4.0'
+  :tag => '6.4.2'
 
 mod 'simp-at',
   :git => 'https://github.com/simp/pupmod-simp-at',
@@ -168,15 +168,15 @@ mod 'simp-at',
 
 mod 'simp-auditd',
   :git => 'https://github.com/simp/pupmod-simp-auditd',
-  :branch => 'master'
+  :tag => '8.6.0'
 
 mod 'simp-autofs',
   :git => 'https://github.com/simp/pupmod-simp-autofs',
-  :branch => 'master'
+  :tag => '7.0.0'
 
 mod 'simp-chkrootkit',
   :git => 'https://github.com/simp/pupmod-simp-chkrootkit',
-  :branch => 'master'
+  :tag => '0.3.0'
 
 mod 'simp-clamav',
   :git => 'https://github.com/simp/pupmod-simp-clamav',
@@ -184,15 +184,19 @@ mod 'simp-clamav',
 
 mod 'simp-compliance_markup',
   :git => 'https://github.com/simp/pupmod-simp-compliance_markup',
-  :branch => 'master'
+  :tag => '3.1.0'
 
 mod 'simp-cron',
   :git => 'https://github.com/simp/pupmod-simp-cron',
   :tag => '0.2.0'
 
+mod 'simp-crypto_policy',
+  :git => 'https://github.com/simp/pupmod-simp-crypto_policy',
+  :tag => '0.1.0'
+
 mod 'simp-dconf',
   :git => 'https://github.com/simp/pupmod-simp-dconf',
-  :branch => 'master'
+  :tag => '0.1.0'
 
 mod 'simp-deferred_resources',
   :git => 'https://github.com/simp/pupmod-simp-deferred_resources',
@@ -204,23 +208,19 @@ mod 'simp-dhcp',
 
 mod 'simp-fips',
   :git => 'https://github.com/simp/pupmod-simp-fips',
-  :tag => '0.4.0'
-
-mod 'simp-simp_firewalld',
-  :git => 'https://github.com/simp/pupmod-simp-simp_firewalld',
-  :tag => '0.1.0'
+  :tag => '0.4.1'
 
 mod 'simp-freeradius',
   :git => 'https://github.com/simp/pupmod-simp-freeradius',
-  :branch => 'master'
+  :tag => '8.1.0'
 
 mod 'simp-gdm',
   :git => 'https://github.com/simp/pupmod-simp-gdm',
-  :branch => 'master'
+  :tag => '7.2.3'
 
 mod 'simp-gnome',
   :git => 'https://github.com/simp/pupmod-simp-gnome',
-  :branch => 'master'
+  :tag => '8.1.2'
 
 mod 'simp-haveged',
   :git => 'https://github.com/simp/pupmod-simp-haveged',
@@ -228,7 +228,7 @@ mod 'simp-haveged',
 
 mod 'simp-hirs_provisioner',
   :git => 'https://github.com/simp/pupmod-simp-hirs_provisioner',
-  :branch => 'master'
+  :tag => '0.1.4'
 
 mod 'simp-ima',
   :git => 'https://github.com/simp/pupmod-simp-ima',
@@ -240,7 +240,7 @@ mod 'simp-incron',
 
 mod 'simp-iptables',
   :git => 'https://github.com/simp/pupmod-simp-iptables',
-  :branch => 'master'
+  :tag => '6.5.1'
 
 mod 'simp-issue',
   :git => 'https://github.com/simp/pupmod-simp-issue',
@@ -252,7 +252,7 @@ mod 'simp-krb5',
 
 mod 'simp-libreswan',
   :git => 'https://github.com/simp/pupmod-simp-libreswan',
-  :branch => 'master'
+  :tag => '3.3.0'
 
 mod 'simp-libvirt',
   :git => 'https://github.com/simp/pupmod-simp-libvirt',
@@ -260,11 +260,11 @@ mod 'simp-libvirt',
 
 mod 'simp-logrotate',
   :git => 'https://github.com/simp/pupmod-simp-logrotate',
-  :branch => 'master'
+  :tag => '6.5.0'
 
 mod 'simp-mate',
   :git => 'https://github.com/simp/pupmod-simp-mate',
-  :branch => 'master'
+  :tag => '1.1.1'
 
 mod 'simp-mozilla',
   :git => 'https://github.com/simp/pupmod-simp-mozilla',
@@ -280,11 +280,11 @@ mod 'simp-network',
 
 mod 'simp-nfs',
   :git => 'https://github.com/simp/pupmod-simp-nfs',
-  :branch => 'master'
+  :tag => '7.0.0'
 
 mod 'simp-ntpd',
   :git => 'https://github.com/simp/pupmod-simp-ntpd',
-  :branch => 'master'
+  :tag => '6.5.1'
 
 mod 'simp-oath',
   :git => 'https://github.com/simp/pupmod-simp-oath',
@@ -300,7 +300,7 @@ mod 'simp-openscap',
 
 mod 'simp-pam',
   :git => 'https://github.com/simp/pupmod-simp-pam',
-  :branch => 'master'
+  :tag => '6.8.2'
 
 mod 'simp-pki',
   :git => 'https://github.com/simp/pupmod-simp-pki',
@@ -316,23 +316,23 @@ mod 'simp-postfix',
 
 mod 'simp-pupmod',
   :git => 'https://github.com/simp/pupmod-simp-pupmod',
-  :branch => 'master'
+  :tag => '8.0.1'
 
 mod 'simp-resolv',
   :git => 'https://github.com/simp/pupmod-simp-resolv',
-  :tag => '0.3.0'
+  :tag => '0.5.0'
 
 mod 'simp-rkhunter',
   :git => 'https://github.com/simp/pupmod-simp-rkhunter',
-  :branch => 'master'
+  :tag => '0.0.3'
 
 mod 'simp-rsync',
   :git => 'https://github.com/simp/pupmod-simp-rsync',
-  :tag => '6.4.0'
+  :tag => '6.4.1'
 
 mod 'simp-rsyslog',
   :git => 'https://github.com/simp/pupmod-simp-rsyslog',
-  :branch => 'master'
+  :tag => '7.6.2'
 
 mod 'simp-selinux',
   :git => 'https://github.com/simp/pupmod-simp-selinux',
@@ -340,11 +340,11 @@ mod 'simp-selinux',
 
 mod 'simp-simp',
   :git => 'https://github.com/simp/pupmod-simp-simp',
-  :branch => 'master'
+  :tag => '4.11.1'
 
 mod 'simp-simpkv',
   :git => 'https://github.com/simp/pupmod-simp-simpkv',
-  :branch => 'master'
+  :tag => '0.7.0'
 
 mod 'simp-simplib',
   :git => 'https://github.com/simp/pupmod-simp-simplib',
@@ -352,7 +352,7 @@ mod 'simp-simplib',
 
 mod 'simp-simp_apache',
   :git => 'https://github.com/simp/pupmod-simp-simp_apache',
-  :branch => 'master'
+  :tag => '7.0.0'
 
 mod 'simp-simp_banners',
   :git => 'https://github.com/simp/pupmod-simp-simp_banners',
@@ -360,15 +360,21 @@ mod 'simp-simp_banners',
 
 mod 'simp-simp_bolt',
   :git => 'https://github.com/simp/pupmod-simp-simp_bolt',
-  :branch => 'master'
+  :tag => '0.3.0'
 
-mod 'simp-simp_gitlab',
-  :git => 'https://github.com/simp/pupmod-simp-simp_gitlab',
-  :branch => 'master'
+mod 'simp-simp_firewalld',
+  :git => 'https://github.com/simp/pupmod-simp-simp_firewalld',
+  :tag => '0.1.1'
+#
+#Temporarily removed because it needs updates to go to lates version
+#that has the correct dependencies
+#mod 'simp-simp_gitlab',
+#  :git => 'https://github.com/simp/pupmod-simp-simp_gitlab',
+#  :tag => '0.5.1'
 
 mod 'simp-simp_grub',
   :git => 'https://github.com/simp/pupmod-simp-simp_grub',
-  :branch => 'master'
+  :tag => '0.2.1'
 
 mod 'simp-simp_ipa',
   :git => 'https://github.com/simp/pupmod-simp-simp_ipa',
@@ -376,47 +382,49 @@ mod 'simp-simp_ipa',
 
 mod 'simp-simp_nfs',
   :git => 'https://github.com/simp/pupmod-simp-simp_nfs',
-  :branch => 'master'
+  :tag => '1.0.0'
 
 mod 'simp-simp_openldap',
   :git => 'https://github.com/simp/pupmod-simp-simp_openldap',
-  :branch => 'master'
+  :tag => '6.4.3'
 
 mod 'simp-simp_options',
   :git => 'https://github.com/simp/pupmod-simp-simp_options',
-  :branch => 'master'
+  :tag => '1.4.0'
 
 mod 'simp-simp_pki_service',
   :git => 'https://github.com/simp/pupmod-simp-simp_pki_service',
-  :branch => 'master'
+  :tag => '0.3.1'
 
 mod 'simp-simp_rsyslog',
   :git => 'https://github.com/simp/pupmod-simp-simp_rsyslog',
   :tag => '0.5.0'
-
-mod 'simp-simp_snmpd',
-  :git => 'https://github.com/simp/pupmod-simp-simp_snmpd',
-  :branch => 'master'
+#
+#Temporarily removed because it needs updates to go to lates version
+#that has the correct dependencies
+#mod 'simp-simp_snmpd',
+#  :git => 'https://github.com/simp/pupmod-simp-simp_snmpd',
+#  :tag => '0.2.1'
 
 mod 'simp-ssh',
   :git => 'https://github.com/simp/pupmod-simp-ssh',
-  :tag => '6.10.0'
+  :tag => '6.11.0'
 
 mod 'simp-sssd',
   :git => 'https://github.com/simp/pupmod-simp-sssd',
-  :tag => '6.3.0'
+  :tag => '6.3.1'
 
 mod 'simp-stunnel',
   :git => 'https://github.com/simp/pupmod-simp-stunnel',
-  :branch => 'master'
+  :tag => '6.6.0'
 
 mod 'simp-sudo',
   :git => 'https://github.com/simp/pupmod-simp-sudo',
-  :tag => '5.2.1'
+  :tag => '5.3.1'
 
 mod 'simp-sudosh',
   :git => 'https://github.com/simp/pupmod-simp-sudosh',
-  :branch => 'master'
+  :tag => '6.2.1'
 
 mod 'simp-svckill',
   :git => 'https://github.com/simp/pupmod-simp-svckill',
@@ -436,11 +444,11 @@ mod 'simp-tftpboot',
 
 mod 'simp-tlog',
   :git => 'https://github.com/simp/pupmod-simp-tlog',
-  :tag => '0.2.0'
+  :tag => '0.2.1'
 
 mod 'simp-tpm',
   :git => 'https://github.com/simp/pupmod-simp-tpm',
-  :branch => 'master'
+  :tag => '3.2.0'
 
 mod 'simp-tpm2',
   :git => 'https://github.com/simp/pupmod-simp-tpm2',
@@ -448,19 +456,19 @@ mod 'simp-tpm2',
 
 mod 'simp-tuned',
   :git => 'https://github.com/simp/pupmod-simp-tuned',
-  :branch => 'master'
+  :tag => '0.2.1'
 
 mod 'simp-upstart',
   :git => 'https://github.com/simp/pupmod-simp-upstart',
-  :tag => '6.1.0'
+  :tag => '6.1.1'
 
 mod 'simp-useradd',
   :git => 'https://github.com/simp/pupmod-simp-useradd',
-  :tag => '0.4.0'
+  :tag => '0.4.1'
 
 mod 'simp-vnc',
   :git => 'https://github.com/simp/pupmod-simp-vnc',
-  :branch => 'master'
+  :tag => '7.1.1'
 
 # We have forked voxpupuli/selinux temporarily, renaming
 # their selinux namespace to vox_selinux.  This change
@@ -475,11 +483,11 @@ mod 'simp-vox_selinux',
 
 mod 'simp-vsftpd',
   :git => 'https://github.com/simp/pupmod-simp-vsftpd',
-  :branch => 'master'
+  :tag => '7.4.0'
 
 mod 'simp-x2go',
   :git => 'https://github.com/simp/pupmod-simp-x2go',
-  :branch => 'master'
+  :tag => '0.3.0'
 
 mod 'simp-xinetd',
   :git => 'https://github.com/simp/pupmod-simp-xinetd',
@@ -487,7 +495,7 @@ mod 'simp-xinetd',
 
 mod 'treydock-kdump',
   :git => 'https://github.com/simp/pupmod-treydock-kdump',
-  :tag => '0.2.0'
+  :tag => 'v0.4.1'
 
 mod 'trlinkin-nsswitch',
   :git => 'https://github.com/simp/puppet-nsswitch',
@@ -499,15 +507,15 @@ mod 'voxpupuli-firewalld',
 
 mod 'voxpupuli-posix_acl',
   :git => 'https://github.com/simp/pupmod-voxpupuli-posix_acl',
-  :branch => 'master'
+  :tag => 'v1.0.1'
 
 mod 'voxpupuli-gitlab',
   :git => 'https://github.com/simp/puppet-gitlab.git',
-  :branch => 'master'
+  :tag => 'v5.0.0'
 
 mod 'voxpupuli-snmp',
   :git => 'https://github.com/simp/puppet-snmp',
-  :branch => 'master'
+  :tag => 'v5.1.1'
 
 mod 'voxpupuli-yum',
   :git => 'https://github.com/simp/voxpupuli-yum',
