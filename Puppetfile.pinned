@@ -308,7 +308,7 @@ mod 'simp-pki',
 
 mod 'simp-polkit',
   :git => 'https://github.com/simp/pupmod-simp-polkit',
-  :tag => '6.2.0'
+  :branch => 'master'
 
 mod 'simp-postfix',
   :git => 'https://github.com/simp/pupmod-simp-postfix',
@@ -316,7 +316,7 @@ mod 'simp-postfix',
 
 mod 'simp-pupmod',
   :git => 'https://github.com/simp/pupmod-simp-pupmod',
-  :tag => '8.0.1'
+  :branch => 'master'
 
 mod 'simp-resolv',
   :git => 'https://github.com/simp/pupmod-simp-resolv',
@@ -336,11 +336,11 @@ mod 'simp-rsyslog',
 
 mod 'simp-selinux',
   :git => 'https://github.com/simp/pupmod-simp-selinux',
-  :tag => '2.5.1'
+  :branch => 'master'
 
 mod 'simp-simp',
   :git => 'https://github.com/simp/pupmod-simp-simp',
-  :tag => '4.11.1'
+  :branch => 'master'
 
 mod 'simp-simpkv',
   :git => 'https://github.com/simp/pupmod-simp-simpkv',
@@ -348,7 +348,7 @@ mod 'simp-simpkv',
 
 mod 'simp-simplib',
   :git => 'https://github.com/simp/pupmod-simp-simplib',
-  :branch => 'master'
+  :tag => '4.5.0'
 
 mod 'simp-simp_apache',
   :git => 'https://github.com/simp/pupmod-simp-simp_apache',
@@ -428,7 +428,7 @@ mod 'simp-sudosh',
 
 mod 'simp-svckill',
   :git => 'https://github.com/simp/pupmod-simp-svckill',
-  :tag => '3.6.0'
+  :branch => 'master'
 
 mod 'simp-swap',
   :git => 'https://github.com/simp/pupmod-simp-swap',
