@@ -184,7 +184,7 @@
     },
     {
       "name": "simp/polkit",
-      "version_requirement": ">= 6.2.0 < 7.0.0"
+      "version_requirement": ">= 6.3.0 < 7.0.0"
     },
     {
       "name": "simp/postfix",
@@ -192,7 +192,7 @@
     },
     {
       "name": "simp/pupmod",
-      "version_requirement": ">= 8.0.1 < 9.0.0"
+      "version_requirement": ">= 8.1.0 < 9.0.0"
     },
     {
       "name": "simp/resolv",
@@ -212,11 +212,11 @@
     },
     {
       "name": "simp/selinux",
-      "version_requirement": ">= 2.5.1 < 3.0.0"
+      "version_requirement": ">= 2.6.0 < 3.0.0"
     },
     {
       "name": "simp/simp",
-      "version_requirement": ">= 4.11.1 < 5.0.0"
+      "version_requirement": ">= 4.12.0 < 5.0.0"
     },
     {
       "name": "simp/simplib",
@@ -272,7 +272,7 @@
     },
     {
       "name": "simp/svckill",
-      "version_requirement": ">= 3.6.0 < 4.0.0"
+      "version_requirement": ">= 3.6.1 < 4.0.0"
     },
     {
       "name": "simp/swap",
