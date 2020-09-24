@@ -60,5 +60,5 @@ CONFIG:
 <% if ENV['BEAKER_PUPPET_COLLECTION'] -%>
   puppet_collection: <%= ENV['BEAKER_PUPPET_COLLECTION'] %>
 <% else -%>
-  puppet_collection: puppet5
+  puppet_collection: puppet6
 <% end -%>

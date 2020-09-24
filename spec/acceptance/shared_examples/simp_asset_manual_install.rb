@@ -71,13 +71,13 @@ shared_examples 'simp asset manual install' do |master, assets_to_install|
           # - yum-builddep temporarily enables all repos to do its work.
           #   Unfortunately, the puppet5-source repo isn't set up correctly
           #   and the easiest way to exclude this repo during this command
-          #   is to add the --disablerepo=puppet5 option. (For some odd
-          #   reason --disablerepo=puppet5-source didn't work...)
+          #   is to add the --disablerepo=puppet6 option. (For some odd
+          #   reason --disablerepo=puppet6-source didn't work...)
           yum_cmd = [
             'SIMP_ENV_NO_SELINUX_DEPS=yes',
             'yum-builddep -y',
             '/root/assets/simp_selinux_policy/build/simp-selinux-policy.spec',
-            '--disablerepo=puppet5'
+            '--disablerepo=puppet6'
           ].join(' ')
           on(master, yum_cmd)
 

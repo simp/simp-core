@@ -50,7 +50,7 @@ builds/download RPMs, and then builds the ISO.
 ## Running a Test Suite
 
 1. Set up your environment with a [ruby version manager](https://rvm.io/), [vagrant](https://www.vagrantup.com/), and [VirtualBox](https://www.virtualbox.org/)
-2. Install Ruby 2.4.5 (follow the guides from the link above)
+2. Install Ruby 2.5.8 (follow the guides from the link above)
 3. Install bundler: `gem install bundler`
 4. Install other dependencies: `bundle install`
 5. Determine the environment variables appropriate for your test
@@ -73,16 +73,16 @@ builds/download RPMs, and then builds the ISO.
 7. Run the tests for a suite and selected nodeset.  For example,
 
 ```bash
-# to run the default suite using Puppet 5 and an EL7 simp server
-export PUPPET_VERSION='~> 5.5'
-export BEAKER_PUPPET_COLLECTION='puppet5'
+# to run the default suite using Puppet 6 and an EL7 simp server
+export PUPPET_VERSION='~> 6.18'
+export BEAKER_PUPPET_COLLECTION='puppet6'
 bundle exec rake beaker:suites[default,el7_server]
 ```
 
 ```bash
-# to run the default suite on OEL using Puppet 5 and an OEL6 simp server
-export PUPPET_VERSION='~> 5.5'
-export BEAKER_PUPPET_COLLECTION='puppet5'
+# to run the default suite on OEL using Puppet 6 and an OEL6 simp server
+export PUPPET_VERSION='~> 6.18'
+export BEAKER_PUPPET_COLLECTION='puppet6'
 export SIMP_BEAKER_OS='oracle'
 bundle exec rake beaker:suites[default,el6_server]
 ```
@@ -368,11 +368,11 @@ suites.
 
 #### `BEAKER_PUPPET_COLLECTION`
 
-The Puppet collection. Current valid values are `pc1` (Puppet 4), `puppet5`,
+The Puppet collection. Current valid values are `pc1` (Puppet 4), `puppet6`,
 `puppet6`, and `puppet6-nightly`.
 
 * Only applies if the Puppet repo is enabled in a test suite.
-* **unset** - Defaults to 'puppet5'
+* **unset** - Defaults to 'puppet6'
 
 #### `SIMP_BEAKER_OS`
 
