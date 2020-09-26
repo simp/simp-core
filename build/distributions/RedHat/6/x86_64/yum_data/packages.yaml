@@ -172,23 +172,23 @@ pssh:
   :rpm_name: pssh-2.3.1-5.el6.noarch.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/6/pssh-2.3.1-5.el6.noarch.rpm/download.rpm
 puppet-agent:
-  :rpm_name: puppet-agent-5.5.14-1.el6.x86_64.rpm
-  :source: https://yum.puppetlabs.com/puppet5/el/6/x86_64/puppet-agent-5.5.14-1.el6.x86_64.rpm
-puppet-client-tools:
-  :rpm_name: puppet-client-tools-1.2.6-1.el6.x86_64.rpm
-  :source: https://yum.puppetlabs.com/puppet5/el/6/x86_64/puppet-client-tools-1.2.6-1.el6.x86_64.rpm
-puppet5-release:
-  :rpm_name: puppet5-release-5.0.0-6.el6.noarch.rpm
-  :source: https://yum.puppetlabs.com/puppet5/el/6/x86_64/puppet5-release-5.0.0-6.el6.noarch.rpm
+  :rpm_name: puppet-agent-6.18.0-1.el6.x86_64.rpm
+  :source: https://yum.puppet.com/puppet/el/6/x86_64/puppet-agent-6.18.0-1.el6.x86_64.rpm
+puppet-bolt:
+  :rpm_name: puppet-bolt-2.29.0-1.el6.x86_64.rpm
+  :source: https://yum.puppet.com/puppet/el/6/x86_64/puppet-bolt-2.29.0-1.el6.x86_64.rpm
+puppet6-release:
+  :rpm_name: puppet6-release-6.0.0-10.el6.noarch.rpm
+  :source: https://yum.puppet.com/puppet/el/6/x86_64/puppet6-release-6.0.0-10.el6.noarch.rpm
 puppetdb:
-  :rpm_name: puppetdb-5.2.8-1.el6.noarch.rpm
-  :source: https://yum.puppetlabs.com/puppet5/el/6/x86_64/puppetdb-5.2.8-1.el6.noarch.rpm
+  :rpm_name: puppetdb-6.12.0-1.el6.noarch.rpm
+  :source: https://yum.puppet.com/puppet/el/6/x86_64/puppetdb-6.12.0-1.el6.noarch.rpm
 puppetdb-termini:
-  :rpm_name: puppetdb-termini-5.2.8-1.el6.noarch.rpm
-  :source: https://yum.puppetlabs.com/puppet5/el/6/x86_64/puppetdb-termini-5.2.8-1.el6.noarch.rpm
+  :rpm_name: puppetdb-termini-6.12.0-1.el6.noarch.rpm
+  :source: https://yum.puppet.com/puppet/el/6/x86_64/puppetdb-termini-6.12.0-1.el6.noarch.rpm
 puppetserver:
-  :rpm_name: puppetserver-5.3.8-1.el6.noarch.rpm
-  :source: https://yum.puppetlabs.com/puppet5/el/6/x86_64/puppetserver-5.3.8-1.el6.noarch.rpm
+  :rpm_name: puppetserver-6.13.0-1.el6.noarch.rpm
+  :source: https://yum.puppet.com/puppet/el/6/x86_64/puppetserver-6.13.0-1.el6.noarch.rpm
 pwgen:
   :rpm_name: pwgen-2.08-1.el6.x86_64.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/p/pwgen-2.08-1.el6.x86_64.rpm
