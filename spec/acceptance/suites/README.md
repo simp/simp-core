@@ -22,9 +22,9 @@ This directory contains
 In general, the SIMP integration/release test suites follow the same general
 procedure:
 
-1. Spin up at least 3 vagrant boxes
+1. Spin up at least 4 vagrant boxes
 
-   * One puppetserver, 1 EL7 client, 1 EL6 client.
+   * One puppetserver, 1 EL8 client, 1 EL7 client, 1 EL6 client.
    * EL version of the puppetserver changes based on nodeset.
    * One of the clients is a rsyslog server, whose EL version
      also changes based on nodeset.
@@ -67,6 +67,7 @@ builds/download RPMs, and then builds the ISO.
    * Each integration/(pre-)release test suite contains are two nodesets:
      `el7_server` and `el6_server`. These nodesets control the EL version
      of both the puppsetserver and rsyslog server.
+   * The `el6_server` nodeset does not test integration with an EL8 client.
    * The `rpm_docker` test suite contains two nodesets, `el7.yml` and
      `el6.yml`, for building a SIMP EL7 ISO and SIMP EL6 ISO, respectively.
 
@@ -368,7 +369,7 @@ suites.
 
 #### `BEAKER_PUPPET_COLLECTION`
 
-The Puppet collection. Current valid values are `pc1` (Puppet 4), `puppet6`,
+The Puppet collection. Current valid values are `pc1` (Puppet 4), `puppet5`,
 `puppet6`, and `puppet6-nightly`.
 
 * Only applies if the Puppet repo is enabled in a test suite.
@@ -380,7 +381,7 @@ Sets the test VM box types.  Valid values are `centos`, `oracle`, and
 `oel`.
 
 * **unset** - Defaults to `centos`
-* When `centos`, uses `centos/7` and `centos/6` boxes.
-* When `oracle` or `oel`, uses `onyxpoint/oel-7-x86_64` and
+* When `centos`, uses `centso/8`, `centos/7` and `centos/6` boxes.
+* When `oracle` or `oel`, uses `generic/oracle8`, `onyxpoint/oel-7-x86_64` and
   `onyxpoint/oel-6-x86_64` boxes.
-* Any other value defaults to `centos/7` and `centos/6` boxes.
+* Any other value defaults to `centos/8`,`centos/7` and `centos/6` boxes.
