@@ -174,8 +174,8 @@ describe 'RPM build' do
         end
 
         it 'should set up RVM' do
-          on(host, %(#{run_cmd} "rvm install 2.4.10 --disable-binary"))
-          on(host, %(#{run_cmd} "rvm use --default 2.4.10"))
+          on(host, %(#{run_cmd} "rvm install 2.5.8 --disable-binary"))
+          on(host, %(#{run_cmd} "rvm use --default 2.5.8"))
           on(host, %(#{run_cmd} "rvm all do gem install bundler -v \\"~> 1.16\\" --no-document"))
           on(host, %(#{run_cmd} "rvm all do gem install bundler -v \\"~> 2.0\\" --no-document"))
         end

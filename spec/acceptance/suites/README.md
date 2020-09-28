@@ -22,9 +22,9 @@ This directory contains
 In general, the SIMP integration/release test suites follow the same general
 procedure:
 
-1. Spin up at least 3 vagrant boxes
+1. Spin up at least 4 vagrant boxes
 
-   * One puppetserver, 1 EL7 client, 1 EL6 client.
+   * One puppetserver, 1 EL8 client, 1 EL7 client, 1 EL6 client.
    * EL version of the puppetserver changes based on nodeset.
    * One of the clients is a rsyslog server, whose EL version
      also changes based on nodeset.
@@ -50,7 +50,7 @@ builds/download RPMs, and then builds the ISO.
 ## Running a Test Suite
 
 1. Set up your environment with a [ruby version manager](https://rvm.io/), [vagrant](https://www.vagrantup.com/), and [VirtualBox](https://www.virtualbox.org/)
-2. Install Ruby 2.4.5 (follow the guides from the link above)
+2. Install Ruby 2.5.8 (follow the guides from the link above)
 3. Install bundler: `gem install bundler`
 4. Install other dependencies: `bundle install`
 5. Determine the environment variables appropriate for your test
@@ -67,22 +67,23 @@ builds/download RPMs, and then builds the ISO.
    * Each integration/(pre-)release test suite contains are two nodesets:
      `el7_server` and `el6_server`. These nodesets control the EL version
      of both the puppsetserver and rsyslog server.
+   * The `el6_server` nodeset does not test integration with an EL8 client.
    * The `rpm_docker` test suite contains two nodesets, `el7.yml` and
      `el6.yml`, for building a SIMP EL7 ISO and SIMP EL6 ISO, respectively.
 
 7. Run the tests for a suite and selected nodeset.  For example,
 
 ```bash
-# to run the default suite using Puppet 5 and an EL7 simp server
-export PUPPET_VERSION='~> 5.5'
-export BEAKER_PUPPET_COLLECTION='puppet5'
+# to run the default suite using Puppet 6 and an EL7 simp server
+export PUPPET_VERSION='~> 6.18'
+export BEAKER_PUPPET_COLLECTION='puppet6'
 bundle exec rake beaker:suites[default,el7_server]
 ```
 
 ```bash
-# to run the default suite on OEL using Puppet 5 and an OEL6 simp server
-export PUPPET_VERSION='~> 5.5'
-export BEAKER_PUPPET_COLLECTION='puppet5'
+# to run the default suite on OEL using Puppet 6 and an OEL6 simp server
+export PUPPET_VERSION='~> 6.18'
+export BEAKER_PUPPET_COLLECTION='puppet6'
 export SIMP_BEAKER_OS='oracle'
 bundle exec rake beaker:suites[default,el6_server]
 ```
@@ -372,7 +373,7 @@ The Puppet collection. Current valid values are `pc1` (Puppet 4), `puppet5`,
 `puppet6`, and `puppet6-nightly`.
 
 * Only applies if the Puppet repo is enabled in a test suite.
-* **unset** - Defaults to 'puppet5'
+* **unset** - Defaults to 'puppet6'
 
 #### `SIMP_BEAKER_OS`
 
@@ -380,7 +381,7 @@ Sets the test VM box types.  Valid values are `centos`, `oracle`, and
 `oel`.
 
 * **unset** - Defaults to `centos`
-* When `centos`, uses `centos/7` and `centos/6` boxes.
-* When `oracle` or `oel`, uses `onyxpoint/oel-7-x86_64` and
+* When `centos`, uses `centso/8`, `centos/7` and `centos/6` boxes.
+* When `oracle` or `oel`, uses `generic/oracle8`, `onyxpoint/oel-7-x86_64` and
   `onyxpoint/oel-6-x86_64` boxes.
-* Any other value defaults to `centos/7` and `centos/6` boxes.
+* Any other value defaults to `centos/8`,`centos/7` and `centos/6` boxes.
