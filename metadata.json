@@ -108,7 +108,7 @@
     },
     {
       "name": "simp/auditd",
-      "version_requirement": ">= 8.6.0 < 9.0.0"
+      "version_requirement": ">= 8.6.1 < 9.0.0"
     },
     {
       "name": "simp/chkrootkit",
@@ -140,7 +140,7 @@
     },
     {
       "name": "simp/fips",
-      "version_requirement": ">= 0.4.1 < 1.0.0"
+      "version_requirement": ">= 0.4.2 < 1.0.0"
     },
     {
       "name": "simp/haveged",
@@ -208,7 +208,7 @@
     },
     {
       "name": "simp/rsyslog",
-      "version_requirement": ">= 7.6.2 < 8.0.0"
+      "version_requirement": ">= 7.6.3 < 8.0.0"
     },
     {
       "name": "simp/selinux",
@@ -244,7 +244,7 @@
     },
     {
       "name": "simp/simp_options",
-      "version_requirement": ">= 1.4.0 < 2.0.0"
+      "version_requirement": ">= 1.4.1 < 2.0.0"
     },
     {
       "name": "simp/simp_rsyslog",
