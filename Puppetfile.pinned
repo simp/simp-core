@@ -22,7 +22,7 @@ moduledir 'src/assets'
 
 mod 'rubygem-rubygem_simp_cli',
   :git => 'https://github.com/simp/rubygem-simp-cli',
-  :tag => '6.0.1'
+  :branch => 'master'
 
 # FIXME Doesn't have RPM packaging yet
 #mod 'rubygem-rubygem_simp_processgraph',
@@ -31,7 +31,7 @@ mod 'rubygem-rubygem_simp_cli',
 
 mod 'simp-rsync_data',
   :git => 'https://github.com/simp/simp-rsync-skeleton',
-  :tag => '7.0.2'
+  :tag => '7.0.3'
 
 # Use old name of rsync module for pre64 so its name does
 # not conflict with the name in rsync_data during puppetfile
@@ -168,7 +168,7 @@ mod 'simp-at',
 
 mod 'simp-auditd',
   :git => 'https://github.com/simp/pupmod-simp-auditd',
-  :tag => '8.6.0'
+  :tag => '8.6.1'
 
 mod 'simp-autofs',
   :git => 'https://github.com/simp/pupmod-simp-autofs',
@@ -208,11 +208,11 @@ mod 'simp-dhcp',
 
 mod 'simp-fips',
   :git => 'https://github.com/simp/pupmod-simp-fips',
-  :tag => '0.4.1'
+  :tag => '0.4.2'
 
 mod 'simp-freeradius',
   :git => 'https://github.com/simp/pupmod-simp-freeradius',
-  :tag => '8.1.0'
+  :tag => '8.1.1'
 
 mod 'simp-gdm',
   :git => 'https://github.com/simp/pupmod-simp-gdm',
@@ -308,7 +308,7 @@ mod 'simp-pki',
 
 mod 'simp-polkit',
   :git => 'https://github.com/simp/pupmod-simp-polkit',
-  :branch => 'master'
+  :tag => '6.3.0'
 
 mod 'simp-postfix',
   :git => 'https://github.com/simp/pupmod-simp-postfix',
@@ -316,7 +316,7 @@ mod 'simp-postfix',
 
 mod 'simp-pupmod',
   :git => 'https://github.com/simp/pupmod-simp-pupmod',
-  :branch => 'master'
+  :tag => '8.1.0'
 
 mod 'simp-resolv',
   :git => 'https://github.com/simp/pupmod-simp-resolv',
@@ -332,15 +332,15 @@ mod 'simp-rsync',
 
 mod 'simp-rsyslog',
   :git => 'https://github.com/simp/pupmod-simp-rsyslog',
-  :tag => '7.6.2'
+  :tag => '7.6.3'
 
 mod 'simp-selinux',
   :git => 'https://github.com/simp/pupmod-simp-selinux',
-  :branch => 'master'
+  :tag => '2.6.0'
 
 mod 'simp-simp',
   :git => 'https://github.com/simp/pupmod-simp-simp',
-  :branch => 'master'
+  :tag => '4.12.0'
 
 mod 'simp-simpkv',
   :git => 'https://github.com/simp/pupmod-simp-simpkv',
@@ -390,7 +390,7 @@ mod 'simp-simp_openldap',
 
 mod 'simp-simp_options',
   :git => 'https://github.com/simp/pupmod-simp-simp_options',
-  :tag => '1.4.0'
+  :tag => '1.4.1'
 
 mod 'simp-simp_pki_service',
   :git => 'https://github.com/simp/pupmod-simp-simp_pki_service',
@@ -428,7 +428,7 @@ mod 'simp-sudosh',
 
 mod 'simp-svckill',
   :git => 'https://github.com/simp/pupmod-simp-svckill',
-  :branch => 'master'
+  :tag => '3.6.1'
 
 mod 'simp-swap',
   :git => 'https://github.com/simp/pupmod-simp-swap',
