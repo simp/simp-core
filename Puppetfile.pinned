@@ -22,7 +22,7 @@ moduledir 'src/assets'
 
 mod 'rubygem-rubygem_simp_cli',
   :git => 'https://github.com/simp/rubygem-simp-cli',
-  :branch => 'master'
+  :tag => '6.0.2'
 
 # FIXME Doesn't have RPM packaging yet
 #mod 'rubygem-rubygem_simp_processgraph',
