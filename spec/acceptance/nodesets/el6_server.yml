@@ -26,6 +26,17 @@ HOSTS:
     hypervisor: <%= hypervisor %>
     vagrant_memsize: 4608
     vagrant_cpus: 2
+    ssh:
+      keepalive: true
+      keepalive_interval: 1
+      host_key:
+        - <%= Net::SSH::Transport::Algorithms::ALGORITHMS[:host_key].join("\n        - ") %>
+      kex:
+        - <%= Net::SSH::Transport::Algorithms::ALGORITHMS[:kex].join("\n        - ") %>
+      encryption:
+        - <%= Net::SSH::Transport::Algorithms::ALGORITHMS[:encryption].join("\n        - ") %>
+      hmac:
+        - <%= Net::SSH::Transport::Algorithms::ALGORITHMS[:hmac].join("\n        - ") %>
 
   agent-el7:
     roles:
@@ -41,6 +52,17 @@ HOSTS:
     platform:   el-6-x86_64
     box:        <%= box_6 %>
     hypervisor: <%= hypervisor %>
+    ssh:
+      keepalive: true
+      keepalive_interval: 1
+      host_key:
+        - <%= Net::SSH::Transport::Algorithms::ALGORITHMS[:host_key].join("\n        - ") %>
+      kex:
+        - <%= Net::SSH::Transport::Algorithms::ALGORITHMS[:kex].join("\n        - ") %>
+      encryption:
+        - <%= Net::SSH::Transport::Algorithms::ALGORITHMS[:encryption].join("\n        - ") %>
+      hmac:
+        - <%= Net::SSH::Transport::Algorithms::ALGORITHMS[:hmac].join("\n        - ") %>
 
 CONFIG:
   log_level: verbose

@@ -33,9 +33,9 @@ group :system_tests do
   #gem 'beaker'
   # This is needed until beaker can get it merged and released upstream,
   # otherwise the acceptance tests will probably fail
-  gem 'beaker', :git => 'https://github.com/trevor-vaughan/beaker', :branch => 'fix_reboot_check_fix'
+  gem 'beaker', '~> 4.27.1'
   gem 'beaker-rspec'
-  gem 'simp-beaker-helpers', ENV['SIMP_BEAKER_HELPERS_VERSION'] || ['>= 1.18.7', '< 2']
+  gem 'simp-beaker-helpers', ENV['SIMP_BEAKER_HELPERS_VERSION'] || ['>= 1.19.0', '< 2']
 end
 
 # Evaluate extra gemfiles if they exist
