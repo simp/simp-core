@@ -26,24 +26,3 @@ baseurl=https://download.simp-project.com/simp/yum/releases/6/el/$releasever/$ba
 gpgcheck=1
 enabled=1
 gpgkey=https://yum.puppet.com/RPM-GPG-KEY-puppet
-
-[simp-project_6_X]
-name=simp-project_6_X
-baseurl=https://packagecloud.io/simp-project/6_X/el/7/$basearch
-gpgcheck=1
-enabled=0
-gpgkey=https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
-       https://download.simp-project.com/simp/GPGKEYS/RPM-GPG-KEY-SIMP-6
-
-[simp-project_6_X_dependencies]
-name=simp-project_6_X_dependencies
-baseurl=https://packagecloud.io/simp-project/6_X_Dependencies/el/7/$basearch
-gpgcheck=1
-enabled=0
-gpgkey=https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
-       https://download.simp-project.com/simp/GPGKEYS/RPM-GPG-KEY-SIMP-6
-       https://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs
-       https://yum.puppetlabs.com/RPM-GPG-KEY-puppet
-       https://download.postgresql.org/pub/repos/yum/RPM-GPG-KEY-PGDG-94
-       https://download.postgresql.org/pub/repos/yum/RPM-GPG-KEY-PGDG-96
-       https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7
