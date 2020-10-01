@@ -152,7 +152,7 @@
     },
     {
       "name": "simp/iptables",
-      "version_requirement": ">= 6.5.1 < 7.0.0"
+      "version_requirement": ">= 6.5.2 < 7.0.0"
     },
     {
       "name": "simp/issue",
@@ -224,7 +224,7 @@
     },
     {
       "name": "simp/simpkv",
-      "version_requirement": ">= 0.7.0 < 1.0.0"
+      "version_requirement": ">= 0.7.1 < 1.0.0"
     },
     {
       "name": "simp/simp_apache",
