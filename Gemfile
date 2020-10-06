@@ -30,9 +30,6 @@ group :development do
 end
 
 group :system_tests do
-  #gem 'beaker'
-  # This is needed until beaker can get it merged and released upstream,
-  # otherwise the acceptance tests will probably fail
   gem 'beaker', '~> 4.27.1'
   gem 'beaker-rspec'
   gem 'simp-beaker-helpers', ENV['SIMP_BEAKER_HELPERS_VERSION'] || ['>= 1.19.0', '< 2']
