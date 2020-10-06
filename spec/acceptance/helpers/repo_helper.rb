@@ -52,14 +52,14 @@ module Acceptance
 
       # Set up SIMP repos on the host
       #
-      # By default, the SIMP '6_X' repos will be configured.  This can be
+      # By default, the SIMP '6' repos will be configured.  This can be
       # overidden with the BEAKER_repo environment variable as follows:
       # - When set to a fully qualified path of a repo file, the file will
       #   be installed as a repo on the host.  In this case set_up_simp_main
       #   and set_up_simp_deps are both ignored, as the repo file is assumed
       #   to be configured appropriately.
       # - Otherwise, BEAKER_repo should take the form
-      # `<simprelease>[,<sipmreleasetype>]`. For instance, if you want to use
+      # `<simprelease>[,<simpreleasetype>]`. For instance, if you want to use
       # release 6 from the unstable repos, you would pass
       # `BEAKER_repo="6,unstable"`
       #
