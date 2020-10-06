@@ -71,7 +71,7 @@ module Acceptance
       def set_up_simp_repos(host, set_up_simp_main = true, set_up_simp_deps = true )
         reponame = ENV['BEAKER_repo']
 
-        if reponame[0] == '/'
+        if reponame && reponame[0] == '/'
           copy_repo(host, reponame)
         else
           disable_list = []
