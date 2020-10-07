@@ -125,6 +125,14 @@ Obsoletes: pupmod-richardc-datacat <= 0.6.2
 Obsoletes: pupmod-puppet-grafana <= 4.1.1
 Obsoletes: pupmod-simp-simp_grafana <= 1.0.6
 Obsoletes: pupmod-simp-site < 3
+#  These lines are required for upgrades from 6.4.0 to 6.5.0
+#  because these packages have out of date requirements.
+Obsoletes:  pupmod-puppetlabs-docker  <= 3.5.0
+Obsoletes:  pupmod-simp-simp_docker  <= 0.2.1
+Obsoletes:  pupmod-simp-simp_snmpd  <= 0.1.2
+Obsoletes:  pupmod-simp-journald   <= 1.1.0
+Obsoletes:  pupmod-simp-simp_gitlab <= 0.4.0
+Obsoletes:  pupmod-puppet-gitlab <= 3.0.2
 
 Requires: simp-adapter >= 1.0.1, simp-adapter < 2.0.0
 #Requires: pupmod-puppet-gitlab >= 3.0.2
@@ -245,6 +253,10 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Tue Oct 06 2020 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 6.5.0-ALPHA
+- Add obsolete messages for pupmod rpms in simp-extras that were not
+  updated for 6.5.0 and will cause depencancy issues when upgrading.
+
 * Tue Jul 28 2020 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 6.5.0-ALPHA
 - updated the dependency versions
 - removed the following package dependencies from extras:
