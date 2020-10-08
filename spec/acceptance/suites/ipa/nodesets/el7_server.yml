@@ -54,6 +54,16 @@ HOSTS:
     platform:   el-6-x86_64
     box:        <%= box_6 %>
     hypervisor: <%= hypervisor %>
+    ssh:
+      host_key:
+        - <%= Net::SSH::Transport::Algorithms::ALGORITHMS[:host_key].join("\n        - ") %>
+      kex:
+        - <%= Net::SSH::Transport::Algorithms::ALGORITHMS[:kex].join("\n        - ") %>
+      encryption:
+        - <%= Net::SSH::Transport::Algorithms::ALGORITHMS[:encryption].join("\n        - ") %>
+      hmac:
+        - <%= Net::SSH::Transport::Algorithms::ALGORITHMS[:hmac].join("\n        - ") %>
+
 
 CONFIG:
   log_level: verbose
