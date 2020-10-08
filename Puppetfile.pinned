@@ -184,7 +184,7 @@ mod 'simp-clamav',
 
 mod 'simp-compliance_markup',
   :git => 'https://github.com/simp/pupmod-simp-compliance_markup',
-  :tag => '3.1.1'
+  :tag => '3.1.2'
 
 mod 'simp-cron',
   :git => 'https://github.com/simp/pupmod-simp-cron',

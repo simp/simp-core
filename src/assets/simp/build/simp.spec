@@ -51,7 +51,7 @@ Requires: pupmod-simp-at >= 0.1.0, pupmod-simp-at < 1.0.0
 Requires: pupmod-simp-auditd >= 8.6.1, pupmod-simp-auditd < 9.0.0
 Requires: pupmod-simp-chkrootkit >= 0.3.0, pupmod-simp-chkrootkit < 1.0.0
 Requires: pupmod-simp-clamav >= 6.4.0, pupmod-simp-clamav < 7.0.0
-Requires: pupmod-simp-compliance_markup >= 3.1.1, pupmod-simp-compliance_markup < 4.0.0
+Requires: pupmod-simp-compliance_markup >= 3.1.2, pupmod-simp-compliance_markup < 4.0.0
 Requires: pupmod-simp-cron >= 0.2.0, pupmod-simp-cron < 1.0.0
 Requires: pupmod-simp-crypto_policy >= 0.1.0, pupmod-simp-crypto_policy < 1.0.0
 Requires: pupmod-simp-deferred_resources >= 0.3.0, pupmod-simp-deferred_resources < 1.0.0
@@ -256,8 +256,6 @@ fi
 * Tue Oct 06 2020 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 6.5.0-ALPHA
 - Add obsolete messages for pupmod rpms in simp-extras that were not
   updated for 6.5.0 and will cause depencancy issues when upgrading.
-
-* Tue Jul 28 2020 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 6.5.0-ALPHA
 - updated the dependency versions
 - removed the following package dependencies from extras:
   - pupmod-puppetlabs-docker
@@ -265,6 +263,10 @@ fi
   - pupmod-puppet-gitlab
   - pupmod-simp-simp_gitlab
   - pupmod-simp-simp_snmpd
+- add firewalld and chrony to the Puppetfile and simp.spec file
+- update the version of simplib required.
+- This is just the start, more updates will be needed before creation of
+  an iso and full tests will work.
 - removed unused augeasproviders package dependencies from simp:
   - pupmod-herculesteam-augeasproviders_apache
   - pupmod-herculesteam-augeasproviders_mounttab
@@ -280,12 +282,6 @@ fi
 
 * Thu Jul 09 2020 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.5.0-ALPHA
 - Add pupmod-simp-simp_firewalld to the core package list
-
-* Thu Dec 12 2019 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 6.5.0-ALPHA
-- add firewalld and chrony to the Puppetfile and simp.spec file
-- update the version of simplib required.
-- This is just the start, more updates will be needed before creation of
-  an iso and full tests will work.
 
 * Mon Jul 01 2019 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 6.4.0-0
 - update puppetfile and spec file with 6.4.0 RC release versions.
