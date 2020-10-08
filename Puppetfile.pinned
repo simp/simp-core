@@ -22,7 +22,7 @@ moduledir 'src/assets'
 
 mod 'rubygem-rubygem_simp_cli',
   :git => 'https://github.com/simp/rubygem-simp-cli',
-  :branch => 'master'
+  :tag => '6.0.3'
 
 # FIXME Doesn't have RPM packaging yet
 #mod 'rubygem-rubygem_simp_processgraph',
@@ -184,7 +184,7 @@ mod 'simp-clamav',
 
 mod 'simp-compliance_markup',
   :git => 'https://github.com/simp/pupmod-simp-compliance_markup',
-  :tag => '3.1.1'
+  :tag => '3.1.2'
 
 mod 'simp-cron',
   :git => 'https://github.com/simp/pupmod-simp-cron',
@@ -240,7 +240,7 @@ mod 'simp-incron',
 
 mod 'simp-iptables',
   :git => 'https://github.com/simp/pupmod-simp-iptables',
-  :tag => '6.5.1'
+  :tag => '6.5.2'
 
 mod 'simp-issue',
   :git => 'https://github.com/simp/pupmod-simp-issue',
@@ -340,11 +340,11 @@ mod 'simp-selinux',
 
 mod 'simp-simp',
   :git => 'https://github.com/simp/pupmod-simp-simp',
-  :tag => '4.12.0'
+  :tag => '4.13.0'
 
 mod 'simp-simpkv',
   :git => 'https://github.com/simp/pupmod-simp-simpkv',
-  :tag => '0.7.0'
+  :tag => '0.7.1'
 
 mod 'simp-simplib',
   :git => 'https://github.com/simp/pupmod-simp-simplib',
@@ -452,7 +452,7 @@ mod 'simp-tpm',
 
 mod 'simp-tpm2',
   :git => 'https://github.com/simp/pupmod-simp-tpm2',
-  :tag => '0.3.0'
+  :tag => '0.3.1'
 
 mod 'simp-tuned',
   :git => 'https://github.com/simp/pupmod-simp-tuned',

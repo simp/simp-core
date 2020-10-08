@@ -51,7 +51,7 @@ Requires: pupmod-simp-at >= 0.1.0, pupmod-simp-at < 1.0.0
 Requires: pupmod-simp-auditd >= 8.6.1, pupmod-simp-auditd < 9.0.0
 Requires: pupmod-simp-chkrootkit >= 0.3.0, pupmod-simp-chkrootkit < 1.0.0
 Requires: pupmod-simp-clamav >= 6.4.0, pupmod-simp-clamav < 7.0.0
-Requires: pupmod-simp-compliance_markup >= 3.1.1, pupmod-simp-compliance_markup < 4.0.0
+Requires: pupmod-simp-compliance_markup >= 3.1.2, pupmod-simp-compliance_markup < 4.0.0
 Requires: pupmod-simp-cron >= 0.2.0, pupmod-simp-cron < 1.0.0
 Requires: pupmod-simp-crypto_policy >= 0.1.0, pupmod-simp-crypto_policy < 1.0.0
 Requires: pupmod-simp-deferred_resources >= 0.3.0, pupmod-simp-deferred_resources < 1.0.0
@@ -59,7 +59,7 @@ Requires: pupmod-simp-dhcp >= 6.2.0, pupmod-simp-dhcp < 7.0.0
 Requires: pupmod-simp-fips >= 0.4.2, pupmod-simp-fips < 1.0.0
 Requires: pupmod-simp-haveged >= 0.6.0, pupmod-simp-haveged < 1.0.0
 Requires: pupmod-simp-incron >= 0.5.0, pupmod-simp-incron < 1.0.0
-Requires: pupmod-simp-iptables >= 6.5.1, pupmod-simp-iptables < 7.0.0
+Requires: pupmod-simp-iptables >= 6.5.2, pupmod-simp-iptables < 7.0.0
 Requires: pupmod-simp-issue >= 0.2.0, pupmod-simp-issue < 1.0.0
 Requires: pupmod-simp-logrotate >= 6.5.0, pupmod-simp-logrotate < 7.0.0
 Requires: pupmod-simp-named >= 6.3.0, pupmod-simp-named < 7.0.0
@@ -75,14 +75,14 @@ Requires: pupmod-simp-rkhunter >= 0.0.3, pupmod-simp-rkhunter < 1.0.0
 Requires: pupmod-simp-rsync >= 6.4.1, pupmod-simp-rsync < 7.0.0
 Requires: pupmod-simp-rsyslog >= 7.6.3, pupmod-simp-rsyslog < 8.0.0
 Requires: pupmod-simp-selinux >= 2.6.0, pupmod-simp-selinux < 3.0.0
-Requires: pupmod-simp-simp >= 4.12.0, pupmod-simp-simp < 5.0.0
+Requires: pupmod-simp-simp >= 4.13.0, pupmod-simp-simp < 5.0.0
 Requires: pupmod-simp-simp_apache >= 7.0.0, pupmod-simp-simp_apache < 8.0.0
 Requires: pupmod-simp-simp_banners >= 0.2.0, pupmod-simp-simp_banners < 1.0.0
 Requires: pupmod-simp-simp_firewalld >= 0.1.1, pupmod-simp-simp_firewalld < 1.0.0
 Requires: pupmod-simp-simp_openldap >= 6.4.3, pupmod-simp-simp_openldap < 7.0.0
 Requires: pupmod-simp-simp_options >= 1.4.1, pupmod-simp-simp_options < 2.0.0
 Requires: pupmod-simp-simp_rsyslog >= 0.5.0, pupmod-simp-simp_rsyslog < 1.0.0
-Requires: pupmod-simp-simpkv >= 0.7.0, pupmod-simp-simpkv < 1.0.0
+Requires: pupmod-simp-simpkv >= 0.7.1, pupmod-simp-simpkv < 1.0.0
 Requires: pupmod-simp-simplib >= 4.3.0, pupmod-simp-simplib < 5.0.0
 Requires: pupmod-simp-ssh >= 6.11.0, pupmod-simp-ssh < 7.0.0
 Requires: pupmod-simp-sssd >= 6.3.1, pupmod-simp-sssd < 7.0.0
@@ -99,8 +99,8 @@ Requires: pupmod-simp-useradd >= 0.4.1, pupmod-simp-useradd < 1.0.0
 Requires: pupmod-simp-vox_selinux >= 3.1.0, pupmod-simp-vox_selinux < 4.0.0
 Requires: pupmod-simp-xinetd >= 4.2.1, pupmod-simp-xinetd < 5.0.0
 Requires: pupmod-trlinkin-nsswitch >= 2.2.0, pupmod-trlinkin-nsswitch < 3.0.0
-Requires: rubygem-simp-cli >= 6.0.2, rubygem-simp-cli < 7.0.0
-Requires: rubygem-simp-cli-doc >= 6.0.2, rubygem-simp-cli-doc < 7.0.0
+Requires: rubygem-simp-cli >= 6.0.3, rubygem-simp-cli < 7.0.0
+Requires: rubygem-simp-cli-doc >= 6.0.3, rubygem-simp-cli-doc < 7.0.0
 Requires: simp-adapter >= 1.0.1, simp-adapter < 2.0.0
 Requires: simp-environment-skeleton >= 7.1.4, simp-environment-skeleton < 8.0.0
 Requires: simp-gpgkeys >= 3.1.1, simp-gpgkeys < 4.0.0
@@ -172,7 +172,7 @@ Requires: pupmod-simp-simp_pki_service >= 0.3.1
 #expect return in 6.6
 #Requires: pupmod-simp-simp_snmpd >= 0.2.1
 Requires: pupmod-simp-tpm >= 3.2.0
-Requires: pupmod-simp-tpm2 >= 0.3.0
+Requires: pupmod-simp-tpm2 >= 0.3.1
 Requires: pupmod-simp-tuned >= 0.2.1
 Requires: pupmod-simp-vnc >= 7.1.1
 Requires: pupmod-simp-vsftpd >= 7.4.0
@@ -256,8 +256,6 @@ fi
 * Tue Oct 06 2020 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 6.5.0-ALPHA
 - Add obsolete messages for pupmod rpms in simp-extras that were not
   updated for 6.5.0 and will cause depencancy issues when upgrading.
-
-* Tue Jul 28 2020 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 6.5.0-ALPHA
 - updated the dependency versions
 - removed the following package dependencies from extras:
   - pupmod-puppetlabs-docker
@@ -265,6 +263,10 @@ fi
   - pupmod-puppet-gitlab
   - pupmod-simp-simp_gitlab
   - pupmod-simp-simp_snmpd
+- add firewalld and chrony to the Puppetfile and simp.spec file
+- update the version of simplib required.
+- This is just the start, more updates will be needed before creation of
+  an iso and full tests will work.
 - removed unused augeasproviders package dependencies from simp:
   - pupmod-herculesteam-augeasproviders_apache
   - pupmod-herculesteam-augeasproviders_mounttab
@@ -280,12 +282,6 @@ fi
 
 * Thu Jul 09 2020 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.5.0-ALPHA
 - Add pupmod-simp-simp_firewalld to the core package list
-
-* Thu Dec 12 2019 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 6.5.0-ALPHA
-- add firewalld and chrony to the Puppetfile and simp.spec file
-- update the version of simplib required.
-- This is just the start, more updates will be needed before creation of
-  an iso and full tests will work.
 
 * Mon Jul 01 2019 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 6.4.0-0
 - update puppetfile and spec file with 6.4.0 RC release versions.

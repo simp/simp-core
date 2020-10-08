@@ -27,6 +27,17 @@ HOSTS:
     hypervisor: <%= hypervisor %>
     vagrant_memsize: 4608
     vagrant_cpus: 2
+    ssh:
+      host_key:
+        - <%= Net::SSH::Transport::Algorithms::ALGORITHMS[:host_key].join("\n        - ") %>
+      kex:
+        - <%= Net::SSH::Transport::Algorithms::ALGORITHMS[:kex].join("\n        - ") %>
+      encryption:
+        - <%= Net::SSH::Transport::Algorithms::ALGORITHMS[:encryption].join("\n        - ") %>
+      hmac:
+        - <%= Net::SSH::Transport::Algorithms::ALGORITHMS[:hmac].join("\n        - ") %>
+
+
 
   ipa:
     roles:
@@ -37,6 +48,17 @@ HOSTS:
     hypervisor: <%= hypervisor %>
     vagrant_memsize: 2048
     vagrant_cpus: 2
+    ssh:
+      host_key:
+        - <%= Net::SSH::Transport::Algorithms::ALGORITHMS[:host_key].join("\n        - ") %>
+      kex:
+        - <%= Net::SSH::Transport::Algorithms::ALGORITHMS[:kex].join("\n        - ") %>
+      encryption:
+        - <%= Net::SSH::Transport::Algorithms::ALGORITHMS[:encryption].join("\n        - ") %>
+      hmac:
+        - <%= Net::SSH::Transport::Algorithms::ALGORITHMS[:hmac].join("\n        - ") %>
+
+
 
   agent-el7:
     roles:
@@ -54,14 +76,28 @@ HOSTS:
     platform:   el-6-x86_64
     box:        <%= box_6 %>
     hypervisor: <%= hypervisor %>
+    ssh:
+      host_key:
+        - <%= Net::SSH::Transport::Algorithms::ALGORITHMS[:host_key].join("\n        - ") %>
+      kex:
+        - <%= Net::SSH::Transport::Algorithms::ALGORITHMS[:kex].join("\n        - ") %>
+      encryption:
+        - <%= Net::SSH::Transport::Algorithms::ALGORITHMS[:encryption].join("\n        - ") %>
+      hmac:
+        - <%= Net::SSH::Transport::Algorithms::ALGORITHMS[:hmac].join("\n        - ") %>
+
+
 
 CONFIG:
   log_level: verbose
   type:      aio
   vagrant_memsize: 256
+  ssh:
+    keepalive: true
+    keepalive_interval: 1
   synced_folder: disabled
 <% if ENV['BEAKER_PUPPET_COLLECTION'] -%>
   puppet_collection: <%= ENV['BEAKER_PUPPET_COLLECTION'] %>
 <% else -%>
-  puppet_collection: puppet5
+  puppet_collection: puppet6
 <% end -%>
