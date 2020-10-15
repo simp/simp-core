@@ -253,6 +253,11 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Wed Oct 14 2020 Chris Tessmer <chris.tessmer@onyxpoint.com> - 6.5.0-ALPHA
+- Disable all internet-based CentOS repos in EL8 kickstart template
+- Re-enable `fips=1` in the EL8 kickstart template bootloader
+- Minor fixes & formatting updates to EL8 kickstart template
+
 * Tue Oct 06 2020 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 6.5.0-ALPHA
 - Add obsolete messages for pupmod rpms in simp-extras that were not
   updated for 6.5.0 and will cause depencancy issues when upgrading.
