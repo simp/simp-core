@@ -103,8 +103,8 @@ libmateweather-data:
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/l/libmateweather-data-1.16.1-1.el7.noarch.rpm
 libprelude:
   :description: required by clamd
-  :rpm_name: libprelude-5.1.1-1.el7.x86_64.rpm
-  :source: http://mirror.umd.edu/fedora/epel/7/x86_64/Packages/l/libprelude-5.1.1-1.el7.x86_64.rpm
+  :rpm_name: libprelude-5.2.0-2.el7.x86_64.rpm
+  :source: http://mirror.umd.edu/fedora/epel/7/x86_64/Packages/l/libprelude-5.2.0-2.el7.x86_64.rpm
 libssh:
   :rpm_name: libssh-0.7.1-7.el7.x86_64.rpm
   :source: http://mirror.centos.org/centos/7/extras/x86_64/Packages/libssh-0.7.1-7.el7.x86_64.rpm
