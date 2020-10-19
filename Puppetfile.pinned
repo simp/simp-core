@@ -22,7 +22,7 @@ moduledir 'src/assets'
 
 mod 'rubygem-rubygem_simp_cli',
   :git => 'https://github.com/simp/rubygem-simp-cli',
-  :tag => '6.0.3'
+  :tag => '6.1.1'
 
 # FIXME Doesn't have RPM packaging yet
 #mod 'rubygem-rubygem_simp_processgraph',
@@ -58,7 +58,7 @@ mod 'simp-simp_selinux_policy',
 
 mod 'simp-utils',
   :git => 'https://github.com/simp/simp-utils',
-  :tag => '6.2.3'
+  :tag => '6.3.0'
 
 moduledir 'src/puppet/modules'
 
@@ -192,7 +192,7 @@ mod 'simp-cron',
 
 mod 'simp-crypto_policy',
   :git => 'https://github.com/simp/pupmod-simp-crypto_policy',
-  :tag => '0.1.0'
+  :tag => '0.1.1'
 
 mod 'simp-dconf',
   :git => 'https://github.com/simp/pupmod-simp-dconf',
@@ -252,7 +252,7 @@ mod 'simp-krb5',
 
 mod 'simp-libreswan',
   :git => 'https://github.com/simp/pupmod-simp-libreswan',
-  :tag => '3.3.0'
+  :tag => '3.4.0'
 
 mod 'simp-libvirt',
   :git => 'https://github.com/simp/pupmod-simp-libvirt',
@@ -340,7 +340,7 @@ mod 'simp-selinux',
 
 mod 'simp-simp',
   :git => 'https://github.com/simp/pupmod-simp-simp',
-  :tag => '4.13.0'
+  :branch => 'master'
 
 mod 'simp-simpkv',
   :git => 'https://github.com/simp/pupmod-simp-simpkv',
@@ -348,7 +348,7 @@ mod 'simp-simpkv',
 
 mod 'simp-simplib',
   :git => 'https://github.com/simp/pupmod-simp-simplib',
-  :tag => '4.5.0'
+  :tag => '4.6.0'
 
 mod 'simp-simp_apache',
   :git => 'https://github.com/simp/pupmod-simp-simp_apache',

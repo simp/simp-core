@@ -128,7 +128,7 @@
     },
     {
       "name": "simp/crypto_policy",
-      "version_requirement": ">= 0.1.0 < 1.0.0"
+      "version_requirement": ">= 0.1.1 < 1.0.0"
     },
     {
       "name": "simp/deferred_resources",
@@ -216,11 +216,11 @@
     },
     {
       "name": "simp/simp",
-      "version_requirement": ">= 4.13.0 < 5.0.0"
+      "version_requirement": ">= 4.14.0 < 5.0.0"
     },
     {
       "name": "simp/simplib",
-      "version_requirement": ">= 4.3.0 < 5.0.0"
+      "version_requirement": ">= 4.6.0 < 5.0.0"
     },
     {
       "name": "simp/simpkv",
