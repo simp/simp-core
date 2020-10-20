@@ -15,6 +15,7 @@ describe 'Install SIMP modules and assets via release tarball' do
       :root_password => test_password,
       :repos         => [
         :epel,
+        :simp,
         :simp_deps,
         :puppet
       ]
