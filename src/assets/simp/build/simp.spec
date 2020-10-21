@@ -53,7 +53,7 @@ Requires: pupmod-simp-chkrootkit >= 0.3.0, pupmod-simp-chkrootkit < 1.0.0
 Requires: pupmod-simp-clamav >= 6.4.0, pupmod-simp-clamav < 7.0.0
 Requires: pupmod-simp-compliance_markup >= 3.1.2, pupmod-simp-compliance_markup < 4.0.0
 Requires: pupmod-simp-cron >= 0.2.0, pupmod-simp-cron < 1.0.0
-Requires: pupmod-simp-crypto_policy >= 0.1.1, pupmod-simp-crypto_policy < 1.0.0
+Requires: pupmod-simp-crypto_policy >= 0.1.2, pupmod-simp-crypto_policy < 1.0.0
 Requires: pupmod-simp-deferred_resources >= 0.3.0, pupmod-simp-deferred_resources < 1.0.0
 Requires: pupmod-simp-dhcp >= 6.2.0, pupmod-simp-dhcp < 7.0.0
 Requires: pupmod-simp-fips >= 0.4.2, pupmod-simp-fips < 1.0.0
@@ -166,7 +166,7 @@ Requires: pupmod-simp-simp_bolt >= 0.3.0
 #Requires: pupmod-simp-simp_gitlab >= 0.5.1
 Requires: pupmod-simp-simp_grub >= 0.2.1
 Requires: pupmod-simp-simp_ipa >= 0.1.0
-Requires: pupmod-simp-simp_nfs >= 1.0.0
+Requires: pupmod-simp-simp_nfs >= 1.0.1
 Requires: pupmod-simp-simp_pki_service >= 0.3.1
 #Commented out for 6.5 because of dependency issues.
 #expect return in 6.6

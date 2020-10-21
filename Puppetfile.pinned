@@ -192,7 +192,7 @@ mod 'simp-cron',
 
 mod 'simp-crypto_policy',
   :git => 'https://github.com/simp/pupmod-simp-crypto_policy',
-  :tag => '0.1.1'
+  :tag => '0.1.2'
 
 mod 'simp-dconf',
   :git => 'https://github.com/simp/pupmod-simp-dconf',
@@ -382,7 +382,7 @@ mod 'simp-simp_ipa',
 
 mod 'simp-simp_nfs',
   :git => 'https://github.com/simp/pupmod-simp-simp_nfs',
-  :tag => '1.0.0'
+  :tag => '1.0.1'
 
 mod 'simp-simp_openldap',
   :git => 'https://github.com/simp/pupmod-simp-simp_openldap',
