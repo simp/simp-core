@@ -68,7 +68,7 @@ CONFIG:
   synced_folder: disabled
   ssh:
     keepalive: true
-    keepalive_interval: 1
+    keepalive_interval: 10
 <% if ENV['BEAKER_PUPPET_COLLECTION'] -%>
   puppet_collection: <%= ENV['BEAKER_PUPPET_COLLECTION'] %>
 <% else -%>
