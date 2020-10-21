@@ -65,7 +65,7 @@ module Acceptance
       #
       # +host+: Host object on which SIMP repo(s) will be installed
       # +set_up_simp_main+:  Whether to set up the main SIMP repo
-      # +set_up_simp_deps+:  Whether to set up the SIMP dependencies repo
+      # +set_up_simp_deps+:  Whether to set up the SIMP dependencies repos
       #
       # @fails if the specified repos cannot be installed on host
       def set_up_simp_repos(host, set_up_simp_main = true, set_up_simp_deps = true )

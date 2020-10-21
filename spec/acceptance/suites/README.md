@@ -120,8 +120,9 @@ clients, and then executes the following tests:
 
 #### yum repositories enabled
 
-This test enables EPEL, SIMP 6_X, SIMP 6_X_Dependencies, and Puppet
-repositories.
+This test enables EPEL, SIMP 6 (simp-community-simp), SIMP 6 dependencies
+(simp-community-epel, simp-community-puppet, simp-community-postgresql),
+and Puppet repositories.
 
 #### puppetserver installation
 
@@ -174,8 +175,9 @@ following:
 
 #### yum repositories enabled
 
-This test enables EPEL, SIMP 6_X, SIMP 6_X_Dependencies, and Puppet
-repositories.
+This test enables EPEL, SIMP 6 (simp-community-simp), SIMP 6 dependencies
+(simp-community-epel, simp-community-puppet, simp-community-postgresql),
+and Puppet repositories.
 
 #### puppetserver installation
 
@@ -217,10 +219,11 @@ clients.
 
 #### yum repositories enabled
 
-This test enables SIMP 6_X and SIMP 6_X_Dependencies repositories.  It
-explicitly does not enable the EPEL or Puppet repositories, as the test expects
-the EPEL and Puppet RPMs required for SIMP to be available in the
-SIMP 6_X_Dependencies repository.
+This test enables SIMP 6 (simp-community-simp) and SIMP 6 dependencies
+(simp-community-epel, simp-community-puppet, simp-community-postgresql)
+repositories.  It explicitly does not enable the EPEL or Puppet repositories,
+as the test expects the EPEL and Puppet RPMs required for SIMP to be available
+in the corresponding SIMP 6 dependencies repositories.
 
 #### puppetserver installation
 
@@ -253,9 +256,11 @@ clients.
 
 #### yum repositories enabled
 
-This test enables EPEL, SIMP 6_X_Dependencies, and Puppet repositories.  It
-also creates and enables a local repository containing the component RPMs
-packaged in the SIMP release tarball.
+This test enables EPEL, SIMP 6 (simp-community-simp for simp-vendored-r10k
+packages), SIMP 6 dependencies (simp-community-epel, simp-community-puppet,
+simp-community-postgresql), and Puppet repositories.  It also creates and
+enables a local repository containing the component RPMs packaged in the
+SIMP release tarball.
 
 #### puppetserver installation
 
@@ -294,8 +299,9 @@ clients.
 
 #### yum repositories enabled
 
-This test enables EPEL, SIMP 6_X, SIMP 6_X_Dependencies, and Puppet
-repositories.
+This test enables EPEL, SIMP 6 (simp-community-simp), SIMP 6 dependencies
+(simp-community-epel, simp-community-puppet, simp-community-postgresql),
+and Puppet repositories.
 
 #### puppetserver installation
 
