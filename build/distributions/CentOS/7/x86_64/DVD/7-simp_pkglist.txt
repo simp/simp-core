@@ -1,13 +1,15 @@
-# A list of packages required for the clean base installation of the SIMP DVD
-# based on CentOS 1810 and rhel-server-7.6 releases.
+# A list of packages required for a clean base installation of the SIMP DVD
+# based on CentOS 7.0.2003 and rhel-server-7.8 releases.
 #
-# This list is simply used to keep items in the base DVD so having extra
-# packages listed here is not a problem. Anything not listed in this file will
-# be pruned from the install DVD.
+# This list determines which packages to keep from the base OS DVD.
+#
+# * Anything not listed in this file will be pruned from the install DVD.
+# * Listing extra packages not on the DVDs here won't cause any errors
+#   (but it won't magically include them on the SIMP DVD, either).
 #
 # You can get this list using:
 #
-# rpm -qa --qf "%{NAME}\n" | sort -u
+# rpm -qa --qf "%{NAME}\n" | sort -uV
 #
 # (NOTE:  The packages are listed in 'sort -V 'order.)
 
@@ -72,11 +74,11 @@ apr-util-openssl
 args4j
 arpwatch
 at
-at-spi2-atk
-at-spi2-core
 atk
 atk-devel
 attr
+at-spi2-atk
+at-spi2-core
 audit
 audit-libs
 audit-libs-python
@@ -130,23 +132,22 @@ brltty
 btrfs-progs
 bzip2
 bzip2-libs
-c-ares
-ca-certificates
 cairo
 cairo-gobject
 cal10n
-# caribou* only in rhel-server distribution ISO
 caribou
+# caribou* only in rhel-server distribution ISO
 caribou-gtk2-module
 caribou-gtk3-module
-cdrdao
+ca-certificates
 cdparanoia
 cdparanoia-libs
-# centos-* only in CentOS distribution ISO
+cdrdao
 centos-bookmarks
 centos-indexhtml
 centos-logos
 centos-release
+# centos-* only in CentOS distribution ISO
 certmonger
 checkpolicy
 cheese-libs
@@ -159,23 +160,23 @@ clutter-gst3
 clutter-gtk
 codemodel
 cogl
-color-filesystem
 colord
 colord-gtk
 colord-libs
-compat-libical1
-compat-libcogl-pango12
+color-filesystem
 compat-libcogl12
+compat-libcogl-pango12
 compat-libcolord1
+compat-libical1
 comps-extras
 control-center
 control-center-filesystem
 coolkey
 copy-jdk-configs
 coreutils
-# corosync* only in CentOS distribution ISO
 corosync
 corosynclib
+# corosync* only in CentOS distribution ISO
 cpio
 cpp
 cracklib
@@ -203,6 +204,7 @@ cyrus-sasl-gssapi
 cyrus-sasl-lib
 cyrus-sasl-md5
 cyrus-sasl-plain
+c-ares
 dbus
 dbus-glib
 dbus-libs
@@ -274,8 +276,8 @@ festival-lib
 festival-speechtools-libs
 festvox-slt-arctic-hts
 file
-file-libs
 filesystem
+file-libs
 findutils
 fipscheck
 fipscheck-lib
@@ -333,19 +335,19 @@ ghostscript-fonts
 giflib
 git
 gjs
-gl-manpages
 glassfish-dtd-parser
 glassfish-fastinfoset
 glassfish-jaxb
 glassfish-jaxb-api
-glib-networking
 glib2
 glib2-devel
 glibc
 glibc-common
 glibc-devel
 glibc-headers
+glib-networking
 glx-utils
+gl-manpages
 gmp
 gnome-bluetooth
 gnome-bluetooth-libs
@@ -393,16 +395,16 @@ gsettings-desktop-schemas
 gsm
 gssproxy
 gstreamer
-gstreamer-plugins-base
-gstreamer-plugins-good
-gstreamer-tools
 gstreamer1
 gstreamer1-plugins-bad-free
 gstreamer1-plugins-base
 gstreamer1-plugins-good
-gtk-update-icon-cache
+gstreamer-plugins-base
+gstreamer-plugins-good
+gstreamer-tools
 gtk2
 gtk3
+gtk-update-icon-cache
 guava
 gucharmap
 gucharmap-libs
@@ -420,12 +422,12 @@ hicolor-icon-theme
 hmaccalc
 hostname
 hsqldb
-http-parser
 httpcomponents-client
 httpcomponents-core
 httpd
 httpd-devel
 httpd-tools
+http-parser
 hunspell
 hunspell-en-US
 hwdata
@@ -435,15 +437,15 @@ ibus-gtk2
 ibus-gtk3
 ibus-libs
 ibus-setup
-im-chooser
 icedax
-im-chooser-common
-# ima-evm-utils only in rhel-server distribution ISO
 ima-evm-utils
+# ima-evm-utils only in rhel-server distribution ISO
 imsettings
 imsettings-gsettings
 imsettings-libs
 imsettings-qt
+im-chooser
+im-chooser-common
 info
 iniparser
 initscripts
@@ -468,14 +470,14 @@ ipxe-roms-qemu
 irqbalance
 iscsi-initiator-utils
 iscsi-initiator-utils-iscsiuio
-iso-codes
 isorelax
+iso-codes
 istack-commons
 ivtv-firmware
 iwl100-firmware
-iwl1000-firmware
 iwl105-firmware
 iwl135-firmware
+iwl1000-firmware
 iwl2000-firmware
 iwl2030-firmware
 iwl3160-firmware
@@ -483,9 +485,9 @@ iwl3945-firmware
 iwl4965-firmware
 iwl5000-firmware
 iwl5150-firmware
-iwl6000-firmware
 iwl6000g2a-firmware
 iwl6000g2b-firmware
+iwl6000-firmware
 iwl6050-firmware
 iwl7260-firmware
 iwl7265-firmware
@@ -494,6 +496,9 @@ jakarta-commons-httpclient
 jakarta-oro
 jansson
 jasper-libs
+javamail
+javapackages-tools
+javassist
 java-1.6.0-openjdk
 java-1.6.0-openjdk-devel
 java-1.7.0-openjdk
@@ -501,9 +506,6 @@ java-1.7.0-openjdk-devel
 java-1.7.0-openjdk-headless
 java-1.8.0-openjdk
 java-1.8.0-openjdk-headless
-javamail
-javapackages-tools
-javassist
 jaxen
 jbigkit-libs
 jboss-annotations-1.1-api
@@ -573,9 +575,9 @@ libXfont
 libXfont2
 libXft
 libXi
-libXi-devel
 libXinerama
 libXinerama-devel
+libXi-devel
 libXmu
 libXp
 libXpm
@@ -669,10 +671,10 @@ libglvnd-egl
 libglvnd-gles
 libglvnd-glx
 libgnome
-libgnome-keyring
 libgnomecanvas
 libgnomekbd
 libgnomeui
+libgnome-keyring
 libgomp
 libgpg-error
 libgs
@@ -716,8 +718,8 @@ libnfsidmap
 libnl
 libnl3
 libnl3-cli
-libnm-gtk
 libnma
+libnm-gtk
 libnotify
 liboauth
 libogg
@@ -729,8 +731,8 @@ libpciaccess
 libpipeline
 libplist
 libpng
-libpng-devel
 libpng12
+libpng-devel
 libproxy
 libpwquality
 libqb
@@ -827,8 +829,8 @@ libxshmfence
 libxslt
 libyaml
 libzip
-linux-firmware
 linuxconsoletools
+linux-firmware
 lksctp-tools
 llvm-private
 lm_sensors-libs
@@ -892,22 +894,22 @@ ncurses
 ncurses-base
 ncurses-libs
 neon
+netcf-libs
 netlabel_tools
+netlabprelude-5.1.1-1.el7.x86_64.rpmbel_tools
+nettle
 net-snmp
 net-snmp-agent-libs
 net-snmp-libs
 net-snmp-utils
 net-tools
-netcf-libs
-netlabprelude-5.1.1-1.el7.x86_64.rpmbel_tools
-nettle
 newt
 newt-python
-nfs-utils
 nfs4-acl-tools
-nm-connection-editor
+nfs-utils
 nmap
 nmap-ncat
+nm-connection-editor
 nscd
 nspr
 nss
@@ -929,14 +931,13 @@ obexd
 objectweb-asm
 oddjob
 oddjob-mkhomedir
-open-sans-fonts
 opencryptoki
 opencryptoki-libs
 opencryptoki-swtok
 opendnssec
 openjade
-openjpeg-libs
 openjpeg2
+openjpeg-libs
 openldap
 openldap-clients
 openldap-devel
@@ -954,12 +955,13 @@ openssh-server
 openssl
 openssl-devel
 openssl-libs
+open-sans-fonts
 opus
 orc
 orca
-os-prober
 osinfo-db
 osinfo-db-tools
+os-prober
 p11-kit
 p11-kit-trust
 pakchois
@@ -974,16 +976,16 @@ pax
 pciutils
 pciutils-libs
 pcre
-pcre-devel
 pcre2
+pcre-devel
 pcsc-lite
 pcsc-lite-ccid
 pcsc-lite-libs
 perl
 perl-Archive-Tar
-perl-B-Lint
 perl-Business-ISBN
 perl-Business-ISBN-Data
+perl-B-Lint
 perl-CGI
 perl-CPAN
 perl-Carp
@@ -998,10 +1000,10 @@ perl-DBI
 perl-DB_File
 perl-Data-Dumper
 perl-Data-OptList
-perl-Date-Manip
 perl-DateTime
 perl-DateTime-Locale
 perl-DateTime-TimeZone
+perl-Date-Manip
 perl-Digest
 perl-Digest-MD5
 perl-Digest-SHA
@@ -1044,11 +1046,11 @@ perl-Module-Pluggable
 perl-Module-Runtime
 perl-Mozilla-CA
 perl-Mozilla-LDAP
+perl-NetAddr-IP
 perl-Net-Daemon
 perl-Net-HTTP
 perl-Net-LibIDN
 perl-Net-SSLeay
-perl-NetAddr-IP
 perl-Package-Constants
 perl-Package-DeprecationManager
 perl-Package-Stash
@@ -1080,9 +1082,9 @@ perl-Text-ParseWords
 perl-Text-Soundex
 perl-Text-Unidecode
 perl-Thread-Queue
+perl-TimeDate
 perl-Time-HiRes
 perl-Time-Local
-perl-TimeDate
 perl-Try-Tiny
 perl-URI
 perl-WWW-RobotRules
@@ -1166,6 +1168,17 @@ pyorbit
 pyparsing
 pytalloc
 python
+python2-caribou
+# python2-caribou only in rhel-server distribution ISO
+python2-cryptography
+python2-futures
+python2-ipaclient
+python2-ipalib
+python2-ipaserver
+python2-oauthlib
+python2-pyasn1
+python2-pyasn1-modules
+python2-pyatspi
 python-IPy
 python-augeas
 python-backports
@@ -1212,8 +1225,8 @@ python-pycurl
 python-pyudev
 python-qrcode-core
 python-requests
-# python-rhsm* only in rhel-server distribution ISO
 python-rhsm
+# python-rhsm* only in rhel-server distribution ISO
 python-rhsm-certificates
 python-schedutils
 python-setuptools
@@ -1222,8 +1235,8 @@ python-slip
 python-slip-dbus
 python-srpm-macros
 python-sss
-python-sss-murmur
 python-sssdconfig
+python-sss-murmur
 python-suds
 python-syspurpose
 python-tdb
@@ -1231,17 +1244,6 @@ python-tevent
 python-urlgrabber
 python-urllib3
 python-yubico
-# python2-caribou only in rhel-server distribution ISO
-python2-caribou
-python2-cryptography
-python2-futures
-python2-ipaclient
-python2-ipalib
-python2-ipaserver
-python2-oauthlib
-python2-pyasn1
-python2-pyasn1-modules
-python2-pyatspi
 pyusb
 pyxattr
 qdox
@@ -1249,9 +1251,9 @@ qemu-guest-agent
 qpdf-libs
 qrencode-libs
 qt
+qt3
 qt-settings
 qt-x11
-qt3
 quota
 quota-nls
 rarian
@@ -1260,8 +1262,8 @@ rdma-core
 readline
 realmd
 recode
-# redhat-indexhtml + redhat-logos only in rhel-server distribution ISO
 redhat-indexhtml
+# redhat-indexhtml + redhat-logos only in rhel-server distribution ISO
 redhat-logos
 redhat-lsb
 redhat-lsb-core
@@ -1272,13 +1274,13 @@ redhat-lsb-printing
 redhat-lsb-submod-multimedia
 redhat-lsb-submod-security
 redhat-menus
-# redhat-release-server only in rhel-server distribution ISO
 redhat-release-server
+# redhat-release-server only in rhel-server distribution ISO
 redhat-rpm-config
 regexp
 relaxngDatatype
-# resource-agents only in CentOS distribution ISO
 resource-agents
+# resource-agents only in CentOS distribution ISO
 rest
 resteasy-base-atom-provider
 resteasy-base-client
@@ -1287,31 +1289,31 @@ resteasy-base-jaxb-provider
 resteasy-base-jaxrs
 resteasy-base-jaxrs-api
 rhino
-rng-tools
 rngom
+rng-tools
 rootfiles
 rpcbind
 rpm
+rpmdevtools
 rpm-build
 rpm-build-libs
 rpm-devel
 rpm-libs
 rpm-python
-rpmdevtools
 rrdtool
 rsync
 rsyslog
 rsyslog-gnutls
 rtkit
 ruby
-ruby-irb
-ruby-libs
+rubygems
 rubygem-bigdecimal
 rubygem-io-console
 rubygem-json
 rubygem-psych
 rubygem-rdoc
-rubygems
+ruby-irb
+ruby-libs
 samba
 samba-client
 samba-client-libs
@@ -1347,8 +1349,8 @@ smartmontools
 snappy
 softhsm
 sos
-sound-theme-freedesktop
 soundtouch
+sound-theme-freedesktop
 sox
 spax
 speech-dispatcher
@@ -1369,8 +1371,8 @@ sssd-proxy
 sssd-tools
 star
 startup-notification
-stax-ex
 stax2-api
+stax-ex
 stunnel
 subscription-manager
 subscription-manager-rhsm
@@ -1384,12 +1386,12 @@ sysfsutils
 syslinux
 syslinux-tftpboot
 sysstat
-system-config-firewall-base
 systemd
 systemd-libs
 systemd-python
 systemd-sysv
 systemtap-sdt-devel
+system-config-firewall-base
 sysvinit-tools
 t1lib
 taglib
@@ -1418,18 +1420,18 @@ tncfhh-libs
 tncfhh-utils
 tokyocabinet
 tomcat
+tomcatjss
 tomcat-el-2.2-api
 tomcat-jsp-2.2-api
 tomcat-lib
 tomcat-servlet-3.0-api
-tomcatjss
 totem-pl-parser
-tpm-tools
-# tpm2-* only in rhel-server distribution ISO
 tpm2-abrmd
 tpm2-tools
 tpm2-tss
 tpm2-tss-devel
+# tpm2-* only in rhel-server distribution ISO
+tpm-tools
 tracker
 tree
 trousers
@@ -1446,18 +1448,18 @@ unixODBC
 unzip
 upower
 urlview
+urw-base35-bookman-fonts
+urw-base35-c059-fonts
+urw-base35-d050000l-fonts
 urw-base35-fonts
 urw-base35-fonts-common
-urw-base35-z003-fonts
-urw-base35-standard-symbols-ps-fonts
-urw-base35-p052-fonts
-urw-base35-nimbus-sans-fonts
-urw-base35-nimbus-roman-fonts
-urw-base35-nimbus-mono-ps-fonts
 urw-base35-gothic-fonts
-urw-base35-d050000l-fonts
-urw-base35-c059-fonts
-urw-base35-bookman-fonts
+urw-base35-nimbus-mono-ps-fonts
+urw-base35-nimbus-roman-fonts
+urw-base35-nimbus-sans-fonts
+urw-base35-p052-fonts
+urw-base35-standard-symbols-ps-fonts
+urw-base35-z003-fonts
 usbmuxd
 usbutils
 usermode
@@ -1474,9 +1476,9 @@ volume_key
 volume_key-libs
 vorbis-tools
 vsftpd
-vte-profile
-vte291
 vte3
+vte291
+vte-profile
 wavpack
 webkitgtk3
 webkitgtk4
@@ -1506,11 +1508,11 @@ xerces-j2
 xfsprogs
 xinetd
 xkeyboard-config
+xmlrpc-c
+xmlrpc-c-client
 xml-common
 xml-commons-apis
 xml-commons-resolver
-xmlrpc-c
-xmlrpc-c-client
 xorg-x11-apps
 xorg-x11-docs
 xorg-x11-drivers
@@ -1531,13 +1533,13 @@ xorg-x11-drv-vmmouse
 xorg-x11-drv-vmware
 xorg-x11-drv-void
 xorg-x11-drv-wacom
-xorg-x11-font-utils
-xorg-x11-fonts-100dpi
 xorg-x11-fonts-75dpi
-xorg-x11-fonts-ISO8859-1-100dpi
+xorg-x11-fonts-100dpi
 xorg-x11-fonts-ISO8859-1-75dpi
+xorg-x11-fonts-ISO8859-1-100dpi
 xorg-x11-fonts-Type1
 xorg-x11-fonts-misc
+xorg-x11-font-utils
 xorg-x11-proto-devel
 xorg-x11-server-Xephyr
 xorg-x11-server-Xorg
@@ -1562,8 +1564,8 @@ yum
 yum-metadata-parser
 yum-plugin-aliases
 yum-plugin-changelog
-# yum-plugin-fastestmirro only in CentOS distribution ISO
 yum-plugin-fastestmirror
+# yum-plugin-fastestmirro only in CentOS distribution ISO
 yum-plugin-tmprepo
 yum-plugin-verify
 yum-plugin-versionlock

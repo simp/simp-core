@@ -1,15 +1,18 @@
-# A list of packages required for the clean base installation of the SIMP DVD
+# A list of packages required for a clean base installation of the SIMP DVD
 # based on RHEL/CentOS 6.
 #
-# This list is simply used to keep items in the base DVD so having extra
-# packages listed here is not a problem. Anything not listed in this file will
-# be pruned from the install DVD.
+# This list determines which packages to keep from the base OS DVD.
+#
+# * Anything not listed in this file will be pruned from the install DVD.
+# * Listing extra packages not on the DVDs here won't cause any errors
+#   (but it won't magically include them on the SIMP DVD, either).
 #
 # You can get this list using:
 #
-# rpm -qa --qf "%{NAME}\n" | sort -u
+# rpm -qa --qf "%{NAME}\n" | sort -uV
 #
 # (NOTE:  The packages are listed in 'sort -V 'order.)
+
 389-ds-base
 389-ds-base-libs
 ConsoleKit
@@ -45,12 +48,12 @@ apr-util-ldap
 arpwatch
 aspell
 at
-at-spi
-at-spi-python
 atk
 atk-devel
 atmel-firmware
 attr
+at-spi
+at-spi-python
 audit
 audit-libs
 audit-libs-python
@@ -87,10 +90,9 @@ bridge-utils
 busybox
 bzip2
 bzip2-libs
-c-ares
-ca-certificates
 cairo
 cairo-devel
+ca-certificates
 ccid
 ccs
 cdparanoia-libs
@@ -103,11 +105,11 @@ cifs-utils
 classpathx-jaf
 classpathx-mail
 cloog-ppl
-cluster-glue-libs
 clusterlib
+cluster-glue-libs
 cman
-compat-libstdc++-296
 compat-libstdc++-33
+compat-libstdc++-296
 compat-readline5
 compat-xcb-util
 comps-extras
@@ -139,6 +141,7 @@ cyrus-sasl-devel
 cyrus-sasl-gssapi
 cyrus-sasl-lib
 cyrus-sasl-md5
+c-ares
 dash
 db4
 db4-cxx
@@ -206,9 +209,9 @@ festival-lib
 festival-speechtools-libs
 festvox-slt-arctic-hts
 file
+filesystem
 file-devel
 file-libs
-filesystem
 findutils
 fipscheck
 fipscheck-lib
@@ -234,7 +237,6 @@ gcc
 gcc-c++
 gcc-java
 gd
-gd-devel
 gdb
 gdbm
 gdbm-devel
@@ -242,6 +244,7 @@ gdk-pixbuf2
 gdk-pixbuf2-devel
 gdm
 gdm-libs
+gd-devel
 genisoimage
 geronimo-specs
 geronimo-specs-compat
@@ -250,7 +253,6 @@ ghostscript
 ghostscript-fonts
 giflib
 git
-glib-networking
 glib2
 glib2-devel
 glibc
@@ -259,6 +261,7 @@ glibc-devel
 glibc-headers
 glibc-static
 glibc-utils
+glib-networking
 gmp
 gnome-applets
 gnome-desktop
@@ -310,10 +313,10 @@ gstreamer
 gstreamer-plugins-base
 gstreamer-plugins-good
 gstreamer-tools
-gtk-doc
 gtk2
 gtk2-devel
 gtk2-engines
+gtk-doc
 gucharmap
 gvfs
 gzip
@@ -330,9 +333,9 @@ httpd-devel
 httpd-tools
 hunspell
 hwdata
-im-chooser
 imsettings
 imsettings-libs
+im-chooser
 info
 initscripts
 iotop
@@ -362,8 +365,8 @@ iwl3945-firmware
 iwl4965-firmware
 iwl5000-firmware
 iwl5150-firmware
-iwl6000-firmware
 iwl6000g2a-firmware
+iwl6000-firmware
 iwl6050-firmware
 jakarta-commons-collections
 jakarta-commons-daemon
@@ -376,6 +379,11 @@ jakarta-commons-logging
 jakarta-commons-pool
 jakarta-oro
 jasper-libs
+javacc
+javacc-demo
+javacc-manual
+javassist
+javassist-javadoc
 java-1.5.0-gcj
 java-1.5.0-gcj-devel
 java-1.5.0-gcj-javadoc
@@ -399,11 +407,6 @@ java-1.8.0-openjdk-src
 java_cup
 java_cup-javadoc
 java_cup-manual
-javacc
-javacc-demo
-javacc-manual
-javassist
-javassist-javadoc
 jdom
 jline
 jpackage-utils
@@ -460,9 +463,9 @@ libXfont
 libXft
 libXft-devel
 libXi
-libXi-devel
 libXinerama
 libXinerama-devel
+libXi-devel
 libXmu
 libXp
 libXpm
@@ -663,9 +666,9 @@ mcpp
 mcstrans
 mdadm
 memcached
+mesa-dri1-drivers
 mesa-dri-drivers
 mesa-dri-filesystem
-mesa-dri1-drivers
 mesa-libEGL
 mesa-libGL
 mesa-libGLU
@@ -676,13 +679,13 @@ metacity
 microcode_ctl
 mingetty
 mlocate
-mod_auth_kerb
+modcluster
+module-init-tools
 mod_authz_ldap
+mod_auth_kerb
 mod_nss
 mod_ssl
 mod_wsgi
-modcluster
-module-init-tools
 mozilla-filesystem
 mpfr
 mtdev
@@ -701,17 +704,17 @@ ncurses
 ncurses-base
 ncurses-libs
 neon
+netcf-libs
+netlabel_tools
 net-snmp
 net-snmp-libs
 net-snmp-utils
 net-tools
-netcf-libs
-netlabel_tools
 newt
 newt-python
+nfs4-acl-tools
 nfs-utils
 nfs-utils-lib
-nfs4-acl-tools
 nmap
 notification-daemon
 nscd
@@ -783,11 +786,11 @@ perl-Crypt-SSLeay
 perl-DBD-MySQL
 perl-DBD-SQLite
 perl-DBI
-perl-Date-Manip
 perl-DateTime
 perl-DateTime-Format-DateParse
 perl-DateTime-Format-Mail
 perl-DateTime-Format-W3CDTF
+perl-Date-Manip
 perl-Digest-HMAC
 perl-Digest-SHA1
 perl-Error
@@ -802,19 +805,19 @@ perl-IO-Compress-Zlib
 perl-List-MoreUtils
 perl-Module-Pluggable
 perl-Mozilla-LDAP
-perl-Net-Telnet
 perl-NetAddr-IP
+perl-Net-Telnet
 perl-Params-Validate
 perl-Pod-Escapes
 perl-Pod-Simple
-perl-Readonly
-perl-Readonly-XS
+# perl-Readonly
+# perl-Readonly-XS
 perl-SGMLSpm
 perl-Socket6
 perl-Test-Harness
 perl-Test-Simple
-perl-Time-HiRes
 perl-TimeDate
+perl-Time-HiRes
 perl-URI
 perl-WWW-Curl
 perl-XML-LibXML
@@ -912,23 +915,23 @@ python-pycurl
 python-simplejson
 python-six
 python-sss
-python-sss-murmur
 python-sssdconfig
+python-sss-murmur
 python-suds
 python-tdb
 python-tevent
 python-urlgrabber
 python-urllib3
 pyxdg
+ql23xx-firmware
 ql2100-firmware
 ql2200-firmware
-ql23xx-firmware
 ql2400-firmware
 ql2500-firmware
 qt
+qt3
 qt-sqlite
 qt-x11
-qt3
 quota
 rarian
 rarian-compat
@@ -944,8 +947,8 @@ redhat-lsb-core
 redhat-lsb-graphics
 redhat-lsb-printing
 redhat-menus
-redhat-rpm-config
 redhat-release-server
+redhat-rpm-config
 regexp
 resource-agents
 rgmanager
@@ -955,11 +958,11 @@ rng-tools
 rootfiles
 rpcbind
 rpm
+rpmdevtools
 rpm-build
 rpm-devel
 rpm-libs
 rpm-python
-rpmdevtools
 rrdtool
 rrdtool-perl
 rsync
@@ -968,6 +971,10 @@ rsyslog7-gnutls
 rt61pci-firmware
 rt73usb-firmware
 ruby
+rubygems
+rubygems-devel
+rubygem-flexmock
+rubygem-rake
 ruby-devel
 ruby-docs
 ruby-flexmock
@@ -977,20 +984,16 @@ ruby-rdoc
 ruby-ri
 ruby-static
 ruby-tcltk
-rubygem-flexmock
-rubygem-rake
-rubygems
-rubygems-devel
 sabayon-apply
-samba-client
-samba-common
-samba-winbind
-samba-winbind-clients
 samba4
 samba4-common
 samba4-libs
 samba4-python
 samba4-winbind
+samba-client
+samba-common
+samba-winbind
+samba-winbind-clients
 scap-security-guide
 screen
 sed
@@ -1113,11 +1116,11 @@ xdg-utils
 xerces-j2
 xinetd
 xkeyboard-config
+xmlrpc-c
+xmlrpc-c-client
 xml-common
 xml-commons-apis
 xml-commons-resolver
-xmlrpc-c
-xmlrpc-c-client
 xorg-x11-apps
 xorg-x11-docs
 xorg-x11-drivers
@@ -1166,13 +1169,13 @@ xorg-x11-drv-void
 xorg-x11-drv-voodoo
 xorg-x11-drv-wacom
 xorg-x11-drv-xgi
-xorg-x11-font-utils
-xorg-x11-fonts-100dpi
 xorg-x11-fonts-75dpi
-xorg-x11-fonts-ISO8859-1-100dpi
+xorg-x11-fonts-100dpi
 xorg-x11-fonts-ISO8859-1-75dpi
+xorg-x11-fonts-ISO8859-1-100dpi
 xorg-x11-fonts-Type1
 xorg-x11-fonts-misc
+xorg-x11-font-utils
 xorg-x11-proto-devel
 xorg-x11-server-Xephyr
 xorg-x11-server-Xorg
