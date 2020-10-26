@@ -23,6 +23,12 @@ clamd:
 clamsmtp:
   :rpm_name: clamsmtp-1.10-7.el6.x86_64.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/c/clamsmtp-1.10-7.el6.x86_64.rpm
+createrepo_c:
+  :rpm_name: createrepo_c-0.10.0-2.el6.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/c/createrepo_c-0.10.0-2.el6.x86_64.rpm
+createrepo_c-libs:
+  :rpm_name: createrepo_c-libs-0.10.0-2.el6.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/6/x86_64/Packages/c/createrepo_c-libs-0.10.0-2.el6.x86_64.rpm
 fping:
   :rpm_name: fping-2.4b2-10.el6.x86_64.rpm
   :source: http://lug.mtu.edu/epel/6/x86_64/Packages/f/fping-2.4b2-10.el6.x86_64.rpm

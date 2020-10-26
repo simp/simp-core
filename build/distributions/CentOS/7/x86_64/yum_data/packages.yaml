@@ -47,6 +47,12 @@ clamav-update:
 clamd:
   :rpm_name: clamd-0.102.4-1.el7.x86_64.rpm
   :source: http://mirror.umd.edu/fedora/epel/7/x86_64/Packages/c/clamd-0.102.4-1.el7.x86_64.rpm
+createrepo_c:
+  :rpm_name: createrepo_c-0.10.0-20.el7.x86_64.rpm
+  :source: http://mirror.centos.org/centos/7/extras/x86_64/Packages/createrepo_c-0.10.0-20.el7.x86_64.rpm
+createrepo_c-libs:
+  :rpm_name: createrepo_c-libs-0.10.0-20.el7.x86_64.rpm
+  :source: http://mirror.centos.org/centos/7/extras/x86_64/Packages/createrepo_c-libs-0.10.0-20.el7.x86_64.rpm
 fortune-mod:
   :rpm_name: fortune-mod-1.99.1-17.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/f/fortune-mod-1.99.1-17.el7.x86_64.rpm
