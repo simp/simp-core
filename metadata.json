@@ -208,7 +208,7 @@
     },
     {
       "name": "simp/rsyslog",
-      "version_requirement": ">= 7.6.3 < 8.0.0"
+      "version_requirement": ">= 7.6.4 < 8.0.0"
     },
     {
       "name": "simp/selinux",
@@ -220,7 +220,7 @@
     },
     {
       "name": "simp/simplib",
-      "version_requirement": ">= 4.6.0 < 5.0.0"
+      "version_requirement": ">= 4.6.1 < 5.0.0"
     },
     {
       "name": "simp/simpkv",
@@ -248,7 +248,7 @@
     },
     {
       "name": "simp/simp_rsyslog",
-      "version_requirement": ">= 0.5.0 < 1.0.0"
+      "version_requirement": ">= 0.5.1 < 1.0.0"
     },
     {
       "name": "simp/ssh",
