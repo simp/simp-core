@@ -810,8 +810,8 @@ perl-Net-Telnet
 perl-Params-Validate
 perl-Pod-Escapes
 perl-Pod-Simple
-# perl-Readonly
-# perl-Readonly-XS
+perl-Readonly
+perl-Readonly-XS
 perl-SGMLSpm
 perl-Socket6
 perl-Test-Harness

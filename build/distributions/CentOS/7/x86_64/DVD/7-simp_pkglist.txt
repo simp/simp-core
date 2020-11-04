@@ -135,19 +135,19 @@ bzip2-libs
 cairo
 cairo-gobject
 cal10n
-caribou
 # caribou* only in rhel-server distribution ISO
+caribou
 caribou-gtk2-module
 caribou-gtk3-module
 ca-certificates
 cdparanoia
 cdparanoia-libs
 cdrdao
+# centos-* only in CentOS distribution ISO
 centos-bookmarks
 centos-indexhtml
 centos-logos
 centos-release
-# centos-* only in CentOS distribution ISO
 certmonger
 checkpolicy
 cheese-libs
@@ -174,9 +174,9 @@ control-center-filesystem
 coolkey
 copy-jdk-configs
 coreutils
+# corosync* only in CentOS distribution ISO
 corosync
 corosynclib
-# corosync* only in CentOS distribution ISO
 cpio
 cpp
 cracklib
@@ -438,8 +438,8 @@ ibus-gtk3
 ibus-libs
 ibus-setup
 icedax
-ima-evm-utils
 # ima-evm-utils only in rhel-server distribution ISO
+ima-evm-utils
 imsettings
 imsettings-gsettings
 imsettings-libs
@@ -1168,8 +1168,8 @@ pyorbit
 pyparsing
 pytalloc
 python
-python2-caribou
 # python2-caribou only in rhel-server distribution ISO
+python2-caribou
 python2-cryptography
 python2-futures
 python2-ipaclient
@@ -1225,8 +1225,8 @@ python-pycurl
 python-pyudev
 python-qrcode-core
 python-requests
-python-rhsm
 # python-rhsm* only in rhel-server distribution ISO
+python-rhsm
 python-rhsm-certificates
 python-schedutils
 python-setuptools
@@ -1262,8 +1262,8 @@ rdma-core
 readline
 realmd
 recode
-redhat-indexhtml
 # redhat-indexhtml + redhat-logos only in rhel-server distribution ISO
+redhat-indexhtml
 redhat-logos
 redhat-lsb
 redhat-lsb-core
@@ -1274,13 +1274,13 @@ redhat-lsb-printing
 redhat-lsb-submod-multimedia
 redhat-lsb-submod-security
 redhat-menus
-redhat-release-server
 # redhat-release-server only in rhel-server distribution ISO
+redhat-release-server
 redhat-rpm-config
 regexp
 relaxngDatatype
-resource-agents
 # resource-agents only in CentOS distribution ISO
+resource-agents
 rest
 resteasy-base-atom-provider
 resteasy-base-client
@@ -1426,11 +1426,11 @@ tomcat-jsp-2.2-api
 tomcat-lib
 tomcat-servlet-3.0-api
 totem-pl-parser
+# tpm2-* only in rhel-server distribution ISO
 tpm2-abrmd
 tpm2-tools
 tpm2-tss
 tpm2-tss-devel
-# tpm2-* only in rhel-server distribution ISO
 tpm-tools
 tracker
 tree
@@ -1564,8 +1564,8 @@ yum
 yum-metadata-parser
 yum-plugin-aliases
 yum-plugin-changelog
+# yum-plugin-fastestmirror only in CentOS distribution ISO
 yum-plugin-fastestmirror
-# yum-plugin-fastestmirro only in CentOS distribution ISO
 yum-plugin-tmprepo
 yum-plugin-verify
 yum-plugin-versionlock
