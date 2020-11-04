@@ -44,6 +44,7 @@ jobs:
         - SIMP_RPM_dist=.el7 bundle exec rake check:dot_underscore
         - SIMP_RPM_dist=.el7 bundle exec rake check:test_file
         - SIMP_RPM_dist=.el7 bundle exec rake metadata_lint
+        - bundle exec rake check:pkglist_lint
 
     - stage: check
       name: 'Check Puppetfile.*'
