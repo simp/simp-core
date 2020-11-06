@@ -42,7 +42,7 @@ mod 'simp-rsync_data_pre64',
 
 mod 'simp-adapter',
   :git => 'https://github.com/simp/simp-adapter',
-  :tag => '1.0.1'
+  :tag => '2.0.0'
 
 mod 'simp-environment',
   :git => 'https://github.com/simp/simp-environment-skeleton',
@@ -507,7 +507,7 @@ mod 'voxpupuli-posix_acl',
 
 mod 'voxpupuli-gitlab',
   :git => 'https://github.com/simp/puppet-gitlab.git',
-  :tag => 'v6.0.0'
+  :tag => 'v6.0.1'
 
 mod 'voxpupuli-snmp',
   :git => 'https://github.com/simp/puppet-snmp',

@@ -101,7 +101,7 @@ Requires: pupmod-simp-xinetd >= 4.2.1, pupmod-simp-xinetd < 5.0.0
 Requires: pupmod-trlinkin-nsswitch >= 2.2.0, pupmod-trlinkin-nsswitch < 3.0.0
 Requires: rubygem-simp-cli >= 6.1.1, rubygem-simp-cli < 7.0.0
 Requires: rubygem-simp-cli-doc >= 6.1.1, rubygem-simp-cli-doc < 7.0.0
-Requires: simp-adapter >= 1.0.1, simp-adapter < 2.0.0
+Requires: simp-adapter >= 2.0.0, simp-adapter < 3.0.0
 Requires: simp-environment-skeleton >= 7.1.4, simp-environment-skeleton < 8.0.0
 Requires: simp-gpgkeys >= 3.1.1, simp-gpgkeys < 4.0.0
 Requires: simp-rsync-skeleton >= 7.0.4, simp-rsync-skeleton < 8.0.0
@@ -129,13 +129,10 @@ Obsoletes: pupmod-simp-site < 3
 #  because these packages have out of date requirements.
 Obsoletes:  pupmod-puppetlabs-docker  <= 3.5.0
 Obsoletes:  pupmod-simp-simp_docker  <= 0.2.1
-Obsoletes:  pupmod-simp-simp_snmpd  <= 0.1.2
 Obsoletes:  pupmod-simp-journald   <= 1.1.0
-Obsoletes:  pupmod-simp-simp_gitlab <= 0.4.0
-Obsoletes:  pupmod-puppet-gitlab <= 3.0.2
 
-Requires: simp-adapter >= 1.0.1, simp-adapter < 2.0.0
-Requires: pupmod-puppet-gitlab >= 6.0.0
+Requires: simp-adapter >= 2.0.0, simp-adapter < 3.0.0
+Requires: pupmod-puppet-gitlab >= 6.0.1
 Requires: pupmod-puppet-posix_acl >= 1.0.1
 Requires: pupmod-puppet-snmp >= 5.1.1
 Requires: pupmod-puppetlabs-java >= 6.2.0
