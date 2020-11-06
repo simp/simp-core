@@ -1,6 +1,6 @@
 {
   "name": "simp-simp_core",
-  "version": "6.4.0",
+  "version": "6.5.0",
   "author": "SIMP Team",
   "summary": "A Metamodule for SIMP",
   "license": "Apache-2.0",
@@ -19,7 +19,7 @@
   ],
   "dependencies": [
     {
-      "name": "aboe76/chrony",
+      "name": "aboe/chrony",
       "version_requirement": ">= 0.3.1 < 1.0.0"
     },
     {
