@@ -58,7 +58,7 @@ mod 'simp-simp_selinux_policy',
 
 mod 'simp-utils',
   :git => 'https://github.com/simp/simp-utils',
-  :tag => '6.3.0'
+  :tag => '6.4.0'
 
 moduledir 'src/puppet/modules'
 
@@ -252,7 +252,7 @@ mod 'simp-krb5',
 
 mod 'simp-libreswan',
   :git => 'https://github.com/simp/pupmod-simp-libreswan',
-  :tag => '3.4.0'
+  :tag => '3.4.1'
 
 mod 'simp-libvirt',
   :git => 'https://github.com/simp/pupmod-simp-libvirt',
@@ -316,7 +316,7 @@ mod 'simp-postfix',
 
 mod 'simp-pupmod',
   :git => 'https://github.com/simp/pupmod-simp-pupmod',
-  :tag => '8.1.1'
+  :tag => '8.1.2'
 
 mod 'simp-resolv',
   :git => 'https://github.com/simp/pupmod-simp-resolv',
@@ -340,7 +340,7 @@ mod 'simp-selinux',
 
 mod 'simp-simp',
   :git => 'https://github.com/simp/pupmod-simp-simp',
-  :tag => '4.14.0'
+  :tag => '4.14.1'
 
 mod 'simp-simpkv',
   :git => 'https://github.com/simp/pupmod-simp-simpkv',
@@ -365,12 +365,10 @@ mod 'simp-simp_bolt',
 mod 'simp-simp_firewalld',
   :git => 'https://github.com/simp/pupmod-simp-simp_firewalld',
   :tag => '0.1.1'
-#
-#Temporarily removed because it needs updates to go to lates version
-#that has the correct dependencies
-#mod 'simp-simp_gitlab',
-#  :git => 'https://github.com/simp/pupmod-simp-simp_gitlab',
-#  :tag => '0.5.1'
+
+mod 'simp-simp_gitlab',
+  :git => 'https://github.com/simp/pupmod-simp-simp_gitlab',
+  :tag => '0.6.0'
 
 mod 'simp-simp_grub',
   :git => 'https://github.com/simp/pupmod-simp-simp_grub',
@@ -399,12 +397,10 @@ mod 'simp-simp_pki_service',
 mod 'simp-simp_rsyslog',
   :git => 'https://github.com/simp/pupmod-simp-simp_rsyslog',
   :tag => '0.5.1'
-#
-#Temporarily removed because it needs updates to go to lates version
-#that has the correct dependencies
-#mod 'simp-simp_snmpd',
-#  :git => 'https://github.com/simp/pupmod-simp-simp_snmpd',
-#  :tag => '0.2.1'
+
+mod 'simp-simp_snmpd',
+  :git => 'https://github.com/simp/pupmod-simp-simp_snmpd',
+  :tag => '1.0.0'
 
 mod 'simp-ssh',
   :git => 'https://github.com/simp/pupmod-simp-ssh',
@@ -511,7 +507,7 @@ mod 'voxpupuli-posix_acl',
 
 mod 'voxpupuli-gitlab',
   :git => 'https://github.com/simp/puppet-gitlab.git',
-  :tag => 'v5.0.0'
+  :tag => 'v6.0.0'
 
 mod 'voxpupuli-snmp',
   :git => 'https://github.com/simp/puppet-snmp',

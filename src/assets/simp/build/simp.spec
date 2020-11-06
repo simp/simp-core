@@ -69,13 +69,13 @@ Requires: pupmod-simp-pam >= 6.8.2, pupmod-simp-pam < 7.0.0
 Requires: pupmod-simp-pki >= 6.2.0, pupmod-simp-pki < 7.0.0
 Requires: pupmod-simp-polkit >= 6.3.0, pupmod-simp-polkit < 7.0.0
 Requires: pupmod-simp-postfix >= 5.5.0, pupmod-simp-postfix < 6.0.0
-Requires: pupmod-simp-pupmod >= 8.1.1, pupmod-simp-pupmod < 9.0.0
+Requires: pupmod-simp-pupmod >= 8.1.2, pupmod-simp-pupmod < 9.0.0
 Requires: pupmod-simp-resolv >= 0.5.0, pupmod-simp-resolv < 1.0.0
 Requires: pupmod-simp-rkhunter >= 0.0.3, pupmod-simp-rkhunter < 1.0.0
 Requires: pupmod-simp-rsync >= 6.4.1, pupmod-simp-rsync < 7.0.0
 Requires: pupmod-simp-rsyslog >= 7.6.4, pupmod-simp-rsyslog < 8.0.0
 Requires: pupmod-simp-selinux >= 2.6.0, pupmod-simp-selinux < 3.0.0
-Requires: pupmod-simp-simp >= 4.14.0, pupmod-simp-simp < 5.0.0
+Requires: pupmod-simp-simp >= 4.14.1, pupmod-simp-simp < 5.0.0
 Requires: pupmod-simp-simp_apache >= 7.0.0, pupmod-simp-simp_apache < 8.0.0
 Requires: pupmod-simp-simp_banners >= 0.2.0, pupmod-simp-simp_banners < 1.0.0
 Requires: pupmod-simp-simp_firewalld >= 0.1.1, pupmod-simp-simp_firewalld < 1.0.0
@@ -106,7 +106,7 @@ Requires: simp-environment-skeleton >= 7.1.4, simp-environment-skeleton < 8.0.0
 Requires: simp-gpgkeys >= 3.1.1, simp-gpgkeys < 4.0.0
 Requires: simp-rsync-skeleton >= 7.0.4, simp-rsync-skeleton < 8.0.0
 Requires: simp-selinux-policy >= 1.0.0, simp-selinux-policy < 2.0.0
-Requires: simp-utils >= 6.3.0, simp-utils < 7.0.0
+Requires: simp-utils >= 6.4.0, simp-utils < 7.0.0
 Requires: simp-vendored-r10k >= 3.3.0, simp-vendored-r10k < 4.0.0
 
 # SIMP Extras
@@ -135,7 +135,7 @@ Obsoletes:  pupmod-simp-simp_gitlab <= 0.4.0
 Obsoletes:  pupmod-puppet-gitlab <= 3.0.2
 
 Requires: simp-adapter >= 1.0.1, simp-adapter < 2.0.0
-#Requires: pupmod-puppet-gitlab >= 3.0.2
+Requires: pupmod-puppet-gitlab >= 6.0.0
 Requires: pupmod-puppet-posix_acl >= 1.0.1
 Requires: pupmod-puppet-snmp >= 5.1.1
 Requires: pupmod-puppetlabs-java >= 6.2.0
@@ -152,7 +152,7 @@ Requires: pupmod-simp-gnome >= 8.1.2
 Requires: pupmod-simp-hirs_provisioner >= 0.1.4
 Requires: pupmod-simp-ima >= 0.3.0
 Requires: pupmod-simp-krb5 >= 7.1.0
-Requires: pupmod-simp-libreswan >= 3.4.0
+Requires: pupmod-simp-libreswan >= 3.4.1
 Requires: pupmod-simp-libvirt >= 5.3.0
 Requires: pupmod-simp-mate >= 1.1.1
 Requires: pupmod-simp-mozilla >= 5.2.0
@@ -161,16 +161,12 @@ Requires: pupmod-simp-nfs >= 7.0.0
 Requires: pupmod-simp-oath >= 0.2.0
 Requires: pupmod-simp-openscap >= 6.3.0
 Requires: pupmod-simp-simp_bolt >= 0.3.0
-#Commented out for 6.5 because of dependency issues.
-#expect return in 6.6
-#Requires: pupmod-simp-simp_gitlab >= 0.5.1
+Requires: pupmod-simp-simp_gitlab >= 0.6.0
 Requires: pupmod-simp-simp_grub >= 0.2.1
 Requires: pupmod-simp-simp_ipa >= 0.1.0
 Requires: pupmod-simp-simp_nfs >= 1.0.1
 Requires: pupmod-simp-simp_pki_service >= 0.3.1
-#Commented out for 6.5 because of dependency issues.
-#expect return in 6.6
-#Requires: pupmod-simp-simp_snmpd >= 0.2.1
+Requires: pupmod-simp-simp_snmpd >= 1.0.0
 Requires: pupmod-simp-tpm >= 3.2.0
 Requires: pupmod-simp-tpm2 >= 0.3.1
 Requires: pupmod-simp-tuned >= 0.2.1
@@ -253,6 +249,11 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Thu Nov 05 2020 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 6.5.0-BETA
+- Add the following modules back in to 6.5.0 as they have been updated:
+  - pupmod-simp-simp_gitlab
+  - pupmod-simp-simp_snmpd
+
 * Wed Oct 14 2020 Chris Tessmer <chris.tessmer@onyxpoint.com> - 6.5.0-ALPHA
 - Disable all internet-based CentOS repos in EL8 kickstart template
 - Re-enable `fips=1` in the EL8 kickstart template bootloader
