@@ -352,7 +352,7 @@ mod 'simp-simplib',
 
 mod 'simp-simp_apache',
   :git => 'https://github.com/simp/pupmod-simp-simp_apache',
-  :tag => '7.0.0'
+  :tag => '7.0.1'
 
 mod 'simp-simp_banners',
   :git => 'https://github.com/simp/pupmod-simp-simp_banners',
