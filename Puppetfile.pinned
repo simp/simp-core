@@ -348,7 +348,7 @@ mod 'simp-simpkv',
 
 mod 'simp-simplib',
   :git => 'https://github.com/simp/pupmod-simp-simplib',
-  :tag => '4.6.1'
+  :tag => '4.6.2'
 
 mod 'simp-simp_apache',
   :git => 'https://github.com/simp/pupmod-simp-simp_apache',
