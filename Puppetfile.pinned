@@ -280,7 +280,7 @@ mod 'simp-network',
 
 mod 'simp-nfs',
   :git => 'https://github.com/simp/pupmod-simp-nfs',
-  :tag => '7.0.0'
+  :tag => '7.0.1'
 
 mod 'simp-ntpd',
   :git => 'https://github.com/simp/pupmod-simp-ntpd',
