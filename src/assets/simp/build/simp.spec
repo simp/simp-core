@@ -246,7 +246,7 @@ fi
 # Post uninstall stuff
 
 %changelog
-* Thu Nov 05 2020 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 6.5.0-BETA
+* Thu Nov 12 2020 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 6.5.0-RC1
 - Add the following modules back in to 6.5.0 as they have been updated:
   - pupmod-simp-simp_gitlab
   - pupmod-simp-simp_snmpd
