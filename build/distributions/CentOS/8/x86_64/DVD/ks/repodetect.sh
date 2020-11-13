@@ -8,45 +8,34 @@
 # - Anything else    -> use this is the URI at which to point.
 
 unknown="REPODETECT_UNKNOWN_OS_TYPE"
-# The following line does not work on EL8. The repos will default to
-# CentOS if the type is still unknown at the end of the script.
-osline=`dmesg -s 10485760 | grep '(Kernel Module GPG key)'`
-
+type="$unknown"
 version=$1
 yum_server=$2
 
-if [ $# -gt 2 ]; then
-  type=$3
-else
-  type=$unknown
-fi
+[ $# -gt 2 ] && type="$3"
 
-if [ -z $version ]; then
+if [ -z "$version" ]; then
   echo "Error: You must pass <version> as the first argument";
   exit 1;
 fi
 
 arch="i386"
-if [ `uname -m` == "x86_64" ]; then arch="x86_64"; fi
+if [ "$(uname -m)" == "x86_64" ]; then arch="x86_64"; fi
 
 # Try to figure out what the os type is
 if [ "$type" == "$unknown" ]; then
-  grep -q 'Red Hat' /etc/redhat-release
-  if [ $? == 0 ]; then
-    type="RedHat"
-  else
-    grep -q 'CentOS' /etc/redhat-release
-    if [ $? == 0 ]; then type="CentOS"; fi
+  if grep -q 'Red Hat' /etc/redhat-release; then
+    type=RedHat
+  elif grep -q 'CentOS' /etc/redhat-release; then
+    type=CentOS
   fi
 fi
 
 if [ "$type" == "$unknown" ]; then
-  grep -q "url is.*RedHat" /tmp/anaconda.log
-  if [ $? == 0 ];
-    then type="RedHat"
-  else
-    grep -q "url is.*CentOS" /tmp/anaconda.log
-    if [ $? == 0 ]; then type="CentOS"; fi
+  if grep -q "url is.*RedHat" /tmp/anaconda.log; then
+    type="RedHat"
+  elif grep -q "url is.*CentOS" /tmp/anaconda.log; then
+    type="CentOS"
   fi
 fi
 
@@ -63,10 +52,10 @@ fi
 # If you still don't know what the type is asssume CentOS
 if [ "$type" == "$unknown" ]; then
   type="CentOS"
-  echo "Type of OS unknowing; Assuming CentOS"
+  echo "Unable to determine type of OS; Assuming CentOS"
 fi
 
-if [ -z $yum_server ] || [ $yum_server == 'local' ]; then
+if [ -z "$yum_server" ] || [ "$yum_server" == 'local' ]; then
   uri_header="file:///mnt/source"
   local_header="$uri_header/SIMP/$arch"
 else
