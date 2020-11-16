@@ -34,7 +34,7 @@ if [ "$distro" == "$unknown" ]; then
   then
     distro=RedHat
   elif grep -q 'CentOS' /etc/redhat-release \
-    || grep -q "url is.*RedHat" /tmp/anaconda.log \
+    || grep -q "url is.*CentOS" /tmp/anaconda.log \
     || [[ "$osline" =~ CentOS ]] \
     || [ -f /tmp/CentOS.osbuild ]
   then
