@@ -18,7 +18,7 @@ arch="x86_64"
 version="$1"
 yum_server="$2"
 if [ $# -gt 2 ]; then distro="$3"; fi
-if [ "$(uname -m)" != "$arch" ]; then arch="$(uname -m)"; fi
+arch="$(uname -m)" # (e.g., "x86_64")
 
 if [ -z "$version" ]; then
   echo "ERROR: You must pass the major OS VERSION (e.g., '8','7') as the first argument"
