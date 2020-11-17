@@ -335,12 +335,11 @@ describe 'Validation of rsyslog forwarding' do
       end
     end
 
-    it 'should generate a local iptables.log' do
+    it 'should generate a local firewall log' do
       hosts.each { |host| host.install_package('wget') }
 
       # None of the servers are set up as web servers, yet, so attempting
-      # web access to these servers should result in iptables dropped
-      # packet logs
+      # web access to these servers should result in dropped packet logs
       non_syslog_servers.each do |host|
         cmd = "wget --tries=1 --timeout=1 https://#{host.name}.#{domain}/somefile"
         on(syslog_servers, cmd, :accept_all_exit_codes => true)
@@ -355,20 +354,20 @@ describe 'Validation of rsyslog forwarding' do
         firewalld_state = YAML.load(on(host, 'puppet resource service firewalld --to_yaml').stdout.strip).dig('service','firewalld','ensure')
 
         if firewalld_state == 'running'
-          on(host, "grep 'kernel: IN_99_simp_DROP:' /var/log/messages")
+          on(host, "grep 'kernel: IN_99_simp_DROP:' /var/log/firewall.log")
         else
           on(host, "grep 'kernel: IPT:' /var/log/iptables.log")
         end
       end
     end
 
-    it 'should forward iptables dropped packet logs' do
+    it 'should forward firewall dropped packet logs' do
       begin
         hosts.each do |host|
           firewalld_state = YAML.load(on(host, 'puppet resource service firewalld --to_yaml').stdout.strip).dig('service','firewalld','ensure')
 
           if firewalld_state == 'running'
-            verify_remote_log_messages(['kernel: IN_99_simp_DROP:'], 'messages', [host], domain)
+            verify_remote_log_messages(['kernel: IN_99_simp_DROP:'], 'firewall.log', [host], domain)
           else
             verify_remote_log_messages(['kernel: IPT:'], 'iptables.log', [host], domain)
           end
