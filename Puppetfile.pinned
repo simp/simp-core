@@ -240,7 +240,7 @@ mod 'simp-incron',
 
 mod 'simp-iptables',
   :git => 'https://github.com/simp/pupmod-simp-iptables',
-  :tag => '6.5.3'
+  :tag => '6.5.4'
 
 mod 'simp-issue',
   :git => 'https://github.com/simp/pupmod-simp-issue',
