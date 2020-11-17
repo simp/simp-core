@@ -2,7 +2,7 @@
 #
 # repodetect.sh - determine kickstart repos based on your OS
 #
-# Usage: repodetect.sh VERSION [KS_SERVER] [LINUX_DIST]
+# Usage: repodetect.sh VERSION [YUM_SERVER] [LINUX_DIST]
 #
 #   VERSION     Major OS version number (e.g., '8', '7', '6')
 #   YUM_SERVER  (Optional) empty, 'local', or a URI of a yum server
