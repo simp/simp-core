@@ -1,117 +1,114 @@
 #!/bin/sh
 #
-# Usage: repodetect.sh <Version> <yum_server>
+# repodetect.sh - determine kickstart repos based on your OS
 #
-# Version: Mandatory
-# Yum_server:
-# - Blank or 'Local' -> use a local file source
-# - Anything else    -> use this is the URI at which to point.
+# Usage: repodetect.sh VERSION [YUM_SERVER] [LINUX_DIST]
+#
+#   VERSION     Major OS version number (e.g., '8', '7', '6')
+#   YUM_SERVER  (Optional) empty, 'local', or a URI of a yum server
+#   LINUX_DIST  (Optional) Forces Linux  distro (e.g., 'CentOS', 'RedHat')
+#
+# Supported OSes: LINUX_DIST: [CentOS, RedHat],  VERSION: [6, 7, 8]
+#
 
 unknown="REPODETECT_UNKNOWN_OS_TYPE"
-# The following line does not work on EL8. The repos will default to
-# CentOS if the type is still unknown at the end of the script.
-osline=`dmesg -s 10485760 | grep '(Kernel Module GPG key)'`
+distro="$unknown"
+arch="x86_64"
 
-version=$1
-yum_server=$2
+version="$1"
+yum_server="$2"
+if [ $# -gt 2 ]; then distro="$3"; fi
+arch="$(uname -m)" # (e.g., "x86_64")
 
-if [ $# -gt 2 ]; then
-  type=$3
-else
-  type=$unknown
+if [ -z "$version" ]; then
+  echo "ERROR: You must pass the major OS VERSION (e.g., '8','7') as the first argument"
+  exit 1
 fi
 
-if [ -z $version ]; then
-  echo "Error: You must pass <version> as the first argument";
-  exit 1;
-fi
-
-arch="i386"
-if [ `uname -m` == "x86_64" ]; then arch="x86_64"; fi
-
-# Try to figure out what the os type is
-if [ "$type" == "$unknown" ]; then
-  grep -q 'Red Hat' /etc/redhat-release
-  if [ $? == 0 ]; then
-    type="RedHat"
-  else
-    grep -q 'CentOS' /etc/redhat-release
-    if [ $? == 0 ]; then type="CentOS"; fi
+if [ "$distro" == "$unknown" ]; then
+  osline="$(dmesg -s 10485760 | grep '(Kernel Module GPG key)')" ||:
+  if grep -q 'Red Hat' /etc/redhat-release \
+    || grep -q "url is.*RedHat" /tmp/anaconda.log \
+    || [[ "$osline" =~ RedHat ]] \
+    || [ -f /tmp/RedHat.osbuild ]
+  then
+    distro=RedHat
+  elif grep -q 'CentOS' /etc/redhat-release \
+    || grep -q "url is.*CentOS" /tmp/anaconda.log \
+    || [[ "$osline" =~ CentOS ]] \
+    || [ -f /tmp/CentOS.osbuild ]
+  then
+    distro=CentOS
+  elif [ "$distro" == "$unknown" ]; then
+    echo "WARNING: Unable to determine distro of OS; Assuming CentOS"
+    distro=CentOS
   fi
 fi
 
-if [ "$type" == "$unknown" ]; then
-  grep -q "url is.*RedHat" /tmp/anaconda.log
-  if [ $? == 0 ];
-    then type="RedHat"
-  else
-    grep -q "url is.*CentOS" /tmp/anaconda.log
-    if [ $? == 0 ]; then type="CentOS"; fi
-  fi
-fi
-
-# You can create this file in kickstartfile if you know what
-# os type it is
-if [ "$type" == "$unknown" ]; then
-  if [ -f /tmp/RedHat.osbuild ];then
-    type="RedHat"
-  elif [ -f /tmp/CentOS.osbuild ];then
-    type="CentOS"
-  fi
-fi
-
-# If you still don't know what the type is asssume CentOS
-if [ "$type" == "$unknown" ]; then
-  type="CentOS"
-  echo "Type of OS unknowing; Assuming CentOS"
-fi
-
-if [ -z $yum_server ] || [ $yum_server == 'local' ]; then
+if [ -z "$yum_server" ] || [ "$yum_server" == 'local' ]; then
   uri_header="file:///mnt/source"
   local_header="$uri_header/SIMP/$arch"
+  local_name=Local
 else
-  uri_header="https://$yum_server/yum/$type/$version/$arch";
-  local_header="https://$yum_server/yum/SIMP/$arch";
+  uri_header="https://$yum_server/yum/$distro/$version/$arch"
+  local_header="https://$yum_server/yum/SIMP/$arch"
+  local_name=SIMP
 fi
 
-case $version in
-  '8' )
-    #setup repo for EL8
-    if [ "$type" == 'RedHat' ]; then
-    cat << EOF > /tmp/repo-include
+if [ "$distro" == RedHat ]; then
+
+  case $version in
+    '8' )
+      cat << EOF > /tmp/repo-include
+repo --name="AppStream" --baseurl="$uri_header/AppStream" --noverifyssl
+repo --name="BaseOS" --baseurl="$uri_header/BaseOS" --noverifyssl
+repo --name="Updates" --baseurl="$uri_header/Updates" --noverifyssl
+repo --name="$local_name" --baseurl="$local_header" --noverifyssl
+EOF
+    ;;
+    '7' )
+      cat << EOF > /tmp/repo-include
+repo --name="HighAvailability" --baseurl="$uri_header/addons/HighAvailability"
+repo --name="ResilientStorage" --baseurl="$uri_header/addons/ResilientStorage"
+repo --name="Base" --baseurl="$uri_header"
+repo --name="$local_name" --baseurl="$local_header"
+EOF
+    ;;
+    '6' )
+      cat << EOF > /tmp/repo-include
 repo --name="HighAvailability" --baseurl="$uri_header/HighAvailability" --noverifyssl
 repo --name="LoadBalancer" --baseurl="$uri_header/LoadBalancer" --noverifyssl
 repo --name="ResilientStorage" --baseurl="$uri_header/ResilientStorage" --noverifyssl
 repo --name="ScalableFileSystme" --baseurl="$uri_header/ScalableFileSystem" --noverifyssl
 repo --name="Server" --baseurl="$uri_header/Server" --noverifyssl
-repo --name="Local" --baseurl="$local_header" --noverifyssl
+repo --name="$local_name" --baseurl="$local_header" --noverifyssl
 EOF
-   else
-     # the dmesg grep above that sets os type is not finding anything.  I am not sure
-     # how they determined this or what a good substitute is at thhis time so
-     # I just default to CentOS.
-     #elif [ "$type" == 'CentOS' ]; then
-     cat << EOF > /tmp/repo-include
+     ;;
+  esac
+
+elif [ "$distro" == CentOS ]; then
+
+  case $version in
+    '8' )
+      cat << EOF > /tmp/repo-include
 repo --name="AppStream" --baseurl="$uri_header/AppStream" --noverifyssl
 repo --name="BaseOS" --baseurl="$uri_header/BaseOS" --noverifyssl
 repo --name="Updates" --baseurl="$uri_header/Updates" --noverifyssl
-repo --name="Local" --baseurl="$local_header" --noverifyssl
+repo --name="$local_name" --baseurl="$local_header" --noverifyssl
 EOF
-    fi
-    ;;  
-  * )
-    #set up repoo for EL7 or EL 6
-    if [ "$type" == 'RedHat' ]; then
-      cat << EOF > /tmp/repo-include
-repo --name="HighAvailability" --baseurl="$uri_header/addons/HighAvailability"
-repo --name="ResilientStorage" --baseurl="$uri_header/addons/ResilientStorage"
-repo --name="Base" --baseurl="$uri_header"
-repo --name="Local" --baseurl="$local_header"
-EOF
-    elif [ "$type" == 'CentOS' ]; then
+    ;;
+    '7' )
       cat << EOF > /tmp/repo-include
 repo --name="Server" --baseurl="$uri_header"
-repo --name="Local" --baseurl="$local_header"
+repo --name="$local_name" --baseurl="$local_header"
 EOF
-    fi
-esac
+    ;;
+    '6' )
+      cat << EOF > /tmp/repo-include
+repo --name="Server" --baseurl="$uri_header" --noverifyssl
+repo --name="$local_name" --baseurl="$local_header" --noverifyssl
+EOF
+    ;;
+  esac
+
+fi
