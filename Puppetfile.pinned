@@ -364,7 +364,7 @@ mod 'simp-simp_bolt',
 
 mod 'simp-simp_firewalld',
   :git => 'https://github.com/simp/pupmod-simp-simp_firewalld',
-  :tag => '0.1.1'
+  :tag => '0.1.2'
 
 mod 'simp-simp_gitlab',
   :git => 'https://github.com/simp/pupmod-simp-simp_gitlab',
