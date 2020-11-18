@@ -152,7 +152,7 @@
     },
     {
       "name": "simp/iptables",
-      "version_requirement": ">= 6.5.3 < 7.0.0"
+      "version_requirement": ">= 6.5.4 < 7.0.0"
     },
     {
       "name": "simp/issue",
@@ -236,7 +236,7 @@
     },
     {
       "name": "simp/simp_firewalld",
-      "version_requirement": ">= 0.1.1 < 1.0.0"
+      "version_requirement": ">= 0.1.2 < 1.0.0"
     },
     {
       "name": "simp/simp_openldap",
