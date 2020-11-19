@@ -137,8 +137,17 @@ describe 'set up an IPA server' do
 
       puts "\e[1;34m>>>>> The next step takes a very long time ... Please be patient! \e[0m"
       on(ipa_server, cmd.join(' '))
+      on(ipa_server, 'ipactl status')
 
       ipa_server.reboot
+
+      # The IPA server has many services that take time to come up. So, we need
+      # to make sure it is fully up before trying to access it. Unfortunately,
+      # 'ipactl status' returns 0 even when individual components are stopped.
+      # We have to scrape the command output to actually determine status.
+      retry_on(ipa_server, "ipactl status | [ `grep -c STOPPED` == '0' ]",
+        :retry_interval => 15 )
+
       on(ipa_server, 'ipactl status')
     end
   end
