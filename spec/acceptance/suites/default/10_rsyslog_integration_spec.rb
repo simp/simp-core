@@ -129,7 +129,7 @@ describe 'Validation of rsyslog forwarding' do
       'swap::cron_step'             => 1,
 
       # set up local users for further testing
-      'classes'                     => [ 'site::local_users' ]
+      'simp::classes'               => [ 'site::local_users' ]
     } )
     hiera
   }
@@ -137,7 +137,7 @@ describe 'Validation of rsyslog forwarding' do
   let (:bad_default_hieradata) {
     hiera = default_hieradata.dup
     # unknown class 'oops'
-    hiera['classes'] = [ 'site::local_users', 'oops' ]
+    hiera['simp::classes'] = [ 'site::local_users', 'oops' ]
     hiera
   }
 

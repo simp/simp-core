@@ -51,7 +51,7 @@ mod 'simp-gpgkeys',
 
 mod 'simp-simp_selinux_policy',
   :git => 'https://github.com/simp/simp-selinux-policy',
-  :tag => '1.0.0'
+  :branch => 'master'
 
 mod 'simp-utils',
   :git => 'https://github.com/simp/simp-utils',

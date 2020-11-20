@@ -37,15 +37,8 @@ describe 'LDAP user access' do
       password_hash = '{SSHA}' + Base64.encode64( digest + salt ).strip
 
       master_hiera = YAML.load(on(master, "cat #{puppet_master_yaml}").stdout)
-
-      # Handle legacy layouts
-      if master_hiera['classes']
-        master_hiera['classes'] << 'site::test_ldifs'
-      else
-        master_hiera['simp::server::classes'] ||= []
-        master_hiera['simp::server::classes'] << 'site::test_ldifs'
-      end
-
+      master_hiera['simp::server::classes'] ||= []
+      master_hiera['simp::server::classes'] << 'site::test_ldifs'
       master_hiera['site::test_ldifs::user_password_hash'] = password_hash
       master_hiera
     end
