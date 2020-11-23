@@ -36,56 +36,62 @@ rvm: 2.5.8
 
 jobs:
   include:
-    - stage: check
-      # Need to set the version for dist because Ubuntu may not have the macro set.
-      # If it is blank the job will fail.
-      name: 'Validation and metadata checks'
-      script:
-        - SIMP_RPM_dist=.el7 bundle exec rake check:dot_underscore
-        - SIMP_RPM_dist=.el7 bundle exec rake check:test_file
-        - SIMP_RPM_dist=.el7 bundle exec rake metadata_lint
-        - bundle exec rake check:pkglist_lint
-
-    - stage: check
-      name: 'Check Puppetfile.*'
-      script:
-        - bundle exec rake spec
-
-    - stage: package
-      name: 'Build EL6 SIMP Packages'
-      if: 'NOT env(TRAVIS_IS_SLOW_TODAY) = yes'
-      sudo: required
-      services:
-        - docker
-      script:
-        - bundle exec rake beaker:suites[rpm_docker,el6]
-
-    - stage: package
-      name: 'Build EL6 SIMP Packages (using travis_wait)'
-      if: 'env(TRAVIS_IS_SLOW_TODAY) = yes'
-      sudo: required
-      services:
-        - docker
-      script:
-        - travis_wait 45 unbuffer bundle exec rake beaker:suites[rpm_docker,el6]
-
-    - stage: package
-      name: 'Build EL7 SIMP Packages'
-      if: 'NOT env(TRAVIS_IS_SLOW_TODAY) = yes'
-      sudo: required
-      services:
-        - docker
-      script:
-        - bundle exec rake beaker:suites[rpm_docker,el7]
-
-    - stage: package
-      name: 'Build EL7 SIMP Packages (using travis_wait)'
-      if: 'env(TRAVIS_IS_SLOW_TODAY) = yes'
-      sudo: required
-      services:
-        - docker
-      script:
-        - travis_wait 45 unbuffer bundle exec rake beaker:suites[rpm_docker,el7]
+    ###  Testing on Travis CI is indefinitely disabled
+    ###
+    ###  See:
+    ###    * https://blog.travis-ci.com/2020-11-02-travis-ci-new-billing
+    ###    * https://simp-project.atlassian.net/browse/SIMP-8703
+    ###
+    ###    - stage: check
+    ###      # Need to set the version for dist because Ubuntu may not have the macro set.
+    ###      # If it is blank the job will fail.
+    ###      name: 'Validation and metadata checks'
+    ###      script:
+    ###        - SIMP_RPM_dist=.el7 bundle exec rake check:dot_underscore
+    ###        - SIMP_RPM_dist=.el7 bundle exec rake check:test_file
+    ###        - SIMP_RPM_dist=.el7 bundle exec rake metadata_lint
+    ###        - bundle exec rake check:pkglist_lint
+    ###
+    ###    - stage: check
+    ###      name: 'Check Puppetfile.*'
+    ###      script:
+    ###        - bundle exec rake spec
+    ###
+    ###    - stage: package
+    ###      name: 'Build EL6 SIMP Packages'
+    ###      if: 'NOT env(TRAVIS_IS_SLOW_TODAY) = yes'
+    ###      sudo: required
+    ###      services:
+    ###        - docker
+    ###      script:
+    ###        - bundle exec rake beaker:suites[rpm_docker,el6]
+    ###
+    ###    - stage: package
+    ###      name: 'Build EL6 SIMP Packages (using travis_wait)'
+    ###      if: 'env(TRAVIS_IS_SLOW_TODAY) = yes'
+    ###      sudo: required
+    ###      services:
+    ###        - docker
+    ###      script:
+    ###        - travis_wait 45 unbuffer bundle exec rake beaker:suites[rpm_docker,el6]
+    ###
+    ###    - stage: package
+    ###      name: 'Build EL7 SIMP Packages'
+    ###      if: 'NOT env(TRAVIS_IS_SLOW_TODAY) = yes'
+    ###      sudo: required
+    ###      services:
+    ###        - docker
+    ###      script:
+    ###        - bundle exec rake beaker:suites[rpm_docker,el7]
+    ###
+    ###    - stage: package
+    ###      name: 'Build EL7 SIMP Packages (using travis_wait)'
+    ###      if: 'env(TRAVIS_IS_SLOW_TODAY) = yes'
+    ###      sudo: required
+    ###      services:
+    ###        - docker
+    ###      script:
+    ###        - travis_wait 45 unbuffer bundle exec rake beaker:suites[rpm_docker,el7]
 
     - stage: deploy
       script:
