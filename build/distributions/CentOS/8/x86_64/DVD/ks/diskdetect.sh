@@ -57,8 +57,7 @@ grep -q simp_disk_crypt /proc/cmdline || grep -q simp_crypt_disk /proc/cmdline
 encrypt=$?
 
 if [ $encrypt -eq 0 ]; then
-  python -c 'import sys; import random; import string; sys.stdout.write("".join(random.choice(string.lowercase+string.uppercase+string.digits) for i in range(1024)))' > /boot/disk_creds
-
+  cat /dev/random | LC_CTYPE=C tr -dc "[:alnum:]" | head -c 256 > /boot/disk_creds
   passphrase=`cat /boot/disk_creds`
 
   echo $DISK > /boot/crypt_disk
@@ -76,8 +75,13 @@ part /boot --fstype=ext4 --size=1024 --ondisk ${DISK} --asprimary --fsoptions=no
 part /boot/efi --fstype=efi --size=400 --ondisk ${DISK} --asprimary
 EOF
 
+# In EL8 (8.2) the partitioning fails if --encrypted  is used and the size=1.
+# The size was set to equal the sum of all the logical partitions (20G) to prevent this.
+# You can probably use a smaller size but we have not, at this time, determined how
+# small the initial size of the partion can to be to prevent the error.
+
   if [ $encrypt -eq 0 ]; then
-    echo "part pv.01 --size=1 --grow --ondisk ${DISK} --encrypted --cipher=aes-cbc-essiv:sha256 --passphrase=${passphrase}" >> /tmp/part-include
+    echo "part pv.01 --size=20480 --grow --ondisk ${DISK} --encrypted --cipher=aes-cbc-essiv:sha256 --passphrase=${passphrase}" >> /tmp/part-include
   else
     echo "part pv.01 --size=1 --grow --ondisk ${DISK}" >> /tmp/part-include
   fi
