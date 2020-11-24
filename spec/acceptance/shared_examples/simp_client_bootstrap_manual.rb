@@ -42,13 +42,18 @@ shared_examples 'SIMP client manual bootstrap' do |agent, options|
     end
 
     it 'should run puppet on each client until no more changes are required' do
-      block_on(agents, :run_in_parallel => false) do |agent|
+      agents.each do |agent|
         retry_on(agent, 'puppet agent -t',
           :desired_exit_codes => [0],
           :retry_interval     => 15,
           :max_retries        => 5,
           :verbose            => true.to_s  # work around beaker bug
         )
+
+        # try to keep connectivity to other agents
+        (agents - [ agent ]).each do |host|
+          ensure_ssh_connection(host)
+        end
       end
     end
 
