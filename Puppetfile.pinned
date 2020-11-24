@@ -404,7 +404,7 @@ mod 'simp-simp_snmpd',
 
 mod 'simp-ssh',
   :git => 'https://github.com/simp/pupmod-simp-ssh',
-  :tag => '6.11.0'
+  :tag => '6.11.1'
 
 mod 'simp-sssd',
   :git => 'https://github.com/simp/pupmod-simp-sssd',
