@@ -1,7 +1,7 @@
 Summary: SIMP Full Install
 Name: simp
 Version: 6.5.0
-Release: RC1%{?dist}%{?snapshot_release}
+Release: 1%{?dist}%{?snapshot_release}
 License: Apache License, Version 2.0
 Group: Applications/System
 
@@ -48,7 +48,7 @@ Requires: pupmod-saz-timezone >= 5.2.0, pupmod-saz-timezone < 6.0.0
 Requires: pupmod-simp-acpid >= 1.2.0, pupmod-simp-acpid < 2.0.0
 Requires: pupmod-simp-aide >= 6.4.2, pupmod-simp-aide < 7.0.0
 Requires: pupmod-simp-at >= 0.1.0, pupmod-simp-at < 1.0.0
-Requires: pupmod-simp-auditd >= 8.6.1, pupmod-simp-auditd < 9.0.0
+Requires: pupmod-simp-auditd >= 8.6.2, pupmod-simp-auditd < 9.0.0
 Requires: pupmod-simp-chkrootkit >= 0.3.0, pupmod-simp-chkrootkit < 1.0.0
 Requires: pupmod-simp-clamav >= 6.4.0, pupmod-simp-clamav < 7.0.0
 Requires: pupmod-simp-compliance_markup >= 3.1.3, pupmod-simp-compliance_markup < 4.0.0
@@ -106,7 +106,7 @@ Requires: simp-environment-skeleton >= 7.2.0, simp-environment-skeleton < 8.0.0
 Requires: simp-gpgkeys >= 3.1.1, simp-gpgkeys < 4.0.0
 Requires: simp-rsync-skeleton >= 7.0.4, simp-rsync-skeleton < 8.0.0
 Requires: simp-selinux-policy >= 1.0.0, simp-selinux-policy < 2.0.0
-Requires: simp-utils >= 6.4.0, simp-utils < 7.0.0
+Requires: simp-utils >= 6.5.0, simp-utils < 7.0.0
 Requires: simp-vendored-r10k >= 3.3.0, simp-vendored-r10k < 4.0.0
 
 # SIMP Extras
@@ -246,7 +246,7 @@ fi
 # Post uninstall stuff
 
 %changelog
-* Thu Nov 12 2020 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 6.5.0-RC1
+* Thu Nov 12 2020 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 6.5.0-1
 - Add the following modules back in to 6.5.0 as they have been updated:
   - pupmod-simp-simp_gitlab
   - pupmod-simp-simp_snmpd
