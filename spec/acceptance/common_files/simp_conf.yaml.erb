@@ -1,7 +1,7 @@
 #========================================================================
 # simp config answers
 #
-# Generated for 'simp' scenario on 2019-05-23 20:42:35
+# Generated for <%= scenario %> scenario on 2019-05-23 20:42:35
 #------------------------------------------------------------------------
 # You can use these answers to quickly configure subsequent
 # simp installations by running the command:
@@ -96,7 +96,7 @@ cli::set_grub_password: true
 # NOTE:  If your site has different needs than provided by the predetermined
 # scenarios, you can always fine-tune the security settings after you have
 # bootstrapped your SIMP server.
-cli::simp::scenario: simp
+cli::simp::scenario: <%= scenario %>
 
 # === cli::use_internet_simp_yum_repos ===
 # Whether to configure SIMP nodes to use internet SIMP and

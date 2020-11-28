@@ -96,7 +96,7 @@ cli::set_grub_password: true
 # NOTE:  If your site has different needs than provided by the predetermined
 # scenarios, you can always fine-tune the security settings after you have
 # bootstrapped your SIMP server.
-cli::simp::scenario: simp
+cli::simp::scenario: <%= scenario %>
 
 # === cli::use_internet_simp_yum_repos ===
 # Whether to configure SIMP nodes to use internet SIMP and

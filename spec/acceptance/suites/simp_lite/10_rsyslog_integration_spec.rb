@@ -51,7 +51,7 @@ domain = fact_on(master, 'domain')
 describe 'Validation of rsyslog forwarding' do
   options = {
     :domain      => domain,
-    :scenario    => 'simp',
+    :scenario    => 'simp_lite',
     :master      => master
   }
 

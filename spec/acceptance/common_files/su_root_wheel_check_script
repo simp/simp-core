@@ -1,0 +1,31 @@
+#!/usr/bin/expect -f
+
+set user [lindex $argv 0]
+set host [lindex $argv 1]
+set pass [lindex $argv 2]
+set timeout 10
+
+# have root su to localadmin
+spawn su -l $user ;
+send "whoami\r"
+expect "$user@$host "
+
+send "su - root\r"
+# wait for password prompt
+expect -regexp {
+   "^Password: $"        exp_continue
+   timeout             exit 2
+}
+send "$pass\r"
+expect {
+  "su: Permission denied" {puts "\nroot access for $user denied\n"; set myexitstatus 200;}
+  "root@$host"            {puts "\nsu to root for $user succeeded\n";  set myexitstatus 201}
+}
+
+
+#if { $myexitstatus == 201 } {
+# Becuase you successfully logged on as root you need log out of root
+#  exit $myexitstatus
+#}
+exit $myexitstatus
+
