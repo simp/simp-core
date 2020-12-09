@@ -3,15 +3,12 @@
 
   case ENV['SIMP_BEAKER_OS']
   when /centos/ || /^el/
-    box_6 = 'centos/6'
     box_7 = 'centos/7'
     box_8 = 'centos/8'
   when /oracle/ || /^oel/
-    box_6 = 'onyxpoint/oel-6-x86_64'
     box_7 = 'onyxpoint/oel-7-x86_64'
     box_8 = 'generic/oracle8'
   else
-    box_6 = 'centos/6'
     box_7 = 'centos/7'
     box_8 = 'centos/8'
   end
@@ -44,22 +41,6 @@ HOSTS:
     platform:   el-7-x86_64
     box:        <%= box_7 %>
     hypervisor: <%= hypervisor %>
-
-  agent-el6:
-    roles:
-      - agent
-    platform:   el-6-x86_64
-    box:        <%= box_6 %>
-    hypervisor: <%= hypervisor %>
-    ssh:
-      host_key:
-        - <%= Net::SSH::Transport::Algorithms::ALGORITHMS[:host_key].join("\n        - ") %>
-      kex:
-        - <%= Net::SSH::Transport::Algorithms::ALGORITHMS[:kex].join("\n        - ") %>
-      encryption:
-        - <%= Net::SSH::Transport::Algorithms::ALGORITHMS[:encryption].join("\n        - ") %>
-      hmac:
-        - <%= Net::SSH::Transport::Algorithms::ALGORITHMS[:hmac].join("\n        - ") %>
 
 CONFIG:
   log_level: verbose
