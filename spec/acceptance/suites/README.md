@@ -22,9 +22,9 @@ This directory contains
 In general, the SIMP integration/release test suites follow the same general
 procedure:
 
-1. Spin up at least 4 vagrant boxes
+1. Spin up at least 3 vagrant boxes
 
-   * One puppetserver, 1 EL8 client, 1 EL7 client, 1 EL6 client.
+   * One puppetserver, 1 EL8 client, 1 EL7 client
    * EL version of the puppetserver changes based on nodeset.
    * One of the clients is a rsyslog server, whose EL version
      also changes based on nodeset.
@@ -64,12 +64,12 @@ builds/download RPMs, and then builds the ISO.
 
 6. Determine the nodeset appropriate for your test.
 
-   * Each integration/(pre-)release test suite contains are two nodesets:
-     `el7_server` and `el6_server`. These nodesets control the EL version
-     of both the puppsetserver and rsyslog server.
-   * The `el6_server` nodeset does not test integration with an EL8 client.
-   * The `rpm_docker` test suite contains two nodesets, `el7.yml` and
-     `el6.yml`, for building a SIMP EL7 ISO and SIMP EL6 ISO, respectively.
+   * Each integration/(pre-)release test suite contains a nodeset for each
+     supported EL server (currently: `el7_server`). These nodesets control the
+     EL version of both the puppsetserver and rsyslog server.
+   * The `rpm_docker` test suite contains nodesets for building an ISO for
+     various OSes (e.g., `rpm_docker/nodesets/el7.yml`,
+     `rpm_docker/nodesets/el8.yml`)
 
 7. Run the tests for a suite and selected nodeset.  For example,
 
@@ -81,11 +81,11 @@ bundle exec rake beaker:suites[default,el7_server]
 ```
 
 ```bash
-# to run the default suite on OEL using Puppet 6 and an OEL6 simp server
+# to run the default suite on OEL using Puppet 6 and an OEL7 simp server
 export PUPPET_VERSION='~> 6.18'
 export BEAKER_PUPPET_COLLECTION='puppet6'
 export SIMP_BEAKER_OS='oracle'
-bundle exec rake beaker:suites[default,el6_server]
+bundle exec rake beaker:suites[default,el7_server]
 ```
 
 ### `default` Suite
@@ -115,8 +115,8 @@ clients, and then executes the following tests:
    * Subset of `simp environment new` operations
 
 5. _Compliance enforcement and reporting_: Enables compliance enforcement and
-   reporting via the `simp-compliance_markup` module and then evalutes the
-    results.
+   reporting via the `simp-compliance_markup` module and then evaluates the
+   results.
 
 #### yum repositories enabled
 
@@ -145,7 +145,7 @@ Details:
    * In the production environment creates a Puppetfile containing only the
      module entries from `Puppetfile.pinned`
    * Downloads modules to the production environment's module directory via
-    `r10k puppetfile install` of the module Puppetfile
+     `r10k puppetfile install` of the module Puppetfile
    * Uses `simp` CLI to fix the permissions of the downloaded modules
 
 #### Environment variables
@@ -186,9 +186,9 @@ Details:
 1. Installs assets:
 
    * Creates a Puppetfile containing only the asset entries from
-     `Puppetfile.pinned`
+     `Puppetfile.pinned`.
    * Downloads assets to a staging directory via `r10k puppetfile install` of
-     the asset Puppetfile
+     the asset Puppetfile.
    * Manually completes asset installation using commands that (largely) mimic
      each asset's RPM installation.
 
@@ -387,7 +387,7 @@ Sets the test VM box types.  Valid values are `centos`, `oracle`, and
 `oel`.
 
 * **unset** - Defaults to `centos`
-* When `centos`, uses `centso/8`, `centos/7` and `centos/6` boxes.
-* When `oracle` or `oel`, uses `generic/oracle8`, `onyxpoint/oel-7-x86_64` and
-  `onyxpoint/oel-6-x86_64` boxes.
-* Any other value defaults to `centos/8`,`centos/7` and `centos/6` boxes.
+* When `centos`, uses `centso/8` and `centos/7` boxes.
+* When `oracle` or `oel`, uses the boxes `generic/oracle8` and
+  `onyxpoint/oel-7-x86_64`
+* Any other value defaults to `centos/8` and `centos/7`.

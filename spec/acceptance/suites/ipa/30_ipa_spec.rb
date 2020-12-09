@@ -20,7 +20,7 @@ describe 'IPA server integration' do
       out     = run_ipa_cmd(ipa_server, "ipa dnsrecord-find #{ipa_domain}")
       records = out.stdout.split("\n").grep(/Record name/).map {|h|h.split(': ').last}
 
-      %w[ puppet ipa agent-el6 agent-el7 ].each do |host|
+      %w[puppet ipa agent-el7].each do |host|
         expect(records).to include(host)
       end
     end
@@ -92,7 +92,6 @@ describe 'IPA server integration' do
         login << 'ssh'
         login << '-o PubkeyAuthentication=no'
         login << '-o StrictHostKeyChecking=no'
-        login << '-m hmac-sha1' if client.host_hash[:platform] =~ /el-6/
         login << '-l testuser'
         login << client.name
         login << 'uptime'

@@ -36,14 +36,10 @@ module Acceptance
           puts("Using Puppet #{puppet_collection} repo from yum.puppetlabs.com")
           puts('='*72)
 
-          if host.host_hash[:platform] =~ /el-8/
-            family = 'el-8'
-          elsif host.host_hash[:platform] =~ /el-7/
-            family = 'el-7'
-          elsif host.host_hash[:platform] =~ /el-6/
-            family = 'el-6'
+          if host.host_hash[:platform] =~ /(el-[78])/
+            family = $1
           else
-            fail("install_puppet_repo(): Cannot determine puppet repo for #{host.name}")
+            fail("install_puppet_repo(): No supported OS platform found for #{host.name}; unable to determine puppet repo")
           end
           url = "http://yum.puppetlabs.com/#{puppet_collection}/#{puppet_collection}-release-#{family}.noarch.rpm"
           on(host, "yum install #{url} -y")
