@@ -1,0 +1,23 @@
+class site::nfs_client (
+  Simplib::Ip                               $nfs_server,
+  Enum['none','sys','krb5','krb5i','krb5p'] $sec = '<%= nfs_sec %>'
+){
+
+$_mnt_point = '<%= nfs_static_mount_point %>'
+
+   file { $_mnt_point:
+     ensure => 'directory',
+     mode   => '755',
+     owner  => 'root',
+     group  => 'root'
+   }
+
+   nfs::client::mount { $_mnt_point:
+     nfs_server  => $nfs_server,
+     remote_path => '<%= nfs_static_data_dir %>',
+     sec         => $sec,
+     autofs      => false,
+     # The mount point must already exist in a static mount
+     require     => File[$_mnt_point]
+   }
+}
