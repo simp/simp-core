@@ -1,7 +1,7 @@
 class site::nfs_server(
   Stdlib::AbsolutePath                             $data_dir     = '<%= nfs_static_data_dir %>',
   Simplib::Netlist                                 $trusted_nets = simplib::lookup('simp_options::trusted_nets', { 'default_value' => ['127.0.0.1'] }),
-  Array[Enum['none','sys','krb5','krb5i','krb5p']] $sec          = ['<%= nfs_sec %>']
+  Array[Enum['none','sys','krb5','krb5i','krb5p']] $sec          = ['sec']
 ){
   include nfs::server
 
@@ -12,23 +12,10 @@ class site::nfs_server(
     mode   => '0755'
   }
 
-  if !$nfs::stunnel {
-    nfs::server::export { 'nfs_share':
-      clients     => $trusted_nets,
-      export_path => $data_dir,
-      sec         => $sec,
-      require     => File[$data_dir]
-    }
-  }
-  else {
-    nfs::server::export { 'nfs_share':
-      # From the NFS server's perspective, the stunneled connections will
-      # come from the local host
-      clients     => [ '127.0.0.1' ],
-      export_path => $data_dir,
-      insecure    => true,
-      sec         => $sec,
-      require     => File[$data_dir]
-    }
+  nfs::server::export { 'nfs_share':
+    clients     => $trusted_nets,
+    export_path => $data_dir,
+    sec         => $sec,
+    require     => File[$data_dir]
   }
 }

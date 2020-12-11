@@ -1,5 +1,5 @@
 class site::nfs_client (
-  Simplib::Ip                               $nfs_server,
+Simplib::Ip                                 $nfs_server = <%= nfs_server %>,
   Enum['none','sys','krb5','krb5i','krb5p'] $sec = '<%= nfs_sec %>'
 ){
 

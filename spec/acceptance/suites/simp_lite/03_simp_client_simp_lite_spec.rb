@@ -39,4 +39,21 @@ describe 'Verify clients are using simp-lite scenario' do
     end
   end
 
+  context 'ensure svckill is not running on clients' do
+    hosts.each do |host|
+      it "should not attempt to kill dnsmasq unless on puppetserver current host: #{host.name}" do
+        on(host, 'puppet resource package dnsmasq ensure=installed')
+        on(host, 'puppet resource service dnsmasq ensure=running')
+        result = on(host, 'puppet agent -t')
+        if host == master
+          expect(result.stderr).to include("svckill: dnsmasq")
+          expect(result.stderr).to include("Warning: svckill: Would have killed:")
+        else
+          expect(result.stderr).to_not include("Warning: svckill: Would have killed:")
+          expect(result.stderr).to_not include("svckill: dnsmasq")
+        end
+      end
+    end
+  end
+
 end
