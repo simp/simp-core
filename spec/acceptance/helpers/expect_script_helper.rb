@@ -9,8 +9,13 @@ module Acceptance
       # Using the (ASSUMED) optional, final command line argument in an expect
       # script, adjust ciphers used by that script to ssh from src_host to
       # dest_host, if necessary.  This ugly adjustment is needed in order to
-      # deal with different cipher sets configured by SIMP for sshd for CentOS 6
-      # versus CentOS 7.
+      # deal with different cipher sets configured by SIMP for sshd for
+      # different versions of CentOS.
+      #
+      # NOTE: this is probably possible to remove in favor of overriding the
+      # net-ssh options in the Beaker nodeset, which wasn't possible when
+      # SIMP-5082 was submitted.  However, that will need to wait for a future
+      # patch.
       #
       # Returns the expect command
       def adjust_ssh_ciphers_for_expect_script(expect_cmd, src_host, dest_host)
@@ -19,8 +24,6 @@ module Acceptance
         dest_os_major = fact_on(dest_host, 'operatingsystemmajrelease')
         if src_os_major.to_s == '7'
           cmd +=" '-o MACs=hmac-sha1'" if (dest_os_major.to_s == '6')
-        elsif src_os_major.to_s == '6'
-          cmd +=" '-o MACs=hmac-sha2-256'" if (dest_os_major.to_s == '7')
         end
         cmd
       end

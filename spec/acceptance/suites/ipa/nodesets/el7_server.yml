@@ -3,13 +3,10 @@
 
   case ENV['SIMP_BEAKER_OS']
   when /centos/ || /^el/
-    box_6 = 'centos/6'
     box_7 = 'centos/7'
   when /oracle/ || /^oel/
-    box_6 = 'onyxpoint/oel-6-x86_64'
     box_7 = 'onyxpoint/oel-7-x86_64'
   else
-    box_6 = 'centos/6'
     box_7 = 'centos/7'
   end
 -%>

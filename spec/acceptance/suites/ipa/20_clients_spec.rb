@@ -24,6 +24,7 @@ describe 'set up IPA clients' do
         ].join(' ')
 
         run_ipa_cmd(ipa_server, cmd)
+        ensure_ssh_connection(client)
       end
     end
   end
@@ -50,33 +51,23 @@ describe 'set up IPA clients' do
 
     it 'should re-establish connectivity' do
       agents.each do |agent|
-        # FIXME For some reason, beaker's ssh connection can die on the first
-        # puppet agent run for a client, even though logs on the client show
-        # no problems and puppet does not detect any changes.  (Same problem
-        # in default/40_simp_cli_spec.rb).  So, we'll retry up to 3 times.
-        tries = 3
-        begin
-          on(agent, 'uptime')
-        rescue Beaker::Host::CommandFailure => e
-          if e.message.include?('connection failure') && (tries > 0)
-            puts "Retrying due to << #{e.message.strip} >>"
-            tries -= 1
-            retry
-          else
-            raise e
-          end
-        end
+        ensure_ssh_connection(agent)
       end
     end
 
     it 'should apply the configuration' do
-      block_on(agents, :run_in_parallel => false) do |agent|
+      agents.each do |agent|
         retry_on(agent, 'puppet agent -t',
           :desired_exit_codes => [0],
           :retry_interval     => 15,
-          :max_retries        => 4,
-          :verbose            => true.to_s # work around beaker bug
+          :max_retries        => 5,
+          :verbose            => true.to_s  # work around beaker bug
         )
+
+        #  try to keep connectivity to other agents
+        (agents - [ agent ]).each do |host|
+          ensure_ssh_connection(host)
+        end
       end
     end
   end

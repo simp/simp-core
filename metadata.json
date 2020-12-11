@@ -108,7 +108,7 @@
     },
     {
       "name": "simp/auditd",
-      "version_requirement": ">= 8.6.1 < 9.0.0"
+      "version_requirement": ">= 8.6.2 < 9.0.0"
     },
     {
       "name": "simp/chkrootkit",
@@ -212,11 +212,11 @@
     },
     {
       "name": "simp/selinux",
-      "version_requirement": ">= 2.6.0 < 3.0.0"
+      "version_requirement": ">= 2.6.2 < 3.0.0"
     },
     {
       "name": "simp/simp",
-      "version_requirement": ">= 4.14.2 < 5.0.0"
+      "version_requirement": ">= 4.14.3 < 5.0.0"
     },
     {
       "name": "simp/simplib",
@@ -252,7 +252,7 @@
     },
     {
       "name": "simp/ssh",
-      "version_requirement": ">= 6.11.0 < 7.0.0"
+      "version_requirement": ">= 6.11.1 < 7.0.0"
     },
     {
       "name": "simp/sssd",
