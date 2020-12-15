@@ -32,10 +32,6 @@ describe 'set up an IPA server' do
       ipa_server.upgrade_package('nss')
       ipa_server.install_package('ipa-server')
       ipa_server.install_package('ipa-server-dns')
-      if ipa_server.host_hash[:platform] =~ /el-6/
-        ipa_server.install_package('bind')
-        ipa_server.install_package('bind-dyndb-ldap')
-      end
     end
 
     it 'should make sure the hostname is fully qualified' do

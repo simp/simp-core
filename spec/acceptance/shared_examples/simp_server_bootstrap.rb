@@ -38,24 +38,6 @@ shared_examples 'SIMP server bootstrap' do |master, config|
       'simp_rsyslog::forward_logs'  => true
     } )
 
-    if config.fetch(:simp_ldap_server, true)
-      # Work around 128-bit cipher problems
-      # TODO:  Once SIMP-5507 is addressed, this workaround is *only*
-      # required when the el6 LDAP server is not in FIPS mode.
-      if master.host_hash[:platform] =~ /el-6/
-        hiera.merge!( {
-          'simp_openldap::server::conf::security' => [
-            'ssf=128',
-            'tls=128',
-            'update_ssf=128',
-            'simple_bind=128',
-            'update_tls=128',
-          ],
-          'pupmod::master::generate_types::enable' => false
-        } )
-      end
-    end
-
     if config.has_key?(:other_hiera)
       hiera.merge!( config[:other_hiera] )
     end
