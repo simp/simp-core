@@ -9,11 +9,11 @@ describe 'IPA server integration' do
   ipa_domain = domain
 
   context 'hosts in the IPA domain' do
-    it 'should have 4 hosts in the inventory' do
+    it 'should have 3 hosts in the inventory' do
       out   = run_ipa_cmd(ipa_server, 'ipa host-find')
       hosts = out.stdout.split("\n").grep(/Host name/)
 
-      expect(hosts.length).to eq 4
+      expect(hosts.length).to eq 3
     end
 
     it 'should have DNS entries for each host' do
