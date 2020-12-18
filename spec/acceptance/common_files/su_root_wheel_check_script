@@ -22,10 +22,4 @@ expect {
   "root@$host"            {puts "\nsu to root for $user succeeded\n";  set myexitstatus 201}
 }
 
-
-#if { $myexitstatus == 201 } {
-# Becuase you successfully logged on as root you need log out of root
-#  exit $myexitstatus
-#}
 exit $myexitstatus
-
