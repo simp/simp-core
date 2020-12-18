@@ -6,15 +6,16 @@ This directory contains
   non-module components (aka assets).
 * A test suite that builds a SIMP ISO.
 
-| Suite                    | Category    | Brief Description                                                                                  |
-| ------------------------ | ----------- | -------------------------------------------------------------------------------------------------- |
-| default                  | Integration | SIMP server+client bootstrap and integration using `Puppetfile.pinned` components                  |
-| ipa                      | Integration | SIMP server+client bootstrap and IPA integration (as clients) using `Puppetfile.pinned` components |
-| install_from_tar         | Pre-Release | SIMP server+client bootstrap using component RPMs from SIMP ISO build tarball                      |
-| install_from_rpm         | Release     | SIMP server+client bootstrap using component RPMs from SIMP's internet repos                       |
-| install_from_core_module | Release     | SIMP server+client bootstrap test using SIMP meta-module and `Puppetfile.pinned` assets            |
-|                          |             |                                                                                                    |
-| rpm_docker               | Build       | SIMP ISO build                                                                                     |
+| Suite                    | Category    | Brief Description                                                                                      |
+| ------------------------ | ----------- | ------------------------------------------------------------------------------------------------------ |
+| default                  | Integration | SIMP server+client bootstrap and integration using all `Puppetfile.pinned` components                  |
+| ipa                      | Integration | SIMP server+client bootstrap and IPA integration (as clients) using all `Puppetfile.pinned` components |
+| simp_lite                | Integration | SIMP server+client bootstrap for the simp_lite scenario using all `Puppetfile.pinned` components       |
+| install_from_tar         | Pre-Release | SIMP server+client bootstrap using component RPMs from SIMP ISO build tarball                          |
+| install_from_rpm         | Release     | SIMP server+client bootstrap using component RPMs from SIMP's internet repos                           |
+| install_from_core_module | Release     | SIMP server+client bootstrap test using SIMP meta-module and `Puppetfile.pinned` assets                |
+|                          |             |                                                                                                        |
+| rpm_docker               | Build       | SIMP ISO build                                                                                         |
 
 
 ## Overview
@@ -104,9 +105,9 @@ clients, and then executes the following tests:
    interest, and then verifies the actual application messages get logged
    locally and remotely, as expected.
 2. _Local user operations_:  Verifies that local users with root privileges
-   can login to the puppet server and agent nodes via ssh, even after
+   can login to the puppetserver and agent nodes via ssh, even after
    changing their passwords.
-3. _LDAP user operations_:  Verifies LDAP users can login to the puppet server
+3. _LDAP user operations_:  Verifies LDAP users can login to the puppetserver
    and agent nodes via ssh, even after changing their passwords.
 4. _Key `simp` CLI operations_:
 
@@ -202,6 +203,40 @@ Details:
    * Downloads modules to the production environment's module directory via
     `r10k puppetfile install` of the module Puppetfile
    * Uses `simp` CLI to fix the permissions of the downloaded modules
+
+#### Environment variables
+
+See [Common Environment Variables](#common-environment-variables)
+
+
+### `simp_lite` Suite
+
+The purpose of this test suite is to verify that the simp_lite SIMP scenario
+configures the puppetserver and clients as expected, when using the latest
+modules AND assets specified in Puppetfile.pinned.  It sets up a server
+and client exactly as is done in the `default` suite, but changes the scenario
+from `simp` to `simp_lite` in the simp_config.yaml file that is used to configure
+the puppetserver during the bootstrap process.
+
+It verifies:
+
+1. A firewall is enabled on the puppetserver but not on the clients.
+2. Users can `su` to `root` on the clients if they are not in the `wheel` group.
+3. Users not in the `wheel` group cannot `su` to `root` on the puppetserver.
+4. Rsyslog works as expected.
+5. LDAP works as expected.
+6. The puppetserver is configured with FIPS enabled, but the clients are not.
+
+Still to do: Verify that the selinux module is not enabled on the clients but is
+enabled on the puppetserver.
+
+#### yum repositories enabled
+
+See [yum repositories set up for default Suite](#yum-repositories-enabled)
+
+#### puppetserver installation
+
+See [puppetserver installation for default Suite](#puppetserver-installation)
 
 #### Environment variables
 
