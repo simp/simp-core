@@ -13,6 +13,8 @@ This directory contains
 | install_from_tar         | Pre-Release | SIMP server+client bootstrap using component RPMs from SIMP ISO build tarball                      |
 | install_from_rpm         | Release     | SIMP server+client bootstrap using component RPMs from SIMP's internet repos                       |
 | install_from_core_module | Release     | SIMP server+client bootstrap test using SIMP meta-module and `Puppetfile.pinned` assets            |
+| simp_lite                | Release     | SIMP server+client bootstrap using the simp_lite scenario.  Builds the server and client using     |
+|                          |             |  using the tests from the default suite.                                                           |
 |                          |             |                                                                                                    |
 | rpm_docker               | Build       | SIMP ISO build                                                                                     |
 
@@ -391,3 +393,28 @@ Sets the test VM box types.  Valid values are `centos`, `oracle`, and
 * When `oracle` or `oel`, uses the boxes `generic/oracle8` and
   `onyxpoint/oel-7-x86_64`
 * Any other value defaults to `centos/8` and `centos/7`.
+
+
+### `simp_lite` Suite
+
+The purpose of this test suite is to test that the simp_lite scenario still
+acts as expected.  It sets up a server and client using the same tests in the
+`default` suite but changes the scenario to `simp_lite` in the simp_config.yaml
+file that is used to boot strap the server.
+
+It verifies:
+1) Firewall is enabled on the puppet server but not on the clients.
+
+2) Users  can su to root on the clients if they are note
+   in the wheel group.  Verifies that users not in the wheel group can not
+   su to root on the puppet server.
+
+3) Rsyslog  works as expected.
+
+4) LDAP works as expected.
+
+5) Puppet server is configured with fips but the clients are not.
+
+6) Still to do:   verify that selinux module is not enabled on the clients but is
+   on the server.
+
