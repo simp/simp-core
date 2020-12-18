@@ -50,11 +50,21 @@ image: 'ruby:2.5'
     variables:
       - $SIMP_FULL_MATRIX
 
+# When you want to run the ipa suite tests along with the default suite tests
+# or run the full matrix
 .only_with_SIMP_FULL_MATRIX_or_SIMP_IPA_TEST: &only_with_SIMP_FULL_MATRIX_or_SIMP_IPA_TEST
   only:
     variables:
       - $SIMP_FULL_MATRIX
       - $SIMP_IPA_TEST
+
+# When you want to run the simp_lite suite tests along with the default suite tests
+# or run the full matrix
+.only_with_SIMP_FULL_MATRIX_or_SIMP_LITE_TEST: &only_with_SIMP_FULL_MATRIX_or_SIMP_LITE_TEST
+  only:
+    variables:
+      - $SIMP_FULL_MATRIX
+      - $SIMP_LITE_TEST
 
 
 # Pipeline / testing matrix
@@ -102,42 +112,14 @@ ipa_el7-puppet6:
     - bundle exec rake beaker:suites[ipa,el7_server]
   retry: 1
 
-default_oel7-puppet6:
-  stage: integration
-  tags:
-    - beaker
-  <<: *cache_bundler
-  <<: *setup_bundler_env
-  <<: *only_with_SIMP_FULL_MATRIX
-  <<: *pup_6_18_0__oracle
-  script:
-    - bundle exec rake spec_clean
-    - bundle exec rake beaker:suites[default,el7_server]
-  retry: 1
-
-ipa_oel7-puppet6:
-  stage: integration
-  tags:
-    - beaker
-  <<: *cache_bundler
-  <<: *setup_bundler_env
-  <<: *only_with_SIMP_FULL_MATRIX_or_SIMP_IPA_TEST
-  <<: *pup_6_18_0__oracle
-  script:
-    - bundle exec rake spec_clean
-    - bundle exec rake beaker:suites[ipa,el7_server]
-  retry: 1
-
-
-
-simp_lite-puppet6:
+simp_lite_el7-puppet6:
   stage: integration
   image: 'ruby:2.5'
   tags:
     - beaker
   <<: *cache_bundler
   <<: *setup_bundler_env
-  <<: *only_with_SIMP_RELEASE_TESTS
+  <<: *only_with_SIMP_FULL_MATRIX_or_SIMP_LITE_TEST
   variables:
     PUPPET_VERSION: '~> 6.18'
     BEAKER_PUPPET_COLLECTION: 'puppet6'
