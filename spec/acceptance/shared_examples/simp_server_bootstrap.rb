@@ -95,6 +95,12 @@ shared_examples 'SIMP server bootstrap' do |master, config|
         ldap_root_password_hash = encrypt_openldap_password(test_password)
       end
 
+      if config.has_key?(:simp_scenario)
+        scenario = config[:simp_scenario]
+      else
+        scenario = 'simp'
+      end
+
       create_remote_file(master, '/root/simp_conf.yaml', ERB.new(simp_conf_template).result(binding))
       on(master, 'cat /root/simp_conf.yaml')
     end
