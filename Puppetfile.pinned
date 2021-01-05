@@ -192,7 +192,7 @@ mod 'simp-cron',
 
 mod 'simp-crypto_policy',
   :git => 'https://github.com/simp/pupmod-simp-crypto_policy',
-  :tag => '0.1.2'
+  :branch => 'master'
 
 mod 'simp-dconf',
   :git => 'https://github.com/simp/pupmod-simp-dconf',
@@ -208,7 +208,7 @@ mod 'simp-dhcp',
 
 mod 'simp-fips',
   :git => 'https://github.com/simp/pupmod-simp-fips',
-  :tag => '0.4.2'
+  :branch => 'master'
 
 mod 'simp-freeradius',
   :git => 'https://github.com/simp/pupmod-simp-freeradius',
