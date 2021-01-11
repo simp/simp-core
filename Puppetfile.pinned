@@ -137,7 +137,7 @@ mod 'puppetlabs-ruby_task_helper',
 
 mod 'puppetlabs-stdlib',
   :git => 'https://github.com/simp/puppetlabs-stdlib',
-  :tag => 'v6.2.0'
+  :tag => 'v6.3.0'
 
 mod 'puppetlabs-translate',
   :git => 'https://github.com/simp/pupmod-puppetlabs-translate',
