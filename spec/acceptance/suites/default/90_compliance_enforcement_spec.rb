@@ -11,18 +11,11 @@ describe 'compliance reporting and enforcement' do
 
   context 'beaker workarounds' do
     agents.each do |host|
-      # FIXME This was grabbed from simp-beaker-helpers. Should make it a method
-      # that can be called, instead of duplicating code that may change.
-      it 'should adjust crypto policy as needed before reboot in FIPS mode' do
-        # Work around Vagrant and cipher restrictions in EL8+
-        #
-        # Hopefully, Vagrant will update the used ciphers at some point but who
-        # knows when that will be
-        opensshserver_config = '/etc/crypto-policies/back-ends/opensshserver.config'
-        if file_exists_on(host, opensshserver_config)
-          on(host, "sed --follow-symlinks -i 's/PubkeyAcceptedKeyTypes=/PubkeyAcceptedKeyTypes=ssh-rsa,/' #{opensshserver_config}")
-        end
-      end
+      # Work around Vagrant and cipher restrictions in EL8+.
+      # This allows ssh-rsa in PubkeyAcceptedKeyTypes.
+      munge_ssh_crypto_policies(host)
+
+      ensure_ssh_connection(host)
     end
   end
 
@@ -121,6 +114,10 @@ describe 'compliance reporting and enforcement' do
 
   context 'agent run' do
     agents.each do |host|
+      it 'should ensure SSH connectivity' do
+        ensure_ssh_connection(host)
+      end
+
       it 'should run puppet successfully' do
         result = on(host, 'puppet agent -t', :accept_all_exit_codes => true).output.strip
         expect(result).to_not match /parameter .+ expects .+ got/m
@@ -132,6 +129,12 @@ describe 'compliance reporting and enforcement' do
       # the correct ciphers
       block_on(agents, :run_in_parallel => false) do |agent|
         agent.reboot
+      end
+    end
+
+    hosts.each do |host|
+      it 'should ensure SSH connectivity' do
+        ensure_ssh_connection(host)
       end
     end
   end
