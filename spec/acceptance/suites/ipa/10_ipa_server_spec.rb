@@ -85,8 +85,8 @@ describe 'set up an IPA server' do
       } )
 
       # open up ports in iptables for IPA services
-      updated_hiera['classes'] = [] unless updated_hiera.has_key?('classes')
-      updated_hiera['classes'] << 'site::ipa'
+      updated_hiera['simp::classes'] = [] unless updated_hiera.has_key?('simp::classes')
+      updated_hiera['simp::classes'] << 'site::ipa'
 
       default_yaml = updated_hiera.to_yaml
       create_remote_file(master, default_yaml_filename, default_yaml)

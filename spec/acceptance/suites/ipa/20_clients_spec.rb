@@ -43,7 +43,7 @@ describe 'set up IPA clients' do
         'simp_ipa::client::install::domain'   => ipa_domain,
         'simp_ipa::client::install::hostname' => '%{trusted.certname}',
       )
-      updated_hiera['classes'] << 'simp_ipa::client::install'
+      updated_hiera['simp::classes'] << 'simp_ipa::client::install'
       default_yaml = updated_hiera.to_yaml
       create_remote_file(master, default_yaml_filename, default_yaml)
       on(master, "cat #{default_yaml_filename}")

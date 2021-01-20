@@ -50,8 +50,8 @@ describe 'simp cli operations' do
       # 'simp config' expects. ('simp config' intentionally doesn't use Ruby
       # yaml parsing/output operations when modifying the <puppetserver>.yaml
       # file, because it wants to preserve all the comments in that file.
-      # This means when it inserts/replaces entries in the classes array, it
-      # does so with strings having the same indentation as the initial
+      # This means when it inserts/replaces entries in the simp::classes array,
+      # it does so with strings having the same indentation as the initial
       # <puppetserver>.yaml template file.)  Unfortunately Psych doesn't
       # have an output option to specify array indentation.  (The
       # Psych.dump() :indentation option doesn't do this.) So, to ensure
