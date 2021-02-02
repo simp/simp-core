@@ -41,16 +41,15 @@ module Acceptance
       #
       # +host+: Host (object)
       #
-      # This method ASSUMES the first non-loopback interface without DHCP
-      # configured or with DHCP that does not matches the outermost 'dhcp'
-      # key is the interface used for the internal network.
       def internal_network_info(host)
         networking = JSON.load(on(host, 'facter --json networking').stdout)
+
+        # this is the IP address beaker puts into /etc/hosts
+        internal_ip = host['vm_ip'] || host['ip'].to_s
+
         internal_ip_info = nil
-        main_dhcp = networking['networking']['dhcp']
         networking['networking']['interfaces'].each do |interface,settings|
-          next if interface == 'lo'
-          if ( ! settings.has_key?('dhcp') || (settings['dhcp'] != main_dhcp ) )
+          if ( settings['ip'] and settings['ip'] == internal_ip )
             internal_ip_info = {
               :interface => interface,
               :ip        => settings['ip'],
@@ -59,6 +58,7 @@ module Acceptance
             break
           end
         end
+
         internal_ip_info
       end
 
@@ -97,11 +97,14 @@ module Acceptance
         on(master, 'cd /var/simp/environments/production/FakeCA; ./gencerts_nopass.sh')
       end
 
-
       # Temporary, partial, hack until we have a good solution to beaker's ssh
-      # connection logic problems (as of beaker 4.11.0). That logic treats ssh
-      # connection timeouts from long running actions as failures...without any
-      # mechanism to configure just the connection timeout longer.
+      # connection logic problems that started with the commit of
+      # https://github.com/voxpupuli/beaker/pull/1586. The 'improved' beaker
+      # logic in lib/beaker/ssh_connection.rb treats ssh connection timeouts that
+      # can happen on a host when long running actions are happening on other nodes
+      # as failures on the disconnected host. Previously, it would attempt to
+      # reconnect to perform the action requested on the host and, upon success,
+      # move on.
       #
       # All this method provides is a mechanism to work around a ssh connection
       # failure *before* you run a command. So, place it in parts of the code

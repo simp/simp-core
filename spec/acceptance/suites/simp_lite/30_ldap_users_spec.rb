@@ -1,0 +1,1 @@
+../default/30_ldap_users_spec.rb

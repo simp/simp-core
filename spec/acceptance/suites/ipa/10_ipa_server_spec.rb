@@ -32,10 +32,6 @@ describe 'set up an IPA server' do
       ipa_server.upgrade_package('nss')
       ipa_server.install_package('ipa-server')
       ipa_server.install_package('ipa-server-dns')
-      if ipa_server.host_hash[:platform] =~ /el-6/
-        ipa_server.install_package('bind')
-        ipa_server.install_package('bind-dyndb-ldap')
-      end
     end
 
     it 'should make sure the hostname is fully qualified' do
@@ -89,8 +85,8 @@ describe 'set up an IPA server' do
       } )
 
       # open up ports in iptables for IPA services
-      updated_hiera['classes'] = [] unless updated_hiera.has_key?('classes')
-      updated_hiera['classes'] << 'site::ipa'
+      updated_hiera['simp::classes'] = [] unless updated_hiera.has_key?('simp::classes')
+      updated_hiera['simp::classes'] << 'site::ipa'
 
       default_yaml = updated_hiera.to_yaml
       create_remote_file(master, default_yaml_filename, default_yaml)
@@ -137,8 +133,17 @@ describe 'set up an IPA server' do
 
       puts "\e[1;34m>>>>> The next step takes a very long time ... Please be patient! \e[0m"
       on(ipa_server, cmd.join(' '))
+      on(ipa_server, 'ipactl status')
 
       ipa_server.reboot
+
+      # The IPA server has many services that take time to come up. So, we need
+      # to make sure it is fully up before trying to access it. Unfortunately,
+      # 'ipactl status' returns 0 even when individual components are stopped.
+      # We have to scrape the command output to actually determine status.
+      retry_on(ipa_server, "ipactl status | [ `grep -c STOPPED` == '0' ]",
+        :retry_interval => 15 )
+
       on(ipa_server, 'ipactl status')
     end
   end

@@ -3,7 +3,7 @@ require 'spec_helper_integration'
 test_name 'rsyslog integration'
 
 # The rsyslog and simp_rsyslog module acceptance tests verify the plumbing
-# of rsyslog connectivity.  See the shared example for more details.
+# of rsyslog connectivity.  See the share example for more details.
 
 syslog_servers = hosts_with_role(hosts, 'syslog_server')
 non_syslog_servers = hosts - syslog_servers
@@ -15,7 +15,7 @@ domain = fact_on(master, 'domain')
 describe 'Validation of rsyslog forwarding' do
   options = {
     :domain      => domain,
-    :scenario    => 'simp',
+    :scenario    => 'simp_lite',
     :master      => master
   }
 

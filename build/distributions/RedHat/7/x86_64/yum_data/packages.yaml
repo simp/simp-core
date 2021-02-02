@@ -75,14 +75,14 @@ jq:
   :rpm_name: jq-1.5-1.el7.x86_64.rpm
   :source: http://mirrors.lug.mtu.edu/epel/7/x86_64/Packages/j/jq-1.5-1.el7.x86_64.rpm
 libNX_X11:
-  :rpm_name: libNX_X11-3.5.99.17-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/l/libNX_X11-3.5.99.17-1.el7.x86_64.rpm
+  :rpm_name: libNX_X11-3.5.99.25-2.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/l/libNX_X11-3.5.99.25-2.el7.x86_64.rpm
 libXcomp:
-  :rpm_name: libXcomp-3.5.99.17-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/l/libXcomp-3.5.99.17-1.el7.x86_64.rpm
+  :rpm_name: libXcomp-3.5.99.25-2.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/l/libXcomp-3.5.99.25-2.el7.x86_64.rpm
 libXcompshad:
-  :rpm_name: libXcompshad-3.5.99.17-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/l/libXcompshad-3.5.99.17-1.el7.x86_64.rpm
+  :rpm_name: libXcompshad-3.5.99.25-2.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/l/libXcompshad-3.5.99.25-2.el7.x86_64.rpm
 libarchive-devel:
   :rpm_name: libarchive-devel-3.1.2-10.el7_2.x86_64.rpm
   :source: Red Hat Optional Repository
@@ -171,14 +171,14 @@ mate-user-guide:
   :rpm_name: mate-user-guide-1.16.0-1.el7.noarch.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/mate-user-guide-1.16.0-1.el7.noarch.rpm
 nx-libs:
-  :rpm_name: nx-libs-3.5.99.17-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/n/nx-libs-3.5.99.17-1.el7.x86_64.rpm
+  :rpm_name: nx-libs-3.5.99.25-2.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/n/nx-libs-3.5.99.25-2.el7.x86_64.rpm
 nxagent:
-  :rpm_name: nxagent-3.5.99.17-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/n/nxagent-3.5.99.17-1.el7.x86_64.rpm
+  :rpm_name: nxagent-3.5.99.25-2.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/n/nxagent-3.5.99.25-2.el7.x86_64.rpm
 nxproxy:
-  :rpm_name: nxproxy-3.5.99.17-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/n/nxproxy-3.5.99.17-1.el7.x86_64.rpm
+  :rpm_name: nxproxy-3.5.99.25-2.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/n/nxproxy-3.5.99.25-2.el7.x86_64.rpm
 oniguruma:
   :rpm_name: oniguruma-5.9.5-3.el7.x86_64.rpm
   :source: http://mirrors.lug.mtu.edu/epel/7/x86_64/Packages/o/oniguruma-5.9.5-3.el7.x86_64.rpm

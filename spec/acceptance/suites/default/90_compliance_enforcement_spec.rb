@@ -9,6 +9,16 @@ describe 'compliance reporting and enforcement' do
 
   let(:compliance_profile) { 'disa_stig' }
 
+  context 'beaker workarounds' do
+    agents.each do |host|
+      # Work around Vagrant and cipher restrictions in EL8+.
+      # This allows ssh-rsa in PubkeyAcceptedKeyTypes.
+      munge_ssh_crypto_policies(host)
+
+      ensure_ssh_connection(host)
+    end
+  end
+
   context 'master setup' do
     let(:prod_env_dir) { '/etc/puppetlabs/code/environments/production' }
     let(:prod_env_hiera_yaml) { File.join(prod_env_dir, 'hiera.yaml') }
@@ -20,7 +30,7 @@ describe 'compliance reporting and enforcement' do
       if site_pp.match(/\n\$compliance_profile\s*=\s/).nil?
         # set profile in hieradata
         hiera = YAML.load(on(master, "cat #{prod_env_default_yaml}").stdout)
-        default_yaml = hiera.merge( 'compliance_markup::validate_profiles' => [ compliance_profile])
+        default_yaml = hiera.merge( 'compliance_markup::validate_profiles' => [compliance_profile])
         create_remote_file(master, "#{prod_env_default_yaml}", default_yaml.to_yaml)
         on(master, "cat #{prod_env_default_yaml}")
       else
@@ -59,29 +69,42 @@ describe 'compliance reporting and enforcement' do
     end
 
     it 'should run puppet successfully' do
-      # Add onto the existing hiera
+      # Adjust hiera
       hiera = YAML.load(on(master, "cat #{prod_env_default_yaml}").stdout)
 
-      default_yaml = hiera.merge(
-        'compliance_markup::report_types' => ['full'],
-        'compliance_markup::enforcement' => [ compliance_profile],
-        # This selinux setting will allow vagrant to sudo su to
-        # root after the compliance profile is enforced.  The
-        # command is:
-        #   sudo -r unconfined_r su - root
-        'selinux::login_resources' => {
-          '__default__' => {
-            'seuser'    => 'user_u',
-            'mls_range' => 'SystemLow'
-          },
-          'vagrant'     => {
-            'seuser'    => 'staff_u',
-            'mls_range' => 'SystemLow-SystemHigh'
-          }
-        }
-      )
+      # Restore settings turned off in the disable tests, as we have inserted the
+      # compliance engine after default.yaml in the data hierarchy
+      hiera.delete('selinux::ensure')
+      hiera['simp_options::fips'] = true
+      hiera.delete('auditd::enable')
 
-      create_remote_file(master, "#{prod_env_default_yaml}", default_yaml.to_yaml)
+      # Add compliance settings
+      hiera['compliance_markup::report_types'] = ['full']
+      hiera['compliance_markup::enforcement'] = [compliance_profile]
+
+      # This selinux setting will allow vagrant to sudo su to
+      # root after the compliance profile is enforced.
+      hiera['selinux::login_resources'] = {
+        '__default__' => {
+          'seuser'    => 'user_u',
+          'mls_range' => 's0'
+        },
+        'vagrant'     => {
+          'seuser'    => 'staff_u',
+          'mls_range' => 's0-s0:c0.c1023'
+        }
+      }
+
+      # This addition to the sudo specification allows the user to sudo su to
+      # root without specifying the selinux role, i.e.,
+      #   sudo su - root
+      # instead of
+      #   sudo -r unconfined_r su - root
+      hiera['sudo::user_specifications']['vagrant_all']['options'] = {
+        'role' => 'unconfined_r'
+      }
+
+      create_remote_file(master, "#{prod_env_default_yaml}", hiera.to_yaml)
       on(master, "cat #{prod_env_default_yaml}")
 
       result = on(master, 'puppet agent -t', :accept_all_exit_codes => true).output.strip
@@ -91,6 +114,10 @@ describe 'compliance reporting and enforcement' do
 
   context 'agent run' do
     agents.each do |host|
+      it 'should ensure SSH connectivity' do
+        ensure_ssh_connection(host)
+      end
+
       it 'should run puppet successfully' do
         result = on(host, 'puppet agent -t', :accept_all_exit_codes => true).output.strip
         expect(result).to_not match /parameter .+ expects .+ got/m
@@ -102,6 +129,12 @@ describe 'compliance reporting and enforcement' do
       # the correct ciphers
       block_on(agents, :run_in_parallel => false) do |agent|
         agent.reboot
+      end
+    end
+
+    hosts.each do |host|
+      it 'should ensure SSH connectivity' do
+        ensure_ssh_connection(host)
       end
     end
   end

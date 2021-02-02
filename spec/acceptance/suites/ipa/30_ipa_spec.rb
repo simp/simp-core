@@ -9,18 +9,18 @@ describe 'IPA server integration' do
   ipa_domain = domain
 
   context 'hosts in the IPA domain' do
-    it 'should have 4 hosts in the inventory' do
+    it 'should have 3 hosts in the inventory' do
       out   = run_ipa_cmd(ipa_server, 'ipa host-find')
       hosts = out.stdout.split("\n").grep(/Host name/)
 
-      expect(hosts.length).to eq 4
+      expect(hosts.length).to eq 3
     end
 
     it 'should have DNS entries for each host' do
       out     = run_ipa_cmd(ipa_server, "ipa dnsrecord-find #{ipa_domain}")
       records = out.stdout.split("\n").grep(/Record name/).map {|h|h.split(': ').last}
 
-      %w[ puppet ipa agent-el6 agent-el7 ].each do |host|
+      %w[puppet ipa agent-el7].each do |host|
         expect(records).to include(host)
       end
     end
@@ -92,7 +92,6 @@ describe 'IPA server integration' do
         login << 'ssh'
         login << '-o PubkeyAuthentication=no'
         login << '-o StrictHostKeyChecking=no'
-        login << '-m hmac-sha1' if client.host_hash[:platform] =~ /el-6/
         login << '-l testuser'
         login << client.name
         login << 'uptime'

@@ -1,6 +1,6 @@
 {
   "name": "simp-simp_core",
-  "version": "6.4.0",
+  "version": "6.5.0",
   "author": "SIMP Team",
   "summary": "A Metamodule for SIMP",
   "license": "Apache-2.0",
@@ -19,7 +19,7 @@
   ],
   "dependencies": [
     {
-      "name": "aboe76/chrony",
+      "name": "aboe/chrony",
       "version_requirement": ">= 0.3.1 < 1.0.0"
     },
     {
@@ -88,7 +88,7 @@
     },
     {
       "name": "puppetlabs/stdlib",
-      "version_requirement": ">= 6.2.0 < 7.0.0"
+      "version_requirement": ">= 6.3.0 < 7.0.0"
     },
     {
       "name": "saz/timezone",
@@ -108,7 +108,7 @@
     },
     {
       "name": "simp/auditd",
-      "version_requirement": ">= 8.6.1 < 9.0.0"
+      "version_requirement": ">= 8.6.2 < 9.0.0"
     },
     {
       "name": "simp/chkrootkit",
@@ -152,7 +152,7 @@
     },
     {
       "name": "simp/iptables",
-      "version_requirement": ">= 6.5.3 < 7.0.0"
+      "version_requirement": ">= 6.5.4 < 7.0.0"
     },
     {
       "name": "simp/issue",
@@ -192,7 +192,7 @@
     },
     {
       "name": "simp/pupmod",
-      "version_requirement": ">= 8.1.1 < 9.0.0"
+      "version_requirement": ">= 8.1.2 < 9.0.0"
     },
     {
       "name": "simp/resolv",
@@ -212,15 +212,15 @@
     },
     {
       "name": "simp/selinux",
-      "version_requirement": ">= 2.6.0 < 3.0.0"
+      "version_requirement": ">= 2.6.2 < 3.0.0"
     },
     {
       "name": "simp/simp",
-      "version_requirement": ">= 4.14.0 < 5.0.0"
+      "version_requirement": ">= 4.14.3 < 5.0.0"
     },
     {
       "name": "simp/simplib",
-      "version_requirement": ">= 4.6.1 < 5.0.0"
+      "version_requirement": ">= 4.6.2 < 5.0.0"
     },
     {
       "name": "simp/simpkv",
@@ -228,7 +228,7 @@
     },
     {
       "name": "simp/simp_apache",
-      "version_requirement": ">= 7.0.0 < 8.0.0"
+      "version_requirement": ">= 7.0.1 < 8.0.0"
     },
     {
       "name": "simp/simp_banners",
@@ -236,7 +236,7 @@
     },
     {
       "name": "simp/simp_firewalld",
-      "version_requirement": ">= 0.1.1 < 1.0.0"
+      "version_requirement": ">= 0.1.2 < 1.0.0"
     },
     {
       "name": "simp/simp_openldap",
@@ -252,7 +252,7 @@
     },
     {
       "name": "simp/ssh",
-      "version_requirement": ">= 6.11.0 < 7.0.0"
+      "version_requirement": ">= 6.11.1 < 7.0.0"
     },
     {
       "name": "simp/sssd",
