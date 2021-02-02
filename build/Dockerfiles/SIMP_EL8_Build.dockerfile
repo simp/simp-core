@@ -7,25 +7,42 @@
 # commit` command
 #   * docker commit <running container ID> el7_build
 #   * docker run -it el7_build
-FROM centos:8
+#FROM centos:8
+FROM centos:centos8.1.1911
 ENV container docker
+
+RUN dnf install -y --setopt=override_install_langs=en_US.utf8 --setopt=install_weak_deps=False --setopt=tsflags=nodocs 'dnf-command(config-manager)'
+RUN dnf config-manager --save --setopt=best=True
+RUN dnf config-manager --save --setopt=clean_requirements_on_remove=True
+RUN dnf config-manager --save --setopt=gpgcheck=True
+RUN dnf config-manager --save --setopt=install_weak_deps=False
+RUN dnf config-manager --save --setopt=installonly_limit=2
+RUN dnf config-manager --save --setopt=keepcache=False
+RUN dnf config-manager --save --setopt=multilib_policy=best
+RUN dnf config-manager --save --setopt=releasever='${releasever}'
+RUN dnf config-manager --save --setopt=skip_if_unavailable=True
+RUN dnf config-manager --save --setopt=overide_install_langs=en_US.utf8
+RUN dnf config-manager --save --setopt=tsflags=nodocs
+
+RUN yum -y install glibc-langpack-en
 
 # Fix issues with overlayfs
 RUN yum clean all
 RUN rm -f /var/lib/rpm/__db*
 RUN yum clean all
+RUN yum install -y yum-plugin-ovl ||:
 RUN yum install -y yum-utils
 
 # Will probably need something like this later
 # Prep for building against the oldest SELinux packages
-# RUN yum-config-manager --disable \*
-# RUN echo -e "[legacy]\nname=Legacy\nbaseurl=http://vault.centos.org/8.0.1905/BaseOS/x86_64\ngpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-8\ngpgcheck=1" > /etc/yum.repos.d/legacy.repo
+RUN dnf config-manager --disable \*
+RUN echo -e "[legacy]\nname=Legacy\nbaseurl=https://vault.centos.org/8.0.1905/BaseOS/x86_64/os\ngpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-8\ngpgcheck=1" > /etc/yum.repos.d/legacy.repo
+RUN echo -e "[legacy-extras]\nname=LegacyExtras\nbaseurl=https://vault.centos.org/8.0.1905/extras/x86_64/os\ngpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-8\ngpgcheck=1" > /etc/yum.repos.d/legacy_extras.repo
+RUN echo -e "[legacy-AppStream]\nname=LegacyAppStream\nbaseurl=https://vault.centos.org/8.0.1905/AppStream/x86_64/os\ngpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-8\ngpgcheck=1" > /etc/yum.repos.d/legacy_appstream.repo
+RUN echo -e "[legacy-PowerTools]\nname=LegacyPowerTools\nbaseurl=https://vault.centos.org/8.0.1905/extras/x86_64/os\ngpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-8\ngpgcheck=1" > /etc/yum.repos.d/legacy_powertools.repo
+RUN echo -e "[legacy-centosplus]\nname=LegacyCentosPlus\nbaseurl=https://vault.centos.org/8.0.1905/extras/x86_64/os\ngpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-8\ngpgcheck=1" > /etc/yum.repos.d/legacy_centosplus.repo
 
-RUN cd /root; yum downgrade -x 'glibc*' -x 'nss*' -x 'libnss*' -x nspr -y '*' || :
-
-# Work around bug https://bugzilla.redhat.com/show_bug.cgi?id=1217477
-# This does *not* update the SELinux packages, so it is safe
-RUN yum --enablerepo=AppStream --enablerepo=BaseOS update -y git curl nss
+RUN cd /root; yum downgrade --allowerasing -x 'glibc*' -x 'nss*' -x 'libnss*' -x nspr -y '*' || :
 
 RUN yum install -y sudo selinux-policy-targeted selinux-policy-devel policycoreutils policycoreutils-python-utils
 
@@ -36,9 +53,9 @@ RUN useradd -b /home -G wheel -m -c "Build User" -s /bin/bash -U build_user
 RUN rm -rf /etc/security/limits.d/*.conf
 
 # Install necessary packages
-RUN yum-config-manager --enable extras
 RUN yum install -y epel-release
-RUN yum install -y openssl util-linux rpm-build augeas-libs createrepo genisoimage git gnupg2 libicu-devel libxml2 libxml2-devel libxslt libxslt-devel rpmdevtools which ruby-devel rpm-devel rpm-sign
+RUN yum install -y rpm-build rpmdevtools ruby-devel rpm-devel rpm-sign
+RUN yum install -y util-linux openssl augeas-libs createrepo genisoimage git gnupg2 libicu-devel libxml2 libxml2-devel libxslt libxslt-devel which ruby-devel
 RUN yum -y install scl-utils python2-virtualenv python3-virtualenv fontconfig dejavu-sans-fonts dejavu-sans-mono-fonts dejavu-serif-fonts dejavu-fonts-common libjpeg-devel zlib-devel openssl-devel
 RUN yum install -y libyaml glibc-headers autoconf gcc gcc-c++ glibc-devel readline-devel libffi-devel automake libtool bison sqlite-devel
 RUN ln -sf /bin/true /usr/bin/systemctl
@@ -80,8 +97,8 @@ RUN runuser build_user -l -c "for i in {1..5}; do { gpg2 --keyserver  hkp://pool
 RUN runuser build_user -l -c "for i in {1..5}; do { gpg2 --keyserver  hkp://pool.sks-keyservers.net --recv-keys 7D2BAF1CF37B13E2069D6956105BD0E739499BDB || gpg2 --keyserver hkp://pgp.mit.edu --recv-keys 7D2BAF1CF37B13E2069D6956105BD0E739499BDB || gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 7D2BAF1CF37B13E2069D6956105BD0E739499BDB; } && break || sleep 1; done"
 #RUN runuser build_user -l -c "gpg2 --refresh-keys"
 RUN runuser build_user -l -c "curl -sSL https://raw.githubusercontent.com/rvm/rvm/stable/binscripts/rvm-installer -o rvm-installer && curl -sSL https://raw.githubusercontent.com/rvm/rvm/stable/binscripts/rvm-installer.asc -o rvm-installer.asc && gpg2 --verify rvm-installer.asc rvm-installer && bash rvm-installer"
-RUN runuser build_user -l -c "rvm install 2.4.10 --disable-binary"
-RUN runuser build_user -l -c "rvm use --default 2.4.10"
+RUN runuser build_user -l -c "rvm install 2.6"
+RUN runuser build_user -l -c "rvm use --default 2.6"
 RUN runuser build_user -l -c "rvm all do gem install bundler -v '~> 1.16'"
 RUN runuser build_user -l -c "rvm all do gem install bundler -v '~> 2.0'"
 
