@@ -283,10 +283,14 @@ releng_checks:
   <<: *setup_bundler_env
   stage: 'validation'
   tags: ['docker']
+  variables:
+    SIMP_RPM_dist: ".el7"
   script:
     - 'command -v rpm || if command -v apt-get; then apt-get update; apt-get install -y rpm; fi ||:'
     - 'bundle exec rake check:dot_underscore'
     - 'bundle exec rake check:test_file'
+    - 'bundle exec rake metadata_lint'
+    - 'bundle exec rake check:pkglist_lint'
     - 'bundle exec puppet module build'
 
 # Linting
@@ -326,11 +330,45 @@ pup7.x-unit:
   <<: *pup_7_x
   <<: *unit_tests
 
+# Test control variables
+#=======================================================================
+#
+
+# Anchor to disable release flavored tests, and run them only when
+# the environment variable SIMP_RELEASE_TESTS is set in the GitLab repo settings
+.only_with_SIMP_RELEASE_TESTS: &only_with_SIMP_RELEASE_TESTS
+  only:
+    variables:
+      - $SIMP_RELEASE_TESTS
+
+# To avoid running a prohibitive number of tests every commit,
+# don't set this env var in your gitlab instance
+.only_with_SIMP_FULL_MATRIX: &only_with_SIMP_FULL_MATRIX
+  only:
+    variables:
+      - $SIMP_FULL_MATRIX
+
+# When you want to run the ipa suite tests along with the default suite tests
+# or run the full matrix
+.only_with_SIMP_FULL_MATRIX_or_SIMP_IPA_TEST: &only_with_SIMP_FULL_MATRIX_or_SIMP_IPA_TEST
+  only:
+    variables:
+      - $SIMP_FULL_MATRIX
+      - $SIMP_IPA_TEST
+
+# When you want to run the simp_lite suite tests along with the default suite tests
+# or run the full matrix
+.only_with_SIMP_FULL_MATRIX_or_SIMP_LITE_TEST: &only_with_SIMP_FULL_MATRIX_or_SIMP_LITE_TEST
+  only:
+    variables:
+      - $SIMP_FULL_MATRIX
+      - $SIMP_LITE_TEST
+
 # Acceptance tests
 # ==============================================================================
 
 puppet6.pe-default_el7:
-  stage: integration
+  stage: acceptance
   tags:
     - beaker
   <<: *cache_bundler
@@ -342,7 +380,7 @@ puppet6.pe-default_el7:
   retry: 1
 
 puppet6.ipa_el7:
-  stage: integration
+  stage: acceptance
   tags:
     - beaker
   <<: *cache_bundler
@@ -355,7 +393,7 @@ puppet6.ipa_el7:
   retry: 1
 
 puppet6.pe-simp_lite_el7:
-  stage: integration
+  stage: acceptance
   image: 'ruby:2.5'
   tags:
     - beaker
@@ -369,7 +407,7 @@ puppet6.pe-simp_lite_el7:
   retry: 1
 
 puppet6.pe-rpm_el7:
-  stage: integration
+  stage: acceptance
   tags:
     - beaker
   <<: *cache_bundler
@@ -382,7 +420,7 @@ puppet6.pe-rpm_el7:
   retry: 1
 
 puppet6.pe-forge_install_el7:
-  stage: integration
+  stage: acceptance
   tags:
     - beaker
   <<: *cache_bundler
