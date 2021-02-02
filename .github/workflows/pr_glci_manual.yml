@@ -1,0 +1,214 @@
+# Manually trigger GLCI pipelines for a PR
+# ------------------------------------------------------------------------------
+#
+#             NOTICE: **This file is maintained with puppetsync**
+#
+# This file is updated automatically as part of a puppet module baseline.
+#
+# The next baseline sync will overwrite any local changes to this file!
+#
+# ==============================================================================
+#
+# This pipeline uses the following GitHub Action Secrets:
+#
+#   GitHub Secret variable    Type      Notes
+#   ------------------------  --------  ----------------------------------------
+#   GITLAB_API_PRIVATE_TOKEN  Required  GitLab token (should have `api` scope)
+#   NO_SCOPE_GITHUB_TOKEN     Required  GitHub token (should have no scopes)
+#   GITLAB_SERVER_URL         Optional  Specify a GL server other than gitlab.com
+#   The secure vars will be filtered in GitHub Actions log output, and aren't
+#   provided to untrusted builds (i.e, triggered by PR from another repository)
+#
+# ------------------------------------------------------------------------------
+#
+# NOTES:
+#   It is necessary to provide NO_SCOPE_GITHUB_TOKEN because $secrets.GITHUB_AUTO
+#   is NOT provide to manually-triggered (`workflow_dispatch`) events, in order
+#   to prevent recursive triggers between workflows
+#
+#   Reference:
+#
+#   https://docs.github.com/en/actions/reference/events-that-trigger-workflows#triggering-new-workflows-using-a-personal-access-token
+---
+name: 'Manual: PR GLCI'
+
+on:
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: "PR number to trigger GLCI"
+        required: true
+
+jobs:
+  glci-syntax:
+    name: '.gitlab-ci.yml Syntax'
+    runs-on: ubuntu-16.04
+    outputs:
+      exists: ${{ steps.glci-file-exists.outputs.exists }}
+      valid: ${{ steps.validate-glci-file.outputs.valid }}
+      pr_head_ref: ${{ steps.get-pr.outputs.pr_head_ref }}
+      pr_head_sha: ${{ steps.get-pr.outputs.pr_head_sha }}
+      pr_head_label: ${{ steps.get-pr.outputs.pr_head_label }}
+      pr_head_full_name: ${{ steps.get-pr.outputs.pr_full_name }}
+    steps:
+      - uses: actions/github-script@v3
+        id: get-pr
+        with:
+          github-token: ${{secrets.NO_SCOPE_GITHUB_TOKEN}}
+          # See:
+          #   - https://octokit.github.io/rest.js/
+          script: |
+            console.log(`== pr number: ${context.payload.inputs.pr_number}`)
+            const pr = await github.request('get /repos/{owner}/{repo}/pulls/{pull_number}', {
+              headers: {
+                accept: 'application/vnd.github.v3+json'
+              },
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.inputs.pr_number
+            });
+
+            console.log("\n\n== pr\n");
+            console.log(pr);
+            console.log("\n\n== pr.data.head\n");
+            console.log(pr.data.head);
+            console.log(pr.status);
+
+            // PR must have been returned
+            if ( pr.status != 200 ) {
+              //#console.log(`::error ::Error looking up PR \#${context.payload.inputs.pr_number}: HTTP Response ${pr.status}`)
+              return(false)
+            }
+
+            // TODO: should either of these conditions really prevent a GLCI trigger?
+            if ( pr.data.state != 'open' ) {
+              console.log(`::error ::PR# ${context.payload.inputs.pr_number} is not open`)
+            }
+            if ( pr.data.merged ) {
+              console.log(`::error ::PR# ${context.payload.inputs.pr_number} is already merged`)
+            }
+            core.setOutput( 'pr_head_sha', pr.data.head.sha )
+            core.setOutput( 'pr_head_ref', pr.data.head.ref )
+            core.setOutput( 'pr_head_label', pr.data.head.label )
+            core.setOutput( 'pr_head_full_name', pr.data.head.full_name )
+      - uses: actions/checkout@v2
+        with:
+          repository: ${{ steps.get-pr.outputs.pr_head_full_name }}
+          ref: ${{ steps.get-pr.outputs.pr_head_sha }}
+          token: ${{secrets.NO_SCOPE_GITHUB_TOKEN}}
+          clean: true
+      - name: 'Does GLCI file exist?'
+        id: glci-file-exists
+        run: |
+          if [ -f .gitlab-ci.yml ]; then
+            echo '.gitlab-ci.yml exists'
+            echo '::set-output name=exists::true'
+          else
+            echo '::error ::The ".gitlab-ci.yml" file is missing!'
+            echo '::set-output name=exists::false'
+            false
+          fi
+      - name: 'Validate GLCI file syntax'
+        id: validate-glci-file
+        env:
+          GITLAB_API_URL: ${{ secrets.GITLAB_API_URL }}       # https://gitlab.com/api/v4
+          GITLAB_API_PRIVATE_TOKEN: ${{ secrets.GITLAB_API_PRIVATE_TOKEN }}
+        run: |
+          GITLAB_API_URL="${GITLAB_API_URL:-https://gitlab.com/api/v4}"
+          CURL_CMD=(curl --http1.1 --fail --silent --show-error --header 'Content-Type: application/json' --data @-)
+          [ -n "$GITLAB_API_PRIVATE_TOKEN" ] && CURL_CMD+=(--header "Authorization: Bearer $GITLAB_API_PRIVATE_TOKEN")
+          data="$(jq --null-input --arg yaml "$(<.gitlab-ci.yml)" '.content=$yaml' )"
+          response="$(echo "$data" | "${CURL_CMD[@]}" "${GITLAB_API_URL}/ci/lint?include_merged_yaml=true" | jq . )"
+          status=$( echo "$response" | jq .status )
+          if [[ "$status" == '"valid"' ]]; then
+            echo '.gitlab-ci.yml is valid'
+            echo '::set-output name=valid::true'
+          else
+            echo '::set-output name=valid::false'
+            echo '::error::The .gitlab-ci.yml" file is invalid!'
+            echo "$response" | jq -r '.errors[] | . = "::error ::\(.)"'
+            printf  "::debug ::.gitlab-ci.yml CI lint service response: %s\n" "$response"
+            false
+          fi
+
+  trigger-when-user-has-repo-permissions:
+    name: 'Trigger CI'
+    needs: [ glci-syntax ]
+    runs-on: ubuntu-16.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          repository: ${{ needs.glci-syntax.outputs.pr_head_full_name }}
+          ref: ${{ needs.glci-syntax.outputs.pr_head_sha }}
+          token: ${{secrets.NO_SCOPE_GITHUB_TOKEN}}
+          fetch-depth: 0  # Need full checkout to push to gitlab mirror
+          clean: true
+      - name: Trigger CI
+        env:
+          GITLAB_SERVER_URL: ${{ secrets.GITLAB_SERVER_URL }} # https://gitlab.com
+          GITLAB_API_URL: ${{ secrets.GITLAB_API_URL }}       # https://gitlab.com/api/v4
+          GITLAB_ORG: ${{ github.event.organization.login }}
+          GITLAB_API_PRIVATE_TOKEN: ${{ secrets.GITLAB_API_PRIVATE_TOKEN }}
+          GIT_BRANCH: ${{ needs.glci-syntax.outputs.pr_head_ref }}
+        run: |
+          GITLAB_SERVER_URL="${GITLAB_SERVER_URL:-https://gitlab.com}"
+          GITLAB_API_URL="${GITLAB_API_URL:-${GITLAB_SERVER_URL}/api/v4}"
+          GITXXB_REPO_NAME="${GITHUB_REPOSITORY/$GITHUB_REPOSITORY_OWNER\//}"
+          GITLAB_PROJECT_ID="${GITLAB_ORG}%2F${GITXXB_REPO_NAME}"
+          # --http1.0 avoids an HTTP/2 load balancing issue when run from GA
+          CURL_CMD=(curl --http1.0 --fail --silent --show-error \
+            --header "Authorization: Bearer $GITLAB_API_PRIVATE_TOKEN" \
+            --header "Content-Type: application/json" \
+            --header "Accept: application/json" \
+          )
+
+          # Cancel any active/pending GitLab CI pipelines for the same project+branch
+          active_pipeline_ids=()
+          for pipe_status in created waiting_for_resource preparing pending running; do
+            echo "  ---- checking for CI pipelines with status '$pipe_status' for project '$GITLAB_PROJECT_ID', branch '$GIT_BRANCH'"
+            url="${GITLAB_API_URL}/projects/${GITLAB_PROJECT_ID}/pipelines?ref=${GIT_BRANCH}&status=${pipe_status}"
+            active_pipelines="$("${CURL_CMD[@]}" "$url" | jq -r '.[] | .id , .web_url')"
+            active_pipeline_ids+=($(echo "$active_pipelines" | grep -E '^[0-9]*$'))
+            printf "$active_pipelines\n\n"
+          done
+          if [ "${#active_pipeline_ids[@]}" -gt 0 ]; then
+            printf "\nFound %s active pipeline ids:\n" "${#active_pipeline_ids[@]}"
+            echo "${active_pipeline_ids[@]}"
+            for pipe_id in "${active_pipeline_ids[@]}"; do
+              printf "\n  ------ Cancelling pipeline ID %s...\n" "$pipe_id"
+              "${CURL_CMD[@]}" --request POST "${GITLAB_API_URL}/projects/${GITLAB_PROJECT_ID}/pipelines/${pipe_id}/cancel"
+            done
+          else
+            echo No active pipelines found
+          fi
+
+          # Should we protect against pushing default branches?
+          echo "== Pushing '$GIT_BRANCH' to gitlab"
+          git remote add gitlab "https://oauth2:${GITLAB_API_PRIVATE_TOKEN}@${GITLAB_SERVER_URL#*://}/${GITLAB_ORG}/${GITXXB_REPO_NAME}.git"
+          git branch "$GIT_BRANCH" HEAD || :
+          git branch -av
+          git log --color --graph  --abbrev-commit -5 \
+            --pretty=format:'%C(red)%h%C(reset) -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset'
+          git push gitlab ":${GIT_BRANCH}" -f || : # attempt to un-weird GLCI's `changed` tracking
+          echo "== git push --verbose gitlab ${GIT_BRANCH}"
+          git push --verbose gitlab "${GIT_BRANCH}"
+          echo "Pushed branch '${GIT_BRANCH}' to gitlab"
+          echo "   A new pipeline should be at: https://${GITLAB_SERVER_URL#*://}/${GITLAB_ORG}/${GITXXB_REPO_NAME}/-/pipelines/"
+
+###  examine_contexts:
+###    needs: [ glci-syntax ]
+###    name: 'Examine Context contents'
+###    if: always()
+###    runs-on: ubuntu-16.04
+###    steps:
+###      - name: Dump contexts
+###        env:
+###          GITHUB_CONTEXT: ${{ toJson(github) }}
+###        run: echo "$GITHUB_CONTEXT"
+###      - name: Dump 'needs' context
+###        env:
+###          ENV_CONTEXT: ${{ toJson(needs) }}
+###        run: echo "$ENV_CONTEXT"
+###      - name: Dump env vars
+###        run: env | sort
+

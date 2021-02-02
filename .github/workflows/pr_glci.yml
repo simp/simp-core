@@ -1,0 +1,257 @@
+# Push/Trigger a GitLab CI pipeline for the PR HEAD, **ONLY IF:**
+#
+#   1. The .gitlab-ci.yaml file exists and validates
+#   2. The PR submitter has write access to the target repository.
+#
+# ------------------------------------------------------------------------------
+#
+#             NOTICE: **This file is maintained with puppetsync**
+#
+# This file is updated automatically as part of a puppet module baseline.
+#
+# The next baseline sync will overwrite any local changes to this file!
+#
+# ==============================================================================
+#
+# GitHub Action Secrets variables available for this pipeline:
+#
+#   GitHub Secret variable    Type      Notes
+#   ------------------------  --------  ----------------------------------------
+#   GITLAB_API_PRIVATE_TOKEN  Secure    Should have `api` scope
+#   GITLAB_API_URL            Optional
+#
+#   The secure vars will be filtered in GitHub Actions log output, and aren't
+#   provided to untrusted builds (i.e, triggered by PR from another repository)
+#
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# WARNING   WARNING   WARNING   WARNING   WARNING   WARNING   WARNING   WARNING
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!V!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#
+# DO NOT MODIFY this workflow, unless you **REALLY** know what you are doing.
+#
+# This workflow bypasses some of the built-in protections of the
+# `pull_request_target` event by explicitly checking out the PR's **HEAD**.
+# Without being VERY CAREFUL, this could easily allow a malcious PR
+# contributor the chance to access secrets or a GITHUB_TOKEN with write scope!!
+#
+# The jobs in this workflow are designed to handle this safely -- but DO NOT
+# assume any alterations will also be safe.
+#
+# For general information, see:
+#
+#   https://docs.github.com/en/actions/reference/events-that-trigger-workflows#pull_request_target
+#
+# For further information, or if ANY of this seems confusing or unecessary:
+#
+#     ASK FOR ASSISTANCE **BEFORE** ATTEMPTING TO MODIFY THIS WORKFLOW.
+#
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# WARNING   WARNING   WARNING   WARNING   WARNING   WARNING   WARNING   WARNING
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!V!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#
+# https://docs.github.com/en/actions/reference/events-that-trigger-workflows
+#
+---
+name: PR GLCI
+on:
+  pull_request_target:
+    types: [opened, reopened, synchronize]
+
+jobs:
+
+  # The ONLY reason we can validate the PR HEAD's content safely here is that
+  # we restrict ourselves to sending data elsewhere.
+  glci-syntax:
+    name: '.gitlab-ci.yml Syntax'
+    runs-on: ubuntu-16.04
+    outputs:
+      exists: ${{ steps.glci-file-exists.outputs.exists }}
+      valid: ${{ steps.validate-glci-file.outputs.valid }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.event.pull_request.head.ref }}
+      - name: 'Does GLCI file exist?'
+        id: glci-file-exists
+        run: |
+          if [ -f .gitlab-ci.yml ]; then
+            echo '.gitlab-ci.yml exists'
+            echo '::set-output name=exists::true'
+          else
+            echo '::error ::The ".gitlab-ci.yml" file is missing!'
+            echo '::set-output name=exists::false'
+            false
+          fi
+      - name: 'Validate GLCI file syntax'
+        id: validate-glci-file
+        if: steps.glci-file-exists.outputs.exists == 'true'
+        env:
+          GITLAB_API_URL: ${{ secrets.GITLAB_API_URL }}       # https://gitlab.com/api/v4
+          GITLAB_API_PRIVATE_TOKEN: ${{ secrets.GITLAB_API_PRIVATE_TOKEN }}
+        run: |
+          GITLAB_API_URL="${GITLAB_API_URL:-https://gitlab.com/api/v4}"
+          CURL_CMD=(curl --http1.1 --fail --silent --show-error --header 'Content-Type: application/json' --data @-)
+          [ -n "$GITLAB_API_PRIVATE_TOKEN" ] && CURL_CMD+=(--header "Authorization: Bearer $GITLAB_API_PRIVATE_TOKEN")
+          data="$(jq --null-input --arg yaml "$(<.gitlab-ci.yml)" '.content=$yaml' )"
+          response="$(echo "$data" | "${CURL_CMD[@]}" "${GITLAB_API_URL}/ci/lint?include_merged_yaml=true" | jq . )"
+          status=$( echo "$response" | jq .status )
+          if [[ "$status" == '"valid"' ]]; then
+            echo '.gitlab-ci.yml is valid'
+            echo '::set-output name=valid::true'
+          else
+            echo '::set-output name=valid::false'
+            echo '::error::The .gitlab-ci.yml" file is invalid!'
+            echo "$response" | jq -r '.errors[] | . = "::error ::\(.)"'
+            printf  "::debug ::.gitlab-ci.yml CI lint service response: %s\n" "$response"
+            false
+          fi
+
+  contributor-permissions:
+    name: 'PR contributor check'
+    runs-on: ubuntu-18.04
+    outputs:
+      permitted: ${{ steps.user-repo-permissions.outputs.permitted }}
+    steps:
+      - uses: actions/github-script@v3
+        id: user-repo-permissions
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          # See:
+          #   - https://octokit.github.io/rest.js/
+          #   - https://docs.github.com/en/free-pro-team@latest/rest/reference/repos#get-repository-permissions-for-a-user
+          script: |
+            const project_permission = await github.request('GET /repos/{owner}/{repo}/collaborators/{username}/permission', {
+              headers: {
+                accept: 'application/vnd.github.v3+json'
+              },
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              username: context.payload.sender.login,
+            })
+            const has_write_access = perm_lvl => (perm_lvl == "admin" || perm_lvl == "write" )
+            const write_access_desc = perm_bool => (perm_bool ? "PERMISSION OK" : "PERMISSION DENIED" )
+            if( has_write_access(project_permission.data.permission )){
+              core.setOutput( 'permitted', 'true' )
+            } else {
+              core.setOutput( 'permitted', 'false' )
+              console.log(`::error ::payload user '${context.payload.sender.login}' does not have CI trigger permission for '${context.repository}; not triggering external CI'`)
+            }
+            console.log(`== payload user '${context.payload.sender.login}' CI trigger permission for '${context.repo.owner}': ${write_access_desc(has_write_access(project_permission.data.permission))}`)
+
+
+  trigger-when-user-has-repo-permissions:
+    name: 'Trigger CI [trusted users only]'
+    needs: [ glci-syntax, contributor-permissions ]
+    # This conditional provides an extra safety control, in case the workflow's
+    # `on` section is inadventently modified without considering the security
+    # implications.
+    #
+    # This job will ONLY trigger on:
+    #
+    #   - [x] pull_request_target event:  github.event_name == 'pull_request_target'
+    #   AND:
+    #   - [x] Newly-opened PRs:           github.event.action == 'opened'
+    #   - [x] Re-opened PRs:              github.event.action == 'reopened'
+    #   - [x] Commits are added to PR:    github.event.action == 'synchronize'
+    #   AND:
+    #   - [x] .gitlab-ci.yml exists/ok:   needs.glci-syntax.outputs.valid == 'true'
+    #
+    # [Not implemented] It should NEVER trigger on:
+    #
+    #   - [ ] Merged PRs:                 github.event.pull_request.merged == 'false'
+    #     - (the downstream GitLab mirror will take care of that)
+    #     - Not implemented: For some reason, this conditional always fails
+    #     - Unnecessary if on>pull_request_target>types doesn't include 'closed'
+    if: github.event_name == 'pull_request_target' && ( github.event.action == 'opened' || github.event.action == 'reopened' || github.event.action == 'synchronize' ) && github.event.pull_request.merged != 'true' && needs.glci-syntax.outputs.valid == 'true' && needs.contributor-permissions.outputs.permitted == 'true'
+    runs-on: ubuntu-18.04
+    steps:
+      # Things we'd like to do:
+      # - [ ] if there's no GitLab mirror, make one
+      #   - [ ] if there's no GitLab <-> GitHub integration, make one
+      #   - [ ] if there's no PR check on the main GitHub branch, make one (?)
+      # - [x] Cancel any GLCI pipelines already pending/running for this branch
+      #       - "created|waiting_for_resource|preparing|pending|running"
+      # - [x] if PR: force-push branch to GitLab
+      - uses: actions/checkout@v2
+        if: needs.contributor-permissions.outputs.permitted == 'true'
+        with:
+          fetch-depth: 0  # Need full checkout to push to gitlab mirror
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - name: Trigger CI when user has Repo Permissions
+        if: needs.contributor-permissions.outputs.permitted == 'true'
+        env:
+          GITLAB_SERVER_URL: ${{ secrets.GITLAB_SERVER_URL }} # https://gitlab.com
+          GITLAB_API_URL: ${{ secrets.GITLAB_API_URL }}       # https://gitlab.com/api/v4
+          GITLAB_ORG: ${{ github.event.organization.login }}
+          GITLAB_API_PRIVATE_TOKEN: ${{ secrets.GITLAB_API_PRIVATE_TOKEN }}
+          GIT_BRANCH: ${{ github.event.pull_request.head.ref }}
+        run: |
+          GITLAB_SERVER_URL="${GITLAB_SERVER_URL:-https://gitlab.com}"
+          GITLAB_API_URL="${GITLAB_API_URL:-${GITLAB_SERVER_URL}/api/v4}"
+          GIT_BRANCH="${GIT_BRANCH:-GITHUB_HEAD_REF}"
+          GITXXB_REPO_NAME="${GITHUB_REPOSITORY/$GITHUB_REPOSITORY_OWNER\//}"
+          GITLAB_PROJECT_ID="${GITLAB_ORG}%2F${GITXXB_REPO_NAME}"
+          # --http1.0 avoids an HTTP/2 load balancing issue when run from GA
+          CURL_CMD=(curl --http1.0 --fail --silent --show-error \
+            --header "Authorization: Bearer $GITLAB_API_PRIVATE_TOKEN" \
+            --header "Content-Type: application/json" \
+            --header "Accept: application/json" \
+          )
+
+          # Cancel any active/pending GitLab CI pipelines for the same project+branch
+          active_pipeline_ids=()
+          for pipe_status in created waiting_for_resource preparing pending running; do
+            echo "  ---- checking for CI pipelines with status '$pipe_status' for project '$GITLAB_PROJECT_ID', branch '$GIT_BRANCH'"
+            url="${GITLAB_API_URL}/projects/${GITLAB_PROJECT_ID}/pipelines?ref=${GIT_BRANCH}&status=${pipe_status}"
+            active_pipelines="$("${CURL_CMD[@]}" "$url" | jq -r '.[] | .id , .web_url')"
+            active_pipeline_ids+=($(echo "$active_pipelines" | grep -E '^[0-9]*$'))
+            printf "$active_pipelines\n\n"
+          done
+          if [ "${#active_pipeline_ids[@]}" -gt 0 ]; then
+            printf "\nFound %s active pipeline ids:\n" "${#active_pipeline_ids[@]}"
+            echo "${active_pipeline_ids[@]}"
+            for pipe_id in "${active_pipeline_ids[@]}"; do
+              printf "\n  ------ Cancelling pipeline ID %s...\n" "$pipe_id"
+              "${CURL_CMD[@]}" --request POST "${GITLAB_API_URL}/projects/${GITLAB_PROJECT_ID}/pipelines/${pipe_id}/cancel"
+            done
+          else
+            echo No active pipelines found
+          fi
+
+          echo "== Pushing $GIT_BRANCH to gitlab"
+          git remote add gitlab "https://oauth2:${GITLAB_API_PRIVATE_TOKEN}@${GITLAB_SERVER_URL#*://}/${GITLAB_ORG}/${GITXXB_REPO_NAME}.git"
+          #git branch "$GIT_BRANCH" HEAD
+          git log --color --graph  --abbrev-commit -5 \
+            --pretty=format:'%C(red)%h%C(reset) -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset'
+          git push gitlab ":${GIT_BRANCH}" -f || : # attempt to un-weird GLCI's `changed` tracking
+          git push gitlab "${GIT_BRANCH}" -f
+          echo "Pushed branch '${GIT_BRANCH}' to gitlab"
+          echo "   A new pipeline should be at: https://${GITLAB_SERVER_URL#*://}/${GITLAB_ORG}/${GITXXB_REPO_NAME}/-/pipelines/"
+
+      - name: When user does NOT have Repo Permissions
+        if: needs.contributor-permissions.outputs.permitted == 'false'
+        continue-on-error: true
+        run: |
+          echo "Ending gracefully; Contributor $GITHUB_ACTOR does not have permission to trigger CI"
+          false
+
+###  examine_contexts:
+###    name: 'Examine Context contents'
+###    if: always()
+###    runs-on: ubuntu-16.04
+###    needs: [ glci-syntax, contributor-permissions ]
+###    steps:
+###      - name: Dump contexts
+###        env:
+###          GITHUB_CONTEXT: ${{ toJson(github) }}
+###        run: echo "$GITHUB_CONTEXT"
+###      - name: Dump needs context
+###        env:
+###          ENV_CONTEXT: ${{ toJson(needs) }}
+###        run: echo "$ENV_CONTEXT"
+###      - name: Dump env vars
+###        run: env | sort
+

@@ -32,7 +32,7 @@ end
 group :system_tests do
   gem 'beaker', '~> 4.27.1'
   gem 'beaker-rspec'
-  gem 'simp-beaker-helpers', ENV['SIMP_BEAKER_HELPERS_VERSION'] || ['>= 1.20.1', '< 2']
+  gem 'simp-beaker-helpers', ENV['SIMP_BEAKER_HELPERS_VERSION'] || ['>= 1.21.4', '< 2']
 end
 
 # Evaluate extra gemfiles if they exist

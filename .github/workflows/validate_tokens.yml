@@ -1,0 +1,86 @@
+# Validate API tokens in GitHub Secrets against their respective services
+# ------------------------------------------------------------------------------
+#
+#             NOTICE: **This file is maintained with puppetsync**
+#
+# This file is updated automatically as part of a puppet module baseline.
+#
+# The next baseline sync will overwrite any local changes to this file!
+#
+# ==============================================================================
+#
+# This pipeline uses the following GitHub Action Secrets:
+#
+#   GitHub Secret variable    Type      Notes
+#   ------------------------  --------  ----------------------------------------
+#   PUPPETFORGE_API_TOKEN     Required
+#   GITLAB_API_PRIVATE_TOKEN  Required  GitLab token (should have `api` scope)
+#   NO_SCOPE_GITHUB_TOKEN     Required  GitHub token (should have no scopes)
+#   GITLAB_SERVER_URL         Optional  Specify a GL server other than gitlab.com
+#   The secure vars will be filtered in GitHub Actions log output, and aren't
+#   provided to untrusted builds (i.e, triggered by PR from another repository)
+#
+---
+name: 'Manual: Validate API tokens'
+
+on:
+  - workflow_dispatch
+
+jobs:
+  puppetforge:
+    name: 'Puppet Forge token authenticates with API'
+    runs-on: ubuntu-16.04
+    env:
+      PUPPETFORGE_API_TOKEN: ${{ secrets.PUPPETFORGE_API_TOKEN }}
+      FORGE_USER_AGENT: GitHubActions-ForgeReleng-Workflow/0.4.0 (Purpose/forge-ops-for-${{ github.event.repository.name }})
+    steps:
+      - run: |
+         curl -sS --fail --silent --show-error \
+           --user-agent "$FORGE_USER_AGENT" \
+           --header "Authorization: Bearer ${PUPPETFORGE_API_TOKEN:-default_content_to_cause_401_response}" \
+           https://forgeapi.puppet.com/v3/users > /dev/null
+
+  gitlab:
+    name: 'GitLab token has scope for developer'
+    runs-on: ubuntu-16.04
+    env:
+      GITLAB_API_PRIVATE_TOKEN: ${{ secrets.GITLAB_API_PRIVATE_TOKEN }}
+      GITLAB_API_URL: ${{ secrets.GITLAB_API_URL }}
+      GITLAB_ORG: ${{ github.event.organization.login }}
+    steps:
+      - run: |
+          GITLAB_API_URL="${GITLAB_API_URL:-https://gitlab.com/api/v4}"
+          curl -I --http1.1 --fail --silent --show-error \
+            --header 'Content-Type: application/json' \
+            --header "Authorization: Bearer $GITLAB_API_PRIVATE_TOKEN" \
+            "${CURL_CMD[@]}" "${GITLAB_API_URL}/groups/$GITLAB_ORG/audit_events"
+
+  github-no-scope:
+    name: 'No-scope GitHub token has NO scopes'
+    runs-on: ubuntu-16.04
+    env:
+      GITHUB_ORG: ${{ github.event.organization.login }}
+      NO_SCOPE_GITHUB_TOKEN: ${{secrets.NO_SCOPE_GITHUB_TOKEN}}
+    steps:
+      - name: Test token scopes with curl (expect no scopes)
+        run: |
+          if ! response="$(curl -I --http1.0 --fail --silent --show-error \
+            --header 'Content-Type: application/json' \
+            --header "Authorization: token ${NO_SCOPE_GITHUB_TOKEN:-default_content_to_cause_error}" \
+             "https://api.github.com/users/${GITHUB_ORG}")" 2>/tmp/x.$$.err; then
+            echo "::error ::$(cat /tmp/x.$$.err)"
+            exit 1
+          fi
+
+          if ! scopes="$(echo "$response" | grep '^X-OAuth-Scopes:' )"; then
+            echo "::error ::No X-OAuth-Scopes in response headers!"
+            echo "::debug ::$response"
+            exit 1
+          fi
+          scopes="$( echo "$scopes" | strings )"
+          if echo "$scopes" | awk -F: '{print $2}' | grep -E '\w' ; then
+            echo "::error ::The NO_SCOPE_GITHUB_TOKEN token has scopes! (${scopes})"
+            echo "::debug ::${scopes}"
+            exit 1
+          fi
+
