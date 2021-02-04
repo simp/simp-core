@@ -84,127 +84,6 @@ variables:
     - 'bundle exec gem list sync || :'
 
 
-# Assign a matrix level when your test will run.  Heavier jobs get higher numbers
-# NOTE: To skip all jobs with a SIMP_MATRIX_LEVEL, set SIMP_MATRIX_LEVEL=0
-
-.relevant_file_conditions_trigger_spec_tests: &relevant_file_conditions_trigger_spec_tests
-  changes:
-    - .gitlab-ci.yml
-    - .fixtures.yml
-    - "spec/spec_helper.rb"
-    - "spec/{classes,unit,defines,type_aliases,types,hosts,lib}/**/*.rb"
-    - "{SIMP,data,manifests,files,types,lib,functions}/**/*"
-    - "templates/**/*.{erb,epp}"
-    - "Gemfile"
-  exists:
-    - "spec/{classes,unit,defines,type_aliases,types,hosts}/**/*_spec.rb"
-
-.relevant_file_conditions_trigger_acceptance_tests: &relevant_file_conditions_trigger_acceptance_tests
-  changes:
-    - .gitlab-ci.yml
-    - "spec/spec_helper_acceptance.rb"
-    - "spec/{helpers,acceptance}/**/*"
-    - "spec/inspec_*/**/*"
-    - "{SIMP,data,manifests,files,types,lib,functions}/**/*"
-    - "templates/**/*.{erb,epp}"
-    - "Gemfile"
-  exists:
-    - "spec/acceptance/**/*_spec.rb"
-
-# For some reason, the rule regexes stopped matching line starts inside
-# $CI_COMMIT_MESSAGE with carets /^/, so we're using /\n?/ as a workaround.
-.skip_job_when_commit_message_says_to: &skip_job_when_commit_message_says_to
-  if: '$CI_COMMIT_MESSAGE =~ /\n?CI: (SKIP MATRIX|MATRIX LEVEL 0)/'
-  when: never
-
-.force_run_job_when_commit_message_lvl_1_or_above: &force_run_job_when_commit_mssage_lvl_1_or_above
-  if: '$CI_COMMIT_MESSAGE =~ /\n?CI: MATRIX LEVEL [123]/'
-  when: on_success
-
-.force_run_job_when_commit_message_lvl_2_or_above: &force_run_job_when_commit_mssage_lvl_2_or_above
-  if: '$CI_COMMIT_MESSAGE =~ /\n?CI: MATRIX LEVEL [23]/'
-  when: on_success
-
-.force_run_job_when_commit_message_lvl_3_or_above: &force_run_job_when_commit_mssage_lvl_3_or_above
-  if: '$CI_COMMIT_MESSAGE =~ /\n?CI: MATRIX LEVEL [3]/'
-  when: on_success
-
-# check for $CI_PIPELINE_SOURCE needed because this is combined w/when:changes
-.run_job_when_level_1_or_above_w_changes: &run_job_when_level_1_or_above_w_changes
-  if: '$SIMP_MATRIX_LEVEL =~ /^[123]$/ && $CI_COMMIT_BRANCH && $CI_PIPELINE_SOURCE == "push"'
-  when: on_success
-
-.run_job_when_level_2_or_above_w_changes: &run_job_when_level_2_or_above_w_changes
-  if: '$SIMP_MATRIX_LEVEL =~ /^[23]$/ && $CI_COMMIT_BRANCH && $CI_PIPELINE_SOURCE == "push"'
-  when: on_success
-
-.run_job_when_level_3_or_above_w_changes: &run_job_when_level_3_or_above_w_changes
-  if: '$SIMP_MATRIX_LEVEL =~ /^[3]$/ && $CI_COMMIT_BRANCH && $CI_PIPELINE_SOURCE == "push"'
-  when: on_success
-
-.force_run_job_when_var_and_lvl_1_or_above: &force_run_job_when_var_and_lvl_1_or_above
-  if: '$SIMP_FORCE_RUN_MATRIX == "yes" && $SIMP_MATRIX_LEVEL =~ /^[123]$/'
-  when: on_success
-
-.force_run_job_when_var_and_lvl_2_or_above: &force_run_job_when_var_and_lvl_2_or_above
-  if: '$SIMP_FORCE_RUN_MATRIX == "yes" && $SIMP_MATRIX_LEVEL =~ /^[23]$/'
-  when: on_success
-
-.force_run_job_when_var_and_lvl_3_or_above: &force_run_job_when_var_and_lvl_3_or_above
-  if: '$SIMP_FORCE_RUN_MATRIX == "yes" && $SIMP_MATRIX_LEVEL =~ /^[3]$/'
-  when: on_success
-
-
-
-# SIMP_MATRIX_LEVEL=1: Intended to run every commit
-.with_SIMP_ACCEPTANCE_MATRIX_LEVEL_1: &with_SIMP_ACCEPTANCE_MATRIX_LEVEL_1
-  rules:
-    - <<: *skip_job_when_commit_message_says_to
-    - <<: *force_run_job_when_var_and_lvl_1_or_above
-    - <<: *force_run_job_when_commit_mssage_lvl_1_or_above
-    - <<: *run_job_when_level_1_or_above_w_changes
-      <<: *relevant_file_conditions_trigger_acceptance_tests
-    - when: never
-
-.with_SIMP_SPEC_MATRIX_LEVEL_1: &with_SIMP_SPEC_MATRIX_LEVEL_1
-  rules:
-    - <<: *skip_job_when_commit_message_says_to
-    - <<: *force_run_job_when_commit_mssage_lvl_1_or_above
-    - <<: *force_run_job_when_var_and_lvl_1_or_above
-    - <<: *run_job_when_level_1_or_above_w_changes
-      <<: *relevant_file_conditions_trigger_spec_tests
-    - when: never
-
-# SIMP_MATRIX_LEVEL=2: Resource-heavy or redundant jobs
-.with_SIMP_ACCEPTANCE_MATRIX_LEVEL_2: &with_SIMP_ACCEPTANCE_MATRIX_LEVEL_2
-  rules:
-    - <<: *skip_job_when_commit_message_says_to
-    - <<: *force_run_job_when_var_and_lvl_2_or_above
-    - <<: *force_run_job_when_commit_mssage_lvl_2_or_above
-    - <<: *run_job_when_level_2_or_above_w_changes
-      <<: *relevant_file_conditions_trigger_acceptance_tests
-    - when: never
-
-.with_SIMP_SPEC_MATRIX_LEVEL_2: &with_SIMP_SPEC_MATRIX_LEVEL_2
-  rules:
-    - <<: *skip_job_when_commit_message_says_to
-    - <<: *force_run_job_when_commit_mssage_lvl_2_or_above
-    - <<: *force_run_job_when_var_and_lvl_2_or_above
-    - <<: *run_job_when_level_2_or_above_w_changes
-      <<: *relevant_file_conditions_trigger_spec_tests
-    - when: never
-
-# SIMP_MATRIX_LEVEL=3: Reserved for FULL matrix testing
-.with_SIMP_ACCEPTANCE_MATRIX_LEVEL_3: &with_SIMP_ACCEPTANCE_MATRIX_LEVEL_3
-  rules:
-    - <<: *skip_job_when_commit_message_says_to
-    - <<: *force_run_job_when_var_and_lvl_3_or_above
-    - <<: *force_run_job_when_commit_mssage_lvl_3_or_above
-    - <<: *run_job_when_level_3_or_above_w_changes
-      <<: *relevant_file_conditions_trigger_acceptance_tests
-    - when: never
-
-
 # Puppet Versions
 #-----------------------------------------------------------------------
 
@@ -257,7 +136,6 @@ variables:
   stage: 'validation'
   tags: ['docker']
   <<: *setup_bundler_env
-  <<: *with_SIMP_SPEC_MATRIX_LEVEL_1
   script:
     - 'bundle exec rake spec'
 
@@ -265,13 +143,11 @@ variables:
   stage: 'acceptance'
   tags: ['beaker']
   <<: *setup_bundler_env
-  <<: *with_SIMP_ACCEPTANCE_MATRIX_LEVEL_1
 
 .compliance_base: &compliance_base
   stage: 'compliance'
   tags: ['beaker']
   <<: *setup_bundler_env
-  <<: *with_SIMP_ACCEPTANCE_MATRIX_LEVEL_1
 
 
 # Pipeline / testing matrix
@@ -283,52 +159,14 @@ releng_checks:
   <<: *setup_bundler_env
   stage: 'validation'
   tags: ['docker']
-  variables:
-    SIMP_RPM_dist: ".el7"
   script:
     - 'command -v rpm || if command -v apt-get; then apt-get update; apt-get install -y rpm; fi ||:'
-    - 'bundle exec rake check:dot_underscore'
-    - 'bundle exec rake check:test_file'
-    - 'bundle exec rake metadata_lint'
+    - 'SIMP_RPM_dist=.el7 bundle exec rake check:dot_underscore'
+    - 'SIMP_RPM_dist=.el7 bundle exec rake check:test_file'
+    - 'SIMP_RPM_dist=.el7 bundle exec rake metadata_lint'
     - 'bundle exec rake check:pkglist_lint'
     - 'bundle exec puppet module build'
 
-# Linting
-#-----------------------------------------------------------------------
-
-# NOTE: Don't add more lint checks here.
-#       puppet-lint is a validator, not a parser; it includes its own lexer and
-#       doesn't use the Puppet gem at all.  Running multiple lint tests against
-#       different Puppet versions won't accomplish anything.
-
-pup-lint:
-  <<: *pup_6_x
-  <<: *lint_tests
-
-# Unit Tests
-#-----------------------------------------------------------------------
-
-pup5.x-unit:
-  <<: *pup_5_x
-  <<: *unit_tests
-  <<: *with_SIMP_SPEC_MATRIX_LEVEL_2
-
-pup5.pe-unit:
-  <<: *pup_5_pe
-  <<: *unit_tests
-
-pup6.x-unit:
-  <<: *pup_6_x
-  <<: *unit_tests
-  <<: *with_SIMP_SPEC_MATRIX_LEVEL_2
-
-pup6.pe-unit:
-  <<: *pup_6_pe
-  <<: *unit_tests
-
-pup7.x-unit:
-  <<: *pup_7_x
-  <<: *unit_tests
 
 # Test control variables
 #=======================================================================
@@ -367,67 +205,41 @@ pup7.x-unit:
 # Acceptance tests
 # ==============================================================================
 
-puppet6.pe-default_el7:
-  stage: acceptance
-  tags:
-    - beaker
-  <<: *cache_bundler
-  <<: *setup_bundler_env
+pup6.pe-default_el7:
+  <<: *acceptance_base
   <<: *pup_6_pe
   script:
-    - bundle exec rake spec_clean
     - bundle exec rake beaker:suites[default,el7_server]
   retry: 1
 
-puppet6.ipa_el7:
-  stage: acceptance
-  tags:
-    - beaker
-  <<: *cache_bundler
-  <<: *setup_bundler_env
+pup6.pe-ipa_el7:
+  <<: *acceptance_base
   <<: *only_with_SIMP_FULL_MATRIX_or_SIMP_IPA_TEST
   <<: *pup_6_pe
   script:
-    - bundle exec rake spec_clean
     - bundle exec rake beaker:suites[ipa,el7_server]
   retry: 1
 
-puppet6.pe-simp_lite_el7:
-  stage: acceptance
-  image: 'ruby:2.5'
-  tags:
-    - beaker
-  <<: *cache_bundler
-  <<: *setup_bundler_env
+pup6.pe-simp_lite_el7:
+  <<: *acceptance_base
   <<: *pup_6_pe
   <<: *only_with_SIMP_FULL_MATRIX_or_SIMP_LITE_TEST
   script:
-    - bundle exec rake spec_clean
     - bundle exec rake beaker:suites[simp_lite,el7_server]
   retry: 1
 
-puppet6.pe-rpm_el7:
-  stage: acceptance
-  tags:
-    - beaker
-  <<: *cache_bundler
-  <<: *setup_bundler_env
+pup6.pe-rpm_el7:
+  <<: *acceptance_base
   <<: *only_with_SIMP_RELEASE_TESTS
   <<: *pup_6_pe
   script:
-    - bundle exec rake spec_clean
     - bundle exec rake beaker:suites[install_from_rpm,el7_server]
   retry: 1
 
-puppet6.pe-forge_install_el7:
-  stage: acceptance
-  tags:
-    - beaker
-  <<: *cache_bundler
-  <<: *setup_bundler_env
+pup6.pe-forge_install_el7:
+  <<: *acceptance_base
   <<: *only_with_SIMP_RELEASE_TESTS
   <<: *pup_6_pe
   script:
-    - bundle exec rake spec_clean
     - bundle exec rake beaker:suites[install_from_core_module,el7_server]
   retry: 1
