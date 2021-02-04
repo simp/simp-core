@@ -1,4 +1,4 @@
-# Run puppet checks and test matrix for a PR
+# Run Puppet checks and test matrix on Pull Requests
 # ------------------------------------------------------------------------------
 #             NOTICE: **This file is maintained with puppetsync**
 #
@@ -73,7 +73,6 @@ jobs:
           bundle show
           bundle exec rake rubocop
 
-
   file-checks:
     name: 'File checks'
     runs-on: ubuntu-18.04
@@ -86,7 +85,6 @@ jobs:
           bundler-cache: true
       - run: bundle exec rake check:dot_underscore
       - run: bundle exec rake check:test_file
-
 
   releng-checks:
     name: 'RELENG checks'

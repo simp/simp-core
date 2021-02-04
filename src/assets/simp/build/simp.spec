@@ -1,7 +1,7 @@
 Summary: SIMP Full Install
 Name: simp
-Version: 6.5.0
-Release: 1%{?dist}%{?snapshot_release}
+Version: 6.6.0
+Release: Alpha%{?dist}%{?snapshot_release}
 License: Apache License, Version 2.0
 Group: Applications/System
 
@@ -73,7 +73,7 @@ Requires: pupmod-simp-pupmod >= 8.1.2, pupmod-simp-pupmod < 9.0.0
 Requires: pupmod-simp-resolv >= 0.5.0, pupmod-simp-resolv < 1.0.0
 Requires: pupmod-simp-rkhunter >= 0.0.3, pupmod-simp-rkhunter < 1.0.0
 Requires: pupmod-simp-rsync >= 6.4.1, pupmod-simp-rsync < 7.0.0
-Requires: pupmod-simp-rsyslog >= 7.6.4, pupmod-simp-rsyslog < 8.0.0
+Requires: pupmod-simp-rsyslog >= 8.0.0, pupmod-simp-rsyslog < 9.0.0
 Requires: pupmod-simp-selinux >= 2.6.2, pupmod-simp-selinux < 3.0.0
 Requires: pupmod-simp-simp >= 4.14.3, pupmod-simp-simp < 5.0.0
 Requires: pupmod-simp-simp_apache >= 7.0.1, pupmod-simp-simp_apache < 8.0.0
@@ -169,7 +169,8 @@ Requires: pupmod-simp-tpm2 >= 0.3.1
 Requires: pupmod-simp-tuned >= 0.2.1
 Requires: pupmod-simp-vnc >= 7.1.1
 Requires: pupmod-simp-vsftpd >= 7.4.0
-Requires: pupmod-simp-x2go >= 0.3.0
+#FIXME add this back in when x2go has been updated to work with latest gnome
+#Requires: pupmod-simp-x2go >= 0.3.0
 
 # The following line ensures the OBE pupmod-electrical-file_concat
 # package is removed when the simp-extras package is upgraded from

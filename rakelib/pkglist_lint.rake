@@ -8,7 +8,8 @@ namespace :check do
     (Excludes comments and whitespace)
   DESC
   task :pkglist_lint do
-    files=%x[find build/distributions/*/?/*/DVD -type f -name '*-simp_pkglist.txt'].split("\n")
+    base_dir = File.dirname(File.dirname(__FILE__))
+    files=%x[find #{base_dir}/build/distributions/*/?/*/DVD -type f -name '*-simp_pkglist.txt'].split("\n")
     problems_found=false
 
     files.each do |file|

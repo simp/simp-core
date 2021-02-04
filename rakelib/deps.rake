@@ -12,7 +12,7 @@ namespace :deps do
   task :clean, [:suffix,:remove_cache] do |t,args|
     args.with_defaults(:suffix => 'tracking')
     args.with_defaults(:remove_cache => false)
-    base_dir = File.dirname(__FILE__)
+    base_dir = File.dirname(File.dirname(__FILE__))
 
     r10k_helper = R10KHelper.new("Puppetfile.#{args[:suffix]}")
 

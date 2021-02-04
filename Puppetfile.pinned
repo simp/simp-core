@@ -478,9 +478,10 @@ mod 'simp-vsftpd',
   :git => 'https://github.com/simp/pupmod-simp-vsftpd',
   :branch => 'master'
 
-mod 'simp-x2go',
-  :git => 'https://github.com/simp/pupmod-simp-x2go',
-  :branch => 'master'
+#FIXME add this back in when it has been update to work with latest gnome
+#mod 'simp-x2go',
+#  :git => 'https://github.com/simp/pupmod-simp-x2go',
+#  :branch => 'master'
 
 mod 'simp-xinetd',
   :git => 'https://github.com/simp/pupmod-simp-xinetd',

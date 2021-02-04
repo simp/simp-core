@@ -10,7 +10,7 @@ namespace :pkg do
     args.with_defaults(:remove_yum_cache => 'true')
     args.with_defaults(:remove_dev_gpgkeys => 'true')
 
-    base_dir = File.dirname(__FILE__)
+    base_dir = File.dirname(File.dirname(__FILE__))
     #                                                          OS   ver  arch
     distr_glob = File.join(base_dir, 'build', 'distributions', '*', '*', '*')
 

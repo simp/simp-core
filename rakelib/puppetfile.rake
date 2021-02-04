@@ -9,7 +9,8 @@ namespace :puppetfile do
 
     fail 'Need a module name' unless args[:module_name]
 
-    puppetfile = 'Puppetfile.' + args[:puppetfile]
+    base_dir = File.dirname(File.dirname(__FILE__))
+    puppetfile = "#{base_dir}/Puppetfile." + args[:puppetfile]
 
     modules = load_modules(puppetfile)
 
@@ -39,7 +40,8 @@ namespace :puppetfile do
 
     args.with_defaults(:puppetfile => 'tracking')
 
-    puppetfile = 'Puppetfile.' + args[:puppetfile]
+    base_dir = File.dirname(File.dirname(__FILE__))
+    puppetfile = "#{base_dir}/Puppetfile." + args[:puppetfile]
 
     modules = load_modules(puppetfile)
 

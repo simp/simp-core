@@ -42,9 +42,8 @@ on:
 jobs:
   glci-syntax:
     name: '.gitlab-ci.yml Syntax'
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-18.04
     outputs:
-      exists: ${{ steps.glci-file-exists.outputs.exists }}
       valid: ${{ steps.validate-glci-file.outputs.valid }}
       pr_head_ref: ${{ steps.get-pr.outputs.pr_head_ref }}
       pr_head_sha: ${{ steps.get-pr.outputs.pr_head_sha }}
@@ -97,44 +96,17 @@ jobs:
           ref: ${{ steps.get-pr.outputs.pr_head_sha }}
           token: ${{secrets.NO_SCOPE_GITHUB_TOKEN}}
           clean: true
-      - name: 'Does GLCI file exist?'
-        id: glci-file-exists
-        run: |
-          if [ -f .gitlab-ci.yml ]; then
-            echo '.gitlab-ci.yml exists'
-            echo '::set-output name=exists::true'
-          else
-            echo '::error ::The ".gitlab-ci.yml" file is missing!'
-            echo '::set-output name=exists::false'
-            false
-          fi
       - name: 'Validate GLCI file syntax'
         id: validate-glci-file
-        env:
-          GITLAB_API_URL: ${{ secrets.GITLAB_API_URL }}       # https://gitlab.com/api/v4
-          GITLAB_API_PRIVATE_TOKEN: ${{ secrets.GITLAB_API_PRIVATE_TOKEN }}
-        run: |
-          GITLAB_API_URL="${GITLAB_API_URL:-https://gitlab.com/api/v4}"
-          CURL_CMD=(curl --http1.1 --fail --silent --show-error --header 'Content-Type: application/json' --data @-)
-          [ -n "$GITLAB_API_PRIVATE_TOKEN" ] && CURL_CMD+=(--header "Authorization: Bearer $GITLAB_API_PRIVATE_TOKEN")
-          data="$(jq --null-input --arg yaml "$(<.gitlab-ci.yml)" '.content=$yaml' )"
-          response="$(echo "$data" | "${CURL_CMD[@]}" "${GITLAB_API_URL}/ci/lint?include_merged_yaml=true" | jq . )"
-          status=$( echo "$response" | jq .status )
-          if [[ "$status" == '"valid"' ]]; then
-            echo '.gitlab-ci.yml is valid'
-            echo '::set-output name=valid::true'
-          else
-            echo '::set-output name=valid::false'
-            echo '::error::The .gitlab-ci.yml" file is invalid!'
-            echo "$response" | jq -r '.errors[] | . = "::error ::\(.)"'
-            printf  "::debug ::.gitlab-ci.yml CI lint service response: %s\n" "$response"
-            false
-          fi
+        uses: simp/github-action-gitlab-ci-syntax-check@main
+        with:
+          gitlab_api_private_token: ${{ secrets.GITLAB_API_PRIVATE_TOKEN }}
+          gitlab_api_url: ${{ secrets.GITLAB_API_URL }}       # https://gitlab.com/api/v4
 
   trigger-when-user-has-repo-permissions:
     name: 'Trigger CI'
     needs: [ glci-syntax ]
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
         with:
@@ -143,63 +115,21 @@ jobs:
           token: ${{secrets.NO_SCOPE_GITHUB_TOKEN}}
           fetch-depth: 0  # Need full checkout to push to gitlab mirror
           clean: true
-      - name: Trigger CI
-        env:
-          GITLAB_SERVER_URL: ${{ secrets.GITLAB_SERVER_URL }} # https://gitlab.com
-          GITLAB_API_URL: ${{ secrets.GITLAB_API_URL }}       # https://gitlab.com/api/v4
-          GITLAB_ORG: ${{ github.event.organization.login }}
-          GITLAB_API_PRIVATE_TOKEN: ${{ secrets.GITLAB_API_PRIVATE_TOKEN }}
-          GIT_BRANCH: ${{ needs.glci-syntax.outputs.pr_head_ref }}
-        run: |
-          GITLAB_SERVER_URL="${GITLAB_SERVER_URL:-https://gitlab.com}"
-          GITLAB_API_URL="${GITLAB_API_URL:-${GITLAB_SERVER_URL}/api/v4}"
-          GITXXB_REPO_NAME="${GITHUB_REPOSITORY/$GITHUB_REPOSITORY_OWNER\//}"
-          GITLAB_PROJECT_ID="${GITLAB_ORG}%2F${GITXXB_REPO_NAME}"
-          # --http1.0 avoids an HTTP/2 load balancing issue when run from GA
-          CURL_CMD=(curl --http1.0 --fail --silent --show-error \
-            --header "Authorization: Bearer $GITLAB_API_PRIVATE_TOKEN" \
-            --header "Content-Type: application/json" \
-            --header "Accept: application/json" \
-          )
-
-          # Cancel any active/pending GitLab CI pipelines for the same project+branch
-          active_pipeline_ids=()
-          for pipe_status in created waiting_for_resource preparing pending running; do
-            echo "  ---- checking for CI pipelines with status '$pipe_status' for project '$GITLAB_PROJECT_ID', branch '$GIT_BRANCH'"
-            url="${GITLAB_API_URL}/projects/${GITLAB_PROJECT_ID}/pipelines?ref=${GIT_BRANCH}&status=${pipe_status}"
-            active_pipelines="$("${CURL_CMD[@]}" "$url" | jq -r '.[] | .id , .web_url')"
-            active_pipeline_ids+=($(echo "$active_pipelines" | grep -E '^[0-9]*$'))
-            printf "$active_pipelines\n\n"
-          done
-          if [ "${#active_pipeline_ids[@]}" -gt 0 ]; then
-            printf "\nFound %s active pipeline ids:\n" "${#active_pipeline_ids[@]}"
-            echo "${active_pipeline_ids[@]}"
-            for pipe_id in "${active_pipeline_ids[@]}"; do
-              printf "\n  ------ Cancelling pipeline ID %s...\n" "$pipe_id"
-              "${CURL_CMD[@]}" --request POST "${GITLAB_API_URL}/projects/${GITLAB_PROJECT_ID}/pipelines/${pipe_id}/cancel"
-            done
-          else
-            echo No active pipelines found
-          fi
-
-          # Should we protect against pushing default branches?
-          echo "== Pushing '$GIT_BRANCH' to gitlab"
-          git remote add gitlab "https://oauth2:${GITLAB_API_PRIVATE_TOKEN}@${GITLAB_SERVER_URL#*://}/${GITLAB_ORG}/${GITXXB_REPO_NAME}.git"
-          git branch "$GIT_BRANCH" HEAD || :
-          git branch -av
-          git log --color --graph  --abbrev-commit -5 \
-            --pretty=format:'%C(red)%h%C(reset) -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset'
-          git push gitlab ":${GIT_BRANCH}" -f || : # attempt to un-weird GLCI's `changed` tracking
-          echo "== git push --verbose gitlab ${GIT_BRANCH}"
-          git push --verbose gitlab "${GIT_BRANCH}"
-          echo "Pushed branch '${GIT_BRANCH}' to gitlab"
-          echo "   A new pipeline should be at: https://${GITLAB_SERVER_URL#*://}/${GITLAB_ORG}/${GITXXB_REPO_NAME}/-/pipelines/"
+      - name: Trigger CI when user has Repo Permissions
+        uses: simp/github-action-gitlab-ci-pipeline-trigger@v1
+        with:
+          git_hashref:  ${{ needs.glci-syntax.outputs.pr_head_sha }}
+          git_branch: ${{ needs.glci-syntax.outputs.pr_head_ref }}
+          gitlab_api_private_token: ${{ secrets.GITLAB_API_PRIVATE_TOKEN }}
+          gitlab_group: ${{ github.event.organization.login }}
+          github_repository: ${{ github.repository }}
+          github_repository_owner: ${{ github.repository_owner }}
 
 ###  examine_contexts:
 ###    needs: [ glci-syntax ]
 ###    name: 'Examine Context contents'
 ###    if: always()
-###    runs-on: ubuntu-16.04
+###    runs-on: ubuntu-18.04
 ###    steps:
 ###      - name: Dump contexts
 ###        env:
@@ -211,4 +141,3 @@ jobs:
 ###        run: echo "$ENV_CONTEXT"
 ###      - name: Dump env vars
 ###        run: env | sort
-
