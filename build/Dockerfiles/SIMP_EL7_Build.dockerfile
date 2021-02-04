@@ -33,8 +33,8 @@ FROM centos:7.0.1406
 ENV container docker
 
 RUN mkdir /root/build_scripts
-ADD scripts/common/* /root/build_scripts
-ADD scripts/el7/* /root/build_scripts
+ADD scripts/common/* /root/build_scripts/
+ADD scripts/el7/* /root/build_scripts/
 
 WORKDIR /root/build_scripts
 RUN chmod +x *

@@ -12,8 +12,8 @@ FROM centos:centos8.1.1911
 ENV container docker
 
 RUN mkdir /root/build_scripts
-ADD scripts/common/* /root/build_scripts
-ADD scripts/el8/* /root/build_scripts
+ADD scripts/common/* /root/build_scripts/
+ADD scripts/el8/* /root/build_scripts/
 
 WORKDIR /root/build_scripts
 RUN chmod +x *
