@@ -4,7 +4,7 @@ GEM
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
     ansi (1.5.0)
-    ast (2.4.1)
+    ast (2.4.2)
     beaker (4.27.1)
       beaker-hostgenerator
       hocon (~> 1.0)
@@ -33,7 +33,7 @@ GEM
     beaker-hostgenerator (1.2.10)
       deep_merge (~> 1.0)
       stringify-hash (~> 0.0.0)
-    beaker-pe (2.11.9)
+    beaker-pe (2.11.11)
       beaker (~> 4.0)
       beaker-abs
       beaker-answers (~> 0.0)
@@ -65,7 +65,7 @@ GEM
     colorize (0.8.1)
     commander (4.5.2)
       highline (~> 2.0.0)
-    concurrent-ruby (1.1.7)
+    concurrent-ruby (1.1.8)
     cri (2.15.11)
     deep_merge (1.2.1)
     diff-lcs (1.3)
@@ -74,7 +74,7 @@ GEM
       multi_json
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
-    excon (0.78.1)
+    excon (0.79.0)
     facter (2.5.7)
     facterdb (1.6.0)
       facter (< 5.0.0)
@@ -168,7 +168,7 @@ GEM
       pry (~> 0.11)
       yard (~> 0.9.11)
     public_suffix (4.0.6)
-    puppet (6.19.1)
+    puppet (6.20.0)
       concurrent-ruby (~> 1.0)
       deep_merge (~> 1.0)
       facter (> 2.0.1, < 5)
@@ -189,7 +189,7 @@ GEM
       puppet-lint (>= 1.0, < 3.0)
     puppet-resource_api (1.8.13)
       hocon (>= 1.0)
-    puppet-strings (2.5.0)
+    puppet-strings (2.6.0)
       rgen
       yard (~> 0.9.5)
     puppet-syntax (3.1.0)
@@ -201,9 +201,9 @@ GEM
       gettext-setup (~> 0.11)
       minitar
       semantic_puppet (~> 1.0)
-    puppetlabs_spec_helper (2.15.0)
+    puppetlabs_spec_helper (2.16.0)
       mocha (~> 1.0)
-      pathspec (~> 0.2.1)
+      pathspec (>= 0.2.1, < 1.1.0)
       puppet-lint (~> 2.0)
       puppet-syntax (>= 2.0, < 4)
       rspec-puppet (~> 2.0)
@@ -237,7 +237,7 @@ GEM
     rspec-its (1.3.0)
       rspec-core (>= 3.0.0)
       rspec-expectations (>= 3.0.0)
-    rspec-mocks (3.10.1)
+    rspec-mocks (3.10.2)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.10.0)
     rspec-puppet (2.8.0)
@@ -246,7 +246,7 @@ GEM
       facter
       facterdb (>= 0.5.0)
       puppet
-    rspec-support (3.10.1)
+    rspec-support (3.10.2)
     rsync (1.0.9)
     ruby-ll (2.1.2)
       ansi
@@ -259,7 +259,7 @@ GEM
       rspec-its
       specinfra (~> 2.72)
     sfl (2.3)
-    simp-beaker-helpers (1.20.1)
+    simp-beaker-helpers (1.21.4)
       beaker (>= 4.17.0, < 5.0.0)
       beaker-docker (~> 0.3)
       beaker-puppet (>= 1.18.14, < 2.0.0)
@@ -289,14 +289,14 @@ GEM
       json (>= 1.0)
       rspec-puppet-facts
     spdx-licenses (1.2.0)
-    specinfra (2.82.22)
+    specinfra (2.82.23)
       net-scp
       net-ssh (>= 2.7)
       net-telnet (= 0.1.1)
       sfl
     stringify-hash (0.0.2)
     text (1.3.1)
-    thor (1.0.1)
+    thor (1.1.0)
     tty-color (0.6.0)
     tty-cursor (0.7.1)
     tty-prompt (0.23.0)
@@ -340,7 +340,7 @@ DEPENDENCIES
   rake
   rspec
   rspec-puppet
-  simp-beaker-helpers (>= 1.20.1, < 2)
+  simp-beaker-helpers (>= 1.21.4, < 2)
   simp-build-helpers (> 0.1, < 2.0)
   simp-rake-helpers (> 5.11, < 6.0)
   simp-rspec-puppet-facts (~> 3.1)
