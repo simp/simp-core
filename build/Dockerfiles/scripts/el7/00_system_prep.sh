@@ -17,6 +17,3 @@ yum clean all && yum history sync
 #
 touch /var/lib/rpm/*; yum install -y yum-plugin-ovl || true
 touch /var/lib/rpm/*; rpm -qi yum-utils || yum install -y yum-utils
-
-# The oldesst systemd doesn't work
-ln -sf /bin/true /usr/bin/systemctl

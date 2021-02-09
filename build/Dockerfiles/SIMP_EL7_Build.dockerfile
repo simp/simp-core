@@ -40,6 +40,7 @@ WORKDIR /root/build_scripts
 RUN chmod +x *
 
 RUN ./00_system_prep.sh
+RUN ./01_disable_systemctl.sh
 RUN ./05_selinux.sh
 RUN ./10_dev_packages.sh
 RUN ./user.sh
