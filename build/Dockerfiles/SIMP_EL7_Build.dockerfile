@@ -40,11 +40,17 @@ WORKDIR /root/build_scripts
 RUN chmod +x *
 
 RUN ./00_system_prep.sh
+RUN ./minimize_package_installs.sh
+RUN ./01_disable_systemctl.sh
 RUN ./05_selinux.sh
 RUN ./10_dev_packages.sh
 RUN ./user.sh
 RUN ./rvm.sh
 RUN ./prime_ruby.sh
+RUN ./package_cleanup.sh
+RUN rm -rf /root/build_scripts
+
+WORKDIR /root
 
 # Drop into a shell for building
 CMD /bin/bash -c "su -l build_user"

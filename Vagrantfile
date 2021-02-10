@@ -31,19 +31,8 @@ Vagrant.configure('2') do |c|
 
     v.vm.synced_folder '.', '/vagrant', disabled: true
 
-    # Enable the SIMP Repos from the build module
-    v.vm.provision 'file',
-      source: 'build/distributions/CentOS/7/x86_64/yum_data/repos/simp.repo',
-      destination: '/tmp/simp.repo'
-
     v.vm.provision 'shell',
-      inline: 'mv /tmp/simp.repo /etc/yum.repos.d'
-
-    v.vm.provision 'shell',
-      inline: 'chown root:root /etc/yum.repos.d/simp.repo'
-
-    v.vm.provision 'shell',
-      inline: 'chmod ugo+rX /etc/yum.repos.d/simp.repo'
+      inline: 'yum install -y https://download.simp-project.com/simp-release-community.rpm'
 
     # Install the puppet server
     v.vm.provision 'shell',
