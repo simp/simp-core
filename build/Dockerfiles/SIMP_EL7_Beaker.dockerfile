@@ -1,4 +1,4 @@
-# This Dockerfile targets running accpetance tests using Beaker
+# This Dockerfile targets running acceptance tests using Beaker
 
 FROM centos:7
 ENV container docker
