@@ -48,6 +48,9 @@ RUN ./user.sh
 RUN ./rvm.sh
 RUN ./prime_ruby.sh
 RUN ./package_cleanup.sh
+RUN rm -rf /root/build_scripts
+
+WORKDIR /root
 
 # Drop into a shell for building
 CMD /bin/bash -c "su -l build_user"

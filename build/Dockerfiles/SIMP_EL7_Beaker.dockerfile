@@ -12,10 +12,13 @@ RUN chmod +x *
 
 RUN ./00_system_prep.sh
 RUN ./minimize_package_installs.sh
-RUN ./base_packages.sh
+RUN ./beaker_packages.sh
 RUN ./03_enable_systemd.sh
 RUN ./container_safe_services.sh
 RUN yum -y update
 RUN ./package_cleanup.sh
+RUN rm -rf /root/build_scripts
 
-CMD ['/sbin/init']
+WORKDIR /root
+
+CMD [ "/sbin/init" ]
