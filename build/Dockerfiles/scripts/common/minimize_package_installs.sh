@@ -10,7 +10,7 @@ yum --noplugins \
     install -y glibc-langpack-en 2>/dev/null ||:
 
 # Ensure that the image stays minimal
-cat << HERE > ${scratchmnt}/etc/yum.conf
+cat << HERE > /etc/yum.conf
 [main]
 best=True
 clean_requirements_on_remove=True
