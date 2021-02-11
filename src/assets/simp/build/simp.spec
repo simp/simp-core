@@ -247,6 +247,9 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Thu Feb 11 2021 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 6.6.0-1
+- Update the EL8 kickstart file with comment about changes needed for UEFI boot.
+
 * Thu Nov 12 2020 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 6.5.0-1
 - Add the following modules back in to 6.5.0 as they have been updated:
   - pupmod-simp-simp_gitlab
