@@ -10,13 +10,12 @@
 #
 # Usage: Run `vagrant up`
 #
-# Once the systems have completed:
-#   * vagrant ssh simp_server
-#   * sudo su - root
-#   * reboot
-#
 # The password for the 'vagrant' user is 'vagrant' and will be needed to login
 # to the 'simp_client' system when you use 'vagrant ssh simp_client'
+#
+# Environment Variables:
+#   * BLEEDING_EDGE=true => Pull in the Puppetfile.branches after `simp config`
+#
 Vagrant.configure('2') do |c|
   c.vm.define 'simp_server' do |v|
     v.vm.hostname = 'puppet.test.simp'
@@ -122,7 +121,7 @@ Vagrant.configure('2') do |c|
     # This moves the default environment data into place
     v.vm.provision 'shell',
       keep_color: true,
-      inline: 'simp config --force-config -f -D -s cli::network::interface=eth1 cli::is_simp_ldap_server=false cli::network::dhcp=static cli::set_grub_password=false svckill::mode=enforcing'
+      inline: 'simp config --force-config -f -D -s cli::network::interface=eth1 cli::is_simp_ldap_server=false cli::network::set_up_nic=false cli::set_grub_password=false svckill::mode=enforcing'
 
     # Unlock bootstrap
     v.vm.provision 'shell',
@@ -183,22 +182,46 @@ Vagrant.configure('2') do |c|
     v.vm.provision 'shell',
       inline: %{echo "simp::server::kickstart::manage_tftpboot: false" >> /etc/puppetlabs/code/environments/production/data/hosts/puppet.test.simp.yaml}
 
+    bootstrap_cmd = [
+      'simp bootstrap',
+      'cp -a ~vagrant/.ssh/authorized_keys /etc/ssh/local_keys/vagrant'
+    ]
+
+    if ENV['BLEEDING_EDGE'] == 'true'
+      v.vm.provision 'file',
+        source: './Puppetfile.branches',
+        destination: '/home/vagrant/Puppetfile.branches'
+
+      bootstrap_cmd << 'mv /home/vagrant/Puppetfile.branches /etc/puppetlabs/code/environments/production/Puppetfile.simp'
+      bootstrap_cmd << 'chown root:puppet /etc/puppetlabs/code/environments/production/Puppetfile.simp'
+      bootstrap_cmd << 'chmod 0640 /etc/puppetlabs/code/environments/production/Puppetfile.simp'
+      bootstrap_cmd << [
+        %{( umask 0027 && sg puppet -c},
+        %{'/usr/share/simp/bin/r10k puppetfile install},
+        %{--puppetfile /etc/puppetlabs/code/environments/production/Puppetfile},
+        %{--moduledir /etc/puppetlabs/code/environments/production/modules')}
+      ].join(' ')
+    end
+
+    bootstrap_cmd << 'systemd-run --on-active=5 /bin/systemctl --force reboot'
+
     # Run bootstrap and ensure that Vagrant can get back into the host using
     # SSH keys
     #
     # This needs to be the LAST command run
-    v.vm.provision 'shell',
-      keep_color: true,
-      inline: 'simp bootstrap && cp -a ~vagrant/.ssh/authorized_keys /etc/ssh/local_keys/vagrant'
+    v.vm.provision 'shell' do |s|
+      s.keep_color = true
+      s.inline = bootstrap_cmd.join(' && ')
+      s.reset = true
+    end
 
     v.vm.post_up_message = <<-HEREDOC
     Your SIMP server is ready!
 
     If this is your first boot:
 
-    1. Run 'vagrant ssh simp_server' then 'sudo reboot' to restart the server
-    2. Run 'vagrant ssh simp_server' to login to the system
-    3. Run 'sudo su - root' to elevate privileges
+    1. Run 'vagrant ssh simp_server' to login to the system
+    2. Run 'sudo su - root' to elevate privileges
 
     * Your server can be accessed via 'vagrant ssh simp_server'
     * Your client can be accessed via 'vagrant ssh simp_client'
@@ -250,8 +273,17 @@ Vagrant.configure('2') do |c|
     v.vm.provision 'shell',
       inline: 'curl -k -O https://puppet.test.simp/ks/bootstrap_simp_client'
 
-    v.vm.provision 'shell',
-      inline: '/opt/puppetlabs/puppet/bin/ruby bootstrap_simp_client --debug --puppet-wait-for-cert 0 --debug --print-stats --puppet_server=puppet.test.simp --puppet_ca=puppet.test.simp'
+    v.vm.provision 'shell' do |s|
+      cmd = [
+        '/opt/puppetlabs/puppet/bin/ruby bootstrap_simp_client --debug --puppet-wait-for-cert 0 --debug --print-stats --puppet_server=puppet.test.simp --puppet_ca=puppet.test.simp',
+        'cp -a ~vagrant/.ssh/authorized_keys /etc/ssh/local_keys/vagrant',
+        'systemd-run --on-active=5 /bin/systemctl --force reboot'
+      ]
+
+      s.keep_color = true
+      s.inline = cmd.join(' && ')
+      s.reset = true
+    end
   end
 
   c.vm.define 'simp_stig', autostart: false do |v|
@@ -297,8 +329,17 @@ Vagrant.configure('2') do |c|
     v.vm.provision 'shell',
       inline: 'curl -k -O https://puppet.test.simp/ks/bootstrap_simp_client'
 
-    v.vm.provision 'shell',
-      inline: '/opt/puppetlabs/puppet/bin/ruby bootstrap_simp_client --debug --puppet_server=puppet.test.simp --puppet_ca=puppet.test.simp'
+    v.vm.provision 'shell' do |s|
+      cmd = [
+        '/opt/puppetlabs/puppet/bin/ruby bootstrap_simp_client --debug --puppet-wait-for-cert 0 --debug --print-stats --puppet_server=puppet.test.simp --puppet_ca=puppet.test.simp',
+        'cp -a ~vagrant/.ssh/authorized_keys /etc/ssh/local_keys/vagrant',
+        'systemd-run --on-active=5 /bin/systemctl --force reboot'
+      ]
+
+      s.keep_color = true
+      s.inline = cmd.join(' && ')
+      s.reset = true
+    end
 
     v.vm.post_up_message = <<-HEREDOC
     Your  STIG-mode SIMP client is ready!
