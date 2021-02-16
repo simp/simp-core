@@ -152,7 +152,7 @@ simp_options::dns::search: [ <%= domain %> ]
 simp_options::dns::servers: [ <%= nameserver %> ]
 
 
-# === simp_options::ntpd::servers ===
+# === simp_options::ntp::servers ===
 # Your network's NTP time servers.
 #
 # A consistent time source is critical to a functioning public key
@@ -160,7 +160,7 @@ simp_options::dns::servers: [ <%= nameserver %> ]
 # run multiple production systems using individual hardware clocks!
 #
 # For many networks, the default gateway (10.0.2.2) provides an NTP server.
-simp_options::ntpd::servers:
+simp_options::ntp::servers:
 - 0.pool.ntp.org
 - 1.pool.ntp.org
 - 2.pool.ntp.org

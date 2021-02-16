@@ -50,7 +50,9 @@ shared_examples 'basic server setup' do |host, options|
 
   # Some scripts (e.g. simp CLI) require Puppet's Ruby and more capable facts.
   it "should install puppet-agent to ensure Puppet's Ruby and facter are installed" do
-    host.install_package('puppet-agent')
+    # will install a specific puppet-agent version if PUPPET_VERSION is set
+    puppet_version = latest_puppet_agent_version_for(ENV['PUPPET_VERSION'])
+    host.install_package('puppet-agent', '', puppet_version)
   end
 
   it 'should remove temporary system factor gem required for beaker host prep' do
