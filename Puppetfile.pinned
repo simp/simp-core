@@ -1,14 +1,17 @@
-# DO NOT UPDATE THIS FILE TO TAGS UNLESS THE UPSTREAM ABSOLUTELY REQUIRES IT
+# UPDATE THIS FILE WHEN BUILDING A NEW RELEASE
 #
-# This `Puppetfile.branches` file defines the relevant tracking branch for each
-# SIMP component** needed to build a SIMP super-release.   It can be used to:
+# This `Puppetfile.pinned` file defines each component in the next SIMP
+# super-release.
 #
-# * Check out all components' latest commits
-# * Determine if components have been updated beyond the versions recorded in
-#   `Puppetfile.pinned`.
+# * Components under active development may retain their tracking branches
+#   (as defined in `Puppetfile.branches`)
+# * As the version of each SIMP component is decided for the next release, the
+#   release for each component is pinned in this file.
+# * By the time the next SIMP super-release is ready, all components in this file
+#   will be pinned to their intended version.
 #
 # ** NOTE: External (non-SIMP) modules are always pinned to the version intended
-#    for the next SIMP release (6.5.)
+#    for the next SIMP release (6.6.)
 moduledir 'src'
 
 mod 'simp-doc',
