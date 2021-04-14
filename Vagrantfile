@@ -121,11 +121,11 @@ Vagrant.configure('2') do |c|
     # This moves the default environment data into place
     v.vm.provision 'shell',
       keep_color: true,
-      inline: 'simp config --force-config -f -D -s cli::network::interface=eth1 cli::is_simp_ldap_server=false cli::network::set_up_nic=false cli::set_grub_password=false svckill::mode=enforcing'
+      inline: 'simp config --force-config -f -D -s cli::network::interface=eth1 cli::is_simp_ldap_server=false cli::network::set_up_nic=false cli::set_grub_password=false svckill::mode=enforcing cli::local_priv_user=vagrant'
 
     # Unlock bootstrap
     v.vm.provision 'shell',
-      inline: 'rm /root/.simp/simp_bootstrap_start_lock'
+      inline: 'rm -f /root/.simp/simp_bootstrap_start_lock'
 
     # Set up for the client registration
     #
