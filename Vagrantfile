@@ -89,7 +89,7 @@ Vagrant.configure('2') do |c|
     # Set up a STIG-mode client
     stig_mode_hiera = {
       # Enforce in STIG Mode
-      'compliance_markup::enforcement' => 'disa_stig',
+      'compliance_markup::enforcement' => ['disa_stig'],
       # Make sure the 'vagrant' user can get to root via sudo
       'selinux::login_resources' => {
         'vagrant' => {
