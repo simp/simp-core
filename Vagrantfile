@@ -16,6 +16,8 @@
 # Environment Variables:
 #   * BLEEDING_EDGE=true => Pull in the Puppetfile.branches after `simp config`
 #
+ENV['VAGRANT_NO_PARALLEL'] = 'yes'
+
 Vagrant.configure('2') do |c|
   c.vm.define 'simp_server' do |v|
     v.vm.hostname = 'puppet.test.simp'
@@ -26,6 +28,11 @@ Vagrant.configure('2') do |c|
 
     v.vm.provider :virtualbox do |vb|
       vb.customize ['modifyvm', :id, '--memory', '6144', '--cpus', '2']
+    end
+
+    v.vm.provider :libvirt do |lv|
+      lv.cpus = 2
+      lv.memory = 6144
     end
 
     v.vm.synced_folder '.', '/vagrant', disabled: true
@@ -60,7 +67,10 @@ Vagrant.configure('2') do |c|
         'vagrant_su' => {
           'user_list' => ['vagrant'],
           'cmnd'      => ['ALL'],
-          'passwd'    => false
+          'passwd'    => false,
+          'options'   => {
+            'role' => 'unconfined_r'
+          }
         }
       },
       'pam::access::users' => {
@@ -89,7 +99,7 @@ Vagrant.configure('2') do |c|
     # Set up a STIG-mode client
     stig_mode_hiera = {
       # Enforce in STIG Mode
-      'compliance_markup::enforcement' => 'disa_stig',
+      'compliance_markup::enforcement' => ['disa_stig'],
       # Make sure the 'vagrant' user can get to root via sudo
       'selinux::login_resources' => {
         'vagrant' => {
@@ -103,7 +113,6 @@ Vagrant.configure('2') do |c|
     stig_yaml.puts(stig_mode_hiera.to_yaml)
     stig_yaml.close
 
-
     if stig_yaml && File.exist?(stig_yaml.path)
       at_exit{stig_yaml.unlink}
 
@@ -116,16 +125,53 @@ Vagrant.configure('2') do |c|
         inline: '\mv /tmp/stig.test.simp.yaml /usr/share/simp/environment-skeleton/puppet/data/hosts'
     end
 
+    # Hook up the compliance enforcement backend
+    hiera_mod = <<~HIERA_MOD
+    #!/opt/puppetlabs/puppet/bin/ruby
+
+    require 'yaml'
+
+    conf = '/usr/share/simp/environment-skeleton/puppet/hiera.yaml'
+
+    hiera_yaml = YAML.load_file(conf)
+
+    hiera_yaml['hierarchy'].insert(
+      hiera_yaml['hierarchy'].index{|x| x['paths'].include?('default.yaml')},
+      {'name' => 'SIMP Compliance Engine', 'lookup_key' => 'compliance_markup::enforcement'}
+    )
+
+    File.open(conf, 'w'){|f| f.puts(hiera_yaml.to_yaml)}
+    HIERA_MOD
+
+    hiera_modfile = Tempfile.new('hiera.yaml')
+    hiera_modfile.puts(hiera_mod)
+    hiera_modfile.close
+
+    if hiera_modfile && File.exist?(hiera_modfile.path)
+      at_exit{hiera_modfile.unlink}
+
+      v.vm.provision 'file',
+        source: hiera_modfile.path,
+        destination: '/tmp/hiera_mod.rb'
+
+      # Update the node-specific configuration for the stig node
+      v.vm.provision 'shell',
+        inline: '\chmod 755 /tmp/hiera_mod.rb; /tmp/hiera_mod.rb'
+
+      v.vm.provision 'shell',
+        inline: '\rm /tmp/hiera_mod.rb'
+    end
+
     # Run simp config
     #
     # This moves the default environment data into place
     v.vm.provision 'shell',
       keep_color: true,
-      inline: 'simp config --force-config -f -D -s cli::network::interface=eth1 cli::is_simp_ldap_server=false cli::network::set_up_nic=false cli::set_grub_password=false svckill::mode=enforcing'
+      inline: 'simp config --force-config -f -D -s cli::network::interface=eth1 cli::is_simp_ldap_server=false cli::network::set_up_nic=false cli::set_grub_password=false svckill::mode=enforcing cli::use_internet_simp_yum_repos=false cli::local_priv_user=vagrant'
 
     # Unlock bootstrap
     v.vm.provision 'shell',
-      inline: 'rm /root/.simp/simp_bootstrap_start_lock'
+      inline: 'rm -f /root/.simp/simp_bootstrap_start_lock'
 
     # Set up for the client registration
     #
@@ -241,6 +287,11 @@ Vagrant.configure('2') do |c|
       vb.customize ['modifyvm', :id, '--memory', '512', '--cpus', '1']
     end
 
+    v.vm.provider :libvirt do |lv|
+      lv.cpus = 1
+      lv.memory = 512
+    end
+
     v.vm.synced_folder '.', '/vagrant', disabled: true
 
     # Enable the SIMP Repos from the build module
@@ -297,6 +348,11 @@ Vagrant.configure('2') do |c|
       vb.customize ['modifyvm', :id, '--memory', '512', '--cpus', '1']
     end
 
+    v.vm.provider :libvirt do |lv|
+      lv.cpus = 1
+      lv.memory = 512
+    end
+
     v.vm.synced_folder '.', '/vagrant', disabled: true
 
     # Enable the SIMP Repos from the build module
@@ -346,8 +402,6 @@ Vagrant.configure('2') do |c|
 
     * This sytem can be accessed via 'vagrant ssh simp_stig'
     * The vagrant user password is 'vagrant'.
-
-    IMPORTANT: To get to a root shell, use 'sudo -i -r unconfined_r'
     HEREDOC
   end
 end
