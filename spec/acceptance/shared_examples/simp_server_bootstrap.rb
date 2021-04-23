@@ -76,6 +76,9 @@ shared_examples 'SIMP server bootstrap' do |master, config|
       #
       # The following variables are require only by simp_conf.yaml.erb
       #   ldap_root_password_hash
+      #
+      # The following variables are require only by simp_conf.yaml_no_ldap.erb
+      #   sssd_domains
 
       trusted_nets =  host_networks(master)
       expect(trusted_nets).to_not be_empty
@@ -93,6 +96,9 @@ shared_examples 'SIMP server bootstrap' do |master, config|
 
       if config.fetch(:simp_ldap_server, true)
         ldap_root_password_hash = encrypt_openldap_password(test_password)
+      else
+        el7_master = (fact_on(master, 'operatingsystemmajrelease') == '7')
+        sssd_domains = el7_master ? ['local'] : []
       end
 
       if config.has_key?(:simp_scenario)
@@ -141,7 +147,7 @@ shared_examples 'SIMP server bootstrap' do |master, config|
       #   when the puppetserver RPM was installed
       # - Allow interruptions so we can kill the test easily during bootstrap
       on(master, 'rm -f /root/.simp/simp_bootstrap_start_lock')
-      on(master, 'simp bootstrap -u -w 10 --remove_ssldir', :pty => true)
+      on(master, 'simp bootstrap -u -w 10 --remove_ssldir -v', :pty => true)
     end
 
     it 'should reboot the master to apply boot time config' do
