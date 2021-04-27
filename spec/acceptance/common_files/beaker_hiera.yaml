@@ -1,5 +1,11 @@
 ---
-# Settings to make beaker happy
+# Settings for test access
+# * vagrant ssh access to nodes using the public key in /home/vagrant/.ssh/authorized_keys
+#   - This allows you to `vagrant ssh` into the node
+#
+# * root ssh access to nodes using the public key in /root/.ssh/authorized_keys
+#   - This allows beaker to access nodes during test steps (e.g., on(host,...)
+#
 sudo::user_specifications:
   vagrant_all:
     user_list:

@@ -24,7 +24,7 @@ describe 'Wheel configuration test' do
     hosts.each do |host|
       it 'should su on clients but not on puppetserver' do
         # Looks like some of the vagrant boxes (el8 mostly) have added
-        # restritions to pam.d/su to not allow anyone to su to root
+        # restrictions to pam.d/su to not allow anyone to su to root
         # using pam_succeed_if user notin root:vagrant
         # This will remove that line from /etc/pam.d/su if it exists.
         on(host,'sed -i  \'/^account\s*required\s*pam_succeed_if.so user notin .*$/d\' /etc/pam.d/su')

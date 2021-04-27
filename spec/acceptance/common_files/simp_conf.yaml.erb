@@ -13,11 +13,37 @@
 # NOTE:
 # - All YAML keys that begin with 'cli::' are used by
 #   simp config, internally, and are not Puppet hieradata.
+# - Some entries have been automatically determined by
+#   `simp config` based on the values of other entries
+#   and/or gathered server status.
 #========================================================================
 ---
 # === cli::version ===
 # The version of simp-cli used to generate this file.
-cli::version: "5.0.0"
+cli::version: "6.2.0"
+
+# === chrony::servers ===
+# NTP time servers used by cronyd
+chrony::servers: "%{alias('simp_options::ntp::servers')}"
+
+# === cli::ensure_priv_local_user ===
+# Whether to configure a privileged local user to prevent server lockout
+# after bootstrap.
+#
+# SIMP by default disables remote logins for all users and disables `root`
+# logins at the console. So, after bootstrap, you are very likely to lose
+# access to this system, **unless** you configure a local user to have
+# `sudo` and `ssh` access.
+#
+# Enter 'yes' if want to configure a local user to have `sudo` and `ssh`
+# access after bootstrap.
+#
+# * You will select the local user to configure.
+# * The local user will be created for you if it does not already exist.
+# * If the user already exists and has ssh authorized keys, those keys
+#   will be copied to /etc/ssh/local_keys/, the default directory for
+#   local user SSH authorized keys files in SIMP.
+cli::ensure_priv_local_user: false
 
 # === cli::is_simp_ldap_server ===
 # Whether the SIMP server will also be a SIMP-provided LDAP server.
@@ -73,7 +99,6 @@ cli::network::netmask: <%= netmask %>
 # You should enter 'yes' if the interface has not yet been configured.
 # You may want to enter 'yes', if you want to reconfigure it and are **NOT**
 # logged into the server via this interface.
-#
 cli::network::set_up_nic: false
 
 # === cli::set_grub_password ===
@@ -127,6 +152,14 @@ puppetdb::master::config::puppetdb_server: "%{hiera('simp_options::puppet::serve
 # The default system runlevel (1-5).
 simp::runlevel: 3
 
+# === simp::server::allow_simp_user ===
+# Whether to allow local 'simp' user su and ssh privileges.
+#
+# When SIMP is installed from ISO, a local user 'simp' is created to
+# prevent server lockout. This capability should only be enabled
+# when this user has been created.
+simp::server::allow_simp_user: false
+
 # === simp_openldap::server::conf::rootpw ===
 # The salted LDAP Root password hash.
 #
@@ -147,14 +180,14 @@ simp_options::dns::search: [ <%= domain %> ]
 # all clients will configure themselves as caching DNS servers
 # pointing to the other entries in the list.
 #
-# If you have a system that's including the 'named' class and
-# is *not* in this list, then you'll need to set a variable at
-# the top of that node entry called $named_server to 'true'.
-# This will get around the convenience logic that was put in
-# place to handle the caching entries and will not attempt to
-# convert your system to a caching DNS server. You'll know
-# that you have this situation if you end up with a duplicate
-# definition for File['/etc/named.conf'].
+# If you are using the SIMP ``resolv`` module, and the system is a DNS server
+# using the SIMP ``named`` module but you wish to have your node point to a
+# different DNS server for primary DNS resolution, then you MUST set
+# ``resolv::named_server`` to ``true`` via Hiera.
+#
+# This will get around the convenience logic that was put in place to handle
+# the caching entries and will not attempt to convert your system to a
+# caching DNS server.
 simp_options::dns::servers: [ <%= nameserver %> ]
 
 # === simp_options::ldap ===
@@ -229,8 +262,11 @@ simp_options::trusted_nets: <%= (trusted_nets.nil? or trusted_nets.empty?) ? '[]
 #
 # * When you are using SIMP-provided LDAP, this field should include `LDAP`,
 #   the name of the SSSD domain SIMP creates.
-# * Otherwise, this field must be a valid domain ('Local' and/or a custom
-#   domain) or the sssd service will fail to start.
+# * This field may include 'LOCAL', to use the domain SIMP creates with
+#   the 'files' provider.
+#
+# IMPORTANT: For EL < 8, this field *MUST* have a valid domain or the sssd
+# service will fail to start.
 #
 sssd::domains:
 - LDAP
