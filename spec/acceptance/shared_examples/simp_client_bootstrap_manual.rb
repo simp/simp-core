@@ -11,7 +11,7 @@ include Acceptance::Helpers::Utils
 #   :master      - puppetserver Host
 #   :master_fqdn - FQDN of the puppetmaster
 #
-shared_examples 'SIMP client manual bootstrap' do |agent, options|
+shared_examples 'SIMP client manual bootstrap' do |agents, options|
 
   let(:domain) { options[:domain] }
   let(:master) { options[:master] }

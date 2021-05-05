@@ -100,20 +100,44 @@ shared_examples 'simp asset manual install' do |master, assets_to_install|
       end
 
       if assets_to_install.include?(:rubygem_simp_cli)
+        # We have to install the simp-cli gem and its dependent highline gem
+        # in the same gem path to ensure the `simp` command uses the version of
+        # highline it was tested with, **not** the version of highline bundled
+        # with puppet-agent!
+        it 'should package simp-cli and highline gems' do
+          cmd = 'cd /root/assets/rubygem_simp_cli; ' +
+                '/opt/puppetlabs/puppet/bin/gem build simp-cli.gemspec'
+          on(master, cmd)
+
+          cmd = 'cd /root/assets/rubygem_simp_cli/ext/gems/highline; ' +
+                '/opt/puppetlabs/puppet/bin/gem build highline.gemspec'
+          on(master, cmd)
+        end
+
+        it 'should install simp-cli and highline gems in /usr/share/simp/ruby' do
+          gemdir = '/usr/share/simp/ruby'
+          on(master, "mkdir -p #{gemdir}")
+          cmd_prefix = [
+            '/opt/puppetlabs/puppet/bin/gem',
+            'install',
+            '--local',
+            "--install-dir #{gemdir}",
+            '--force'
+          ].join(' ')
+          on(master, "#{cmd_prefix} /root/assets/rubygem_simp_cli/simp-cli*.gem")
+          on(master, "#{cmd_prefix} /root/assets/rubygem_simp_cli/ext/gems/highline/highline*.gem")
+        end
+
         it "should install 'simp' script similar to that done by the rubygem-simp-cli RPM" do
-          # This is a ninja hack to create a working /bin/simp.  We don't
-          # need to create and install the gems in rubygem-simp-cli.  We
-          # simply need to create the script pointing to our staged
-          # rubygem-simp-cli clone.
-          #
-          simp_script = <<-EOM
-#!/bin/bash
+          simp_script = <<~EOM
+            #!/bin/bash
 
-PATH=/opt/puppetlabs/bin:/opt/puppetlabs/puppet/bin:$PATH
+            PATH=/opt/puppetlabs/bin:/opt/puppetlabs/puppet/bin:$PATH
 
-/root/assets/rubygem_simp_cli/bin/simp $@
+            /usr/share/simp/ruby/gems/simp-cli-*/bin/simp $@
 
           EOM
+
           create_remote_file(master, '/bin/simp', simp_script)
           on(master, 'chmod +x /bin/simp')
         end
