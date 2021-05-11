@@ -247,6 +247,14 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Thu Apr 29 2021 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 6.6.0-1
+- Updated the kickstart files for EL7 ISO to copy the SIMP repo into
+  OS specific directories.  It will be installed into
+  /var/www/yum/SIMP/<osfamily>/<os version>/<arch> and a link will be created
+  from the full version to the major version.
+- Updated repo_detect.sh to set up the simp repository to match the above changes.
+- Removed the CentOS 6 build files.
+
 * Thu Feb 11 2021 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 6.6.0-1
 - Update the EL8 kickstart file with comment about changes needed for UEFI boot.
 

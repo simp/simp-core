@@ -51,7 +51,7 @@ if [ -z "$yum_server" ] || [ "$yum_server" == 'local' ]; then
   local_name=Local
 else
   uri_header="https://$yum_server/yum/$distro/$version/$arch"
-  local_header="https://$yum_server/yum/SIMP/$arch"
+  local_header="https://$yum_server/yum/SIMP/$distro/$version/$arch"
   local_name=SIMP
 fi
 
