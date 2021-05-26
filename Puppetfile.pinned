@@ -475,7 +475,7 @@ mod 'simp-vnc',
 # Our changes are on simp-master.
 mod 'simp-vox_selinux',
   :git => 'https://github.com/simp/pupmod-voxpupuli-selinux',
-  :tag => 'simp-3.1.0'
+  :tag => 'v3.3.1'
 
 mod 'simp-vsftpd',
   :git => 'https://github.com/simp/pupmod-simp-vsftpd',
