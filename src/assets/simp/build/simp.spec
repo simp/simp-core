@@ -157,7 +157,6 @@ Requires: pupmod-simp-network >= 6.2.0
 Requires: pupmod-simp-nfs >= 7.0.1
 Requires: pupmod-simp-oath >= 0.2.0
 Requires: pupmod-simp-openscap >= 6.3.0
-Requires: pupmod-simp-simp_bolt >= 0.3.0
 Requires: pupmod-simp-simp_gitlab >= 0.6.0
 Requires: pupmod-simp-simp_grub >= 0.2.1
 Requires: pupmod-simp-simp_ipa >= 0.1.0
@@ -247,6 +246,9 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Wed Jun 02 2021 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.6.0-1
+- Removed the simp_bolt module from the list of provided components
+
 * Thu Apr 29 2021 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 6.6.0-1
 - Updated the kickstart files for EL7 ISO to copy the SIMP repo into
   OS specific directories.  It will be installed into
@@ -254,8 +256,6 @@ fi
   from the full version to the major version.
 - Updated repo_detect.sh to set up the simp repository to match the above changes.
 - Removed the CentOS 6 build files.
-
-* Thu Feb 11 2021 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 6.6.0-1
 - Update the EL8 kickstart file with comment about changes needed for UEFI boot.
 
 * Thu Nov 12 2020 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 6.5.0-1
