@@ -329,6 +329,7 @@ DEPENDENCIES
   beaker-rspec
   hiera-puppet-helper
   metadata-json-lint
+  nokogiri (>= 1.11.6)
   pdk (~> 1.0)
   pry
   pry-byebug
