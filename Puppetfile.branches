@@ -355,10 +355,6 @@ mod 'simp-simp_banners',
   :git => 'https://github.com/simp/pupmod-simp-simp_banners',
   :branch => 'master'
 
-mod 'simp-simp_bolt',
-  :git => 'https://github.com/simp/pupmod-simp-simp_bolt',
-  :branch => 'master'
-
 mod 'simp-simp_firewalld',
   :git => 'https://github.com/simp/pupmod-simp-simp_firewalld',
   :branch => 'master'
