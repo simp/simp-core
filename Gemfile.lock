@@ -115,7 +115,7 @@ GEM
       spdx-licenses (~> 1.0)
     method_source (1.0.0)
     mime-types (2.99.3)
-    mini_portile2 (2.5.0)
+    mini_portile2 (2.5.3)
     minitar (0.9)
     minitest (5.14.4)
     mocha (1.12.0)
@@ -126,7 +126,7 @@ GEM
     net-ssh (6.1.0)
     net-telnet (0.1.1)
     netrc (0.11.0)
-    nokogiri (1.11.2)
+    nokogiri (1.11.6)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
     oga (3.3)
@@ -329,6 +329,7 @@ DEPENDENCIES
   beaker-rspec
   hiera-puppet-helper
   metadata-json-lint
+  nokogiri (>= 1.11.6)
   pdk (~> 1.0)
   pry
   pry-byebug

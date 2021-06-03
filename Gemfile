@@ -21,6 +21,9 @@ group :test do
   gem 'simp-rake-helpers', ENV['SIMP_RAKE_HELPERS_VERSION'] || ['> 5.11', '< 6.0']
   gem 'simp-build-helpers', ENV['SIMP_BUILD_HELPERS_VERSION'] || ['> 0.1', '< 2.0']
   gem( 'pdk', ENV['PDK_VERSION'] || '~> 1.0', :require => false) if major_puppet_version > 5
+
+  # minimum versions for deps to address vulnerabilities, etc
+  gem 'nokogiri', '>= 1.11.6' # mitigates CVE-2021-3517 et al.
 end
 
 group :development do
