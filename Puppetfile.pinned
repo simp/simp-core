@@ -140,7 +140,7 @@ mod 'puppetlabs-ruby_task_helper',
 
 mod 'puppetlabs-stdlib',
   :git => 'https://github.com/simp/puppetlabs-stdlib',
-  :tag => 'v6.3.0'
+  :tag => 'v6.6.0'
 
 mod 'puppetlabs-translate',
   :git => 'https://github.com/simp/pupmod-puppetlabs-translate',
@@ -204,6 +204,10 @@ mod 'simp-deferred_resources',
 
 mod 'simp-dhcp',
   :git => 'https://github.com/simp/pupmod-simp-dhcp',
+  :branch => 'master'
+
+mod 'simp-ds389',
+  :git => 'https://github.com/simp/pupmod-simp-ds389',
   :branch => 'master'
 
 mod 'simp-fips',
@@ -356,6 +360,10 @@ mod 'simp-simp_apache',
 
 mod 'simp-simp_banners',
   :git => 'https://github.com/simp/pupmod-simp-simp_banners',
+  :branch => 'master'
+
+mod 'simp-simp_ds389',
+  :git => 'https://github.com/simp/pupmod-simp-simp_ds389',
   :branch => 'master'
 
 mod 'simp-simp_firewalld',

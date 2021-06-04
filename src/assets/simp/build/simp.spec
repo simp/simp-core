@@ -43,7 +43,7 @@ Requires: pupmod-puppetlabs-motd >= 4.1.0, pupmod-puppetlabs-motd < 5.0.0
 Requires: pupmod-puppetlabs-postgresql >= 6.6.0, pupmod-puppetlabs-postgresql < 7.0.0
 Requires: pupmod-puppetlabs-puppet_authorization >= 0.5.1, pupmod-puppetlabs-puppet_authorization < 1.0.0
 Requires: pupmod-puppetlabs-puppetdb >= 7.5.0, pupmod-puppetlabs-puppetdb < 8.0.0
-Requires: pupmod-puppetlabs-stdlib >= 6.3.0, pupmod-puppetlabs-stdlib < 7.0.0
+Requires: pupmod-puppetlabs-stdlib >= 6.6.0, pupmod-puppetlabs-stdlib < 7.0.0
 Requires: pupmod-saz-timezone >= 5.2.0, pupmod-saz-timezone < 6.0.0
 Requires: pupmod-simp-acpid >= 1.2.0, pupmod-simp-acpid < 2.0.0
 Requires: pupmod-simp-aide >= 6.4.2, pupmod-simp-aide < 7.0.0
@@ -56,6 +56,7 @@ Requires: pupmod-simp-cron >= 0.2.0, pupmod-simp-cron < 1.0.0
 Requires: pupmod-simp-crypto_policy >= 0.1.2, pupmod-simp-crypto_policy < 1.0.0
 Requires: pupmod-simp-deferred_resources >= 0.3.0, pupmod-simp-deferred_resources < 1.0.0
 Requires: pupmod-simp-dhcp >= 6.2.0, pupmod-simp-dhcp < 7.0.0
+Requires: pupmod-simp-ds389 >= 0.1.0, pupmod-simp-ds389 < 1.0.0
 Requires: pupmod-simp-fips >= 0.4.2, pupmod-simp-fips < 1.0.0
 Requires: pupmod-simp-haveged >= 0.6.0, pupmod-simp-haveged < 1.0.0
 Requires: pupmod-simp-incron >= 0.5.0, pupmod-simp-incron < 1.0.0
@@ -78,6 +79,7 @@ Requires: pupmod-simp-selinux >= 2.6.2, pupmod-simp-selinux < 3.0.0
 Requires: pupmod-simp-simp >= 4.14.3, pupmod-simp-simp < 5.0.0
 Requires: pupmod-simp-simp_apache >= 7.0.1, pupmod-simp-simp_apache < 8.0.0
 Requires: pupmod-simp-simp_banners >= 0.2.0, pupmod-simp-simp_banners < 1.0.0
+Requires: pupmod-simp-simp_ds389 >= 0.1.0, pupmod-simp-simp_ds389 < 1.0.0
 Requires: pupmod-simp-simp_firewalld >= 0.1.2, pupmod-simp-simp_firewalld < 1.0.0
 Requires: pupmod-simp-simp_openldap >= 6.4.3, pupmod-simp-simp_openldap < 7.0.0
 Requires: pupmod-simp-simp_options >= 1.4.1, pupmod-simp-simp_options < 2.0.0
@@ -85,7 +87,7 @@ Requires: pupmod-simp-simp_rsyslog >= 0.5.1, pupmod-simp-simp_rsyslog < 1.0.0
 Requires: pupmod-simp-simpkv >= 0.7.1, pupmod-simp-simpkv < 1.0.0
 Requires: pupmod-simp-simplib >= 4.6.2, pupmod-simp-simplib < 5.0.0
 Requires: pupmod-simp-ssh >= 6.11.1, pupmod-simp-ssh < 7.0.0
-Requires: pupmod-simp-sssd >= 6.3.1, pupmod-simp-sssd < 7.0.0
+Requires: pupmod-simp-sssd >= 7.0.1, pupmod-simp-sssd < 8.0.0
 Requires: pupmod-simp-stunnel >= 6.6.0, pupmod-simp-stunnel < 7.0.0
 Requires: pupmod-simp-sudo >= 5.3.1, pupmod-simp-sudo < 6.0.0
 Requires: pupmod-simp-sudosh >= 6.2.1, pupmod-simp-sudosh < 7.0.0
@@ -99,8 +101,8 @@ Requires: pupmod-simp-useradd >= 0.4.1, pupmod-simp-useradd < 1.0.0
 Requires: pupmod-simp-vox_selinux >= 3.1.0, pupmod-simp-vox_selinux < 4.0.0
 Requires: pupmod-simp-xinetd >= 4.2.1, pupmod-simp-xinetd < 5.0.0
 Requires: pupmod-trlinkin-nsswitch >= 2.2.0, pupmod-trlinkin-nsswitch < 3.0.0
-Requires: rubygem-simp-cli >= 6.1.1, rubygem-simp-cli < 7.0.0
-Requires: rubygem-simp-cli-doc >= 6.1.1, rubygem-simp-cli-doc < 7.0.0
+Requires: rubygem-simp-cli >= 7.0.0, rubygem-simp-cli < 8.0.0
+Requires: rubygem-simp-cli-doc >= 7.0.0, rubygem-simp-cli-doc < 8.0.0
 Requires: simp-adapter >= 2.0.0, simp-adapter < 3.0.0
 Requires: simp-environment-skeleton >= 7.2.0, simp-environment-skeleton < 8.0.0
 Requires: simp-gpgkeys >= 3.1.1, simp-gpgkeys < 4.0.0
@@ -247,7 +249,13 @@ fi
 
 %changelog
 * Wed Jun 02 2021 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.6.0-1
-- Removed the simp_bolt module from the list of provided components
+- Updated the list of provided components
+  - Additions:
+    - simp/ds389
+    - simp/simp_ds389
+  - Removals:
+    - simp/simp_bolt
+- Updated versions of provided components
 
 * Thu Apr 29 2021 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 6.6.0-1
 - Updated the kickstart files for EL7 ISO to copy the SIMP repo into

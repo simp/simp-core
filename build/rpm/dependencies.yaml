@@ -89,6 +89,15 @@
     - 'pupmod-puppetlabs-stdlib'
     - 'pupmod-puppetlabs-translate'
 
+'ds389':
+  :requires:
+    # exclude pupmod-puppet-selinux
+    - 'pupmod-puppetlabs-stdlib'
+    - 'pupmod-simp-pki'
+    - 'pupmod-simp-selinux'
+    - 'pupmod-simp-simplib'
+    - 'pupmod-simp-vox_selinux'
+
 # Vox Pupuli has assumed ownership of the this project
 'gitlab':
   :obsoletes:
