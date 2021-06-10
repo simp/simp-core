@@ -62,10 +62,6 @@ mod 'simp-utils',
 
 moduledir 'src/puppet/modules'
 
-mod 'aboe76-chrony',
-  :git => 'https://github.com/simp/pupmod-aboe76-chrony',
-  :tag => 'v0.3.1'
-
 mod 'camptocamp-kmod',
   :git => 'https://github.com/simp/puppet-kmod.git',
   :tag => '2.5.0'
@@ -501,6 +497,10 @@ mod 'treydock-kdump',
 mod 'trlinkin-nsswitch',
   :git => 'https://github.com/simp/puppet-nsswitch',
   :tag => '2.2.0'
+
+mod 'voxpupuli-chrony',
+  :git => 'https://github.com/simp/pupmod-voxpupuli-chrony',
+  :tag => 'v1.0.0'
 
 mod 'voxpupuli-firewalld',
   :git => 'https://github.com/simp/pupmod-voxpupuli-firewalld',

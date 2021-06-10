@@ -24,8 +24,10 @@ Obsoletes: pupmod-simp-mcollective <= 3.0.0
 # Required for upgrades to SIMP 6.4+
 Obsoletes: pupmod-simp-simpcat <= 6.0.3
 
+# Required for upgrades to SIMP 6.6_
+Obsoletes: pupmod-aboe-chrony <= 0.3.1
+
 # Core SIMP Requirements
-Requires: pupmod-aboe-chrony >= 0.3.1, pupmod-aboe-chrony < 1.0.0
 Requires: pupmod-camptocamp-kmod >= 2.5.0, pupmod-camptocamp-kmod < 3.0.0
 Requires: pupmod-camptocamp-systemd >= 2.12.0, pupmod-camptocamp-systemd < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_core >= 2.7.0, pupmod-herculesteam-augeasproviders_core < 3.0.0
@@ -33,6 +35,7 @@ Requires: pupmod-herculesteam-augeasproviders_grub >= 3.2.0, pupmod-herculesteam
 Requires: pupmod-herculesteam-augeasproviders_ssh >= 3.3.0, pupmod-herculesteam-augeasproviders_ssh < 4.0.0
 Requires: pupmod-herculesteam-augeasproviders_sysctl >= 2.6.0 pupmod-herculesteam-augeasproviders_sysctl < 3.0.0
 Requires: pupmod-onyxpoint-gpasswd >= 1.1.2, pupmod-onyxpoint-gpasswd < 2.0.0
+Requires: pupmod-puppet-chrony >= 1.0.0, pupmod-puppet-chrony < 2.0.0
 Requires: pupmod-puppet-firewalld => 4.4.0, pupmod-puppet-firewalld < 5.0.0
 Requires: pupmod-puppet-yum >= 4.3.0, pupmod-puppet-yum < 5.0.0
 Requires: pupmod-puppetlabs-apache >= 3.0.0, pupmod-puppetlabs-apache < 6.0.0
@@ -255,6 +258,8 @@ fi
     - simp/simp_ds389
   - Removals:
     - simp/simp_bolt
+  - Replacements:
+    - aboe/chrony has been replaced by puppet/chrony
 - Updated versions of provided components
 
 * Thu Apr 29 2021 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 6.6.0-1
