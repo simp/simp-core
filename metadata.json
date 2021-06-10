@@ -19,20 +19,16 @@
   ],
   "dependencies": [
     {
-      "name": "aboe/chrony",
-      "version_requirement": ">= 0.3.1 < 1.0.0"
-    },
-    {
       "name": "camptocamp/kmod",
       "version_requirement": ">= 2.5.0 < 3.0.0"
     },
     {
       "name": "camptocamp/systemd",
-      "version_requirement": ">= 2.9.0 < 3.0.0"
+      "version_requirement": ">= 2.12.0 < 3.0.0"
     },
     {
       "name": "herculesteam/augeasproviders_core",
-      "version_requirement": ">= 2.6.0 < 3.0.0"
+      "version_requirement": ">= 2.7.0 < 3.0.0"
     },
     {
       "name": "herculesteam/augeasproviders_grub",
@@ -44,15 +40,19 @@
     },
     {
       "name": "herculesteam/augeasproviders_sysctl",
-      "version_requirement": ">= 2.5.0 < 3.0.0"
+      "version_requirement": ">= 2.6.0 < 3.0.0"
     },
     {
       "name": "onyxpoint/gpasswd",
-      "version_requirement": ">= 1.1.1 < 2.0.0"
+      "version_requirement": ">= 1.1.2 < 2.0.0"
+    },
+    {
+      "name": "puppet/chrony",
+      "version_requirement": ">= 1.0.0 < 2.0.0"
     },
     {
       "name": "puppet/yum",
-      "version_requirement": ">= 4.1.1 < 5.0.0"
+      "version_requirement": ">= 4.3.0 < 5.0.0"
     },
     {
       "name": "puppetlabs/apache",
@@ -308,7 +308,7 @@
     },
     {
       "name": "simp/vox_selinux",
-      "version_requirement": ">= 3.1.0 < 4.0.0"
+      "version_requirement": ">= 3.4.0 < 4.0.0"
     },
     {
       "name": "simp/xinetd",
