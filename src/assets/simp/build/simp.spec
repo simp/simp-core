@@ -24,30 +24,27 @@ Obsoletes: pupmod-simp-mcollective <= 3.0.0
 # Required for upgrades to SIMP 6.4+
 Obsoletes: pupmod-simp-simpcat <= 6.0.3
 
-# Required for upgrades to SIMP 6.6_
-Obsoletes: pupmod-aboe-chrony <= 0.3.1
-
 # Core SIMP Requirements
 Requires: pupmod-camptocamp-kmod >= 2.5.0, pupmod-camptocamp-kmod < 3.0.0
 Requires: pupmod-camptocamp-systemd >= 2.12.0, pupmod-camptocamp-systemd < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_core >= 2.7.0, pupmod-herculesteam-augeasproviders_core < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_grub >= 3.2.0, pupmod-herculesteam-augeasproviders_grub < 4.0.0
-Requires: pupmod-herculesteam-augeasproviders_ssh >= 3.3.0, pupmod-herculesteam-augeasproviders_ssh < 4.0.0
+Requires: pupmod-herculesteam-augeasproviders_ssh >= 4.0.0, pupmod-herculesteam-augeasproviders_ssh < 5.0.0
 Requires: pupmod-herculesteam-augeasproviders_sysctl >= 2.6.0 pupmod-herculesteam-augeasproviders_sysctl < 3.0.0
 Requires: pupmod-onyxpoint-gpasswd >= 1.1.2, pupmod-onyxpoint-gpasswd < 2.0.0
 Requires: pupmod-puppet-chrony >= 1.0.0, pupmod-puppet-chrony < 2.0.0
 Requires: pupmod-puppet-firewalld => 4.4.0, pupmod-puppet-firewalld < 5.0.0
 Requires: pupmod-puppet-yum >= 4.3.0, pupmod-puppet-yum < 5.0.0
-Requires: pupmod-puppetlabs-apache >= 3.0.0, pupmod-puppetlabs-apache < 6.0.0
+Requires: pupmod-puppetlabs-apache >= 6.2.0, pupmod-puppetlabs-apache < 7.0.0
 Requires: pupmod-puppetlabs-concat >= 6.2.0, pupmod-puppetlabs-concat < 7.0.0
 Requires: pupmod-puppetlabs-hocon >= 1.1.0, pupmod-puppetlabs-hocon < 2.0.0
 Requires: pupmod-puppetlabs-inifile >= 4.1.0, pupmod-puppetlabs-inifile < 5.0.0
-Requires: pupmod-puppetlabs-motd >= 4.1.0, pupmod-puppetlabs-motd < 5.0.0
+Requires: pupmod-puppetlabs-motd >= 6.0.0, pupmod-puppetlabs-motd < 7.0.0
 Requires: pupmod-puppetlabs-postgresql >= 6.6.0, pupmod-puppetlabs-postgresql < 7.0.0
 Requires: pupmod-puppetlabs-puppet_authorization >= 0.5.1, pupmod-puppetlabs-puppet_authorization < 1.0.0
 Requires: pupmod-puppetlabs-puppetdb >= 7.5.0, pupmod-puppetlabs-puppetdb < 8.0.0
 Requires: pupmod-puppetlabs-stdlib >= 6.6.0, pupmod-puppetlabs-stdlib < 7.0.0
-Requires: pupmod-saz-timezone >= 5.2.0, pupmod-saz-timezone < 6.0.0
+Requires: pupmod-saz-timezone >= 6.1.0, pupmod-saz-timezone < 7.0.0
 Requires: pupmod-simp-acpid >= 1.2.0, pupmod-simp-acpid < 2.0.0
 Requires: pupmod-simp-aide >= 6.4.2, pupmod-simp-aide < 7.0.0
 Requires: pupmod-simp-at >= 0.1.0, pupmod-simp-at < 1.0.0
@@ -137,10 +134,10 @@ Obsoletes:  pupmod-simp-simp_docker  <= 0.2.1
 Obsoletes:  pupmod-simp-journald   <= 1.1.0
 
 Requires: simp-adapter >= 2.0.0, simp-adapter < 3.0.0
-Requires: pupmod-puppet-gitlab >= 6.0.1
+Requires: pupmod-puppet-gitlab >= 7.1.0
 Requires: pupmod-puppet-posix_acl >= 1.0.1
 Requires: pupmod-puppet-snmp >= 5.1.1
-Requires: pupmod-puppetlabs-java >= 6.2.0
+Requires: pupmod-puppetlabs-java >= 7.0.2
 Requires: pupmod-puppetlabs-mysql >= 10.4.0
 Requires: pupmod-puppetlabs-ruby_task_helper >= 0.6.0
 Requires: pupmod-puppetlabs-translate >= 2.1.0

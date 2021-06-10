@@ -36,7 +36,7 @@
     },
     {
       "name": "herculesteam/augeasproviders_ssh",
-      "version_requirement": ">= 3.3.0 < 4.0.0"
+      "version_requirement": ">= 4.0.0 < 5.0.0"
     },
     {
       "name": "herculesteam/augeasproviders_sysctl",
@@ -56,7 +56,7 @@
     },
     {
       "name": "puppetlabs/apache",
-      "version_requirement": ">= 5.5.0 < 6.0.0"
+      "version_requirement": ">= 6.2.0 < 7.0.0"
     },
     {
       "name": "puppetlabs/concat",
@@ -72,7 +72,7 @@
     },
     {
       "name": "puppetlabs/motd",
-      "version_requirement": ">= 4.1.0 < 5.0.0"
+      "version_requirement": ">= 6.0.0 < 7.0.0"
     },
     {
       "name": "puppetlabs/postgresql",
@@ -92,7 +92,7 @@
     },
     {
       "name": "saz/timezone",
-      "version_requirement": ">= 5.2.0 < 6.0.0"
+      "version_requirement": ">= 6.1.0 < 7.0.0"
     },
     {
       "name": "simp/acpid",

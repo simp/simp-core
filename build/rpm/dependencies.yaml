@@ -80,14 +80,10 @@
 # (4) This file is only used for simp-rake-helpers >= 5.3.0
 ---
 
-'docker':
-  :requires:
-    # exclude pupmod-puppetlabs-apt
-    # exclude the following modules required for operation on Windows:
-    #   pupmod-puppetlabs-powershell
-    #   pupmod-puppetlabs-reboot
-    - 'pupmod-puppetlabs-stdlib'
-    - 'pupmod-puppetlabs-translate'
+# Vox Pupuli has assumed ownership of the chrony project
+'chrony':
+  :obsoletes:
+    'pupmod-aboe-chrony': '0.3.1-0'
 
 'ds389':
   :requires:
@@ -98,7 +94,7 @@
     - 'pupmod-simp-simplib'
     - 'pupmod-simp-vox_selinux'
 
-# Vox Pupuli has assumed ownership of the this project
+# Vox Pupuli has assumed ownership of the gitlab project
 'gitlab':
   :obsoletes:
     'pupmod-vshn-gitlab': '1.13.3-2016.1'
@@ -129,7 +125,6 @@
   :requires:
     # exclude pupmod-puppetlabs-registry
     - 'pupmod-puppetlabs-stdlib'
-    - 'pupmod-puppetlabs-translate'
 
 # pupmod-puppetlabs-mount_providers-1.0.0-0 has a packaging bug in which
 # simp_rpm_helper is called in %post instead of %posttrans.  Need to
@@ -179,7 +174,7 @@
   :obsoletes:
     'pupmod-razorsedge-snmp': '3.9.0-0'
 
-# Camptocamp has assumed ownership of the this project
+# Camptocamp has assumed ownership of the systemd project
 'systemd':
   :obsoletes:
     'pupmod-simp-systemd': '2.1.0-0'

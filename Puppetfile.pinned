@@ -80,7 +80,7 @@ mod 'herculesteam-augeasproviders_grub',
 
 mod 'herculesteam-augeasproviders_ssh',
   :git => 'https://github.com/simp/augeasproviders_ssh',
-  :tag => '3.3.0'
+  :tag => '4.0.0'
 
 mod 'herculesteam-augeasproviders_sysctl',
   :git => 'https://github.com/simp/augeasproviders_sysctl',
@@ -92,7 +92,7 @@ mod 'onyxpoint-gpasswd',
 
 mod 'puppetlabs-apache',
   :git => 'https://github.com/simp/puppetlabs-apache',
-  :tag => 'v5.5.0'
+  :tag => 'v6.2.0'
 
 mod 'puppetlabs-concat',
   :git => 'https://github.com/simp/puppetlabs-concat',
@@ -108,11 +108,11 @@ mod 'puppetlabs-inifile',
 
 mod 'puppetlabs-java',
   :git => 'https://github.com/simp/puppetlabs-java',
-  :tag => 'v6.2.0'
+  :tag => 'v7.0.2'
 
 mod 'puppetlabs-motd',
   :git => 'https://github.com/simp/puppetlabs-motd',
-  :tag => 'v4.1.0'
+  :tag => 'v6.0.0'
 
 mod 'puppetlabs-mysql',
   :git => 'https://github.com/simp/puppetlabs-mysql',
@@ -148,7 +148,7 @@ mod 'saz-locales',
 
 mod 'saz-timezone',
   :git => 'https://github.com/simp/pupmod-simp-timezone',
-  :tag => 'v5.2.0'
+  :tag => 'v6.1.0'
 
 mod 'simp-acpid',
   :git => 'https://github.com/simp/pupmod-simp-acpid',
@@ -512,7 +512,7 @@ mod 'voxpupuli-posix_acl',
 
 mod 'voxpupuli-gitlab',
   :git => 'https://github.com/simp/puppet-gitlab.git',
-  :tag => 'v6.0.1'
+  :tag => 'v7.1.0'
 
 mod 'voxpupuli-snmp',
   :git => 'https://github.com/simp/puppet-snmp',
