@@ -387,10 +387,6 @@ mod 'simp-simp_options',
   :git => 'https://github.com/simp/pupmod-simp-simp_options',
   :branch => 'master'
 
-mod 'simp-simp_pki_service',
-  :git => 'https://github.com/simp/pupmod-simp-simp_pki_service',
-  :branch => 'master'
-
 mod 'simp-simp_rsyslog',
   :git => 'https://github.com/simp/pupmod-simp-simp_rsyslog',
   :branch => 'master'

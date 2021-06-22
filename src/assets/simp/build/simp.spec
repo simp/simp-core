@@ -163,7 +163,6 @@ Requires: pupmod-simp-simp_gitlab >= 0.6.0
 Requires: pupmod-simp-simp_grub >= 0.2.1
 Requires: pupmod-simp-simp_ipa >= 0.1.0
 Requires: pupmod-simp-simp_nfs >= 1.0.1
-Requires: pupmod-simp-simp_pki_service >= 0.3.1
 Requires: pupmod-simp-simp_snmpd >= 1.0.0
 Requires: pupmod-simp-tpm >= 3.2.0
 Requires: pupmod-simp-tpm2 >= 0.3.1
@@ -248,13 +247,14 @@ fi
 # Post uninstall stuff
 
 %changelog
-* Wed Jun 02 2021 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.6.0-1
+* Tue Jun 22 2021 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.6.0-1
 - Updated the list of provided components
   - Additions:
     - simp/ds389
     - simp/simp_ds389
   - Removals:
     - simp/simp_bolt
+    - simp/simp_pki_service
   - Replacements:
     - aboe/chrony has been replaced by puppet/chrony
 - Updated versions of provided components
