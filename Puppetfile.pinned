@@ -96,7 +96,7 @@ mod 'puppetlabs-apache',
 
 mod 'puppetlabs-concat',
   :git => 'https://github.com/simp/puppetlabs-concat',
-  :tag => 'v6.2.0'
+  :tag => 'v6.4.0'
 
 mod 'puppetlabs-hocon',
   :git => 'https://github.com/simp/pupmod-puppetlabs-hocon',
@@ -388,10 +388,6 @@ mod 'simp-simp_openldap',
 
 mod 'simp-simp_options',
   :git => 'https://github.com/simp/pupmod-simp-simp_options',
-  :branch => 'master'
-
-mod 'simp-simp_pki_service',
-  :git => 'https://github.com/simp/pupmod-simp-simp_pki_service',
   :branch => 'master'
 
 mod 'simp-simp_rsyslog',

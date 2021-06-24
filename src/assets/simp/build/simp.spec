@@ -36,14 +36,14 @@ Requires: pupmod-puppet-chrony >= 1.0.0, pupmod-puppet-chrony < 2.0.0
 Requires: pupmod-puppet-firewalld => 4.4.0, pupmod-puppet-firewalld < 5.0.0
 Requires: pupmod-puppet-yum >= 4.3.0, pupmod-puppet-yum < 5.0.0
 Requires: pupmod-puppetlabs-apache >= 6.2.0, pupmod-puppetlabs-apache < 7.0.0
-Requires: pupmod-puppetlabs-concat >= 6.2.0, pupmod-puppetlabs-concat < 7.0.0
+Requires: pupmod-puppetlabs-concat >= 6.4.0, pupmod-puppetlabs-concat < 7.0.0
 Requires: pupmod-puppetlabs-hocon >= 1.1.0, pupmod-puppetlabs-hocon < 2.0.0
 Requires: pupmod-puppetlabs-inifile >= 4.1.0, pupmod-puppetlabs-inifile < 5.0.0
 Requires: pupmod-puppetlabs-motd >= 6.0.0, pupmod-puppetlabs-motd < 7.0.0
 Requires: pupmod-puppetlabs-postgresql >= 6.6.0, pupmod-puppetlabs-postgresql < 7.0.0
 Requires: pupmod-puppetlabs-puppet_authorization >= 0.5.1, pupmod-puppetlabs-puppet_authorization < 1.0.0
 Requires: pupmod-puppetlabs-puppetdb >= 7.5.0, pupmod-puppetlabs-puppetdb < 8.0.0
-Requires: pupmod-puppetlabs-stdlib >= 6.6.0, pupmod-puppetlabs-stdlib < 7.0.0
+Requires: pupmod-puppetlabs-stdlib >= 6.6.0, pupmod-puppetlabs-stdlib < 8.0.0
 Requires: pupmod-saz-timezone >= 6.1.0, pupmod-saz-timezone < 7.0.0
 Requires: pupmod-simp-acpid >= 1.2.0, pupmod-simp-acpid < 2.0.0
 Requires: pupmod-simp-aide >= 6.4.2, pupmod-simp-aide < 7.0.0
@@ -163,7 +163,6 @@ Requires: pupmod-simp-simp_gitlab >= 0.6.0
 Requires: pupmod-simp-simp_grub >= 0.2.1
 Requires: pupmod-simp-simp_ipa >= 0.1.0
 Requires: pupmod-simp-simp_nfs >= 1.0.1
-Requires: pupmod-simp-simp_pki_service >= 0.3.1
 Requires: pupmod-simp-simp_snmpd >= 1.0.0
 Requires: pupmod-simp-tpm >= 3.2.0
 Requires: pupmod-simp-tpm2 >= 0.3.1
@@ -248,13 +247,14 @@ fi
 # Post uninstall stuff
 
 %changelog
-* Wed Jun 02 2021 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.6.0-1
+* Tue Jun 22 2021 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.6.0-1
 - Updated the list of provided components
   - Additions:
     - simp/ds389
     - simp/simp_ds389
   - Removals:
     - simp/simp_bolt
+    - simp/simp_pki_service
   - Replacements:
     - aboe/chrony has been replaced by puppet/chrony
 - Updated versions of provided components
