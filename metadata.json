@@ -108,7 +108,7 @@
     },
     {
       "name": "simp/auditd",
-      "version_requirement": ">= 7.1.0 < 9.0.0"
+      "version_requirement": ">= 8.7.0 < 9.0.0"
     },
     {
       "name": "simp/chkrootkit",
