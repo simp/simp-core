@@ -25,7 +25,7 @@ Obsoletes: pupmod-simp-mcollective <= 3.0.0
 Obsoletes: pupmod-simp-simpcat <= 6.0.3
 
 # Core SIMP Requirements
-Requires: pupmod-camptocamp-kmod >= 2.5.0, pupmod-camptocamp-kmod < 3.0.0
+Requires: pupmod-puppet-kmod >= 2.5.0, pupmod-puppet-kmod < 4.0.0
 Requires: pupmod-camptocamp-systemd >= 2.12.0, pupmod-camptocamp-systemd < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_core >= 2.7.0, pupmod-herculesteam-augeasproviders_core < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_grub >= 3.2.0, pupmod-herculesteam-augeasproviders_grub < 4.0.0
@@ -257,6 +257,7 @@ fi
     - simp/simp_pki_service
   - Replacements:
     - aboe/chrony has been replaced by puppet/chrony
+    - camptocamp/kmod has been replaced by puppet/kmod
 - Updated versions of provided components
 
 * Thu Apr 29 2021 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 6.6.0-1
