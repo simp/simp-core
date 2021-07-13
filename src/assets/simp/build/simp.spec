@@ -25,7 +25,7 @@ Obsoletes: pupmod-simp-mcollective <= 3.0.0
 Obsoletes: pupmod-simp-simpcat <= 6.0.3
 
 # Core SIMP Requirements
-Requires: pupmod-puppet-kmod >= 2.5.0, pupmod-puppet-kmod < 4.0.0
+Requires: pupmod-puppet-kmod >= 3.0.0, pupmod-puppet-kmod < 4.0.0
 Requires: pupmod-camptocamp-systemd >= 2.12.0, pupmod-camptocamp-systemd < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_core >= 2.7.0, pupmod-herculesteam-augeasproviders_core < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_grub >= 3.2.0, pupmod-herculesteam-augeasproviders_grub < 4.0.0
