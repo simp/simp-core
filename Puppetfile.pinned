@@ -374,10 +374,6 @@ mod 'simp-simp_grub',
   :git => 'https://github.com/simp/pupmod-simp-simp_grub',
   :tag => '0.3.0'
 
-mod 'simp-simp_ipa',
-  :git => 'https://github.com/simp/pupmod-simp-simp_ipa',
-  :tag => '0.2.0'
-
 mod 'simp-simp_nfs',
   :git => 'https://github.com/simp/pupmod-simp-simp_nfs',
   :branch => 'master'
