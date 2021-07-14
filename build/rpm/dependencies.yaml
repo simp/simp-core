@@ -108,10 +108,10 @@
     # ('puppet generate types' fails with puppet-archive).
     - 'pupmod-puppetlabs-stdlib'
 
-# SIMP has assumed ownership of the this project
-'journald':
+# Voxpupuli has taken ownership of this project
+'kmod':
   :obsoletes:
-    'pupmod-cristifalcas-journald': '0.6.0-0'
+    'pupmod-camptocamp-kmod': '3.0.0'
 
 # pupmod-saz-locales-2.5.1-0 has a packaging bug in which the RPM state
 # directory used contains an unexpanded RPM macro (the string
