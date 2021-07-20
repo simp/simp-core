@@ -27,32 +27,38 @@ chkrootkit:
   :rpm_name: chkrootkit-0.50-4el7.x86_64.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/chkrootkit-0.50-4el7.x86_64.rpm/download.rpm
 clamav:
-  :rpm_name: clamav-0.101.2-1.el7.x86_64.rpm
-  :source: http://mirror.umd.edu/fedora/epel/7/x86_64/Packages/c/clamav-0.101.2-1.el7.x86_64.rpm
+  :rpm_name: clamav-0.102.4-1.el7.x86_64.rpm
+  :source: http://mirror.umd.edu/fedora/epel/7/x86_64/Packages/c/clamav-0.102.4-1.el7.x86_64.rpm
 clamav-data:
-  :rpm_name: clamav-data-0.101.2-1.el7.noarch.rpm
-  :source: http://mirror.umd.edu/fedora/epel/7/x86_64/Packages/c/clamav-data-0.101.2-1.el7.noarch.rpm
+  :rpm_name: clamav-data-0.102.4-1.el7.noarch.rpm
+  :source: http://mirror.umd.edu/fedora/epel/7/x86_64/Packages/c/clamav-data-0.102.4-1.el7.noarch.rpm
 clamav-devel:
-  :rpm_name: clamav-devel-0.101.2-1.el7.x86_64.rpm
-  :source: http://mirror.umd.edu/fedora/epel/7/x86_64/Packages/c/clamav-devel-0.101.2-1.el7.x86_64.rpm
+  :rpm_name: clamav-devel-0.102.4-1.el7.x86_64.rpm
+  :source: http://mirror.umd.edu/fedora/epel/7/x86_64/Packages/c/clamav-devel-0.102.4-1.el7.x86_64.rpm
 clamav-filesystem:
-  :rpm_name: clamav-filesystem-0.101.2-1.el7.noarch.rpm
-  :source: http://mirror.umd.edu/fedora/epel/7/x86_64/Packages/c/clamav-filesystem-0.101.2-1.el7.noarch.rpm
+  :rpm_name: clamav-filesystem-0.102.4-1.el7.noarch.rpm
+  :source: http://mirror.umd.edu/fedora/epel/7/x86_64/Packages/c/clamav-filesystem-0.102.4-1.el7.noarch.rpm
 clamav-lib:
-  :rpm_name: clamav-lib-0.101.2-1.el7.x86_64.rpm
-  :source: http://mirror.umd.edu/fedora/epel/7/x86_64/Packages/c/clamav-lib-0.101.2-1.el7.x86_64.rpm
+  :rpm_name: clamav-lib-0.102.4-1.el7.x86_64.rpm
+  :source: http://mirror.umd.edu/fedora/epel/7/x86_64/Packages/c/clamav-lib-0.102.4-1.el7.x86_64.rpm
 clamav-scanner-systemd:
-  :rpm_name: clamav-scanner-systemd-0.101.2-1.el7.x86_64.rpm
-  :source: https://mirror.umd.edu/fedora/epel/7/x86_64/Packages/c/clamav-scanner-systemd-0.101.2-1.el7.x86_64.rpm
+  :rpm_name: clamav-scanner-systemd-0.102.4-1.el7.x86_64.rpm
+  :source: https://mirror.umd.edu/fedora/epel/7/x86_64/Packages/c/clamav-scanner-systemd-0.102.4-1.el7.x86_64.rpm
 clamav-server-systemd:
-  :rpm_name: clamav-server-systemd-0.101.2-1.el7.x86_64.rpm
-  :source: https://mirror.umd.edu/fedora/epel/7/x86_64/Packages/c/clamav-server-systemd-0.101.2-1.el7.x86_64.rpm
+  :rpm_name: clamav-server-systemd-0.102.4-1.el7.x86_64.rpm
+  :source: https://mirror.umd.edu/fedora/epel/7/x86_64/Packages/c/clamav-server-systemd-0.102.4-1.el7.x86_64.rpm
 clamav-update:
-  :rpm_name: clamav-update-0.101.2-1.el7.x86_64.rpm
-  :source: http://mirror.umd.edu/fedora/epel/7/x86_64/Packages/c/clamav-update-0.101.2-1.el7.x86_64.rpm
+  :rpm_name: clamav-update-0.102.4-1.el7.x86_64.rpm
+  :source: http://mirror.umd.edu/fedora/epel/7/x86_64/Packages/c/clamav-update-0.102.4-1.el7.x86_64.rpm
 clamd:
-  :rpm_name: clamd-0.101.2-1.el7.x86_64.rpm
-  :source: http://mirror.umd.edu/fedora/epel/7/x86_64/Packages/c/clamd-0.101.2-1.el7.x86_64.rpm
+  :rpm_name: clamd-0.102.4-1.el7.x86_64.rpm
+  :source: http://mirror.umd.edu/fedora/epel/7/x86_64/Packages/c/clamd-0.102.4-1.el7.x86_64.rpm
+createrepo_c:
+  :rpm_name: createrepo_c-0.10.0-20.el7.x86_64.rpm
+  :source: http://mirror.centos.org/centos/7/extras/x86_64/Packages/createrepo_c-0.10.0-20.el7.x86_64.rpm
+createrepo_c-libs:
+  :rpm_name: createrepo_c-libs-0.10.0-20.el7.x86_64.rpm
+  :source: http://mirror.centos.org/centos/7/extras/x86_64/Packages/createrepo_c-libs-0.10.0-20.el7.x86_64.rpm
 fortune-mod:
   :rpm_name: fortune-mod-1.99.1-17.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/f/fortune-mod-1.99.1-17.el7.x86_64.rpm
@@ -66,14 +72,14 @@ gtk2-engines:
   :rpm_name: gtk2-engines-2.20.2-7.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/g/gtk2-engines-2.20.2-7.el7.x86_64.rpm
 haveged:
-  :rpm_name: haveged-1.9.1-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/h/haveged-1.9.1-1.el7.x86_64.rpm
+  :rpm_name: haveged-1.9.13-1.el7.x86_64.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/h/haveged-1.9.13-1.el7.x86_64.rpm
 incron:
   :rpm_name: incron-0.5.10-8.el7.x86_64.rpm
   :source: https://download.simp-project.com/simp/packages/CentOS/el/7/x86_64/incron-0.5.10-8.el7.x86_64.rpm
 jq:
-  :rpm_name: jq-1.5-1.el7.x86_64.rpm
-  :source: http://mirrors.lug.mtu.edu/epel/7/x86_64/Packages/j/jq-1.5-1.el7.x86_64.rpm
+  :rpm_name: jq-1.6-2.el7.x86_64.rpm
+  :source: http://mirrors.lug.mtu.edu/epel/7/x86_64/Packages/j/jq-1.6-2.el7.x86_64.rpm
 libNX_X11:
   :rpm_name: libNX_X11-3.5.99.25-2.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/l/libNX_X11-3.5.99.25-2.el7.x86_64.rpm
@@ -84,7 +90,7 @@ libXcompshad:
   :rpm_name: libXcompshad-3.5.99.25-2.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/l/libXcompshad-3.5.99.25-2.el7.x86_64.rpm
 libarchive-devel:
-  :rpm_name: libarchive-devel-3.1.2-10.el7_2.x86_64.rpm
+  :rpm_name: libarchive-devel-3.1.2-14.el7_7.x86_64.rpm
   :source: Red Hat Optional Repository
 libconfuse:
   :rpm_name: libconfuse-2.7-7.el7.x86_64.rpm
@@ -105,7 +111,7 @@ libmateweather-data:
   :rpm_name: libmateweather-data-1.16.1-1.el7.noarch.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/l/libmateweather-data-1.16.1-1.el7.noarch.rpm
 libssh:
-  :rpm_name: libssh-0.7.1-3.el7.x86_64.rpm
+  :rpm_name: libssh-0.7.1-7.el7.x86_64.rpm
   :source: Red Hat Optional Repository
 libwnck:
   :rpm_name: libwnck-2.31.0-1.el7.x86_64.rpm
@@ -165,8 +171,8 @@ mate-settings-daemon:
   :rpm_name: mate-settings-daemon-1.16.2-1.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/mate-settings-daemon-1.16.2-1.el7.x86_64.rpm
 mate-themes:
-  :rpm_name: mate-themes-3.22.19-2.el7.noarch.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/mate-themes-3.22.19-2.el7.noarch.rpm
+  :rpm_name: mate-themes-3.22.21-2.el7.noarch.rpm
+  :source: http://mirror.cogentco.com/pub/linux/epel/7/x86_64/Packages/m/mate-themes-3.22.21-2.el7.noarch.rpm
 mate-user-guide:
   :rpm_name: mate-user-guide-1.16.0-1.el7.noarch.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/mate-user-guide-1.16.0-1.el7.noarch.rpm
@@ -180,8 +186,8 @@ nxproxy:
   :rpm_name: nxproxy-3.5.99.25-2.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/n/nxproxy-3.5.99.25-2.el7.x86_64.rpm
 oniguruma:
-  :rpm_name: oniguruma-5.9.5-3.el7.x86_64.rpm
-  :source: http://mirrors.lug.mtu.edu/epel/7/x86_64/Packages/o/oniguruma-5.9.5-3.el7.x86_64.rpm
+  :rpm_name: oniguruma-6.8.2-1.el7.x86_64.rpm
+  :source: http://mirrors.lug.mtu.edu/epel/7/x86_64/Packages/o/oniguruma-6.8.2-1.el7.x86_64.rpm
 paccor:
   :rpm_name: paccor-1.1.2-1.noarch.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/paccor-1.1.2-1.noarch.rpm/download.rpm
@@ -225,44 +231,35 @@ protobuf:
   :rpm_name: protobuf-2.5.0-8.el7.x86_64.rpm
   :source: http://mirror.centos.org/centos/7/os/x86_64/Packages/protobuf-2.5.0-8.el7.x86_64.rpm
 puppet-agent:
-  :rpm_name: puppet-agent-6.21.1-1.el7.x86_64.rpm
-  :source: https://yum.puppet.com/puppet6/el/7/x86_64/puppet-agent-6.21.1-1.el7.x86_64.rpm
+  :rpm_name: puppet-agent-6.22.1-1.el7.x86_64.rpm
+  :source: https://yum.puppet.com/puppet6/el/7/x86_64/puppet-agent-6.22.1-1.el7.x86_64.rpm
 puppet-bolt:
-  :rpm_name: puppet-bolt-2.29.0-1.el7.x86_64.rpm
-  :source: https://yum.puppet.com/puppet/el/7/x86_64/puppet-bolt-2.29.0-1.el7.x86_64.rpm
+  :rpm_name: puppet-bolt-3.13.0-1.el7.x86_64.rpm
+  :source: https://yum.puppet.com/puppet/el/7/x86_64/puppet-bolt-3.13.0-1.el7.x86_64.rpm
 puppet6-release:
   :rpm_name: puppet6-release-6.0.0-10.el7.noarch.rpm
   :source: https://yum.puppet.com/puppet/el/7/x86_64/puppet6-release-6.0.0-10.el7.noarch.rpm
 puppetdb:
-  :rpm_name: puppetdb-6.12.0-1.el7.noarch.rpm
-  :source: https://yum.puppet.com/puppet/el/7/x86_64/puppetdb-6.12.0-1.el7.noarch.rpm
+  :rpm_name: puppetdb-6.17.0-1.el7.noarch.rpm
+  :source: https://yum.puppet.com/puppet/el/7/x86_64/puppetdb-6.17.0-1.el7.noarch.rpm
 puppetdb-termini:
-  :rpm_name: puppetdb-termini-6.12.0-1.el7.noarch.rpm
-  :source: https://yum.puppet.com/puppet/el/7/x86_64/puppetdb-termini-6.12.0-1.el7.noarch.rpm
+  :rpm_name: puppetdb-termini-6.17.0-1.el7.noarch.rpm
+  :source: https://yum.puppet.com/puppet/el/7/x86_64/puppetdb-termini-6.17.0-1.el7.noarch.rpm
 puppetserver:
-  :rpm_name: puppetserver-6.13.0-1.el7.noarch.rpm
-  :source: https://yum.puppet.com/puppet/el/7/x86_64/puppetserver-6.13.0-1.el7.noarch.rpm
+  :rpm_name: puppetserver-6.16.0-1.el7.noarch.rpm
+  :source: https://yum.puppet.com/puppet/el/7/x86_64/puppetserver-6.16.0-1.el7.noarch.rpm
 pwgen:
   :rpm_name: pwgen-2.08-1.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/p/pwgen-2.08-1.el7.x86_64.rpm
 python-linecache2:
   :rpm_name: python-linecache2-1.0.0-1.el7.noarch.rpm
   :source: https://lug.mtu.edu/epel/7/x86_64/Packages/p/python-linecache2-1.0.0-1.el7.noarch.rpm
-python-simplejson:
-  :rpm_name: python-simplejson-3.3.3-1.el7.x86_64.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/python-simplejson-3.3.3-1.el7.x86_64.rpm/download.rpm
-python-traceback2:
-  :rpm_name: python-traceback2-1.4.0-2.el7.noarch.rpm
-  :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/python-traceback2-1.4.0-2.el7.noarch.rpm/download.rpm
-python-unittest2:
-  :rpm_name: python-unittest2-1.1.0-4.el7.noarch.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/p/python-unittest2-1.1.0-4.el7.noarch.rpm
 re2:
   :rpm_name: re2-20160401-2.el7.x86_64.rpm
   :source: http://mirrors.lug.mtu.edu/epel/7/x86_64/Packages/r/re2-20160401-2.el7.x86_64.rpm
 rkhunter:
-  :rpm_name: rkhunter-1.4.6-1.el7.noarch.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/r/rkhunter-1.4.6-1.el7.noarch.rpm
+  :rpm_name: rkhunter-1.4.6-2.el7.noarch.rpm
+  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/r/rkhunter-1.4.6-2.el7.noarch.rpm
 ruby-ldap:
   :rpm_name: ruby-ldap-0.9.16-1.el7.x86_64.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/ruby-ldap-0.9.16-1.el7.x86_64.rpm/download.rpm
@@ -276,7 +273,7 @@ rubygem-net-ldap-doc:
   :rpm_name: rubygem-net-ldap-doc-0.16.0-1.el7.noarch.rpm
   :source: https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/r/rubygem-net-ldap-doc-0.16.0-1.el7.noarch.rpm
 rubygem-rake:
-  :rpm_name: rubygem-rake-0.9.6-33.el7_4.noarch.rpm
+  :rpm_name: rubygem-rake-0.9.6-36.el7.noarch.rpm
   :source: Red Hat Optional Repository
 rubygem-rake-compiler:
   :rpm_name: rubygem-rake-compiler-0.9.3-2.el7.noarch.rpm

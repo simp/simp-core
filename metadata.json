@@ -322,7 +322,7 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 6.21.1 < 8.0.0"
+      "version_requirement": ">= 6.22.1 < 8.0.0"
     }
   ],
   "operatingsystem_support": [
