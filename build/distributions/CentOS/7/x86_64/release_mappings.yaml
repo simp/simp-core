@@ -6,6 +6,23 @@ simp_releases:
     flavors:
       CentOS:
         isos:
+          - name:     'CentOS-7-x86_64-DVD-2009.iso'
+            size:     4712300544
+            checksum: 'e33d7b1ea7a9e2f38c8f693215dd85254c3a4fe446f93f563279715b68d07987'
+        build_command: 'bundle exec rake build:auto[CentOS-7-x86_64-DVD-2009.iso,6.X]'
+        os_version:   '7.0'
+      RedHat:
+        isos:
+          - name:     'rhel-server-7.8-x86_64-dvd.iso'
+            size:     4550819840
+            checksum: '3ca2017f12392fc8acad435c05a941bb88620ece8eb5740278ffa61d8340792d'
+        build_command: 'bundle exec rake build:auto[rhel-server-7.8-x86_64-dvd.iso,6.X]'
+        os_version:   '7.8'
+
+  6.5.0:
+    flavors:
+      CentOS:
+        isos:
           - name:     'CentOS-7-x86_64-DVD-2003.iso'
             size:     4781506560
             checksum: '087a5743dc6fd6706d9b961b8147423ddc029451b938364c760d75440eb7be14'
