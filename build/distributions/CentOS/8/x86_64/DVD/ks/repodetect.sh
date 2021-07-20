@@ -62,7 +62,6 @@ if [ "$distro" == RedHat ]; then
       cat << EOF > /tmp/repo-include
 repo --name="AppStream" --baseurl="$uri_header/AppStream" --noverifyssl
 repo --name="BaseOS" --baseurl="$uri_header/BaseOS" --noverifyssl
-repo --name="Updates" --baseurl="$uri_header/Updates" --noverifyssl
 repo --name="$local_name" --baseurl="$local_header" --noverifyssl
 EOF
     ;;
@@ -93,7 +92,6 @@ elif [ "$distro" == CentOS ]; then
       cat << EOF > /tmp/repo-include
 repo --name="AppStream" --baseurl="$uri_header/AppStream" --noverifyssl
 repo --name="BaseOS" --baseurl="$uri_header/BaseOS" --noverifyssl
-repo --name="Updates" --baseurl="$uri_header/Updates" --noverifyssl
 repo --name="$local_name" --baseurl="$local_header" --noverifyssl
 EOF
     ;;
@@ -101,12 +99,14 @@ EOF
       cat << EOF > /tmp/repo-include
 repo --name="Server" --baseurl="$uri_header"
 repo --name="$local_name" --baseurl="$local_header"
+repo --name="Updates" --baseurl="$uri_header/Updates" --noverifyssl
 EOF
     ;;
     '6' )
       cat << EOF > /tmp/repo-include
 repo --name="Server" --baseurl="$uri_header" --noverifyssl
 repo --name="$local_name" --baseurl="$local_header" --noverifyssl
+repo --name="Updates" --baseurl="$uri_header/Updates" --noverifyssl
 EOF
     ;;
   esac
