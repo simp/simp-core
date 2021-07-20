@@ -184,7 +184,7 @@
     },
     {
       "name": "simp/pki",
-      "version_requirement": ">= 6.2.0 < 7.0.0"
+      "version_requirement": ">= 6.3.0 < 7.0.0"
     },
     {
       "name": "simp/polkit",
@@ -192,7 +192,7 @@
     },
     {
       "name": "simp/postfix",
-      "version_requirement": ">= 5.5.0 < 6.0.0"
+      "version_requirement": ">= 5.6.0 < 6.0.0"
     },
     {
       "name": "simp/pupmod",
@@ -248,7 +248,7 @@
     },
     {
       "name": "simp/simp_openldap",
-      "version_requirement": ">= 6.4.3 < 7.0.0"
+      "version_requirement": ">= 6.6.0 < 7.0.0"
     },
     {
       "name": "simp/simp_options",
@@ -292,7 +292,7 @@
     },
     {
       "name": "simp/tftpboot",
-      "version_requirement": ">= 6.4.0 < 7.0.0"
+      "version_requirement": ">= 6.4.1 < 7.0.0"
     },
     {
       "name": "simp/tlog",

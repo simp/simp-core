@@ -8,7 +8,7 @@
 #   `Puppetfile.pinned`.
 #
 # ** NOTE: External (non-SIMP) modules are always pinned to the version intended
-#    for the next SIMP release (6.5.)
+#    for the next SIMP release (6.6.)
 moduledir 'src'
 
 mod 'simp-doc',
@@ -371,10 +371,6 @@ mod 'simp-simp_grub',
   :git => 'https://github.com/simp/pupmod-simp-simp_grub',
   :branch => 'master'
 
-mod 'simp-simp_ipa',
-  :git => 'https://github.com/simp/pupmod-simp-simp_ipa',
-  :branch => 'master'
-
 mod 'simp-simp_nfs',
   :git => 'https://github.com/simp/pupmod-simp-simp_nfs',
   :branch => 'master'
@@ -474,9 +470,10 @@ mod 'simp-vsftpd',
   :git => 'https://github.com/simp/pupmod-simp-vsftpd',
   :branch => 'master'
 
-mod 'simp-x2go',
-  :git => 'https://github.com/simp/pupmod-simp-x2go',
-  :branch => 'master'
+#FIXME add this back in when it has been updated to work with latest gnome
+#mod 'simp-x2go',
+#  :git => 'https://github.com/simp/pupmod-simp-x2go',
+#  :branch => 'master'
 
 mod 'simp-xinetd',
   :git => 'https://github.com/simp/pupmod-simp-xinetd',
