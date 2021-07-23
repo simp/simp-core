@@ -256,7 +256,7 @@
     },
     {
       "name": "simp/simp_rsyslog",
-      "version_requirement": ">= 0.5.1 < 1.0.0"
+      "version_requirement": ">= 0.6.0 < 1.0.0"
     },
     {
       "name": "simp/ssh",
