@@ -6,8 +6,8 @@ describe 'set up IPA clients' do
   ipa_clients = hosts_with_role(hosts, 'ipa_client')
   domain      = fact_on(master, 'domain')
 
-  ipa_domain     = domain
-  ipa_fqdn       = fact_on(ipa_server, 'fqdn')
+  ipa_domain = domain
+  ipa_fqdn   = fact_on(ipa_server, 'fqdn')
 
   context 'add host entries to IPA with an enrollment password' do
     block_on(ipa_clients) do |client|
@@ -42,6 +42,10 @@ describe 'set up IPA clients' do
         'simp_ipa::client::install::server'   => [ipa_fqdn],
         'simp_ipa::client::install::domain'   => ipa_domain,
         'simp_ipa::client::install::hostname' => '%{trusted.certname}',
+
+        # We are managing NTP in other Puppet manifests so we don't need it
+        # configured by ipa-client-install
+        'simp_ipa::client::install::install_options' => { 'no-ntp' => nil }
       )
       updated_hiera['simp::classes'] << 'simp_ipa::client::install'
       default_yaml = updated_hiera.to_yaml

@@ -26,11 +26,8 @@ ssh::server::conf::authorizedkeysfile: '.ssh/authorized_keys'
 # incorrect in a beaker/vagrant (multi-interface) environment
 simp::puppet_server_hosts_entry: false
 
-# Make sure puppet doesn't run automatically (hopefully)
-pupmod::agent::cron::minute: '0'
-pupmod::agent::cron::hour: '0'
-pupmod::agent::cron::weekday: '0'
-pupmod::agent::cron::month: '1'
+# Make sure puppet doesn't run automatically
+pupmod::agent::cron::enable: false
 
 # Don't allow package updates in the middle of tests
 simp_options::package_ensure: installed

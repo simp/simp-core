@@ -138,16 +138,12 @@ master = options[:master]
 
     it 'should generate systemd log messages in the local secure log' do
       hosts.each do |host|
-        if pfact_on(host, 'systemd')
-          on(host, 'systemctl restart haveged.service')
-          sleep(20)
+        on(host, 'systemctl restart postfix.service')
+        sleep(20)
 
-          unless host.host_hash[:roles].include?('syslog_server')
-            on(host, "grep 'systemd.*: Stopping Entropy Daemon based on the HAVEGE' /var/log/secure")
-            on(host, "grep 'systemd.*: Start.* Entropy Daemon based on the HAVEGE' /var/log/secure")
-          end
-        else
-          puts "Skipping host #{host.name}, which does not use systemd"
+        unless host.host_hash[:roles].include?('syslog_server')
+          on(host, "grep 'systemd.*: Stopping Postfix Mail Transport Agent' /var/log/secure")
+          on(host, "grep 'systemd.*: Starting Postfix Mail Transport Agent' /var/log/secure")
         end
       end
     end
@@ -156,13 +152,9 @@ master = options[:master]
       retried = false
       begin
         hosts.each do |host|
-          if pfact_on(host, 'systemd')
-            logdir = "/var/log/hosts/#{host.name}.#{domain}"
-            on(syslog_servers, "grep 'systemd.*: Stopping Entropy Daemon based on the HAVEGE' #{logdir}/secure.log")
-            on(syslog_servers, "grep 'systemd.*: Start.* Entropy Daemon based on the HAVEGE' #{logdir}/secure.log")
-          else
-            puts "Skipping host #{host.name}, which does not use systemd"
-          end
+          logdir = "/var/log/hosts/#{host.name}.#{domain}"
+          on(syslog_servers, "grep 'systemd.*: Stopping Postfix Mail Transport Agent' #{logdir}/secure.log")
+          on(syslog_servers, "grep 'systemd.*: Starting Postfix Mail Transport Agent' #{logdir}/secure.log")
         end
       rescue Beaker::Host::CommandFailure => e
         handle_failed_message_forwarding(e, retried, syslog_servers)

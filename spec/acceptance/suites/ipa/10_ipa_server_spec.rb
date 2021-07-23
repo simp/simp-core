@@ -9,17 +9,17 @@ describe 'set up an IPA server' do
   ipa_server = hosts_with_role(hosts, 'ipa_server').first
   domain     = fact_on(master, 'domain')
 
-  ipa_domain     = domain
-  ipa_realm      = ipa_domain.upcase
-  ipa_fqdn       = fact_on(ipa_server, 'fqdn')
-  ipa_ip         = ipa_server.reachable_name
+  ipa_domain = domain
+  ipa_realm  = ipa_domain.upcase
+  ipa_fqdn   = fact_on(ipa_server, 'fqdn')
+  ipa_ip     = ipa_server.reachable_name
 
-  context 'prepare ipa server' do
-    it 'ipa-server should have an internal network IP address' do
+  context 'prepare IPA server' do
+    it 'IPA server should have an internal network IP address' do
       expect(ipa_ip).to_not be_nil
     end
 
-    it 'should install ipa-server' do
+    it 'should install ipa-server packages' do
       result = on(ipa_server, 'cat /etc/oracle-release', :accept_all_exit_codes => true)
       if result.exit_code == 0
         # problem with OEL repos...need optional repos enabled in order
@@ -29,6 +29,7 @@ describe 'set up an IPA server' do
       end
       # forcing update of nss because ipa-server rpm has incorrect version dependency
       # this can be removed when rpm ipa-server --requires returns nss => 3.44.0
+      # TODO verify this is still needed
       ipa_server.upgrade_package('nss')
       ipa_server.install_package('ipa-server')
       ipa_server.install_package('ipa-server-dns')
@@ -55,6 +56,15 @@ describe 'set up an IPA server' do
     it 'should reboot the server' do
       ipa_server.reboot
       retry_on(ipa_server, 'uptime', :retry_interval => 15 )
+    end
+
+    it 'should ensure connectivity to hosts' do
+      hosts.each do |host|
+        # FIXME Beaker's ssh connection to a node may have been aggressively
+        # terminated by beaker instead of being handled with
+        # reconnect-after-timeout logic.
+        ensure_ssh_connection(host)
+      end
     end
   end
 
@@ -93,6 +103,19 @@ describe 'set up an IPA server' do
       on(master, "cat #{default_yaml_filename}")
     end
 
+    it 'should have IPv6 enabled for at least 1 interface on IPA server' do
+      enable_ipv6_hiera = {
+        'simp::classes'      => 'site::ipa::server',
+        'simp::sysctl::ipv6' => true
+      }
+
+      host_yaml_filename = "/etc/puppetlabs/code/environments/production/data/hosts/#{ipa_fqdn}.yaml"
+        create_remote_file(master, host_yaml_filename, enable_ipv6_hiera.to_yaml)
+
+      on(master, "cat #{host_yaml_filename}")
+      on(master, 'simp environment fix production --no-secondary-env --no-writable-env')
+    end
+
     it 'should apply the configuration' do
       block_on(agents, :run_in_parallel => false) do |agent|
         retry_on(agent, 'puppet agent -t',
@@ -105,7 +128,7 @@ describe 'set up an IPA server' do
     end
   end
 
-  context 'IPA server prep' do
+  context 'IPA server bootstrap' do
     it 'should bootstrap the IPA server that will also provide DNS' do
       # remove existing ldap client configuration
       on(ipa_server, 'mv /etc/openldap/ldap.conf{,.bak}', :accept_all_exit_codes => true)
@@ -130,6 +153,9 @@ describe 'set up an IPA server' do
       cmd << "--ip-address=#{ipa_ip}"
       cmd << "--ds-password='#{ipa_directory_service_password}'"
       cmd << "--admin-password='#{ipa_admin_password}'"
+      # We are managing NTP in Puppet so we don't need it configured by
+      # ipa-server-install
+      cmd << "--no-ntp"
 
       puts "\e[1;34m>>>>> The next step takes a very long time ... Please be patient! \e[0m"
       on(ipa_server, cmd.join(' '))
@@ -145,6 +171,14 @@ describe 'set up an IPA server' do
         :retry_interval => 15 )
 
       on(ipa_server, 'ipactl status')
+    end
+
+    it 'should ensure connectivity to hosts' do
+      hosts.each do |host|
+        # IPA server install and reboot takes a long time and can cause ssh
+        # timeouts in beaker's connections to other SUTs
+        ensure_ssh_connection(host)
+      end
     end
   end
 end
