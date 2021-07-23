@@ -31,7 +31,7 @@ mod 'rubygem-rubygem_simp_cli',
 
 mod 'simp-rsync_data',
   :git => 'https://github.com/simp/simp-rsync-skeleton',
-  :branch => 'master'
+  :tag => '7.1.0'
 
 # Use old name of rsync module for pre64 so its name does
 # not conflict with the name in rsync_data during puppetfile
@@ -42,11 +42,11 @@ mod 'simp-rsync_data_pre64',
 
 mod 'simp-adapter',
   :git => 'https://github.com/simp/simp-adapter',
-  :branch => 'master'
+  :tag => '2.1.0'
 
 mod 'simp-environment',
   :git => 'https://github.com/simp/simp-environment-skeleton',
-  :branch => 'master'
+  :tag => '7.2.1'
 
 mod 'simp-gpgkeys',
   :git => 'https://github.com/simp/simp-gpgkeys',
@@ -376,7 +376,7 @@ mod 'simp-simp_grub',
 
 mod 'simp-simp_nfs',
   :git => 'https://github.com/simp/pupmod-simp-simp_nfs',
-  :branch => 'master'
+  :tag => '1.1.0'
 
 mod 'simp-simp_openldap',
   :git => 'https://github.com/simp/pupmod-simp-simp_openldap',
@@ -388,7 +388,7 @@ mod 'simp-simp_options',
 
 mod 'simp-simp_rsyslog',
   :git => 'https://github.com/simp/pupmod-simp-simp_rsyslog',
-  :branch => 'master'
+  :tag => '0.6.0'
 
 mod 'simp-simp_snmpd',
   :git => 'https://github.com/simp/pupmod-simp-simp_snmpd',
