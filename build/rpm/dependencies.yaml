@@ -126,14 +126,6 @@
     # exclude pupmod-puppetlabs-registry
     - 'pupmod-puppetlabs-stdlib'
 
-# pupmod-puppetlabs-mount_providers-1.0.0-0 has a packaging bug in which
-# simp_rpm_helper is called in %post instead of %posttrans.  Need to
-# re-release based on the latest simp-rake-helpers, in order to fix the
-# bug.
-# TODO:  Remove this entry when the version advances beyond 1.0.0.
-'mount_providers':
-  :release: '1'
-
 'postgresql':
   :requires:
     # exclude pupmod-puppetlabs-apt

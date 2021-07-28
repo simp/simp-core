@@ -8,21 +8,6 @@ HIRS_Provisioner_TPM_2_0:
 apr-util-ldap:
   :rpm_name: apr-util-ldap-1.5.2-6.el7.x86_64.rpm
   :source: http://mirror.centos.org/centos/7/os/x86_64/Packages/apr-util-ldap-1.5.2-6.el7.x86_64.rpm
-caja:
-  :rpm_name: caja-1.16.6-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/caja-1.16.6-1.el7.x86_64.rpm
-caja-extensions:
-  :rpm_name: caja-extensions-1.16.6-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/caja-extensions-1.16.6-1.el7.x86_64.rpm
-caja-extensions-common:
-  :rpm_name: caja-extensions-common-1.16.0-1.el7.noarch.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/caja-extensions-common-1.16.0-1.el7.noarch.rpm
-caja-open-terminal:
-  :rpm_name: caja-open-terminal-1.16.0-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/caja-open-terminal-1.16.0-1.el7.x86_64.rpm
-caja-schemas:
-  :rpm_name: caja-schemas-1.16.6-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/c/caja-schemas-1.16.6-1.el7.x86_64.rpm
 chkrootkit:
   :rpm_name: chkrootkit-0.50-4el7.x86_64.rpm
   :source: https://packagecloud.io/simp-project/6_X_Dependencies/packages/el/7/chkrootkit-0.50-4el7.x86_64.rpm/download.rpm
@@ -95,18 +80,6 @@ libconfuse:
 libev:
   :rpm_name: libev-4.15-3.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/l/libev-4.15-3.el7.x86_64.rpm
-libmatekbd:
-  :rpm_name: libmatekbd-1.16.0-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/l/libmatekbd-1.16.0-1.el7.x86_64.rpm
-libmatemixer:
-  :rpm_name: libmatemixer-1.16.0-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/l/libmatemixer-1.16.0-1.el7.x86_64.rpm
-libmateweather:
-  :rpm_name: libmateweather-1.16.1-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/l/libmateweather-1.16.1-1.el7.x86_64.rpm
-libmateweather-data:
-  :rpm_name: libmateweather-data-1.16.1-1.el7.noarch.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/l/libmateweather-data-1.16.1-1.el7.noarch.rpm
 libprelude:
   :description: required by clamd
   :rpm_name: libprelude-5.2.0-2.el7.x86_64.rpm
@@ -126,57 +99,6 @@ lyx-fonts:
 marco:
   :rpm_name: marco-1.16.1-4.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/marco-1.16.1-4.el7.x86_64.rpm
-mate-control-center:
-  :rpm_name: mate-control-center-1.16.1-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/mate-control-center-1.16.1-1.el7.x86_64.rpm
-mate-control-center-filesystem:
-  :rpm_name: mate-control-center-filesystem-1.16.1-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/mate-control-center-filesystem-1.16.1-1.el7.x86_64.rpm
-mate-desktop:
-  :rpm_name: mate-desktop-1.16.2-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/mate-desktop-1.16.2-1.el7.x86_64.rpm
-mate-desktop-libs:
-  :rpm_name: mate-desktop-libs-1.16.2-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/mate-desktop-libs-1.16.2-1.el7.x86_64.rpm
-mate-icon-theme:
-  :rpm_name: mate-icon-theme-1.16.2-1.el7.noarch.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/mate-icon-theme-1.16.2-1.el7.noarch.rpm
-mate-menus:
-  :rpm_name: mate-menus-1.16.0-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/mate-menus-1.16.0-1.el7.x86_64.rpm
-mate-menus-libs:
-  :rpm_name: mate-menus-libs-1.16.0-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/mate-menus-libs-1.16.0-1.el7.x86_64.rpm
-mate-notification-daemon:
-  :rpm_name: mate-notification-daemon-1.16.1-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/mate-notification-daemon-1.16.1-1.el7.x86_64.rpm
-mate-panel:
-  :rpm_name: mate-panel-1.16.2-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/mate-panel-1.16.2-1.el7.x86_64.rpm
-mate-panel-libs:
-  :rpm_name: mate-panel-libs-1.16.2-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/mate-panel-libs-1.16.2-1.el7.x86_64.rpm
-mate-polkit:
-  :rpm_name: mate-polkit-1.16.0-2.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/mate-polkit-1.16.0-2.el7.x86_64.rpm
-mate-power-manager:
-  :rpm_name: mate-power-manager-1.16.2-2.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/mate-power-manager-1.16.2-2.el7.x86_64.rpm
-mate-screensaver:
-  :rpm_name: mate-screensaver-1.16.1-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/mate-screensaver-1.16.1-1.el7.x86_64.rpm
-mate-session-manager:
-  :rpm_name: mate-session-manager-1.16.1-3.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/mate-session-manager-1.16.1-3.el7.x86_64.rpm
-mate-settings-daemon:
-  :rpm_name: mate-settings-daemon-1.16.2-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/mate-settings-daemon-1.16.2-1.el7.x86_64.rpm
-mate-themes:
-  :rpm_name: mate-themes-3.22.21-2.el7.noarch.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/7/x86_64/Packages/m/mate-themes-3.22.21-2.el7.noarch.rpm
-mate-user-guide:
-  :rpm_name: mate-user-guide-1.16.0-1.el7.noarch.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/m/mate-user-guide-1.16.0-1.el7.noarch.rpm
 nx-libs:
   :rpm_name: nx-libs-3.5.99.25-2.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/n/nx-libs-3.5.99.25-2.el7.x86_64.rpm
@@ -207,15 +129,6 @@ perl-File-Which:
 perl-Switch:
   :rpm_name: perl-Switch-2.16-7.el7.noarch.rpm
   :source: http://mirror.centos.org/centos/7/os/x86_64/Packages/perl-Switch-2.16-7.el7.noarch.rpm
-perl-X2Go-Log:
-  :rpm_name: perl-X2Go-Log-4.1.0.3-3.el7.noarch.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/7/x86_64/Packages/p/perl-X2Go-Log-4.1.0.3-3.el7.noarch.rpm
-perl-X2Go-Server:
-  :rpm_name: perl-X2Go-Server-4.1.0.3-3.el7.noarch.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/7/x86_64/Packages/p/perl-X2Go-Server-4.1.0.3-3.el7.noarch.rpm
-perl-X2Go-Server-DB:
-  :rpm_name: perl-X2Go-Server-DB-4.1.0.3-3.el7.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/7/x86_64/Packages/p/perl-X2Go-Server-DB-4.1.0.3-3.el7.x86_64.rpm
 postgresql96:
   :rpm_name: postgresql96-9.6.12-1PGDG.rhel7.x86_64.rpm
   :source: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/postgresql96-9.6.12-1PGDG.rhel7.x86_64.rpm
@@ -372,18 +285,3 @@ unhide:
 unique:
   :rpm_name: unique-1.1.6-10.el7.x86_64.rpm
   :source: http://lug.mtu.edu/epel/7/x86_64/Packages/u/unique-1.1.6-10.el7.x86_64.rpm
-x2goagent:
-  :rpm_name: x2goagent-4.1.0.3-3.el7.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/7/x86_64/Packages/x/x2goagent-4.1.0.3-3.el7.x86_64.rpm
-x2goclient:
-  :rpm_name: x2goclient-4.1.1.1-1.el7.x86_64.rpm
-  :source: http://lug.mtu.edu/epel/7/x86_64/Packages/x/x2goclient-4.1.1.1-1.el7.x86_64.rpm
-x2goserver:
-  :rpm_name: x2goserver-4.1.0.3-3.el7.x86_64.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/7/x86_64/Packages/x/x2goserver-4.1.0.3-3.el7.x86_64.rpm
-x2goserver-common:
-  :rpm_name: x2goserver-common-4.1.0.3-3.el7.noarch.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/7/x86_64/Packages/x/x2goserver-common-4.1.0.3-3.el7.noarch.rpm
-x2goserver-xsession:
-  :rpm_name: x2goserver-xsession-4.1.0.3-3.el7.noarch.rpm
-  :source: http://mirror.cogentco.com/pub/linux/epel/7/x86_64/Packages/x/x2goserver-xsession-4.1.0.3-3.el7.noarch.rpm

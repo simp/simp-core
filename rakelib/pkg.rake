@@ -25,6 +25,7 @@ namespace :pkg do
     end
 
     if args[:remove_dev_gpgkeys] == 'true'
+      dirs_to_remove << File.join(base_dir, '.dev_gpgkeys')
       dirs_to_remove += Dir.glob(File.join(distr_glob, 'build_keys', 'dev'))
       dirs_to_remove += Dir.glob(File.join(distr_glob, 'DVD', 'RPM-GPG-KEY-SIMP-Dev'))
     end

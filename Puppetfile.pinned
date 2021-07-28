@@ -262,10 +262,6 @@ mod 'simp-logrotate',
   :git => 'https://github.com/simp/pupmod-simp-logrotate',
   :tag => '6.6.0'
 
-mod 'simp-mate',
-  :git => 'https://github.com/simp/pupmod-simp-mate',
-  :branch => 'master'
-
 mod 'simp-mozilla',
   :git => 'https://github.com/simp/pupmod-simp-mozilla',
   :tag => '5.3.0'
@@ -280,7 +276,7 @@ mod 'simp-network',
 
 mod 'simp-nfs',
   :git => 'https://github.com/simp/pupmod-simp-nfs',
-  :branch => 'master'
+  :tag => '7.1.0'
 
 mod 'simp-ntpd',
   :git => 'https://github.com/simp/pupmod-simp-ntpd',
@@ -472,11 +468,6 @@ mod 'simp-vox_selinux',
 mod 'simp-vsftpd',
   :git => 'https://github.com/simp/pupmod-simp-vsftpd',
   :tag => '7.6.0'
-
-#FIXME add this back in when it has been updated to work with latest gnome
-#mod 'simp-x2go',
-#  :git => 'https://github.com/simp/pupmod-simp-x2go',
-#  :branch => 'master'
 
 mod 'simp-xinetd',
   :git => 'https://github.com/simp/pupmod-simp-xinetd',
