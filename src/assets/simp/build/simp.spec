@@ -133,6 +133,12 @@ Obsoletes:  pupmod-puppetlabs-docker  <= 3.5.0
 Obsoletes:  pupmod-simp-simp_docker  <= 0.2.1
 Obsoletes:  pupmod-simp-journald   <= 1.1.0
 
+#  These lines are required for upgrades from 6.5.0 to 6.6.0
+#  because these packages have out of date requirements.
+Obsoletes: pupmod-simp-simp_bolt <= 0.3.0
+Obsoletes: pupmod-simp-simp_ipa <= 0.1.0
+Obsoletes: pupmod-simp-simp_pki_service <= 0.3.1
+
 Requires: simp-adapter >= 2.0.0, simp-adapter < 3.0.0
 Requires: pupmod-puppet-gitlab >= 7.1.0
 Requires: pupmod-puppet-posix_acl >= 1.0.1
@@ -156,7 +162,7 @@ Requires: pupmod-simp-libvirt >= 5.5.0
 Requires: pupmod-simp-mate >= 1.1.1
 Requires: pupmod-simp-mozilla >= 5.3.0
 Requires: pupmod-simp-network >= 6.3.0
-Requires: pupmod-simp-nfs >= 7.0.1
+Requires: pupmod-simp-nfs >= 7.1.0
 Requires: pupmod-simp-oath >= 0.3.0
 Requires: pupmod-simp-openscap >= 6.4.0
 Requires: pupmod-simp-simp_gitlab >= 0.6.0

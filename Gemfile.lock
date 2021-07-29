@@ -5,7 +5,7 @@ GEM
       public_suffix (>= 2.0.2, < 5.0)
     ansi (1.5.0)
     ast (2.4.2)
-    beaker (4.27.1)
+    beaker (4.30.0)
       beaker-hostgenerator
       hocon (~> 1.0)
       in-parallel (~> 0.1)
@@ -17,6 +17,7 @@ GEM
       open_uri_redirections (~> 0.2.1)
       pry-byebug (~> 3.9)
       rb-readline (~> 0.5.3)
+      rexml
       rsync (~> 1.0.9)
       stringify-hash (~> 0.0)
       thor (>= 1.0.1, < 2.0)
@@ -58,8 +59,7 @@ GEM
     beaker-vmpooler (1.4.0)
       stringify-hash (~> 0.0.0)
     byebug (11.1.3)
-    childprocess (0.7.1)
-      ffi (~> 1.0, >= 1.0.11)
+    childprocess (4.0.0)
     coderay (1.1.3)
     colored2 (3.1.2)
     colorize (0.8.1)
@@ -68,15 +68,15 @@ GEM
     concurrent-ruby (1.1.9)
     cri (2.15.10)
     deep_merge (1.2.1)
-    diff-lcs (1.3)
+    diff-lcs (1.4.4)
     docker-api (2.2.0)
       excon (>= 0.47.0)
       multi_json
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
-    excon (0.84.0)
+    excon (0.85.0)
     facter (2.5.7)
-    facterdb (1.6.0)
+    facterdb (1.7.0)
       facter (< 5.0.0)
       jgrep
     faraday (0.17.4)
@@ -95,7 +95,7 @@ GEM
     hiera (3.7.0)
     hiera-puppet-helper (1.0.1)
     highline (2.0.3)
-    hitimes (1.3.0)
+    hitimes (2.0.0)
     hocon (1.3.1)
     http-cookie (1.0.4)
       domain_name (~> 0.5)
@@ -139,23 +139,23 @@ GEM
     pastel (0.8.0)
       tty-color (~> 0.5)
     pathspec (0.2.1)
-    pdk (1.18.1)
+    pdk (2.1.1)
       bundler (>= 1.15.0, < 3.0.0)
-      childprocess (~> 0.7.1)
+      childprocess (~> 4.0.0)
       concurrent-ruby (~> 1.1.5)
       cri (~> 2.10)
       deep_merge (~> 1.1)
-      diff-lcs (= 1.3)
-      facter (~> 2.5.1)
+      diff-lcs (>= 1.4.4, < 1.5)
+      facter (>= 2.5.1, < 5.0.0)
       ffi (>= 1.9.25, < 2.0.0)
       gettext-setup (~> 0.24)
-      hitimes (= 1.3.0)
+      hitimes (= 2.0.0)
       httpclient (~> 2.8.3)
       json-schema (= 2.8.0)
       json_pure (~> 2.1.0)
       minitar (~> 0.6)
       pathspec (~> 0.2.1)
-      tty-prompt (~> 0.13)
+      tty-prompt (~> 0.22)
       tty-spinner (~> 0.5)
       tty-which (~> 0.3)
     pry (0.13.1)
@@ -168,7 +168,7 @@ GEM
       pry (~> 0.11)
       yard (~> 0.9.11)
     public_suffix (4.0.6)
-    puppet (6.23.0)
+    puppet (6.24.0)
       concurrent-ruby (~> 1.0)
       deep_merge (~> 1.0)
       facter (> 2.0.1, < 5)
@@ -182,14 +182,14 @@ GEM
     puppet-blacksmith (3.4.0)
       puppet (>= 2.7.16)
       rest-client (~> 1.8.0)
-    puppet-lint (2.4.2)
+    puppet-lint (2.5.0)
     puppet-lint-empty_string-check (0.2.2)
       puppet-lint (>= 1.0, < 3.0)
     puppet-lint-trailing_comma-check (0.4.2)
       puppet-lint (>= 1.0, < 3.0)
     puppet-resource_api (1.8.14)
       hocon (>= 1.0)
-    puppet-strings (2.7.0)
+    puppet-strings (2.8.0)
       rgen
       yard (~> 0.9.5)
     puppet-syntax (3.1.0)
@@ -207,7 +207,7 @@ GEM
       puppet-lint (~> 2.0)
       puppet-syntax (>= 2.0, < 4)
       rspec-puppet (~> 2.0)
-    r10k (3.9.3)
+    r10k (3.10.0)
       colored2 (= 3.1.2)
       cri (= 2.15.10)
       fast_gettext (~> 1.1.0)
@@ -224,6 +224,7 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
+    rexml (3.2.5)
     rgen (0.8.2)
     rspec (3.10.0)
       rspec-core (~> 3.10.0)
@@ -242,7 +243,7 @@ GEM
       rspec-support (~> 3.10.0)
     rspec-puppet (2.9.0)
       rspec
-    rspec-puppet-facts (2.0.1)
+    rspec-puppet-facts (2.0.2)
       facter
       facterdb (>= 0.5.0)
       puppet
@@ -325,16 +326,16 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  beaker (~> 4.27.1)
+  beaker
   beaker-rspec
   hiera-puppet-helper
   metadata-json-lint
-  nokogiri (>= 1.11.6)
-  pdk (~> 1.0)
+  pathspec (~> 0.2)
+  pdk (~> 2.0)
   pry
   pry-byebug
   pry-doc
-  puppet (~> 6.18)
+  puppet (~> 6.22)
   puppet-lint-empty_string-check
   puppet-lint-trailing_comma-check
   puppet-strings
@@ -342,9 +343,9 @@ DEPENDENCIES
   rake
   rspec
   rspec-puppet
-  simp-beaker-helpers (>= 1.21.4, < 2)
+  simp-beaker-helpers (>= 1.23.2, < 2)
   simp-build-helpers (> 0.1, < 2.0)
-  simp-rake-helpers (> 5.11, < 6.0)
+  simp-rake-helpers (>= 5.12.1, < 6)
   simp-rspec-puppet-facts (~> 3.1)
 
 BUNDLED WITH
