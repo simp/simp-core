@@ -136,7 +136,6 @@ Obsoletes:  pupmod-simp-journald   <= 1.1.0
 #  These lines are required for upgrades from 6.5.0 to 6.6.0
 #  because these packages have out of date requirements.
 Obsoletes: pupmod-simp-simp_bolt <= 0.3.0
-Obsoletes: pupmod-simp-simp_ipa <= 0.1.0
 Obsoletes: pupmod-simp-simp_pki_service <= 0.3.1
 
 Requires: simp-adapter >= 2.0.0, simp-adapter < 3.0.0
@@ -159,14 +158,15 @@ Requires: pupmod-simp-ima >= 0.4.0
 Requires: pupmod-simp-krb5 >= 7.2.0
 Requires: pupmod-simp-libreswan >= 3.5.0
 Requires: pupmod-simp-libvirt >= 5.5.0
-Requires: pupmod-simp-mate >= 1.1.1
+Requires: pupmod-simp-mate >= 1.2.0
 Requires: pupmod-simp-mozilla >= 5.3.0
 Requires: pupmod-simp-network >= 6.3.0
 Requires: pupmod-simp-nfs >= 7.1.0
 Requires: pupmod-simp-oath >= 0.3.0
 Requires: pupmod-simp-openscap >= 6.4.0
-Requires: pupmod-simp-simp_gitlab >= 0.6.0
+Requires: pupmod-simp-simp_gitlab >= 0.7.0
 Requires: pupmod-simp-simp_grub >= 0.3.1
+Requires: pupmod-simp-simp_ipa >= 0.2.0
 Requires: pupmod-simp-simp_nfs >= 1.1.0
 Requires: pupmod-simp-simp_snmpd >= 1.1.0
 Requires: pupmod-simp-tpm >= 3.3.0
@@ -174,8 +174,7 @@ Requires: pupmod-simp-tpm2 >= 0.4.0
 Requires: pupmod-simp-tuned >= 0.3.0
 Requires: pupmod-simp-vnc >= 7.2.0
 Requires: pupmod-simp-vsftpd >= 7.6.0
-#FIXME add this back in when x2go has been updated to work with latest gnome
-#Requires: pupmod-simp-x2go >= 0.3.0
+Requires: pupmod-simp-x2go >= 0.3.0
 
 # The following line ensures the OBE pupmod-electrical-file_concat
 # package is removed when the simp-extras package is upgraded from
@@ -260,7 +259,6 @@ fi
   - Removals:
     - simp/simp_bolt
     - simp/simp_pki_service
-    - simp/simp_ipa
   - Replacements:
     - aboe/chrony has been replaced by puppet/chrony
     - camptocamp/kmod has been replaced by puppet/kmod
