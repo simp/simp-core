@@ -204,7 +204,7 @@ mod 'simp-dhcp',
 
 mod 'simp-ds389',
   :git => 'https://github.com/simp/pupmod-simp-ds389',
-  :branch => 'master'
+  :tag => '0.1.0'
 
 mod 'simp-fips',
   :git => 'https://github.com/simp/pupmod-simp-fips',
@@ -264,7 +264,7 @@ mod 'simp-logrotate',
 
 mod 'simp-mate',
   :git => 'https://github.com/simp/pupmod-simp-mate',
-  :branch => 'master'
+  :tag => '1.2.0'
 
 mod 'simp-mozilla',
   :git => 'https://github.com/simp/pupmod-simp-mozilla',
@@ -368,11 +368,15 @@ mod 'simp-simp_firewalld',
 
 mod 'simp-simp_gitlab',
   :git => 'https://github.com/simp/pupmod-simp-simp_gitlab',
-  :branch => 'master'
+  :tag => '0.7.0'
 
 mod 'simp-simp_grub',
   :git => 'https://github.com/simp/pupmod-simp-simp_grub',
   :tag => '0.3.1'
+
+mod 'simp-simp_ipa',
+  :git => 'https://github.com/simp/pupmod-simp-simp_ipa',
+  :branch => 'master'
 
 mod 'simp-simp_nfs',
   :git => 'https://github.com/simp/pupmod-simp-simp_nfs',
@@ -473,10 +477,9 @@ mod 'simp-vsftpd',
   :git => 'https://github.com/simp/pupmod-simp-vsftpd',
   :tag => '7.6.0'
 
-#FIXME add this back in when it has been updated to work with latest gnome
-#mod 'simp-x2go',
-#  :git => 'https://github.com/simp/pupmod-simp-x2go',
-#  :branch => 'master'
+mod 'simp-x2go',
+  :git => 'https://github.com/simp/pupmod-simp-x2go',
+  :branch => 'master'
 
 mod 'simp-xinetd',
   :git => 'https://github.com/simp/pupmod-simp-xinetd',
