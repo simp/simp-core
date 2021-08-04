@@ -422,7 +422,7 @@ Sets the test VM box types.  Valid values are `centos`, `oracle`, and
 `oel`.
 
 * **unset** - Defaults to `centos`
-* When `centos`, uses `centso/8` and `centos/7` boxes.
+* When `centos`, uses `generic/centos8` and `centos/7` boxes.
 * When `oracle` or `oel`, uses the boxes `generic/oracle8` and
-  `onyxpoint/oel-7-x86_64`
-* Any other value defaults to `centos/8` and `centos/7`.
+  `generic/oracle7`
+* Any other value defaults to `generic/centos8` and `generic/centos7`.

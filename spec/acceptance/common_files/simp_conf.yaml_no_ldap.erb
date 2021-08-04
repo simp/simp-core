@@ -130,13 +130,6 @@ cli::simp::scenario: <%= scenario %>
 # SIMP repositories.
 cli::use_internet_simp_yum_repos: false
 
-# === grub::password ===
-# The password to access GRUB.
-#
-# The value entered is used to set the GRUB password and to generate a hash
-# stored in grub::password.
-grub::password: "<%= grub_password_hash %>"
-
 # === puppetdb::master::config::puppetdb_port ===
 # The PuppetDB server port number.
 puppetdb::master::config::puppetdb_port: 8139
@@ -157,6 +150,12 @@ simp::runlevel: 3
 # when this user has been created.
 simp::server::allow_simp_user: false
 
+# === simp_grub::password ===
+# The password to access GRUB.
+#
+# The value entered is used to set the GRUB password and to generate a hash
+# stored in grub::password.
+simp_grub::password: "<%= grub_password_hash %>"
 
 # === simp_options::dns::search ===
 # The DNS domain search string.

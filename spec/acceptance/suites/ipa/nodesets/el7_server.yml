@@ -5,7 +5,7 @@
   when /centos/ || /^el/
     box_7 = 'centos/7'
   when /oracle/ || /^oel/
-    box_7 = 'onyxpoint/oel-7-x86_64'
+    box_7 = 'generic/oracle7'
   else
     box_7 = 'centos/7'
   end
@@ -50,7 +50,8 @@ CONFIG:
   vagrant_memsize: 256
   ssh:
     keepalive: true
-    keepalive_interval: 1
+    keepalive_interval: 10
+    keepalive_maxcount: 120
   synced_folder: disabled
 <% if ENV['BEAKER_PUPPET_COLLECTION'] -%>
   puppet_collection: <%= ENV['BEAKER_PUPPET_COLLECTION'] %>

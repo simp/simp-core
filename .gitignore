@@ -1,5 +1,6 @@
 .*.sw?
 .bundle/
+.dev_gpgkeys
 .r10k_cache/
 .tmp/
 tmp/
