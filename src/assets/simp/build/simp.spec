@@ -166,7 +166,7 @@ Requires: pupmod-simp-oath >= 0.3.0
 Requires: pupmod-simp-openscap >= 6.4.0
 Requires: pupmod-simp-simp_gitlab >= 0.7.0
 Requires: pupmod-simp-simp_grub >= 0.3.1
-Requires: pupmod-simp-simp_ipa >= 0.2.0
+Requires: pupmod-simp-simp_ipa >= 0.2.1
 Requires: pupmod-simp-simp_nfs >= 1.1.0
 Requires: pupmod-simp-simp_snmpd >= 1.1.0
 Requires: pupmod-simp-tpm >= 3.3.0
@@ -174,7 +174,7 @@ Requires: pupmod-simp-tpm2 >= 0.4.0
 Requires: pupmod-simp-tuned >= 0.3.0
 Requires: pupmod-simp-vnc >= 7.2.0
 Requires: pupmod-simp-vsftpd >= 7.6.0
-Requires: pupmod-simp-x2go >= 0.3.0
+Requires: pupmod-simp-x2go >= 0.4.0
 
 # The following line ensures the OBE pupmod-electrical-file_concat
 # package is removed when the simp-extras package is upgraded from

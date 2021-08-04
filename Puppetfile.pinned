@@ -204,7 +204,7 @@ mod 'simp-dhcp',
 
 mod 'simp-ds389',
   :git => 'https://github.com/simp/pupmod-simp-ds389',
-  :tag => '0.1.0'
+  :branch => 'master'
 
 mod 'simp-fips',
   :git => 'https://github.com/simp/pupmod-simp-fips',
@@ -348,7 +348,7 @@ mod 'simp-simpkv',
 
 mod 'simp-simplib',
   :git => 'https://github.com/simp/pupmod-simp-simplib',
-  :tag => '4.9.0'
+  :branch => 'master'
 
 mod 'simp-simp_apache',
   :git => 'https://github.com/simp/pupmod-simp-simp_apache',
@@ -360,7 +360,7 @@ mod 'simp-simp_banners',
 
 mod 'simp-simp_ds389',
   :git => 'https://github.com/simp/pupmod-simp-simp_ds389',
-  :branch => 'master'
+  :tag => '0.1.0'
 
 mod 'simp-simp_firewalld',
   :git => 'https://github.com/simp/pupmod-simp-simp_firewalld',
@@ -376,7 +376,7 @@ mod 'simp-simp_grub',
 
 mod 'simp-simp_ipa',
   :git => 'https://github.com/simp/pupmod-simp-simp_ipa',
-  :branch => 'master'
+  :tag => '0.2.1'
 
 mod 'simp-simp_nfs',
   :git => 'https://github.com/simp/pupmod-simp-simp_nfs',
@@ -479,7 +479,7 @@ mod 'simp-vsftpd',
 
 mod 'simp-x2go',
   :git => 'https://github.com/simp/pupmod-simp-x2go',
-  :branch => 'master'
+  :tag => '0.4.0'
 
 mod 'simp-xinetd',
   :git => 'https://github.com/simp/pupmod-simp-xinetd',
