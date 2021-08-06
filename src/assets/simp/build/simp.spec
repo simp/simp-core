@@ -56,7 +56,7 @@ Requires: pupmod-simp-cron >= 0.3.0, pupmod-simp-cron < 1.0.0
 Requires: pupmod-simp-crypto_policy >= 0.2.0, pupmod-simp-crypto_policy < 1.0.0
 Requires: pupmod-simp-deferred_resources >= 0.4.0, pupmod-simp-deferred_resources < 1.0.0
 Requires: pupmod-simp-dhcp >= 6.3.0, pupmod-simp-dhcp < 7.0.0
-Requires: pupmod-simp-ds389 >= 0.1.0, pupmod-simp-ds389 < 1.0.0
+Requires: pupmod-simp-ds389 >= 0.1.1, pupmod-simp-ds389 < 1.0.0
 Requires: pupmod-simp-fips >= 0.5.0, pupmod-simp-fips < 1.0.0
 Requires: pupmod-simp-haveged >= 0.8.0, pupmod-simp-haveged < 1.0.0
 Requires: pupmod-simp-incron >= 0.6.0, pupmod-simp-incron < 1.0.0
@@ -166,7 +166,7 @@ Requires: pupmod-simp-oath >= 0.3.0
 Requires: pupmod-simp-openscap >= 6.4.0
 Requires: pupmod-simp-simp_gitlab >= 0.7.0
 Requires: pupmod-simp-simp_grub >= 0.3.1
-Requires: pupmod-simp-simp_ipa >= 0.2.0
+Requires: pupmod-simp-simp_ipa >= 0.2.1
 Requires: pupmod-simp-simp_nfs >= 1.1.0
 Requires: pupmod-simp-simp_snmpd >= 1.1.0
 Requires: pupmod-simp-tpm >= 3.3.0
@@ -174,7 +174,7 @@ Requires: pupmod-simp-tpm2 >= 0.4.0
 Requires: pupmod-simp-tuned >= 0.3.0
 Requires: pupmod-simp-vnc >= 7.2.0
 Requires: pupmod-simp-vsftpd >= 7.6.0
-Requires: pupmod-simp-x2go >= 0.3.0
+Requires: pupmod-simp-x2go >= 0.4.0
 
 # The following line ensures the OBE pupmod-electrical-file_concat
 # package is removed when the simp-extras package is upgraded from

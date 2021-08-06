@@ -114,7 +114,7 @@ GEM
       spdx-licenses (~> 1.0)
     method_source (1.0.0)
     mime-types (2.99.3)
-    mini_portile2 (2.5.3)
+    mini_portile2 (2.6.1)
     minitar (0.9)
     minitest (5.14.4)
     mocha (1.13.0)
@@ -125,8 +125,8 @@ GEM
     net-ssh (6.1.0)
     net-telnet (0.1.1)
     netrc (0.11.0)
-    nokogiri (1.11.7)
-      mini_portile2 (~> 2.5.0)
+    nokogiri (1.12.1)
+      mini_portile2 (~> 2.6.1)
       racc (~> 1.4)
     oga (3.3)
       ast
@@ -139,7 +139,7 @@ GEM
     pastel (0.8.0)
       tty-color (~> 0.5)
     pathspec (0.2.1)
-    pdk (2.1.1)
+    pdk (2.2.0)
       bundler (>= 1.15.0, < 3.0.0)
       childprocess (~> 4.0.0)
       concurrent-ruby (~> 1.1.5)
@@ -241,7 +241,7 @@ GEM
     rspec-mocks (3.10.2)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.10.0)
-    rspec-puppet (2.9.0)
+    rspec-puppet (2.10.0)
       rspec
     rspec-puppet-facts (2.0.2)
       facter
