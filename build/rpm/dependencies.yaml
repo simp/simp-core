@@ -111,7 +111,7 @@
 # Voxpupuli has taken ownership of this project
 'kmod':
   :obsoletes:
-    'pupmod-camptocamp-kmod': '3.0.0'
+    'pupmod-camptocamp-kmod': '2.5.0-0'
 
 # pupmod-saz-locales-2.5.1-0 has a packaging bug in which the RPM state
 # directory used contains an unexpanded RPM macro (the string
