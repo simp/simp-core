@@ -31,10 +31,12 @@ describe 'IPA server integration' do
       '/etc/puppetlabs/code/environments/production/data/default.yaml'
     }
 
+    let(:user_pwd) { test_password(:user, 0) }
+
     it 'should add a user and group, and then add the user to the group' do
       next_year = Time.new.year + 1
       user_add = [
-        "echo -n '#{test_password}' |",
+        "echo -n '#{user_pwd}' |",
         'ipa user-add testuser',
         '--first=Test',
         '--last=User',
@@ -88,7 +90,7 @@ describe 'IPA server integration' do
     ipa_clients.each do |client|
       it "should ssh into #{client} from #{ipa_server} using IPA-created user" do
         login = []
-        login << "sshpass -p '#{test_password}'"
+        login << "sshpass -p '#{user_pwd}'"
         login << 'ssh'
         login << '-o PubkeyAuthentication=no'
         login << '-o StrictHostKeyChecking=no'

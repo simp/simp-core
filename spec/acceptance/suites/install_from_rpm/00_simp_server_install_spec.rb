@@ -12,7 +12,7 @@ describe 'Install SIMP modules and assets via RPM from internet repos' do
 
   context 'all hosts prep' do
     set_up_options = {
-      :root_password => test_password,
+      :root_password => test_password(:root),
       :repos         => [
         # SIMP repos **SHOULD** include the necessary puppet + epel RPMs
         :simp,

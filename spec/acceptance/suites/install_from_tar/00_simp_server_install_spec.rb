@@ -12,7 +12,7 @@ describe 'Install SIMP modules and assets via release tarball' do
 
   context 'all hosts prep' do
     set_up_options = {
-      :root_password => test_password,
+      :root_password => test_password(:root),
       :repos         => [
         :epel,
         :simp,

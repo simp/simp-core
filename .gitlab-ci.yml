@@ -202,6 +202,13 @@ pup6.pe-default_el7:
     - bundle exec rake beaker:suites[default,el7_server]
   retry: 1
 
+pup6.pe-default_el8:
+  <<: *acceptance_base
+  <<: *pup_6_pe
+  script:
+    - bundle exec rake beaker:suites[default,el8_server]
+  retry: 1
+
 pup6.pe-ipa_el7:
   <<: *acceptance_base
   <<: *only_with_SIMP_FULL_MATRIX_or_SIMP_IPA_TEST
@@ -210,12 +217,29 @@ pup6.pe-ipa_el7:
     - bundle exec rake beaker:suites[ipa,el7_server]
   retry: 1
 
+# IPA for EL8 not yet supported
+#pup6.pe-ipa_el8:
+#  <<: *acceptance_base
+#  <<: *only_with_SIMP_FULL_MATRIX_or_SIMP_IPA_TEST
+#  <<: *pup_6_pe
+#  script:
+#    - bundle exec rake beaker:suites[ipa,el8_server]
+#  retry: 1
+
 pup6.pe-simp_lite_el7:
   <<: *acceptance_base
   <<: *pup_6_pe
   <<: *only_with_SIMP_FULL_MATRIX_or_SIMP_LITE_TEST
   script:
     - bundle exec rake beaker:suites[simp_lite,el7_server]
+  retry: 1
+
+pup6.pe-simp_lite_el8:
+  <<: *acceptance_base
+  <<: *pup_6_pe
+  <<: *only_with_SIMP_FULL_MATRIX_or_SIMP_LITE_TEST
+  script:
+    - bundle exec rake beaker:suites[simp_lite,el8_server]
   retry: 1
 
 pup6.pe-rpm_el7:
@@ -226,12 +250,28 @@ pup6.pe-rpm_el7:
     - bundle exec rake beaker:suites[install_from_rpm,el7_server]
   retry: 1
 
+pup6.pe-rpm_el8:
+  <<: *acceptance_base
+  <<: *only_with_SIMP_RELEASE_TESTS
+  <<: *pup_6_pe
+  script:
+    - bundle exec rake beaker:suites[install_from_rpm,el8_server]
+  retry: 1
+
 pup6.pe-forge_install_el7:
   <<: *acceptance_base
   <<: *only_with_SIMP_RELEASE_TESTS
   <<: *pup_6_pe
   script:
     - bundle exec rake beaker:suites[install_from_core_module,el7_server]
+  retry: 1
+
+pup6.pe-forge_install_el8:
+  <<: *acceptance_base
+  <<: *only_with_SIMP_RELEASE_TESTS
+  <<: *pup_6_pe
+  script:
+    - bundle exec rake beaker:suites[install_from_core_module,el8_server]
   retry: 1
 
 pup7.pe-default_el7:

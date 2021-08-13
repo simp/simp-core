@@ -5,17 +5,18 @@ module Acceptance
       # location of the installed expect scripts
       EXPECT_SCRIPT_DIR = '/usr/local/bin'
 
-      # FIXME: Workaround for SIMP-5082
-      # Using the (ASSUMED) optional, final command line argument in an expect
-      # script, adjust ciphers used by that script to ssh from src_host to
-      # dest_host, if necessary.  This ugly adjustment is needed in order to
-      # deal with different cipher sets configured by SIMP for sshd for
-      # different versions of CentOS.
+      # Adjust ssh expect script command to address ssh cipher mismatch between
+      # the source host and the destination host
       #
-      # NOTE: this is probably possible to remove in favor of overriding the
-      # net-ssh options in the Beaker nodeset, which wasn't possible when
-      # SIMP-5082 was submitted.  However, that will need to wait for a future
-      # patch.
+      # Adds ssh cipher option as the last command line argument to the ssh
+      # expect script command, when a cipher mismatch needs to be addressed.
+      #
+      # * The expect script adds its last command line argument to ssh command
+      #   it is executing.
+      #
+      # >>> FIXME: This is a workaround for SIMP-5082, which is OBE, as we <<<
+      # >>> are no longer supporting EL6. Will leave this as a placeholder <<<
+      # >>> for any other cipher mismatches that arise.                    <<<
       #
       # Returns the expect command
       def adjust_ssh_ciphers_for_expect_script(expect_cmd, src_host, dest_host)

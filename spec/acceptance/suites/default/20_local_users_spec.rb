@@ -10,6 +10,8 @@ test_name 'local user access'
 describe 'local user access' do
 
   let(:files_dir) { 'spec/acceptance/common_files' }
+  let(:first_pwd) { test_password(:user, 0) }
+  let(:second_pwd) { test_password(:user, 1) }
 
   context 'local user login' do
     it 'should have localadmin user on all hosts' do
@@ -24,9 +26,7 @@ describe 'local user access' do
       # This expect script ssh's to a host as a user and then runs 'date'.
       remote_script = install_expect_script(master, "#{files_dir}/ssh_cmd_script")
       hosts.each do |host|
-        base_cmd ="#{remote_script} localadmin #{host.name} #{test_password(0)} date"
-
-        # FIXME: Workaround for SIMP-5082
+        base_cmd ="#{remote_script} localadmin #{host.name} #{first_pwd} date"
         cmd = adjust_ssh_ciphers_for_expect_script(base_cmd, master, host)
         on(master, cmd)
       end
@@ -41,9 +41,7 @@ describe 'local user access' do
       on(hosts, 'passwd --minimum 0 localadmin')
 
       hosts.each do |host|
-        base_cmd ="#{remote_script} localadmin #{host.name} #{test_password(0)} #{test_password(1)}"
-
-        # FIXME: Workaround for SIMP-5082
+        base_cmd ="#{remote_script} localadmin #{host.name} #{first_pwd} #{second_pwd}"
         cmd = adjust_ssh_ciphers_for_expect_script(base_cmd, master, host)
         on(master, cmd)
       end
@@ -51,9 +49,7 @@ describe 'local user access' do
 
     it 'local user should be able to login with new password via ssh' do
       hosts.each do |host|
-        base_cmd ="#{EXPECT_SCRIPT_DIR}/ssh_cmd_script localadmin #{host.name} #{test_password(1)} date"
-
-        # FIXME: Workaround for SIMP-5082
+        base_cmd ="#{EXPECT_SCRIPT_DIR}/ssh_cmd_script localadmin #{host.name} #{second_pwd} date"
         cmd = adjust_ssh_ciphers_for_expect_script(base_cmd, master, host)
         on(master, cmd)
       end

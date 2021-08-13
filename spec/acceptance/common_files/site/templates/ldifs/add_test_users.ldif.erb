@@ -1,174 +1,48 @@
-<% t_shadow_last_change = Time.now.to_i/60/60/24 - 4 -%>
-dn: cn=admin1,ou=Group,<%= @base_dn %>
-objectClass: posixGroup
-objectClass: top
-cn: admin1
-gidNumber: 3001
-description: "Admin One group"
+<%
+  _groups = []
+  @groups.each do |name,id|
+    _groups << <<~EOM
+      dn: cn=#{name},ou=Group,#{@base_dn}
+      objectClass: posixGroup
+      objectClass: top
+      cn: #{name}
+      gidNumber: #{id}
+      description: "#{name} group"
+    EOM
+  end
 
-dn: uid=admin1,ou=People,<%= @base_dn %>
-uid: admin1
-cn: admin1
-givenName: admin
-sn: one
-mail: admin1@test.local
-objectClass: inetOrgPerson
-objectClass: posixAccount
-objectClass: top
-objectClass: shadowAccount
-objectClass: ldapPublicKey
-shadowMax: 180
-shadowMin: 1
-shadowWarning: 7
-shadowLastChange: <%= t_shadow_last_change %>
-sshPublicKey: <some SSH public key>
-loginShell: /bin/bash
-uidNumber: 3001
-gidNumber: 3001
-homeDirectory: /home/admin1
-userPassword: <%= @user_password_hash %>
-pwdReset: FALSE
+  _shadow_last_change = Time.now.to_i/60/60/24 - 4
+  _users = []
+  @users.each do |name,info|
+    _users << <<~EOM
+      dn: uid=#{name},ou=People,#{@base_dn}
+      uid: #{name}
+      cn: #{name}
+      givenName: #{name}
+      sn: #{name}
+      mail: #{name}@test.local
+      objectClass: inetOrgPerson
+      objectClass: posixAccount
+      objectClass: top
+      objectClass: shadowAccount
+      objectClass: ldapPublicKey
+      shadowMax: 180
+      shadowMin: 1
+      shadowWarning: 7
+      shadowLastChange: #{_shadow_last_change}
+      sshPublicKey: <some SSH public key>
+      loginShell: /bin/bash
+      uidNumber: #{info['uidNumber']}
+      gidNumber: #{info['gidNumber']}
+      homeDirectory: /home/#{name}
+      userPassword: #{@user_password_hash}
+      pwdReset: FALSE
+    EOM
+  end
+-%>
+# groups
+<%= _groups.join("\n") %>
 
-dn: cn=admin2,ou=Group,<%= @base_dn %>
-objectClass: posixGroup
-objectClass: top
-cn: admin2
-gidNumber: 3002
-description: "Admin Two group"
-
-dn: uid=admin2,ou=People,<%= @base_dn %>
-uid: admin2
-cn: admin2
-givenName: Admin
-sn: Two
-mail: admin2@test.local
-objectClass: inetOrgPerson
-objectClass: posixAccount
-objectClass: top
-objectClass: shadowAccount
-objectClass: ldapPublicKey
-shadowMax: 180
-shadowMin: 1
-shadowWarning: 7
-shadowLastChange: <%= t_shadow_last_change %>
-sshPublicKey: <some SSH public key>
-loginShell: /bin/bash
-uidNumber: 3002
-gidNumber: 3002
-homeDirectory: /home/admin2
-userPassword: <%= @user_password_hash %>
-pwdReset: FALSE
-
-dn: cn=NotAllowed,ou=Group,<%= @base_dn %>
-objectClass: posixGroup
-objectClass: top
-cn: NotAllowed
-gidNumber: 9999
-description: "Users not allowed to log in group"
-
-dn: uid=baduser,ou=People,<%= @base_dn %>
-uid: baduser
-cn: baduser
-givenName: Bad
-sn: User
-mail: baduser@test.local
-objectClass: inetOrgPerson
-objectClass: posixAccount
-objectClass: top
-objectClass: shadowAccount
-objectClass: ldapPublicKey
-shadowMax: 180
-shadowMin: 1
-shadowWarning: 7
-shadowLastChange: <%= t_shadow_last_change %>
-sshPublicKey: <some SSH public key>
-loginShell: /bin/bash
-uidNumber: 9001
-gidNumber: 9999
-homeDirectory: /home/baduser
-userPassword: <%= @user_password_hash %>
-pwdReset: FALSE
-
-dn: cn=Test Group,ou=Group,<%= @base_dn %>
-objectClass: posixGroup
-objectClass: top
-cn: testgroup
-gidNumber: 4000
-description: "Test Group group"
-
-dn: uid=user1,ou=People,<%= @base_dn %>
-uid: user1
-cn: user1
-givenName: User
-sn: One
-mail: user1@test.local
-objectClass: inetOrgPerson
-objectClass: posixAccount
-objectClass: top
-objectClass: shadowAccount
-objectClass: ldapPublicKey
-shadowMax: 180
-shadowMin: 1
-shadowWarning: 7
-shadowLastChange: <%= t_shadow_last_change %>
-sshPublicKey: <some SSH public key>
-loginShell: /bin/bash
-uidNumber: 4001
-gidNumber: 4000
-homeDirectory: /home/user1
-userPassword: <%= @user_password_hash %>
-pwdReset: FALSE
-
-dn: uid=user2,ou=People,<%= @base_dn %>
-uid: user2
-cn: user2
-givenName: User
-sn: Two
-mail: user2@test.local
-objectClass: inetOrgPerson
-objectClass: posixAccount
-objectClass: top
-objectClass: shadowAccount
-objectClass: ldapPublicKey
-shadowMax: 180
-shadowMin: 1
-shadowWarning: 7
-shadowLastChange: <%= t_shadow_last_change %>
-sshPublicKey: <some SSH public key>
-loginShell: /bin/bash
-uidNumber: 4002
-gidNumber: 4000
-homeDirectory: /home/user2
-userPassword: <%= @user_password_hash %>
-pwdReset: FALSE
-
-dn: cn=security,ou=Group,<%= @base_dn %>
-objectClass: posixGroup
-objectClass: top
-cn: security
-gidNumber: 7700
-description: "The group used for auditors in simp"
-
-dn: uid=auditor1,ou=People,<%= @base_dn %>
-uid: auditor1
-cn: auditor1
-givenName: Auditor
-sn: one
-mail: auditor1@test.local
-objectClass: inetOrgPerson
-objectClass: posixAccount
-objectClass: top
-objectClass: shadowAccount
-objectClass: ldapPublicKey
-shadowMax: 180
-shadowMin: 1
-shadowWarning: 7
-shadowLastChange: <%= t_shadow_last_change %>
-sshPublicKey: <some SSH public key>
-loginShell: /bin/bash
-uidNumber: 7001
-gidNumber: 7700
-homeDirectory: /home/auditor1
-userPassword: <%= @user_password_hash %>
-pwdReset: FALSE
+# users
+<%= _users.join("\n") %>
 

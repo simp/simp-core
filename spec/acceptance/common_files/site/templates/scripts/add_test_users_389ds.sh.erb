@@ -1,0 +1,55 @@
+<%
+  _groups = []
+  @groups.each do |name,id|
+    _groups << %Q{dsidm "accounts" -b "#{@base_dn}" posixgroup create --cn #{name} --gidNumber #{id}}
+  end
+
+  _users = []
+  _members_to_add = {}
+  _create_base = %Q{dsidm "accounts" -b "#{@base_dn}" user create}
+  _modify_base = %Q{dsidm "accounts" -b "#{@base_dn}" user modify}
+  @users.each do |name,info|
+    _create_cmd = [
+      _create_base,
+      "--cn #{name}",
+      " --uid #{name}",
+      %Q{--displayName "#{name} user"},
+      "--uidNumber #{info['uidNumber']}",
+      "--gidNumber #{info['gidNumber']}",
+      "--homeDirectory /home/#{name}"
+    ].join(' ')
+
+    _add_pwd_cmd = "#{_modify_base} #{name} add:userPassword:#{@user_password_hash}"
+    _add_shell_cmd = "#{_modify_base} #{name} add:loginShell:/bin/bash"
+    _users << "#{_create_cmd}\n#{_add_pwd_cmd}\n#{_add_shell_cmd}\n"
+
+    info['sec_groups'].each do |group|
+      unless _members_to_add.key?(group)
+        _members_to_add[group] = []
+      end
+      _members_to_add[group] << "uid=#{name},ou=People,#{@base_dn}"
+    end
+  end
+
+  _group_adds = []
+  _group_add_base = %Q{dsidm "accounts" -b "#{@base_dn}" group add_member}
+  _members_to_add.each do |group,members|
+    members.each do |member_dn|
+      _group_adds << "#{_group_add_base} #{group} #{member_dn}"
+    end
+    _group_adds << ''
+  end
+-%>
+# This script creates users and groups needed in the 'LDAP user acess test'.
+
+echo "Creating groups"
+<%= _groups.join("\n") %>
+
+echo "Creating users"
+# - Use 'user create' for the basic attributes
+# - Use 'user modify' for all other attributes
+# - Setting the password forces users to reset their passwords upon next login
+<%= _users.join("\n") %>
+
+echo "Adding users to secondary groups"
+<%= _group_adds.join("\n") %>

@@ -21,8 +21,8 @@ HOSTS:
       - default
       - simp_server
       - agent
-    platform:   el-7-x86_64
-    box:        <%= box_7 %>
+    platform:   el-8-x86_64
+    box:        <%= box_8 %>
     hypervisor: <%= hypervisor %>
     vagrant_memsize: 4608
     vagrant_cpus: 2
