@@ -46,11 +46,12 @@ module Acceptance
           'curl -sSk',
           "--cert /etc/puppetlabs/puppet/ssl/certs/#{master_fqdn}.pem",
           "--key /etc/puppetlabs/puppet/ssl/private_keys/#{master_fqdn}.pem",
-          "https://localhost:8140/production/certificate_revocation_list/ca",
-          '| grep CRL'
+          '-o /dev/null',
+          '-w "%{http_code}\n"',
+          'https://localhost/status/v1/services',
+          '| grep -qe 200'
         ].join(' ')
       end
-
     end
   end
 end
