@@ -69,15 +69,16 @@ shared_examples 'simp asset manual install' do |master, assets_to_install|
           #   of the selinux build dependencies for the major OS version. We
           #   bypass the version downgrades using SIMP_ENV_NO_SELINUX_DEPS=yes.
           # - yum-builddep temporarily enables all repos to do its work.
-          #   Unfortunately, the puppet6-source repo isn't set up correctly
+          #   Unfortunately, the puppetXXX-source repo isn't set up correctly
           #   and the easiest way to exclude this repo during this command
-          #   is to add the --disablerepo=puppet6 option. (For some odd
-          #   reason --disablerepo=puppet6-source didn't work...)
+          #   is to add the --disablerepo=puppetXXX option. (For some odd
+          #   reason --disablerepo=puppetXXX-source didn't work...)
+          puppet_repo = ENV['BEAKER_PUPPET_COLLECTION'] || 'puppet6'
           yum_cmd = [
             'SIMP_ENV_NO_SELINUX_DEPS=yes',
             'yum-builddep -y',
             '/root/assets/simp_selinux_policy/build/simp-selinux-policy.spec',
-            '--disablerepo=puppet6'
+            "--disablerepo=#{puppet_repo}"
           ].join(' ')
           on(master, yum_cmd)
 
