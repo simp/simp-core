@@ -48,7 +48,7 @@ module Acceptance
           "--key /etc/puppetlabs/puppet/ssl/private_keys/#{master_fqdn}.pem",
           '-o /dev/null',
           '-w "%{http_code}\n"',
-          'https://localhost/status/v1/services',
+          'https://localhost:8140/status/v1/services',
           '| grep -qe 200'
         ].join(' ')
       end
