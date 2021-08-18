@@ -30,7 +30,7 @@ module Acceptance
         end
 
         if install_repo
-          puppet_collection = ENV['PUPPET_COLLECTION'] || 'puppet6'
+          puppet_collection = ENV['BEAKER_PUPPET_COLLECTION'] || 'puppet6'
 
           puts('='*72)
           puts("Using Puppet #{puppet_collection} repo from yum.puppetlabs.com")
