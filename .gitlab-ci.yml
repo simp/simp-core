@@ -233,3 +233,10 @@ pup6.pe-forge_install_el7:
   script:
     - bundle exec rake beaker:suites[install_from_core_module,el7_server]
   retry: 1
+
+pup7.pe-default_el7:
+  <<: *acceptance_base
+  <<: *pup_7_x
+  script:
+    - bundle exec rake beaker:suites[default,el7_server]
+  retry: 1

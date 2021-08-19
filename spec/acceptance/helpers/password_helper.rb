@@ -36,16 +36,7 @@ module Acceptance
       #
       # lifted from rubygem-simp-cli
       def encrypt_grub_password(host, password)
-        result   = nil
-        facts = JSON.load(on(host, 'puppet facts').stdout)
-        if facts['values']['os']['release']['major'] > "6"
-          result = on(host, "grub2-mkpasswd-pbkdf2 <<EOM\n#{password}\n#{password}\nEOM").stdout.split.last
-        else
-          require 'digest/sha2'
-          salt   = rand(36**8).to_s(36)
-          result = password.crypt("$6$" + salt)
-        end
-        result
+        on(host, "grub2-mkpasswd-pbkdf2 <<EOM\n#{password}\n#{password}\nEOM").stdout.split.last
       end
 
     end
