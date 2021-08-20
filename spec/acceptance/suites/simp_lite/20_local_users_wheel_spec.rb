@@ -13,7 +13,7 @@ puppetserver   = only_host_with_role(hosts, 'master')
 describe 'Wheel configuration test' do
 
   let(:files_dir) { 'spec/acceptance/common_files' }
-  let(:user_pwd) { test_password(:user, 0) }
+  let(:rootpwd) { test_password(:root, 0) }
 
   context 'check pam::wheel is not installed on clients but is on server' do
 
@@ -33,7 +33,7 @@ describe 'Wheel configuration test' do
         # This will remove that line from /etc/pam.d/su if it exists.
         on(host,'sed -i  \'/^account\s*required\s*pam_succeed_if.so user notin .*$/d\' /etc/pam.d/su')
         remote_script = install_expect_script(host, "#{files_dir}/su_root_wheel_check_script")
-        result = on(host,"#{remote_script} localadmin #{host.name} #{user_pwd}",:accept_all_exit_codes => true)
+        result = on(host,"#{remote_script} localadmin #{host.name} #{rootpwd}",:accept_all_exit_codes => true)
         if host == puppetserver
           expect(result.stdout).to include('su: Permission denied')
         else
