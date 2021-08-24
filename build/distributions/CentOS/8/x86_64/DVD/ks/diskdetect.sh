@@ -81,7 +81,7 @@ EOF
 # small the initial size of the partion can to be to prevent the error.
 
   if [ $encrypt -eq 0 ]; then
-    echo "part pv.01 --size=20480 --grow --ondisk ${DISK} --encrypted --cipher=aes-cbc-essiv:sha256 --passphrase=${passphrase}" >> /tmp/part-include
+    echo "part pv.01 --size=20480 --grow --ondisk ${DISK} --encrypted --passphrase=${passphrase}" >> /tmp/part-include
   else
     echo "part pv.01 --size=1 --grow --ondisk ${DISK}" >> /tmp/part-include
   fi
