@@ -36,6 +36,27 @@ module Acceptance
         on(server, "grep #{domain} #{autosign_file}")
       end
 
+      # Install puppetmaster RPM on a host, working around puppetserver
+      # RPM digest issues, if necessary
+      def install_puppetserver(host)
+        os_maj = fact_on(host, 'operatingsystemmajrelease').to_i
+        if ( os_maj > 7) &&
+           ( on(host, 'cat /proc/sys/crypto/fips_enabled', :accept_all_exit_codes => true).stdout.strip == '1' )
+          # Workaround until the puppetserver RPM digest problem on EL8 in FIPS
+          # mode is solved (https://tickets.puppetlabs.com/browse/PUP-10859)
+          # **or** SIMP repackages the puppetserver RPM (SIMP-10434)
+
+          # Change to the following when it works for all RHEL-like OSs
+          # if host.fips_mode?
+          host.install_package('yum-utils')
+          host.install_package('java-headless')
+          on(host, 'yumdownloader puppetserver')
+          on(host, 'rpm -i --force --nodigest --nofiledigest puppetserver*.rpm')
+        else
+          host.install_package('puppetserver')
+        end
+      end
+
       # @return the puppetserver status command to be executed on the
       #   puppetserver
       #

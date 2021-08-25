@@ -40,7 +40,7 @@ describe 'Install SIMP modules and assets via release tarball' do
     # This has to be done **BEFORE** simp config is run and should
     # be done before the simp RPM is installed
     it 'should install puppetserver' do
-      master.install_package('puppetserver')
+      install_puppetserver(master)
     end
 
     it 'should install simp module and asset RPMs and create local Git module repos' do
