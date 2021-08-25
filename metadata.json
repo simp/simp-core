@@ -180,7 +180,7 @@
     },
     {
       "name": "simp/pam",
-      "version_requirement": ">= 6.9.0 < 7.0.0"
+      "version_requirement": ">= 6.9.1 < 7.0.0"
     },
     {
       "name": "simp/pki",
@@ -240,7 +240,7 @@
     },
     {
       "name": "simp/simp_ds389",
-      "version_requirement": ">= 0.1.0 < 1.0.0"
+      "version_requirement": ">= 0.1.1 < 1.0.0"
     },
     {
       "name": "simp/simp_firewalld",
@@ -264,7 +264,7 @@
     },
     {
       "name": "simp/sssd",
-      "version_requirement": ">= 7.1.0 < 8.0.0"
+      "version_requirement": ">= 7.1.1 < 8.0.0"
     },
     {
       "name": "simp/stunnel",

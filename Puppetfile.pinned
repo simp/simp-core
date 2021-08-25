@@ -300,7 +300,7 @@ mod 'simp-openscap',
 
 mod 'simp-pam',
   :git => 'https://github.com/simp/pupmod-simp-pam',
-  :branch => 'master'
+  :tag => '6.9.1'
 
 mod 'simp-pki',
   :git => 'https://github.com/simp/pupmod-simp-pki',
@@ -360,7 +360,7 @@ mod 'simp-simp_banners',
 
 mod 'simp-simp_ds389',
   :git => 'https://github.com/simp/pupmod-simp-simp_ds389',
-  :branch => 'master'
+  :tag => '0.1.1'
 
 mod 'simp-simp_firewalld',
   :git => 'https://github.com/simp/pupmod-simp-simp_firewalld',
@@ -404,7 +404,7 @@ mod 'simp-ssh',
 
 mod 'simp-sssd',
   :git => 'https://github.com/simp/pupmod-simp-sssd',
-  :branch => 'master'
+  :tag => '7.1.1'
 
 mod 'simp-stunnel',
   :git => 'https://github.com/simp/pupmod-simp-stunnel',
