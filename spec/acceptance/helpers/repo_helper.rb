@@ -75,7 +75,16 @@ module Acceptance
             disable_list << 'simp-community-simp'
           end
 
-          unless set_up_simp_deps
+          if set_up_simp_deps
+            os_maj = fact_on(host, 'operatingsystemmajrelease').to_i
+            if os_maj > 7
+              # FIXME For Puppet 6, can't access the simp-community-postgresql
+              # non-modular repo that contains postgresql 9.6, unless we first
+              # disable the AppStream postgresql repo. Need to figure out if
+              # this must also be done for Puppet 7, which uses postgresql 11.
+              on(host, 'dnf module disable postgresql -y')
+            end
+          else
             disable_list << 'simp-community-epel'
             disable_list << 'simp-community-puppet'
             disable_list << 'simp-community-postgresql'

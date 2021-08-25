@@ -33,6 +33,7 @@ HOSTS:
     platform:   el-8-x86_64
     box:        <%= box_8 %>
     hypervisor: <%= hypervisor %>
+    vagrant_memsize: 512
 
   agent-el7:
     roles:

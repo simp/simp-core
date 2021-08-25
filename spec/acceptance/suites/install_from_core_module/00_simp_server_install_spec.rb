@@ -10,7 +10,7 @@ describe 'Install SIMP modules from Puppetforge and assets via r10k' do
 
   context 'all hosts prep' do
     set_up_options = {
-      :root_password => test_password,
+      :root_password => test_password(:root),
       :repos         => [
         :epel,
         :simp,      # TODO verify if this necessary
@@ -46,7 +46,7 @@ describe 'Install SIMP modules from Puppetforge and assets via r10k' do
     # This has to be done **BEFORE** simp environment new is run
     # because the 'puppet' group needs to be defined
     it 'should install puppetserver' do
-      master.install_package('puppetserver')
+      install_puppetserver(master)
     end
 
     it 'should create a SIMP enviroment skeleton for the production env' do

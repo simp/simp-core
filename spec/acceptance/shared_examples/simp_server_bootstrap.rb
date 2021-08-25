@@ -92,11 +92,12 @@ shared_examples 'SIMP server bootstrap' do |master, config|
       nameserver = dns_nameserver(master)
       expect(nameserver).to_not be_nil
 
-      grub_password_hash = encrypt_grub_password(master, test_password)
+      grub_password_hash = encrypt_grub_password(master, test_password(:grub))
 
       if config.fetch(:simp_ldap_server, true)
-        ldap_root_password_hash = encrypt_openldap_password(test_password)
+        ldap_root_password_hash = encrypt_openldap_password(test_password(:ldap_root))
       else
+#FIXME Is this still required?
         el7_master = (fact_on(master, 'operatingsystemmajrelease') == '7')
         sssd_domains = el7_master ? ['local'] : []
       end

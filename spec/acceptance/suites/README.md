@@ -67,7 +67,7 @@ builds/download RPMs, and then builds the ISO.
 
    * Each integration/(pre-)release test suite contains a nodeset for each
      supported EL server (currently: `el7_server`). These nodesets control the
-     EL version of both the puppsetserver and rsyslog server.
+     EL version of both the puppetserver and rsyslog server.
    * The `rpm_docker` test suite contains nodesets for building an ISO for
      various OSes (e.g., `rpm_docker/nodesets/el7.yml`,
      `rpm_docker/nodesets/el8.yml`)
@@ -125,6 +125,14 @@ This test enables EPEL, SIMP 6 (simp-community-simp), SIMP 6 dependencies
 (simp-community-epel, simp-community-puppet, simp-community-postgresql),
 and Puppet repositories.
 
+* The SIMP 6 repositories contain the versions of SIMP, EPEL and Puppet
+  application packages integrated and fully tested in the last SIMP release.
+* The EPEL and Puppet repositories contain the latest available versions
+  of their corresponding packages.
+* For Puppet 6 on EL >7, the postgresql AppStream must be disabled or the
+  version of required, 9.6, will not install even though it is available
+  from the simp-community-postgresql repository.
+
 #### puppetserver installation
 
 Details:
@@ -179,6 +187,14 @@ following:
 This test enables EPEL, SIMP 6 (simp-community-simp), SIMP 6 dependencies
 (simp-community-epel, simp-community-puppet, simp-community-postgresql),
 and Puppet repositories.
+
+* The SIMP 6 repositories contain the versions of SIMP, EPEL and Puppet
+  application packages integrated and fully tested in the last SIMP release.
+* The EPEL and Puppet repositories contain the latest available versions
+  of their corresponding packages.
+* For Puppet 6 on EL > 7, the postgresql AppStream must be disabled or the
+  version of required, 9.6, will not install even though it is available
+  from the simp-community-postgresql repository.
 
 #### puppetserver installation
 
@@ -297,6 +313,14 @@ simp-community-postgresql), and Puppet repositories.  It also creates and
 enables a local repository containing the component RPMs packaged in the
 SIMP release tarball.
 
+* The SIMP 6 repositories contain the versions of SIMP, EPEL and Puppet
+  application packages integrated and fully tested in the last SIMP release.
+* The EPEL and Puppet repositories contain the latest available versions
+  of their corresponding packages.
+* For Puppet 6 on EL >7, the postgresql AppStream must be disabled or the
+  version of required, 9.6, will not install even though it is available
+  from the simp-community-postgresql repository.
+
 #### puppetserver installation
 
 Details:
@@ -334,9 +358,7 @@ clients.
 
 #### yum repositories enabled
 
-This test enables EPEL, SIMP 6 (simp-community-simp), SIMP 6 dependencies
-(simp-community-epel, simp-community-puppet, simp-community-postgresql),
-and Puppet repositories.
+See [yum repositories set up for default Suite](#yum-repositories-enabled)
 
 #### puppetserver installation
 
@@ -425,4 +447,4 @@ Sets the test VM box types.  Valid values are `centos`, `oracle`, and
 * When `centos`, uses `generic/centos8` and `centos/7` boxes.
 * When `oracle` or `oel`, uses the boxes `generic/oracle8` and
   `generic/oracle7`
-* Any other value defaults to `generic/centos8` and `generic/centos7`.
+* Any other value defaults to `generic/centos8` and `centos/7`.

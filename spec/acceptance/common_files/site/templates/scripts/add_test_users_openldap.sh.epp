@@ -1,0 +1,32 @@
+#!/bin/bash
+
+if [ "$#" -ne 1 ]; then
+  echo "Usage: $0 LDAP_ROOT_PASSWORD"
+  exit 1
+fi
+
+ldap_root_pwd=$1
+base_dn="<%= $site::test_ldap::base_dn %>"
+test_dir="<%= $site::test_ldap::test_dir %>"
+
+echo "Add groups and users"
+/usr/bin/ldapadd -Z -x -w ${ldap_root_pwd} \
+  -D cn=LDAPAdmin,OU=People,${base_dn} \
+  -f ${test_dir}/ldifs/add_test_users.ldif
+
+if [ "$?" != "0" ]; then
+  echo "ERROR: Failed to add users"
+  exit 1
+fi
+
+echo "Adding users to their secondary groups"
+/usr/bin/ldapmodify -Z -x -w ${ldap_root_pwd} \
+  -D cn=LDAPAdmin,OU=People,${base_dn} \
+  -f ${test_dir}/ldifs/modify_test_users.ldif
+
+if [ "$?" != "0" ]; then
+  echo "ERROR: Failed to add users to secondary groups"
+  exit 1
+fi
+
+exit 0

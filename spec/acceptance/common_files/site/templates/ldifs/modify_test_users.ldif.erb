@@ -1,0 +1,23 @@
+<%
+  _members_to_add = {}
+  @users.each do |name,info|
+    info['sec_groups'].each do |group|
+      unless _members_to_add.key?(group)
+        _members_to_add[group] = []
+      end
+      _members_to_add[group] << "memberUid: #{name}"
+    end
+  end
+
+  _modifies = []
+  _members_to_add.each do |group,members|
+    _modifies << <<~EOM
+      dn: cn=#{group},ou=Group,#{@base_dn}
+      changeType: modify
+      add: memberUid
+      #{members.join("\n")}
+    EOM
+  end
+-%>
+<%= _modifies.join("\n") %>
+

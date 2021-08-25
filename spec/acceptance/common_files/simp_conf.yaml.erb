@@ -165,6 +165,10 @@ simp_grub::password: "<%= grub_password_hash %>"
 #
 # When set via 'simp config', this password hash is generated from
 # the password entered on the command line.
+#
+# >>> ONLY USED BY simp config FOR EL7. Ignored otherwise. <<<
+# FIXME don't include in the answers file when not on EL7
+#
 simp_openldap::server::conf::rootpw: "<%= ldap_root_password_hash %>"
 
 # === simp_options::dns::search ===
