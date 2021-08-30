@@ -58,7 +58,7 @@ mod 'simp-simp_selinux_policy',
 
 mod 'simp-utils',
   :git => 'https://github.com/simp/simp-utils',
-  :branch => 'master'
+  :tag => '6.6.0'
 
 moduledir 'src/puppet/modules'
 
@@ -316,7 +316,7 @@ mod 'simp-postfix',
 
 mod 'simp-pupmod',
   :git => 'https://github.com/simp/pupmod-simp-pupmod',
-  :branch => 'master'
+  :tag => '8.2.0'
 
 mod 'simp-resolv',
   :git => 'https://github.com/simp/pupmod-simp-resolv',
@@ -340,7 +340,7 @@ mod 'simp-selinux',
 
 mod 'simp-simp',
   :git => 'https://github.com/simp/pupmod-simp-simp',
-  :branch => 'master'
+  :tag => '4.16.0'
 
 mod 'simp-simpkv',
   :git => 'https://github.com/simp/pupmod-simp-simpkv',
@@ -436,7 +436,7 @@ mod 'simp-tftpboot',
 
 mod 'simp-tlog',
   :git => 'https://github.com/simp/pupmod-simp-tlog',
-  :tag => '0.3.0'
+  :tag => '0.3.1'
 
 mod 'simp-tpm',
   :git => 'https://github.com/simp/pupmod-simp-tpm',
