@@ -33,7 +33,8 @@ describe 'Install SIMP modules and assets via r10K' do
       :environment_skeleton, # simp-environment-skeleton
       :rsync_data,           # simp-rsync-skeleton
       :simp_selinux_policy,  # simp-selinux-policy
-      :rubygem_simp_cli      # rubygem-simp-cli
+      :rubygem_simp_cli,     # rubygem-simp-cli
+      :simp_utils            # simp-utils
     ]
 
     include_examples 'simp asset manual install', master, assets_to_install

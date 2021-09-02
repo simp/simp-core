@@ -91,8 +91,15 @@ module Acceptance
         togen = []
         hosts.each do |host|
           next if (host['roles'].include?('master') and skip_master)
-          togen << host.hostname + '.' + domain
+
+          fqdn = pfact_on(host, 'fqdn')
+          if fqdn.include?('.')
+            togen << fqdn
+          else
+            togen << host.hostname + '.' + domain
+          end
         end
+
         create_remote_file(master, '/var/simp/environments/production/FakeCA/togen', togen.join("\n"))
         on(master, 'cd /var/simp/environments/production/FakeCA; ./gencerts_nopass.sh')
       end

@@ -38,6 +38,11 @@ shared_examples 'SIMP server bootstrap' do |master, config|
       'simp_rsyslog::forward_logs'  => true
     } )
 
+    # Set up client reporting
+    hiera.merge!({
+      'pupmod::report' => true
+    })
+
     if config.has_key?(:other_hiera)
       hiera.merge!( config[:other_hiera] )
     end
@@ -53,119 +58,154 @@ shared_examples 'SIMP server bootstrap' do |master, config|
   } }
 
   context 'puppet master' do
-    let(:simp_conf_template) {
-      if config.fetch(:simp_ldap_server, true)
-        File.read('spec/acceptance/common_files/simp_conf.yaml.erb')
-      else
-        File.read('spec/acceptance/common_files/simp_conf.yaml_no_ldap.erb')
-      end
-    }
+    context 'bootstrap' do
+      let(:simp_conf_template) {
+        if config.fetch(:simp_ldap_server, true)
+          File.read('spec/acceptance/common_files/simp_conf.yaml.erb')
+        else
+          File.read('spec/acceptance/common_files/simp_conf.yaml_no_ldap.erb')
+        end
+      }
 
-    it 'should create answers file for simp config' do
-      # The following variables are required by both simp_conf.yaml.erb:
-      # and simp_conf.yaml_no_ldap.erb
-      #   domain
-      #   grub_password_hash
-      #   interface
-      #   ipaddress
-      #   master_fqdn
-      #   nameserver
-      #   netmask
-      #   syslog_server_fqdns
-      #   trusted_nets
-      #
-      # The following variables are require only by simp_conf.yaml.erb
-      #   ldap_root_password_hash
-      #
-      # The following variables are require only by simp_conf.yaml_no_ldap.erb
-      #   sssd_domains
+      it 'should create answers file for simp config' do
+        # The following variables are required by both simp_conf.yaml.erb:
+        # and simp_conf.yaml_no_ldap.erb
+        #   domain
+        #   grub_password_hash
+        #   interface
+        #   ipaddress
+        #   master_fqdn
+        #   nameserver
+        #   netmask
+        #   syslog_server_fqdns
+        #   trusted_nets
+        #
+        # The following variables are require only by simp_conf.yaml.erb
+        #   ldap_root_password_hash
+        #
+        # The following variables are require only by simp_conf.yaml_no_ldap.erb
+        #   sssd_domains
 
-      trusted_nets =  host_networks(master)
-      expect(trusted_nets).to_not be_empty
+        trusted_nets =  host_networks(master)
+        expect(trusted_nets).to_not be_empty
 
-      network_info = internal_network_info(master)
-      expect(network_info).to_not be_nil
-      interface = network_info[:interface]
-      ipaddress = network_info[:ip]
-      netmask   = network_info[:netmask]
+        network_info = internal_network_info(master)
+        expect(network_info).to_not be_nil
+        interface = network_info[:interface]
+        ipaddress = network_info[:ip]
+        netmask   = network_info[:netmask]
 
-      nameserver = dns_nameserver(master)
-      expect(nameserver).to_not be_nil
+        nameserver = dns_nameserver(master)
+        expect(nameserver).to_not be_nil
 
-      grub_password_hash = encrypt_grub_password(master, test_password(:grub))
+        grub_password_hash = encrypt_grub_password(master, test_password(:grub))
 
-      if config.fetch(:simp_ldap_server, true)
-        ldap_root_password_hash = encrypt_openldap_password(test_password(:ldap_root))
-      else
-#FIXME Is this still required?
-        el7_master = (fact_on(master, 'operatingsystemmajrelease') == '7')
-        sssd_domains = el7_master ? ['local'] : []
-      end
+        if config.fetch(:simp_ldap_server, true)
+          ldap_root_password_hash = encrypt_openldap_password(test_password(:ldap_root))
+        else
+  #FIXME Is this still required?
+          el7_master = (pfact_on(master, 'os.release.major') == '7')
+          sssd_domains = el7_master ? ['local'] : []
+        end
 
-      if config.has_key?(:simp_scenario)
-        scenario = config[:simp_scenario]
-      else
-        scenario = 'simp'
-      end
+        if config.has_key?(:simp_scenario)
+          scenario = config[:simp_scenario]
+        else
+          scenario = 'simp'
+        end
 
-      create_remote_file(master, '/root/simp_conf.yaml', ERB.new(simp_conf_template).result(binding))
-      on(master, 'cat /root/simp_conf.yaml')
-    end
-
-    it 'should run simp config' do
-      if config.has_key?(:simp_config_extra_args)
-        extra_args = config[:simp_config_extra_args].join(' ')
-      else
-        extra_args = ''
+        create_remote_file(master, '/root/simp_conf.yaml', ERB.new(simp_conf_template).result(binding))
+        on(master, 'cat /root/simp_conf.yaml')
       end
 
-      on(master, "simp config -a /root/simp_conf.yaml #{extra_args}")
-      on(master, 'cat /root/.simp/simp_conf.yaml')
-    end
+      it 'should run simp config' do
+        if config.has_key?(:simp_config_extra_args)
+          extra_args = config[:simp_config_extra_args].join(' ')
+        else
+          extra_args = ''
+        end
 
-    it 'should provide default hieradata' do
-      create_remote_file(master, "#{production_env_dir}/data/default.yaml", default_hieradata.to_yaml)
-      on(master, 'simp environment fix production --no-secondary-env --no-writable-env')
-    end
-
-    it 'should provide syslog server hieradata' do
-      syslog_server_fqdns.each do |server|
-        host_yaml_file = "#{production_env_dir}/data/hosts/#{server}.yaml"
-        create_remote_file(master, host_yaml_file, syslog_server_hieradata.to_yaml)
+        on(master, "simp config -a /root/simp_conf.yaml #{extra_args}")
+        on(master, 'cat /root/.simp/simp_conf.yaml')
       end
-      on(master, 'simp environment fix production --no-secondary-env --no-writable-env')
+
+      it 'should provide default hieradata' do
+        create_remote_file(master, "#{production_env_dir}/data/default.yaml", default_hieradata.to_yaml)
+        on(master, 'simp environment fix production --no-secondary-env --no-writable-env')
+      end
+
+      it 'should provide syslog server hieradata' do
+        syslog_server_fqdns.each do |server|
+          host_yaml_file = "#{production_env_dir}/data/hosts/#{server}.yaml"
+          create_remote_file(master, host_yaml_file, syslog_server_hieradata.to_yaml)
+        end
+        on(master, 'simp environment fix production --no-secondary-env --no-writable-env')
+      end
+
+      it 'should enable Puppet autosign for hosts on the domain' do
+        enable_puppet_autosign(master, domain)
+      end
+
+      it 'should run simp bootstrap' do
+        # NOTE:
+        # - Remove the lock file because we've already added the vagrant user
+        #   access and won't be locked out of the VM
+        # - Remove the puppet certs for the puppet agent already created
+        #   when the puppetserver RPM was installed
+        # - Allow interruptions so we can kill the test easily during bootstrap
+        on(master, 'rm -f /root/.simp/simp_bootstrap_start_lock')
+        on(master, 'simp bootstrap -u -w 10 --remove_ssldir -v', :pty => true)
+      end
+
+      it 'should reboot the master to apply boot time config' do
+        master.reboot
+      end
+
+      it 'should complete the config with a few puppet runs' do
+        # Wait for the puppetserver to be ready to receive requests
+        retry_on(master, puppetserver_status_cmd, :retry_interval => 10)
+
+        # Run puppet until no more changes are required
+        retry_on(master, '/opt/puppetlabs/bin/puppet agent -t',
+          :desired_exit_codes => [0],
+          :retry_interval     => 15,
+          :max_retries        => 3,
+          :verbose            => true.to_s # work around beaker bug
+        )
+      end
     end
 
-    it 'should enable Puppet autosign for hosts on the domain' do
-      enable_puppet_autosign(master, domain)
-    end
+    context 'enable puppetdb' do
+      let(:hieradata) do
+        default_hieradata.merge({
+          'simp::server::classes'                             => ['simp::puppetdb'],
+          'puppetdb::master::config::restart_puppet'          => false,
+          'puppetdb::master::config::puppetdb_port'           => 8139,
+          'puppetdb::master::config::enable_reports'          => true,
+          'puppetdb::master::config::manage_report_processor' => true
+        })
+      end
 
-    it 'should run simp bootstrap' do
-      # NOTE:
-      # - Remove the lock file because we've already added the vagrant user
-      #   access and won't be locked out of the VM
-      # - Remove the puppet certs for the puppet agent already created
-      #   when the puppetserver RPM was installed
-      # - Allow interruptions so we can kill the test easily during bootstrap
-      on(master, 'rm -f /root/.simp/simp_bootstrap_start_lock')
-      on(master, 'simp bootstrap -u -w 10 --remove_ssldir -v', :pty => true)
-    end
+      it 'should add puppetdb hieradata' do
+        create_remote_file(master, "#{production_env_dir}/data/default.yaml", hieradata.to_yaml)
+        on(master, 'simp environment fix production --no-secondary-env --no-writable-env')
+      end
 
-    it 'should reboot the master to apply boot time config' do
-      master.reboot
-    end
+      it 'should run successfully' do
+        retry_on(master, '/opt/puppetlabs/bin/puppet agent -t',
+          :desired_exit_codes => [0],
+          :retry_interval     => 15,
+          :max_retries        => 3,
+          :verbose            => true.to_s # work around beaker bug
+        )
+      end
 
-    it 'should complete the config with a few puppet runs' do
-      # Wait for the puppetserver to be ready to receive requests
-      retry_on(master, puppetserver_status_cmd, :retry_interval => 10)
+      it 'should be running puppetdb' do
+        status_yaml = YAML.load(on(master, '/opt/puppetlabs/bin/puppet resource service puppetdb --to_yaml').stdout)
 
-      # Run puppet until no more changes are required
-      retry_on(master, '/opt/puppetlabs/bin/puppet agent -t',
-        :desired_exit_codes => [0],
-        :retry_interval     => 15,
-        :max_retries        => 3,
-        :verbose            => true.to_s # work around beaker bug
-      )
+        expect(status_yaml['service']['puppetdb']['ensure']).to eq('running')
+        expect(status_yaml['service']['puppetdb']['enable']).to eq('true')
+      end
     end
   end
 end

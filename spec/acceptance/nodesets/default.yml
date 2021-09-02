@@ -14,7 +14,7 @@
   end
 -%>
 HOSTS:
-  puppet:
+  puppet.test:
     roles:
       - server # Mandatory
       - master
@@ -27,7 +27,7 @@ HOSTS:
     vagrant_memsize: 4608
     vagrant_cpus: 2
 
-  agent-el8:
+  agent-el8.test:
     roles:
       - agent
     platform:   el-8-x86_64
@@ -35,7 +35,7 @@ HOSTS:
     hypervisor: <%= hypervisor %>
     vagrant_memsize: 512
 
-  agent-el7:
+  agent-el7.test:
     roles:
       - agent
       - syslog_server

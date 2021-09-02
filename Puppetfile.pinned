@@ -57,8 +57,10 @@ mod 'simp-simp_selinux_policy',
   :tag => '1.1.0'
 
 mod 'simp-utils',
-  :git => 'https://github.com/simp/simp-utils',
-  :tag => '6.6.0'
+  :git => 'https://github.com/trevor-vaughan/simp-utils',
+  :branch => 'SIMP-9665'
+  #:git => 'https://github.com/simp/simp-utils',
+  #:tag => '6.6.0'
 
 moduledir 'src/puppet/modules'
 
