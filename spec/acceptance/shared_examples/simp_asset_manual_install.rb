@@ -3,6 +3,7 @@
 #              :rsync_data           - simp-rsync-skeleton
 #              :simp_selinux_policy  - simp-selinux-policy
 #              :rubygem_simp_cli     - rubygem-simp-cli
+#              :simp_utils           - simp-utils
 #
 # FIXME: This code ASSUMES specific 'module' names used for assets in
 #        simp-core Puppetfiles.
@@ -146,7 +147,13 @@ shared_examples 'simp asset manual install' do |server, assets_to_install|
           on(server, 'chmod +x /bin/simp')
         end
       end
+
+      if assets_to_install.include?(:simp_utils)
+        it 'installs simp_utils' do
+          on(server, 'cp -r /root/assets/utils/scripts/* /usr/local')
+          on(server, 'chmod -R go+rX /usr/local')
+        end
+      end
     end
   end
-
 end

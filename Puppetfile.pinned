@@ -46,7 +46,7 @@ mod 'simp-adapter',
 
 mod 'simp-environment',
   :git => 'https://github.com/simp/simp-environment-skeleton',
-  :tag => '7.2.1'
+  :branch => 'master'
 
 mod 'simp-gpgkeys',
   :git => 'https://github.com/simp/simp-gpgkeys',
@@ -58,7 +58,7 @@ mod 'simp-simp_selinux_policy',
 
 mod 'simp-utils',
   :git => 'https://github.com/simp/simp-utils',
-  :tag => '6.6.0'
+  :branch => 'master'
 
 moduledir 'src/puppet/modules'
 
