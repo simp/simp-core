@@ -390,12 +390,14 @@ shared_examples 'SIMP Rsyslog Tests' do |syslog_servers, non_syslog_servers, opt
           # None of the servers are set up as web servers, yet, so attempting
           # web access to these servers should result in dropped packet logs
           non_syslog_servers.each do |host|
-            cmd = "wget --tries=1 --timeout=1 https://#{host.name}.#{domain}/somefile"
+            host_fqdn = host.name.include?(domain) ? host.name : "#{host.name}.#{domain}"
+            cmd = "wget --tries=1 --timeout=1 https://#{host_fqdn}/somefile"
             on(syslog_servers, cmd, :accept_all_exit_codes => true)
           end
 
           syslog_servers.each do |host|
-            cmd = "wget --tries=1 --timeout=1 https://#{host.name}.#{domain}/somefile"
+            host_fqdn = host.name.include?(domain) ? host.name : "#{host.name}.#{domain}"
+            cmd = "wget --tries=1 --timeout=1 https://#{host_fqdn}/somefile"
             on(non_syslog_servers.first, cmd, :accept_all_exit_codes => true)
           end
         end

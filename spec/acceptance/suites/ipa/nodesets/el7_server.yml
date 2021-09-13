@@ -11,6 +11,8 @@
   end
 -%>
 HOSTS:
+  # NOTE: If you specify a domain in the node names, it MUST have at least 2
+  # parts because IPA does not work with single label domains
   puppet:
     roles:
       - server # Mandatory
