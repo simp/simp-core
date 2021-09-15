@@ -1,0 +1,73 @@
+bootloader --location=mbr --driveorder=sda,hda --iscrypted --password=grub.pbkdf2.sha512.10000.38F6446B9655E8E98CEA82F10EFE4DA30A963932FE415EC72B744FB04EB3636384BD968004B64E5A900CF7D08C9064725A6F2E8246F5874BC4954F9B489D72BA.EE006A76847C20D226064CB77FEC9C697229DE22C5149331425AB3EEBCB99504F712ACBE101D332B35D8A277C7D7E74D8A905C474533A3C7B0428D3BD416382C
+
+rootpw --iscrypted $6$3iLC5g2j9z/UvuAX$wKQy4.T92omIx7aEQ6iVunQHSG0l2eVd7be47kUKC2nWFoJhoARx68h8x.jcR99TZZRrFf8SKzVlvK3JdhKkf0
+firewall --enabled --ssh
+firstboot --disable
+logging --level=info
+selinux --permissive
+text
+skipx
+
+network --bootproto=dhcp --nodns --hostname=puppet.change.me
+
+zerombr
+timezone --utc GMT
+
+clearpart --all
+
+%include /tmp/part-include
+%include /tmp/repo-include
+
+reboot
+
+%packages
+%include /tmp/dracut_packages
+acl
+bzip2
+chrony
+dracut
+fipscheck
+grub2-efi-x64
+irqbalance
+libaio
+libutempter
+logrotate
+logwatch
+lsof
+lsscsi
+mdadm
+microcode_ctl
+net-tools
+netlabel_tools
+pciutils
+psacct
+quota
+redhat-lsb
+rsync
+rsyslog
+shim-x64
+sssd
+sudo
+sysstat
+tmpwatch
+unzip
+usbutils
+vim-enhanced
+wget
+which
+zip
+hdparm
+kbd
+libhugetlbfs
+policycoreutils
+rootfiles
+selinux-policy-targeted
+setserial
+sysfsutils
+# Don't install these
+-rhn-check
+-rhn-setup
+-rhnsd
+-subscription-manager
+-sendmail
+%end
