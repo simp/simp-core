@@ -18,7 +18,7 @@ simp_releases:
             checksum: '48f955712454c32718dcde858dea5aca574376a1d7a4b0ed6908ac0b85597811'
         build_command: 'bundle exec rake build:auto[rhel-server-8.4-x86_64-dvd.iso,6.X]'
         os_version:   '8.4'
-  6.6:
+  '6.6':
     flavors:
       CentOS:
         isos:
