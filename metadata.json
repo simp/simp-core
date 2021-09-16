@@ -264,7 +264,7 @@
     },
     {
       "name": "simp/sssd",
-      "version_requirement": ">= 7.1.1 < 8.0.0"
+      "version_requirement": ">= 7.2.0 < 8.0.0"
     },
     {
       "name": "simp/stunnel",
