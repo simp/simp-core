@@ -87,7 +87,7 @@ Requires: pupmod-simp-simp_rsyslog >= 0.6.0, pupmod-simp-simp_rsyslog < 1.0.0
 Requires: pupmod-simp-simpkv >= 0.7.1, pupmod-simp-simpkv < 1.0.0
 Requires: pupmod-simp-simplib >= 4.9.0, pupmod-simp-simplib < 5.0.0
 Requires: pupmod-simp-ssh >= 6.12.0, pupmod-simp-ssh < 7.0.0
-Requires: pupmod-simp-sssd >= 7.1.1, pupmod-simp-sssd < 8.0.0
+Requires: pupmod-simp-sssd >= 7.2.0, pupmod-simp-sssd < 8.0.0
 Requires: pupmod-simp-stunnel >= 6.7.0, pupmod-simp-stunnel < 7.0.0
 Requires: pupmod-simp-sudo >= 5.4.0, pupmod-simp-sudo < 6.0.0
 Requires: pupmod-simp-sudosh >= 6.3.0, pupmod-simp-sudosh < 7.0.0
@@ -104,11 +104,11 @@ Requires: pupmod-trlinkin-nsswitch >= 2.2.0, pupmod-trlinkin-nsswitch < 3.0.0
 Requires: rubygem-simp-cli >= 7.0.0, rubygem-simp-cli < 8.0.0
 Requires: rubygem-simp-cli-doc >= 7.0.0, rubygem-simp-cli-doc < 8.0.0
 Requires: simp-adapter >= 2.1.0, simp-adapter < 3.0.0
-Requires: simp-environment-skeleton >= 7.2.1, simp-environment-skeleton < 8.0.0
+Requires: simp-environment-skeleton >= 7.3.0, simp-environment-skeleton < 8.0.0
 Requires: simp-gpgkeys >= 3.1.3, simp-gpgkeys < 4.0.0
 Requires: simp-rsync-skeleton >= 7.1.0, simp-rsync-skeleton < 8.0.0
 Requires: simp-selinux-policy >= 1.1.0, simp-selinux-policy < 2.0.0
-Requires: simp-utils >= 6.6.0, simp-utils < 7.0.0
+Requires: simp-utils >= 6.6.1, simp-utils < 7.0.0
 Requires: simp-vendored-r10k >= 3.3.0, simp-vendored-r10k < 4.0.0
 
 # SIMP Extras
