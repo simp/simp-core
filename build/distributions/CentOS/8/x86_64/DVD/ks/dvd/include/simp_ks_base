@@ -1,0 +1,80 @@
+authselect --enableshadow --passalgo=sha512
+selinux --enforcing
+
+%packages
+@^minimal-environment
+acl
+aide
+bzip2
+chrony
+crontabs
+dhclient
+fipscheck
+iptables
+libaio
+libutempter
+logrotate
+logwatch
+lsof
+mdadm
+net-snmp
+net-tools
+netlabel_tools
+openssh-clients
+openssh-server
+pciutils
+psacct
+quota
+rsync
+shim-x64
+smartmontools
+sssd
+sysstat
+unzip
+usbutils
+vim-enhanced
+wget
+which
+zip
+
+# Security Related
+%include /tmp/dracut_packages
+anacron
+cryptsetup-luks
+gnupg
+netlabel_tools
+stunnel
+tmpwatch
+vlock
+
+# Puppet Server Complete Load
+# Make sure open source puppetserver is installed
+elinks
+git
+puppetserver
+simp
+simp-adapter
+mkisofs
+syslinux-tftpboot
+yum-utils
+
+# In case of broken repo, these should be installed.
+hdparm
+kbd
+libhugetlbfs
+policycoreutils
+rootfiles
+selinux-policy-targeted
+setserial
+sysfsutils
+udftools
+
+# Don't install these
+-rhn-check
+-rhn-setup
+-rhnsd
+-sendmail
+-subscription-manager
+-sysklogd
+-yum-rhn-plugin
+%end
