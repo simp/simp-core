@@ -2,7 +2,6 @@ authselect --enableshadow --passalgo=sha512
 selinux --enforcing
 
 %packages
-@^minimal-environment
 acl
 aide
 bzip2

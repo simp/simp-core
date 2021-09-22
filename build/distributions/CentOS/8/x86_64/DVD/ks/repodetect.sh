@@ -65,7 +65,7 @@ repo --name="epel-modular"   --baseurl="$uri_header/epel-modular" --noverifyssl
 repo --name="powertools"   --baseurl="$uri_header/PowerTools" --noverifyssl
 repo --name="postgresql"   --baseurl="$uri_header/postgresql" --noverifyssl
 repo --name="puppet"   --baseurl="$uri_header/puppet" --noverifyssl
-repo --name="simpextra"   --baseurl="$uri_header/simp" --noverifyssl
+repo --name="simpextra"   --baseurl="$uri_header/simp-internet" --noverifyssl
 repo --name="$local_name" --baseurl="$local_header" --noverifyssl
 EOF
     ;;
@@ -99,7 +99,7 @@ repo --name="epel-modular"   --baseurl="$uri_header/epel-modular" --noverifyssl
 repo --name="powertools"   --baseurl="$uri_header/PowerTools" --noverifyssl
 repo --name="postgresql"   --baseurl="$uri_header/postgresql" --noverifyssl
 repo --name="puppet"   --baseurl="$uri_header/puppet" --noverifyssl
-repo --name="simpextra"   --baseurl="$uri_header/simp" --noverifyssl
+repo --name="simpextra"   --baseurl="$uri_header/simp-internet" --noverifyssl
 repo --name="$local_name" --baseurl="$local_header" --noverifyssl
 EOF
     ;;
