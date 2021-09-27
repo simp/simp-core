@@ -125,7 +125,7 @@ GEM
     net-ssh (6.1.0)
     net-telnet (0.1.1)
     netrc (0.11.0)
-    nokogiri (1.12.4)
+    nokogiri (1.12.5)
       mini_portile2 (~> 2.6.1)
       racc (~> 1.4)
     oga (3.3)
