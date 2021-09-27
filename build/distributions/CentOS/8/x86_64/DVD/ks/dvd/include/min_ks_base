@@ -1,5 +1,9 @@
 selinux --permissive
 
+module --name=ruby
+module --name=mariadb
+module --name=python36
+
 %packages
 @^minimal-environment
 %include /tmp/dracut_packages
