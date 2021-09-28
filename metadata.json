@@ -180,7 +180,7 @@
     },
     {
       "name": "simp/pam",
-      "version_requirement": ">= 6.9.1 < 7.0.0"
+      "version_requirement": ">= 6.10.0 < 7.0.0"
     },
     {
       "name": "simp/pki",
