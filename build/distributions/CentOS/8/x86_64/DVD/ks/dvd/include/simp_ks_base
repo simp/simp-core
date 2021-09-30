@@ -1,7 +1,6 @@
 authselect --enableshadow --passalgo=sha512
 selinux --enforcing
 
-
 module --name=389-ds --stream=1.4
 module --name=httpd  --stream=2.4
 module --name=mariadb --stream=10.3
