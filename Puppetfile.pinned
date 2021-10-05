@@ -204,7 +204,7 @@ mod 'simp-dhcp',
 
 mod 'simp-ds389',
   :git => 'https://github.com/simp/pupmod-simp-ds389',
-  :tag => '0.1.1'
+  :tag => '0.1.2'
 
 mod 'simp-fips',
   :git => 'https://github.com/simp/pupmod-simp-fips',
@@ -436,7 +436,7 @@ mod 'simp-tftpboot',
 
 mod 'simp-tlog',
   :git => 'https://github.com/simp/pupmod-simp-tlog',
-  :tag => '0.3.1'
+  :tag => '0.3.2'
 
 mod 'simp-tpm',
   :git => 'https://github.com/simp/pupmod-simp-tpm',

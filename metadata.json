@@ -140,7 +140,7 @@
     },
     {
       "name": "simp/ds389",
-      "version_requirement": ">= 0.1.1 < 1.0.0"
+      "version_requirement": ">= 0.1.2 < 1.0.0"
     },
     {
       "name": "simp/fips",
@@ -296,7 +296,7 @@
     },
     {
       "name": "simp/tlog",
-      "version_requirement": ">= 0.3.1 < 1.0.0"
+      "version_requirement": ">= 0.3.2 < 1.0.0"
     },
     {
       "name": "simp/upstart",
