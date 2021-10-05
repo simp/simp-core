@@ -75,9 +75,9 @@ def update_module_github_status!(mod)
     github_query = Nokogiri::HTML(open(github_releases_url).read)
 
     if github_query.xpath('//a/@title').map(&:value).include?(mod[:version])
-      mod[:published]['GitHub'] = 'yes'.green
+      mod[:published]['GitHub'] = 'yes'
     else
-      mod[:published]['GitHub'] = 'no'.red
+      mod[:published]['GitHub'] = 'no'
     end
   rescue
     begin
@@ -85,12 +85,12 @@ def update_module_github_status!(mod)
       github_query = Nokogiri::HTML(open(github_releases_url).read)
 
       if github_query.xpath('//a/@title').map(&:value).include?(mod[:version])
-        mod[:published]['GitHub'] = 'tag'.yellow
+        mod[:published]['GitHub'] = 'tag'
       else
-        mod[:published]['GitHub'] = 'no'.red
+        mod[:published]['GitHub'] = 'no'
       end
     rescue
-      mod[:published]['GitHub'] = 'no'.red
+      mod[:published]['GitHub'] = 'no'
     end
   end
 
@@ -123,10 +123,10 @@ def update_module_github_status!(mod)
       }
 
     if diff_items.empty?
-      mod[:published]['GitHub InSync'] = 'yes'.green
+      mod[:published]['GitHub InSync'] = 'yes'
     else
-      mod[:published]['GitHub InSync'] = 'no'.red
-      mod[:published]['GitHub Changed'] = diff_items.join("\n      * ")
+      mod[:published]['GitHub InSync'] = 'no'
+      mod[:published]['GitHub Changed'] = ([''] + diff_items).join("\n      * ")
     end
   end
 
@@ -164,10 +164,10 @@ def update_module_puppet_forge_status!(mod)
     begin
       # Now, check the Puppet Forge for the released module
       open(URI.parse(forge_url_base + mod[:owner] + '-' + mod[:id] + '-' + mod[:version])) do |fh|
-        mod[:published]['Puppet Forge'] = 'yes'.green
+        mod[:published]['Puppet Forge'] = 'yes'
       end
     rescue StandardError => e
-      mod[:published]['Puppet Forge'] = 'no'.red
+      mod[:published]['Puppet Forge'] = 'no'
     end
   end
 end
@@ -203,12 +203,12 @@ def update_module_package_cloud_status!(mod)
       pkg_info = package_cloud_query.xpath("//*[contains(@class, 'package-info-details')]")
 
       if pkg_info.empty?
-        mod[:published]["Package Cloud #{ver}"] = 'no'.red
+        mod[:published]["Package Cloud #{ver}"] = 'no'
       else
-        mod[:published]["Package Cloud #{ver}"] = pkg_info.css('a').first.text.green
+        mod[:published]["Package Cloud #{ver}"] = pkg_info.css('a').first.text
       end
     rescue StandardError => e
-      mod[:published]["Package Cloud #{ver}"] = 'no'.red
+      mod[:published]["Package Cloud #{ver}"] = 'no'
     end
   end
 end
