@@ -126,7 +126,7 @@ def update_module_github_status!(mod)
       mod[:published]['GitHub InSync'] = 'yes'
     else
       mod[:published]['GitHub InSync'] = 'no'
-      mod[:published]['GitHub Changed'] = ([''] + diff_items).join("\n      * ")
+      mod[:published]['GitHub Changed'] = ([''] + diff_items).sort.uniq.join("\n      * ")
     end
   end
 
