@@ -108,9 +108,9 @@ Requires: pupmod-simp-useradd >= 0.5.0, pupmod-simp-useradd < 1.0.0
 Requires: pupmod-simp-vox_selinux >= 3.4.0, pupmod-simp-vox_selinux < 4.0.0
 Requires: pupmod-simp-xinetd >= 4.3.0, pupmod-simp-xinetd < 5.0.0
 Requires: pupmod-trlinkin-nsswitch >= 2.2.0, pupmod-trlinkin-nsswitch < 3.0.0
-Requires: rubygem-simp-cli >= 7.0.0, rubygem-simp-cli < 8.0.0
-Requires: rubygem-simp-cli-doc >= 7.0.0, rubygem-simp-cli-doc < 8.0.0
 %if 0%{?rhel} > 7
+Recommends: rubygem-simp-cli >= 7.0.0, rubygem-simp-cli < 8.0.0
+Recommends: rubygem-simp-cli-doc >= 7.0.0, rubygem-simp-cli-doc < 8.0.0
 Recommends: simp-adapter >= 2.1.0, simp-adapter < 3.0.0
 Recommends: simp-environment-skeleton >= 7.3.0, simp-environment-skeleton < 8.0.0
 Recommends: simp-gpgkeys >= 3.1.3, simp-gpgkeys < 4.0.0
@@ -119,6 +119,8 @@ Recommends: simp-selinux-policy >= 1.1.0, simp-selinux-policy < 2.0.0
 Recommends: simp-utils >= 6.6.1, simp-utils < 7.0.0
 Recommends: simp-vendored-r10k >= 3.3.0, simp-vendored-r10k < 4.0.0
 %else
+Requires: rubygem-simp-cli >= 7.0.0, rubygem-simp-cli < 8.0.0
+Requires: rubygem-simp-cli-doc >= 7.0.0, rubygem-simp-cli-doc < 8.0.0
 Requires: simp-adapter >= 2.1.0, simp-adapter < 3.0.0
 Requires: simp-environment-skeleton >= 7.3.0, simp-environment-skeleton < 8.0.0
 Requires: simp-gpgkeys >= 3.1.3, simp-gpgkeys < 4.0.0
