@@ -26,7 +26,6 @@ namespace :puppetfile do
 
     update_module_github_status!(target_module)
     update_module_puppet_forge_status!(target_module)
-    update_module_package_cloud_status!(target_module)
 
     print_module_status(target_module)
   end
@@ -51,7 +50,6 @@ namespace :puppetfile do
 
       update_module_github_status!(mod)
       update_module_puppet_forge_status!(mod)
-      update_module_package_cloud_status!(mod)
 
       # Be kind, rewind...
       sleep 0.5

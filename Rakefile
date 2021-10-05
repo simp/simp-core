@@ -66,8 +66,10 @@ def update_module_github_status!(mod)
   mod[:published]['GitHub'] ||= 'unknown'
   mod[:published]['Puppet Forge'] ||= 'unknown'
 
+  mod_remote = mod[:remote].gsub(/\.git$/,'')
+
   # See if we have a valid release on GitHub
-  github_releases_url = mod[:remote] + '/releases'
+  github_releases_url = mod_remote + '/releases'
 
   begin
     github_query = Nokogiri::HTML(open(github_releases_url).read)
@@ -78,13 +80,60 @@ def update_module_github_status!(mod)
       mod[:published]['GitHub'] = 'no'.red
     end
   rescue
-    mod[:published]['GitHub'] = 'no'.red
+    begin
+      github_releases_url = mod_remote + '/tags'
+      github_query = Nokogiri::HTML(open(github_releases_url).read)
+
+      if github_query.xpath('//a/@title').map(&:value).include?(mod[:version])
+        mod[:published]['GitHub'] = 'tag'.yellow
+      else
+        mod[:published]['GitHub'] = 'no'.red
+      end
+    rescue
+      mod[:published]['GitHub'] = 'no'.red
+    end
+  end
+
+  if ['yes','tag'].include?(mod[:published]['GitHub'].uncolor)
+    github_diff_uri = mod_remote + "/compare/#{mod[:version]}...HEAD"
+
+    to_keep = [
+      'SIMP/',
+      'build/',
+      'data/',
+      'environments/',
+      'files/',
+      'functions/',
+      'hiera.yaml',
+      'lib/',
+      'manifests/',
+      'metadata.json',
+      'templates/',
+      'types/'
+    ]
+
+    diff_result = Nokogiri::HTML(open(github_diff_uri).read)
+    diff_items = diff_result
+      .xpath("//a[contains(@href,'#diff-')]")
+      .map{|x| x.text}
+      .delete_if{|x|
+        x.strip.empty? ||
+          x.include?('→') ||
+          !to_keep.find{|k| x.start_with?(k)}
+      }
+
+    if diff_items.empty?
+      mod[:published]['GitHub InSync'] = 'yes'.green
+    else
+      mod[:published]['GitHub InSync'] = 'no'.red
+      mod[:published]['GitHub Changed'] = diff_items.join("\n      * ")
+    end
   end
 
   # See if we're a module and update the version information if necessary
   begin
     open(
-      mod[:remote].gsub('github.com','raw.githubusercontent.com') +
+      mod_remote.gsub('github.com','raw.githubusercontent.com') +
       '/' +
       mod[:desired_ref] +
       '/' +
