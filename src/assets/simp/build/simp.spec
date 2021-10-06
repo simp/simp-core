@@ -9,12 +9,10 @@ Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Buildarch: noarch
 %if 0%{?rhel} > 7
 Recommends: createrepo
-Recommends: facter
 Recommends: lsb
 Recommends: httpd >= 2.2
 %else
 Requires: createrepo
-Requires: facter
 Requires: lsb
 Requires: httpd >= 2.2
 %endif
