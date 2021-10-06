@@ -26,14 +26,13 @@ namespace :puppetfile do
 
     update_module_github_status!(target_module)
     update_module_puppet_forge_status!(target_module)
-    update_module_package_cloud_status!(target_module)
 
     print_module_status(target_module)
   end
 
   desc <<-EOM
   Check all tagged modules in the Puppetfile and determine if they have been
-  published to the Puppet Forge, GitHub, and/or Package Cloud as appropriate
+  published to the Puppet Forge and/or GitHub as appropriate
   EOM
   task :check, [:puppetfile] do |t,args|
     # TODO: Add local caching for repeated queries
@@ -51,7 +50,6 @@ namespace :puppetfile do
 
       update_module_github_status!(mod)
       update_module_puppet_forge_status!(mod)
-      update_module_package_cloud_status!(mod)
 
       # Be kind, rewind...
       sleep 0.5
