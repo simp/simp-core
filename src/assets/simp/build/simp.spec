@@ -127,6 +127,7 @@ Requires: simp-gpgkeys >= 3.1.4, simp-gpgkeys < 4.0.0
 Requires: simp-rsync-skeleton >= 7.1.1, simp-rsync-skeleton < 8.0.0
 Requires: simp-selinux-policy >= 1.1.1, simp-selinux-policy < 2.0.0
 Requires: simp-utils >= 6.6.1, simp-utils < 7.0.0
+Requires: simp-vendored-r10k >= 3.11.0, simp-vendored-r10k < 4.0.0
 Requires: simp-vendored-r10k >= 3.3.0, simp-vendored-r10k < 4.0.0
 %endif
 
