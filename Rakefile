@@ -98,18 +98,28 @@ def update_module_github_status!(mod)
     github_diff_uri = mod_remote + "/compare/#{mod[:version]}...HEAD"
 
     to_keep = [
+      'GPGKEYS/',
       'SIMP/',
+      'bin/',
       'build/',
       'data/',
       'environments/',
+      'ext/',
       'files/',
       'functions/',
       'hiera.yaml',
       'lib/',
       'manifests/',
       'metadata.json',
+      'rsync/',
+      'sbin/',
+      'scripts/',
+      'share/',
+      'src/',
+      'tasks/',
       'templates/',
-      'types/'
+      'types/',
+      'utils/'
     ]
 
     diff_result = Nokogiri::HTML(open(github_diff_uri).read)
@@ -168,47 +178,6 @@ def update_module_puppet_forge_status!(mod)
       end
     rescue StandardError => e
       mod[:published]['Puppet Forge'] = 'no'
-    end
-  end
-end
-
-def update_module_package_cloud_status!(mod)
-  require 'open-uri'
-  require 'nokogiri'
-
-  require 'highline'
-  HighLine.colorize_strings
-
-  pcloud_url_base = 'https://packagecloud.io/app/simp-project/6_X/search?'
-
-  mod[:published] ||= {}
-
-  ['6','7'].each do |ver|
-    mod[:published]["Package Cloud #{ver}"] ||= 'unknown'
-
-    # Finally, check to see if we're published on Package Cloud (as best we can)
-    url = pcloud_url_base + 'q='
-
-    unless ['unknown', 'N/A'].include?(mod[:published]['Puppet Forge'])
-      url = url + 'pupmod-'
-    end
-
-    url = url + mod[:owner] + '-' + mod[:id] + '-' + mod[:version]
-
-    url = url + "&dist=el/#{ver}"
-
-    begin
-      package_cloud_query = Nokogiri::HTML(open(url).read)
-
-      pkg_info = package_cloud_query.xpath("//*[contains(@class, 'package-info-details')]")
-
-      if pkg_info.empty?
-        mod[:published]["Package Cloud #{ver}"] = 'no'
-      else
-        mod[:published]["Package Cloud #{ver}"] = pkg_info.css('a').first.text
-      end
-    rescue StandardError => e
-      mod[:published]["Package Cloud #{ver}"] = 'no'
     end
   end
 end
