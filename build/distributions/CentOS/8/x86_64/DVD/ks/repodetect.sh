@@ -47,12 +47,14 @@ fi
 
 if [ -z "$yum_server" ] || [ "$yum_server" == 'local' ]; then
   uri_header="file:///mnt/source"
-  local_header="$uri_header/SIMP/$arch"
-  local_name=Local
+  if [ "$version" == "7"]; then
+    local_header=$uri_header/SIMP/$arch
+  else
+    local_header="$uri_header/SimpRepos"
+  fi
 else
   uri_header="https://$yum_server/yum/$distro/$version/$arch"
   local_header="https://$yum_server/yum/SIMP/$distro/$version/$arch"
-  local_name=SIMP
 fi
 
 if [ "$distro" == RedHat ]; then
@@ -60,9 +62,14 @@ if [ "$distro" == RedHat ]; then
   case $version in
     '8' )
       cat << EOF > /tmp/repo-include
-repo --name="AppStream" --baseurl="$uri_header/AppStream" --noverifyssl
-repo --name="BaseOS" --baseurl="$uri_header/BaseOS" --noverifyssl
-repo --name="$local_name" --baseurl="$local_header" --noverifyssl
+repo --name="baseos"   --baseurl="$uri_header/BaseOS" --noverifyssl
+repo --name="appstream"   --baseurl="$uri_header/AppStream" --noverifyssl
+repo --name="epel"   --baseurl="$local_header/epel" --noverifyssl
+repo --name="epel-modular"   --baseurl="$local_header/epel-modular" --noverifyssl
+repo --name="powertools"   --baseurl="$local_header/PowerTools" --noverifyssl
+repo --name="postgresql"   --baseurl="$local_header/postgresql" --noverifyssl
+repo --name="puppet"   --baseurl="$local_header/puppet" --noverifyssl
+repo --name="simp"   --baseurl="$local_header/SIMP" --noverifyssl
 EOF
     ;;
     '7' )
@@ -70,19 +77,9 @@ EOF
 repo --name="HighAvailability" --baseurl="$uri_header/addons/HighAvailability"
 repo --name="ResilientStorage" --baseurl="$uri_header/addons/ResilientStorage"
 repo --name="Base" --baseurl="$uri_header"
-repo --name="$local_name" --baseurl="$local_header"
+repo --name="simp" --baseurl="$local_header"
 EOF
     ;;
-    '6' )
-      cat << EOF > /tmp/repo-include
-repo --name="HighAvailability" --baseurl="$uri_header/HighAvailability" --noverifyssl
-repo --name="LoadBalancer" --baseurl="$uri_header/LoadBalancer" --noverifyssl
-repo --name="ResilientStorage" --baseurl="$uri_header/ResilientStorage" --noverifyssl
-repo --name="ScalableFileSystme" --baseurl="$uri_header/ScalableFileSystem" --noverifyssl
-repo --name="Server" --baseurl="$uri_header/Server" --noverifyssl
-repo --name="$local_name" --baseurl="$local_header" --noverifyssl
-EOF
-     ;;
   esac
 
 elif [ "$distro" == CentOS ]; then
@@ -90,22 +87,20 @@ elif [ "$distro" == CentOS ]; then
   case $version in
     '8' )
       cat << EOF > /tmp/repo-include
-repo --name="AppStream" --baseurl="$uri_header/AppStream" --noverifyssl
-repo --name="BaseOS" --baseurl="$uri_header/BaseOS" --noverifyssl
-repo --name="$local_name" --baseurl="$local_header" --noverifyssl
+repo --name="baseos"   --baseurl="$uri_header/BaseOS" --noverifyssl
+repo --name="appstream"   --baseurl="$uri_header/AppStream" --noverifyssl
+repo --name="epel"   --baseurl="$local_header/epel" --noverifyssl
+repo --name="epel-modular"   --baseurl="$local_header/epel-modular" --noverifyssl
+repo --name="powertools"   --baseurl="$local_header/PowerTools" --noverifyssl
+repo --name="postgresql"   --baseurl="$local_header/postgresql" --noverifyssl
+repo --name="puppet"   --baseurl="$local_header/puppet" --noverifyssl
+repo --name="simp"   --baseurl="$local_header/SIMP" --noverifyssl
 EOF
     ;;
     '7' )
       cat << EOF > /tmp/repo-include
 repo --name="Server" --baseurl="$uri_header"
-repo --name="$local_name" --baseurl="$local_header"
-repo --name="Updates" --baseurl="$uri_header/Updates" --noverifyssl
-EOF
-    ;;
-    '6' )
-      cat << EOF > /tmp/repo-include
-repo --name="Server" --baseurl="$uri_header" --noverifyssl
-repo --name="$local_name" --baseurl="$local_header" --noverifyssl
+repo --name="simp" --baseurl="$local_header"
 repo --name="Updates" --baseurl="$uri_header/Updates" --noverifyssl
 EOF
     ;;

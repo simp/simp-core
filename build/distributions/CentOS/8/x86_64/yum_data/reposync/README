@@ -1,0 +1,4 @@
+Place *full working YUM repositories* in this directory.
+
+Each directory will *replace* any directory with the same name on the built
+ISO
