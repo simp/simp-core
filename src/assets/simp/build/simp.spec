@@ -113,7 +113,7 @@ Recommends: simp-gpgkeys >= 3.1.4, simp-gpgkeys < 4.0.0
 Recommends: simp-rsync-skeleton >= 7.1.1, simp-rsync-skeleton < 8.0.0
 Recommends: simp-selinux-policy >= 1.1.1, simp-selinux-policy < 2.0.0
 Recommends: simp-utils >= 6.6.1, simp-utils < 7.0.0
-Recommends: simp-vendored-r10k >= 3.11.0, simp-vendored-r10k < 4.0.0
+Recommends: simp-vendored-r10k >= 3.3.0, simp-vendored-r10k < 4.0.0
 %else
 Requires: rubygem-simp-cli >= 7.0.0, rubygem-simp-cli < 8.0.0
 Requires: rubygem-simp-cli-doc >= 7.0.0, rubygem-simp-cli-doc < 8.0.0
