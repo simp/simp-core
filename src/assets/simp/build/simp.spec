@@ -240,15 +240,6 @@ if [ -f "${puppet_confdir}/autosign.conf" ]; then
   chmod 644 "${puppet_confdir}/autosign.conf"
 fi
 
-if [ -x '%{_usr}/local/sbin/puppetserver_clear_environment_cache' ]; then
-  %{_usr}/local/sbin/puppetserver_clear_environment_cache
-fi
-
-puppet resource service puppetserver | grep -q running
-if [ $? -eq 0 ]; then
-  puppetserver reload
-fi
-
 %postun
 # Post uninstall stuff
 
