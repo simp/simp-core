@@ -8,11 +8,9 @@ Group: Applications/System
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Buildarch: noarch
 %if 0%{?rhel} > 7
-Recommends: createrepo
 Recommends: lsb
 Recommends: httpd >= 2.2
 %else
-Requires: createrepo
 Requires: lsb
 Requires: httpd >= 2.2
 %endif
@@ -251,25 +249,11 @@ if [ $? -eq 0 ]; then
   puppetserver reload
 fi
 
-rpm_link_target="%{_var}/www/yum/`facter operatingsystem`/`facter operatingsystemmajrelease`"
-rpm_link="%{_var}/www/yum/`facter operatingsystem`/`facter operatingsystemrelease`"
-rpm_dir="$rpm_link/`facter hardwaremodel`/Updates"
-
-umask 022;
-if [ ! -d $rpm_dir ]; then
-  mkdir -p $rpm_dir;
-  cd $rpm_dir;
-
-  createrepo .;
-
-  ln -sf $rpm_link $rpm_link_target;
-fi
-
 %postun
 # Post uninstall stuff
 
 %changelog
-* Tue Jul 13 2021 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.6.0-1
+* Thu Oct 07 2021 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.6.0-1
 - Updated the list of provided components
   - Additions:
     - simp/ds389
@@ -281,6 +265,9 @@ fi
     - aboe/chrony has been replaced by puppet/chrony
     - camptocamp/kmod has been replaced by puppet/kmod
 - Updated versions of provided components
+- Removed the dependency on facter
+- Removed the dependency on createrepo
+- Removed the obsolete code in 'post' that worked on the Updates yum repo
 
 * Thu Apr 29 2021 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 6.6.0-1
 - Updated the kickstart files for EL7 ISO to copy the SIMP repo into
