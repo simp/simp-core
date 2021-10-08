@@ -47,7 +47,7 @@ fi
 
 if [ -z "$yum_server" ] || [ "$yum_server" == 'local' ]; then
   uri_header="file:///mnt/source"
-  if [ "$version" == "7"]; then
+  if [ "$version" == "7" ]; then
     local_header=$uri_header/SIMP/$arch
   else
     local_header="$uri_header/SimpRepos"
