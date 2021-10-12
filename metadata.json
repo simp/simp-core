@@ -228,7 +228,7 @@
     },
     {
       "name": "simp/simpkv",
-      "version_requirement": ">= 0.7.1 < 1.0.0"
+      "version_requirement": ">= 0.8.0 < 1.0.0"
     },
     {
       "name": "simp/simp_apache",
