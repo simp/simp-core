@@ -1,58 +1,58 @@
 ---
 simp-vendored-r10k:
   :rpm_name: simp-vendored-r10k-3.11.0-1.noarch.rpm
-  :source: https://download.simp-project.com//releases/latest/el/8/x86_64/simp/simp-vendored-r10k-3.11.0-1.noarch.rpm
+  :source: https://download.simp-project.com/releases/latest/el/8/x86_64/simp/simp-vendored-r10k-3.11.0-1.noarch.rpm
 simp-vendored-r10k-doc:
   :rpm_name: simp-vendored-r10k-doc-3.11.0-1.noarch.rpm
-  :source: https://download.simp-project.com//releases/latest/el/8/x86_64/simp/simp-vendored-r10k-doc-3.11.0-1.noarch.rpm
+  :source: https://download.simp-project.com/releases/latest/el/8/x86_64/simp/simp-vendored-r10k-doc-3.11.0-1.noarch.rpm
 simp-vendored-r10k-gem-colored2:
   :rpm_name: simp-vendored-r10k-gem-colored2-3.1.2-1.noarch.rpm
-  :source: https://download.simp-project.com//releases/latest/el/8/x86_64/simp/simp-vendored-r10k-gem-colored2-3.1.2-1.noarch.rpm
+  :source: https://download.simp-project.com/releases/latest/el/8/x86_64/simp/simp-vendored-r10k-gem-colored2-3.1.2-1.noarch.rpm
 simp-vendored-r10k-gem-cri:
   :rpm_name: simp-vendored-r10k-gem-cri-2.15.10-1.noarch.rpm
-  :source: https://download.simp-project.com//releases/latest/el/8/x86_64/simp/simp-vendored-r10k-gem-cri-2.15.10-1.noarch.rpm
+  :source: https://download.simp-project.com/releases/latest/el/8/x86_64/simp/simp-vendored-r10k-gem-cri-2.15.10-1.noarch.rpm
 simp-vendored-r10k-gem-faraday:
   :rpm_name: simp-vendored-r10k-gem-faraday-0.17.4-1.noarch.rpm
-  :source: https://download.simp-project.com//releases/latest/el/8/x86_64/simp/simp-vendored-r10k-gem-faraday-0.17.4-1.noarch.rpm
+  :source: https://download.simp-project.com/releases/latest/el/8/x86_64/simp/simp-vendored-r10k-gem-faraday-0.17.4-1.noarch.rpm
 simp-vendored-r10k-gem-faraday_middleware:
   :rpm_name: simp-vendored-r10k-gem-faraday_middleware-0.14.0-1.noarch.rpm
-  :source: https://download.simp-project.com//releases/latest/el/8/x86_64/simp/simp-vendored-r10k-gem-faraday_middleware-0.14.0-1.noarch.rpm
+  :source: https://download.simp-project.com/releases/latest/el/8/x86_64/simp/simp-vendored-r10k-gem-faraday_middleware-0.14.0-1.noarch.rpm
 simp-vendored-r10k-gem-fast_gettext:
   :rpm_name: simp-vendored-r10k-gem-fast_gettext-1.1.2-4.noarch.rpm
-  :source: https://download.simp-project.com//releases/latest/el/8/x86_64/simp/simp-vendored-r10k-gem-fast_gettext-1.1.2-4.noarch.rpm
+  :source: https://download.simp-project.com/releases/latest/el/8/x86_64/simp/simp-vendored-r10k-gem-fast_gettext-1.1.2-4.noarch.rpm
 simp-vendored-r10k-gem-gettext:
   :rpm_name: simp-vendored-r10k-gem-gettext-3.2.9-4.noarch.rpm
-  :source: https://download.simp-project.com//releases/latest/el/8/x86_64/simp/simp-vendored-r10k-gem-gettext-3.2.9-4.noarch.rpm
+  :source: https://download.simp-project.com/releases/latest/el/8/x86_64/simp/simp-vendored-r10k-gem-gettext-3.2.9-4.noarch.rpm
 simp-vendored-r10k-gem-gettext-setup:
   :rpm_name: simp-vendored-r10k-gem-gettext-setup-0.34-1.noarch.rpm
-  :source: https://download.simp-project.com//releases/latest/el/8/x86_64/simp/simp-vendored-r10k-gem-gettext-setup-0.34-1.noarch.rpm
+  :source: https://download.simp-project.com/releases/latest/el/8/x86_64/simp/simp-vendored-r10k-gem-gettext-setup-0.34-1.noarch.rpm
 simp-vendored-r10k-gem-jwt:
   :rpm_name: simp-vendored-r10k-gem-jwt-2.2.3-1.noarch.rpm
-  :source: https://download.simp-project.com//releases/latest/el/8/x86_64/simp/simp-vendored-r10k-gem-jwt-2.2.3-1.noarch.rpm
+  :source: https://download.simp-project.com/releases/latest/el/8/x86_64/simp/simp-vendored-r10k-gem-jwt-2.2.3-1.noarch.rpm
 simp-vendored-r10k-gem-locale:
   :rpm_name: simp-vendored-r10k-gem-locale-2.1.3-1.noarch.rpm
-  :source: https://download.simp-project.com//releases/latest/el/8/x86_64/simp/simp-vendored-r10k-gem-locale-2.1.3-1.noarch.rpm
+  :source: https://download.simp-project.com/releases/latest/el/8/x86_64/simp/simp-vendored-r10k-gem-locale-2.1.3-1.noarch.rpm
 simp-vendored-r10k-gem-log4r:
   :rpm_name: simp-vendored-r10k-gem-log4r-1.1.10-5.noarch.rpm
-  :source: https://download.simp-project.com//releases/latest/el/8/x86_64/simp/simp-vendored-r10k-gem-log4r-1.1.10-5.noarch.rpm
+  :source: https://download.simp-project.com/releases/latest/el/8/x86_64/simp/simp-vendored-r10k-gem-log4r-1.1.10-5.noarch.rpm
 simp-vendored-r10k-gem-minitar:
   :rpm_name: simp-vendored-r10k-gem-minitar-0.9-1.noarch.rpm
-  :source: https://download.simp-project.com//releases/latest/el/8/x86_64/simp/simp-vendored-r10k-gem-minitar-0.9-1.noarch.rpm
+  :source: https://download.simp-project.com/releases/latest/el/8/x86_64/simp/simp-vendored-r10k-gem-minitar-0.9-1.noarch.rpm
 simp-vendored-r10k-gem-multi_json:
   :rpm_name: simp-vendored-r10k-gem-multi_json-1.15.0-1.noarch.rpm
-  :source: https://download.simp-project.com//releases/latest/el/8/x86_64/simp/simp-vendored-r10k-gem-multi_json-1.15.0-1.noarch.rpm
+  :source: https://download.simp-project.com/releases/latest/el/8/x86_64/simp/simp-vendored-r10k-gem-multi_json-1.15.0-1.noarch.rpm
 simp-vendored-r10k-gem-multipart-post:
   :rpm_name: simp-vendored-r10k-gem-multipart-post-2.1.1-3.noarch.rpm
-  :source: https://download.simp-project.com//releases/latest/el/8/x86_64/simp/simp-vendored-r10k-gem-multipart-post-2.1.1-3.noarch.rpm
+  :source: https://download.simp-project.com/releases/latest/el/8/x86_64/simp/simp-vendored-r10k-gem-multipart-post-2.1.1-3.noarch.rpm
 simp-vendored-r10k-gem-puppet_forge:
   :rpm_name: simp-vendored-r10k-gem-puppet_forge-2.3.4-1.noarch.rpm
-  :source: https://download.simp-project.com//releases/latest/el/8/x86_64/simp/simp-vendored-r10k-gem-puppet_forge-2.3.4-1.noarch.rpm
+  :source: https://download.simp-project.com/releases/latest/el/8/x86_64/simp/simp-vendored-r10k-gem-puppet_forge-2.3.4-1.noarch.rpm
 simp-vendored-r10k-gem-r10k:
   :rpm_name: simp-vendored-r10k-gem-r10k-3.11.0-1.noarch.rpm
-  :source: https://download.simp-project.com//releases/latest/el/8/x86_64/simp/simp-vendored-r10k-gem-r10k-3.11.0-1.noarch.rpm
+  :source: https://download.simp-project.com/releases/latest/el/8/x86_64/simp/simp-vendored-r10k-gem-r10k-3.11.0-1.noarch.rpm
 simp-vendored-r10k-gem-semantic_puppet:
   :rpm_name: simp-vendored-r10k-gem-semantic_puppet-1.0.4-1.noarch.rpm
-  :source: https://download.simp-project.com//releases/latest/el/8/x86_64/simp/simp-vendored-r10k-gem-semantic_puppet-1.0.4-1.noarch.rpm
+  :source: https://download.simp-project.com/releases/latest/el/8/x86_64/simp/simp-vendored-r10k-gem-semantic_puppet-1.0.4-1.noarch.rpm
 simp-vendored-r10k-gem-text:
   :rpm_name: simp-vendored-r10k-gem-text-1.3.1-4.noarch.rpm
-  :source: https://download.simp-project.com//releases/latest/el/8/x86_64/simp/simp-vendored-r10k-gem-text-1.3.1-4.noarch.rpm
+  :source: https://download.simp-project.com/releases/latest/el/8/x86_64/simp/simp-vendored-r10k-gem-text-1.3.1-4.noarch.rpm
