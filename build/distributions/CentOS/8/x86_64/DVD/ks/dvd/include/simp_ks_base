@@ -6,7 +6,7 @@ module --name=httpd  --stream=2.4
 module --name=mariadb --stream=10.3
 module --name=mysql --stream=8.0
 module --name=python36 --stream=3.6
-module --name=perl --stream=5.26
+module --name=perl --stream=5.30
 module --name=perl-IO-Socket-SSL --stream=2.066
 module --name=perl-libwww-perl --stream=6.34
 module --name=ruby --stream=2.7
