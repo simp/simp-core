@@ -112,7 +112,6 @@ GEM
       spdx-licenses (~> 1.0)
     method_source (1.0.0)
     mime-types (2.99.3)
-    mini_portile2 (2.6.1)
     minitar (0.9)
     minitest (5.14.4)
     mocha (1.13.0)
@@ -123,8 +122,7 @@ GEM
     net-ssh (6.1.0)
     net-telnet (0.1.1)
     netrc (0.11.0)
-    nokogiri (1.12.5)
-      mini_portile2 (~> 2.6.1)
+    nokogiri (1.12.5-x86_64-linux)
       racc (~> 1.4)
     oga (3.3)
       ast
@@ -270,7 +268,7 @@ GEM
       net-telnet (~> 0.1.1)
       nokogiri (~> 1.8)
     simp-build-helpers (0.1.1)
-    simp-rake-helpers (5.12.3)
+    simp-rake-helpers (5.12.4)
       bundler (>= 1.14, < 3.0)
       pager (~> 1.0)
       parallel (~> 1.0)
@@ -321,7 +319,7 @@ GEM
     yard (0.9.26)
 
 PLATFORMS
-  ruby
+  x86_64-linux
 
 DEPENDENCIES
   beaker
@@ -342,8 +340,8 @@ DEPENDENCIES
   rspec-puppet
   simp-beaker-helpers (>= 1.23.2, < 2)
   simp-build-helpers (> 0.1, < 2.0)
-  simp-rake-helpers (>= 5.12.1, < 6)
+  simp-rake-helpers (>= 5.12.3, < 6)
   simp-rspec-puppet-facts (~> 3.1)
 
 BUNDLED WITH
-   2.1.4
+   2.2.28

@@ -11,7 +11,7 @@ you are setting up your own development system from scratch.
 
 ## Building
 
-`buildah bud -t <friendly image name> -f <Dockerfile> .`
+`buildah build -t <friendly image name> -f <Dockerfile> .`
 
 ## Pushing
 
