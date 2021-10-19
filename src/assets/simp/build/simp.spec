@@ -79,7 +79,7 @@ Requires: pupmod-simp-rkhunter >= 0.1.0, pupmod-simp-rkhunter < 1.0.0
 Requires: pupmod-simp-rsync >= 6.5.0, pupmod-simp-rsync < 7.0.0
 Requires: pupmod-simp-rsyslog >= 8.1.0, pupmod-simp-rsyslog < 9.0.0
 Requires: pupmod-simp-selinux >= 2.7.0, pupmod-simp-selinux < 3.0.0
-Requires: pupmod-simp-simp >= 4.16.0, pupmod-simp-simp < 5.0.0
+Requires: pupmod-simp-simp >= 4.16.2, pupmod-simp-simp < 5.0.0
 Requires: pupmod-simp-simp_apache >= 7.1.0, pupmod-simp-simp_apache < 8.0.0
 Requires: pupmod-simp-simp_banners >= 0.3.0, pupmod-simp-simp_banners < 1.0.0
 Requires: pupmod-simp-simp_ds389 >= 0.1.1, pupmod-simp-simp_ds389 < 1.0.0
@@ -112,7 +112,7 @@ Recommends: simp-environment-skeleton >= 7.3.1, simp-environment-skeleton < 8.0.
 Recommends: simp-gpgkeys >= 3.1.5, simp-gpgkeys < 4.0.0
 Recommends: simp-rsync-skeleton >= 7.1.1, simp-rsync-skeleton < 8.0.0
 Recommends: simp-selinux-policy >= 1.1.1, simp-selinux-policy < 2.0.0
-Recommends: simp-utils >= 6.6.1, simp-utils < 7.0.0
+Recommends: simp-utils >= 6.7.0, simp-utils < 7.0.0
 Recommends: simp-vendored-r10k >= 3.3.0, simp-vendored-r10k < 4.0.0
 %else
 Requires: rubygem-simp-cli >= 7.0.0, rubygem-simp-cli < 8.0.0
@@ -122,7 +122,7 @@ Requires: simp-environment-skeleton >= 7.3.1, simp-environment-skeleton < 8.0.0
 Requires: simp-gpgkeys >= 3.1.5, simp-gpgkeys < 4.0.0
 Requires: simp-rsync-skeleton >= 7.1.1, simp-rsync-skeleton < 8.0.0
 Requires: simp-selinux-policy >= 1.1.1, simp-selinux-policy < 2.0.0
-Requires: simp-utils >= 6.6.1, simp-utils < 7.0.0
+Requires: simp-utils >= 6.7.0, simp-utils < 7.0.0
 Requires: simp-vendored-r10k >= 3.3.0, simp-vendored-r10k < 4.0.0
 %endif
 
