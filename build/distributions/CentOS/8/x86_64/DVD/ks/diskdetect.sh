@@ -68,7 +68,16 @@ fi
 
 simp_opt=`awk -F "simp_opt=" '{print $2}' /proc/cmdline | cut -f1 -d' '`
 
-if [ "$simp_opt" != "prompt" ]; then
+if [ "$simp_opt" == "prompt" ]; then
+  # This is the recommended workaround for a RedHat bug (BZ#1954408) where
+  # the installation program attempts to perform automatic partitioning, even
+  # when you do not specify any partitioning commands in the kickstart file.
+  # https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/8.4_release_notes/known-issues#known-issue_installer-and-image-creation
+  # This will cause the "Installation Destination" icon to show an "Kickstart
+  # insufficient" error, which, in turn, will force the user to partition the
+  # disks manually.
+  echo "reqpart" > /tmp/part-include
+else
   cat << EOF > /tmp/part-include
 clearpart --all --initlabel --drives=${DISK}
 part /boot --fstype=ext4 --size=1024 --ondisk ${DISK} --asprimary --fsoptions=nosuid,nodev
