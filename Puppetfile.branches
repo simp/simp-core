@@ -21,11 +21,6 @@ mod 'rubygem-rubygem_simp_cli',
   :git => 'https://github.com/simp/rubygem-simp-cli',
   :branch => 'master'
 
-# FIXME Doesn't have RPM packaging yet
-#mod 'rubygem-rubygem_simp_processgraph',
-#  :git => 'https://github.com/simp/rubygem-simp-processgraph',
-#  :branch => 'master'
-
 mod 'simp-rsync_data',
   :git => 'https://github.com/simp/simp-rsync-skeleton',
   :branch => 'master'
@@ -55,6 +50,10 @@ mod 'simp-simp_selinux_policy',
 
 mod 'simp-utils',
   :git => 'https://github.com/simp/simp-utils',
+  :branch => 'master'
+
+mod 'simp-vendored_r10k',
+  :git => 'https://github.com/simp/pkg-r10k',
   :branch => 'master'
 
 moduledir 'src/puppet/modules'
