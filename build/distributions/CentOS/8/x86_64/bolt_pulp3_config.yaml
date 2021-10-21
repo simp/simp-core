@@ -1,0 +1,570 @@
+# <repo-shortname>:
+#
+#   pulp_remote_options: [Hash] key/value pairs
+#                         passed directly to the Pulp3 RPM Remotes API when
+#                         creating a new RPM Remote (mirror)
+#
+#   rpms: a list of RPM metadata hashes
+#
+#     Mandatory keys for each rpm:
+#
+#     - name: [String] RPM 'name' field (the 'N' in NEVRA)
+#
+#     Optional keys for rpms:
+#
+#       version: [String,Array] Expression(s) to constrain the RPM version.
+#                Contraint expressions follow the same conventions as Bundler.
+#                (ex: '~> 6.8.0', '= 5.2.1', ['>= 4.2.0', '< 5.0'])
+#
+#       direct_url: [String] When defined, download RPM directly from URL,
+#                   overriding the repo mirror
+#
+#                   NOTE: Pulp won't be able to auto-resolve RPMs using
+#                   direct_urls (and no Remote mirror)  to the best available
+#                   versions or obey `version:` constraints.  Make sure any
+#                   direct_url URLs are kept up to date with new releases!
+#
+#  packagegroups: an (optional) list of RPM package groups
+#
+#     Mandatory keys for each packagegroup:
+#
+#     - id: [String] Packagegroup 'id' (view with `dnf grouplist --ids`)
+#
+#
+#  modules: an (optional) list of RPM module streams
+#
+#     Mandatory keys for each item
+#
+#     - stream: [String] module stream in N:S format (ex: `httpd:2.4`)
+#
+---
+epel-modular:
+  url: https://dl.fedoraproject.org/pub/epel/8/Modular/x86_64/
+  modules:
+  - stream: 389-directory-server:stable
+    # rpms:
+    # - 389-ds-base
+
+# Note: this repo is up top because it can be squirrely
+puppet:
+  url: http://yum.puppet.com/puppet6/el/8/x86_64/
+  pulp_remote_options: # example of pulp_remote_options
+    policy: on_demand  # (`on_demand` is the default behavior)
+  # Versions last updated: 2021/07/21
+  rpms:
+  - name: puppet-agent
+    version: '= 6.22.1'
+  - name: puppet-bolt
+    version: '~> 3.13'
+  - name: puppet6-release
+  - name: puppetdb
+    version: '~> 6.16.1'
+  - name: puppetdb-termini
+    version: '~> 6.16.1'
+  - name: puppetserver
+    version: '~> 6.15.3'
+
+# Note: this repo is up top because it can be squirrely
+puppet7:
+  url: http://yum.puppet.com/puppet7/el/8/x86_64/
+  pulp_remote_options: # example of pulp_remote_options
+    policy: on_demand  # (`on_demand` is the default behavior)
+  # Versions last updated: 2021/07/21
+  rpms:
+  - name: puppet-agent
+  - name: puppet-bolt
+  - name: puppet7-release
+  - name: puppetdb
+  - name: puppetdb-termini
+  - name: puppetserver
+
+BaseOS:
+  url: http://mirror.centos.org/centos/8/BaseOS/x86_64/os/
+  packagegroups:
+  - id: core
+  - id: base
+  # environment_groups:  # (Not worth implementing; specify packagegroups)
+  #   - name: minimal-environment
+  rpms:
+  - name: NetworkManager # depends on baseos: NetworkManager-libnm, libndp
+  - name: at
+  - name: autofs
+  - name: audispd-plugins
+  - name: c-ares
+  - name: centos-indexhtml
+  - name: centos-logos
+  - name: centos-logos-httpd
+  - name: centos-obsolete-packages
+  - name: chrony
+  - name: cronie
+  - name: crontabs
+  - name: dhcp-client
+  - name: dhcp-common
+  - name: dhcp-libs
+  - name: dhcp-server
+  - name: dnf
+  - name: dnf-automatic
+  - name: dnf-plugins-core
+  - name: efibootmgr
+  - name: efi-filesystem
+  - name: efivar
+  - name: efivar-libs
+  - name: fipscheck
+  - name: fipscheck-lib
+  - name: fwupdate
+  - name: fwupdate-efi
+  - name: fwupdate-libs
+  - name: grub2-common
+  - name: grub2-efi-aa64-modules
+  - name: grub2-efi-ia32
+  - name: grub2-efi-ia32-modules
+  - name: grub2-efi-x64
+  - name: grub2-efi-x64-modules
+  - name: grub2-pc
+  - name: grub2-tools-minimal
+  - name: gssproxy
+  - name: gzip
+  - name: hdparm
+  - name: iptables-services
+  - name: kexec-tools
+  - name: lksctp-tools
+  - name: libcurl
+  - name: libhugetlbfs
+  - name: libnghttp2
+  - name: libsss_autofs
+  - name: libsss_sudo
+  - name: logrotate
+  - name: logwatch
+  - name: lshw
+  - name: lsof
+  - name: lsscsi
+  - name: lvm2
+  - name: mailcap
+  - name: man-db
+  - name: man-pages
+  - name: mcstrans
+  - name: mdadm
+  - name: mlocate
+  - name: mokutil
+  - name: net-snmp-libs
+  - name: netlabel_tools
+  - name: nfs4-acl-tools
+  - name: nfs-utils
+  - name: openssh
+  - name: openssh-cavs
+  - name: openssh-clients
+  - name: openssh-keycat
+  - name: openssh-ldap
+  - name: openssh-server
+  - name: openssl
+  - name: openssl-devel
+  - name: openssl-ibmpkcs11
+  - name: openssl-libs
+  - name: openssl-pkcs11
+  - name: perl-interpreter
+  - name: policycoreutils
+  - name: policycoreutils-python-utils
+  - name: polkit
+  - name: polkit-docs
+  - name: postfix
+  - name: procps-ng
+  - name: quota
+  - name: quota-rpc
+  - name: readline
+  - name: readline-devel
+  - name: rpm
+  - name: rpm-apidocs
+  - name: rpm-build-libs
+  - name: rpm-cron
+  - name: rpm-devel
+  - name: rpm-libs
+  - name: rpm-plugin-ima
+  - name: rpm-plugin-prioreset
+  - name: rpm-plugin-selinux
+  - name: rpm-plugin-syslog
+  - name: rpm-plugin-systemd-inhibit
+  - name: rpm-sign
+  - name: rsync
+  - name: rsync-daemon
+  - name: selinux-policy
+  - name: selinux-policy-devel
+  - name: selinux-policy-targeted
+  - name: setools-console
+  - name: setserial
+  - name: shim-ia32
+  - name: shim-x64
+  - name: sssd
+  - name: sssd-ad
+  - name: sssd-client
+  - name: sssd-common
+  - name: sssd-common-pac
+  - name: sssd-dbus
+  - name: sssd-ipa
+  - name: sssd-kcm
+  - name: sssd-krb5
+  - name: sssd-krb5-common
+  - name: sssd-ldap
+  - name: sssd-libwbclient
+  - name: sssd-nfs-idmap
+  - name: sssd-polkit-rules
+  - name: sssd-proxy
+  - name: sssd-tools
+  - name: sssd-winbind-idmap
+  - name: stunnel
+  - name: sudo
+  - name: systemd
+  - name: syslinux-tftpboot
+  - name: samba-client
+  - name: tcl
+  - name: tmpwatch
+  - name: tmux
+  - name: unzip
+  - name: util-linux
+  - name: yum
+  - name: yum-utils
+
+AppStream:
+  url: http://mirror.centos.org/centos/8/AppStream/x86_64/os/
+  modules:
+    # FIXME: I'm adding the RPMs we need from each stream
+    - stream: 389-ds:1.4
+      # rpms:
+      #   - 389-ds-base
+      #   - 389-ds-base-libs
+      #   - 389-ds-base-legacy-tools
+    - stream: httpd:2.4
+      # rpms:
+      #   - httpd
+      #   - mod_session
+      #   - mod_ssl
+    - stream: freeradius:3.0
+      # rpms:
+      #   - freeradius
+    - stream: mariadb:10.3
+      # rpms:
+      #   - mariadb
+    - stream: mysql:8.0
+      # rpms:
+      #   - mysql-server
+    - stream: perl:5.26
+    - stream: perl-IO-Socket-SSL:2.066
+    - stream: perl-libwww-perl:6.34
+      # rpms:
+      #   - python3-distro
+      #   - python3-lib389
+    - stream: python36:3.6
+      # rpms:
+      #   - python3-distro
+      #   - python3-lib389
+    - stream: ruby:2.7
+      # rpms:
+      #   - ruby
+  rpms:
+  - name: acpid
+  - name: aide
+  - name: annobin
+  - name: bind
+  - name: bind-utils
+  - name: centos-backgrounds
+  - name: centos-logos-ipa
+  - name: createrepo_c
+  - name: genisoimage
+  - name: git
+  - name: jq
+  - name: liblockfile
+  - name: libreswan
+  - name: lua
+  - name: lua-json
+  - name: mutt
+  - name: net-snmp
+  - name: net-snmp-agent-libs
+  - name: net-snmp-utils
+  - name: nmap
+  - name: nss
+  - name: oddjob
+  - name: oddjob-mkhomedir
+  - name: openscap
+  - name: openscap-devel
+  - name: openscap-engine-sce
+  - name: openscap-python3
+  - name: openscap-scanner
+  - name: openscap-utils
+  - name: openssh-askpass
+  - name: pesign
+  - name: perl-Mozilla-LDAP
+  - name: perl-NetAddr-IP
+  - name: python3-argcomplete # not part of a module
+  - name: redhat-lsb
+  - name: redhat-lsb-core
+  - name: redhat-lsb-cxx
+  - name: redhat-lsb-desktop
+  - name: redhat-lsb-languages
+  - name: redhat-lsb-printing
+  - name: rpm-build
+  - name: rpm-mpi-hooks
+  - name: rpm-ostree
+  - name: rpm-ostree-libs
+  - name: rpm-plugin-fapolicyd
+  - name: rsyslog
+  - name: rsyslog-crypto
+  - name: rsyslog-doc
+  - name: rsyslog-gnutls
+  - name: rsyslog-gssapi
+  - name: rsyslog-mysql
+  - name: rsyslog-pgsql
+  - name: rsyslog-snmp
+  - name: scap-security-guide
+  - name: sysstat
+  - name: sysfsutils
+  - name: tftp
+  - name: tftp-server
+  - name: tigervnc
+  - name: tigervnc-server
+  - name: tlog
+  - name: tokyocabinet
+  - name: urlview
+  - name: vim-enhanced
+  - name: xinetd
+
+extras:
+  url: http://mirror.centos.org/centos/8/extras/x86_64/os/
+  rpms:
+  - name: centos-release-advanced-virtualization
+  - name: centos-release-ansible-29
+  - name: centos-release-ceph-nautilus
+  - name: centos-release-ceph-octopus
+  - name: centos-release-ceph-pacific
+  - name: centos-release-configmanagement
+  - name: centos-release-gluster6
+  - name: centos-release-gluster7
+  - name: centos-release-gluster8
+  - name: centos-release-gluster9
+  - name: centos-release-messaging
+  - name: centos-release-nfs-ganesha28
+  - name: centos-release-nfs-ganesha30
+  - name: centos-release-nfv-common
+  - name: centos-release-nfv-extras
+  - name: centos-release-nfv-openvswitch
+  - name: centos-release-openstack-train
+  - name: centos-release-openstack-ussuri
+  - name: centos-release-openstack-victoria
+  - name: centos-release-opstools
+  - name: centos-release-ovirt44
+  - name: centos-release-qpid-proton
+  - name: centos-release-rabbitmq-38
+  - name: centos-release-samba411
+  - name: centos-release-samba412
+  - name: centos-release-samba413
+  - name: centos-release-samba414
+  - name: centos-release-storage-common
+  - name: centos-release-stream
+  - name: centos-release-virt-common
+  - name: centos-stream-repos
+  - name: elrepo-release
+  - name: epel-next-release
+
+PowerTools:
+  url: http://mirror.centos.org/centos/8/PowerTools/x86_64/os/
+  rpms:
+    - name: elinks
+    - name: lua-filesystem
+    - name: lua-posix
+
+epel:
+  url: https://download.fedoraproject.org/pub/epel/8/Everything/x86_64/
+  ###url: https://sjc.edge.kernel.org/fedora-buffet/epel/8/Everything/x86_64/
+  rpms:
+  - name: htop        # no deps
+  - name: vim-ansible # depends on appstream: vim-filesystem
+  - name: vim-airline
+  - name: vim-powerline
+  - name: vim-jellybeans
+  - name: liboath
+  - name: oathtool
+  - name: libnfs
+  - name: pam_oath
+  - name: redhat-display-fonts
+  - name: redhat-mono-fonts
+  - name: redhat-text-fonts
+  - name: rubygem-highline
+  - name: rubygem-net-ldap
+  - name: incron
+  - name: haveged
+  - name: dkms
+  - name: dnf-plugin-ovl
+  - name: clamav
+  - name: clamav-update
+  - name: clamd
+  - name: pwgen
+  - name: rkhunter
+  - name: openssh-ldap-authkeys # AuthorizedKeysCommand script for LDAP
+
+postgresql:
+  url: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-8-x86_64/
+  rpms:
+    # Copied from EL7 packages FIXME: verify with EL8
+  - name: postgresql96
+  - name: postgresql96-contrib
+  - name: postgresql96-libs
+  - name: postgresql96-server
+
+### FIXME: requires updated repository
+### simp:
+###   # FIXME: using /unstable/ during 6.6.0 EL8 development; change to latest when ready to release:
+###   #
+###   #   url: https://download.simp-project.com/SIMP/yum/releases/latest/el/8Server/x86_64/simp/
+###   #
+###   url: https://download.simp-project.com/SIMP/yum/unstable/simp6/el/8Server/x86_64/simp/
+###   rpms:
+###   - name: HIRS_Provisioner_TPM_1_2
+###   - name: HIRS_Provisioner_TPM_2_0
+###   - name: chkrootkit
+###   - name: paccor
+###   - name: simp-lastbind
+###   - name: simp-ppolicy-check-password
+###   - name: simp-tpm12-simulator
+###   - name: simp-tpm2-simulator
+###   - name: simp-vendored-r10k
+###   - name: simp-vendored-r10k-doc
+###   - name: simp-vendored-r10k-gem-colored
+###   - name: simp-vendored-r10k-gem-cri
+###   - name: simp-vendored-r10k-gem-faraday
+###   - name: simp-vendored-r10k-gem-faraday_middleware
+###   - name: simp-vendored-r10k-gem-fast_gettext
+###   - name: simp-vendored-r10k-gem-gettext
+###   - name: simp-vendored-r10k-gem-gettext-setup
+###   - name: simp-vendored-r10k-gem-locale
+###   - name: simp-vendored-r10k-gem-log4r
+###   - name: simp-vendored-r10k-gem-minitar
+###   - name: simp-vendored-r10k-gem-multi_json
+###   - name: simp-vendored-r10k-gem-multipart-post
+###   - name: simp-vendored-r10k-gem-puppet_forge
+###   - name: simp-vendored-r10k-gem-r10k
+###   - name: simp-vendored-r10k-gem-semantic_puppet
+###   - name: simp-vendored-r10k-gem-text
+###   # Missing from first cut
+###   - name: pupmod-aboe-chrony
+###   - name: pupmod-camptocamp-kmod
+###   - name: pupmod-camptocamp-systemd
+###   - name: pupmod-herculesteam-augeasproviders_core
+###   - name: pupmod-herculesteam-augeasproviders_grub
+###   - name: pupmod-herculesteam-augeasproviders_ssh
+###   - name: pupmod-herculesteam-augeasproviders_sysctl
+###   - name: pupmod-onyxpoint-gpasswd
+###   - name: pupmod-puppet-firewalld
+###   - name: pupmod-puppet-gitlab
+###   - name: pupmod-puppetlabs-apache
+###   - name: pupmod-puppetlabs-concat
+###   - name: pupmod-puppetlabs-hocon
+###   - name: pupmod-puppetlabs-inifile
+###   - name: pupmod-puppetlabs-java
+###   - name: pupmod-puppetlabs-motd
+###   - name: pupmod-puppetlabs-mysql
+###   - name: pupmod-puppetlabs-postgresql
+###   - name: pupmod-puppetlabs-puppet_authorization
+###   - name: pupmod-puppetlabs-puppetdb
+###   - name: pupmod-puppetlabs-ruby_task_helper
+###   - name: pupmod-puppetlabs-stdlib
+###   - name: pupmod-puppetlabs-translate
+###   - name: pupmod-puppet-posix_acl
+###   - name: pupmod-puppet-snmp
+###   - name: pupmod-puppet-yum
+###   - name: pupmod-saz-locales
+###   - name: pupmod-saz-timezone
+###   - name: pupmod-simp-acpid
+###   - name: pupmod-simp-aide
+###   - name: pupmod-simp-at
+###   - name: pupmod-simp-auditd
+###   - name: pupmod-simp-autofs
+###   - name: pupmod-simp-chkrootkit
+###   - name: pupmod-simp-clamav
+###   - name: pupmod-simp-compliance_markup
+###   - name: pupmod-simp-cron
+###   - name: pupmod-simp-crypto_policy
+###   - name: pupmod-simp-dconf
+###   - name: pupmod-simp-deferred_resources
+###   - name: pupmod-simp-dhcp
+###   - name: pupmod-simp-fips
+###   - name: pupmod-simp-freeradius
+###   - name: pupmod-simp-gdm
+###   - name: pupmod-simp-gnome
+###   - name: pupmod-simp-haveged
+###   - name: pupmod-simp-hirs_provisioner
+###   - name: pupmod-simp-ima
+###   - name: pupmod-simp-incron
+###   - name: pupmod-simp-iptables
+###   - name: pupmod-simp-issue
+###   - name: pupmod-simp-krb5
+###   - name: pupmod-simp-libreswan
+###   - name: pupmod-simp-libvirt
+###   - name: pupmod-simp-logrotate
+###   - name: pupmod-simp-mate
+###   - name: pupmod-simp-mozilla
+###   - name: pupmod-simp-named
+###   - name: pupmod-simp-network
+###   - name: pupmod-simp-nfs
+###   - name: pupmod-simp-ntpd
+###   - name: pupmod-simp-oath
+###   - name: pupmod-simp-oddjob
+###   - name: pupmod-simp-openscap
+###   - name: pupmod-simp-pam
+###   - name: pupmod-simp-pki
+###   - name: pupmod-simp-polkit
+###   - name: pupmod-simp-postfix
+###   - name: pupmod-simp-pupmod
+###   - name: pupmod-simp-resolv
+###   - name: pupmod-simp-rkhunter
+###   - name: pupmod-simp-rsync
+###   - name: pupmod-simp-rsyslog
+###   - name: pupmod-simp-selinux
+###   - name: pupmod-simp-simp
+###   - name: pupmod-simp-simp_apache
+###   - name: pupmod-simp-simp_banners
+###   - name: pupmod-simp-simp_bolt
+###   - name: pupmod-simp-simp_firewalld
+###   - name: pupmod-simp-simp_gitlab
+###   - name: pupmod-simp-simp_grub
+###   - name: pupmod-simp-simp_ipa
+###   - name: pupmod-simp-simpkv
+###   - name: pupmod-simp-simplib
+###   - name: pupmod-simp-simp_nfs
+###   - name: pupmod-simp-simp_openldap
+###   - name: pupmod-simp-simp_options
+###   - name: pupmod-simp-simp_pki_service
+###   - name: pupmod-simp-simp_rsyslog
+###   - name: pupmod-simp-simp_snmpd
+###   - name: pupmod-simp-ssh
+###   - name: pupmod-simp-sssd
+###   - name: pupmod-simp-stunnel
+###   - name: pupmod-simp-sudo
+###   - name: pupmod-simp-sudosh
+###   - name: pupmod-simp-svckill
+###   - name: pupmod-simp-swap
+###   - name: pupmod-simp-tcpwrappers
+###   - name: pupmod-simp-tftpboot
+###   - name: pupmod-simp-tlog
+###   - name: pupmod-simp-tpm
+###   - name: pupmod-simp-tpm2
+###   - name: pupmod-simp-tuned
+###   - name: pupmod-simp-upstart
+###   - name: pupmod-simp-useradd
+###   - name: pupmod-simp-vnc
+###   - name: pupmod-simp-vox_selinux
+###   - name: pupmod-simp-vsftpd
+###   - name: pupmod-simp-x2go
+###   - name: pupmod-simp-xinetd
+###   - name: pupmod-treydock-kdump
+###   - name: pupmod-trlinkin-nsswitch
+###   - name: rubygem-simp-cli
+###   - name: rubygem-simp-cli-doc
+###   - name: rubygem-simp-cli-highline
+###   - name: simp
+###   - name: simp-adapter
+###   - name: simp-doc
+###   - name: simp-environment-skeleton
+###   - name: simp-extras
+###   - name: simp-gpgkeys
+###   - name: simp-rsync
+###   - name: simp-rsync-skeleton
+###   - name: simp-selinux-policy
+###  - name: simp-utils
