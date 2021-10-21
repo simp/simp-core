@@ -90,7 +90,7 @@ BaseOS:
   - name: at
   - name: autofs
   - name: audispd-plugins
-  - name: c-ares
+  - name: c-ares # provides libcares.so.2 for sssd-common
   - name: centos-indexhtml
   - name: centos-logos
   - name: centos-logos-httpd
@@ -259,6 +259,21 @@ AppStream:
     - stream: ruby:2.7
       # rpms:
       #   - ruby
+    # --------------------------------------------------------------------------
+    # Installed for repoclosure
+    # --------------------------------------------------------------------------
+    - stream: perl-DBI:1.641
+      # rpms:
+      #    - perl-DBI
+    - stream: perl-DBD-MySQL:4.046
+      # rpms:
+      #    - perl-DBD-MySQL
+    - stream: llvm-toolset:rhel8 #
+      # rpms:
+      #    - llvm-libs
+    - stream: javapackages-runtime:201801 # slightly newer version in PowerTools > AppStream
+      # rpms:
+      #    - javapackages-filesystem
   rpms:
   - name: acpid
   - name: aide
@@ -325,6 +340,13 @@ AppStream:
   - name: urlview
   - name: vim-enhanced
   - name: xinetd
+  # --------------------------------------------------------------------------
+  # Installed for repoclosure
+  # --------------------------------------------------------------------------
+  - name: llvm-libs # provides libLLVM-11.so for mesa-dri-drivers-20.3.3-2.el8.x86_64 MODULE: llvm-toolset:rhel8
+  - name: perl-DBI # provides perl(DBI) for mariadb-server-utils MODULE: perl-DBI:1.641
+  - name: perl-DBD-MySQL # provides perl(DBD::mysql) for mariadb-server-utils MODULE: perl-DBD-MySQL:4.046
+  - name: javapackages-filesystem # provides javapackages-filesystem for java-1.8.0-openjdk-headless MODULE: javapackages-runtime:201801
 
 extras:
   url: http://mirror.centos.org/centos/8/extras/x86_64/os/
@@ -408,163 +430,126 @@ postgresql:
   - name: postgresql96-libs
   - name: postgresql96-server
 
-### FIXME: requires updated repository
-### simp:
-###   # FIXME: using /unstable/ during 6.6.0 EL8 development; change to latest when ready to release:
-###   #
-###   #   url: https://download.simp-project.com/SIMP/yum/releases/latest/el/8Server/x86_64/simp/
-###   #
-###   url: https://download.simp-project.com/SIMP/yum/unstable/simp6/el/8Server/x86_64/simp/
-###   rpms:
-###   - name: HIRS_Provisioner_TPM_1_2
-###   - name: HIRS_Provisioner_TPM_2_0
-###   - name: chkrootkit
-###   - name: paccor
-###   - name: simp-lastbind
-###   - name: simp-ppolicy-check-password
-###   - name: simp-tpm12-simulator
-###   - name: simp-tpm2-simulator
-###   - name: simp-vendored-r10k
-###   - name: simp-vendored-r10k-doc
-###   - name: simp-vendored-r10k-gem-colored
-###   - name: simp-vendored-r10k-gem-cri
-###   - name: simp-vendored-r10k-gem-faraday
-###   - name: simp-vendored-r10k-gem-faraday_middleware
-###   - name: simp-vendored-r10k-gem-fast_gettext
-###   - name: simp-vendored-r10k-gem-gettext
-###   - name: simp-vendored-r10k-gem-gettext-setup
-###   - name: simp-vendored-r10k-gem-locale
-###   - name: simp-vendored-r10k-gem-log4r
-###   - name: simp-vendored-r10k-gem-minitar
-###   - name: simp-vendored-r10k-gem-multi_json
-###   - name: simp-vendored-r10k-gem-multipart-post
-###   - name: simp-vendored-r10k-gem-puppet_forge
-###   - name: simp-vendored-r10k-gem-r10k
-###   - name: simp-vendored-r10k-gem-semantic_puppet
-###   - name: simp-vendored-r10k-gem-text
-###   # Missing from first cut
-###   - name: pupmod-aboe-chrony
-###   - name: pupmod-camptocamp-kmod
-###   - name: pupmod-camptocamp-systemd
-###   - name: pupmod-herculesteam-augeasproviders_core
-###   - name: pupmod-herculesteam-augeasproviders_grub
-###   - name: pupmod-herculesteam-augeasproviders_ssh
-###   - name: pupmod-herculesteam-augeasproviders_sysctl
-###   - name: pupmod-onyxpoint-gpasswd
-###   - name: pupmod-puppet-firewalld
-###   - name: pupmod-puppet-gitlab
-###   - name: pupmod-puppetlabs-apache
-###   - name: pupmod-puppetlabs-concat
-###   - name: pupmod-puppetlabs-hocon
-###   - name: pupmod-puppetlabs-inifile
-###   - name: pupmod-puppetlabs-java
-###   - name: pupmod-puppetlabs-motd
-###   - name: pupmod-puppetlabs-mysql
-###   - name: pupmod-puppetlabs-postgresql
-###   - name: pupmod-puppetlabs-puppet_authorization
-###   - name: pupmod-puppetlabs-puppetdb
-###   - name: pupmod-puppetlabs-ruby_task_helper
-###   - name: pupmod-puppetlabs-stdlib
-###   - name: pupmod-puppetlabs-translate
-###   - name: pupmod-puppet-posix_acl
-###   - name: pupmod-puppet-snmp
-###   - name: pupmod-puppet-yum
-###   - name: pupmod-saz-locales
-###   - name: pupmod-saz-timezone
-###   - name: pupmod-simp-acpid
-###   - name: pupmod-simp-aide
-###   - name: pupmod-simp-at
-###   - name: pupmod-simp-auditd
-###   - name: pupmod-simp-autofs
-###   - name: pupmod-simp-chkrootkit
-###   - name: pupmod-simp-clamav
-###   - name: pupmod-simp-compliance_markup
-###   - name: pupmod-simp-cron
-###   - name: pupmod-simp-crypto_policy
-###   - name: pupmod-simp-dconf
-###   - name: pupmod-simp-deferred_resources
-###   - name: pupmod-simp-dhcp
-###   - name: pupmod-simp-fips
-###   - name: pupmod-simp-freeradius
-###   - name: pupmod-simp-gdm
-###   - name: pupmod-simp-gnome
-###   - name: pupmod-simp-haveged
-###   - name: pupmod-simp-hirs_provisioner
-###   - name: pupmod-simp-ima
-###   - name: pupmod-simp-incron
-###   - name: pupmod-simp-iptables
-###   - name: pupmod-simp-issue
-###   - name: pupmod-simp-krb5
-###   - name: pupmod-simp-libreswan
-###   - name: pupmod-simp-libvirt
-###   - name: pupmod-simp-logrotate
-###   - name: pupmod-simp-mate
-###   - name: pupmod-simp-mozilla
-###   - name: pupmod-simp-named
-###   - name: pupmod-simp-network
-###   - name: pupmod-simp-nfs
-###   - name: pupmod-simp-ntpd
-###   - name: pupmod-simp-oath
-###   - name: pupmod-simp-oddjob
-###   - name: pupmod-simp-openscap
-###   - name: pupmod-simp-pam
-###   - name: pupmod-simp-pki
-###   - name: pupmod-simp-polkit
-###   - name: pupmod-simp-postfix
-###   - name: pupmod-simp-pupmod
-###   - name: pupmod-simp-resolv
-###   - name: pupmod-simp-rkhunter
-###   - name: pupmod-simp-rsync
-###   - name: pupmod-simp-rsyslog
-###   - name: pupmod-simp-selinux
-###   - name: pupmod-simp-simp
-###   - name: pupmod-simp-simp_apache
-###   - name: pupmod-simp-simp_banners
-###   - name: pupmod-simp-simp_bolt
-###   - name: pupmod-simp-simp_firewalld
-###   - name: pupmod-simp-simp_gitlab
-###   - name: pupmod-simp-simp_grub
-###   - name: pupmod-simp-simp_ipa
-###   - name: pupmod-simp-simpkv
-###   - name: pupmod-simp-simplib
-###   - name: pupmod-simp-simp_nfs
-###   - name: pupmod-simp-simp_openldap
-###   - name: pupmod-simp-simp_options
-###   - name: pupmod-simp-simp_pki_service
-###   - name: pupmod-simp-simp_rsyslog
-###   - name: pupmod-simp-simp_snmpd
-###   - name: pupmod-simp-ssh
-###   - name: pupmod-simp-sssd
-###   - name: pupmod-simp-stunnel
-###   - name: pupmod-simp-sudo
-###   - name: pupmod-simp-sudosh
-###   - name: pupmod-simp-svckill
-###   - name: pupmod-simp-swap
-###   - name: pupmod-simp-tcpwrappers
-###   - name: pupmod-simp-tftpboot
-###   - name: pupmod-simp-tlog
-###   - name: pupmod-simp-tpm
-###   - name: pupmod-simp-tpm2
-###   - name: pupmod-simp-tuned
-###   - name: pupmod-simp-upstart
-###   - name: pupmod-simp-useradd
-###   - name: pupmod-simp-vnc
-###   - name: pupmod-simp-vox_selinux
-###   - name: pupmod-simp-vsftpd
-###   - name: pupmod-simp-x2go
-###   - name: pupmod-simp-xinetd
-###   - name: pupmod-treydock-kdump
-###   - name: pupmod-trlinkin-nsswitch
-###   - name: rubygem-simp-cli
-###   - name: rubygem-simp-cli-doc
-###   - name: rubygem-simp-cli-highline
-###   - name: simp
-###   - name: simp-adapter
-###   - name: simp-doc
-###   - name: simp-environment-skeleton
-###   - name: simp-extras
-###   - name: simp-gpgkeys
-###   - name: simp-rsync
-###   - name: simp-rsync-skeleton
-###   - name: simp-selinux-policy
-###  - name: simp-utils
+simp:
+  # FIXME: using /experimental/ during 6.6.0 EL8 development; change to latest when ready to release:
+  #
+  #   url: https://download.simp-project.com/SIMP/yum/releases/latest/el/8Server/x86_64/simp/
+  #
+  url: https://download.simp-project.com/simp/yum/experimental/simp6/el/8Server/x86_64/simp/
+  ###   # Missing from first cut
+  ###   # ------------------------------
+  ###   - name: simp
+  ###   - name: simp-doc
+  rpms:
+   - name: pupmod-simp-acpid
+   - name: pupmod-simp-aide
+   - name: pupmod-simp-at
+   - name: pupmod-simp-auditd
+   - name: pupmod-simp-autofs
+   - name: pupmod-simp-chkrootkit
+   - name: pupmod-simp-clamav
+   - name: pupmod-simp-compliance_markup
+   - name: pupmod-simp-cron
+   - name: pupmod-simp-crypto_policy
+   - name: pupmod-simp-dconf
+   - name: pupmod-simp-deferred_resources
+   - name: pupmod-simp-dhcp
+   - name: pupmod-simp-ds389
+   - name: pupmod-simp-fips
+   - name: pupmod-simp-freeradius
+   - name: pupmod-simp-gdm
+   - name: pupmod-simp-gnome
+   - name: pupmod-simp-haveged
+   - name: pupmod-simp-hirs_provisioner
+   - name: pupmod-simp-ima
+   - name: pupmod-simp-incron
+   - name: pupmod-simp-iptables
+   - name: pupmod-simp-issue
+   - name: pupmod-simp-krb5
+   - name: pupmod-simp-libreswan
+   - name: pupmod-simp-libvirt
+   - name: pupmod-simp-logrotate
+   - name: pupmod-simp-mate
+   - name: pupmod-simp-mozilla
+   - name: pupmod-simp-named
+   - name: pupmod-simp-network
+   - name: pupmod-simp-nfs
+   - name: pupmod-simp-ntpd
+   - name: pupmod-simp-oath
+   - name: pupmod-simp-oddjob
+   - name: pupmod-simp-openscap
+   - name: pupmod-simp-pam
+   - name: pupmod-simp-pki
+   - name: pupmod-simp-polkit
+   - name: pupmod-simp-postfix
+   - name: pupmod-simp-pupmod
+   - name: pupmod-simp-resolv
+   - name: pupmod-simp-rkhunter
+   - name: pupmod-simp-rsync
+   - name: pupmod-simp-rsyslog
+   - name: pupmod-simp-selinux
+   - name: pupmod-simp-simp
+   - name: pupmod-simp-simp_apache
+   - name: pupmod-simp-simp_banners
+   - name: pupmod-simp-simp_ds389
+   - name: pupmod-simp-simp_firewalld
+   - name: pupmod-simp-simp_gitlab
+   - name: pupmod-simp-simp_grub
+   - name: pupmod-simp-simp_ipa
+   - name: pupmod-simp-simpkv
+   - name: pupmod-simp-simplib
+   - name: pupmod-simp-simp_nfs
+   - name: pupmod-simp-simp_openldap
+   - name: pupmod-simp-simp_options
+   - name: pupmod-simp-simp_rsyslog
+   - name: pupmod-simp-simp_snmpd
+   - name: pupmod-simp-ssh
+   - name: pupmod-simp-sssd
+   - name: pupmod-simp-stunnel
+   - name: pupmod-simp-sudo
+   - name: pupmod-simp-sudosh
+   - name: pupmod-simp-svckill
+   - name: pupmod-simp-swap
+   - name: pupmod-simp-tcpwrappers
+   - name: pupmod-simp-tftpboot
+   - name: pupmod-simp-tlog
+   - name: pupmod-simp-tpm2
+   - name: pupmod-simp-tpm
+   - name: pupmod-simp-tuned
+   - name: pupmod-simp-upstart
+   - name: pupmod-simp-useradd
+   - name: pupmod-simp-vnc
+   - name: pupmod-simp-vox_selinux
+   - name: pupmod-simp-vsftpd
+   - name: pupmod-simp-x2go
+   - name: pupmod-simp-xinetd
+   - name: rubygem-simp-cli
+   - name: rubygem-simp-cli-doc
+   - name: rubygem-simp-cli-highline
+   - name: simp-adapter
+   - name: simp-environment-skeleton
+   - name: simp-gpgkeys
+   - name: simp-rsync
+   - name: simp-rsync-skeleton
+   - name: simp-selinux-policy
+   - name: simp-utils
+   - name: simp-vendored-r10k
+   - name: simp-vendored-r10k-doc
+   - name: simp-vendored-r10k-gem-colored2
+   - name: simp-vendored-r10k-gem-cri
+   - name: simp-vendored-r10k-gem-faraday
+   - name: simp-vendored-r10k-gem-faraday_middleware
+   - name: simp-vendored-r10k-gem-fast_gettext
+   - name: simp-vendored-r10k-gem-gettext
+   - name: simp-vendored-r10k-gem-gettext-setup
+   - name: simp-vendored-r10k-gem-jwt
+   - name: simp-vendored-r10k-gem-locale
+   - name: simp-vendored-r10k-gem-log4r
+   - name: simp-vendored-r10k-gem-minitar
+   - name: simp-vendored-r10k-gem-multi_json
+   - name: simp-vendored-r10k-gem-multipart-post
+   - name: simp-vendored-r10k-gem-puppet_forge
+   - name: simp-vendored-r10k-gem-r10k
+   - name: simp-vendored-r10k-gem-semantic_puppet
+   - name: simp-vendored-r10k-gem-text
+
