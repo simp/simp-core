@@ -53,11 +53,11 @@ mod 'simp-simp_selinux_policy',
 
 mod 'simp-utils',
   :git => 'https://github.com/simp/simp-utils',
-  :tag => '6.7.0'
+  :tag => '6.7.1'
 
 mod 'simp-vendored_r10k',
   :git => 'https://github.com/simp/pkg-r10k',
-  :branch => 'master'
+  :tag => '3.12.1'
 
 moduledir 'src/puppet/modules'
 
