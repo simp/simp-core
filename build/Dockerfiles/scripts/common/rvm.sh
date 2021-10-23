@@ -24,7 +24,7 @@ runuser $user_id -l -c "echo 'gem: --no-document' > .gemrc"
 #   - https://seclists.org/oss-sec/2018/q3/174
 #
 key_id='7D2BAF1CF37B13E2069D6956105BD0E739499BDB'
-runuser $user_id -l -c "for i in {1..5}; do { gpg2 --keyserver hkps://keys.openpgp.org --recv-keys $key_id || gpg2 --keyserver hkps://keyserver.ubuntu.com --recv-keys $key_id; } && break || sleep 1; done"
+runuser $user_id -l -c "for i in {1..5}; do { gpg2 --keyserver hkp://keys.openpgp.org --recv-keys $key_id || gpg2 --keyserver hkp://keyserver.ubuntu.com --recv-keys $key_id; } && break || sleep 1; done"
 #runuser $user_id -l -c "gpg2 --refresh-keys"
 runuser $user_id -l -c "curl -sSL https://raw.githubusercontent.com/rvm/rvm/stable/binscripts/rvm-installer -o rvm-installer && curl -sSL https://raw.githubusercontent.com/rvm/rvm/stable/binscripts/rvm-installer.asc -o rvm-installer.asc && gpg2 --verify rvm-installer.asc rvm-installer && bash rvm-installer"
 runuser $user_id -l -c "rvm install 2.6"
