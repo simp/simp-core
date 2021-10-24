@@ -112,8 +112,8 @@ Recommends: simp-environment-skeleton >= 7.3.1, simp-environment-skeleton < 8.0.
 Recommends: simp-gpgkeys >= 3.1.5, simp-gpgkeys < 4.0.0
 Recommends: simp-rsync-skeleton >= 7.1.1, simp-rsync-skeleton < 8.0.0
 Recommends: simp-selinux-policy >= 1.1.1, simp-selinux-policy < 2.0.0
-Recommends: simp-utils >= 6.7.0, simp-utils < 7.0.0
-Recommends: simp-vendored-r10k >= 3.3.0, simp-vendored-r10k < 4.0.0
+Recommends: simp-utils >= 6.7.1, simp-utils < 7.0.0
+Recommends: simp-vendored-r10k >= 3.12.1, simp-vendored-r10k < 4.0.0
 %else
 Requires: rubygem-simp-cli >= 7.0.0, rubygem-simp-cli < 8.0.0
 Requires: rubygem-simp-cli-doc >= 7.0.0, rubygem-simp-cli-doc < 8.0.0
@@ -122,8 +122,8 @@ Requires: simp-environment-skeleton >= 7.3.1, simp-environment-skeleton < 8.0.0
 Requires: simp-gpgkeys >= 3.1.5, simp-gpgkeys < 4.0.0
 Requires: simp-rsync-skeleton >= 7.1.1, simp-rsync-skeleton < 8.0.0
 Requires: simp-selinux-policy >= 1.1.1, simp-selinux-policy < 2.0.0
-Requires: simp-utils >= 6.7.0, simp-utils < 7.0.0
-Requires: simp-vendored-r10k >= 3.3.0, simp-vendored-r10k < 4.0.0
+Requires: simp-utils >= 6.7.1, simp-utils < 7.0.0
+Requires: simp-vendored-r10k >= 3.12.1, simp-vendored-r10k < 4.0.0
 %endif
 
 # SIMP Extras
