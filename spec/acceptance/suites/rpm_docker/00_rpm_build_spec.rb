@@ -1,5 +1,7 @@
 # Uses Beaker+Docker to package a full build of all SIMP packages for CentOS
 #
+# IF PACKAGES ARE MISSING, UPDATE THE DOCKERFILES IN simp-core AND RELEASE A NEW IMAGE
+#
 # Also works in Travis CI
 #
 # ## Building SIMP ISOs
@@ -95,91 +97,6 @@ describe 'RPM build' do
         else
           copy_to(host, local_basedir, build_dir)
         end
-      end
-
-     # unless docker_id(host)
-      if docker_id(host)
-        it 'should install the basic utils' do
-          host.install_package('yum-utils')
-          host.install_package('git')
-          host.install_package('selinux-policy-targeted')
-          host.install_package('selinux-policy-devel')
-          host.install_package('policycoreutils')
-          host.install_package('policycoreutils-python')
-        end
-
-        it 'should install EPEL' do
-          host.install_package('epel-release')
-        end
-
-        it 'should install the build utils' do
-          host.install_package('openssl')
-          host.install_package('util-linux')
-          host.install_package('rpm-build')
-          host.install_package('acl')
-          host.install_package('augeas-devel')
-          host.install_package('createrepo')
-          host.install_package('genisoimage')
-          host.install_package('git')
-          host.install_package('gnupg2')
-          host.install_package('libicu-devel')
-          host.install_package('libxml2')
-          host.install_package('libxml2-devel')
-          host.install_package('libxslt')
-          host.install_package('libxslt-devel')
-          host.install_package('rpmdevtools')
-          host.install_package('which')
-          host.install_package('ruby-devel')
-          host.install_package('rpm-devel')
-        end
-
-        case host[:platform]
-          when /el-7-x86_64/
-            it 'should install the build utils' do
-              host.install_package('rpm-sign')
-            end
-          when /el-8-x86_64/
-            it 'should install the build utils' do
-              host.install_package('rpm-sign')
-            end
-        end
-
-        it 'should install RVM deps' do
-          host.install_package('libyaml-devel')
-          host.install_package('glibc-headers')
-          host.install_package('autoconf')
-          host.install_package('gcc')
-          host.install_package('gcc-c++')
-          host.install_package('glibc-devel')
-          host.install_package('readline-devel')
-          host.install_package('libffi-devel')
-          host.install_package('automake')
-          host.install_package('libtool')
-          host.install_package('bison')
-          host.install_package('sqlite-devel')
-        end
-      end
-
-      unless docker_id(host)
-        it 'should set up the build user' do
-          on(host, %(echo 'Defaults:build_user !requiretty' >> /etc/sudoers))
-          on(host, %(echo 'build_user ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers))
-          on(host, %(useradd -b /home -G wheel -m -c "Build User" -s /bin/bash -U build_user))
-          on(host, %(rm -rf /etc/security/limits.d/*.conf))
-
-          on(host, %(#{run_cmd} "for i in {1..5}; do { gpg2 --keyserver  hkps://keys.openpgp.org --recv-keys 7D2BAF1CF37B13E2069D6956105BD0E739499BDB || gpg2 --keyserver hkps://keyserver.ubuntu.com --recv-keys 7D2BAF1CF37B13E2069D6956105BD0E739499BDB; } && break || sleep 1; done"))
-
-          on(host, %(#{run_cmd} "gpg2 --refresh-keys"))
-          on(host, %(#{run_cmd} "curl -sSL https://raw.githubusercontent.com/rvm/rvm/stable/binscripts/rvm-installer -o rvm-installer && curl -sSL https://raw.githubusercontent.com/rvm/rvm/stable/binscripts/rvm-installer.asc -o rvm-installer.asc && gpg2 --verify rvm-installer.asc rvm-installer && bash rvm-installer"))
-        end
-
-        it 'should set up RVM' do
-          on(host, %(#{run_cmd} "rvm install 2.5.8 --disable-binary"))
-          on(host, %(#{run_cmd} "rvm use --default 2.5.8"))
-          on(host, %(#{run_cmd} "rvm all do gem install bundler -v \\"~> 1.16\\" --no-document"))
-          on(host, %(#{run_cmd} "rvm all do gem install bundler -v \\"~> 2.0\\" --no-document"))
-        end
-
       end
 
       it 'should clone the repo if necessary' do

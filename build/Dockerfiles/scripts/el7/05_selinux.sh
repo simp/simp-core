@@ -18,7 +18,7 @@ yum-config-manager --disable \* >& /dev/null
 # building form scratch each time), but we won't be able to explore them until
 # at least after 6.6.0.
 echo -e "[legacy]\nname=Legacy\nbaseurl=https://vault.centos.org/7.0.1406/os/x86_64\ngpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-7\ngpgcheck=1\nsslverify=0" > /etc/yum.repos.d/legacy.repo
-cd /root; yum downgrade -x 'nss*' -x 'libnss*' -x nspr -y '*'
+cd /root; yum downgrade -x 'nss*' -x 'libnss*' -x nspr -x 'ca-certificates' -x '*curl*' -x 'libssh2' -x 'p11-kit*' -y '*'
 
 # Work around bug https://bugzilla.redhat.com/show_bug.cgi?id=1217477
 # This does *not* update the SELinux packages, so it is safe

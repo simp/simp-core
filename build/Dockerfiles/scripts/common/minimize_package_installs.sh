@@ -22,3 +22,6 @@ multilib_policy=best
 skip_if_unavailable=True
 tsflags=nodocs
 HERE
+
+# Needed for updated YUM servers
+yum -y update ca-certificates curl
