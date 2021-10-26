@@ -118,8 +118,9 @@
 # '%{_localstatedir}' instead of '/var').  Need to re-release based
 # on simp-rake-helpers >= 5.9.1, in order to fix the bug.
 # TODO:  Remove this entry when the version advances beyond 2.5.1.
+# Update: bumping to '2' to force building in new -2.%{?dist} format
 'locales':
-  :release: '1'
+  :release: '2'
 
 'motd':
   :requires:
