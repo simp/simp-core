@@ -57,7 +57,7 @@ mod 'simp-utils',
 
 mod 'simp-vendored_r10k',
   :git => 'https://github.com/simp/pkg-r10k',
-  :tag => '3.12.1-2'
+  :tag => '3.12.1-3'
 
 moduledir 'src/puppet/modules'
 
