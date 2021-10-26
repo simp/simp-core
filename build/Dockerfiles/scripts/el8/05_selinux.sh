@@ -8,6 +8,7 @@ echo -e "[legacy-AppStream]\nname=LegacyAppStream\nbaseurl=https://vault.centos.
 echo -e "[legacy-PowerTools]\nname=LegacyPowerTools\nbaseurl=https://vault.centos.org/8.0.1905/extras/x86_64/os\ngpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-8\ngpgcheck=1" > /etc/yum.repos.d/legacy_powertools.repo
 echo -e "[legacy-centosplus]\nname=LegacyCentosPlus\nbaseurl=https://vault.centos.org/8.0.1905/extras/x86_64/os\ngpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-8\ngpgcheck=1" > /etc/yum.repos.d/legacy_centosplus.repo
 
-cd /root; yum downgrade --allowerasing -x 'glibc*' -x 'nss*' -x 'libnss*' -x nspr -y '*' || :
+cd /root; yum downgrade -x 'ca-certificates' -x '*curl*' -x 'openssl*' -x 'p11-kit*' -y '*' --allowerasing
 
 yum install -y sudo selinux-policy-targeted selinux-policy-devel policycoreutils policycoreutils-python-utils
+

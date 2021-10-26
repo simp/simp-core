@@ -14,7 +14,7 @@ yum install -y centos-release-scl python-pip python-virtualenv fontconfig dejavu
 yum install -y libyaml-devel glibc-headers autoconf gcc gcc-c++ glibc-devel readline-devel libffi-devel automake libtool bison sqlite-devel
 
 yum-config-manager --enable rhel-server-rhscl-7-rpms
-yum --enablerepo=base -y install python27
+yum --enablerepo=base -y install python36
 
 # Install helper packages
 yum install -y rubygems vim-enhanced jq
