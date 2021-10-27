@@ -1,3 +1,13 @@
+# ------------------------------------------------------------------------------
+# FYI to future maintainers: This file was created to recreate the 6.5.0-1
+# release, but was not used to acquire the EL7 packages for 6.6.0-1 (EL7
+# packaes were acquited using the old rake helpers methods, including 
+# `rake deps:checkout`, reading from `packages.yaml`)
+#
+# TODO: Before using this file to stage a new EL7 release, validate its
+# results against the packages from the previous release.
+# ------------------------------------------------------------------------------
+#
 # <repo-shortname>:
 #
 #   pulp_remote_options: [Hash] key/value pairs
