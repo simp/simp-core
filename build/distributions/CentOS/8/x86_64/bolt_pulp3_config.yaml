@@ -46,7 +46,7 @@ epel-modular:
     # - 389-ds-base
 
 # Note: this repo is up top because it can be squirrely
-puppet:
+puppet6:
   url: http://yum.puppet.com/puppet6/el/8/x86_64/
   pulp_remote_options: # example of pulp_remote_options
     policy: on_demand  # (`on_demand` is the default behavior)
@@ -65,7 +65,7 @@ puppet:
     version: '~> 6.15.3'
 
 # Note: this repo is up top because it can be squirrely
-puppet7:
+puppet:
   url: http://yum.puppet.com/puppet7/el/8/x86_64/
   pulp_remote_options: # example of pulp_remote_options
     policy: on_demand  # (`on_demand` is the default behavior)
