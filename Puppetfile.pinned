@@ -53,7 +53,7 @@ mod 'simp-simp_selinux_policy',
 
 mod 'simp-utils',
   :git => 'https://github.com/simp/simp-utils',
-  :tag => '6.7.1'
+  :tag => '6.7.2'
 
 mod 'simp-vendored_r10k',
   :git => 'https://github.com/simp/pkg-r10k',
