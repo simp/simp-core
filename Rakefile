@@ -1,5 +1,6 @@
 #!/usr/bin/rake -T
 
+require 'naturally'
 require 'simp/rake/pupmod/helpers'
 require 'simp/rake/build/deps'
 
@@ -74,8 +75,18 @@ def update_module_github_status!(mod)
   begin
     github_query = Nokogiri::HTML(open(github_releases_url).read)
 
-    if github_query.xpath('//a/@title').map(&:value).include?(mod[:version])
+    published_versions = github_query.xpath('//a/@href').map(&:value).select{|x| x.include?('releases/tag/')}.map{|x| x.split('/').last}
+
+    if published_versions.include?(mod[:version])
       mod[:published]['GitHub'] = 'yes'
+
+      latest_version = Naturally.sort(
+        published_versions.map{|x| x.gsub(/^\D+/,'')}
+      ).last
+
+      if latest_version != mod[:version]
+        mod[:published]['GitHub'] = latest_version
+      end
     else
       mod[:published]['GitHub'] = 'no'
     end
@@ -94,7 +105,7 @@ def update_module_github_status!(mod)
     end
   end
 
-  if ['yes','tag'].include?(mod[:published]['GitHub'].uncolor)
+  unless ['no',nil].include?(mod[:published]['GitHub'].uncolor)
     github_diff_uri = mod_remote + "/compare/#{mod[:version]}...HEAD"
 
     to_keep = [
@@ -173,7 +184,14 @@ def update_module_puppet_forge_status!(mod)
   unless mod[:published]['Puppet Forge'] == 'N/A'
     begin
       # Now, check the Puppet Forge for the released module
-      open(URI.parse(forge_url_base + mod[:owner] + '-' + mod[:id] + '-' + mod[:version])) do |fh|
+
+      # Switch vox to 'puppet'
+      mod_owner = mod[:owner]
+      if mod_owner == 'voxpupuli'
+        mod_owner = 'puppet'
+      end
+
+      open(URI.parse(forge_url_base + mod_owner + '-' + mod[:id] + '-' + mod[:version])) do |fh|
         mod[:published]['Puppet Forge'] = 'yes'
       end
     rescue StandardError => e
@@ -182,7 +200,28 @@ def update_module_puppet_forge_status!(mod)
   end
 end
 
-def print_module_status(mod)
-  puts "== #{mod[:owner]}-#{mod[:id]} #{mod[:version]} =="
-  puts mod[:published].to_a.map{|x,y| "   * #{x} => #{y}"}.join("\n")
+def print_module_status(target_module)
+  require 'terminal-table'
+
+  if target_module[:id]
+    to_process = { target_module[:id] => target_module }
+  else
+    to_process = target_module
+  end
+
+  rows = to_process.map{|id, mod|
+    [
+      "#{mod[:owner]}-#{mod[:id]}",
+      mod[:version],
+      mod[:published]['GitHub'],
+      mod[:published]['GitHub InSync'],
+      mod[:published]['Puppet Forge']
+    ]
+  }
+  table = Terminal::Table.new(
+    :headings => ['Name', 'Version', 'GitHub' , 'GH InSync', 'Forge'],
+    :rows => rows
+  )
+
+  puts table
 end

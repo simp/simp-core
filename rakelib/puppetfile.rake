@@ -58,8 +58,6 @@ namespace :puppetfile do
     # Return past the status line
     puts ''
 
-    modules.each do |id, mod|
-      print_module_status(mod)
-    end
+    print_module_status(modules)
   end
 end
