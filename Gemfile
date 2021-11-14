@@ -8,6 +8,8 @@ group :test do
   puppet_version = ENV['PUPPET_VERSION'] || '~> 6.22'
   major_puppet_version = puppet_version.scan(/(\d+)(?:\.|\Z)/).flatten.first.to_i
   gem 'rake'
+  gem 'terminal-table'
+  gem 'naturally'
   gem 'puppet', puppet_version
   gem 'rspec'
   gem 'rspec-puppet'
