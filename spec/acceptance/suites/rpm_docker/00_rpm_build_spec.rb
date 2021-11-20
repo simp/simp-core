@@ -53,6 +53,8 @@ def get_test_env
   test_env_variables = ENV.select { |env| env.match('^SIMP_') }
   env_string = ''
   test_env_variables.each do |key,value|
+    next if key == 'SIMP_RPM_dist'
+
     env_string += "#{key}=#{value} "
   end
 
