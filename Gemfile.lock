@@ -163,7 +163,7 @@ GEM
       pry (~> 0.11)
       yard (~> 0.9.11)
     public_suffix (4.0.6)
-    puppet (6.25.0)
+    puppet (6.25.1)
       concurrent-ruby (~> 1.0)
       deep_merge (~> 1.0)
       facter (> 2.0.1, < 5)
@@ -324,7 +324,6 @@ DEPENDENCIES
   beaker-rspec
   hiera-puppet-helper
   metadata-json-lint
-  pathspec (~> 0.2)
   pdk (~> 2.0)
   pry
   pry-byebug
