@@ -38,6 +38,36 @@
 #     - stream: [String] module stream in N:S format (ex: `httpd:2.4`)
 #
 ---
+
+epel:
+  url: https://download.fedoraproject.org/pub/epel/8/Everything/x86_64/
+  ###url: https://sjc.edge.kernel.org/fedora-buffet/epel/8/Everything/x86_64/
+  rpms:
+  - name: htop        # no deps
+  - name: vim-ansible # depends on appstream: vim-filesystem
+  - name: vim-airline
+  - name: vim-powerline
+  - name: vim-jellybeans
+  - name: liboath
+  - name: oathtool
+  - name: libnfs
+  - name: pam_oath
+  - name: redhat-display-fonts
+  - name: redhat-mono-fonts
+  - name: redhat-text-fonts
+  - name: rubygem-highline
+  - name: rubygem-net-ldap
+  - name: incron
+  - name: haveged
+  - name: dkms
+  - name: dnf-plugin-ovl
+  - name: clamav
+  - name: clamav-update
+  - name: clamd
+  - name: pwgen
+  - name: rkhunter
+  - name: openssh-ldap-authkeys # AuthorizedKeysCommand script for LDAP
+
 epel-modular:
   url: https://dl.fedoraproject.org/pub/epel/8/Modular/x86_64/
   modules:
@@ -204,6 +234,7 @@ BaseOS:
   - name: sssd-krb5
   - name: sssd-krb5-common
   - name: sssd-ldap
+  ### - name: sssd-libwbclient # SIMP-10621 - now missing from CentOS 8
   - name: sssd-nfs-idmap
   - name: sssd-polkit-rules
   - name: sssd-proxy
@@ -247,7 +278,8 @@ AppStream:
       #   - mysql-server
     - stream: perl:5.26
     - stream: perl-IO-Socket-SSL:2.066
-    - stream: perl-libwww-perl:6.34
+    # - stream: perl-libwww-perl:6.34 # NOTE: https://github.com/simp/bolt-pulp3/issues/19
+    - stream: perl-libwww-perl:6.34:8030020201223164340:b967a9a2:x86_64
       # rpms:
       #   - python3-distro
       #   - python3-lib389
@@ -391,35 +423,6 @@ PowerTools:
     - name: lua-filesystem
     - name: lua-posix
 
-epel:
-  url: https://download.fedoraproject.org/pub/epel/8/Everything/x86_64/
-  ###url: https://sjc.edge.kernel.org/fedora-buffet/epel/8/Everything/x86_64/
-  rpms:
-  - name: htop        # no deps
-  - name: vim-ansible # depends on appstream: vim-filesystem
-  - name: vim-airline
-  - name: vim-powerline
-  - name: vim-jellybeans
-  - name: liboath
-  - name: oathtool
-  - name: libnfs
-  - name: pam_oath
-  - name: redhat-display-fonts
-  - name: redhat-mono-fonts
-  - name: redhat-text-fonts
-  - name: rubygem-highline
-  - name: rubygem-net-ldap
-  - name: incron
-  - name: haveged
-  - name: dkms
-  - name: dnf-plugin-ovl
-  - name: clamav
-  - name: clamav-update
-  - name: clamd
-  - name: pwgen
-  - name: rkhunter
-  - name: openssh-ldap-authkeys # AuthorizedKeysCommand script for LDAP
-
 postgresql:
   url: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-8-x86_64/
   rpms:
@@ -551,4 +554,3 @@ simp:
    - name: simp-vendored-r10k-gem-r10k
    - name: simp-vendored-r10k-gem-semantic_puppet
    - name: simp-vendored-r10k-gem-text
-
