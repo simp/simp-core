@@ -1,7 +1,7 @@
 # ------------------------------------------------------------------------------
 # FYI to future maintainers: This file was created to recreate the 6.5.0-1
 # release, but was not used to acquire the EL7 packages for 6.6.0-1 (EL7
-# packaes were acquited using the old rake helpers methods, including 
+# packages were acquired using the old rake helpers methods, including
 # `rake deps:checkout`, reading from `packages.yaml`)
 #
 # TODO: Before using this file to stage a new EL7 release, validate its
@@ -33,6 +33,14 @@
 #                   direct_urls (and no Remote mirror)  to the best available
 #                   versions or obey `version:` constraints.  Make sure any
 #                   direct_url URLs are kept up to date with new releases!
+#
+#  packagegroups: an (optional) list of RPM package groups
+#
+#     Mandatory keys for each packagegroup:
+#
+#     - id: [String] Packagegroup 'id' (view with `dnf grouplist --ids`)
+#
+#
 ---
 
 #
@@ -57,6 +65,9 @@ puppet:
 
 os:
   url: http://mirror.centos.org/centos/7/os/x86_64/
+  packagegroups:
+  - id: core
+  - id: base
   rpms:
   - name: apr-util-ldap
   - name: ima-evm-utils
@@ -1641,6 +1652,7 @@ extras:
   - name: createrepo_c
   - name: createrepo_c-libs
   - name: libssh
+  - name: libev
 epel:
   url: https://dl.fedoraproject.org/pub/epel/7/x86_64/
   rpms:
@@ -1666,7 +1678,6 @@ epel:
   - name: libXcomp
   - name: libXcompshad
   - name: libconfuse
-  - name: libev
   - name: libmatekbd
   - name: libmatemixer
   - name: libmateweather
@@ -1729,7 +1740,11 @@ postgresql:
   - name: postgresql96-server
 
 simp:
-  url: https://download.simp-project.com/SIMP/yum/releases/latest/el/7Server/x86_64/simp/
+  # FIXME: using /experimental/ during 6.6.0 EL8 development; change to latest when ready to release:
+  #
+  #   url: https://download.simp-project.com/SIMP/yum/releases/latest/el/8Server/x86_64/simp/
+  #
+  url: https://download.simp-project.com/SIMP/yum/releases/experimental/el/7Server/x86_64/simp/
   rpms:
   - name: HIRS_Provisioner_TPM_1_2
   - name: HIRS_Provisioner_TPM_2_0
