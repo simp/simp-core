@@ -125,6 +125,7 @@ BaseOS:
   - name: centos-logos
   - name: centos-logos-httpd
   - name: centos-obsolete-packages
+  - name: centos-linux-release
   - name: chrony
   - name: cronie
   - name: crontabs
@@ -302,9 +303,6 @@ AppStream:
     - stream: llvm-toolset:rhel8 #
       # rpms:
       #    - llvm-libs
-    - stream: javapackages-runtime:201801 # slightly newer version in PowerTools > AppStream
-      # rpms:
-      #    - javapackages-filesystem
   rpms:
   - name: acpid
   - name: aide
@@ -422,6 +420,10 @@ PowerTools:
     - name: elinks
     - name: lua-filesystem
     - name: lua-posix
+  modules:
+    - stream: javapackages-runtime
+        rpms:
+          - javapackages-filesystem
 
 postgresql:
   url: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-8-x86_64/
