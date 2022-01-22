@@ -10,8 +10,7 @@ module --name=perl --stream=5.26
 module --name=perl-IO-Socket-SSL --stream=2.066
 module --name=perl-libwww-perl --stream=6.34
 module --name=ruby --stream=2.7
-module --name=nodejs --stream=13
-module --name=javapackages-tools --stream=201801
+module --name=javapackages-runtime --stream=201801
 
 %packages
 acl
