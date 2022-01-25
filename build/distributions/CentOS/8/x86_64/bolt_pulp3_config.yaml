@@ -422,8 +422,8 @@ PowerTools:
     - name: lua-posix
   modules:
     - stream: javapackages-runtime:201801
-        rpms:
-          - javapackages-filesystem
+      rpms:
+        - javapackages-filesystem
 
 postgresql:
   url: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-8-x86_64/
