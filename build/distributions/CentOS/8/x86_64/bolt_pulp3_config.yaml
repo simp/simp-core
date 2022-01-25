@@ -421,7 +421,7 @@ PowerTools:
     - name: lua-filesystem
     - name: lua-posix
   modules:
-    - stream: javapackages-runtime
+    - stream: javapackages-runtime:201801
         rpms:
           - javapackages-filesystem
 
