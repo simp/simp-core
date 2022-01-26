@@ -72,10 +72,9 @@ epel-modular:
   url: https://dl.fedoraproject.org/pub/epel/8/Modular/x86_64/
   modules:
   - stream: 389-directory-server:stable
-    # rpms:
+    # provides rpms:
     # - 389-ds-base
 
-# Note: this repo is up top because it can be squirrely
 puppet6:
   url: http://yum.puppet.com/puppet6/el/8/x86_64/
   pulp_remote_options: # example of pulp_remote_options
@@ -94,12 +93,8 @@ puppet6:
   - name: puppetserver
     version: '~> 6.15.3'
 
-# Note: this repo is up top because it can be squirrely
 puppet:
   url: http://yum.puppet.com/puppet7/el/8/x86_64/
-  pulp_remote_options: # example of pulp_remote_options
-    policy: on_demand  # (`on_demand` is the default behavior)
-  # Versions last updated: 2021/07/21
   rpms:
   - name: puppet-agent
   - name: puppet-bolt
@@ -257,51 +252,54 @@ BaseOS:
 AppStream:
   url: http://mirror.centos.org/centos/8/AppStream/x86_64/os/
   modules:
-    # FIXME: I'm adding the RPMs we need from each stream
     - stream: 389-ds:1.4
-      # rpms:
+      # provides rpms:
       #   - 389-ds-base
       #   - 389-ds-base-libs
       #   - 389-ds-base-legacy-tools
     - stream: httpd:2.4
-      # rpms:
+      # provides rpms:
       #   - httpd
       #   - mod_session
       #   - mod_ssl
     - stream: freeradius:3.0
-      # rpms:
+      # provides rpms:
       #   - freeradius
     - stream: mariadb:10.3
-      # rpms:
+      # provides rpms:
       #   - mariadb
+    - stream: javapackages-runtime:201801
+      # provides rpms:
+      #   - javapackages-filesystem
     - stream: mysql:8.0
-      # rpms:
+      # provides rpms:
       #   - mysql-server
     - stream: perl:5.26
     - stream: perl-IO-Socket-SSL:2.066
-    # - stream: perl-libwww-perl:6.34 # NOTE: https://github.com/simp/bolt-pulp3/issues/19
+    # NOTE: Specific NSVCA to fix  https://github.com/simp/bolt-pulp3/issues/19
+    # Should eventually revert to a less-specific NS
     - stream: perl-libwww-perl:6.34:8030020201223164340:b967a9a2:x86_64
-      # rpms:
+      # provides rpms:
       #   - python3-distro
       #   - python3-lib389
     - stream: python36:3.6
-      # rpms:
+      # provides rpms:
       #   - python3-distro
       #   - python3-lib389
     - stream: ruby:2.7
-      # rpms:
+      # provides rpms:
       #   - ruby
     # --------------------------------------------------------------------------
     # Installed for repoclosure
     # --------------------------------------------------------------------------
     - stream: perl-DBI:1.641
-      # rpms:
+      # provides rpms:
       #    - perl-DBI
     - stream: perl-DBD-MySQL:4.046
-      # rpms:
+      # provides rpms:
       #    - perl-DBD-MySQL
     - stream: llvm-toolset:rhel8 #
-      # rpms:
+      # provides rpms:
       #    - llvm-libs
   rpms:
   - name: acpid
@@ -420,31 +418,23 @@ PowerTools:
     - name: elinks
     - name: lua-filesystem
     - name: lua-posix
-  modules:
-    - stream: javapackages-runtime:201801
-      rpms:
-        - javapackages-filesystem
 
 postgresql:
   url: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-8-x86_64/
   rpms:
-    # Copied from EL7 packages FIXME: verify with EL8
   - name: postgresql96
   - name: postgresql96-contrib
   - name: postgresql96-libs
   - name: postgresql96-server
 
 simp:
-  # FIXME: using /experimental/ during 6.6.0 EL8 development; change to latest when ready to release:
-  #
-  #   url: https://download.simp-project.com/SIMP/yum/releases/latest/el/8Server/x86_64/simp/
-  #
+  # NOTE: Using /experimental/ during 6.6.0 EL8 development
+  #       Change to /latest/ for final release & ISO build!
   url: https://download.simp-project.com/simp/yum/experimental/simp6/el/8Server/x86_64/simp/
-  ###   # Missing from first cut
-  ###   # ------------------------------
-  ###   - name: simp
-  ###   - name: simp-doc
+  # url: https://download.simp-project.com/SIMP/yum/releases/latest/el/8Server/x86_64/simp/
   rpms:
+   - name: simp
+   - name: simp-doc
    - name: pupmod-simp-acpid
    - name: pupmod-simp-aide
    - name: pupmod-simp-at
