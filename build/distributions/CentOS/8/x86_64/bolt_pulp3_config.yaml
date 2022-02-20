@@ -82,16 +82,16 @@ puppet6:
   # Versions last updated: 2021/07/21
   rpms:
   - name: puppet-agent
-    version: '= 6.22.1'
+    version: '= 6.26.0'
   - name: puppet-bolt
-    version: '~> 3.13'
+    version: '~> 3.21.0'
   - name: puppet6-release
   - name: puppetdb
-    version: '~> 6.16.1'
+    version: '~> 6.20.2'
   - name: puppetdb-termini
-    version: '~> 6.16.1'
+    version: '~> 6.20.2'
   - name: puppetserver
-    version: '~> 6.15.3'
+    version: '~> 6.18.0'
 
 puppet:
   url: http://yum.puppet.com/puppet7/el/8/x86_64/
@@ -102,9 +102,10 @@ puppet:
   - name: puppetdb
   - name: puppetdb-termini
   - name: puppetserver
+    version: ['>= 7.6.0', '< 8.0.0']
 
 BaseOS:
-  url: http://mirror.centos.org/centos/8/BaseOS/x86_64/os/
+  url: http://vault.centos.org/centos/8/BaseOS/x86_64/os/
   packagegroups:
   - id: core
   - id: base
@@ -250,7 +251,7 @@ BaseOS:
   - name: yum-utils
 
 AppStream:
-  url: http://mirror.centos.org/centos/8/AppStream/x86_64/os/
+  url: http://vault.centos.org/centos/8/AppStream/x86_64/os/
   modules:
     - stream: 389-ds:1.4
       # provides rpms:
@@ -376,7 +377,7 @@ AppStream:
   - name: javapackages-filesystem # provides javapackages-filesystem for java-1.8.0-openjdk-headless MODULE: javapackages-runtime:201801
 
 extras:
-  url: http://mirror.centos.org/centos/8/extras/x86_64/os/
+  url: http://vault.centos.org/centos/8/extras/x86_64/os/
   rpms:
   - name: centos-release-advanced-virtualization
   - name: centos-release-ansible-29
@@ -413,7 +414,7 @@ extras:
   - name: epel-next-release
 
 PowerTools:
-  url: http://mirror.centos.org/centos/8/PowerTools/x86_64/os/
+  url: http://vault.centos.org/centos/8/PowerTools/x86_64/os/
   rpms:
     - name: elinks
     - name: lua-filesystem
