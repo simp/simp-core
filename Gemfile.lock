@@ -122,7 +122,7 @@ GEM
     net-ssh (6.1.0)
     net-telnet (0.1.1)
     netrc (0.11.0)
-    nokogiri (1.13.1-x86_64-linux)
+    nokogiri (1.13.3-x86_64-linux)
       racc (~> 1.4)
     oga (3.3)
       ast
