@@ -17,14 +17,21 @@
 #   * BLEEDING_EDGE=true => Pull in the Puppetfile.branches after `simp config`
 #
 ENV['VAGRANT_NO_PARALLEL'] = 'yes'
+ENV['SIMP_RELEASE_TYPE'] ||= 'releases'
+ENV['SIMP_VAGRANT_BOX'] ||= 'generic/centos8'
+ENV['SIMP_VAGRANT_NETWORK'] ||= '10.255.239.55'
+
+simp_vagrant_network_base = ENV['SIMP_VAGRANT_NETWORK'].split('.')
+simp_vagrant_network_start = simp_vagrant_network_base.pop.to_i
+simp_vagrant_network_base = simp_vagrant_network_base.join('.')
 
 Vagrant.configure('2') do |c|
   c.vm.define 'simp_server' do |v|
     v.vm.hostname = 'puppet.test.simp'
-    v.vm.box = 'centos/7'
+    v.vm.box = ENV['SIMP_VAGRANT_BOX']
     v.vm.box_check_update = 'true'
 
-    v.vm.network 'private_network', ip: '10.255.239.55'
+    v.vm.network 'private_network', ip: "#{simp_vagrant_network_base}.#{simp_vagrant_network_start}"
 
     v.vm.provider :virtualbox do |vb|
       vb.customize ['modifyvm', :id, '--memory', '6144', '--cpus', '2']
@@ -38,7 +45,10 @@ Vagrant.configure('2') do |c|
     v.vm.synced_folder '.', '/vagrant', disabled: true
 
     v.vm.provision 'shell',
-      inline: 'yum install -y https://download.simp-project.com/simp-release-community.rpm'
+      inline: 'yum install -y https://download.simp-project.com/simp-release-community$( rpm -E %{dist} ).rpm'
+
+    v.vm.provision 'shell',
+      inline: "echo #{ENV['SIMP_RELEASE_TYPE']} > /etc/yum/vars/simpreleasetype"
 
     # Install the puppet server
     v.vm.provision 'shell',
@@ -278,10 +288,10 @@ Vagrant.configure('2') do |c|
 
   c.vm.define 'simp_client' do |v|
     v.vm.hostname = 'client.test.simp'
-    v.vm.box = 'centos/7'
+    v.vm.box = ENV['SIMP_VAGRANT_BOX']
     v.vm.box_check_update = 'true'
 
-    v.vm.network 'private_network', ip: '10.255.239.56'
+    v.vm.network 'private_network', ip: "#{simp_vagrant_network_base}.#{simp_vagrant_network_start+1}"
 
     v.vm.provider :virtualbox do |vb|
       vb.customize ['modifyvm', :id, '--memory', '512', '--cpus', '1']
@@ -339,10 +349,10 @@ Vagrant.configure('2') do |c|
 
   c.vm.define 'simp_stig', autostart: false do |v|
     v.vm.hostname = 'stig.test.simp'
-    v.vm.box = 'centos/7'
+    v.vm.box = ENV['SIMP_VAGRANT_BOX']
     v.vm.box_check_update = 'true'
 
-    v.vm.network 'private_network', ip: '10.255.239.57'
+    v.vm.network 'private_network', ip: "#{simp_vagrant_network_base}.#{simp_vagrant_network_start+2}"
 
     v.vm.provider :virtualbox do |vb|
       vb.customize ['modifyvm', :id, '--memory', '512', '--cpus', '1']
