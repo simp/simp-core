@@ -224,7 +224,7 @@ Vagrant.configure('2') do |c|
     #
     #  Enable the kickstart class
     v.vm.provision 'shell',
-      inline: %{echo "  - 'simp::server::kickstart'" >> /etc/puppetlabs/code/environments/production/data/hosts/puppet.test.simp.yaml}
+      inline: %{echo "- 'simp::server::kickstart'" >> /etc/puppetlabs/code/environments/production/data/hosts/puppet.test.simp.yaml}
 
     #  Add a newline
     v.vm.provision 'shell',
