@@ -17,8 +17,9 @@
 #   * BLEEDING_EDGE=true => Pull in the Puppetfile.branches after `simp config`
 #
 ENV['VAGRANT_NO_PARALLEL'] = 'yes'
-ENV['SIMP_RELEASE_TYPE'] ||= 'releases'
+ENV['SIMP_RELEASE_TYPE'] ||= 'unstable'
 ENV['SIMP_VAGRANT_BOX'] ||= 'generic/centos8'
+#ENV['SIMP_VAGRANT_BOX'] ||= 'centos/7'
 ENV['SIMP_VAGRANT_NETWORK'] ||= '10.255.239.55'
 
 simp_vagrant_network_base = ENV['SIMP_VAGRANT_NETWORK'].split('.')
@@ -320,7 +321,7 @@ Vagrant.configure('2') do |c|
 
     # Install the puppet package so that the provisioner script will work
     v.vm.provision 'shell',
-      inline: 'yum -y install puppet'
+      inline: 'yum -y install puppet-agent'
 
     # The server might be churning, so give it a bit
     v.vm.provision 'shell',
@@ -381,7 +382,7 @@ Vagrant.configure('2') do |c|
 
     # Install the puppet package so that the provisioner script will work
     v.vm.provision 'shell',
-      inline: 'yum -y install puppet'
+      inline: 'yum -y install puppet-agent'
 
     # The server might be churning, so give it a bit
     v.vm.provision 'shell',
