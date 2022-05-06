@@ -7,16 +7,16 @@ simp_releases:
       CentOS:
         isos:
           - name:     'CentOS-Stream-8-x86_64-20220423-dvd1.iso'
-            size:     11295260672
-            checksum: 'c34e3dbca44092bf30f63ec95fe88a96758c88207a8cd28ff6b7d98b3b0286f9'
-        build_command: 'bundle exec rake build:auto[CentOS-Stream-8-x86_64-20220423-dvd1.iso,6.6]'
+            size:     11327766528
+            checksum: '9f2468316aef99e49e677ebb430b6de700babd35a15b80ab90ba644135ea8c8e'
+        build_command: 'SIMP_BUILD_distro=8Stream bundle exec rake build:auto[CentOS-Stream-8-x86_64-20220423-dvd1.iso,6.6]'
         os_version:   'stream'
   '6.6':
     flavors:
       CentOS:
         isos:
           - name:     'CentOS-Stream-8-x86_64-20220423-dvd1.iso'
-            size:     11295260672
-            checksum: 'c34e3dbca44092bf30f63ec95fe88a96758c88207a8cd28ff6b7d98b3b0286f9'
-        build_command: 'bundle exec rake build:auto[CentOS-Stream-8-x86_64-20220423-dvd1.iso,6.6]'
+            size:     11327766528
+            checksum: '9f2468316aef99e49e677ebb430b6de700babd35a15b80ab90ba644135ea8c8e'
+        build_command: 'SIMP_BUILD_distro=8Stream bundle exec rake build:auto[CentOS-Stream-8-x86_64-20220423-dvd1.iso,6.6]'
         os_version:   'stream'
