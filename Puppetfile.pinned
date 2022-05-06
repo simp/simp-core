@@ -115,11 +115,11 @@ mod 'puppetlabs-motd',
 
 mod 'puppetlabs-mysql',
   :git => 'https://github.com/simp/puppetlabs-mysql',
-  :tag => 'v10.4.0'
+  :tag => 'v11.0.2'
 
 mod 'puppetlabs-postgresql',
   :git => 'https://github.com/simp/puppetlabs-postgresql',
-  :tag => 'v6.6.0'
+  :tag => 'v7.2.0'
 
 mod 'puppetlabs-puppetdb',
   :git => 'https://github.com/simp/pupmod-puppetlabs-puppetdb',
@@ -135,7 +135,7 @@ mod 'puppetlabs-ruby_task_helper',
 
 mod 'puppetlabs-stdlib',
   :git => 'https://github.com/simp/puppetlabs-stdlib',
-  :tag => 'v6.6.0'
+  :tag => 'v7.1.0'
 
 mod 'puppetlabs-translate',
   :git => 'https://github.com/simp/pupmod-puppetlabs-translate',
@@ -283,7 +283,7 @@ mod 'simp-nfs',
 
 mod 'simp-ntpd',
   :git => 'https://github.com/simp/pupmod-simp-ntpd',
-  :tag => '6.6.0'
+  :tag => '6.7.0'
 
 mod 'simp-oath',
   :git => 'https://github.com/simp/pupmod-simp-oath',
