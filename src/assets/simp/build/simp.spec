@@ -158,7 +158,6 @@ Requires: pupmod-puppet-gitlab >= 7.1.0
 Requires: pupmod-puppet-posix_acl >= 1.0.1
 Requires: pupmod-puppet-snmp >= 5.1.1
 Requires: pupmod-puppetlabs-java >= 7.0.2
-Requires: pupmod-puppetlabs-mysql >= 10.4.0
 Requires: pupmod-puppetlabs-ruby_task_helper >= 0.6.0
 Requires: pupmod-puppetlabs-translate >= 2.1.0
 Requires: pupmod-saz-locales >= 2.5.1

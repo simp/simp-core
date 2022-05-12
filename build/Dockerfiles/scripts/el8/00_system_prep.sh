@@ -1,5 +1,9 @@
 #!/bin/sh -e
 
+sed -i -e 's@^mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=\([^&/=$]*\).*@baseurl=http://vault.centos.org/centos/$releasever/\1/$basearch/os/@g' /etc/yum.repos.d/CentOS-Linux-*.repo
+dnf clean all
+dnf makecache
+
 dnf install -y --setopt=override_install_langs=en_US.utf8 --setopt=install_weak_deps=False --setopt=tsflags=nodocs 'dnf-command(config-manager)'
 dnf config-manager --save --setopt=best=True
 dnf config-manager --save --setopt=clean_requirements_on_remove=True

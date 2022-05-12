@@ -43,6 +43,191 @@
 #
 ---
 
+simp:
+  # FIXME: using /github/ during 6.6.0 EL7 development; change to /latest/ when ready to release:
+  #
+  #   url: https://download.simp-project.com/SIMP/yum/releases/latest/el/8Server/x86_64/simp/
+  #
+  url: https://download.simp-project.com/SIMP/yum/github/simp6/el/7Server/x86_64/simp/
+  rpms:
+  - name: pupmod-camptocamp-systemd
+  - name: pupmod-herculesteam-augeasproviders_core
+  - name: pupmod-herculesteam-augeasproviders_grub
+  - name: pupmod-herculesteam-augeasproviders_ssh
+  - name: pupmod-herculesteam-augeasproviders_sysctl
+  - name: pupmod-onyxpoint-gpasswd
+  - name: pupmod-puppet-chrony
+  - name: pupmod-puppet-firewalld
+  - name: pupmod-puppet-gitlab
+  - name: pupmod-puppet-kmod
+  - name: pupmod-puppetlabs-apache
+  - name: pupmod-puppetlabs-concat
+  - name: pupmod-puppetlabs-hocon
+  - name: pupmod-puppetlabs-inifile
+  - name: pupmod-puppetlabs-java
+  - name: pupmod-puppetlabs-motd
+  - name: pupmod-puppetlabs-postgresql
+  - name: pupmod-puppetlabs-puppet_authorization
+  - name: pupmod-puppetlabs-puppetdb
+  - name: pupmod-puppetlabs-ruby_task_helper
+  - name: pupmod-puppetlabs-stdlib
+  - name: pupmod-puppetlabs-translate
+  - name: pupmod-puppet-posix_acl
+  - name: pupmod-puppet-snmp
+  - name: pupmod-puppet-yum
+  - name: pupmod-saz-locales
+  - name: pupmod-saz-timezone
+  - name: pupmod-simp-acpid
+  - name: pupmod-simp-aide
+  - name: pupmod-simp-at
+  - name: pupmod-simp-auditd
+  - name: pupmod-simp-autofs
+  - name: pupmod-simp-chkrootkit
+  - name: pupmod-simp-clamav
+  - name: pupmod-simp-compliance_markup
+  - name: pupmod-simp-cron
+  - name: pupmod-simp-crypto_policy
+  - name: pupmod-simp-dconf
+  - name: pupmod-simp-deferred_resources
+  - name: pupmod-simp-dhcp
+  - name: pupmod-simp-fips
+  - name: pupmod-simp-freeradius
+  - name: pupmod-simp-gdm
+  - name: pupmod-simp-gnome
+  - name: pupmod-simp-haveged
+  - name: pupmod-simp-hirs_provisioner
+  - name: pupmod-simp-ima
+  - name: pupmod-simp-incron
+  - name: pupmod-simp-iptables
+  - name: pupmod-simp-issue
+  - name: pupmod-simp-krb5
+  - name: pupmod-simp-libreswan
+  - name: pupmod-simp-libvirt
+  - name: pupmod-simp-logrotate
+  - name: pupmod-simp-mate
+  - name: pupmod-simp-mozilla
+  - name: pupmod-simp-named
+  - name: pupmod-simp-network
+  - name: pupmod-simp-nfs
+  - name: pupmod-simp-ntpd
+  - name: pupmod-simp-oath
+  - name: pupmod-simp-oddjob
+  - name: pupmod-simp-openscap
+  - name: pupmod-simp-pam
+  - name: pupmod-simp-pki
+  - name: pupmod-simp-polkit
+  - name: pupmod-simp-postfix
+  - name: pupmod-simp-pupmod
+  - name: pupmod-simp-resolv
+  - name: pupmod-simp-rkhunter
+  - name: pupmod-simp-rsync
+  - name: pupmod-simp-rsyslog
+  - name: pupmod-simp-selinux
+  - name: pupmod-simp-simp
+  - name: pupmod-simp-simp_apache
+  - name: pupmod-simp-simp_banners
+  - name: pupmod-simp-simp_firewalld
+  - name: pupmod-simp-simp_gitlab
+  - name: pupmod-simp-simp_grub
+  - name: pupmod-simp-simp_ipa
+  - name: pupmod-simp-simpkv
+  - name: pupmod-simp-simplib
+  - name: pupmod-simp-simp_nfs
+  - name: pupmod-simp-simp_openldap
+  - name: pupmod-simp-simp_options
+  - name: pupmod-simp-simp_rsyslog
+  - name: pupmod-simp-simp_snmpd
+  - name: pupmod-simp-ssh
+  - name: pupmod-simp-sssd
+  - name: pupmod-simp-stunnel
+  - name: pupmod-simp-sudo
+  - name: pupmod-simp-sudosh
+  - name: pupmod-simp-svckill
+  - name: pupmod-simp-swap
+  - name: pupmod-simp-tcpwrappers
+  - name: pupmod-simp-tftpboot
+  - name: pupmod-simp-tlog
+  - name: pupmod-simp-tpm
+  - name: pupmod-simp-tpm2
+  - name: pupmod-simp-tuned
+  - name: pupmod-simp-upstart
+  - name: pupmod-simp-useradd
+  - name: pupmod-simp-vnc
+  - name: pupmod-simp-vox_selinux
+  - name: pupmod-simp-vsftpd
+  - name: pupmod-simp-x2go
+  - name: pupmod-simp-xinetd
+  - name: pupmod-treydock-kdump
+  - name: pupmod-trlinkin-nsswitch
+  - name: rubygem-simp-cli
+  - name: rubygem-simp-cli-doc
+  - name: rubygem-simp-cli-highline
+  - name: simp
+  - name: simp-adapter
+  - name: simp-doc
+  - name: simp-environment-skeleton
+  - name: simp-extras
+  - name: simp-gpgkeys
+  - name: simp-rsync
+  - name: simp-rsync-skeleton
+  - name: simp-selinux-policy
+  - name: simp-utils
+  - name: simp-vendored-r10k
+  - name: simp-vendored-r10k-doc
+  - name: simp-vendored-r10k-gem-colored2
+  - name: simp-vendored-r10k-gem-cri
+  - name: simp-vendored-r10k-gem-faraday
+  - name: simp-vendored-r10k-gem-faraday_middleware
+  - name: simp-vendored-r10k-gem-fast_gettext
+  - name: simp-vendored-r10k-gem-gettext
+  - name: simp-vendored-r10k-gem-gettext-setup
+  - name: simp-vendored-r10k-gem-locale
+  - name: simp-vendored-r10k-gem-log4r
+  - name: simp-vendored-r10k-gem-minitar
+  - name: simp-vendored-r10k-gem-multi_json
+  - name: simp-vendored-r10k-gem-multipart-post
+  - name: simp-vendored-r10k-gem-puppet_forge
+  - name: simp-vendored-r10k-gem-r10k
+  - name: simp-vendored-r10k-gem-semantic_puppet
+  - name: simp-vendored-r10k-gem-text
+
+  # FIXME *extremely* old el7 RPM (2014), signed with original 2015 SIMP GPG key (7da6f216, no expiration)
+  # ------------------------------------------------------------------------------
+  # NOTE: chkroot is not supported on EL8+; it was replaced by rkhunter
+  - name: chkrootkit
+    direct_url: https://download.simp-project.com/simp/yum/releases/6.5.0-1/el/7Server/x86_64/simp/chkrootkit-0.50-4el7.x86_64.rpm
+
+  # FIXME *extremely* old el7 RPMs (2014), signed with original 2015 SIMP GPG key (7da6f216, no expiration)
+  # ------------------------------------------------------------------------------
+  # provides Password policy overlay for OpenLDAP, used by simp/simp_openldap on EL7
+  - name: simp-ppolicy-check-password
+    direct_url: https://download.simp-project.com/simp/yum/releases/6.5.0-1/el/7Server/x86_64/simp/simp-ppolicy-check-password-2.4.39-0el7.x86_64.rpm
+
+  # provides the 'lastbind' plugin for OpenLDAP, used by simp/simp_openldap on EL7
+  - name: simp-lastbind
+    direct_url: https://download.simp-project.com/simp/yum/releases/6.5.0-1/el/7Server/x86_64/simp/simp-lastbind-2.4.23-0.x86_64.rpm
+
+  # FIXME: old TPM simulator packages (built 2019), no builds for EL8
+  # FIXME: See docs at https://simp.readthedocs.io/en/master/HOWTO/90_Misc/Manage_TPM.html#tpm-simulators
+  # TODO: should these packages be rebuilt for EL8, and/or from more recent versions?
+  # ------------------------------------------------------------------------------
+  - name: simp-tpm12-simulator
+    direct_url: https://download.simp-project.com/simp/yum/releases/6.5.0-1/el/7Server/x86_64/simp/simp-tpm12-simulator-4769.0.0-0.el7.x86_64.rpm
+  - name: simp-tpm2-simulator
+    direct_url: https://download.simp-project.com/simp/yum/releases/6.5.0-1/el/7Server/x86_64/simp/simp-tpm2-simulator-1332.0.0-0.el7.x86_64.rpm
+
+  # FIXME: HIRS RPMS: old versions with CVEs (log4j/CVE-2021-44228),
+  # FIXME:old el7 RPM (2019) https://github.com/nsacyber/paccor
+  # Upstream RPMs: a.) are not signed, and: b.) do not support EL8
+  # SIMP doesn't maintain its own updated signed RPMs of these tools
+  # ------------------------------------------------------------------------------
+  - name: HIRS_Provisioner_TPM_1_2
+    direct_url: https://download.simp-project.com/simp/yum/releases/6.5.0-1/el/7Server/x86_64/simp/HIRS_Provisioner_TPM_1_2-1.0.4-1558547257.cedc93.el7.noarch.rpm
+  - name: HIRS_Provisioner_TPM_2_0
+    direct_url: https://download.simp-project.com/simp/yum/releases/6.5.0-1/el/7Server/x86_64/simp/HIRS_Provisioner_TPM_2_0-1.0.4-1.x86_64.rpm
+  - name: paccor
+    direct_url: https://download.simp-project.com/simp/yum/releases/6.5.0-1/el/7Server/x86_64/simp/paccor-1.1.2-1.noarch.rpm
+
 #
 puppet:
   url: http://yum.puppet.com/puppet6/el/7/x86_64/
@@ -70,7 +255,7 @@ os:
   - id: base
   rpms:
   - name: apr-util-ldap
-  - name: ima-evm-utils
+  - name: ima-evm-utils # now in CentOS7 ISO (os) in additon to RHEL
   - name: libarchive-devel
   - name: perl-Capture-Tiny
   - name: perl-Config-Simple
@@ -78,27 +263,17 @@ os:
   - name: perl-Switch
   - name: protobuf
   - name: rubygem-rake
+  # tpm2-* formerly only in rhel-server, now also in CentOS7 (os)
   - name: tpm2-abrmd
   - name: tpm2-tools
   - name: tpm2-tss
   - name: tpm2-tss-devel
   # From pkglist.txt:
-  - name: 389-ds-base-libs
   - name: GConf2
   - name: GeoIP
   - name: ModemManager-glib
-  - name: NetworkManager
-  - name: NetworkManager-adsl
-  - name: NetworkManager-bluetooth
-  - name: NetworkManager-glib
-  - name: NetworkManager-libnm
   - name: NetworkManager-libreswan
   - name: NetworkManager-libreswan-gnome
-  - name: NetworkManager-ppp
-  - name: NetworkManager-team
-  - name: NetworkManager-tui
-  - name: NetworkManager-wifi
-  - name: NetworkManager-wwan
   - name: ORBit2
   - name: OpenIPMI
   - name: OpenIPMI-libs
@@ -154,7 +329,6 @@ os:
   - name: augeas-libs
   - name: authconfig
   - name: autoconf
-  - name: autofs
   - name: autogen-libopts
   - name: automake
   - name: avahi
@@ -164,23 +338,11 @@ os:
   - name: avalon-framework
   - name: avalon-logkit
   - name: basesystem
-  - name: bash
   - name: bc
   - name: bcel
   - name: bea-stax
   - name: bea-stax-api
-  - name: bind
-  - name: bind-chroot
   - name: bind-dyndb-ldap
-  - name: bind-export-libs
-  - name: bind-libs
-  - name: bind-libs-lite
-  - name: bind-license
-  - name: bind-pkcs11
-  - name: bind-pkcs11-libs
-  - name: bind-pkcs11-utils
-  - name: bind-utils
-  - name: binutils
   - name: biosdevname
   - name: bitmap-fixed-fonts
   - name: bitmap-lucida-typewriter-fonts
@@ -204,21 +366,17 @@ os:
   - name: cairo
   - name: cairo-gobject
   - name: cal10n
-  # caribou* was only in rhel-server distribution ISO, now also in CentOS7 os + epel
+  # caribou* was only in rhel-server distribution iso, now also in centos7 os + epel
   # (no idea why we need it, though)
   - name: caribou
   - name: caribou-gtk2-module
   - name: caribou-gtk3-module
-  - name: ca-certificates
   - name: cdparanoia
   - name: cdparanoia-libs
   - name: cdrdao
-  # centos-* only in CentOS distribution ISO
   - name: centos-bookmarks
   - name: centos-indexhtml
   - name: centos-logos
-  - name: centos-release
-  - name: certmonger
   - name: checkpolicy
   - name: cheese-libs
   - name: chkconfig
@@ -239,22 +397,13 @@ os:
   - name: compat-libcolord1
   - name: compat-libical1
   - name: comps-extras
-  - name: control-center
-  - name: control-center-filesystem
   - name: coolkey
   - name: copy-jdk-configs
-  - name: coreutils
-  # corosync* only in CentOS7 (os repo)
-  # (no idea why we need it, though)
-  - name: corosync
-  - name: corosynclib
   - name: cpio
   - name: cpp
   - name: cracklib
   - name: cracklib-dicts
   - name: createrepo
-  - name: cronie
-  - name: cronie-anacron
   - name: crontabs
   - name: cryptsetup
   - name: cryptsetup-libs
@@ -266,7 +415,6 @@ os:
   - name: cups-filters-libs
   - name: cups-libs
   - name: cups-pk-helper
-  - name: curl
   - name: custodia
   - name: cvs
   - name: cyrus-sasl
@@ -288,20 +436,7 @@ os:
   - name: dejavu-serif-fonts
   - name: deltarpm
   - name: desktop-file-utils
-  - name: device-mapper
-  - name: device-mapper-event
-  - name: device-mapper-event-libs
-  - name: device-mapper-libs
-  - name: device-mapper-multipath
-  - name: device-mapper-multipath-libs
-  - name: device-mapper-persistent-data
-  - name: dhclient
-  - name: dhcp
-  - name: dhcp-common
-  - name: dhcp-libs
   - name: diffutils
-  - name: dmidecode
-  - name: dnsmasq
   - name: docbook-dtds
   - name: docbook-style-dsssl
   - name: docbook-style-xsl
@@ -330,7 +465,6 @@ os:
   - name: elfutils-default-yama-scope
   - name: elfutils-libelf
   - name: elfutils-libs
-  - name: elinks
   - name: emacs-filesystem
   - name: enchant
   - name: espeak
@@ -352,26 +486,17 @@ os:
   - name: findutils
   - name: fipscheck
   - name: fipscheck-lib
-  - name: firefox
-  - name: firewalld
-  - name: firewalld-filesystem
   - name: flac-libs
-  - name: flatpak
-  - name: flatpak-libs
   - name: flite
   - name: fltk
   - name: fontawesome-fonts
   - name: fontconfig
   - name: fontpackages-filesystem
-  - name: foomatic
   - name: foomatic-db
   - name: foomatic-db-filesystem
   - name: foomatic-db-ppds
-  - name: foomatic-filters
   - name: fprintd
   - name: fprintd-pam
-  - name: freetype
-  - name: freetype-devel
   - name: fribidi
   - name: fuse
   - name: fuse-libs
@@ -381,14 +506,12 @@ os:
   - name: gcc
   - name: gcc-c++
   - name: gcr
-  - name: gd
   - name: gdb
   - name: gdbm
   - name: gdbm-devel
   - name: gdisk
   - name: gdk-pixbuf2
   - name: gdk-pixbuf2-devel
-  - name: gdm
   - name: genisoimage
   - name: geoclue
   - name: geoclue2
@@ -410,12 +533,6 @@ os:
   - name: glassfish-fastinfoset
   - name: glassfish-jaxb
   - name: glassfish-jaxb-api
-  - name: glib2
-  - name: glib2-devel
-  - name: glibc
-  - name: glibc-common
-  - name: glibc-devel
-  - name: glibc-headers
   - name: glib-networking
   - name: glx-utils
   - name: gl-manpages
@@ -432,8 +549,6 @@ os:
   - name: gnome-online-accounts
   - name: gnome-session
   - name: gnome-session-xsession
-  - name: gnome-settings-daemon
-  - name: gnome-shell
   - name: gnome-terminal
   - name: gnome-themes-standard
   - name: gnome-user-docs
@@ -453,18 +568,9 @@ os:
   - name: grep
   - name: grilo
   - name: groff-base
-  - name: grub2
-  - name: grub2-common
-  - name: grub2-efi-x64
-  - name: grub2-pc
-  - name: grub2-pc-modules
-  - name: grub2-tools
-  - name: grub2-tools-extra
-  - name: grub2-tools-minimal
   - name: grubby
   - name: gsettings-desktop-schemas
   - name: gsm
-  - name: gssproxy
   - name: gstreamer
   - name: gstreamer1
   - name: gstreamer1-plugins-bad-free
@@ -474,13 +580,9 @@ os:
   - name: gstreamer-plugins-good
   - name: gstreamer-tools
   - name: gtk2
-  - name: gtk3
-  - name: gtk-update-icon-cache
   - name: guava
   - name: gucharmap
   - name: gucharmap-libs
-  - name: gvfs
-  - name: gvfs-client
   - name: gzip
   - name: hamcrest
   - name: hardlink
@@ -495,22 +597,12 @@ os:
   - name: hsqldb
   - name: httpcomponents-client
   - name: httpcomponents-core
-  - name: httpd
-  - name: httpd-devel
-  - name: httpd-tools
   - name: http-parser
   - name: hunspell
   - name: hunspell-en-US
   - name: hwdata
   - name: hyphen
-  - name: ibus
-  - name: ibus-gtk2
-  - name: ibus-gtk3
-  - name: ibus-libs
-  - name: ibus-setup
   - name: icedax
-  # ima-evm-utils was only in rhel-server distribution ISO, now also in CentOS7 (os)
-  - name: ima-evm-utils
   - name: imsettings
   - name: imsettings-gsettings
   - name: imsettings-libs
@@ -519,18 +611,9 @@ os:
   - name: im-chooser-common
   - name: info
   - name: iniparser
-  - name: initscripts
   - name: iotop
-  - name: ipa-client
-  - name: ipa-client-common
-  - name: ipa-common
-  - name: ipa-server
-  - name: ipa-server-common
-  - name: ipa-server-dns
-  - name: ipa-server-trust-ad
   - name: ipmitool
   - name: iproute
-  - name: iprutils
   - name: ipset
   - name: ipset-libs
   - name: iptables
@@ -539,29 +622,10 @@ os:
   - name: iputils
   - name: ipxe-roms-qemu
   - name: irqbalance
-  - name: iscsi-initiator-utils
-  - name: iscsi-initiator-utils-iscsiuio
   - name: isorelax
   - name: iso-codes
   - name: istack-commons
   - name: ivtv-firmware
-  - name: iwl100-firmware
-  - name: iwl105-firmware
-  - name: iwl135-firmware
-  - name: iwl1000-firmware
-  - name: iwl2000-firmware
-  - name: iwl2030-firmware
-  - name: iwl3160-firmware
-  - name: iwl3945-firmware
-  - name: iwl4965-firmware
-  - name: iwl5000-firmware
-  - name: iwl5150-firmware
-  - name: iwl6000g2a-firmware
-  - name: iwl6000g2b-firmware
-  - name: iwl6000-firmware
-  - name: iwl6050-firmware
-  - name: iwl7260-firmware
-  ### - name: iwl7265-firmware  # Doesn't exist in repos or last ISO
   - name: jackson
   - name: jakarta-commons-httpclient
   - name: jakarta-oro
@@ -575,8 +639,6 @@ os:
   - name: java-1.7.0-openjdk
   - name: java-1.7.0-openjdk-devel
   - name: java-1.7.0-openjdk-headless
-  - name: java-1.8.0-openjdk
-  - name: java-1.8.0-openjdk-headless
   - name: jaxen
   - name: jbigkit-libs
   - name: jboss-annotations-1.1-api
@@ -593,28 +655,12 @@ os:
   - name: junit
   - name: jvnet-parent
   - name: kabi-yum-plugins
-  - name: kbd
-  - name: kbd-legacy
-  - name: kbd-misc
   - name: kde-filesystem
-  - name: kernel
-  - name: kernel-abi-whitelists
-  - name: kernel-headers
-  - name: kernel-tools
-  - name: kernel-tools-libs
-  - name: kexec-tools
   - name: keyutils
   - name: keyutils-libs
   - name: keyutils-libs-devel
   - name: kmod
   - name: kmod-libs
-  - name: kpartx
-  - name: krb5-devel
-  - name: krb5-libs
-  - name: krb5-pkinit
-  - name: krb5-server
-  - name: krb5-server-ldap
-  - name: krb5-workstation
   - name: lcms2
   - name: ldapjdk
   - name: ldns
@@ -623,9 +669,6 @@ os:
   - name: libICE
   - name: libIDL
   - name: libSM
-  - name: libX11
-  - name: libX11-common
-  - name: libX11-devel
   - name: libXScrnSaver
   - name: libXau
   - name: libXau-devel
@@ -678,7 +721,6 @@ os:
   - name: libattr
   - name: libavc1394
   - name: libbasicobjects
-  - name: libblkid
   - name: libblockdev
   - name: libblockdev-crypto
   - name: libblockdev-fs
@@ -703,9 +745,6 @@ os:
   - name: libcollection
   - name: libcom_err
   - name: libcom_err-devel
-  - name: libcroco
-  - name: libcurl
-  - name: libcurl-devel
   - name: libdaemon
   - name: libdb
   - name: libdb-devel
@@ -726,7 +765,6 @@ os:
   - name: libestr
   - name: libevdev
   - name: libevent
-  - name: libexif
   - name: libfastjson
   - name: libffi
   - name: libfontenc
@@ -751,12 +789,9 @@ os:
   - name: libgs
   - name: libgsf
   - name: libgtop2
-  - name: libgudev1
   - name: libgusb
-  - name: libgweather
   - name: libgxps
   - name: libhugetlbfs
-  - name: libibverbs
   - name: libical
   - name: libicu
   - name: libicu-devel
@@ -765,21 +800,17 @@ os:
   - name: libimobiledevice
   - name: libini_config
   - name: libinput
-  - name: libipa_hbac
   - name: libiptcdata
   - name: libisofs
   - name: libitm
   - name: libjpeg-turbo
   - name: libjpeg-turbo-devel
-  - name: libkadm5
-  - name: libldb
   - name: liblouis
   - name: liblouis-python
   - name: libmediaart
   - name: libmng
   - name: libmnl
   - name: libmodman
-  - name: libmount
   - name: libmpc
   - name: libmpcdec
   - name: libndp
@@ -811,10 +842,8 @@ os:
   - name: libquvi-scripts
   - name: librados2
   - name: libraw1394
-  - name: librdmacm
   - name: libref_array
   - name: libreport-filesystem
-  - name: libreswan
   - name: librsvg2
   - name: libsamplerate
   - name: libseccomp
@@ -828,19 +857,10 @@ os:
   - name: libsepol
   - name: libsepol-devel
   - name: libshout
-  - name: libsmartcols
-  - name: libsmbclient
-  - name: libsndfile
   - name: libsoup
   - name: libsrtp
   - name: libss
   - name: libssh2
-  - name: libsss_autofs
-  - name: libsss_certmap
-  - name: libsss_idmap
-  - name: libsss_nss_idmap
-  - name: libsss_simpleifp
-  - name: libsss_sudo
   - name: libstdc++
   - name: libstdc++-devel
   - name: libsysfs
@@ -864,15 +884,11 @@ os:
   - name: libusbx
   - name: libuser
   - name: libutempter
-  - name: libuuid
   - name: libv4l
   - name: libva
   - name: libverto
   - name: libverto-devel
   - name: libverto-tevent
-  - name: libvirt-bash-completion
-  - name: libvirt-client
-  - name: libvirt-libs
   - name: libvisual
   - name: libvorbis
   - name: libvpx
@@ -882,8 +898,6 @@ os:
   - name: libwayland-cursor
   - name: libwayland-egl
   - name: libwayland-server
-  - name: libwbclient
-  - name: libwebp
   - name: libwmf
   - name: libwmf-lite
   - name: libwnck3
@@ -893,28 +907,21 @@ os:
   - name: libxkbcommon-x11
   - name: libxkbfile
   - name: libxklavier
-  - name: libxml2
-  - name: libxml2-devel
-  - name: libxml2-python
   - name: libxshmfence
   - name: libxslt
   - name: libyaml
   - name: libzip
   - name: linuxconsoletools
-  - name: linux-firmware
   - name: lksctp-tools
   - name: llvm-private
   - name: lm_sensors-libs
   - name: log4cxx
-  - name: log4j
   - name: logrotate
   - name: logwatch
   - name: lshw
   - name: lsof
   - name: lsscsi
   - name: lua
-  - name: lvm2
-  - name: lvm2-libs
   - name: lz4
   - name: lzo
   - name: m2crypto
@@ -926,26 +933,14 @@ os:
   - name: man-pages
   - name: mariadb-libs
   - name: mcstrans
-  - name: mdadm
-  - name: mesa-dri-drivers
-  - name: mesa-filesystem
-  - name: mesa-libEGL
-  - name: mesa-libGL
-  - name: mesa-libGLES
   - name: mesa-libGLU
-  - name: mesa-libgbm
-  - name: mesa-libglapi
-  - name: mesa-libxatracker
   - name: mesa-private-llvm
   - name: metacity
-  - name: microcode_ctl
   - name: mlocate
   - name: mobile-broadband-provider-info
   - name: mod_auth_gssapi
   - name: mod_lookup_identity
   - name: mod_nss
-  - name: mod_session
-  - name: mod_ssl
   - name: mod_wsgi
   - name: mokutil
   - name: mozilla-filesystem
@@ -958,7 +953,6 @@ os:
   - name: mtdev
   - name: mtools
   - name: mutt
-  - name: mutter
   - name: nautilus
   - name: nautilus-extensions
   - name: ncurses
@@ -967,29 +961,15 @@ os:
   - name: neon
   - name: netcf-libs
   - name: netlabel_tools
-  - name: nettle
-  - name: net-snmp
-  - name: net-snmp-agent-libs
-  - name: net-snmp-libs
-  - name: net-snmp-utils
   - name: net-tools
   - name: newt
   - name: newt-python
   - name: nfs4-acl-tools
-  - name: nfs-utils
   - name: nmap
   - name: nmap-ncat
   - name: nm-connection-editor
-  - name: nscd
-  - name: nspr
-  - name: nss
   - name: nss-pam-ldapd
   - name: nss-pem
-  - name: nss-softokn
-  - name: nss-softokn-freebl
-  - name: nss-sysinit
-  - name: nss-tools
-  - name: nss-util
   - name: nss_compat_ossl
   - name: ntp
   - name: ntpdate
@@ -1001,30 +981,11 @@ os:
   - name: objectweb-asm
   - name: oddjob
   - name: oddjob-mkhomedir
-  - name: opencryptoki
-  - name: opencryptoki-libs
-  - name: opencryptoki-swtok
   - name: opendnssec
   - name: openjade
   - name: openjpeg2
   - name: openjpeg-libs
-  - name: openldap
-  - name: openldap-clients
-  - name: openldap-devel
-  - name: openldap-servers
-  - name: openscap
-  - name: openscap-containers
-  - name: openscap-python
-  - name: openscap-scanner
-  - name: openscap-utils
   - name: opensp
-  - name: openssh
-  - name: openssh-askpass
-  - name: openssh-clients
-  - name: openssh-server
-  - name: openssl
-  - name: openssl-devel
-  - name: openssl-libs
   - name: open-sans-fonts
   - name: opus
   - name: orc
@@ -1051,13 +1012,11 @@ os:
   - name: pcsc-lite
   - name: pcsc-lite-ccid
   - name: pcsc-lite-libs
-  - name: perl
   - name: perl-Archive-Tar
   - name: perl-Business-ISBN
   - name: perl-Business-ISBN-Data
   - name: perl-B-Lint
   - name: perl-CGI
-  - name: perl-CPAN
   - name: perl-Carp
   - name: perl-Class-ISA
   - name: perl-Class-Load
@@ -1082,7 +1041,6 @@ os:
   - name: perl-Env
   - name: perl-Error
   - name: perl-Exporter
-  - name: perl-ExtUtils-Install
   - name: perl-ExtUtils-MakeMaker
   - name: perl-ExtUtils-Manifest
   - name: perl-ExtUtils-ParseXS
@@ -1106,7 +1064,6 @@ os:
   - name: perl-IO-HTML
   - name: perl-IO-Socket-IP
   - name: perl-IO-Socket-SSL
-  - name: perl-IO-Zlib
   - name: perl-LWP-MediaTypes
   - name: perl-List-MoreUtils
   - name: perl-Locale-Codes
@@ -1121,7 +1078,6 @@ os:
   - name: perl-Net-HTTP
   - name: perl-Net-LibIDN
   - name: perl-Net-SSLeay
-  - name: perl-Package-Constants
   - name: perl-Package-DeprecationManager
   - name: perl-Package-Stash
   - name: perl-Package-Stash-XS
@@ -1130,7 +1086,6 @@ os:
   - name: perl-PathTools
   - name: perl-PlRPC
   - name: perl-Pod-Checker
-  - name: perl-Pod-Escapes
   - name: perl-Pod-LaTeX
   - name: perl-Pod-Parser
   - name: perl-Pod-Perldoc
@@ -1165,11 +1120,8 @@ os:
   - name: perl-XML-SAX-Base
   - name: perl-autodie
   - name: perl-constant
-  - name: perl-devel
-  - name: perl-libs
   - name: perl-libwww-perl
   - name: perl-local-lib
-  - name: perl-macros
   - name: perl-parent
   - name: perl-podlators
   - name: perl-srpm-macros
@@ -1189,12 +1141,6 @@ os:
   - name: pinfo
   - name: pixman
   - name: pkgconfig
-  - name: pki-base
-  - name: pki-base-java
-  - name: pki-ca
-  - name: pki-kra
-  - name: pki-server
-  - name: pki-tools
   - name: plymouth
   - name: plymouth-core-libs
   - name: plymouth-scripts
@@ -1203,49 +1149,32 @@ os:
   - name: policycoreutils-devel
   - name: policycoreutils-newrole
   - name: policycoreutils-python
-  - name: polkit
   - name: polkit-pkla-compat
   - name: polkit-qt
-  - name: poppler
   - name: poppler-data
-  - name: poppler-glib
-  - name: poppler-utils
   - name: popt
   - name: popt-devel
   - name: portreserve
   - name: postfix
-  - name: postgresql
-  - name: postgresql-libs
-  - name: postgresql-server
   - name: ppp
   - name: procps-ng
   - name: psacct
   - name: psmisc
   - name: pth
-  - name: pulseaudio
-  - name: pulseaudio-gdm-hooks
-  - name: pulseaudio-libs
-  - name: pulseaudio-libs-glib2
-  - name: pulseaudio-module-bluetooth
   - name: pyOpenSSL
   - name: pycairo
   - name: pygobject2
   - name: pygpgme
   - name: pygtk2
-  - name: pyldb
   - name: pyliblzma
   - name: pyorbit
   - name: pyparsing
   - name: pytalloc
-  - name: python
   # python2-caribou was only in rhel-server distribution ISO, now also in CentOS7 (os + epel)
   # (no idea why we need it, though)
   - name: python2-caribou
   - name: python2-cryptography
   - name: python2-futures
-  - name: python2-ipaclient
-  - name: python2-ipalib
-  - name: python2-ipaserver
   - name: python2-oauthlib
   - name: python2-pyasn1
   - name: python2-pyasn1-modules
@@ -1266,7 +1195,6 @@ os:
   - name: python-dns
   - name: python-enum34
   - name: python-ethtool
-  - name: python-firewall
   - name: python-gobject
   - name: python-gobject-base
   - name: python-gssapi
@@ -1279,9 +1207,6 @@ os:
   - name: python-kdcproxy
   - name: python-kitchen
   - name: python-ldap
-  - name: python-libipa_hbac
-  - name: python-libs
-  - name: python-libsss_nss_idmap
   - name: python-linux-procfs
   - name: python-lxml
   - name: python-magic
@@ -1289,14 +1214,12 @@ os:
   - name: python-netaddr
   - name: python-netifaces
   - name: python-nss
-  - name: python-perf
   - name: python-ply
   - name: python-pycparser
   - name: python-pycurl
   - name: python-pyudev
   - name: python-qrcode-core
   - name: python-requests
-  # python-rhsm* was only in rhel-server, now also in CentOS7 (os)
   - name: python-rhsm
   - name: python-rhsm-certificates
   - name: python-schedutils
@@ -1305,11 +1228,7 @@ os:
   - name: python-slip
   - name: python-slip-dbus
   - name: python-srpm-macros
-  - name: python-sss
-  - name: python-sssdconfig
-  - name: python-sss-murmur
   - name: python-suds
-  - name: python-syspurpose
   - name: python-tdb
   - name: python-tevent
   - name: python-urlgrabber
@@ -1321,17 +1240,13 @@ os:
   - name: qemu-guest-agent
   - name: qpdf-libs
   - name: qrencode-libs
-  - name: qt
   - name: qt3
   - name: qt-settings
-  - name: qt-x11
   - name: quota
   - name: quota-nls
   - name: rarian
   - name: rarian-compat
-  - name: rdma-core
   - name: readline
-  - name: realmd
   - name: recode
   # redhat-indexhtml + redhat-logos only in rhel-server distribution ISO
   ### - name: redhat-indexhtml
@@ -1350,8 +1265,6 @@ os:
   - name: redhat-rpm-config
   - name: regexp
   - name: relaxngDatatype
-  # resource-agents only in CentOS distribution ISO
-  - name: resource-agents
   - name: rest
   - name: resteasy-base-atom-provider
   - name: resteasy-base-client
@@ -1364,17 +1277,8 @@ os:
   - name: rng-tools
   - name: rootfiles
   - name: rpcbind
-  - name: rpm
-  - name: rpmdevtools
-  - name: rpm-build
-  - name: rpm-build-libs
-  - name: rpm-devel
-  - name: rpm-libs
-  - name: rpm-python
   - name: rrdtool
   - name: rsync
-  - name: rsyslog
-  - name: rsyslog-gnutls
   - name: rtkit
   - name: ruby
   - name: rubygems
@@ -1385,25 +1289,10 @@ os:
   - name: rubygem-rdoc
   - name: ruby-irb
   - name: ruby-libs
-  - name: samba
-  - name: samba-client
-  - name: samba-client-libs
-  - name: samba-common
-  - name: samba-common-libs
-  - name: samba-common-tools
-  - name: samba-libs
-  - name: samba-python
-  - name: samba-winbind
-  - name: samba-winbind-modules
   - name: sbc
   - name: scannotation
-  - name: scap-security-guide
   - name: scap-workbench
-  - name: screen
   - name: sed
-  - name: selinux-policy
-  - name: selinux-policy-devel
-  - name: selinux-policy-targeted
   - name: setools-libs
   - name: setserial
   - name: setup
@@ -1414,12 +1303,10 @@ os:
   - name: shared-mime-info
   - name: shim-x64
   - name: slang
-  - name: slapi-nis
   - name: slf4j
   - name: smartmontools
   - name: snappy
   - name: softhsm
-  - name: sos
   - name: soundtouch
   - name: sound-theme-freedesktop
   - name: sox
@@ -1428,39 +1315,19 @@ os:
   - name: speech-dispatcher-python
   - name: speex
   - name: sqlite
-  - name: sssd
-  - name: sssd-ad
-  - name: sssd-client
-  - name: sssd-common
-  - name: sssd-common-pac
-  - name: sssd-dbus
-  - name: sssd-ipa
-  - name: sssd-krb5
-  - name: sssd-krb5-common
-  - name: sssd-ldap
-  - name: sssd-proxy
-  - name: sssd-tools
   - name: star
   - name: startup-notification
   - name: stax2-api
   - name: stax-ex
   - name: stunnel
-  - name: subscription-manager
-  - name: subscription-manager-rhsm
-  - name: subscription-manager-rhsm-certificates
   - name: subversion
   - name: subversion-libs
-  - name: sudo
   - name: svrcore
   - name: symlinks
   - name: sysfsutils
   - name: syslinux
   - name: syslinux-tftpboot
   - name: sysstat
-  - name: systemd
-  - name: systemd-libs
-  - name: systemd-python
-  - name: systemd-sysv
   - name: systemtap-sdt-devel
   - name: system-config-firewall-base
   - name: sysvinit-tools
@@ -1471,18 +1338,11 @@ os:
   - name: tcl
   - name: tcp_wrappers
   - name: tcp_wrappers-libs
-  - name: tcsh
   - name: teamd
   - name: telepathy-filesystem
   - name: telepathy-glib
   - name: telepathy-logger
-  - name: telnet
   - name: tftp-server
-  - name: tigervnc
-  - name: tigervnc-icons
-  - name: tigervnc-license
-  - name: tigervnc-server
-  - name: tigervnc-server-minimal
   - name: time
   - name: tk
   - name: tmpwatch
@@ -1490,33 +1350,19 @@ os:
   - name: tncfhh-libs
   - name: tncfhh-utils
   - name: tokyocabinet
-  - name: tomcat
   - name: tomcatjss
-  - name: tomcat-el-2.2-api
-  - name: tomcat-jsp-2.2-api
-  - name: tomcat-lib
-  - name: tomcat-servlet-3.0-api
   - name: totem-pl-parser
-    # tpm2-* was only in rhel-server, now also in CentOS7 (os)
-  - name: tpm2-abrmd
-  - name: tpm2-tools
-  - name: tpm2-tss
-  - name: tpm2-tss-devel
   - name: tpm-tools
   - name: tracker
   - name: tree
   - name: trousers
   - name: ttmkfdir
-  - name: tuned
   - name: txw2
-  - name: tzdata
-  - name: tzdata-java
   - name: ucs-miscfixed-fonts
   - name: udftools
   - name: udisks2
   - name: unbound-libs
   - name: unixODBC
-  - name: unzip
   - name: upower
   - name: urlview
   - name: urw-base35-bookman-fonts
@@ -1535,33 +1381,21 @@ os:
   - name: usbutils
   - name: usermode
   - name: ustr
-  - name: util-linux
   - name: velocity
-  - name: vim-common
-  - name: vim-enhanced
-  - name: vim-filesystem
-  - name: vim-minimal
   - name: vino
-  - name: virt-what
   - name: volume_key
   - name: volume_key-libs
   - name: vorbis-tools
-  - name: vsftpd
   - name: vte3
   - name: vte291
   - name: vte-profile
   - name: wavpack
   - name: webkitgtk3
-  - name: webkitgtk4
-    version: '>= 2.28.2'
-  - name: webkitgtk4-jsc
-    ### - name: webkitgtk4-plugin-process-gtk2  # Obsoleted by webkitgtk4 2.28+
   - name: webrtc-audio-processing
   - name: wget
   - name: which
   - name: wodim
   - name: words
-  - name: wpa_supplicant
   - name: ws-jaxme
   - name: x86info
   - name: xalan-j2
@@ -1588,7 +1422,6 @@ os:
   - name: xorg-x11-apps
   - name: xorg-x11-docs
   - name: xorg-x11-drivers
-  - name: xorg-x11-drv-ati
   - name: xorg-x11-drv-dummy
   - name: xorg-x11-drv-evdev
   - name: xorg-x11-drv-fbdev
@@ -1613,9 +1446,6 @@ os:
   - name: xorg-x11-fonts-misc
   - name: xorg-x11-font-utils
   - name: xorg-x11-proto-devel
-  - name: xorg-x11-server-Xephyr
-  - name: xorg-x11-server-Xorg
-  - name: xorg-x11-server-common
   - name: xorg-x11-server-utils
   - name: xorg-x11-utils
   - name: xorg-x11-xauth
@@ -1623,7 +1453,6 @@ os:
   - name: xorg-x11-xkb-utils
   - name: xpp3
   - name: xsom
-  - name: xterm
   - name: xulrunner
   - name: xz
   - name: xz-devel
@@ -1644,8 +1473,359 @@ os:
   - name: yum-utils
   - name: zenity
   - name: zip
+
+updates:
+  url: http://mirror.centos.org/centos/7/updates/x86_64/
+  rpms:
+  # From pkglist.txt:
+  - name: 389-ds-base-libs
+  - name: NetworkManager
+  - name: NetworkManager-adsl
+  - name: NetworkManager-bluetooth
+  - name: NetworkManager-glib
+  - name: NetworkManager-libnm
+  - name: NetworkManager-ppp
+  - name: NetworkManager-team
+  - name: NetworkManager-tui
+  - name: NetworkManager-wifi
+  - name: NetworkManager-wwan
+  - name: autofs
+  - name: bash
+  - name: bind
+  - name: bind-chroot
+  - name: bind-export-libs
+  - name: bind-libs
+  - name: bind-libs-lite
+  - name: bind-license
+  - name: bind-pkcs11
+  - name: bind-pkcs11-libs
+  - name: bind-pkcs11-utils
+  - name: bind-utils
+  - name: binutils
+  - name: ca-certificates
+  - name: centos-release
+  - name: certmonger
+  - name: control-center
+  - name: control-center-filesystem
+  - name: coreutils
+  # corosync* only in CentOS7 (no idea why we need it, though)
+  - name: corosync
+  - name: corosynclib
+  - name: cronie
+  - name: cronie-anacron
+  - name: curl
+  - name: device-mapper
+  - name: device-mapper-event
+  - name: device-mapper-event-libs
+  - name: device-mapper-libs
+  - name: device-mapper-multipath
+  - name: device-mapper-multipath-libs
+  - name: device-mapper-persistent-data
+  - name: dhclient
+  - name: dhcp
+  - name: dhcp-common
+  - name: dhcp-libs
+  - name: dmidecode
+  - name: dnsmasq
+  - name: elinks
+  - name: firefox
+  - name: firewalld
+  - name: firewalld-filesystem
+  - name: flatpak
+  - name: flatpak-libs
+  - name: foomatic
+  - name: foomatic-filters
+  - name: freetype
+  - name: freetype-devel
+  - name: gd
+  - name: gdm
+  - name: glib2
+  - name: glib2-devel
+  - name: glibc
+  - name: glibc-common
+  - name: glibc-devel
+  - name: glibc-headers
+  - name: gnome-settings-daemon
+  - name: gnome-shell
+  - name: grub2
+  - name: grub2-common
+  - name: grub2-efi-x64
+  - name: grub2-pc
+  - name: grub2-pc-modules
+  - name: grub2-tools
+  - name: grub2-tools-extra
+  - name: grub2-tools-minimal
+  - name: gssproxy
+  - name: gtk3
+  - name: gtk-update-icon-cache
+  - name: gvfs
+  - name: gvfs-client
+  - name: httpd
+  - name: httpd-devel
+  - name: httpd-tools
+  - name: ibus
+  - name: ibus-gtk2
+  - name: ibus-gtk3
+  - name: ibus-libs
+  - name: ibus-setup
+  - name: initscripts
+  - name: ipa-client
+  - name: ipa-client-common
+  - name: ipa-common
+  - name: ipa-server
+  - name: ipa-server-common
+  - name: ipa-server-dns
+  - name: ipa-server-trust-ad
+  - name: iprutils
+  - name: iscsi-initiator-utils
+  - name: iscsi-initiator-utils-iscsiuio
+  - name: iwl100-firmware
+  - name: iwl105-firmware
+  - name: iwl135-firmware
+  - name: iwl1000-firmware
+  - name: iwl2000-firmware
+  - name: iwl2030-firmware
+  - name: iwl3160-firmware
+  - name: iwl3945-firmware
+  - name: iwl4965-firmware
+  - name: iwl5000-firmware
+  - name: iwl5150-firmware
+  - name: iwl6000g2a-firmware
+  - name: iwl6000g2b-firmware
+  - name: iwl6000-firmware
+  - name: iwl6050-firmware
+  - name: iwl7260-firmware
+  - name: java-1.8.0-openjdk
+  - name: java-1.8.0-openjdk-headless
+  - name: kbd
+  - name: kbd-legacy
+  - name: kbd-misc
+  - name: kernel
+  - name: kernel-abi-whitelists
+  - name: kernel-headers
+  - name: kernel-tools
+  - name: kernel-tools-libs
+  - name: kexec-tools
+  - name: kpartx
+  - name: krb5-devel
+  - name: krb5-libs
+  - name: krb5-pkinit
+  - name: krb5-server
+  - name: krb5-server-ldap
+  - name: krb5-workstation
+  - name: libX11
+  - name: libX11-common
+  - name: libX11-devel
+  - name: libblkid
+  - name: libcroco
+  - name: libcurl
+  - name: libcurl-devel
+  - name: libexif
+  - name: libgudev1
+  - name: libgweather
+  - name: libibverbs
+  - name: libipa_hbac
+  - name: libkadm5
+  - name: libldb
+  - name: libmount
+  - name: librdmacm
+  - name: libreswan
+  - name: libsmartcols
+  - name: libsmbclient
+  - name: libsndfile
+  - name: libsss_autofs
+  - name: libsss_certmap
+  - name: libsss_idmap
+  - name: libsss_nss_idmap
+  - name: libsss_simpleifp
+  - name: libsss_sudo
+  - name: libuuid
+  - name: libvirt-bash-completion
+  - name: libvirt-client
+  - name: libvirt-libs
+  - name: libwbclient
+  - name: libwebp
+  - name: libxml2
+  - name: libxml2-devel
+  - name: libxml2-python
+  - name: linux-firmware
+  - name: log4j
+  - name: lvm2
+  - name: lvm2-libs
+  - name: mdadm
+  - name: mesa-dri-drivers
+  - name: mesa-filesystem
+  - name: mesa-libEGL
+  - name: mesa-libGL
+  - name: mesa-libGLES
+  - name: mesa-libgbm
+  - name: mesa-libglapi
+  - name: mesa-libxatracker
+  - name: microcode_ctl
+  - name: mod_session
+  - name: mod_ssl
+  - name: mutter
+  - name: nettle
+  - name: net-snmp
+  - name: net-snmp-agent-libs
+  - name: net-snmp-libs
+  - name: net-snmp-utils
+  - name: nfs-utils
+  - name: nscd
+  - name: nspr
+  - name: nss
+  - name: nss-softokn
+  - name: nss-softokn-freebl
+  - name: nss-sysinit
+  - name: nss-tools
+  - name: nss-util
+  - name: opencryptoki
+  - name: opencryptoki-libs
+  - name: opencryptoki-swtok
+  - name: openldap
+  - name: openldap-clients
+  - name: openldap-devel
+  - name: openldap-servers
+  - name: openscap
+  - name: openscap-containers
+  - name: openscap-python
+  - name: openscap-scanner
+  - name: openscap-utils
+  - name: openssh
+  - name: openssh-askpass
+  - name: openssh-clients
+  - name: openssh-server
+  - name: openssl
+  - name: openssl-devel
+  - name: openssl-libs
+  - name: perl
+  - name: perl-CPAN
+  - name: perl-ExtUtils-Install
+  - name: perl-IO-Zlib
+  - name: perl-Package-Constants
+  - name: perl-Pod-Escapes
+  - name: perl-devel
+  - name: perl-libs
+  - name: perl-macros
+  - name: pki-base
+  - name: pki-base-java
+  - name: pki-ca
+  - name: pki-kra
+  - name: pki-server
+  - name: pki-tools
+  - name: polkit
+  - name: poppler
+  - name: poppler-glib
+  - name: poppler-utils
+  - name: postgresql
+  - name: postgresql-libs
+  - name: postgresql-server
+  - name: pulseaudio
+  - name: pulseaudio-gdm-hooks
+  - name: pulseaudio-libs
+  - name: pulseaudio-libs-glib2
+  - name: pulseaudio-module-bluetooth
+  - name: pyldb
+  - name: python
+  - name: python2-ipaclient
+  - name: python2-ipalib
+  - name: python2-ipaserver
+  - name: python-firewall
+  - name: python-libipa_hbac
+  - name: python-libs
+  - name: python-libsss_nss_idmap
+  - name: python-perf
+  - name: python-sss
+  - name: python-sssdconfig
+  - name: python-sss-murmur
+  - name: python-syspurpose
+  - name: qt
+  - name: qt-x11
+  - name: rdma-core
+  - name: realmd
+  # resource-agents only in CentOS distribution ISO
+  - name: resource-agents
+  - name: rpm
+  - name: rpmdevtools
+  - name: rpm-build
+  - name: rpm-build-libs
+  - name: rpm-devel
+  - name: rpm-libs
+  - name: rpm-python
+  - name: rsyslog
+  - name: rsyslog-gnutls
+  - name: samba
+  - name: samba-client
+  - name: samba-client-libs
+  - name: samba-common
+  - name: samba-common-libs
+  - name: samba-common-tools
+  - name: samba-libs
+  - name: samba-python
+  - name: samba-winbind
+  - name: samba-winbind-modules
+  - name: scap-security-guide
+  - name: screen
+  - name: selinux-policy
+  - name: selinux-policy-devel
+  - name: selinux-policy-targeted
+  - name: slapi-nis
+  - name: sos
+  - name: sssd
+  - name: sssd-ad
+  - name: sssd-client
+  - name: sssd-common
+  - name: sssd-common-pac
+  - name: sssd-dbus
+  - name: sssd-ipa
+  - name: sssd-krb5
+  - name: sssd-krb5-common
+  - name: sssd-ldap
+  - name: sssd-proxy
+  - name: sssd-tools
+  - name: subscription-manager
+  - name: subscription-manager-rhsm
+  - name: subscription-manager-rhsm-certificates
+  - name: sudo
+  - name: systemd
+  - name: systemd-libs
+  - name: systemd-python
+  - name: systemd-sysv
+  - name: tcsh
+  - name: telnet
+  - name: tigervnc
+  - name: tigervnc-icons
+  - name: tigervnc-license
+  - name: tigervnc-server
+  - name: tigervnc-server-minimal
+  - name: tomcat
+  - name: tomcat-el-2.2-api
+  - name: tomcat-jsp-2.2-api
+  - name: tomcat-lib
+  - name: tomcat-servlet-3.0-api
+  - name: tuned
+  - name: tzdata
+  - name: tzdata-java
+  - name: unzip
+  - name: util-linux
+  - name: vim-common
+  - name: vim-enhanced
+  - name: vim-filesystem
+  - name: vim-minimal
+  - name: virt-what
+  - name: vsftpd
+  - name: webkitgtk4
+    version: ">= 2.28.2"
+  - name: webkitgtk4-jsc
+  - name: wpa_supplicant
+  - name: xorg-x11-drv-ati
+  - name: xorg-x11-server-Xephyr
+  - name: xorg-x11-server-Xorg
+  - name: xorg-x11-server-common
+  - name: xterm
   - name: zlib
   - name: zlib-devel
+
 extras:
   url: http://mirror.centos.org/centos/7/extras/x86_64/
   rpms:
@@ -1653,6 +1833,7 @@ extras:
   - name: createrepo_c-libs
   - name: libssh
   - name: libev
+
 epel:
   url: https://dl.fedoraproject.org/pub/epel/7/x86_64/
   rpms:
@@ -1738,166 +1919,3 @@ postgresql:
   - name: postgresql96-contrib
   - name: postgresql96-libs
   - name: postgresql96-server
-
-simp:
-  # FIXME: using /experimental/ during 6.6.0 EL8 development; change to latest when ready to release:
-  #
-  #   url: https://download.simp-project.com/SIMP/yum/releases/latest/el/8Server/x86_64/simp/
-  #
-  url: https://download.simp-project.com/SIMP/yum/releases/experimental/el/7Server/x86_64/simp/
-  rpms:
-  - name: HIRS_Provisioner_TPM_1_2
-  - name: HIRS_Provisioner_TPM_2_0
-  - name: chkrootkit
-  - name: paccor
-  - name: simp-lastbind
-  - name: simp-ppolicy-check-password
-  - name: simp-tpm12-simulator
-  - name: simp-tpm2-simulator
-  - name: simp-vendored-r10k
-  - name: simp-vendored-r10k-doc
-  - name: simp-vendored-r10k-gem-colored
-  - name: simp-vendored-r10k-gem-cri
-  - name: simp-vendored-r10k-gem-faraday
-  - name: simp-vendored-r10k-gem-faraday_middleware
-  - name: simp-vendored-r10k-gem-fast_gettext
-  - name: simp-vendored-r10k-gem-gettext
-  - name: simp-vendored-r10k-gem-gettext-setup
-  - name: simp-vendored-r10k-gem-locale
-  - name: simp-vendored-r10k-gem-log4r
-  - name: simp-vendored-r10k-gem-minitar
-  - name: simp-vendored-r10k-gem-multi_json
-  - name: simp-vendored-r10k-gem-multipart-post
-  - name: simp-vendored-r10k-gem-puppet_forge
-  - name: simp-vendored-r10k-gem-r10k
-  - name: simp-vendored-r10k-gem-semantic_puppet
-  - name: simp-vendored-r10k-gem-text
-  - name: sudosh2
-  - name: tlog
-  - name: tpm_module
-  # Missing from first cut
-  - name: pupmod-aboe-chrony
-  - name: pupmod-camptocamp-kmod
-  - name: pupmod-camptocamp-systemd
-  - name: pupmod-herculesteam-augeasproviders_core
-  - name: pupmod-herculesteam-augeasproviders_grub
-  - name: pupmod-herculesteam-augeasproviders_ssh
-  - name: pupmod-herculesteam-augeasproviders_sysctl
-  - name: pupmod-onyxpoint-gpasswd
-  - name: pupmod-puppet-firewalld
-  - name: pupmod-puppet-gitlab
-  - name: pupmod-puppetlabs-apache
-  - name: pupmod-puppetlabs-concat
-  - name: pupmod-puppetlabs-hocon
-  - name: pupmod-puppetlabs-inifile
-  - name: pupmod-puppetlabs-java
-  - name: pupmod-puppetlabs-motd
-  - name: pupmod-puppetlabs-mysql
-  - name: pupmod-puppetlabs-postgresql
-  - name: pupmod-puppetlabs-puppet_authorization
-  - name: pupmod-puppetlabs-puppetdb
-  - name: pupmod-puppetlabs-ruby_task_helper
-  - name: pupmod-puppetlabs-stdlib
-  - name: pupmod-puppetlabs-translate
-  - name: pupmod-puppet-posix_acl
-  - name: pupmod-puppet-snmp
-  - name: pupmod-puppet-yum
-  - name: pupmod-saz-locales
-  - name: pupmod-saz-timezone
-  - name: pupmod-simp-acpid
-  - name: pupmod-simp-aide
-  - name: pupmod-simp-at
-  - name: pupmod-simp-auditd
-  - name: pupmod-simp-autofs
-  - name: pupmod-simp-chkrootkit
-  - name: pupmod-simp-clamav
-  - name: pupmod-simp-compliance_markup
-  - name: pupmod-simp-cron
-  - name: pupmod-simp-crypto_policy
-  - name: pupmod-simp-dconf
-  - name: pupmod-simp-deferred_resources
-  - name: pupmod-simp-dhcp
-  - name: pupmod-simp-fips
-  - name: pupmod-simp-freeradius
-  - name: pupmod-simp-gdm
-  - name: pupmod-simp-gnome
-  - name: pupmod-simp-haveged
-  - name: pupmod-simp-hirs_provisioner
-  - name: pupmod-simp-ima
-  - name: pupmod-simp-incron
-  - name: pupmod-simp-iptables
-  - name: pupmod-simp-issue
-  - name: pupmod-simp-krb5
-  - name: pupmod-simp-libreswan
-  - name: pupmod-simp-libvirt
-  - name: pupmod-simp-logrotate
-  - name: pupmod-simp-mate
-  - name: pupmod-simp-mozilla
-  - name: pupmod-simp-named
-  - name: pupmod-simp-network
-  - name: pupmod-simp-nfs
-  - name: pupmod-simp-ntpd
-  - name: pupmod-simp-oath
-  - name: pupmod-simp-oddjob
-  - name: pupmod-simp-openscap
-  - name: pupmod-simp-pam
-  - name: pupmod-simp-pki
-  - name: pupmod-simp-polkit
-  - name: pupmod-simp-postfix
-  - name: pupmod-simp-pupmod
-  - name: pupmod-simp-resolv
-  - name: pupmod-simp-rkhunter
-  - name: pupmod-simp-rsync
-  - name: pupmod-simp-rsyslog
-  - name: pupmod-simp-selinux
-  - name: pupmod-simp-simp
-  - name: pupmod-simp-simp_apache
-  - name: pupmod-simp-simp_banners
-  - name: pupmod-simp-simp_bolt
-  - name: pupmod-simp-simp_firewalld
-  - name: pupmod-simp-simp_gitlab
-  - name: pupmod-simp-simp_grub
-  - name: pupmod-simp-simp_ipa
-  - name: pupmod-simp-simpkv
-  - name: pupmod-simp-simplib
-  - name: pupmod-simp-simp_nfs
-  - name: pupmod-simp-simp_openldap
-  - name: pupmod-simp-simp_options
-  - name: pupmod-simp-simp_pki_service
-  - name: pupmod-simp-simp_rsyslog
-  - name: pupmod-simp-simp_snmpd
-  - name: pupmod-simp-ssh
-  - name: pupmod-simp-sssd
-  - name: pupmod-simp-stunnel
-  - name: pupmod-simp-sudo
-  - name: pupmod-simp-sudosh
-  - name: pupmod-simp-svckill
-  - name: pupmod-simp-swap
-  - name: pupmod-simp-tcpwrappers
-  - name: pupmod-simp-tftpboot
-  - name: pupmod-simp-tlog
-  - name: pupmod-simp-tpm
-  - name: pupmod-simp-tpm2
-  - name: pupmod-simp-tuned
-  - name: pupmod-simp-upstart
-  - name: pupmod-simp-useradd
-  - name: pupmod-simp-vnc
-  - name: pupmod-simp-vox_selinux
-  - name: pupmod-simp-vsftpd
-  - name: pupmod-simp-x2go
-  - name: pupmod-simp-xinetd
-  - name: pupmod-treydock-kdump
-  - name: pupmod-trlinkin-nsswitch
-  - name: rubygem-simp-cli
-  - name: rubygem-simp-cli-doc
-  - name: rubygem-simp-cli-highline
-  - name: simp
-  - name: simp-adapter
-  - name: simp-doc
-  - name: simp-environment-skeleton
-  - name: simp-extras
-  - name: simp-gpgkeys
-  - name: simp-rsync
-  - name: simp-rsync-skeleton
-  - name: simp-selinux-policy
-  - name: simp-utils

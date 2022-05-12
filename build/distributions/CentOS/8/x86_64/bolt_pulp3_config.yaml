@@ -42,6 +42,7 @@
 epel:
   url: https://download.fedoraproject.org/pub/epel/8/Everything/x86_64/
   ###url: https://sjc.edge.kernel.org/fedora-buffet/epel/8/Everything/x86_64/
+  url:  https://download.simp-project.com/SIMP/yum/experimental/simp6/el/8Server/x86_64/epel/
   rpms:
   - name: htop        # no deps
   - name: vim-ansible # depends on appstream: vim-filesystem
@@ -70,6 +71,7 @@ epel:
 
 epel-modular:
   url: https://dl.fedoraproject.org/pub/epel/8/Modular/x86_64/
+  url: https://download.simp-project.com/SIMP/yum/experimental/simp6/el/8Server/x86_64/epel-modular/
   modules:
   - stream: 389-directory-server:stable
     # provides rpms:
@@ -77,6 +79,7 @@ epel-modular:
 
 puppet6:
   url: http://yum.puppet.com/puppet6/el/8/x86_64/
+  url: https://download.simp-project.com/SIMP/yum/experimental/simp6/el/8Server/x86_64/puppet6/
   pulp_remote_options: # example of pulp_remote_options
     policy: on_demand  # (`on_demand` is the default behavior)
   # Versions last updated: 2021/07/21
@@ -95,6 +98,7 @@ puppet6:
 
 puppet:
   url: http://yum.puppet.com/puppet7/el/8/x86_64/
+  url: https://download.simp-project.com/SIMP/yum/experimental/simp6/el/8Server/x86_64/puppet/
   rpms:
   - name: puppet-agent
   - name: puppet-bolt
@@ -105,7 +109,8 @@ puppet:
     version: ['>= 7.6.0', '< 8.0.0']
 
 BaseOS:
-  url: http://vault.centos.org/centos/8/BaseOS/x86_64/os/
+  url: http://mirror.centos.org/centos/8/BaseOS/x86_64/os/
+  url: https://download.simp-project.com/SIMP/yum/experimental/simp6/el/8Server/x86_64/BaseOS/
   packagegroups:
   - id: core
   - id: base
@@ -191,8 +196,19 @@ BaseOS:
   - name: perl-interpreter
   - name: policycoreutils
   - name: policycoreutils-python-utils
-  - name: polkit
+  - name: polkit # Temporary 6.6.0 mitigation for CVE-2021-4034
+    direct_url: http://mirror.centos.org/centos/8-stream/BaseOS/x86_64/os/Packages/polkit-0.115-13.el8_5.1.x86_64.rpm
   - name: polkit-docs
+    version: '~> 0.115-13'
+    direct_url: http://mirror.centos.org/centos/8-stream/BaseOS/x86_64/os/Packages/polkit-docs-0.115-13.el8_5.1.noarch.rpm
+  - name: polkit-devel
+    version: '~> 0.115-13'
+    direct_url: http://mirror.centos.org/centos/8-stream/BaseOS/x86_64/os/Packages/polkit-devel-0.115-13.el8_5.1.x86_64.rpm
+    version: '~> 0.115-13'
+  - name: polkit-libs
+    version: '~> 0.115-13'
+    direct_url: http://mirror.centos.org/centos/8-stream/BaseOS/x86_64/os/Packages/polkit-libs-0.115-13.el8_5.1.x86_64.rpm
+    version: '~> 0.115-13'
   - name: postfix
   - name: procps-ng
   - name: quota
@@ -252,6 +268,7 @@ BaseOS:
 
 AppStream:
   url: http://vault.centos.org/centos/8/AppStream/x86_64/os/
+  url: https://download.simp-project.com/SIMP/yum/experimental/simp6/el/8Server/x86_64/AppStream/
   modules:
     - stream: 389-ds:1.4
       # provides rpms:
@@ -378,6 +395,7 @@ AppStream:
 
 extras:
   url: http://vault.centos.org/centos/8/extras/x86_64/os/
+  url: https://download.simp-project.com/SIMP/yum/experimental/simp6/el/8Server/x86_64/extras/
   rpms:
   - name: centos-release-advanced-virtualization
   - name: centos-release-ansible-29
@@ -415,6 +433,7 @@ extras:
 
 PowerTools:
   url: http://vault.centos.org/centos/8/PowerTools/x86_64/os/
+  url: https://download.simp-project.com/SIMP/yum/experimental/simp6/el/8Server/x86_64/BaseOS/
   rpms:
     - name: elinks
     - name: lua-filesystem
@@ -422,6 +441,7 @@ PowerTools:
 
 postgresql:
   url: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-8-x86_64/
+  url: https://download.simp-project.com/SIMP/yum/experimental/simp6/el/8Server/x86_64/postgresql/
   rpms:
   - name: postgresql96
   - name: postgresql96-contrib
@@ -429,13 +449,39 @@ postgresql:
   - name: postgresql96-server
 
 simp:
-  # NOTE: Using /experimental/ during 6.6.0 EL8 development
-  #       Change to /latest/ for final release & ISO build!
-  url: https://download.simp-project.com/simp/yum/experimental/simp6/el/8Server/x86_64/simp/
-  # url: https://download.simp-project.com/SIMP/yum/releases/latest/el/8Server/x86_64/simp/
+  # FIXME: using /github/ during 6.6.0 EL8 development; change to latest when ready to release:
+  #
+  #   url: https://download.simp-project.com/SIMP/yum/releases/latest/el/8Server/x86_64/simp/
+  #
+  url: https://download.simp-project.com/simp/yum/github/simp6/el/8Server/x86_64/simp/
   rpms:
-   - name: simp
-   - name: simp-doc
+   - name: pupmod-camptocamp-systemd
+   - name: pupmod-herculesteam-augeasproviders_core
+   - name: pupmod-herculesteam-augeasproviders_grub
+   - name: pupmod-herculesteam-augeasproviders_ssh
+   - name: pupmod-herculesteam-augeasproviders_sysctl
+   - name: pupmod-onyxpoint-gpasswd
+   - name: pupmod-puppet-chrony
+   - name: pupmod-puppet-firewalld
+   - name: pupmod-puppet-gitlab
+   - name: pupmod-puppet-kmod
+   - name: pupmod-puppetlabs-apache
+   - name: pupmod-puppetlabs-concat
+   - name: pupmod-puppetlabs-hocon
+   - name: pupmod-puppetlabs-inifile
+   - name: pupmod-puppetlabs-java
+   - name: pupmod-puppetlabs-motd
+   - name: pupmod-puppetlabs-postgresql
+   - name: pupmod-puppetlabs-puppet_authorization
+   - name: pupmod-puppetlabs-puppetdb
+   - name: pupmod-puppetlabs-ruby_task_helper
+   - name: pupmod-puppetlabs-stdlib
+   - name: pupmod-puppetlabs-translate
+   - name: pupmod-puppet-posix_acl
+   - name: pupmod-puppet-snmp
+   - name: pupmod-puppet-yum
+   - name: pupmod-saz-locales
+   - name: pupmod-saz-timezone
    - name: pupmod-simp-acpid
    - name: pupmod-simp-aide
    - name: pupmod-simp-at
@@ -508,8 +554,8 @@ simp:
    - name: pupmod-simp-tcpwrappers
    - name: pupmod-simp-tftpboot
    - name: pupmod-simp-tlog
-   - name: pupmod-simp-tpm2
    - name: pupmod-simp-tpm
+   - name: pupmod-simp-tpm2
    - name: pupmod-simp-tuned
    - name: pupmod-simp-upstart
    - name: pupmod-simp-useradd
@@ -518,11 +564,16 @@ simp:
    - name: pupmod-simp-vsftpd
    - name: pupmod-simp-x2go
    - name: pupmod-simp-xinetd
+   - name: pupmod-treydock-kdump
+   - name: pupmod-trlinkin-nsswitch
    - name: rubygem-simp-cli
    - name: rubygem-simp-cli-doc
    - name: rubygem-simp-cli-highline
+   - name: simp
    - name: simp-adapter
+   - name: simp-doc
    - name: simp-environment-skeleton
+   - name: simp-extras
    - name: simp-gpgkeys
    - name: simp-rsync
    - name: simp-rsync-skeleton
