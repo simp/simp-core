@@ -115,7 +115,7 @@ mod 'puppetlabs-motd',
 
 mod 'puppetlabs-mysql',
   :git => 'https://github.com/simp/puppetlabs-mysql',
-  :tag => 'v11.0.2'
+  :tag => 'v10.4.0'
 
 mod 'puppetlabs-postgresql',
   :git => 'https://github.com/simp/puppetlabs-postgresql',
