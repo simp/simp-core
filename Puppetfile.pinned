@@ -113,10 +113,6 @@ mod 'puppetlabs-motd',
   :git => 'https://github.com/simp/puppetlabs-motd',
   :tag => 'v6.0.0'
 
-mod 'puppetlabs-mysql',
-  :git => 'https://github.com/simp/puppetlabs-mysql',
-  :tag => 'v10.4.0'
-
 mod 'puppetlabs-postgresql',
   :git => 'https://github.com/simp/puppetlabs-postgresql',
   :tag => 'v7.2.0'
