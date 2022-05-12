@@ -242,6 +242,10 @@ fi
 # Post uninstall stuff
 
 %changelog
+* May 11 2022 Chris Tessmer <chris.tessmer@onyxpoint.com> - 6.6.0-1
+- Removed:
+  - pupmod-puppetlabs-mysql
+
 * Thu Oct 07 2021 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.6.0-1
 - Updated the list of provided components
   - Additions:
