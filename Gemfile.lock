@@ -294,7 +294,7 @@ GEM
       net-telnet (~> 0.1.1)
       nokogiri (~> 1.8)
     simp-build-helpers (0.1.1)
-    simp-rake-helpers (5.13.1)
+    simp-rake-helpers (5.13.2)
       bundler (>= 1.14, < 3.0)
       pager (~> 1.0)
       parallel (~> 1.0)
@@ -371,7 +371,7 @@ DEPENDENCIES
   rspec-puppet
   simp-beaker-helpers (>= 1.23.2, < 2)
   simp-build-helpers (> 0.1, < 2.0)
-  simp-rake-helpers (>= 5.13.1, < 6)
+  simp-rake-helpers (>= 5.13.2, < 6)
   simp-rspec-puppet-facts (~> 3.1)
   terminal-table
 
