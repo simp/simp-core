@@ -159,7 +159,7 @@ mod 'simp-at',
 
 mod 'simp-auditd',
   :git => 'https://github.com/simp/pupmod-simp-auditd',
-  :tag => '8.7.0'
+  :tag => '8.7.1'
 
 mod 'simp-autofs',
   :git => 'https://github.com/simp/pupmod-simp-autofs',
