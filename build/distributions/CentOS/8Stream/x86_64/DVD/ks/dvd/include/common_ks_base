@@ -6,7 +6,6 @@ firewall --enabled --ssh
 firstboot --disable
 logging --level=info
 timezone --utc GMT
-text
 
 zerombr
 clearpart --all
