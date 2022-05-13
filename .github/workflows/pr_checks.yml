@@ -1,0 +1,52 @@
+# Validate simple & quick things, like syntax & lint
+name: PR Validation
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+env:
+  # Required to prevent all rake tasks from exploding
+  SIMP_RPM_dist: .el7
+
+jobs:
+  validate-yaml:
+    name: YAML syntax
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7
+          bundler-cache: true
+      - run: 'command -v rpm || if command -v apt-get; then apt-get update; apt-get install -y rpm; fi ||:'
+      - run: bundle exec rake check:syntax:yaml
+
+  rpm_checks:
+    name: RPM checks
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7
+          bundler-cache: true
+      - run: 'command -v rpm || if command -v apt-get; then apt-get update; apt-get install -y rpm; fi ||:'
+      - run: |
+         command -v rpm || if command -v apt-get; then apt-get update; apt-get install -y rpm; fi ||:
+         bundle exec rake check:dot_underscore
+         bundle exec rake check:test_file
+
+  module_checks:
+    name: Puppet module checks
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7
+          bundler-cache: true
+      - run: 'command -v rpm || if command -v apt-get; then apt-get update; apt-get install -y rpm; fi ||:'
+      - run: |
+          bundle exec rake metadata_lint
+          bundle exec pdk build --force --target-dir=dist
