@@ -43,7 +43,7 @@
 #
 ---
 
-simp:
+SIMP:
   # FIXME: using /github/ during 6.6.0 EL7 development; change to /latest/ when ready to release:
   #
   #   url: https://download.simp-project.com/SIMP/yum/releases/latest/el/8Server/x86_64/simp/
