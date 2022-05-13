@@ -1,0 +1,17 @@
+#authselect --enableshadow --passalgo=sha512
+network --nodns --hostname=puppet.change.me
+rootpw --iscrypted $6$sbv8f9i0$vyYWa2MAzJs40B8HjqB4hjwhJ0OOO2aaDVg6uWNITpR0frfT4e7Q7tE9X9audELOItW2ApYbqWfwY1xl60xLV0
+bootloader --location=mbr --append="fips=1" --driveorder=sda,hda --iscrypted --password=grub.pbkdf2.sha512.10000.2D21B095E2FC76C490CD568D59D8BB220BBD4110EF5444AD51DB947AB921734C7C4013AA92FCB0D64F6793EBBDD13FBE39588390ABAC78FDD3BF655E80927A40.0DEC12BE77772850244E7F4448215F081326398F26263348EBBBB576EB5627B6CCBC68835623F589DBAEAB6A38E3E08BA8234136D56C0869E01BC5DEF2E38033
+firewall --enabled --ssh
+firstboot --disable
+logging --level=info
+timezone --utc GMT
+text
+
+zerombr
+clearpart --all
+reboot
+
+%include /tmp/part-include
+%include /tmp/repo-include
+
