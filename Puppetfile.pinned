@@ -231,7 +231,7 @@ mod 'simp-ima',
 
 mod 'simp-incron',
   :git => 'https://github.com/simp/pupmod-simp-incron',
-  :tag => '0.6.0'
+  :tag => '0.6.1'
 
 mod 'simp-iptables',
   :git => 'https://github.com/simp/pupmod-simp-iptables',
@@ -444,10 +444,6 @@ mod 'simp-tpm2',
 mod 'simp-tuned',
   :git => 'https://github.com/simp/pupmod-simp-tuned',
   :tag => '0.3.0'
-
-mod 'simp-upstart',
-  :git => 'https://github.com/simp/pupmod-simp-upstart',
-  :tag => '6.2.0'
 
 mod 'simp-useradd',
   :git => 'https://github.com/simp/pupmod-simp-useradd',
