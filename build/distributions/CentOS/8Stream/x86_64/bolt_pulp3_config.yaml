@@ -437,9 +437,33 @@ simp:
   url: https://download.simp-project.com/simp/yum/unstable/simp6/el/8Server/x86_64/simp/
   # url: https://download.simp-project.com/SIMP/yum/releases/latest/el/8Server/x86_64/simp/
   rpms:
+   - name: pupmod-camptocamp-systemd
+   - name: pupmod-herculesteam-augeasproviders_core
+   - name: pupmod-herculesteam-augeasproviders_grub
+   - name: pupmod-herculesteam-augeasproviders_ssh
+   - name: pupmod-herculesteam-augeasproviders_sysctl
    - name: pupmod-onyxpoint-gpasswd
+   - name: pupmod-puppet-chrony
+   - name: pupmod-puppet-firewalld
+   - name: pupmod-puppet-gitlab
+   - name: pupmod-puppet-kmod
    - name: pupmod-puppetlabs-apache
+   - name: pupmod-puppetlabs-concat
+   - name: pupmod-puppetlabs-hocon
+   - name: pupmod-puppetlabs-inifile
+   - name: pupmod-puppetlabs-java
    - name: pupmod-puppetlabs-motd
+   - name: pupmod-puppetlabs-postgresql
+   - name: pupmod-puppetlabs-puppet_authorization
+   - name: pupmod-puppetlabs-puppetdb
+   - name: pupmod-puppetlabs-ruby_task_helper
+   - name: pupmod-puppetlabs-stdlib
+   - name: pupmod-puppetlabs-translate
+   - name: pupmod-puppet-posix_acl
+   - name: pupmod-puppet-snmp
+   - name: pupmod-puppet-yum
+   - name: pupmod-saz-locales
+   - name: pupmod-saz-timezone
    - name: pupmod-simp-acpid
    - name: pupmod-simp-aide
    - name: pupmod-simp-at
@@ -522,6 +546,8 @@ simp:
    - name: pupmod-simp-vsftpd
    - name: pupmod-simp-x2go
    - name: pupmod-simp-xinetd
+   - name: pupmod-treydock-kdump
+   - name: pupmod-trlinkin-nsswitch
    - name: rubygem-simp-cli
    - name: rubygem-simp-cli-doc
    - name: rubygem-simp-cli-highline
@@ -529,6 +555,7 @@ simp:
    - name: simp-adapter
    - name: simp-doc
    - name: simp-environment-skeleton
+   - name: simp-extras
    - name: simp-gpgkeys
    - name: simp-rsync
    - name: simp-rsync-skeleton

@@ -41,7 +41,6 @@
 
 epel:
   url: https://download.fedoraproject.org/pub/epel/8/Everything/x86_64/
-  ###url: https://sjc.edge.kernel.org/fedora-buffet/epel/8/Everything/x86_64/
   url:  https://download.simp-project.com/SIMP/yum/experimental/simp6/el/8Server/x86_64/epel/
   rpms:
   - name: htop        # no deps
@@ -350,9 +349,9 @@ AppStream:
   - name: openscap-scanner
   - name: openscap-utils
   - name: openssh-askpass
-  - name: pesign
   - name: perl-Mozilla-LDAP
   - name: perl-NetAddr-IP
+  - name: pesign
   - name: python3-argcomplete # not part of a module
   - name: redhat-lsb
   - name: redhat-lsb-core
@@ -374,8 +373,8 @@ AppStream:
   - name: rsyslog-pgsql
   - name: rsyslog-snmp
   - name: scap-security-guide
-  - name: sysstat
   - name: sysfsutils
+  - name: sysstat
   - name: tftp
   - name: tftp-server
   - name: tigervnc
@@ -433,7 +432,7 @@ extras:
 
 PowerTools:
   url: http://vault.centos.org/centos/8/PowerTools/x86_64/os/
-  url: https://download.simp-project.com/SIMP/yum/experimental/simp6/el/8Server/x86_64/BaseOS/
+  url: https://download.simp-project.com/SIMP/yum/experimental/simp6/el/8Server/x86_64/PowerTools/
   rpms:
     - name: elinks
     - name: lua-filesystem
@@ -449,11 +448,11 @@ postgresql:
   - name: postgresql96-server
 
 simp:
-  # FIXME: using /github/ during 6.6.0 EL8 development; change to latest when ready to release:
+  # FIXME: using /experimental/ during 6.6.0 EL8 development; change to latest when ready to release:
   #
   #   url: https://download.simp-project.com/SIMP/yum/releases/latest/el/8Server/x86_64/simp/
   #
-  url: https://download.simp-project.com/simp/yum/github/simp6/el/8Server/x86_64/simp/
+  url: https://download.simp-project.com/simp/yum/experimental/simp6/el/8Server/x86_64/simp/
   rpms:
    - name: pupmod-camptocamp-systemd
    - name: pupmod-herculesteam-augeasproviders_core
@@ -537,13 +536,13 @@ simp:
    - name: pupmod-simp-simp_gitlab
    - name: pupmod-simp-simp_grub
    - name: pupmod-simp-simp_ipa
-   - name: pupmod-simp-simpkv
-   - name: pupmod-simp-simplib
    - name: pupmod-simp-simp_nfs
    - name: pupmod-simp-simp_openldap
    - name: pupmod-simp-simp_options
    - name: pupmod-simp-simp_rsyslog
    - name: pupmod-simp-simp_snmpd
+   - name: pupmod-simp-simpkv
+   - name: pupmod-simp-simplib
    - name: pupmod-simp-ssh
    - name: pupmod-simp-sssd
    - name: pupmod-simp-stunnel
