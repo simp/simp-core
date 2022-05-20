@@ -124,7 +124,7 @@ GEM
     in-parallel (0.1.17)
     inifile (3.0.0)
     jgrep (1.5.4)
-    json (2.6.1)
+    json (2.6.2)
     json-schema (2.8.0)
       addressable (>= 2.4)
     json_pure (2.5.1)
@@ -160,7 +160,7 @@ GEM
     pastel (0.8.0)
       tty-color (~> 0.5)
     pathspec (0.2.1)
-    pdk (2.4.0)
+    pdk (2.5.0)
       bundler (>= 1.15.0, < 3.0.0)
       childprocess (~> 4.0.0)
       concurrent-ruby (~> 1.1.5)
@@ -213,7 +213,7 @@ GEM
     puppet-strings (2.9.0)
       rgen
       yard (~> 0.9.5)
-    puppet-syntax (3.1.0)
+    puppet-syntax (3.2.1)
       puppet (>= 5)
       rake
     puppet_forge (3.2.0)
