@@ -6,7 +6,7 @@ yum-config-manager --enable extras
 yum install -y acl ||:
 yum install -y epel-release
 
-yum install -y openssl util-linux augeas-devel genisoimage git gnupg2 libicu-devel libxml2 libxml2-devel libxslt libxslt-devel which ruby-devel
+yum install -y openssl util-linux augeas-devel genisoimage isomd5sum git gnupg2 libicu-devel libxml2 libxml2-devel libxslt libxslt-devel which ruby-devel
 yum install -y rpm-build rpmdevtools rpm-devel rpm-sign yum-utils createrepo
 
 yum install -y centos-release-scl python-pip python-virtualenv fontconfig dejavu-sans-fonts dejavu-sans-mono-fonts dejavu-serif-fonts dejavu-fonts-common libjpeg-devel zlib-devel openssl-devel
