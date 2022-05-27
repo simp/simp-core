@@ -95,7 +95,7 @@ mod 'puppetlabs-apache',
 
 mod 'puppetlabs-concat',
   :git => 'https://github.com/simp/puppetlabs-concat',
-  :tag => 'v6.4.0'
+  :tag => 'v7.0.1'
 
 mod 'puppetlabs-hocon',
   :git => 'https://github.com/simp/pupmod-puppetlabs-hocon',
@@ -159,7 +159,7 @@ mod 'simp-at',
 
 mod 'simp-auditd',
   :git => 'https://github.com/simp/pupmod-simp-auditd',
-  :tag => '8.7.1'
+  :tag => '8.7.3'
 
 mod 'simp-autofs',
   :git => 'https://github.com/simp/pupmod-simp-autofs',
@@ -175,7 +175,7 @@ mod 'simp-clamav',
 
 mod 'simp-compliance_markup',
   :git => 'https://github.com/simp/pupmod-simp-compliance_markup',
-  :tag => '3.2.0'
+  :tag => '3.2.2'
 
 mod 'simp-cron',
   :git => 'https://github.com/simp/pupmod-simp-cron',
@@ -474,7 +474,7 @@ mod 'simp-x2go',
 
 mod 'simp-xinetd',
   :git => 'https://github.com/simp/pupmod-simp-xinetd',
-  :tag => '4.3.0'
+  :tag => '4.3.1'
 
 mod 'treydock-kdump',
   :git => 'https://github.com/simp/pupmod-treydock-kdump',

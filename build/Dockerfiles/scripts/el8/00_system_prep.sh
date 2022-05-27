@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-sed -i -e 's@^mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=\([^&/=$]*\).*@baseurl=http://vault.centos.org/centos/$releasever/\1/$basearch/os/@g' /etc/yum.repos.d/CentOS-Linux-*.repo
+sed -i -e 's@^mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=\([^&/=$]*\).*@baseurl=http://vault.centos.org/centos/$releasever/\1/$basearch/os/@g' /etc/yum.repos.d/CentOS-*.repo
 dnf clean all
 dnf makecache
 
