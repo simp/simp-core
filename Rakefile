@@ -200,6 +200,65 @@ def update_module_puppet_forge_status!(mod)
   end
 end
 
+def update_module_build_reposync_status!(mod)
+  require 'simp/rpm'
+
+  require 'highline'
+
+  local_info = []
+
+  # Switch vox to 'puppet'
+  mod_owner = mod[:owner]
+  if mod_owner == 'voxpupuli'
+    mod_owner = 'puppet'
+  end
+
+  rpm_name = 'pupmod-' + mod_owner + '-' + mod[:id]
+  rpm_altname = mod[:remote].split('/').last
+
+  Dir.glob('build/distributions/*').each do |distdir|
+    local_dist = File.basename(distdir)
+
+    Dir.glob("#{distdir}/*") do |distreldir|
+      local_distrel = File.basename(distreldir)
+
+      require 'find'
+
+      Find.find(distreldir) do |syncdir|
+        next unless File.directory?(syncdir) && (File.basename(syncdir) == 'reposync')
+
+        simpdir = File.join(syncdir, 'SIMP')
+        next unless File.directory?(simpdir)
+
+        Dir.chdir(simpdir) do
+          Find.find('.') do |rpm|
+            next unless rpm.split('.').last == 'rpm'
+            next unless rpm =~ %r{/(#{rpm_name}|#{rpm_altname})-\d.+\.rpm$}
+
+            osrel = "#{local_dist}-#{local_distrel}"
+            rpm_info = Simp::RPM.new(File.realpath(rpm))
+
+            output = "#{rpm_info.version} #{osrel}"
+            if rpm_info.version == mod[:version].sub(/^v/, '')
+              output = "* #{output}"
+            else
+              output = "! #{output}"
+            end
+
+            local_info.push(output)
+          end
+        end
+      end
+    end
+  end
+
+  if local_info.empty?
+    mod[:reposync] = 'unknown'
+  else
+    mod[:reposync] = "#{local_info.join("\n")}"
+  end
+end
+
 def print_module_status(target_module)
   require 'terminal-table'
 
@@ -213,13 +272,14 @@ def print_module_status(target_module)
     [
       "#{mod[:owner]}-#{mod[:id]}",
       mod[:version],
-      mod[:published]['GitHub'],
-      mod[:published]['GitHub InSync'],
-      mod[:published]['Puppet Forge']
+      mod[:published] && mod[:published]['GitHub'],
+      mod[:reposync] || '',
+      mod[:published] && mod[:published]['GitHub InSync'],
+      mod[:published] && mod[:published]['Puppet Forge']
     ]
   }
   table = Terminal::Table.new(
-    :headings => ['Name', 'Version', 'GitHub' , 'GH InSync', 'Forge'],
+    :headings => ['Name', 'Version', 'GitHub' , 'Reposync', 'GH InSync', 'Forge'],
     :rows => rows
   )
 
