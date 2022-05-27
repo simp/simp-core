@@ -34,10 +34,13 @@ namespace :puppetfile do
   Check all tagged modules in the Puppetfile and determine if they have been
   published to the Puppet Forge and/or GitHub as appropriate
   EOM
-  task :check, [:puppetfile] do |t,args|
+  task :check, [:puppetfile, :local_only] do |t,args|
     # TODO: Add local caching for repeated queries
 
     args.with_defaults(:puppetfile => 'tracking')
+    args.with_defaults(:local_only => 'no')
+
+    local_only = args[:local_only] != 'no'
 
     base_dir = File.dirname(File.dirname(__FILE__))
     puppetfile = "#{base_dir}/Puppetfile." + args[:puppetfile]
@@ -48,11 +51,15 @@ namespace :puppetfile do
       print "Processing: #{mod[:owner]}-#{id}".ljust(55,' ') + "\r"
       $stdout.flush
 
-      update_module_github_status!(mod)
-      update_module_puppet_forge_status!(mod)
+      unless local_only
+        update_module_github_status!(mod)
+        update_module_puppet_forge_status!(mod)
+      end
+
+      update_module_build_reposync_status!(mod)
 
       # Be kind, rewind...
-      sleep 0.5
+      sleep 0.5 unless local_only
     end
 
     # Return past the status line
