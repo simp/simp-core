@@ -448,11 +448,11 @@ postgresql:
   - name: postgresql96-server
 
 SIMP:
-  # FIXME: using /experimental/ during 6.6.0 EL8 development; change to latest when ready to release:
+  # FIXME: using /github/ during 6.6.0 EL7 development; change to /latest/ when ready to release:
   #
-  #   url: https://download.simp-project.com/SIMP/yum/releases/latest/el/8Server/x86_64/simp/
+  #   url: https://download.simp-project.com/simp/yum/releases/latest/el/8server/x86_64/simp/
   #
-  url: https://download.simp-project.com/simp/yum/experimental/simp6/el/8Server/x86_64/simp/
+  url: https://download.simp-project.com/simp/yum/github/simp6/el/8Server/x86_64/simp/
   rpms:
    - name: pupmod-camptocamp-systemd
    - name: pupmod-herculesteam-augeasproviders_core
@@ -556,7 +556,6 @@ SIMP:
    - name: pupmod-simp-tpm
    - name: pupmod-simp-tpm2
    - name: pupmod-simp-tuned
-   - name: pupmod-simp-upstart
    - name: pupmod-simp-useradd
    - name: pupmod-simp-vnc
    - name: pupmod-simp-vox_selinux
