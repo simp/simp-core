@@ -178,8 +178,8 @@
 # Allows for version bumps on the requirements
 'puppet_authorization':
   :requires:
-    - 'pupmod-puppetlabs-concat'
-    - 'pupmod-puppetlabs-stdlib'
+    - ['pupmod-puppetlabs-concat', '1.1.1', '8.0.0']
+    - ['pupmod-puppetlabs-stdlib', '4.6.0', '9.0.0']
 
 # Reverted back to saz-timezone
 'timezone':
@@ -187,4 +187,4 @@
     'pupmod-simp-timezone': '5.0.3-0'
   :requires:
     # exclude pupmod-stm-debconf
-    - 'pupmod-puppetlabs-stdlib'
+    - ['pupmod-puppetlabs-stdlib', '2.6.0', '8.0.0']
