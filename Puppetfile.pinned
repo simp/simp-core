@@ -63,15 +63,15 @@ moduledir 'src/puppet/modules'
 
 mod 'puppet-kmod',
   :git => 'https://github.com/simp/pupmod-voxpupuli-kmod.git',
-  :tag => 'v3.0.0'
+  :tag => 'v3.2.0'
 
-mod 'camptocamp-systemd',
+mod 'puppet-systemd',
   :git => 'https://github.com/simp/puppet-systemd.git',
-  :tag => '2.12.0'
+  :tag => 'v3.9.0'
 
 mod 'herculesteam-augeasproviders_core',
   :git => 'https://github.com/simp/augeasproviders_core',
-  :tag => '2.7.0'
+  :tag => 'v3.2.0'
 
 mod 'herculesteam-augeasproviders_grub',
   :git => 'https://github.com/simp/augeasproviders_grub',
@@ -115,11 +115,11 @@ mod 'puppetlabs-motd',
 
 mod 'puppetlabs-postgresql',
   :git => 'https://github.com/simp/puppetlabs-postgresql',
-  :tag => 'v7.2.0'
+  :tag => 'v8.0.0'
 
 mod 'puppetlabs-puppetdb',
   :git => 'https://github.com/simp/pupmod-puppetlabs-puppetdb',
-  :tag => '7.5.0'
+  :tag => '7.10.0'
 
 mod 'puppetlabs-puppet_authorization',
   :git => 'https://github.com/simp/puppetlabs-puppet_authorization.git',
@@ -335,7 +335,7 @@ mod 'simp-selinux',
 
 mod 'simp-simp',
   :git => 'https://github.com/simp/pupmod-simp-simp',
-  :tag => '4.16.3'
+  :tag => '4.16.4'
 
 mod 'simp-simpkv',
   :git => 'https://github.com/simp/pupmod-simp-simpkv',
@@ -363,7 +363,7 @@ mod 'simp-simp_firewalld',
 
 mod 'simp-simp_gitlab',
   :git => 'https://github.com/simp/pupmod-simp-simp_gitlab',
-  :tag => '0.7.0'
+  :tag => '0.7.1'
 
 mod 'simp-simp_grub',
   :git => 'https://github.com/simp/pupmod-simp-simp_grub',
@@ -498,14 +498,14 @@ mod 'voxpupuli-posix_acl',
 
 mod 'voxpupuli-gitlab',
   :git => 'https://github.com/simp/puppet-gitlab.git',
-  :tag => 'v7.1.0'
+  :tag => 'v8.0.0'
 
 mod 'voxpupuli-snmp',
   :git => 'https://github.com/simp/puppet-snmp',
-  :tag => 'v5.1.1'
+  :tag => 'v6.0.0'
 
 mod 'voxpupuli-yum',
   :git => 'https://github.com/simp/voxpupuli-yum',
-  :tag => 'v4.3.0'
+  :tag => 'v5.4.0'
 
 # vi:syntax=ruby

@@ -168,9 +168,18 @@
     'pupmod-razorsedge-snmp': '3.9.0-0'
 
 # Camptocamp has assumed ownership of the systemd project
+# Subsequently, Voxpupuly assumed ownership of the systemd project
 'systemd':
   :obsoletes:
     'pupmod-simp-systemd': '2.1.0-0'
+    'pupmod-camptocamp-systemd': '2-12.0-1'
+
+# Out of maintenance, trying to get re-opened
+# Allows for version bumps on the requirements
+'puppet_authorization':
+  :requires:
+    - 'pupmod-puppetlabs-concat'
+    - 'pupmod-puppetlabs-stdlib'
 
 # Reverted back to saz-timezone
 'timezone':
