@@ -67,7 +67,7 @@ mod 'puppet-kmod',
 
 mod 'puppet-systemd',
   :git => 'https://github.com/simp/puppet-systemd.git',
-  :tag => 'v3.9.0'
+  :tag => 'v3.10.0'
 
 mod 'herculesteam-augeasproviders_core',
   :git => 'https://github.com/simp/augeasproviders_core',
@@ -211,7 +211,7 @@ mod 'simp-freeradius',
 
 mod 'simp-gdm',
   :git => 'https://github.com/simp/pupmod-simp-gdm',
-  :tag => '7.3.0'
+  :tag => '7.4.0'
 
 mod 'simp-gnome',
   :git => 'https://github.com/simp/pupmod-simp-gnome',
@@ -275,7 +275,7 @@ mod 'simp-network',
 
 mod 'simp-nfs',
   :git => 'https://github.com/simp/pupmod-simp-nfs',
-  :tag => '7.1.0'
+  :tag => '7.2.0'
 
 mod 'simp-ntpd',
   :git => 'https://github.com/simp/pupmod-simp-ntpd',
