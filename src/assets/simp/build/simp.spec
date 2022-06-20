@@ -29,7 +29,7 @@ Obsoletes: pupmod-simp-simpcat <= 6.0.3
 
 # Core SIMP Requirements
 Requires: pupmod-puppet-kmod >= 3.2.0, pupmod-puppet-kmod < 4.0.0
-Requires: pupmod-puppet-scamptocampystemd >= 3.9.0, pupmod-puppet-systemd < 4.0.0
+Requires: pupmod-puppet-scamptocampystemd >= 3.10.0, pupmod-puppet-systemd < 4.0.0
 Requires: pupmod-herculesteam-augeasproviders_core >= 3.2.0, pupmod-herculesteam-augeasproviders_core < 4.0.0
 Requires: pupmod-herculesteam-augeasproviders_grub >= 3.2.0, pupmod-herculesteam-augeasproviders_grub < 4.0.0
 Requires: pupmod-herculesteam-augeasproviders_ssh >= 4.0.0, pupmod-herculesteam-augeasproviders_ssh < 5.0.0
@@ -164,7 +164,7 @@ Requires: pupmod-treydock-kdump >= 1.0.0
 Requires: pupmod-simp-autofs >= 7.1.0
 Requires: pupmod-simp-dconf >= 0.2.0
 Requires: pupmod-simp-freeradius >= 8.2.0
-Requires: pupmod-simp-gdm >= 7.3.0
+Requires: pupmod-simp-gdm >= 7.4.0
 Requires: pupmod-simp-gnome >= 9.1.0
 Requires: pupmod-simp-hirs_provisioner >= 0.2.0
 Requires: pupmod-simp-ima >= 0.4.0
@@ -174,7 +174,7 @@ Requires: pupmod-simp-libvirt >= 5.5.0
 Requires: pupmod-simp-mate >= 1.2.0
 Requires: pupmod-simp-mozilla >= 5.3.0
 Requires: pupmod-simp-network >= 6.3.0
-Requires: pupmod-simp-nfs >= 7.1.0
+Requires: pupmod-simp-nfs >= 7.2.0
 Requires: pupmod-simp-oath >= 0.3.0
 Requires: pupmod-simp-openscap >= 6.4.0
 Requires: pupmod-simp-simp_gitlab >= 0.7.1
