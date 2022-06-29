@@ -159,7 +159,7 @@ mod 'simp-at',
 
 mod 'simp-auditd',
   :git => 'https://github.com/simp/pupmod-simp-auditd',
-  :tag => '8.7.3'
+  :tag => '8.7.5'
 
 mod 'simp-autofs',
   :git => 'https://github.com/simp/pupmod-simp-autofs',
@@ -183,7 +183,7 @@ mod 'simp-cron',
 
 mod 'simp-crypto_policy',
   :git => 'https://github.com/simp/pupmod-simp-crypto_policy',
-  :tag => '0.2.0'
+  :tag => '0.2.1'
 
 mod 'simp-dconf',
   :git => 'https://github.com/simp/pupmod-simp-dconf',
@@ -335,7 +335,7 @@ mod 'simp-selinux',
 
 mod 'simp-simp',
   :git => 'https://github.com/simp/pupmod-simp-simp',
-  :tag => '4.16.3'
+  :tag => '4.16.4'
 
 mod 'simp-simpkv',
   :git => 'https://github.com/simp/pupmod-simp-simpkv',
@@ -363,7 +363,7 @@ mod 'simp-simp_firewalld',
 
 mod 'simp-simp_gitlab',
   :git => 'https://github.com/simp/pupmod-simp-simp_gitlab',
-  :tag => '0.7.0'
+  :tag => '0.7.1'
 
 mod 'simp-simp_grub',
   :git => 'https://github.com/simp/pupmod-simp-simp_grub',
