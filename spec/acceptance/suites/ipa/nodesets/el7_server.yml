@@ -25,7 +25,6 @@ HOSTS:
     box:        <%= box_7 %>
     hypervisor: <%= hypervisor %>
     vagrant_memsize: 4608
-    vagrant_cpus: 2
 
   ipa:
     roles:
@@ -35,7 +34,6 @@ HOSTS:
     box:        <%= box_7 %>
     hypervisor: <%= hypervisor %>
     vagrant_memsize: 2048
-    vagrant_cpus: 2
 
   agent-el7:
     roles:
@@ -47,9 +45,9 @@ HOSTS:
     hypervisor: <%= hypervisor %>
 
 CONFIG:
+  vagrant_cpus: 2
   log_level: verbose
   type:      aio
-  vagrant_memsize: 256
   ssh:
     keepalive: true
     keepalive_interval: 10
