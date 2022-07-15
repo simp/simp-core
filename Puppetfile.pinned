@@ -199,7 +199,7 @@ mod 'simp-dhcp',
 
 mod 'simp-ds389',
   :git => 'https://github.com/simp/pupmod-simp-ds389',
-  :tag => '0.1.2'
+  :tag => '0.2.0'
 
 mod 'simp-fips',
   :git => 'https://github.com/simp/pupmod-simp-fips',
@@ -355,7 +355,7 @@ mod 'simp-simp_banners',
 
 mod 'simp-simp_ds389',
   :git => 'https://github.com/simp/pupmod-simp-simp_ds389',
-  :tag => '0.2.0'
+  :tag => '0.1.1'
 
 mod 'simp-simp_firewalld',
   :git => 'https://github.com/simp/pupmod-simp-simp_firewalld',
