@@ -73,7 +73,7 @@ def update_module_github_status!(mod)
   github_releases_url = mod_remote + '/releases'
 
   begin
-    github_query = Nokogiri::HTML(open(github_releases_url).read)
+    github_query = Nokogiri::HTML(URI.open(github_releases_url).read)
 
     published_versions = github_query.xpath('//a/@href').map(&:value).select{|x| x.include?('releases/tag/')}.map{|x| x.split('/').last}
 
@@ -93,7 +93,7 @@ def update_module_github_status!(mod)
   rescue
     begin
       github_releases_url = mod_remote + '/tags'
-      github_query = Nokogiri::HTML(open(github_releases_url).read)
+      github_query = Nokogiri::HTML(URI.open(github_releases_url).read)
 
       if github_query.xpath('//a/@title').map(&:value).include?(mod[:version])
         mod[:published]['GitHub'] = 'tag'
@@ -133,7 +133,16 @@ def update_module_github_status!(mod)
       'utils/'
     ]
 
-    diff_result = Nokogiri::HTML(open(github_diff_uri).read)
+
+    begin
+      diff_result = Nokogiri::HTML(URI.open(github_diff_uri).read)
+    rescue OpenURI::HTTPError => e
+      raise e unless e.message =~ /429|Too many requests/
+      warn "WARNING: Encountered '#{e.message}' when reading from '#{github_diff_uri}'"
+      warn "         waiting 90 seconds before retrying..."
+      sleep 90
+      retry
+    end
     diff_items = diff_result
       .xpath("//a[contains(@href,'#diff-')]")
       .map{|x| x.text}
@@ -153,7 +162,7 @@ def update_module_github_status!(mod)
 
   # See if we're a module and update the version information if necessary
   begin
-    open(
+    URI.open(
       mod_remote.gsub('github.com','raw.githubusercontent.com') +
       '/' +
       mod[:desired_ref] +
@@ -191,7 +200,7 @@ def update_module_puppet_forge_status!(mod)
         mod_owner = 'puppet'
       end
 
-      open(URI.parse(forge_url_base + mod_owner + '-' + mod[:id] + '-' + mod[:version])) do |fh|
+      URI.open(URI.parse(forge_url_base + mod_owner + '-' + mod[:id] + '-' + mod[:version])) do |fh|
         mod[:published]['Puppet Forge'] = 'yes'
       end
     rescue StandardError => e
