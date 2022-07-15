@@ -25,7 +25,6 @@ HOSTS:
     box:        <%= box_8 %>
     hypervisor: <%= hypervisor %>
     vagrant_memsize: 4608
-    vagrant_cpus: 2
 
   agent-el8:
     roles:
@@ -33,7 +32,6 @@ HOSTS:
     platform:   el-8-x86_64
     box:        <%= box_8 %>
     hypervisor: <%= hypervisor %>
-    vagrant_memsize: 512
 
   agent-el7:
     roles:
@@ -44,9 +42,9 @@ HOSTS:
     hypervisor: <%= hypervisor %>
 
 CONFIG:
+  vagrant_cpus: 2
   log_level: verbose
   type:      aio
-  vagrant_memsize: 256
   synced_folder: disabled
   ssh:
     keepalive: true
