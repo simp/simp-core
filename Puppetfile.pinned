@@ -103,7 +103,7 @@ mod 'puppetlabs-hocon',
 
 mod 'puppetlabs-inifile',
   :git => 'https://github.com/simp/puppetlabs-inifile',
-  :tag => 'v4.1.0'
+  :tag => 'v5.3.0'
 
 mod 'puppetlabs-java',
   :git => 'https://github.com/simp/puppetlabs-java',
