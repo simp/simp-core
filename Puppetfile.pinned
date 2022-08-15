@@ -490,7 +490,7 @@ mod 'voxpupuli-chrony',
 
 mod 'voxpupuli-firewalld',
   :git => 'https://github.com/simp/pupmod-voxpupuli-firewalld',
-  :tag => 'v4.4.0'
+  :tag => 'v4.5.1'
 
 mod 'voxpupuli-posix_acl',
   :git => 'https://github.com/simp/pupmod-voxpupuli-posix_acl',
