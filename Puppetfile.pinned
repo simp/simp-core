@@ -187,7 +187,7 @@ mod 'simp-crypto_policy',
 
 mod 'simp-dconf',
   :git => 'https://github.com/simp/pupmod-simp-dconf',
-  :tag => '0.2.0'
+  :tag => '0.2.2'
 
 mod 'simp-deferred_resources',
   :git => 'https://github.com/simp/pupmod-simp-deferred_resources',
@@ -259,7 +259,7 @@ mod 'simp-logrotate',
 
 mod 'simp-mate',
   :git => 'https://github.com/simp/pupmod-simp-mate',
-  :tag => '1.2.0'
+  :tag => '1.3.0'
 
 mod 'simp-mozilla',
   :git => 'https://github.com/simp/pupmod-simp-mozilla',
@@ -271,7 +271,7 @@ mod 'simp-named',
 
 mod 'simp-network',
   :git => 'https://github.com/simp/pupmod-simp-network',
-  :tag => '6.3.0'
+  :tag => '6.3.1'
 
 mod 'simp-nfs',
   :git => 'https://github.com/simp/pupmod-simp-nfs',
@@ -307,7 +307,7 @@ mod 'simp-polkit',
 
 mod 'simp-postfix',
   :git => 'https://github.com/simp/pupmod-simp-postfix',
-  :tag => '5.6.0'
+  :tag => '5.7.0'
 
 mod 'simp-pupmod',
   :git => 'https://github.com/simp/pupmod-simp-pupmod',
@@ -407,7 +407,7 @@ mod 'simp-stunnel',
 
 mod 'simp-sudo',
   :git => 'https://github.com/simp/pupmod-simp-sudo',
-  :tag => '5.5.0'
+  :tag => '5.5.1'
 
 mod 'simp-sudosh',
   :git => 'https://github.com/simp/pupmod-simp-sudosh',
@@ -482,7 +482,7 @@ mod 'treydock-kdump',
 
 mod 'trlinkin-nsswitch',
   :git => 'https://github.com/simp/puppet-nsswitch',
-  :tag => '2.2.0'
+  :tag => '2.3.0'
 
 mod 'voxpupuli-chrony',
   :git => 'https://github.com/simp/pupmod-voxpupuli-chrony',
