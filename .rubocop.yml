@@ -59,8 +59,8 @@ Style/BlockDelimiters:
     be consistent then.
   EnforcedStyle: braces_for_chaining
 Style/ClassAndModuleChildren:
-  Description: Compact style reduces the required amount of indentation.
-  EnforcedStyle: compact
+  Description: Nested style is safest for all implementations
+  EnforcedStyle: nested
 Style/EmptyElse:
   Description: Enforce against empty else clauses, but allow `nil` for clarity.
   EnforcedStyle: empty
