@@ -30,7 +30,7 @@ Obsoletes: pupmod-simp-simpcat <= 6.0.3
 # Core SIMP Requirements
 Requires: pupmod-puppet-kmod >= 3.2.0, pupmod-puppet-kmod < 4.0.0
 Requires: pupmod-puppet-systemd >= 3.10.0, pupmod-puppet-systemd < 4.0.0
-Requires: pupmod-herculesteam-augeasproviders_core >= 3.2.0, pupmod-herculesteam-augeasproviders_core < 4.0.0
+Requires: pupmod-herculesteam-augeasproviders_core >= 3.1.0, pupmod-herculesteam-augeasproviders_core < 4.0.0
 Requires: pupmod-herculesteam-augeasproviders_grub >= 3.2.0, pupmod-herculesteam-augeasproviders_grub < 4.0.0
 Requires: pupmod-herculesteam-augeasproviders_ssh >= 4.0.0, pupmod-herculesteam-augeasproviders_ssh < 5.0.0
 Requires: pupmod-herculesteam-augeasproviders_sysctl >= 2.6.2 pupmod-herculesteam-augeasproviders_sysctl < 3.0.0

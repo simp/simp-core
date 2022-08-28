@@ -71,7 +71,7 @@ mod 'puppet-systemd',
 
 mod 'herculesteam-augeasproviders_core',
   :git => 'https://github.com/simp/augeasproviders_core',
-  :tag => 'v3.2.0'
+  :tag => '3.1.0'
 
 mod 'herculesteam-augeasproviders_grub',
   :git => 'https://github.com/simp/augeasproviders_grub',
