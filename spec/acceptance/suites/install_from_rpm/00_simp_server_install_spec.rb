@@ -3,7 +3,7 @@ require 'spec_helper_integration'
 test_name 'Install SIMP modules and assets via RPM from internet repos'
 
 # facts gathered here are executed when the file first loads and
-# use the factor gem temporarily installed into system ruby
+# use the facter gem temporarily installed into system ruby
 master = only_host_with_role(hosts, 'master')
 majver = fact_on(master, 'operatingsystemmajrelease')
 osname = fact_on(master, 'operatingsystem')
