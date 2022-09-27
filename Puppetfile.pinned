@@ -66,7 +66,7 @@ mod 'puppet-kmod',
   :tag => 'v3.2.0'
 
 mod 'puppet-systemd',
-  :git => 'https://github.com/simp/puppet-systemd.git',
+  :git => 'https://github.com/simp/pupmod-voxpupuli-systemd',
   :tag => 'v3.10.0'
 
 mod 'herculesteam-augeasproviders_core',
@@ -122,7 +122,7 @@ mod 'puppetlabs-puppetdb',
   :tag => '7.10.0'
 
 mod 'puppetlabs-puppet_authorization',
-  :git => 'https://github.com/simp/puppetlabs-puppet_authorization.git',
+  :git => 'https://github.com/simp/pupmod-puppetlabs-puppet_authorization',
   :tag => '0.5.1'
 
 mod 'puppetlabs-ruby_task_helper',
@@ -142,7 +142,7 @@ mod 'saz-locales',
   :tag => 'v2.5.1'
 
 mod 'saz-timezone',
-  :git => 'https://github.com/simp/pupmod-simp-timezone',
+  :git => 'https://github.com/simp/pupmod-saz-timezone',
   :tag => 'v6.1.0'
 
 mod 'simp-acpid',
@@ -481,8 +481,8 @@ mod 'treydock-kdump',
   :tag => 'v1.0.0'
 
 mod 'trlinkin-nsswitch',
-  :git => 'https://github.com/simp/puppet-nsswitch',
-  :tag => '2.3.0'
+  :git => 'https://github.com/simp/pupmod-trlinkin-nsswitch',
+  :tag => 'simp-2.3.0'
 
 mod 'voxpupuli-chrony',
   :git => 'https://github.com/simp/pupmod-voxpupuli-chrony',
@@ -501,11 +501,11 @@ mod 'voxpupuli-gitlab',
   :tag => 'v8.0.0'
 
 mod 'voxpupuli-snmp',
-  :git => 'https://github.com/simp/puppet-snmp',
+  :git => 'https://github.com/simp/pupmod-voxpupuli-snmp',
   :tag => 'v6.0.0'
 
 mod 'voxpupuli-yum',
-  :git => 'https://github.com/simp/voxpupuli-yum',
+  :git => 'https://github.com/simp/pupmod-voxpupuli-yum',
   :tag => 'v5.4.0'
 
 # vi:syntax=ruby
