@@ -432,13 +432,13 @@ postgresql:
   - name: postgresql96-server
 
 SIMP:
-  # FIXME: using /github/ during 6.6.0 EL8 development; change to latest when ready to release:
+  # FIXME: using /experimental/ during 6.6.0 EL8 development; change to latest when ready to release:
   #
   #   url: https://download.simp-project.com/simp/yum/releases/latest/el/8server/x86_64/simp/
   #
-  url: https://download.simp-project.com/simp/yum/github/simp6/el/8Server/x86_64/simp/
+  url: https://download.simp-project.com/simp/yum/experimental/simp6/el/8Server/x86_64/simp/
   rpms:
-   - name: pupmod-camptocamp-systemd
+   - name: pupmod-puppet-systemd
    - name: pupmod-herculesteam-augeasproviders_core
      version: '= 3.1.0'
    - name: pupmod-herculesteam-augeasproviders_grub
