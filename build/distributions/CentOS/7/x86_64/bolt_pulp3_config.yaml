@@ -44,13 +44,13 @@
 ---
 
 SIMP:
-  # FIXME: using /github/ during 6.6.0 EL7 development; change to /latest/ when ready to release:
+  # FIXME: using /experimental/ during 6.6.0 EL7 development; change to /latest/ when ready to release:
   #
   #   url: https://download.simp-project.com/SIMP/yum/releases/latest/el/8Server/x86_64/simp/
   #
-  url: https://download.simp-project.com/SIMP/yum/github/simp6/el/7Server/x86_64/simp/
+  url: https://download.simp-project.com/SIMP/yum/experimental/simp6/el/7Server/x86_64/simp/
   rpms:
-  - name: pupmod-camptocamp-systemd
+  - name: pupmod-puppet-systemd
   - name: pupmod-herculesteam-augeasproviders_core
     version: '= 3.1.0'
   - name: pupmod-herculesteam-augeasproviders_grub
