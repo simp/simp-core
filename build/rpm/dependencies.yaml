@@ -137,7 +137,8 @@
   :requires:
     # exclude pupmod-puppetlabs-firewall
     - 'pupmod-puppetlabs-inifile'
-    - 'pupmod-puppetlabs-postgresql'
+      # TODO: Update this once the module is fixed
+    - ['pupmod-puppetlabs-postgresql', '6.5.0', '9.0.0']
     - 'pupmod-puppetlabs-stdlib'
 
 # simp/ssh was modified to allow users that are not using the full SIMP stack
@@ -188,3 +189,12 @@
   :requires:
     # exclude pupmod-stm-debconf
     - ['pupmod-puppetlabs-stdlib', '2.6.0', '8.0.0']
+
+# Work around issues with augeasproviders deps
+# TODO: Update this once the modules are fixed
+'augeasproviders_grub':
+  :requires:
+    - ['pupmod-herculesteam-augeasproviders_core', '2.4.0', '4.0.0']
+'augeasproviders_ssh':
+  :requires:
+    - ['pupmod-herculesteam-augeasproviders_core', '2.4.0', '4.0.0']

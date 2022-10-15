@@ -203,7 +203,7 @@ mod 'simp-ds389',
 
 mod 'simp-fips',
   :git => 'https://github.com/simp/pupmod-simp-fips',
-  :tag => '0.5.0'
+  :tag => '0.5.1'
 
 mod 'simp-freeradius',
   :git => 'https://github.com/simp/pupmod-simp-freeradius',
@@ -271,7 +271,7 @@ mod 'simp-named',
 
 mod 'simp-network',
   :git => 'https://github.com/simp/pupmod-simp-network',
-  :tag => '6.3.1'
+  :tag => '6.3.2'
 
 mod 'simp-nfs',
   :git => 'https://github.com/simp/pupmod-simp-nfs',
@@ -395,7 +395,7 @@ mod 'simp-simp_snmpd',
 
 mod 'simp-ssh',
   :git => 'https://github.com/simp/pupmod-simp-ssh',
-  :tag => '6.13.0'
+  :tag => '6.13.1'
 
 mod 'simp-sssd',
   :git => 'https://github.com/simp/pupmod-simp-sssd',
@@ -419,7 +419,7 @@ mod 'simp-svckill',
 
 mod 'simp-swap',
   :git => 'https://github.com/simp/pupmod-simp-swap',
-  :tag => '0.3.0'
+  :tag => '0.3.1'
 
 mod 'simp-tcpwrappers',
   :git => 'https://github.com/simp/pupmod-simp-tcpwrappers',
@@ -435,7 +435,7 @@ mod 'simp-tlog',
 
 mod 'simp-tpm',
   :git => 'https://github.com/simp/pupmod-simp-tpm',
-  :tag => '3.3.0'
+  :tag => '3.3.1'
 
 mod 'simp-tpm2',
   :git => 'https://github.com/simp/pupmod-simp-tpm2',
