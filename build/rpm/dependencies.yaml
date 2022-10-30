@@ -150,7 +150,6 @@
 'ssh':
   :requires:
     # exclude pupmod-puppet-selinux
-    - pupmod-herculesteam-augeasproviders_core
     - pupmod-herculesteam-augeasproviders_ssh
     - pupmod-puppetlabs-stdlib
     - pupmod-simp-simplib
