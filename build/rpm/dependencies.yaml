@@ -148,20 +148,8 @@
 # each optional dependency is translated to a Requires in a SIMP-generated
 # puppet module RPM, we need to exclude this optional dependency.
 'ssh':
-  :requires:
-    # exclude pupmod-puppet-selinux
-    - pupmod-herculesteam-augeasproviders_core
-    - pupmod-herculesteam-augeasproviders_ssh
-    - pupmod-puppetlabs-stdlib
-    - pupmod-simp-simplib
-    - pupmod-simp-haveged
-    - pupmod-simp-iptables
-    - pupmod-simp-oath
-    - pupmod-simp-pki
-    - pupmod-simp-tcpwrappers
-    - pupmod-simp-pam
-    - pupmod-simp-selinux
-    - pupmod-simp-vox_selinux
+  :ignores:
+    - pupmod-puppet-selinux
 
 # Vox Pupuli has assumed ownership of the this project
 'snmp':
