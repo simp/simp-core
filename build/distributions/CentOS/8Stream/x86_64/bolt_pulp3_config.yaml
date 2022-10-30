@@ -190,6 +190,7 @@ BaseOS:
   - name: openssl-pkcs11
   - name: perl-interpreter
   - name: policycoreutils
+  - name: policycoreutils-newrole
   - name: policycoreutils-python-utils
   - name: polkit
   - name: polkit-docs
@@ -216,6 +217,7 @@ BaseOS:
   - name: selinux-policy
   - name: selinux-policy-devel
   - name: selinux-policy-targeted
+  - name: selinux-policy-mls
   - name: setools-console
   - name: setserial
   - name: shim-ia32
@@ -434,9 +436,9 @@ postgresql:
 SIMP:
   # FIXME: using /experimental/ during 6.6.0 EL8 development; change to latest when ready to release:
   #
-  #   url: https://download.simp-project.com/simp/yum/releases/latest/el/8server/x86_64/simp/
+  #   url: https://download.simp-project.com/simp/yum/releases/latest/el/8server/x86_64/SIMP/
   #
-  url: https://download.simp-project.com/simp/yum/experimental/simp6/el/8Server/x86_64/simp/
+  url: https://download.simp-project.com/simp/yum/experimental/simp6/el/8Server/x86_64/SIMP/
   rpms:
    - name: pupmod-puppet-systemd
    - name: pupmod-herculesteam-augeasproviders_core
