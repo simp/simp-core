@@ -203,7 +203,7 @@ mod 'simp-ds389',
 
 mod 'simp-fips',
   :git => 'https://github.com/simp/pupmod-simp-fips',
-  :tag => '0.5.1'
+  :tag => '0.5.2'
 
 mod 'simp-freeradius',
   :git => 'https://github.com/simp/pupmod-simp-freeradius',
