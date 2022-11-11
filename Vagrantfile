@@ -18,7 +18,7 @@
 #
 ENV['VAGRANT_NO_PARALLEL'] = 'yes'
 ENV['SIMP_RELEASE_TYPE'] ||= 'unstable'
-ENV['SIMP_VAGRANT_BOX'] ||= 'generic/centos8'
+ENV['SIMP_VAGRANT_BOX'] ||= 'generic/centos8s'
 #ENV['SIMP_VAGRANT_BOX'] ||= 'centos/7'
 ENV['SIMP_VAGRANT_NETWORK'] ||= '10.255.239.55'
 
