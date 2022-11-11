@@ -13,7 +13,6 @@ You can find all full SIMP changelogs on [Read The Docs](https://simp.readthedoc
 <!-- vim-markdown-toc GFM -->
 
 * [Supported Releases](#supported-releases)
-* [Should Work but Less Tested](#should-work-but-less-tested)
 * [In Progress](#in-progress)
 * [Getting Started](#getting-started)
 * [Commercial Support](#commercial-support)
@@ -30,13 +29,10 @@ You can find all full SIMP changelogs on [Read The Docs](https://simp.readthedoc
 * [Oracle Linux 7](https://docs.oracle.com/en/operating-systems/oracle-linux/7/)
 * [Oracle Linux 8](https://docs.oracle.com/en/operating-systems/oracle-linux/8/)
 
-## Should Work but Less Tested
-
-* [Rocky Linux 8](https://rockylinux.org/)
-* [Alma Linux 9](https://almalinux.org/)
-
 ## In Progress
 
+* [Rocky Linux 8](https://rockylinux.org/)
+* [Alma Linux 8](https://almalinux.org/)
 * [Amazon Linux 2](https://aws.amazon.com/amazon-linux-2/)
 * RHEL 9 Compatible
 
