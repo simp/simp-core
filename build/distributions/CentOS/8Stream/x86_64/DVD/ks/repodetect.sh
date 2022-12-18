@@ -65,7 +65,6 @@ if [ "$distro" == RedHat ]; then
 repo --name="baseos"   --baseurl="$uri_header/BaseOS" --noverifyssl
 repo --name="appstream"   --baseurl="$uri_header/AppStream" --noverifyssl
 repo --name="epel"   --baseurl="$local_header/epel" --noverifyssl
-repo --name="epel-modular"   --baseurl="$local_header/epel-modular" --noverifyssl
 repo --name="extras"   --baseurl="$local_header/extras" --noverifyssl
 repo --name="postgresql"   --baseurl="$local_header/postgresql" --noverifyssl
 repo --name="powertools"   --baseurl="$local_header/PowerTools" --noverifyssl
@@ -91,7 +90,6 @@ elif [ "$distro" == CentOS ]; then
 repo --name="baseos"   --baseurl="$uri_header/BaseOS" --noverifyssl
 repo --name="appstream"   --baseurl="$uri_header/AppStream" --noverifyssl
 repo --name="epel"   --baseurl="$local_header/epel" --noverifyssl
-repo --name="epel-modular"   --baseurl="$local_header/epel-modular" --noverifyssl
 repo --name="extras"   --baseurl="$local_header/extras" --noverifyssl
 repo --name="powertools"   --baseurl="$local_header/PowerTools" --noverifyssl
 repo --name="postgresql"   --baseurl="$local_header/postgresql" --noverifyssl
