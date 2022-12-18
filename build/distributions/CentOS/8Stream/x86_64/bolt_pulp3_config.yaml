@@ -42,6 +42,7 @@
 epel:
   url: https://dl.fedoraproject.org/pub/epel/8/Everything/x86_64/
   rpms:
+  - name: dkms
   - name: htop        # no deps
   - name: vim-ansible # depends on appstream: vim-filesystem
   - name: vim-airline
@@ -66,18 +67,6 @@ epel:
   - name: pwgen
   - name: rkhunter
   - name: openssh-ldap-authkeys # AuthorizedKeysCommand script for LDAP
-
-epel-next:
-  url: https://dl.fedoraproject.org/pub/epel/next/8/Everything/x86_64/
-  rpms:
-  - name: dkms
-
-epel-modular:
-  url: https://dl.fedoraproject.org/pub/epel/8/Modular/x86_64/
-  modules:
-  - stream: 389-directory-server:stable
-    # provides rpms:
-    # - 389-ds-base
 
 puppet6:
   url: http://yum.puppet.com/puppet6/el/8/x86_64/
@@ -305,6 +294,9 @@ AppStream:
       # provides rpms:
       #    - llvm-libs
   rpms:
+  - name: 389-ds-base
+  - name: 389-ds-base-libs
+  - name: 389-ds-base-legacy-tools
   - name: acpid
   - name: aide
   - name: annobin
