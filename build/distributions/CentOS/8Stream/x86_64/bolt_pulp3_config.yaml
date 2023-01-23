@@ -244,7 +244,9 @@ BaseOS:
 AppStream:
   url: http://mirror.centos.org/centos/8-stream/AppStream/x86_64/os/
   modules:
-    - stream: 389-ds:1.4
+    # This matches the latest published version explicitly
+    # Pulp is pulling a version that is past this somehow
+    - stream: 389-ds:1.4:8040020210120182432:866effaa:x86_64
       # provides rpms:
       #   - 389-ds-base
       #   - 389-ds-base-libs
