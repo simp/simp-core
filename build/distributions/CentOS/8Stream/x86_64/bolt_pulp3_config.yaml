@@ -251,6 +251,7 @@ AppStream:
       #   - 389-ds-base
       #   - 389-ds-base-libs
       #   - 389-ds-base-legacy-tools
+      #   - python3-lib389
     - stream: httpd:2.4
       # provides rpms:
       #   - httpd
@@ -275,11 +276,9 @@ AppStream:
     - stream: perl-libwww-perl:6.34:8040020211102170116:bf75fe78:x86_64
       # provides rpms:
       #   - python3-distro
-      #   - python3-lib389
     - stream: python36:3.6
       # provides rpms:
       #   - python3-distro
-      #   - python3-lib389
     - stream: ruby:2.7
       # provides rpms:
       #   - ruby
@@ -336,6 +335,7 @@ AppStream:
   - name: perl-NetAddr-IP
   - name: pesign
   - name: python3-argcomplete # not part of a module
+  - name: python3-lib389
   - name: redhat-lsb
   - name: redhat-lsb-core
   - name: redhat-lsb-cxx
