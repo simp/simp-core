@@ -263,7 +263,7 @@ AppStream:
     - stream: mariadb:10.3
       # provides rpms:
       #   - mariadb
-    - stream: postgresql:15
+    #- stream: postgresql:15
       # provides rpms:
       #   - postgresql
       #   - postgresql-contrib
@@ -345,10 +345,6 @@ AppStream:
   - name: perl-Mozilla-LDAP
   - name: perl-NetAddr-IP
   - name: pesign
-  - name: postgresql
-  - name: postgresql-contrib
-  - name: postgresql-server
-  - name: postgresql-private-libs
   - name: python3-argcomplete # not part of a module
   - name: redhat-lsb
   - name: redhat-lsb-core
@@ -433,6 +429,14 @@ PowerTools:
     - name: elinks
     - name: lua-filesystem
     - name: lua-posix
+
+postgresql:
+  url: https://download.postgresql.org/pub/repos/yum/11/redhat/rhel-8-x86_64/
+  rpms:
+  - name: postgresql11
+  - name: postgresql11-contrib
+  - name: postgresql11-libs
+  - name: postgresql11-server
 
 SIMP:
   # FIXME: using /experimental/ during 6.6.0 EL8 development; change to latest when ready to release:
