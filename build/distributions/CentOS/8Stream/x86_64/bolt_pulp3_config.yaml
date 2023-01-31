@@ -263,12 +263,6 @@ AppStream:
     - stream: mariadb:10.3
       # provides rpms:
       #   - mariadb
-    #- stream: postgresql:15
-      # provides rpms:
-      #   - postgresql
-      #   - postgresql-contrib
-      #   - postgresql-server
-      #   - postgresql-private-libs
     - stream: javapackages-runtime:201801
       # provides rpms:
       #   - javapackages-filesystem
@@ -431,12 +425,12 @@ PowerTools:
     - name: lua-posix
 
 postgresql:
-  url: https://download.postgresql.org/pub/repos/yum/11/redhat/rhel-8-x86_64/
+  url: https://download.simp-project.com/simp/yum/unstable/simp6/el/8Server/x86_64/postgresql/
   rpms:
-  - name: postgresql11
-  - name: postgresql11-contrib
-  - name: postgresql11-libs
-  - name: postgresql11-server
+  - name: postgresql96
+  - name: postgresql96-contrib
+  - name: postgresql96-libs
+  - name: postgresql96-server
 
 SIMP:
   # FIXME: using /experimental/ during 6.6.0 EL8 development; change to latest when ready to release:
