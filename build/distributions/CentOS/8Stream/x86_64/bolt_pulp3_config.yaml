@@ -296,13 +296,13 @@ AppStream:
       #    - llvm-libs
   rpms:
   - name: 389-ds-base
-    version: '1.4.3.28'
+    version: '= 1.4.3.28'
   - name: 389-ds-base-libs
-    version: '1.4.3.28'
+    version: '= 1.4.3.28'
   - name: 389-ds-base-legacy-tools
-    version: '1.4.3.28'
+    version: '= 1.4.3.28'
   - name: python3-lib389
-    version: '1.4.3.28'
+    version: '= 1.4.3.28'
   - name: acpid
   - name: aide
   - name: annobin
@@ -437,7 +437,7 @@ SIMP:
   #
   #   url: https://download.simp-project.com/simp/yum/releases/latest/el/8server/x86_64/SIMP/
   #
-  url: https://download.simp-project.com/simp/yum/experimental/simp6/el/8Server/x86_64/SIMP/
+  url: https://download.simp-project.com/simp/yum/github/simp6/el/8Server/x86_64/simp/
   rpms:
    - name: pupmod-puppet-systemd
    - name: pupmod-herculesteam-augeasproviders_core
