@@ -48,7 +48,7 @@ SIMP:
   #
   #   url: https://download.simp-project.com/SIMP/yum/releases/latest/el/8Server/x86_64/simp/
   #
-  url: https://download.simp-project.com/SIMP/yum/experimental/simp6/el/7Server/x86_64/simp/
+  url: https://download.simp-project.com/SIMP/yum/github/simp6/el/7Server/x86_64/simp/
   rpms:
   - name: pupmod-puppet-systemd
   - name: pupmod-herculesteam-augeasproviders_core
@@ -237,20 +237,19 @@ puppet:
   pulp_remote_options:
     policy: on_demand
 
-  # Versions last updated: 2021/07/21
+  # Versions last updated: 2023/02/08
   rpms:
   - name: puppet-agent
-    version: '= 6.22.1'
+    version: '= 6.28.0'
   - name: puppet-bolt
-    version: '~> 3.13'
+    version: '~> 3.26.2'
   - name: puppet6-release
   - name: puppetdb
-    version: '~> 6.16.1'
+    version: '~> 6.22.1'
   - name: puppetdb-termini
-    version: '~> 6.16.1'
+    version: '~> 6.22.1'
   - name: puppetserver
-    version: '~> 6.15.3'
-
+    version: '~> 6.20.0'
 os:
   url: http://mirror.centos.org/centos/7/os/x86_64/
   packagegroups:
@@ -1916,7 +1915,8 @@ epel:
     version: '>= 0.5.12-9' # Resolved https://bugzilla.redhat.com/show_bug.cgi?id=1656939#c14
 
 postgresql:
-  url: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/
+  #url: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/
+  url: https://download.simp-project.com/simp/yum/unstable/simp6/el/7Server/x86_64/postgresql/
   rpms:
   - name: postgresql96
   - name: postgresql96-contrib
