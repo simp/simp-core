@@ -48,7 +48,7 @@ SIMP:
   #
   #   url: https://download.simp-project.com/SIMP/yum/releases/latest/el/8Server/x86_64/simp/
   #
-  url: https://download.simp-project.com/SIMP/yum/github/simp6/el/7Server/x86_64/simp/
+  url: https://download.simp-project.com/SIMP/yum/unstable/simp6/el/7Server/x86_64/simp/
   rpms:
   - name: pupmod-puppet-systemd
   - name: pupmod-herculesteam-augeasproviders_core
@@ -235,7 +235,8 @@ SIMP:
 
 #
 puppet:
-  url: http://yum.puppet.com/puppet6/el/7/x86_64/
+  #url: http://yum.puppet.com/puppet6/el/7/x86_64/
+  url: https://download.simp-project.com/simp/yum/experimental/simp6/el/7/x86_64/puppet/
   pulp_remote_options:
     policy: on_demand
 
@@ -252,8 +253,22 @@ puppet:
     version: '~> 6.22.1'
   - name: puppetserver
     version: '~> 6.20.0'
+
+puppet7:
+  url: http://yum.puppet.com/puppet7/el/7/x86_64/
+  #url: https://download.simp-project.com/SIMP/yum/experimental/simp6/el/7Server/x86_64/puppet7/
+  rpms:
+  - name: puppet-agent
+  - name: puppet-bolt
+  - name: puppet7-release
+  - name: puppetdb
+  - name: puppetdb-termini
+  - name: puppetserver
+    version: ['>= 7.6.0', '< 8.0.0']
+
 os:
-  url: http://mirror.centos.org/centos/7/os/x86_64/
+  # url: http://mirror.centos.org/centos/7/os/x86_64/
+  url: https://download.simp-project.com/simp/yum/experimental/simp6/el/7/x86_64/os/
   packagegroups:
   - id: core
   - id: base
@@ -1480,7 +1495,8 @@ os:
   - name: zip
 
 updates:
-  url: http://mirror.centos.org/centos/7/updates/x86_64/
+  # url: http://mirror.centos.org/centos/7/updates/x86_64/
+  url: https://download.simp-project.com/simp/yum/experimental/simp6/el/7/x86_64/updates/
   rpms:
   # From pkglist.txt:
   - name: 389-ds-base-libs
@@ -1832,7 +1848,8 @@ updates:
   - name: zlib-devel
 
 extras:
-  url: http://mirror.centos.org/centos/7/extras/x86_64/
+  # url: http://mirror.centos.org/centos/7/extras/x86_64/
+  url: https://download.simp-project.com/simp/yum/experimental/simp6/el/7/x86_64/extras/
   rpms:
   - name: createrepo_c
   - name: createrepo_c-libs
@@ -1840,7 +1857,8 @@ extras:
   - name: libev
 
 epel:
-  url: https://dl.fedoraproject.org/pub/epel/7/x86_64/
+  #url: https://dl.fedoraproject.org/pub/epel/7/x86_64/
+  url: https://download.simp-project.com/simp/yum/experimental/simp6/el/7/x86_64/epel/
   rpms:
   - name: caja
   - name: caja-extensions
@@ -1919,7 +1937,8 @@ epel:
 
 postgresql:
   #url: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/
-  url: https://download.simp-project.com/simp/yum/unstable/simp6/el/7Server/x86_64/postgresql/
+  #url: https://download.simp-project.com/simp/yum/unstable/simp6/el/7Server/x86_64/postgresql/
+  url: https://download.simp-project.com/simp/yum/experimental/simp6/el/7/x86_64/postgresql/
   rpms:
   - name: postgresql96
   - name: postgresql96-contrib
