@@ -193,6 +193,8 @@ SIMP:
   - name: simp-vendored-r10k-gem-r10k
   - name: simp-vendored-r10k-gem-semantic_puppet
   - name: simp-vendored-r10k-gem-text
+  - name: tlog
+    direct_url: https://download.simp-project.com/simp/yum/releases/6.5.0-1/el/7/x86_64/simp/tlog-4-1.el7.x86_64.rpm
 
   # FIXME *extremely* old el7 RPM (2014), signed with original 2015 SIMP GPG key (7da6f216, no expiration)
   # ------------------------------------------------------------------------------
@@ -641,6 +643,7 @@ os:
   - name: java-1.7.0-openjdk
   - name: java-1.7.0-openjdk-devel
   - name: java-1.7.0-openjdk-headless
+    # TODO missing java 1.8
   - name: jaxen
   - name: jbigkit-libs
   - name: jboss-annotations-1.1-api
