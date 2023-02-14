@@ -110,6 +110,7 @@ BaseOS:
   #   - name: minimal-environment
   rpms:
   - name: NetworkManager # depends on baseos: NetworkManager-libnm, libndp
+  - name: NetworkManager-tui
   - name: at
   - name: autofs
   - name: audispd-plugins
