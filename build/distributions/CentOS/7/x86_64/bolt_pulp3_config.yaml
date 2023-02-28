@@ -271,9 +271,9 @@ puppet7:
 os:
   url: http://mirror.centos.org/centos/7/os/x86_64/
   # url: https://download.simp-project.com/simp/yum/experimental/simp6/el/7/x86_64/os/
-  #packagegroups:
-  #- id: core
-  #- id: base
+  packagegroups:
+  - id: core
+  - id: base
   rpms:
   ###########################
   # Begin Core Packages
@@ -2022,6 +2022,7 @@ updates:
   - name: rsyslog
   - name: rsyslog-gnutls
   - name: rsyslog-gssapi
+  - name: rsyslog-kafka
   - name: rsyslog-relp
   - name: samba
   - name: samba-client
@@ -2137,6 +2138,7 @@ epel:
   - name: libmateweather
   - name: libmateweather-data
   - name: libprelude
+  - name: librdkafka
   - name: libwnck
   - name: log4cplus
   - name: lyx-fonts

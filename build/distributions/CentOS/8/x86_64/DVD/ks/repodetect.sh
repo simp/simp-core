@@ -47,11 +47,12 @@ fi
 
 if [ -z "$yum_server" ] || [ "$yum_server" == 'local' ]; then
   uri_header="file:///mnt/source"
-  if [ "$version" == "7" ]; then
-    local_header=$uri_header/SIMP/$arch
-  else
-    local_header="$uri_header/SimpRepos"
-  fi
+  local_header="$uri_header/SimpRepos"
+  # if [ "$version" == "7" ]; then
+  #   local_header=$uri_header/SIMP/$arch
+  # else
+  #   local_header="$uri_header/SimpRepos"
+  # fi
 else
   uri_header="https://$yum_server/yum/$distro/$version/$arch"
   local_header="https://$yum_server/yum/SIMP/$distro/$version/$arch"
@@ -74,11 +75,20 @@ repo --name="simp"   --baseurl="$local_header/SIMP" --noverifyssl
 EOF
     ;;
     '7' )
-      cat << EOF > /tmp/repo-include
-repo --name="HighAvailability" --baseurl="$uri_header/addons/HighAvailability"
-repo --name="ResilientStorage" --baseurl="$uri_header/addons/ResilientStorage"
-repo --name="Base" --baseurl="$uri_header"
-repo --name="simp" --baseurl="$local_header"
+#       cat << EOF > /tmp/repo-include
+# repo --name="HighAvailability" --baseurl="$uri_header/addons/HighAvailability"
+# repo --name="ResilientStorage" --baseurl="$uri_header/addons/ResilientStorage"
+# repo --name="Base" --baseurl="$uri_header"
+# repo --name="simp" --baseurl="$local_header"
+# EOF
+        cat << EOF > /tmp/repo-include
+repo --name="epel"   --baseurl="$local_header/epel" --noverifyssl
+repo --name="extras"   --baseurl="$local_header/extras" --noverifyssl
+repo --name="postgresql"   --baseurl="$local_header/postgresql" --noverifyssl
+repo --name="puppet"   --baseurl="$local_header/puppet" --noverifyssl
+repo --name="simp"   --baseurl="$local_header/SIMP" --noverifyssl
+repo --name="updates"   --baseurl="$local_header/updates" --noverifyssl
+repo --name="base" --baseurl="$uri_header"
 EOF
     ;;
   esac
@@ -100,10 +110,19 @@ repo --name="simp"   --baseurl="$local_header/SIMP" --noverifyssl
 EOF
     ;;
     '7' )
-      cat << EOF > /tmp/repo-include
-repo --name="Server" --baseurl="$uri_header"
-repo --name="simp" --baseurl="$local_header"
-repo --name="Updates" --baseurl="$uri_header/Updates" --noverifyssl
+#       cat << EOF > /tmp/repo-include
+# repo --name="Server" --baseurl="$uri_header"
+# repo --name="simp" --baseurl="$local_header"
+# repo --name="Updates" --baseurl="$uri_header/Updates" --noverifyssl
+# EOF
+        cat << EOF > /tmp/repo-include
+repo --name="epel"   --baseurl="$local_header/epel" --noverifyssl
+repo --name="extras"   --baseurl="$local_header/extras" --noverifyssl
+repo --name="postgresql"   --baseurl="$local_header/postgresql" --noverifyssl
+repo --name="puppet"   --baseurl="$local_header/puppet" --noverifyssl
+repo --name="simp"   --baseurl="$local_header/SIMP" --noverifyssl
+repo --name="updates"   --baseurl="$local_header/updates" --noverifyssl
+repo --name="base" --baseurl="$uri_header"
 EOF
     ;;
   esac
