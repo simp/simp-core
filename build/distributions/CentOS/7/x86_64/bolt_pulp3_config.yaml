@@ -281,77 +281,39 @@ os:
   #Mandatory Packages - core:
   - name: audit
   - name: basesystem
-  - name: bash
   - name: biosdevname
   - name: btrfs-progs
-  - name: coreutils
-  - name: cronie
-  - name: curl
-  - name: dhclient
   - name: e2fsprogs
   - name: filesystem
-  - name: glibc
   - name: hostname
-  - name: initscripts
   - name: iproute
-  - name: iprutils
   - name: iptables
   - name: iputils
   - name: irqbalance
-  - name: kbd
-  - name: kexec-tools
   - name: less
   - name: man-db
   - name: ncurses
-  - name: openssh-clients
-  - name: openssh-server
   - name: parted
   - name: passwd
   - name: plymouth
   - name: policycoreutils
   - name: procps-ng
   - name: rootfiles
-  - name: rpm
   - name: setup
   - name: shadow-utils
-  - name: sudo
-  - name: systemd
   - name: tar
-  - name: tuned
-  - name: util-linux
-  - name: vim-minimal
   - name: xfsprogs
   - name: yum
   # Default Packages - core:
-  - name: NetworkManager
-  - name: NetworkManager-tui
   - name: aic94xx-firmware
   - name: alsa-firmware
   # - name: bfa-firmware
   - name: dracut-config-rescue
   - name: ivtv-firmware
-  - name: iwl100-firmware
-  - name: iwl1000-firmware
-  - name: iwl105-firmware
-  - name: iwl135-firmware
-  - name: iwl2000-firmware
-  - name: iwl2030-firmware
-  - name: iwl3160-firmware
-  - name: iwl3945-firmware
-  - name: iwl4965-firmware
-  - name: iwl5000-firmware
-  - name: iwl5150-firmware
-  - name: iwl6000-firmware
-  - name: iwl6000g2a-firmware
-  - name: iwl6000g2b-firmware
-  - name: iwl6050-firmware
-  - name: iwl7260-firmware
-  - name: kernel-tools
   # - name: libertas-sd8686-firmware
   # - name: libertas-sd8787-firmware
   # - name: libertas-usb8388-firmware
   - name: linux-firmware
-  - name: microcode_ctl
   - name: postfix
   # - name: ql2100-firmware
   # - name: ql2200-firmware
@@ -374,16 +336,13 @@ os:
   - name: attr
   - name: authconfig
   - name: bc
-  - name: bind-utils
   - name: centos-indexhtml
   - name: cpio
   - name: crda
   - name: crontabs
-  - name: cyrus-sasl-plain
   - name: dbus
   - name: ed
   - name: file
-  - name: firewalld
   - name: logrotate
   - name: lsof
   - name: man-db
@@ -418,10 +377,8 @@ os:
   - name: libaio
   - name: libreport-plugin-mailx
   - name: libstoragemgmt
-  - name: lvm2
   - name: man-pages
   - name: man-pages-overrides
-  - name: mdadm
   - name: mlocate
   - name: mtr
   - name: nano
@@ -436,19 +393,13 @@ os:
   - name: scl-utils
   - name: setuptool
   - name: smartmontools
-  - name: sos
-  - name: sssd-client
   - name: strace
   - name: sysstat
   - name: systemtap-runtime
   - name: tcpdump
-  - name: tcsh
   - name: teamd
   - name: time
-  - name: unzip
   - name: usbutils
-  - name: vim-enhanced
-  - name: virt-what
   - name: wget
   - name: which
   - name: words
@@ -466,7 +417,6 @@ os:
   - name: brltty
   - name: cryptsetup-reencrypt
   # - name: denyhosts
-  - name: device-mapper-persistent-data
   - name: dos2unix
   - name: dumpet
   - name: environment-modules
