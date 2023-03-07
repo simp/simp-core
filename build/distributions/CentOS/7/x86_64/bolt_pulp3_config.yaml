@@ -275,10 +275,6 @@ os:
   - id: core
   - id: base
   rpms:
-  ###########################
-  # Begin Core Packages
-  ###########################
-  #Mandatory Packages - core:
   - name: audit
   - name: basesystem
   - name: biosdevname
@@ -304,35 +300,18 @@ os:
   - name: tar
   - name: xfsprogs
   - name: yum
-  # Default Packages - core:
   - name: aic94xx-firmware
   - name: alsa-firmware
-  # - name: bfa-firmware
   - name: dracut-config-rescue
   - name: ivtv-firmware
-  # - name: libertas-sd8686-firmware
-  # - name: libertas-sd8787-firmware
-  # - name: libertas-usb8388-firmware
   - name: linux-firmware
   - name: postfix
-  # - name: ql2100-firmware
-  # - name: ql2200-firmware
-  # - name: ql23xx-firmware
- # Optional Packages - core:
   - name: dracut-config-generic
   - name: dracut-fips
   - name: dracut-fips-aesni
   - name: dracut-network
   - name: tboot
-  ##############################
-  # END Core Packages
-  ##############################
-  ##############################
-  # Begin Base Packages
-  ##############################
-  # Mandatory Packages - Base:
   - name: acl
-  - name: at
   - name: attr
   - name: authconfig
   - name: bc
@@ -354,7 +333,6 @@ os:
   - name: setserial
   - name: traceroute
   - name: usb_modeswitch
-  # Default Packages - Base:
   - name: abrt-addon-ccpp
   - name: abrt-addon-python
   - name: abrt-cli
@@ -376,7 +354,6 @@ os:
   - name: ledmon
   - name: libaio
   - name: libreport-plugin-mailx
-  - name: libstoragemgmt
   - name: man-pages
   - name: man-pages-overrides
   - name: mlocate
@@ -394,7 +371,6 @@ os:
   - name: setuptool
   - name: smartmontools
   - name: strace
-  - name: sysstat
   - name: systemtap-runtime
   - name: tcpdump
   - name: teamd
@@ -403,25 +379,20 @@ os:
   - name: wget
   - name: which
   - name: words
-  - name: xfsdump
   - name: xz
   - name: yum-langpacks
-  # - name: yum-plugin-security
   - name: yum-utils
   - name: zip
-  # Optional Packages - Base:
   - name: PyPAM
   - name: acpid
   - name: audispd-plugins
   - name: bash-completion
   - name: brltty
   - name: cryptsetup-reencrypt
-  # - name: denyhosts
   - name: dos2unix
   - name: dumpet
   - name: environment-modules
   - name: genisoimage
-  # - name: ghex
   - name: gpm
   - name: i2c-tools
   - name: kabi-yum-plugins
@@ -429,25 +400,17 @@ os:
   - name: libcgroup
   - name: libcgroup-tools
   - name: libitm
-  # - name: libstoragemgmt-netapp-plugin
-  - name: libstoragemgmt-nstor-plugin
-  - name: libstoragemgmt-smis-plugin
-  - name: libstoragemgmt-targetd-plugin
-  - name: libstoragemgmt-udev
-  - name: linuxptp
   - name: logwatch
   - name: mkbootdisk
   - name: mtools
   - name: ncurses-term
   - name: ntp
   - name: oddjob
-  # - name: p7zip
   - name: pax
   - name: prelink
   - name: python-volume_key
   - name: redhat-lsb-core
   - name: redhat-upgrade-dracut
-  # - name: redhat-upgrade-tool
   - name: sgpio
   - name: sox
   - name: squashfs-tools
@@ -463,13 +426,9 @@ os:
   - name: yum-plugin-verify
   - name: yum-plugin-versionlock
   - name: zsh
-  # Conditional Packages - Base:
   - name: rubygem-abrt
-  ##############################
-  # End Base Packages
-  ##############################
   - name: apr-util-ldap
-  - name: ima-evm-utils # now in CentOS7 ISO (os) in additon to RHEL
+  - name: ima-evm-utils
   - name: libarchive-devel
   - name: librelp
   - name: perl-Capture-Tiny
@@ -477,13 +436,11 @@ os:
   - name: perl-File-Which
   - name: perl-Switch
   - name: protobuf
-  - name: rubygem-rake
   # tpm2-* formerly only in rhel-server, now also in CentOS7 (os)
   - name: tpm2-abrmd
   - name: tpm2-tools
   - name: tpm2-tss
   - name: tpm2-tss-devel
-  # From pkglist.txt:
   - name: GConf2
   - name: GeoIP
   - name: ModemManager-glib
@@ -509,7 +466,6 @@ os:
   - name: adwaita-gtk2-theme
   - name: adwaita-icon-theme
   - name: aic94xx-firmware
-  - name: aide
   - name: alacarte
   - name: alsa-firmware
   - name: alsa-lib
@@ -532,7 +488,6 @@ os:
   - name: apr-util-openssl
   - name: args4j
   - name: arpwatch
-  - name: at
   - name: atk
   - name: atk-devel
   - name: attr
@@ -613,7 +568,6 @@ os:
   - name: compat-libical1
   - name: comps-extras
   - name: coolkey
-  - name: copy-jdk-configs
   - name: cpio
   - name: cpp
   - name: cracklib
@@ -626,18 +580,10 @@ os:
   - name: cups
   - name: cups-client
   - name: cups-filesystem
-  - name: cups-filters
-  - name: cups-filters-libs
   - name: cups-libs
   - name: cups-pk-helper
   - name: custodia
   - name: cvs
-  - name: cyrus-sasl
-  - name: cyrus-sasl-devel
-  - name: cyrus-sasl-gssapi
-  - name: cyrus-sasl-lib
-  - name: cyrus-sasl-md5
-  - name: cyrus-sasl-plain
   - name: c-ares
   - name: dbus
   - name: dbus-glib
@@ -684,11 +630,7 @@ os:
   - name: enchant
   - name: espeak
   - name: ethtool
-  - name: evolution-data-server
-  - name: evolution-data-server-langpacks
   - name: exempi
-  - name: expat
-  - name: expat-devel
   - name: fence-virt
   - name: festival
   - name: festival-freebsoft-utils
@@ -703,7 +645,6 @@ os:
   - name: fipscheck-lib
   - name: flac-libs
   - name: flite
-  - name: fltk
   - name: fontawesome-fonts
   - name: fontconfig
   - name: fontpackages-filesystem
@@ -809,7 +750,6 @@ os:
   - name: hicolor-icon-theme
   - name: hmaccalc
   - name: hostname
-  - name: hsqldb
   - name: httpcomponents-client
   - name: httpcomponents-core
   - name: http-parser
@@ -827,7 +767,6 @@ os:
   - name: info
   - name: iniparser
   - name: iotop
-  - name: ipmitool
   - name: iproute
   - name: ipset
   - name: ipset-libs
@@ -881,7 +820,6 @@ os:
   - name: ldapjdk
   - name: ldns
   - name: less
-  - name: lftp
   - name: libICE
   - name: libIDL
   - name: libSM
@@ -910,8 +848,6 @@ os:
   - name: libXi-devel
   - name: libXmu
   - name: libXp
-  - name: libXpm
-  - name: libXpm-devel
   - name: libXrandr
   - name: libXrandr-devel
   - name: libXrender
@@ -1044,7 +980,6 @@ os:
   - name: libosinfo
   - name: libpaper
   - name: libpath_utils
-  - name: libpcap
   - name: libpciaccess
   - name: libpipeline
   - name: libplist
@@ -1504,7 +1439,6 @@ os:
   - name: rubygem-psych
   - name: rubygem-rdoc
   - name: ruby-irb
-  - name: ruby-libs
   - name: sbc
   - name: scannotation
   - name: scap-workbench
@@ -1543,7 +1477,6 @@ os:
   - name: sysfsutils
   - name: syslinux
   - name: syslinux-tftpboot
-  - name: sysstat
   - name: systemtap-sdt-devel
   - name: system-config-firewall-base
   - name: sysvinit-tools
@@ -1671,8 +1604,6 @@ os:
   - name: xsom
   - name: xulrunner
   - name: xz
-  - name: xz-devel
-  - name: xz-libs
   - name: yajl
   - name: yelp
   - name: yelp-libs
@@ -1687,14 +1618,12 @@ os:
   - name: yum-plugin-verify
   - name: yum-plugin-versionlock
   - name: yum-utils
-  - name: zenity
   - name: zip
 
 updates:
   url: http://mirror.centos.org/centos/7/updates/x86_64/
   # url: https://download.simp-project.com/simp/yum/experimental/simp6/el/7/x86_64/updates/
   rpms:
-  # From pkglist.txt:
   - name: 389-ds-base-libs
   - name: NetworkManager
   - name: NetworkManager-adsl
@@ -2038,7 +1967,7 @@ updates:
   - name: virt-what
   - name: vsftpd
   - name: webkitgtk4
-    version: ">= 2.28.2"
+    version: '>= 2.28.2'
   - name: webkitgtk4-jsc
   - name: wpa_supplicant
   - name: xorg-x11-drv-ati
@@ -2048,6 +1977,43 @@ updates:
   - name: xterm
   - name: zlib
   - name: zlib-devel
+  - name: at
+  - name: libstoragemgmt
+  - name: sysstat
+  - name: xfsdump
+  - name: libstoragemgmt-nstor-plugin
+  - name: libstoragemgmt-smis-plugin
+  - name: libstoragemgmt-targetd-plugin
+  - name: libstoragemgmt-udev
+  - name: linuxptp
+  - name: rubygem-rake
+  - name: aide
+  - name: at
+  - name: copy-jdk-configs
+  - name: cups-filters
+  - name: cups-filters-libs
+  - name: cyrus-sasl
+  - name: cyrus-sasl-devel
+  - name: cyrus-sasl-gssapi
+  - name: cyrus-sasl-lib
+  - name: cyrus-sasl-md5
+  - name: cyrus-sasl-plain
+  - name: evolution-data-server
+  - name: evolution-data-server-langpacks
+  - name: expat
+  - name: expat-devel
+  - name: fltk
+  - name: hsqldb
+  - name: ipmitool
+  - name: lftp
+  - name: libXpm
+  - name: libXpm-devel
+  - name: libpcap
+  - name: ruby-libs
+  - name: sysstat
+  - name: xz-devel
+  - name: xz-libs
+  - name: zenity
 
 extras:
   url: http://mirror.centos.org/centos/7/extras/x86_64/
