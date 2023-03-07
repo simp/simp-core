@@ -471,6 +471,7 @@ os:
   - name: apr-util-ldap
   - name: ima-evm-utils # now in CentOS7 ISO (os) in additon to RHEL
   - name: libarchive-devel
+  - name: librelp
   - name: perl-Capture-Tiny
   - name: perl-Config-Simple
   - name: perl-File-Which
