@@ -1,1 +1,42 @@
-el8_server.yml
+---
+HOSTS:
+  puppet:
+    roles:
+    - server
+    - master
+    - default
+    - simp_server
+    - agent
+    platform: el-8-x86_64
+    box: generic/centos8
+    hypervisor: "<%= ENV.fetch('BEAKER_HYPERVISOR', 'vagrant') %>"
+    vagrant_memsize: 4608
+    family: centos-cloud/centos-stream-8
+    gce_machine_type: n1-standard-2
+  agent-el8:
+    roles:
+    - agent
+    platform: el-8-x86_64
+    box: generic/centos8
+    hypervisor: "<%= ENV.fetch('BEAKER_HYPERVISOR', 'vagrant') %>"
+    family: centos-cloud/centos-stream-8
+    gce_machine_type: n1-standard-2
+  agent-el7:
+    roles:
+    - agent
+    - syslog_server
+    platform: el-7-x86_64
+    box: centos/7
+    hypervisor: "<%= ENV.fetch('BEAKER_HYPERVISOR', 'vagrant') %>"
+    family: centos-cloud/centos-7
+    gce_machine_type: n1-standard-2
+CONFIG:
+  vagrant_cpus: 2
+  log_level: verbose
+  type: aio
+  synced_folder: disabled
+  ssh:
+    keepalive: true
+    keepalive_interval: 10
+    keepalive_maxcount: 120
+  puppet_collection: "<%= ENV.fetch('BEAKER_PUPPET_COLLECTION', 'puppet7') %>"
