@@ -40,7 +40,8 @@
 ---
 
 epel:
-  url: https://dl.fedoraproject.org/pub/epel/8/Everything/x86_64/
+  #url: https://dl.fedoraproject.org/pub/epel/8/Everything/x86_64/
+  url: https://download.simp-project.com/simp/yum/experimental/simp6/el/8/x86_64/epel/
   rpms:
   - name: dkms
   - name: htop        # no deps
@@ -69,7 +70,8 @@ epel:
   - name: openssh-ldap-authkeys # AuthorizedKeysCommand script for LDAP
 
 puppet6:
-  url: http://yum.puppet.com/puppet6/el/8/x86_64/
+  #url: http://yum.puppet.com/puppet6/el/8/x86_64/
+  url: https://download.simp-project.com/simp/yum/experimental/simp6/el/8/x86_64/puppet6/
   pulp_remote_options: # example of pulp_remote_options
     policy: on_demand  # (`on_demand` is the default behavior)
   # Versions last updated: 2023/01/29
@@ -87,7 +89,8 @@ puppet6:
     version: '~> 6.20.0'
 
 puppet:
-  url: http://yum.puppet.com/puppet7/el/8/x86_64/
+  #url: http://yum.puppet.com/puppet7/el/8/x86_64/
+  url: https://download.simp-project.com/simp/yum/experimental/simp6/el/8/x86_64/puppet/
   rpms:
   - name: puppet-agent
   - name: puppet-bolt
@@ -98,7 +101,8 @@ puppet:
     version: ['>= 7.6.0', '< 8.0.0']
 
 BaseOS:
-  url: http://mirror.centos.org/centos/8-stream/BaseOS/x86_64/os/
+  #url: http://mirror.centos.org/centos/8-stream/BaseOS/x86_64/os/
+  url: https://download.simp-project.com/simp/yum/experimental/simp6/el/8/x86_64/BaseOS/
   packagegroups:
   - id: core
   - id: base
@@ -106,6 +110,7 @@ BaseOS:
   #   - name: minimal-environment
   rpms:
   - name: NetworkManager # depends on baseos: NetworkManager-libnm, libndp
+  - name: NetworkManager-tui
   - name: at
   - name: autofs
   - name: audispd-plugins
@@ -242,7 +247,8 @@ BaseOS:
   - name: yum-utils
 
 AppStream:
-  url: http://mirror.centos.org/centos/8-stream/AppStream/x86_64/os/
+  #url: http://mirror.centos.org/centos/8-stream/AppStream/x86_64/os/
+  url: https://download.simp-project.com/simp/yum/experimental/simp6/el/8/x86_64/AppStream/
   modules:
     # This matches the latest published version explicitly
     # Pulp is pulling a version that is past this somehow
@@ -381,7 +387,8 @@ AppStream:
   - name: javapackages-filesystem # provides javapackages-filesystem for java-1.8.0-openjdk-headless MODULE: javapackages-runtime:201801
 
 extras:
-  url: http://vault.centos.org/centos/8/extras/x86_64/os/
+  #url: http://vault.centos.org/centos/8/extras/x86_64/os/
+  url: https://download.simp-project.com/simp/yum/experimental/simp6/el/8/x86_64/extras/
   rpms:
   - name: centos-release-advanced-virtualization
   - name: centos-release-ansible-29
@@ -418,14 +425,16 @@ extras:
   - name: epel-next-release
 
 PowerTools:
-  url: http://mirror.centos.org/centos/8-stream/PowerTools/x86_64/os/
+  #url: http://mirror.centos.org/centos/8-stream/PowerTools/x86_64/os/
+  url: https://download.simp-project.com/simp/yum/experimental/simp6/el/8/x86_64/PowerTools/
   rpms:
     - name: elinks
     - name: lua-filesystem
     - name: lua-posix
 
 postgresql:
-  url: https://download.simp-project.com/simp/yum/unstable/simp6/el/8Server/x86_64/postgresql/
+  #url: https://download.simp-project.com/simp/yum/unstable/simp6/el/8Server/x86_64/postgresql/
+  url: https://download.simp-project.com/simp/yum/experimental/simp6/el/8/x86_64/postgresql/
   rpms:
   - name: postgresql96
   - name: postgresql96-contrib
@@ -433,11 +442,12 @@ postgresql:
   - name: postgresql96-server
 
 SIMP:
-  # FIXME: using /experimental/ during 6.6.0 EL8 development; change to latest when ready to release:
+  # FIXME: using /unstable/ during 6.6.0 EL8 development; change to latest when ready to release:
   #
   #   url: https://download.simp-project.com/simp/yum/releases/latest/el/8server/x86_64/SIMP/
   #
-  url: https://download.simp-project.com/simp/yum/github/simp6/el/8Server/x86_64/simp/
+  #url: https://download.simp-project.com/simp/yum/github/simp6/el/8Server/x86_64/simp/
+  url: https://download.simp-project.com/simp/yum/unstable/simp6/el/8Server/x86_64/simp/
   rpms:
    - name: pupmod-puppet-systemd
    - name: pupmod-herculesteam-augeasproviders_core
