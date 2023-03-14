@@ -409,6 +409,7 @@ os:
   - name: pax
   - name: prelink
   - name: python-volume_key
+  - name: pywbem
   - name: redhat-lsb-core
   - name: redhat-upgrade-dracut
   - name: sgpio
@@ -1979,8 +1980,15 @@ updates:
   - name: zlib-devel
   - name: at
   - name: libstoragemgmt
+  - name: libstoragemgmt-python
   - name: sysstat
   - name: xfsdump
+  - name: libstoragemgmt-arcconf-plugin
+  - name: libstoragemgmt-hpsa-plugin
+  - name: libstoragemgmt-local-plugin
+  - name: libstoragemgmt-megaraid-plugin
+  - name: libstoragemgmt-nfs-plugin
+  - name: libstoragemgmt-nfs-plugin-clibs
   - name: libstoragemgmt-nstor-plugin
   - name: libstoragemgmt-smis-plugin
   - name: libstoragemgmt-targetd-plugin
