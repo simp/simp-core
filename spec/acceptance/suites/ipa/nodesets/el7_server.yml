@@ -1,60 +1,46 @@
-<%
-  hypervisor = ENV['BEAKER_HYPERVISOR'] || 'vagrant'
-
-  case ENV['SIMP_BEAKER_OS']
-  when /centos/ || /^el/
-    box_7 = 'centos/7'
-  when /oracle/ || /^oel/
-    box_7 = 'generic/oracle7'
-  else
-    box_7 = 'centos/7'
-  end
--%>
+---
 HOSTS:
-  # NOTE: If you specify a domain in the node names, it MUST have at least 2
-  # parts because IPA does not work with single label domains
   puppet:
     roles:
-      - server # Mandatory
-      - master
-      - default
-      - simp_server
-      - agent
-      - ipa_client
-    platform:   el-7-x86_64
-    box:        <%= box_7 %>
-    hypervisor: <%= hypervisor %>
+    - server
+    - master
+    - default
+    - simp_server
+    - agent
+    - ipa_client
+    platform: el-7-x86_64
+    box: centos/7
+    hypervisor: "<%= ENV.fetch('BEAKER_HYPERVISOR', 'vagrant') %>"
     vagrant_memsize: 4608
-
+    family: centos-cloud/centos-7
+    gce_machine_type: n1-standard-2
   ipa:
     roles:
-      - ipa_server
-      - agent
-    platform:   el-7-x86_64
-    box:        <%= box_7 %>
-    hypervisor: <%= hypervisor %>
+    - ipa_server
+    - agent
+    platform: el-7-x86_64
+    box: centos/7
+    hypervisor: "<%= ENV.fetch('BEAKER_HYPERVISOR', 'vagrant') %>"
     vagrant_memsize: 2048
-
+    family: centos-cloud/centos-7
+    gce_machine_type: n1-standard-2
   agent-el7:
     roles:
-      - agent
-      - syslog_server
-      - ipa_client
-    platform:   el-7-x86_64
-    box:        <%= box_7 %>
-    hypervisor: <%= hypervisor %>
-
+    - agent
+    - syslog_server
+    - ipa_client
+    platform: el-7-x86_64
+    box: centos/7
+    hypervisor: "<%= ENV.fetch('BEAKER_HYPERVISOR', 'vagrant') %>"
+    family: centos-cloud/centos-7
+    gce_machine_type: n1-standard-2
 CONFIG:
   vagrant_cpus: 2
   log_level: verbose
-  type:      aio
+  type: aio
   ssh:
     keepalive: true
     keepalive_interval: 10
     keepalive_maxcount: 120
   synced_folder: disabled
-<% if ENV['BEAKER_PUPPET_COLLECTION'] -%>
-  puppet_collection: <%= ENV['BEAKER_PUPPET_COLLECTION'] %>
-<% else -%>
-  puppet_collection: puppet6
-<% end -%>
+  puppet_collection: "<%= ENV.fetch('BEAKER_PUPPET_COLLECTION', 'puppet7') %>"
