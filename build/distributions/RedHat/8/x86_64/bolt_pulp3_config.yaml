@@ -105,6 +105,8 @@ BaseOS:
   url: file:///allowed_imports/RHEL-8-7-0-BaseOS-x86_64/BaseOS
   #url: https://cdn.redhat.com/content/dist/rhel8/$releasever/x86_64/baseos/os
   #url: https://download.simp-project.com/simp/yum/experimental/simp6/el/8/x86_64/BaseOS/
+  pulp_remote_options: # example of pulp_remote_options
+    policy: immediate
   packagegroups:
   - id: core
   - id: base
@@ -253,6 +255,8 @@ AppStream:
   url: file:///allowed_imports/RHEL-8-7-0-BaseOS-x86_64/AppStream
   #url: https://cdn.redhat.com/content/e4s/rhel8/8/x86_64/appstream/os
   #url: https://download.simp-project.com/simp/yum/experimental/simp6/el/8/x86_64/AppStream/
+  pulp_remote_options: # example of pulp_remote_options
+    policy: immediate
   modules:
     # This matches the latest published version explicitly
     # Pulp is pulling a version that is past this somehow
@@ -396,6 +400,8 @@ codeready-builder-for-rhel-8-x86_64-rpms:
   #url: https://download.simp-project.com/simp/yum/experimental/simp6/el/8/x86_64/PowerTools/
   #url: https://cdn.redhat.com/content/dist/rhel8/$releasever/x86_64/codeready-builder/os
   url: file:///allowed_imports/codeready-builder-for-rhel-8-x86_64-rpms--slim/
+  pulp_remote_options: # example of pulp_remote_options
+    policy: streamed
   rpms:
     #- name: elrepo-release
     #- name: epel-next-release
