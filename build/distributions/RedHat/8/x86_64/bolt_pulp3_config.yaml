@@ -1,0 +1,548 @@
+# <repo-shortname>:
+#
+#   pulp_remote_options: [Hash] key/value pairs
+#                         passed directly to the Pulp3 RPM Remotes API when
+#                         creating a new RPM Remote (mirror)
+#
+#   rpms: a list of RPM metadata hashes
+#
+#     Mandatory keys for each rpm:
+#
+#     - name: [String] RPM 'name' field (the 'N' in NEVRA)
+#
+#     Optional keys for rpms:
+#
+#       version: [String,Array] Expression(s) to constrain the RPM version.
+#                Contraint expressions follow the same conventions as Bundler.
+#                (ex: '~> 6.8.0', '= 5.2.1', ['>= 4.2.0', '< 5.0'])
+#
+#       direct_url: [String] When defined, download RPM directly from URL,
+#                   overriding the repo mirror
+#
+#                   NOTE: Pulp won't be able to auto-resolve RPMs using
+#                   direct_urls (and no Remote mirror)  to the best available
+#                   versions or obey `version:` constraints.  Make sure any
+#                   direct_url URLs are kept up to date with new releases!
+#
+#  packagegroups: an (optional) list of RPM package groups
+#
+#     Mandatory keys for each packagegroup:
+#
+#     - id: [String] Packagegroup 'id' (view with `dnf grouplist --ids`)
+#
+#
+#  modules: an (optional) list of RPM module streams
+#
+#     Mandatory keys for each item
+#
+#     - stream: [String] module stream in N:S format (ex: `httpd:2.4`)
+#
+---
+
+epel:
+  url: https://dl.fedoraproject.org/pub/epel/8/Everything/x86_64/
+  #url: https://download.simp-project.com/simp/yum/experimental/simp6/el/8/x86_64/epel/
+  rpms:
+  - name: dkms
+  - name: htop        # no deps
+  - name: vim-ansible # depends on appstream: vim-filesystem
+  - name: vim-airline
+  - name: vim-powerline
+  - name: vim-jellybeans
+  - name: liboath
+  - name: oathtool
+  - name: libnfs
+  - name: pam_oath
+  - name: redhat-display-fonts
+  - name: redhat-mono-fonts
+  - name: redhat-text-fonts
+  - name: rubygem-highline
+  - name: rubygem-net-ldap
+  - name: incron
+  - name: pass
+  - name: haveged
+  - name: dnf-plugin-ovl
+  - name: clamav
+  - name: clamav-update
+  - name: clamd
+  - name: pwgen
+  - name: rkhunter
+  - name: openssh-ldap-authkeys # AuthorizedKeysCommand script for LDAP
+
+puppet6:
+  #url: http://yum.puppet.com/puppet6/el/8/x86_64/
+  url: https://download.simp-project.com/simp/yum/releases/latest/el/8/x86_64/puppet6/
+  pulp_remote_options: # example of pulp_remote_options
+    policy: on_demand  # (`on_demand` is the default behavior)
+  # Versions last updated: 2023/01/29
+  rpms:
+  - name: puppet-agent
+    version: '= 6.28.0'
+  - name: puppet-bolt
+    version: '~> 3.26.2'
+  - name: puppet6-release
+  - name: puppetdb
+    version: '~> 6.22.1'
+  - name: puppetdb-termini
+    version: '~> 6.22.1'
+  - name: puppetserver
+    version: '~> 6.20.0'
+
+puppet:
+  #url: http://yum.puppet.com/puppet7/el/8/x86_64/
+  url: https://download.simp-project.com/simp/yum/releases/latest/el/8/x86_64/puppet/
+  rpms:
+  - name: puppet-agent
+  - name: puppet-bolt
+  - name: puppet7-release
+  - name: puppetdb
+  - name: puppetdb-termini
+  - name: puppetserver
+    version: ['>= 7.6.0', '< 8.0.0']
+
+BaseOS:
+  url: file:///root/BaseOS
+  #url: https://cdn.redhat.com/content/dist/rhel8/$releasever/x86_64/baseos/os
+  #url: https://download.simp-project.com/simp/yum/experimental/simp6/el/8/x86_64/BaseOS/
+  packagegroups:
+  - id: core
+  - id: base
+  # environment_groups:  # (Not worth implementing; specify packagegroups)
+  #   - name: minimal-environment
+  rpms:
+  - name: NetworkManager # depends on baseos: NetworkManager-libnm, libndp
+  - name: NetworkManager-tui
+  - name: at
+  - name: autofs
+  - name: audispd-plugins
+  - name: c-ares # provides libcares.so.2 for sssd-common
+  - name: chrony
+  - name: cronie
+  - name: crontabs
+  - name: dhcp-client
+  - name: dhcp-common
+  - name: dhcp-libs
+  - name: dhcp-server
+  - name: dnf
+  - name: dnf-automatic
+  - name: dnf-plugins-core
+  - name: efibootmgr
+  - name: efi-filesystem
+  - name: efivar
+  - name: efivar-libs
+  - name: fipscheck
+  - name: fipscheck-lib
+  - name: fwupdate
+  - name: fwupdate-efi
+  - name: fwupdate-libs
+  - name: grub2-common
+  - name: grub2-efi-aa64-modules
+  - name: grub2-efi-ia32
+  - name: grub2-efi-ia32-modules
+  - name: grub2-efi-x64
+  - name: grub2-efi-x64-modules
+  - name: grub2-pc
+  - name: grub2-tools-minimal
+  - name: gssproxy
+  - name: gzip
+  - name: hdparm
+  - name: iptables-services
+  - name: kexec-tools
+  - name: lksctp-tools
+  - name: libcurl
+  - name: libhugetlbfs
+  - name: libnghttp2
+  - name: libsss_autofs
+  - name: libsss_sudo
+  - name: logrotate
+  - name: logwatch
+  - name: lshw
+  - name: lsof
+  - name: lsscsi
+  - name: lvm2
+  - name: mailcap
+  - name: man-db
+  - name: man-pages
+  - name: mcstrans
+  - name: mdadm
+  - name: mlocate
+  - name: mokutil
+  - name: net-snmp-libs
+  - name: netlabel_tools
+  - name: nfs4-acl-tools
+  - name: nfs-utils
+  - name: openssh
+  - name: openssh-cavs
+  - name: openssh-clients
+  - name: openssh-keycat
+  - name: openssh-ldap
+  - name: openssh-server
+  - name: openssl
+  - name: openssl-devel
+  - name: openssl-ibmpkcs11
+  - name: openssl-libs
+  - name: openssl-pkcs11
+  - name: perl-interpreter
+  - name: policycoreutils
+  - name: policycoreutils-newrole
+  - name: policycoreutils-python-utils
+  - name: polkit
+  - name: polkit-docs
+  - name: postfix
+  - name: procps-ng
+  - name: quota
+  - name: quota-rpc
+  - name: readline
+  - name: readline-devel
+  - name: rpm
+  - name: rpm-apidocs
+  - name: rpm-build-libs
+  - name: rpm-cron
+  - name: rpm-devel
+  - name: rpm-libs
+  - name: rpm-plugin-ima
+  - name: rpm-plugin-prioreset
+  - name: rpm-plugin-selinux
+  - name: rpm-plugin-syslog
+  - name: rpm-plugin-systemd-inhibit
+  - name: rpm-sign
+  - name: rsync
+  - name: rsync-daemon
+  - name: selinux-policy
+  - name: selinux-policy-devel
+  - name: selinux-policy-targeted
+  - name: selinux-policy-mls
+  - name: setools-console
+  - name: setserial
+  - name: shim-ia32
+  - name: shim-x64
+  - name: sssd
+  - name: sssd-ad
+  - name: sssd-client
+  - name: sssd-common
+  - name: sssd-common-pac
+  - name: sssd-dbus
+  - name: sssd-ipa
+  - name: sssd-kcm
+  - name: sssd-krb5
+  - name: sssd-krb5-common
+  - name: sssd-ldap
+  - name: sssd-nfs-idmap
+  - name: sssd-polkit-rules
+  - name: sssd-proxy
+  - name: sssd-tools
+  - name: sssd-winbind-idmap
+  - name: stunnel
+  - name: sudo
+  - name: systemd
+  - name: syslinux-tftpboot
+  - name: samba-client
+  - name: tcl
+  - name: tmpwatch
+  - name: tmux
+  - name: unzip
+  - name: util-linux
+  - name: yum
+  - name: yum-utils
+
+AppStream:
+  url: file:///root/AppStream
+  #url: https://cdn.redhat.com/content/e4s/rhel8/8/x86_64/appstream/os
+  #url: https://download.simp-project.com/simp/yum/experimental/simp6/el/8/x86_64/AppStream/
+  modules:
+    # This matches the latest published version explicitly
+    # Pulp is pulling a version that is past this somehow
+    - stream: 389-ds:1.4:8060020220315132034:ce3e8c9c:x86_64
+      # provides rpms:
+      #   - 389-ds-base
+      #   - 389-ds-base-libs
+      #   - 389-ds-base-legacy-tools
+      #   - python3-lib389
+    - stream: httpd:2.4
+      # provides rpms:
+      #   - httpd
+      #   - mod_session
+      #   - mod_ssl
+    - stream: freeradius:3.0
+      # provides rpms:
+      #   - freeradius
+    - stream: mariadb:10.3
+      # provides rpms:
+      #   - mariadb
+    - stream: javapackages-runtime:201801
+      # provides rpms:
+      #   - javapackages-filesystem
+    - stream: mysql:8.0
+      # provides rpms:
+      #   - mysql-server
+    - stream: perl:5.26
+    - stream: perl-IO-Socket-SSL:2.066
+    # NOTE: Specific NSVCA to fix  https://github.com/simp/bolt-pulp3/issues/19
+    # Should eventually revert to a less-specific NS
+    - stream: perl-libwww-perl:6.34:8040020211102170116:bf75fe78:x86_64
+      # provides rpms:
+      #   - python3-distro
+    - stream: python36:3.6
+      # provides rpms:
+      #   - python3-distro
+    - stream: ruby:2.7
+      # provides rpms:
+      #   - ruby
+    # --------------------------------------------------------------------------
+    # Installed for repoclosure
+    # --------------------------------------------------------------------------
+    - stream: perl-DBI:1.641
+      # provides rpms:
+      #    - perl-DBI
+    - stream: perl-DBD-MySQL:4.046
+      # provides rpms:
+      #    - perl-DBD-MySQL
+    - stream: llvm-toolset:rhel8 #
+      # provides rpms:
+      #    - llvm-libs
+  rpms:
+  - name: 389-ds-base
+    version: '= 1.4.3.28'
+  - name: 389-ds-base-libs
+    version: '= 1.4.3.28'
+  - name: 389-ds-base-legacy-tools
+    version: '= 1.4.3.28'
+  - name: python3-lib389
+    version: '= 1.4.3.28'
+  - name: acpid
+  - name: aide
+  - name: annobin
+  - name: bind
+  - name: bind-utils
+  - name: createrepo_c
+  - name: genisoimage
+  - name: git
+  - name: jq
+  - name: liblockfile
+  - name: libreswan
+  - name: lua
+  - name: lua-json
+  - name: mutt
+  - name: net-snmp
+  - name: net-snmp-agent-libs
+  - name: net-snmp-utils
+  - name: nmap
+  - name: nss
+  - name: oddjob
+  - name: oddjob-mkhomedir
+  - name: openscap
+  - name: openscap-devel
+  - name: openscap-engine-sce
+  - name: openscap-python3
+  - name: openscap-scanner
+  - name: openscap-utils
+  - name: openssh-askpass
+  - name: perl-Mozilla-LDAP
+  - name: perl-NetAddr-IP
+  - name: pesign
+  - name: python3-argcomplete # not part of a module
+  - name: redhat-lsb
+  - name: redhat-lsb-core
+  - name: redhat-lsb-cxx
+  - name: redhat-lsb-desktop
+  - name: redhat-lsb-languages
+  - name: redhat-lsb-printing
+  - name: redhat-release
+  - name: redhat-release-eula
+  - name: rpm-build
+  - name: rpm-mpi-hooks
+  - name: rpm-ostree
+  - name: rpm-ostree-libs
+  - name: rpm-plugin-fapolicyd
+  - name: rsyslog
+  - name: rsyslog-crypto
+  - name: rsyslog-doc
+  - name: rsyslog-gnutls
+  - name: rsyslog-gssapi
+  - name: rsyslog-mysql
+  - name: rsyslog-pgsql
+  - name: rsyslog-snmp
+  - name: scap-security-guide
+  - name: sysfsutils
+  - name: sysstat
+  - name: tftp
+  - name: tftp-server
+  - name: tigervnc
+  - name: tigervnc-server
+  - name: tlog
+  - name: tokyocabinet
+  - name: urlview
+  - name: uuid
+  - name: vim-enhanced
+  - name: xinetd
+  # --------------------------------------------------------------------------
+  # Installed for repoclosure
+  # --------------------------------------------------------------------------
+  - name: llvm-libs # provides libLLVM-11.so for mesa-dri-drivers-20.3.3-2.el8.x86_64 MODULE: llvm-toolset:rhel8
+  - name: perl-DBI # provides perl(DBI) for mariadb-server-utils MODULE: perl-DBI:1.641
+  - name: perl-DBD-MySQL # provides perl(DBD::mysql) for mariadb-server-utils MODULE: perl-DBD-MySQL:4.046
+  - name: javapackages-filesystem # provides javapackages-filesystem for java-1.8.0-openjdk-headless MODULE: javapackages-runtime:201801
+
+postgresql:
+  #url: https://download.simp-project.com/simp/yum/unstable/simp6/el/8Server/x86_64/postgresql/
+  url: https://download.simp-project.com/simp/yum/releases/latest/el/8/x86_64/postgresql/
+  rpms:
+  - name: postgresql96
+  - name: postgresql96-contrib
+  - name: postgresql96-libs
+  - name: postgresql96-server
+
+SIMP:
+  # FIXME: using /unstable/ during 6.6.0 EL8 development; change to latest when ready to release:
+  #
+  #   url: https://download.simp-project.com/simp/yum/releases/latest/el/8server/x86_64/SIMP/
+  #
+  #url: https://download.simp-project.com/simp/yum/github/simp6/el/8Server/x86_64/simp/
+  url: https://download.simp-project.com/simp/yum/releases/latest/el/8/x86_64/SIMP/
+  rpms:
+   - name: pupmod-puppet-systemd
+   - name: pupmod-herculesteam-augeasproviders_core
+     version: '= 3.1.0'
+   - name: pupmod-herculesteam-augeasproviders_grub
+     version: '= 3.2.0'
+   - name: pupmod-herculesteam-augeasproviders_ssh
+     version: '= 4.0.0'
+   - name: pupmod-herculesteam-augeasproviders_sysctl
+     version: '= 2.6.2'
+   - name: pupmod-onyxpoint-gpasswd
+   - name: pupmod-puppet-chrony
+   - name: pupmod-puppet-firewalld
+   - name: pupmod-puppet-gitlab
+   - name: pupmod-puppet-kmod
+   - name: pupmod-puppetlabs-apache
+   - name: pupmod-puppetlabs-concat
+   - name: pupmod-puppetlabs-hocon
+   - name: pupmod-puppetlabs-inifile
+   - name: pupmod-puppetlabs-java
+   - name: pupmod-puppetlabs-motd
+   - name: pupmod-puppetlabs-postgresql
+   - name: pupmod-puppetlabs-puppet_authorization
+   - name: pupmod-puppetlabs-puppetdb
+   - name: pupmod-puppetlabs-ruby_task_helper
+   - name: pupmod-puppetlabs-stdlib
+   - name: pupmod-puppetlabs-translate
+   - name: pupmod-puppet-posix_acl
+   - name: pupmod-puppet-snmp
+   - name: pupmod-puppet-yum
+   - name: pupmod-saz-locales
+   - name: pupmod-saz-timezone
+   - name: pupmod-simp-acpid
+   - name: pupmod-simp-aide
+   - name: pupmod-simp-at
+   - name: pupmod-simp-auditd
+   - name: pupmod-simp-autofs
+   - name: pupmod-simp-chkrootkit
+   - name: pupmod-simp-clamav
+   - name: pupmod-simp-compliance_markup
+   - name: pupmod-simp-cron
+   - name: pupmod-simp-crypto_policy
+   - name: pupmod-simp-dconf
+   - name: pupmod-simp-deferred_resources
+   - name: pupmod-simp-dhcp
+   - name: pupmod-simp-ds389
+   - name: pupmod-simp-fips
+   - name: pupmod-simp-freeradius
+   - name: pupmod-simp-gdm
+   - name: pupmod-simp-gnome
+   - name: pupmod-simp-haveged
+   - name: pupmod-simp-hirs_provisioner
+   - name: pupmod-simp-ima
+   - name: pupmod-simp-incron
+   - name: pupmod-simp-iptables
+   - name: pupmod-simp-issue
+   - name: pupmod-simp-krb5
+   - name: pupmod-simp-libreswan
+   - name: pupmod-simp-libvirt
+   - name: pupmod-simp-logrotate
+   - name: pupmod-simp-mate
+   - name: pupmod-simp-mozilla
+   - name: pupmod-simp-named
+   - name: pupmod-simp-network
+   - name: pupmod-simp-nfs
+   - name: pupmod-simp-ntpd
+   - name: pupmod-simp-oath
+   - name: pupmod-simp-oddjob
+   - name: pupmod-simp-openscap
+   - name: pupmod-simp-pam
+   - name: pupmod-simp-pki
+   - name: pupmod-simp-polkit
+   - name: pupmod-simp-postfix
+   - name: pupmod-simp-pupmod
+   - name: pupmod-simp-resolv
+   - name: pupmod-simp-rkhunter
+   - name: pupmod-simp-rsync
+   - name: pupmod-simp-rsyslog
+   - name: pupmod-simp-selinux
+   - name: pupmod-simp-simp
+   - name: pupmod-simp-simp_apache
+   - name: pupmod-simp-simp_banners
+   - name: pupmod-simp-simp_ds389
+   - name: pupmod-simp-simp_firewalld
+   - name: pupmod-simp-simp_gitlab
+   - name: pupmod-simp-simp_grub
+   - name: pupmod-simp-simp_ipa
+   - name: pupmod-simp-simp_nfs
+   - name: pupmod-simp-simp_openldap
+   - name: pupmod-simp-simp_options
+   - name: pupmod-simp-simp_rsyslog
+   - name: pupmod-simp-simp_snmpd
+   - name: pupmod-simp-simpkv
+   - name: pupmod-simp-simplib
+   - name: pupmod-simp-ssh
+   - name: pupmod-simp-sssd
+   - name: pupmod-simp-stunnel
+   - name: pupmod-simp-sudo
+   - name: pupmod-simp-sudosh
+   - name: pupmod-simp-svckill
+   - name: pupmod-simp-swap
+   - name: pupmod-simp-tcpwrappers
+   - name: pupmod-simp-tftpboot
+   - name: pupmod-simp-tlog
+   - name: pupmod-simp-tpm
+   - name: pupmod-simp-tpm2
+   - name: pupmod-simp-tuned
+   - name: pupmod-simp-useradd
+   - name: pupmod-simp-vnc
+   - name: pupmod-simp-vox_selinux
+   - name: pupmod-simp-vsftpd
+   - name: pupmod-simp-x2go
+   - name: pupmod-simp-xinetd
+   - name: pupmod-treydock-kdump
+   - name: pupmod-trlinkin-nsswitch
+   - name: rubygem-simp-cli
+   - name: rubygem-simp-cli-doc
+   - name: rubygem-simp-cli-highline
+   - name: simp
+   - name: simp-adapter
+   - name: simp-doc
+   - name: simp-environment-skeleton
+   - name: simp-extras
+   - name: simp-gpgkeys
+   - name: simp-rsync
+   - name: simp-rsync-skeleton
+   - name: simp-selinux-policy
+   - name: simp-utils
+   - name: simp-vendored-r10k
+   - name: simp-vendored-r10k-doc
+   - name: simp-vendored-r10k-gem-colored2
+   - name: simp-vendored-r10k-gem-cri
+   - name: simp-vendored-r10k-gem-faraday
+   - name: simp-vendored-r10k-gem-faraday_middleware
+   - name: simp-vendored-r10k-gem-fast_gettext
+   - name: simp-vendored-r10k-gem-gettext
+   - name: simp-vendored-r10k-gem-gettext-setup
+   - name: simp-vendored-r10k-gem-jwt
+   - name: simp-vendored-r10k-gem-locale
+   - name: simp-vendored-r10k-gem-log4r
+   - name: simp-vendored-r10k-gem-minitar
+   - name: simp-vendored-r10k-gem-multi_json
+   - name: simp-vendored-r10k-gem-multipart-post
+   - name: simp-vendored-r10k-gem-puppet_forge
+   - name: simp-vendored-r10k-gem-r10k
+   - name: simp-vendored-r10k-gem-semantic_puppet
+   - name: simp-vendored-r10k-gem-text
