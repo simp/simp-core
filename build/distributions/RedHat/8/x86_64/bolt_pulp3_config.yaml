@@ -40,8 +40,9 @@
 ---
 
 epel:
-  url: https://dl.fedoraproject.org/pub/epel/8/Everything/x86_64/
+  #url: https://dl.fedoraproject.org/pub/epel/8/Everything/x86_64/
   #url: https://download.simp-project.com/simp/yum/experimental/simp6/el/8/x86_64/epel/
+  url: https://download.simp-project.com/simp/yum/releases/6.6.0-1/el/8/x86_64/epel/
   rpms:
   - name: dkms
   - name: htop        # no deps
@@ -101,7 +102,7 @@ puppet:
     version: ['>= 7.6.0', '< 8.0.0']
 
 BaseOS:
-  url: file:///root/BaseOS
+  url: file:///allowed_imports/RHEL-8-7-0-BaseOS-x86_64/BaseOS
   #url: https://cdn.redhat.com/content/dist/rhel8/$releasever/x86_64/baseos/os
   #url: https://download.simp-project.com/simp/yum/experimental/simp6/el/8/x86_64/BaseOS/
   packagegroups:
@@ -151,6 +152,7 @@ BaseOS:
   - name: lksctp-tools
   - name: libcurl
   - name: libhugetlbfs
+  - name: liblockfile  # in AppStream in CentOS 8Stream
   - name: libnghttp2
   - name: libsss_autofs
   - name: libsss_sudo
@@ -194,6 +196,8 @@ BaseOS:
   - name: quota-rpc
   - name: readline
   - name: readline-devel
+  - name: redhat-release       # in AppStream in CentOS 8Stream
+  - name: redhat-release-eula  # in AppStream in CentOS 8Stream
   - name: rpm
   - name: rpm-apidocs
   - name: rpm-build-libs
@@ -246,13 +250,13 @@ BaseOS:
   - name: yum-utils
 
 AppStream:
-  url: file:///root/AppStream
+  url: file:///allowed_imports/RHEL-8-7-0-BaseOS-x86_64/AppStream
   #url: https://cdn.redhat.com/content/e4s/rhel8/8/x86_64/appstream/os
   #url: https://download.simp-project.com/simp/yum/experimental/simp6/el/8/x86_64/AppStream/
   modules:
     # This matches the latest published version explicitly
     # Pulp is pulling a version that is past this somehow
-    - stream: 389-ds:1.4:8060020220315132034:ce3e8c9c:x86_64
+    - stream: 389-ds:1.4    # CentOS 8Stream entry was too specific
       # provides rpms:
       #   - 389-ds-base
       #   - 389-ds-base-libs
@@ -279,7 +283,7 @@ AppStream:
     - stream: perl-IO-Socket-SSL:2.066
     # NOTE: Specific NSVCA to fix  https://github.com/simp/bolt-pulp3/issues/19
     # Should eventually revert to a less-specific NS
-    - stream: perl-libwww-perl:6.34:8040020211102170116:bf75fe78:x86_64
+    - stream: perl-libwww-perl:6.34   # CentOS 8Stream entry was too specific
       # provides rpms:
       #   - python3-distro
     - stream: python36:3.6
@@ -301,14 +305,19 @@ AppStream:
       # provides rpms:
       #    - llvm-libs
   rpms:
+  # ------------------------------------
+  # 389-ds module RPMs
+  # - 1.4.3.30 is the version on the RHEL8.7 ISO
+  # - The only reason the versions are specified is because that they have to match
   - name: 389-ds-base
-    version: '= 1.4.3.28'
+    version: '= 1.4.3.30'
   - name: 389-ds-base-libs
-    version: '= 1.4.3.28'
+    version: '= 1.4.3.30'
   - name: 389-ds-base-legacy-tools
-    version: '= 1.4.3.28'
+    version: '= 1.4.3.30'
   - name: python3-lib389
-    version: '= 1.4.3.28'
+    version: '= 1.4.3.30'
+  # ------------------------------------
   - name: acpid
   - name: aide
   - name: annobin
@@ -318,7 +327,6 @@ AppStream:
   - name: genisoimage
   - name: git
   - name: jq
-  - name: liblockfile
   - name: libreswan
   - name: lua
   - name: lua-json
@@ -347,8 +355,6 @@ AppStream:
   - name: redhat-lsb-desktop
   - name: redhat-lsb-languages
   - name: redhat-lsb-printing
-  - name: redhat-release
-  - name: redhat-release-eula
   - name: rpm-build
   - name: rpm-mpi-hooks
   - name: rpm-ostree
@@ -382,6 +388,20 @@ AppStream:
   - name: perl-DBI # provides perl(DBI) for mariadb-server-utils MODULE: perl-DBI:1.641
   - name: perl-DBD-MySQL # provides perl(DBD::mysql) for mariadb-server-utils MODULE: perl-DBD-MySQL:4.046
   - name: javapackages-filesystem # provides javapackages-filesystem for java-1.8.0-openjdk-headless MODULE: javapackages-runtime:201801
+
+codeready-builder-for-rhel-8-x86_64-rpms:
+  #url: http://vault.centos.org/centos/8/extras/x86_64/os/
+  #url: https://download.simp-project.com/simp/yum/experimental/simp6/el/8/x86_64/extras/
+  #url: http://mirror.centos.org/centos/8-stream/PowerTools/x86_64/os/
+  #url: https://download.simp-project.com/simp/yum/experimental/simp6/el/8/x86_64/PowerTools/
+  #url: https://cdn.redhat.com/content/dist/rhel8/$releasever/x86_64/codeready-builder/os
+  url: file:///allowed_imports/codeready-builder-for-rhel-8-x86_64-rpms--slim/
+  rpms:
+    #- name: elrepo-release
+    #- name: epel-next-release
+    - name: elinks
+    - name: lua-filesystem
+    - name: lua-posix
 
 postgresql:
   #url: https://download.simp-project.com/simp/yum/unstable/simp6/el/8Server/x86_64/postgresql/
