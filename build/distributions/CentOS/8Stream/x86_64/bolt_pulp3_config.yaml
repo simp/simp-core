@@ -342,6 +342,8 @@ AppStream:
   - name: openscap-scanner
   - name: openscap-utils
   - name: openssh-askpass
+  - name: perl
+    version: '~> 5.26.3'
   - name: perl-Mozilla-LDAP
   - name: perl-NetAddr-IP
   - name: pesign

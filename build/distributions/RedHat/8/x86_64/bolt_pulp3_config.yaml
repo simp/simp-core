@@ -284,10 +284,10 @@ AppStream:
       # provides rpms:
       #   - mysql-server
     - stream: perl:5.26
-    - stream: perl-IO-Socket-SSL:2.066
+    - stream: perl-IO-Socket-SSL:2.066:8060020211122104554:bc93984d # nailing to perl 5:26 stream
     # NOTE: Specific NSVCA to fix  https://github.com/simp/bolt-pulp3/issues/19
     # Should eventually revert to a less-specific NS
-    - stream: perl-libwww-perl:6.34   # CentOS 8Stream entry was too specific
+    - stream: perl-libwww-perl:6.34:8060020210901111951:9168a43d # nailing to perl 5:26 stream
       # provides rpms:
       #   - python3-distro
     - stream: python36:3.6
@@ -299,10 +299,10 @@ AppStream:
     # --------------------------------------------------------------------------
     # Installed for repoclosure
     # --------------------------------------------------------------------------
-    - stream: perl-DBI:1.641
+    - stream: perl-DBI:1.641:8060020211122100623:bc93984d  # nailing to perl 5:26 stream
       # provides rpms:
       #    - perl-DBI
-    - stream: perl-DBD-MySQL:4.046
+    - stream: perl-DBD-MySQL:4.046:8060020210901110310:4f86f5e0  # nailing to perl 5:26 stream
       # provides rpms:
       #    - perl-DBD-MySQL
     - stream: llvm-toolset:rhel8 #
@@ -349,6 +349,8 @@ AppStream:
   - name: openscap-scanner
   - name: openscap-utils
   - name: openssh-askpass
+  - name: perl
+    version: '~> 5.26.3'
   - name: perl-Mozilla-LDAP
   - name: perl-NetAddr-IP
   - name: pesign
@@ -399,9 +401,9 @@ codeready-builder-for-rhel-8-x86_64-rpms:
   #url: http://mirror.centos.org/centos/8-stream/PowerTools/x86_64/os/
   #url: https://download.simp-project.com/simp/yum/experimental/simp6/el/8/x86_64/PowerTools/
   #url: https://cdn.redhat.com/content/dist/rhel8/$releasever/x86_64/codeready-builder/os
-  url: file:///allowed_imports/codeready-builder-for-rhel-8-x86_64-rpms--slim/
+  url: file:///allowed_imports/codeready-builder-for-rhel-8-x86_64-rpms
   pulp_remote_options: # example of pulp_remote_options
-    policy: streamed
+    policy: immediate
   rpms:
     #- name: elrepo-release
     #- name: epel-next-release
