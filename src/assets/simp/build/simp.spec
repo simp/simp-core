@@ -1,7 +1,7 @@
 Summary: SIMP Full Install
 Name: simp
 Version: 6.6.0
-Release: 1%{?dist}%{?snapshot_release}
+Release: 2%{?dist}%{?snapshot_release}
 License: Apache License, Version 2.0
 Group: Applications/System
 
@@ -241,6 +241,9 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Wed Apr 12 2023 Mike Riddle <mike@sicura.com> - 6.6.0-2
+- Now including perl appropriately in the el 8 rlease
+
 * Fri May 13 2022 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.6.0-1
 - Updated the list of provided components
   - Additions:
