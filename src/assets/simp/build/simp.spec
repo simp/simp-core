@@ -1,7 +1,7 @@
 Summary: SIMP Full Install
 Name: simp
 Version: 6.6.0
-Release: 1%{?dist}%{?snapshot_release}
+Release: 2%{?dist}%{?snapshot_release}
 License: Apache License, Version 2.0
 Group: Applications/System
 
@@ -79,7 +79,7 @@ Requires: pupmod-simp-rkhunter >= 0.1.0, pupmod-simp-rkhunter < 1.0.0
 Requires: pupmod-simp-rsync >= 6.5.0, pupmod-simp-rsync < 7.0.0
 Requires: pupmod-simp-rsyslog >= 8.2.0, pupmod-simp-rsyslog < 9.0.0
 Requires: pupmod-simp-selinux >= 2.8.0, pupmod-simp-selinux < 3.0.0
-Requires: pupmod-simp-simp >= 4.16.4, pupmod-simp-simp < 5.0.0
+Requires: pupmod-simp-simp >= 4.16.5, pupmod-simp-simp < 5.0.0
 Requires: pupmod-simp-simp_apache >= 7.1.0, pupmod-simp-simp_apache < 8.0.0
 Requires: pupmod-simp-simp_banners >= 0.3.0, pupmod-simp-simp_banners < 1.0.0
 Requires: pupmod-simp-simp_ds389 >= 0.1.1, pupmod-simp-simp_ds389 < 1.0.0
@@ -241,6 +241,9 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Wed Apr 12 2023 Mike Riddle <mike@sicura.com> - 6.6.0-2
+- Now including perl appropriately in the el 8 rlease
+
 * Fri May 13 2022 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.6.0-1
 - Updated the list of provided components
   - Additions:
