@@ -92,7 +92,7 @@ jobs:
       ${{ (github.event.inputs.target_repo != null && format('{0}/{1}', github.repository_owner, github.event.inputs.target_repo)) || github.repository }}
       ${{ github.event.inputs.release_tag }}
       (build os: ${{ github.event.inputs.build_container_os }})
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: "Validate inputs"
         id: validate-inputs

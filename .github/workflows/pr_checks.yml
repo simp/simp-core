@@ -12,7 +12,7 @@ env:
 jobs:
   validate-yaml:
     name: YAML syntax
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: ruby/setup-ruby@v1
@@ -24,7 +24,7 @@ jobs:
 
   rpm_checks:
     name: RPM checks
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: ruby/setup-ruby@v1
@@ -39,7 +39,7 @@ jobs:
 
   module_checks:
     name: Puppet module checks
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: ruby/setup-ruby@v1
