@@ -22,9 +22,30 @@ ENV['SIMP_VAGRANT_BOX'] ||= 'generic/centos8s'
 #ENV['SIMP_VAGRANT_BOX'] ||= 'centos/7'
 ENV['SIMP_VAGRANT_NETWORK'] ||= '10.255.239.55'
 
+ENV['SIMP_DNF_REPO_SETUP_METHOD'] ||= 'rpm'
+
 simp_vagrant_network_base = ENV['SIMP_VAGRANT_NETWORK'].split('.')
 simp_vagrant_network_start = simp_vagrant_network_base.pop.to_i
 simp_vagrant_network_base = simp_vagrant_network_base.join('.')
+
+
+if ENV['SIMP_DNF_REPO_SETUP_METHOD'] == 'rpm'
+  simp_vagrant_inline_dnf_repo_setup_script = 'yum install -y https://download.simp-project.com/simp-release-community$( rpm -E %{dist} ).rpm'
+elsif ENV['SIMP_DNF_REPO_SETUP_METHOD'] =~ %r{\A(https?|file)://.*\.rpm\Z}
+  simp_vagrant_inline_dnf_repo_setup_script = "yum install -y '#{ENV['SIMP_DNF_REPO_SETUP_METHOD']}'"
+elsif ENV['SIMP_DNF_REPO_SETUP_METHOD'] =~ %r{\A(https?|file)://.*\.repo\Z}
+  simp_vagrant_inline_dnf_repo_setup_script = <<~SCRIPT
+    curl -o /etc/yum.repos.d/simp-community.repo '#{ENV['SIMP_DNF_REPO_SETUP_METHOD']}'
+  SCRIPT
+else
+  fail <<~FAILURE
+    FATAL: ENV['SIMP_DNF_REPO_SETUP_METHOD'] is set, but is not 'rpm' or a url to a .rpm or .repo file:
+
+        #{ENV['SIMP_DNF_REPO_SETUP_METHOD']}
+
+  FAILURE
+end
+
 
 Vagrant.configure('2') do |c|
   c.vm.define 'simp_server' do |v|
@@ -46,7 +67,7 @@ Vagrant.configure('2') do |c|
     v.vm.synced_folder '.', '/vagrant', disabled: true
 
     v.vm.provision 'shell',
-      inline: 'yum install -y https://download.simp-project.com/simp-release-community$( rpm -E %{dist} ).rpm'
+      inline: simp_vagrant_inline_dnf_repo_setup_script
 
     v.vm.provision 'shell',
       inline: "echo #{ENV['SIMP_RELEASE_TYPE']} > /etc/yum/vars/simpreleasetype"
