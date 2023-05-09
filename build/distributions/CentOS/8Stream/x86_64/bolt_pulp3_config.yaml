@@ -391,7 +391,7 @@ AppStream:
   - name: javapackages-filesystem # provides javapackages-filesystem for java-1.8.0-openjdk-headless MODULE: javapackages-runtime:201801
 
 extras:
-- url: http://mirror.centos.org/centos/8-stream/extras/x86_64/os/
+  url: http://mirror.centos.org/centos/8-stream/extras/x86_64/os/
   #url: https://download.simp-project.com/simp/yum/experimental/simp6/el/8/x86_64/extras/
   rpms:
   - name: centos-release-advanced-virtualization
@@ -424,7 +424,7 @@ extras:
   - name: centos-release-storage-common
   - name: centos-release-stream
   - name: centos-release-virt-common
-  - name: centos-stream-repos
+  #- name: centos-stream-repos # This package doesn't exist in the streams version of extras
   - name: elrepo-release
   - name: epel-next-release
 

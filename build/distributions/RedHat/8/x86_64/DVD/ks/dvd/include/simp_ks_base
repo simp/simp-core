@@ -1,0 +1,89 @@
+authselect --enableshadow --passalgo=sha512
+selinux --enforcing
+
+module --name=389-ds --stream=1.4
+module --name=httpd  --stream=2.4
+module --name=mariadb --stream=10.3
+module --name=mysql --stream=8.0
+module --name=python36 --stream=3.6
+module --name=perl --stream=5.26
+module --name=perl-IO-Socket-SSL --stream=2.066
+module --name=perl-libwww-perl --stream=6.34
+module --name=ruby --stream=2.7
+module --name=javapackages-runtime --stream=201801
+
+%packages
+acl
+aide
+bzip2
+chrony
+crontabs
+dhclient
+fipscheck
+firewalld
+libaio
+libutempter
+logrotate
+logwatch
+lsof
+mdadm
+net-snmp
+net-tools
+netlabel_tools
+openssh-clients
+openssh-server
+pciutils
+psacct
+quota
+rsync
+shim-x64
+smartmontools
+sssd
+sysstat
+unzip
+usbutils
+vim-enhanced
+wget
+which
+zip
+
+# Security Related
+%include /tmp/dracut_packages
+anacron
+cryptsetup-luks
+gnupg
+netlabel_tools
+stunnel
+tmpwatch
+vlock
+
+# Puppet Server Complete Load
+# Make sure open source puppetserver is installed
+elinks
+git
+puppetserver
+simp
+simp-adapter
+mkisofs
+syslinux-tftpboot
+yum-utils
+
+# In case of broken repo, these should be installed.
+hdparm
+kbd
+libhugetlbfs
+policycoreutils
+rootfiles
+selinux-policy-targeted
+setserial
+sysfsutils
+
+# Don't install these
+-rhn-check
+-rhn-setup
+-rhnsd
+-sendmail
+-subscription-manager
+-sysklogd
+-yum-rhn-plugin
+%end
