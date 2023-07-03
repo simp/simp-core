@@ -41,31 +41,31 @@ on:
         default: master
 jobs:
   build_container:
-  runs-on: ubuntu-latest
-  steps:
-    #- name: install docker
-    #  run: |
-    #    set -x
-    #    sudo apt-get remove -y podman ||:
-    #    sudo apt-get install -y docker-ce docker docker-engine docker.io containerd runc ||:
-    #    sudo apt-get update
-    #    sudo apt autoremove -y
-    #    sudo systemctl start docker
-    - uses: actions/checkout@v3
-    - name: build
-      env:
-        RUBY_VERSION: ${{github.event.inputs.ruby_version}}
-        DOCKERFILE: ${{github.event.inputs.dockerfile}}
-        CONTAINER_NAME: ${{github.event.inputs.container_name}}
-        CONTAINER_TAG: ${{github.event.inputs.container_tag}}
-        REGISTRY_USER: ${{github.event.inputs.registry_user}}
-        REGISTRY_PASSWORD: ${{github.event.inputs.registry_password}}
-        REGISTRY_REPO: ${{github.event.inputs.registry_repo}}
-      run: |
-        cd build/Dockerfiles
-        docker build --build-arg ruby_version="$RUBY_VERSION" -f "$DOCKERFILE" -t "$CONTAINER_TAG"
-        echo "$REGISTRY_PASSWORD" | docker login --username "$REGISTRY_USER" --password-stdin
-        docker push "$CONTAINER_NAME:CONTAINER_TAG"
+    runs-on: ubuntu-latest
+    steps:
+      #- name: install docker
+      #  run: |
+      #    set -x
+      #    sudo apt-get remove -y podman ||:
+      #    sudo apt-get install -y docker-ce docker docker-engine docker.io containerd runc ||:
+      #    sudo apt-get update
+      #    sudo apt autoremove -y
+      #    sudo systemctl start docker
+      - uses: actions/checkout@v3
+      - name: build
+        env:
+          RUBY_VERSION: ${{github.event.inputs.ruby_version}}
+          DOCKERFILE: ${{github.event.inputs.dockerfile}}
+          CONTAINER_NAME: ${{github.event.inputs.container_name}}
+          CONTAINER_TAG: ${{github.event.inputs.container_tag}}
+          REGISTRY_USER: ${{github.event.inputs.registry_user}}
+          REGISTRY_PASSWORD: ${{github.event.inputs.registry_password}}
+          REGISTRY_REPO: ${{github.event.inputs.registry_repo}}
+        run: |
+          cd build/Dockerfiles
+          docker build --build-arg ruby_version="$RUBY_VERSION" -f "$DOCKERFILE" -t "$CONTAINER_TAG"
+          echo "$REGISTRY_PASSWORD" | docker login --username "$REGISTRY_USER" --password-stdin
+          docker push "$CONTAINER_NAME:CONTAINER_TAG"
 
 
 
