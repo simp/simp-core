@@ -11,27 +11,27 @@ on:
         - 2.7
         - 3.1
       dockerfile:
-        description: >
-          Filename of SIMP Dockerfile to build
-          (under `build/Dockerfiles/`)
-          Example: `SIMP_EL7_Build.dockerfile`
+#        description: >
+#          Filename of SIMP Dockerfile to build
+#          (under `build/Dockerfiles/`)
+#          Example: `SIMP_EL7_Build.dockerfile`
         required: true
       container_name:
-        description: >
-          Name of container to push
-          Examples: `simp_beaker_el7`, `simp_build_centos7`
+#        description: >
+#          Name of container to push
+#          Examples: `simp_beaker_el7`, `simp_build_centos7`
         required: true
       container_tag:
-        description: >
-          Tag of container to push
-          Examples: `latest`, `20230703`
+#        description: >
+#          Tag of container to push
+#          Examples: `latest`, `20230703`
         required: true
         default: latest
       registry_repo:
         required: true
-        description: >
-          Dockerhub + repo to push to
-        default: docker.io/simpproject
+#        description: >
+#          Dockerhub + repo to push to
+        default: 'docker.io/simpproject'
       registry_user:
         required: true
       registry_password:
@@ -41,6 +41,7 @@ on:
         default: master
 jobs:
   build_container:
+    name: Build and push container
     runs-on: ubuntu-latest
     steps:
       #- name: install docker
@@ -52,6 +53,7 @@ jobs:
       #    sudo apt autoremove -y
       #    sudo systemctl start docker
       - uses: actions/checkout@v3
+
       - name: build
         env:
           RUBY_VERSION: ${{github.event.inputs.ruby_version}}
