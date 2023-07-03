@@ -1,0 +1,23 @@
+---
+# This file houses the *officially supported* SIMP release combinations
+# Other build combinations may work, but unexpected issues may arise.
+simp_releases:
+  6.X:
+    flavors:
+      CentOS:
+        isos:
+          - name:     'CentOS-Stream-8-x86_64-20230125-dvd1.iso'
+            size:     11766071296
+            checksum: '91454029bf70382eff9032d384093747d588ce4c96d95028b1c21b6f8154c712'
+        build_command: 'bundle exec rake build:auto[CentOS-Stream-8-x86_64-20230125-dvd1.iso,6.6]'
+        os_version:   '8.7'
+  '6.6':
+    flavors:
+      CentOS:
+        isos:
+          - name:     'CentOS-Stream-8-x86_64-20230125-dvd1.iso'
+            size:     11766071296
+            checksum: '91454029bf70382eff9032d384093747d588ce4c96d95028b1c21b6f8154c712'
+        build_command: 'bundle exec rake build:auto[CentOS-Stream-8-x86_64-20230125-dvd1.iso,6.6]'
+        os_version:   '8.7'
+

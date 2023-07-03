@@ -31,6 +31,7 @@
 
 FROM centos:7.0.1406
 ENV container docker
+ARG ruby_version=2.7
 
 RUN mkdir /root/build_scripts
 ADD scripts/common/* /root/build_scripts/
@@ -45,7 +46,7 @@ RUN ./01_disable_systemctl.sh
 RUN ./05_selinux.sh
 RUN ./10_dev_packages.sh
 RUN ./user.sh
-RUN ./rvm.sh
+RUN ./rvm.sh "$ruby_version"
 RUN ./prime_ruby.sh
 RUN ./package_cleanup.sh
 RUN rm -rf /root/build_scripts
