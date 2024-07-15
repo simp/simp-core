@@ -1,0 +1,73 @@
+---
+name: 'RELENG: Build + publish SIMP container image'
+
+on:
+  workflow_dispatch:
+    inputs:
+      ruby_version:
+        description: "Ruby verion build arg"
+        required: true
+        options:
+        - 2.7
+        - 3.1
+      dockerfile:
+#        description: >
+#          Filename of SIMP Dockerfile to build
+#          (under `build/Dockerfiles/`)
+#          Example: `SIMP_EL7_Build.dockerfile`
+        required: true
+      container_name:
+#        description: >
+#          Name of container to push
+#          Examples: `simp_beaker_el7`, `simp_build_centos7`
+        required: true
+      container_tag:
+#        description: >
+#          Tag of container to push
+#          Examples: `latest`, `20230703`
+        required: true
+        default: latest
+      registry_repo:
+        required: true
+#        description: >
+#          Dockerhub + repo to push to
+        default: 'docker.io/simpproject'
+      registry_user:
+        required: true
+      registry_password:
+        required: true
+      git_ref:
+        required: true
+        default: master
+jobs:
+  build_container:
+    name: Build and push container
+    runs-on: ubuntu-latest
+    steps:
+      #- name: install docker
+      #  run: |
+      #    set -x
+      #    sudo apt-get remove -y podman ||:
+      #    sudo apt-get install -y docker-ce docker docker-engine docker.io containerd runc ||:
+      #    sudo apt-get update
+      #    sudo apt autoremove -y
+      #    sudo systemctl start docker
+      - uses: actions/checkout@v3
+
+      - name: build
+        env:
+          RUBY_VERSION: ${{github.event.inputs.ruby_version}}
+          DOCKERFILE: ${{github.event.inputs.dockerfile}}
+          CONTAINER_NAME: ${{github.event.inputs.container_name}}
+          CONTAINER_TAG: ${{github.event.inputs.container_tag}}
+          REGISTRY_USER: ${{github.event.inputs.registry_user}}
+          REGISTRY_PASSWORD: ${{github.event.inputs.registry_password}}
+          REGISTRY_REPO: ${{github.event.inputs.registry_repo}}
+        run: |
+          cd build/Dockerfiles
+          docker build --build-arg ruby_version="$RUBY_VERSION" -f "$DOCKERFILE" -t "$CONTAINER_TAG"
+          echo "$REGISTRY_PASSWORD" | docker login --username "$REGISTRY_USER" --password-stdin
+          docker push "$CONTAINER_NAME:CONTAINER_TAG"
+
+
+

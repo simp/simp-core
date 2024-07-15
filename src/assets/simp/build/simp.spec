@@ -1,7 +1,7 @@
 Summary: SIMP Full Install
 Name: simp
 Version: 6.6.0
-Release: Alpha%{?dist}%{?snapshot_release}
+Release: 2%{?dist}%{?snapshot_release}
 License: Apache License, Version 2.0
 Group: Applications/System
 
@@ -33,7 +33,7 @@ Requires: pupmod-puppet-systemd >= 3.10.0, pupmod-puppet-systemd < 4.0.0
 Requires: pupmod-herculesteam-augeasproviders_core >= 3.1.0, pupmod-herculesteam-augeasproviders_core < 4.0.0
 Requires: pupmod-herculesteam-augeasproviders_grub >= 3.2.0, pupmod-herculesteam-augeasproviders_grub < 4.0.0
 Requires: pupmod-herculesteam-augeasproviders_ssh >= 4.0.0, pupmod-herculesteam-augeasproviders_ssh < 5.0.0
-Requires: pupmod-herculesteam-augeasproviders_sysctl >= 2.6.2 pupmod-herculesteam-augeasproviders_sysctl < 3.0.0
+Requires: pupmod-herculesteam-augeasproviders_sysctl >= 2.6.2, pupmod-herculesteam-augeasproviders_sysctl < 3.0.0
 Requires: pupmod-onyxpoint-gpasswd >= 1.1.2, pupmod-onyxpoint-gpasswd < 2.0.0
 Requires: pupmod-puppet-chrony >= 2.4.0, pupmod-puppet-chrony < 3.0.0
 Requires: pupmod-puppet-firewalld >= 4.5.1, pupmod-puppet-firewalld < 5.0.0
@@ -79,7 +79,7 @@ Requires: pupmod-simp-rkhunter >= 0.1.0, pupmod-simp-rkhunter < 1.0.0
 Requires: pupmod-simp-rsync >= 6.5.0, pupmod-simp-rsync < 7.0.0
 Requires: pupmod-simp-rsyslog >= 8.2.0, pupmod-simp-rsyslog < 9.0.0
 Requires: pupmod-simp-selinux >= 2.8.0, pupmod-simp-selinux < 3.0.0
-Requires: pupmod-simp-simp >= 4.16.4, pupmod-simp-simp < 5.0.0
+Requires: pupmod-simp-simp >= 4.16.6, pupmod-simp-simp < 5.0.0
 Requires: pupmod-simp-simp_apache >= 7.1.0, pupmod-simp-simp_apache < 8.0.0
 Requires: pupmod-simp-simp_banners >= 0.3.0, pupmod-simp-simp_banners < 1.0.0
 Requires: pupmod-simp-simp_ds389 >= 0.1.1, pupmod-simp-simp_ds389 < 1.0.0
@@ -97,7 +97,7 @@ Requires: pupmod-simp-sudosh >= 6.3.0, pupmod-simp-sudosh < 7.0.0
 Requires: pupmod-simp-svckill >= 3.7.0, pupmod-simp-svckill < 4.0.0
 Requires: pupmod-simp-swap >= 0.3.1, pupmod-simp-swap < 1.0.0
 Requires: pupmod-simp-tcpwrappers >= 6.3.0, pupmod-simp-tcpwrappers < 7.0.0
-Requires: pupmod-simp-tftpboot >= 6.4.1 pupmod-simp-tftpboot < 7.0.0
+Requires: pupmod-simp-tftpboot >= 6.4.1, pupmod-simp-tftpboot < 7.0.0
 Requires: pupmod-simp-tlog >= 0.3.2, pupmod-simp-tlog < 1.0.0
 Requires: pupmod-simp-useradd >= 0.6.0, pupmod-simp-useradd < 1.0.0
 Requires: pupmod-simp-vox_selinux >= 3.4.0, pupmod-simp-vox_selinux < 4.0.0
@@ -108,7 +108,7 @@ Recommends: rubygem-simp-cli >= 7.0.0, rubygem-simp-cli < 8.0.0
 Recommends: rubygem-simp-cli-doc >= 7.0.0, rubygem-simp-cli-doc < 8.0.0
 Recommends: simp-adapter >= 2.1.1, simp-adapter < 3.0.0
 Recommends: simp-environment-skeleton >= 7.3.1, simp-environment-skeleton < 8.0.0
-Recommends: simp-gpgkeys >= 3.1.5, simp-gpgkeys < 4.0.0
+Recommends: simp-gpgkeys >= 3.2.0, simp-gpgkeys < 4.0.0
 Recommends: simp-rsync-skeleton >= 7.1.1, simp-rsync-skeleton < 8.0.0
 Recommends: simp-selinux-policy >= 1.1.1, simp-selinux-policy < 2.0.0
 Recommends: simp-utils >= 6.7.2, simp-utils < 7.0.0
@@ -118,7 +118,7 @@ Requires: rubygem-simp-cli >= 7.0.0, rubygem-simp-cli < 8.0.0
 Requires: rubygem-simp-cli-doc >= 7.0.0, rubygem-simp-cli-doc < 8.0.0
 Requires: simp-adapter >= 2.1.1, simp-adapter < 3.0.0
 Requires: simp-environment-skeleton >= 7.3.1, simp-environment-skeleton < 8.0.0
-Requires: simp-gpgkeys >= 3.1.5, simp-gpgkeys < 4.0.0
+Requires: simp-gpgkeys >= 3.2.0, simp-gpgkeys < 4.0.0
 Requires: simp-rsync-skeleton >= 7.1.1, simp-rsync-skeleton < 8.0.0
 Requires: simp-selinux-policy >= 1.1.1, simp-selinux-policy < 2.0.0
 Requires: simp-utils >= 6.7.2, simp-utils < 7.0.0
@@ -241,6 +241,9 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Wed Apr 12 2023 Mike Riddle <mike@sicura.com> - 6.6.0-2
+- Now including perl appropriately in the el 8 rlease
+
 * Fri May 13 2022 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.6.0-1
 - Updated the list of provided components
   - Additions:

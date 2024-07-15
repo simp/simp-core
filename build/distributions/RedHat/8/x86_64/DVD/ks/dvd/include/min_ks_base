@@ -1,0 +1,50 @@
+selinux --permissive
+
+module --name=ruby
+module --name=mariadb
+module --name=python36
+
+%packages
+@^minimal-environment
+%include /tmp/dracut_packages
+acl
+bzip2
+chrony
+dracut
+fipscheck
+grub2-efi-x64
+hdparm
+irqbalance
+libaio
+libhugetlbfs
+libutempter
+logrotate
+logwatch
+lsof
+mdadm
+net-tools
+netlabel_tools
+pciutils
+psacct
+quota
+redhat-lsb
+rsync
+setserial
+shim-x64
+sssd
+sysfsutils
+sysstat
+tmpwatch
+unzip
+usbutils
+vim-enhanced
+wget
+which
+zip
+# Don't install these
+-rhn-check
+-rhn-setup
+-rhnsd
+-subscription-manager
+-sendmail
+%end

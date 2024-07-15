@@ -65,9 +65,8 @@ if [ "$distro" == RedHat ]; then
 repo --name="baseos"   --baseurl="$uri_header/BaseOS" --noverifyssl
 repo --name="appstream"   --baseurl="$uri_header/AppStream" --noverifyssl
 repo --name="epel"   --baseurl="$local_header/epel" --noverifyssl
-repo --name="extras"   --baseurl="$local_header/extras" --noverifyssl
 repo --name="postgresql"   --baseurl="$local_header/postgresql" --noverifyssl
-repo --name="powertools"   --baseurl="$local_header/PowerTools" --noverifyssl
+repo --name="codeready-builder"   --baseurl="$local_header/codeready-builder-for-rhel-8-x86_64-rpms" --noverifyssl
 repo --name="puppet"   --baseurl="$local_header/puppet" --noverifyssl
 repo --name="simp"   --baseurl="$local_header/SIMP" --noverifyssl
 EOF

@@ -19,12 +19,12 @@
   ],
   "dependencies": [
     {
-      "name": "camptocamp/systemd",
-      "version_requirement": ">= 2.12.0 < 3.0.0"
+      "name": "puppet/systemd",
+      "version_requirement": ">= 3.10.0 < 4.0.0"
     },
     {
       "name": "herculesteam/augeasproviders_core",
-      "version_requirement": ">= 2.7.0 < 3.0.0"
+      "version_requirement": ">= 3.1.0 < 4.0.0"
     },
     {
       "name": "herculesteam/augeasproviders_grub",
@@ -39,36 +39,28 @@
       "version_requirement": ">= 2.6.2 < 3.0.0"
     },
     {
+      "name": "puppet/firewalld",
+      "version_requirement": ">= 4.5.1 < 5.0.0"
+    },
+    {
       "name": "onyxpoint/gpasswd",
       "version_requirement": ">= 1.1.2 < 2.0.0"
     },
     {
       "name": "puppet/chrony",
-      "version_requirement": ">= 1.0.0 < 2.0.0"
-    },
-    {
-      "name": "puppet/kmod",
-      "version_requirement": ">= 3.0.0 < 4.0.0"
+      "version_requirement": ">= 2.4.0 < 3.0.0"
     },
     {
       "name": "puppet/yum",
-      "version_requirement": ">= 4.3.0 < 5.0.0"
-    },
-    {
-      "name": "puppetlabs/apache",
-      "version_requirement": ">= 6.2.0 < 7.0.0"
+      "version_requirement": ">= 5.4.0 < 6.0.0"
     },
     {
       "name": "puppetlabs/concat",
-      "version_requirement": ">= 6.4.0 < 7.0.0"
+      "version_requirement": ">= 7.0.1 < 8.0.0"
     },
     {
       "name": "puppetlabs/hocon",
       "version_requirement": ">= 1.1.0 < 2.0.0"
-    },
-    {
-      "name": "puppetlabs/inifile",
-      "version_requirement": ">= 4.1.0 < 5.0.0"
     },
     {
       "name": "puppetlabs/motd",
@@ -76,19 +68,15 @@
     },
     {
       "name": "puppetlabs/postgresql",
-      "version_requirement": ">= 6.6.0 < 7.0.0"
+      "version_requirement": ">= 8.0.0 < 9.0.0"
     },
     {
       "name": "puppetlabs/puppetdb",
-      "version_requirement": ">= 7.5.0 < 8.0.0"
+      "version_requirement": ">= 7.10.0 < 8.0.0"
     },
     {
       "name": "puppetlabs/puppet_authorization",
       "version_requirement": ">= 0.5.1 < 1.0.0"
-    },
-    {
-      "name": "puppetlabs/stdlib",
-      "version_requirement": ">= 6.6.0 < 8.0.0"
     },
     {
       "name": "saz/timezone",
@@ -99,16 +87,8 @@
       "version_requirement": ">= 1.3.0 < 2.0.0"
     },
     {
-      "name": "simp/aide",
-      "version_requirement": ">= 6.5.0 < 7.0.0"
-    },
-    {
       "name": "simp/at",
       "version_requirement": ">= 0.2.0 < 1.0.0"
-    },
-    {
-      "name": "simp/auditd",
-      "version_requirement": ">= 8.7.0 < 9.0.0"
     },
     {
       "name": "simp/chkrootkit",
@@ -119,16 +99,8 @@
       "version_requirement": ">= 6.5.0 < 7.0.0"
     },
     {
-      "name": "simp/compliance_markup",
-      "version_requirement": ">= 3.2.0 < 4.0.0"
-    },
-    {
       "name": "simp/cron",
       "version_requirement": ">= 0.3.0 < 1.0.0"
-    },
-    {
-      "name": "simp/crypto_policy",
-      "version_requirement": ">= 0.2.0 < 1.0.0"
     },
     {
       "name": "simp/deferred_resources",
@@ -137,22 +109,6 @@
     {
       "name": "simp/dhcp",
       "version_requirement": ">= 6.3.0 < 7.0.0"
-    },
-    {
-      "name": "simp/ds389",
-      "version_requirement": ">= 0.1.2 < 1.0.0"
-    },
-    {
-      "name": "simp/fips",
-      "version_requirement": ">= 0.5.0 < 1.0.0"
-    },
-    {
-      "name": "simp/haveged",
-      "version_requirement": ">= 0.8.0 < 1.0.0"
-    },
-    {
-      "name": "simp/incron",
-      "version_requirement": ">= 0.6.0 < 1.0.0"
     },
     {
       "name": "simp/iptables",
@@ -171,16 +127,8 @@
       "version_requirement": ">= 6.4.0 < 7.0.0"
     },
     {
-      "name": "simp/ntpd",
-      "version_requirement": ">= 6.6.0 < 7.0.0"
-    },
-    {
       "name": "simp/oddjob",
       "version_requirement": ">= 2.3.0 < 3.0.0"
-    },
-    {
-      "name": "simp/pam",
-      "version_requirement": ">= 6.10.0 < 7.0.0"
     },
     {
       "name": "simp/pki",
@@ -189,14 +137,6 @@
     {
       "name": "simp/polkit",
       "version_requirement": ">= 6.4.0 < 7.0.0"
-    },
-    {
-      "name": "simp/postfix",
-      "version_requirement": ">= 5.6.0 < 6.0.0"
-    },
-    {
-      "name": "simp/pupmod",
-      "version_requirement": ">= 8.2.0 < 9.0.0"
     },
     {
       "name": "simp/resolv",
@@ -209,22 +149,6 @@
     {
       "name": "simp/rsync",
       "version_requirement": ">= 6.5.0 < 7.0.0"
-    },
-    {
-      "name": "simp/rsyslog",
-      "version_requirement": ">= 8.1.0 < 9.0.0"
-    },
-    {
-      "name": "simp/selinux",
-      "version_requirement": ">= 2.7.0 < 3.0.0"
-    },
-    {
-      "name": "simp/simp",
-      "version_requirement": ">= 4.16.2 < 5.0.0"
-    },
-    {
-      "name": "simp/simplib",
-      "version_requirement": ">= 4.10.1 < 5.0.0"
     },
     {
       "name": "simp/simpkv",
@@ -243,10 +167,6 @@
       "version_requirement": ">= 0.1.1 < 1.0.0"
     },
     {
-      "name": "simp/simp_firewalld",
-      "version_requirement": ">= 0.2.0 < 1.0.0"
-    },
-    {
       "name": "simp/simp_openldap",
       "version_requirement": ">= 6.6.0 < 7.0.0"
     },
@@ -259,20 +179,8 @@
       "version_requirement": ">= 0.6.0 < 1.0.0"
     },
     {
-      "name": "simp/ssh",
-      "version_requirement": ">= 6.12.0 < 7.0.0"
-    },
-    {
-      "name": "simp/sssd",
-      "version_requirement": ">= 7.2.0 < 8.0.0"
-    },
-    {
       "name": "simp/stunnel",
       "version_requirement": ">= 6.7.1 < 7.0.0"
-    },
-    {
-      "name": "simp/sudo",
-      "version_requirement": ">= 5.4.0 < 6.0.0"
     },
     {
       "name": "simp/sudosh",
@@ -281,10 +189,6 @@
     {
       "name": "simp/svckill",
       "version_requirement": ">= 3.7.0 < 4.0.0"
-    },
-    {
-      "name": "simp/swap",
-      "version_requirement": ">= 0.3.0 < 1.0.0"
     },
     {
       "name": "simp/tcpwrappers",
@@ -299,24 +203,120 @@
       "version_requirement": ">= 0.3.2 < 1.0.0"
     },
     {
-      "name": "simp/upstart",
-      "version_requirement": ">= 6.2.0 < 7.0.0"
-    },
-    {
-      "name": "simp/useradd",
-      "version_requirement": ">= 0.5.0 < 1.0.0"
-    },
-    {
       "name": "simp/vox_selinux",
       "version_requirement": ">= 3.4.0 < 4.0.0"
     },
     {
+      "name": "puppet/kmod",
+      "version_requirement": ">= 3.2.0 < 4.0.0"
+    },
+    {
+      "name": "puppetlabs/apache",
+      "version_requirement": ">= 6.5.1 < 7.0.0"
+    },
+    {
+      "name": "puppetlabs/inifile",
+      "version_requirement": ">= 5.3.0 < 6.0.0"
+    },
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">= 7.1.0 < 8.0.0"
+    },
+    {
+      "name": "simp/aide",
+      "version_requirement": ">= 6.6.0 < 7.0.0"
+    },
+    {
+      "name": "simp/auditd",
+      "version_requirement": ">= 8.8.0 < 9.0.0"
+    },
+    {
+      "name": "simp/compliance_markup",
+      "version_requirement": ">= 3.2.3 < 4.0.0"
+    },
+    {
+      "name": "simp/crypto_policy",
+      "version_requirement": ">= 0.2.1 < 1.0.0"
+    },
+    {
+      "name": "simp/ds389",
+      "version_requirement": ">= 0.2.0 < 1.0.0"
+    },
+    {
+      "name": "simp/fips",
+      "version_requirement": ">= 0.5.1 < 1.0.0"
+    },
+    {
+      "name": "simp/haveged",
+      "version_requirement": ">= 0.9.1 < 1.0.0"
+    },
+    {
+      "name": "simp/incron",
+      "version_requirement": ">= 0.6.1 < 1.0.0"
+    },
+    {
+      "name": "simp/ntpd",
+      "version_requirement": ">= 6.7.0 < 7.0.0"
+    },
+    {
+      "name": "simp/pam",
+      "version_requirement": ">= 6.11.1 < 7.0.0"
+    },
+    {
+      "name": "simp/postfix",
+      "version_requirement": ">= 5.7.0 < 6.0.0"
+    },
+    {
+      "name": "simp/pupmod",
+      "version_requirement": ">= 8.3.1 < 9.0.0"
+    },
+    {
+      "name": "simp/rsyslog",
+      "version_requirement": ">= 8.2.0 < 9.0.0"
+    },
+    {
+      "name": "simp/selinux",
+      "version_requirement": ">= 2.8.0 < 3.0.0"
+    },
+    {
+      "name": "simp/simp",
+      "version_requirement": ">= 4.16.4 < 5.0.0"
+    },
+    {
+      "name": "simp/simp_firewalld",
+      "version_requirement": ">= 0.3.1 < 1.0.0"
+    },
+    {
+      "name": "simp/simplib",
+      "version_requirement": ">= 4.10.4 < 5.0.0"
+    },
+    {
+      "name": "simp/ssh",
+      "version_requirement": ">= 6.13.1 < 7.0.0"
+    },
+    {
+      "name": "simp/sssd",
+      "version_requirement": ">= 7.4.1 < 8.0.0"
+    },
+    {
+      "name": "simp/sudo",
+      "version_requirement": ">= 5.5.1 < 6.0.0"
+    },
+    {
+      "name": "simp/swap",
+      "version_requirement": ">= 0.3.1 < 1.0.0"
+    },
+    {
+      "name": "simp/useradd",
+      "version_requirement": ">= 0.6.0 < 1.0.0"
+    },
+    {
       "name": "simp/xinetd",
-      "version_requirement": ">= 4.3.0 < 5.0.0"
+      "version_requirement": ">= 4.3.1 < 5.0.0"
     },
     {
       "name": "trlinkin/nsswitch",
-      "version_requirement": ">= 2.2.0 < 3.0.0"
+      "version_requirement": ">= 2.3.0 < 3.0.0"
     }
   ],
   "requirements": [

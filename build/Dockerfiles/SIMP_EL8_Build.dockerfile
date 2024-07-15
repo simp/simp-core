@@ -10,6 +10,7 @@
 #FROM centos:8
 FROM centos:centos8.1.1911
 ENV container docker
+ARG ruby_version=2.7
 
 RUN mkdir /root/build_scripts
 ADD scripts/common/* /root/build_scripts/
@@ -23,7 +24,7 @@ RUN ./minimize_package_installs.sh
 RUN ./05_selinux.sh
 RUN ./10_dev_packages.sh
 RUN ./user.sh
-RUN ./rvm.sh
+RUN ./rvm.sh build_user "$ruby_version"
 RUN ./prime_ruby.sh
 RUN ./package_cleanup.sh
 RUN rm -rf /root/build_scripts

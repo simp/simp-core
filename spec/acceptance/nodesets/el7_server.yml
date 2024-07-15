@@ -1,57 +1,42 @@
-<%
-  hypervisor = ENV['BEAKER_HYPERVISOR'] || 'vagrant'
-
-  case ENV['SIMP_BEAKER_OS']
-  when /centos/ || /^el/
-    box_7 = 'centos/7'
-    box_8 = 'generic/centos8'
-  when /oracle/ || /^oel/
-    box_7 = 'generic/oracle7'
-    box_8 = 'generic/oracle8'
-  else
-    box_7 = 'centos/7'
-    box_8 = 'generic/centos8'
-  end
--%>
+---
 HOSTS:
   puppet:
     roles:
-      - server # Mandatory
-      - master
-      - default
-      - simp_server
-      - agent
-    platform:   el-7-x86_64
-    box:        <%= box_7 %>
-    hypervisor: <%= hypervisor %>
+    - server # Mandatory
+    - master
+    - default
+    - simp_server
+    - agent
+    platform: el-7-x86_64
+    box: centos/7
+    hypervisor: "<%= ENV.fetch('BEAKER_HYPERVISOR', 'vagrant') %>"
     vagrant_memsize: 4608
-
+    family: centos-cloud/centos-7
+    gce_machine_type: n1-standard-2
   agent-el8:
     roles:
-      - agent
-    platform:   el-8-x86_64
-    box:        <%= box_8 %>
-    hypervisor: <%= hypervisor %>
-
+    - agent
+    platform: el-8-x86_64
+    box: generic/centos8
+    hypervisor: "<%= ENV.fetch('BEAKER_HYPERVISOR', 'vagrant') %>"
+    family: centos-cloud/centos-stream-8
+    gce_machine_type: n1-standard-2
   agent-el7:
     roles:
-      - agent
-      - syslog_server
-    platform:   el-7-x86_64
-    box:        <%= box_7 %>
-    hypervisor: <%= hypervisor %>
-
+    - agent
+    - syslog_server
+    platform: el-7-x86_64
+    box: centos/7
+    hypervisor: "<%= ENV.fetch('BEAKER_HYPERVISOR', 'vagrant') %>"
+    family: centos-cloud/centos-7
+    gce_machine_type: n1-standard-2
 CONFIG:
   vagrant_cpus: 2
   log_level: verbose
-  type:      aio
+  type: aio
   synced_folder: disabled
   ssh:
     keepalive: true
     keepalive_interval: 10
     keepalive_maxcount: 120
-<% if ENV['BEAKER_PUPPET_COLLECTION'] -%>
-  puppet_collection: <%= ENV['BEAKER_PUPPET_COLLECTION'] %>
-<% else -%>
-  puppet_collection: puppet6
-<% end -%>
+  puppet_collection: "<%= ENV.fetch('BEAKER_PUPPET_COLLECTION', 'puppet7') %>"
