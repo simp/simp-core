@@ -148,7 +148,7 @@ describe 'compliance reporting and enforcement' do
 
     agents.each do |host|
       context "a valid report for #{host}" do
-        let(:fqdn) { fact_on(host, 'fqdn') }
+        let(:fqdn) { fact_on(host, 'networking.fqdn') }
         let(:host_sec_results_dir) { File.join(sec_results_dir, fqdn) }
         let(:report_file) { File.join(host_sec_results_dir, 'compliance_report.json') }
 
