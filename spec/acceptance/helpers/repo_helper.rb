@@ -9,7 +9,7 @@ module Acceptance
       #
       # @fails if the specified repo file cannot be installed on host
       def copy_repo(host, repo_filename, repo_name = 'simp_manual.repo')
-        if File.exists?(repo_filename)
+        if File.exist?(repo_filename)
           puts('='*72)
           puts("Using repos defined in #{repo_filename}")
           puts('='*72)
@@ -131,13 +131,13 @@ module Acceptance
           filename = "SIMP-downloaded-#{osname}-#{relver}-x86_64.tar.gz"
           url = "#{tarball}"
           require 'net/http'
-          Dir.exists?("spec/fixtures") || Dir.mkdir("spec/fixtures")
+          Dir.exist?("spec/fixtures") || Dir.mkdir("spec/fixtures")
           File.write("spec/fixtures/#{filename}", Net::HTTP.get(URI.parse(url)))
           tarball = "spec/fixtures/#{filename}"
           puts("Downloaded SIMP release tarball from #{url} to #{tarball}")
         else
           unless tarball.nil?
-            if File.exists?(tarball)
+            if File.exist?(tarball)
               puts("Found SIMP release tarball: #{tarball}")
             else
               warn("SIMP release tarball '#{tarball}' not found")
