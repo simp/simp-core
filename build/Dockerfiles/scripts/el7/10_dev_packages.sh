@@ -11,6 +11,17 @@ yum install -y rpm-build rpmdevtools rpm-devel rpm-sign yum-utils createrepo
 
 yum install -y centos-release-scl python-pip python-virtualenv fontconfig dejavu-sans-fonts dejavu-sans-mono-fonts dejavu-serif-fonts dejavu-fonts-common libjpeg-devel zlib-devel openssl-devel
 
+# Deal with vault-ized CentOS7 repos, post-EOL
+# (at this point, SSL is updated enough use modern https)
+yum-config-manager --setopt=base.baseurl='https://vault.centos.org/centos/$releasever/os/$basearch/' --save
+yum-config-manager --setopt=updates.baseurl='https://vault.centos.org/centos/$releasever/updates/$basearch/' --save
+yum-config-manager --setopt=extras.baseurl='https://vault.centos.org/centos/$releasever/extras/$basearch/' --save
+yum-config-manager --setopt=centosplus.baseurl='https://vault.centos.org/centos/$releasever/centosplus/$basearch/' --save
+yum-config-manager --setopt=centos-sclo-rh.baseurl='https://vault.centos.org/centos/$releasever/sclo/$basearch/rh/' --save
+yum-config-manager --setopt=centos-sclo-sclo.baseurl='https://vault.centos.org/centos/$releasever/sclo/$basearch/sclo/' --save
+
+sed -i -e 's/^mirrorlist/#\0/g' -e '/^#baseurl=/d' /etc/yum.repos.d/{CentOS-Base.repo,CentOS-SCLo-scl-rh.repo,CentOS-SCLo-scl.repo}
+
 yum install -y libyaml-devel glibc-headers autoconf gcc gcc-c++ glibc-devel readline-devel libffi-devel automake libtool bison sqlite-devel
 
 yum-config-manager --enable rhel-server-rhscl-7-rpms
