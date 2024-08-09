@@ -46,7 +46,7 @@ RUN ./01_disable_systemctl.sh
 RUN ./05_selinux.sh
 RUN ./10_dev_packages.sh
 RUN ./user.sh
-RUN ./rvm.sh "$ruby_version"
+RUN ./rvm.sh build_user "$ruby_version"
 RUN ./prime_ruby.sh
 RUN ./package_cleanup.sh
 RUN rm -rf /root/build_scripts

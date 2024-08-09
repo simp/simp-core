@@ -27,4 +27,6 @@ runuser $user_id -l -c "curl -sSL https://raw.githubusercontent.com/rvm/rvm/stab
 runuser $user_id -l -c "rvm install ${ruby_version}"
 runuser $user_id -l -c "rvm use --default ${ruby_version}"
 runuser $user_id -l -c "rvm all do gem install bundler -v '~> 1.16'"
-runuser $user_id -l -c "rvm all do gem install bundler -v '~> 2.0'"
+runuser $user_id -l -c "rvm ls"
+#runuser $user_id -l -c "rvm all do gem install bundler -v '~> 2.0'"
+runuser $user_id -l -c "rvm all do gem install bundler -v 2.4.22"
