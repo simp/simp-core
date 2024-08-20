@@ -1,12 +1,12 @@
 {
   "name": "simp-simp_core",
-  "version": "6.6.0",
+  "version": "6.7.0",
   "author": "SIMP Team",
   "summary": "A Metamodule for SIMP",
   "license": "Apache-2.0",
   "source": "https://github.com/simp/simp-core",
   "project_page": "https://simp-project.com",
-  "issues_url": "https://simp-project.atlassian.net",
+  "issues_url": "https://github.com/simp/simp-core/issues",
   "tags": [
     "simp",
     "bundle",
@@ -20,27 +20,27 @@
   "dependencies": [
     {
       "name": "puppet/systemd",
-      "version_requirement": ">= 3.10.0 < 4.0.0"
+      "version_requirement": ">= 3.10.0 < 8.0.0"
     },
     {
-      "name": "herculesteam/augeasproviders_core",
-      "version_requirement": ">= 3.1.0 < 4.0.0"
+      "name": "puppet-augeasproviders_core",
+      "version_requirement": ">= 3.1.0 < 5.0.0"
     },
     {
-      "name": "herculesteam/augeasproviders_grub",
-      "version_requirement": ">= 3.2.0 < 4.0.0"
+      "name": "puppet-augeasproviders_grub",
+      "version_requirement": ">= 3.2.0 < 6.0.0"
     },
     {
-      "name": "herculesteam/augeasproviders_ssh",
-      "version_requirement": ">= 4.0.0 < 5.0.0"
+      "name": "puppet-augeasproviders_ssh",
+      "version_requirement": ">= 4.0.0 < 7.0.0"
     },
     {
-      "name": "herculesteam/augeasproviders_sysctl",
-      "version_requirement": ">= 2.6.2 < 3.0.0"
+      "name": "puppet-augeasproviders_sysctl",
+      "version_requirement": ">= 2.6.2 < 4.0.0"
     },
     {
       "name": "puppet/firewalld",
-      "version_requirement": ">= 4.5.1 < 5.0.0"
+      "version_requirement": ">= 4.5.1 < 6.0.0"
     },
     {
       "name": "onyxpoint/gpasswd",
@@ -48,39 +48,39 @@
     },
     {
       "name": "puppet/chrony",
-      "version_requirement": ">= 2.4.0 < 3.0.0"
+      "version_requirement": ">= 2.4.0 < 4.0.0"
     },
     {
       "name": "puppet/yum",
-      "version_requirement": ">= 5.4.0 < 6.0.0"
+      "version_requirement": ">= 5.4.0 < 8.0.0"
     },
     {
       "name": "puppetlabs/concat",
-      "version_requirement": ">= 7.0.1 < 8.0.0"
+      "version_requirement": ">= 7.0.1 < 10.0.0"
     },
     {
       "name": "puppetlabs/hocon",
-      "version_requirement": ">= 1.1.0 < 2.0.0"
+      "version_requirement": ">= 1.1.0 < 3.0.0"
     },
     {
       "name": "puppetlabs/motd",
-      "version_requirement": ">= 6.0.0 < 7.0.0"
+      "version_requirement": ">= 6.0.0 < 8.0.0"
     },
     {
       "name": "puppetlabs/postgresql",
-      "version_requirement": ">= 8.0.0 < 9.0.0"
+      "version_requirement": ">= 8.0.0 < 11.0.0"
     },
     {
       "name": "puppetlabs/puppetdb",
-      "version_requirement": ">= 7.10.0 < 8.0.0"
+      "version_requirement": ">= 7.10.0 < 9.0.0"
     },
     {
       "name": "puppetlabs/puppet_authorization",
-      "version_requirement": ">= 0.5.1 < 1.0.0"
+      "version_requirement": ">= 0.5.1 < 2.0.0"
     },
     {
       "name": "saz/timezone",
-      "version_requirement": ">= 6.1.0 < 7.0.0"
+      "version_requirement": ">= 6.1.0 < 8.0.0"
     },
     {
       "name": "simp/acpid",
@@ -208,19 +208,19 @@
     },
     {
       "name": "puppet/kmod",
-      "version_requirement": ">= 3.2.0 < 4.0.0"
+      "version_requirement": ">= 3.2.0 < 5.0.0"
     },
     {
       "name": "puppetlabs/apache",
-      "version_requirement": ">= 6.5.1 < 7.0.0"
+      "version_requirement": ">= 6.5.1 < 13.0.0"
     },
     {
       "name": "puppetlabs/inifile",
-      "version_requirement": ">= 5.3.0 < 6.0.0"
+      "version_requirement": ">= 5.3.0 < 7.0.0"
     },
     {
       "name": "puppetlabs/stdlib",
-      "version_requirement": ">= 7.1.0 < 8.0.0"
+      "version_requirement": ">= 7.1.0 < 10.0.0"
     },
     {
       "name": "simp/aide",
@@ -260,7 +260,7 @@
     },
     {
       "name": "simp/pam",
-      "version_requirement": ">= 6.11.1 < 7.0.0"
+      "version_requirement": ">= 6.11.1 < 8.0.0"
     },
     {
       "name": "simp/postfix",
@@ -308,36 +308,56 @@
     },
     {
       "name": "simp/useradd",
-      "version_requirement": ">= 0.6.0 < 1.0.0"
+      "version_requirement": ">= 0.6.0 < 2.0.0"
     },
     {
       "name": "simp/xinetd",
       "version_requirement": ">= 4.3.1 < 5.0.0"
     },
     {
-      "name": "trlinkin/nsswitch",
-      "version_requirement": ">= 2.3.0 < 3.0.0"
+      "name": "puppet-nsswitch",
+      "version_requirement": ">= 2.3.0 < 4.0.0"
     }
   ],
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 6.22.1 < 8.0.0"
+      "version_requirement": ">= 7.0.0 < 9.0.0"
     }
   ],
   "operatingsystem_support": [
     {
       "operatingsystem": "CentOS",
       "operatingsystemrelease": [
-        "6",
-        "7"
+        "9"
       ]
     },
     {
       "operatingsystem": "RedHat",
       "operatingsystemrelease": [
-        "6",
-        "7"
+        "8",
+        "9"
+      ]
+    },
+    {
+      "operatingsystem": "OracleLinux",
+      "operatingsystemrelease": [
+        "8",
+        "9"
+      ]
+    },
+    {
+      "operatingsystem": "Rocky",
+      "operatingsystemrelease": [
+        "8",
+        "9"
+      ]
+    },
+    {
+      "operatingsystem": "AlmaLinux",
+      "operatingsystemrelease": [
+        "8",
+        "9"
       ]
     }
   ]
