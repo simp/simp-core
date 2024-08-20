@@ -1,0 +1,40 @@
+# Add new issues to triage project board (https://github.com/orgs/simp/projects/11)
+# ------------------------------------------------------------------------------
+#
+#             NOTICE: **This file is maintained with puppetsync**
+#
+# This file is updated automatically as part of a puppet module baseline.
+#
+# The next baseline sync will overwrite any local changes to this file!
+#
+# ==============================================================================
+# This pipeline uses the following GitHub Action Secrets:
+#
+#   GitHub Secret variable               Notes
+#   -------------------------------      ---------------------------------------
+#   AUTO_TRIAGE_TOKEN                    Token with appropriate permissions
+#
+# ------------------------------------------------------------------------------
+#
+#
+---
+name: Add new issues to triage project
+
+'on':
+  issues:
+    types:
+      - opened
+      - reopened
+  pull_request_target:
+    types:
+      - opened
+
+jobs:
+  add-to-project:
+    name: Add issue to project
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/add-to-project@v0.5.0
+        with:
+          project-url: https://github.com/orgs/simp/projects/11
+          github-token: ${{ secrets.AUTO_TRIAGE_TOKEN }}

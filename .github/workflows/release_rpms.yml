@@ -1,0 +1,353 @@
+# Manual action to build, sign, and attach a release's RPMs
+# ------------------------------------------------------------------------------
+#
+#             NOTICE: **This file is maintained with puppetsync**
+#
+# This file is updated automatically as part of a puppet module baseline.
+#
+# The next baseline sync will overwrite any local changes to this file!
+#
+# ==============================================================================
+# This pipeline uses the following GitHub Action Secrets:
+#
+#   GitHub Secret variable               Notes
+#   -------------------------------      ---------------------------------------
+#   SIMP_CORE_REF_FOR_BUILDING_RPMS      simp-core ref (tag) to use to build
+#                                        RPMs with `rake pkg:single` against
+#                                        `build/rpms/dependencies.yaml`
+#   SIMP_DEV_GPG_SIGNING_KEY             GPG signing key's secret key
+#   SIMP_DEV_GPG_SIGNING_KEY_ID          User ID (name) of signing key
+#   SIMP_DEV_GPG_SIGNING_KEY_PASSPHRASE  Passphrase to use GPG signing key
+#
+# ------------------------------------------------------------------------------
+#
+# * This is a workflow_dispatch action, which can be triggered manually or from
+#   other workflows/API.
+#
+# * If triggered by another workflow, it will be necessary to provide a GitHub
+#   access token via the the `target_repo_token` parameter
+#
+#
+---
+name: 'RELENG: Build + attach RPMs to GitHub Release'
+
+'on':
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: "Release tag"
+        required: true
+      clobber:
+        description: "Clobber identical assets?"
+        required: false
+        default: 'yes'
+      clean:
+        description: "Wipe all release assets first?"
+        required: false
+        default: 'no'
+      autocreate_release:
+        # A GitHub release is needed to upload artifacts to, and some repos
+        # (e.g., forked mirrors) only have tags.
+        description: "Create release if missing? (tag must exist)"
+        required: false
+        default: 'yes'
+      build_container_os:
+        description: "Build container OS"
+        required: true
+        default: 'centos8'
+      target_repo:
+        description: "Target repo (instead of this one)"
+        required: false
+      # WARNING: To avoid exposing secrets in the log, only use this token with
+      #          action/script's `github-token` parameter, NEVER in `env:` vars
+      target_repo_token:
+        description: "API token for uploading to target repo"
+        required: false
+      path_to_build:
+        # Example: simp-core builds pupmod from . and simp* from src/assets/simp
+        description: "Subpath to alternative RPM project"
+        required: false
+      dry_run:
+        description: "Dry run (Test-build RPMs)"
+        required: false
+        default: 'no'
+      # verbose:
+      #   description: 'Verbose RPM builds when "yes"'
+      #   required: false
+      #   default: 'no'
+      rebuild_number:
+        description: 'If this is an RPM rebuild, put the number of the rebuild here'
+        required: false
+        default: ''
+
+
+env:
+  TARGET_REPO: ${{ (github.event.inputs.target_repo != null && format('{0}/{1}', github.repository_owner, github.event.inputs.target_repo)) || github.repository }}
+  RELEASE_TAG: ${{ github.event.inputs.release_tag }}
+
+jobs:
+  create-and-attach-rpms-to-github-release:
+    name: >
+      Build and attach RPMs to Release:
+      ${{ (github.event.inputs.target_repo != null && format('{0}/{1}', github.repository_owner, github.event.inputs.target_repo)) || github.repository }}
+      ${{ github.event.inputs.release_tag }}
+      (build os: ${{ github.event.inputs.build_container_os }})
+    runs-on: ubuntu-20.04
+    steps:
+      - name: "Validate inputs"
+        id: validate-inputs
+        run: |
+          if ! [[ "$TARGET_REPO" =~ ^[a-z0-9][a-z0-9-]+/[a-z0-9][a-z0-9_-]+$ ]]; then
+            printf '::error ::Target repository name has invalid format: %s\n' "$TARGET_REPO"
+            exit 88
+          fi
+
+          if [[ "$RELEASE_TAG" =~ ^(simp-|v)?([0-9]+\.[0-9]+\.[0-9]+)(-(rc|RC|[Aa]lpha|[Bb]eta|pre|post)?([0-9]+)?)?$ ]]; then
+            if [ -n "${BASH_REMATCH[5]}" ]; then
+              echo "{prebuild_number}={${BASH_REMATCH[5]#-}}" >> $GITHUB_OUTPUT
+            fi
+            if [ -n "${BASH_REMATCH[3]}" ]; then
+              echo "{prebuild_suffix}={${BASH_REMATCH[3]#-}}" >> $GITHUB_OUTPUT
+            fi
+            if [ -n "${BASH_REMATCH[2]}" ]; then
+              echo "{build_semver}={${BASH_REMATCH[2]}}" >> $GITHUB_OUTPUT
+            fi
+          else
+            printf '::error ::Release Tag format is not SemVer, X.Y.Z-R, X.Y.Z-<prerelease>: "%s"\n' "$RELEASE_TAG"
+            exit 88
+          fi
+
+      - name: >
+          Query info for ${{ env.TARGET_REPO }}
+          release ${{ github.event.inputs.release_tag }} ${{ steps.validate-inputs.outputs.prebuild_suffix }}
+          build os ${{ github.event.inputs.build_container_os }}
+          (autocreate_release = '${{ github.event.inputs.autocreate_release }}')
+        id: release-api
+        env:
+          AUTOCREATE_RELEASE: ${{ github.event.inputs.autocreate_release }}
+          PREBUILD_TAG: ${{ steps.validate-inputs.outputs.prebuild_suffix }}
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ github.event.inputs.target_repo_token || secrets.GITHUB_TOKEN }}
+          script: |
+            const [owner, repo] = process.env.TARGET_REPO.split('/')
+            const tag = process.env.RELEASE_TAG
+            const autocreate_release = (process.env.AUTOCREATE_RELEASE == 'yes')
+            const owner_data = { owner: owner, repo: repo }
+            const release_data = Object.assign( {tag: tag}, owner_data )
+            const prerelease = process.env.PREBUILD_TAG ? true : false
+            const create_release_data = Object.assign( {tag_name: tag, prerelease: prerelease}, owner_data )
+            const tag_data = Object.assign( {ref: `tags/${tag}`}, owner_data )
+
+            function id_from_release(data) {
+              console.log( `    >> Release for ${owner}/${repo}, tag ${tag}` )
+              console.log( `    >>>> release_id: ${data.id}` )
+              return data.id
+            }
+
+            function throw_error_unless_should_autocreate_release(err){
+              if (!( err.name == 'HttpError' && err.status == 404 && autocreate_release )){
+                core.error(`Error finding release for tag ${tag}: ${err.name}`)
+                throw err
+              }
+            }
+
+            async function autocreate_release_if_appropriate(err){
+              throw_error_unless_should_autocreate_release(err)
+              core.warning(`Can't find release for tag ${tag} and tag exists, auto-creating release`)
+
+              return await github.request( 'GET /repos/{owner}/{repo}/git/matching-refs/{ref}', tag_data ).then (
+                result => {
+                  // Must already have a tag
+                  if (result.data.length == 0) { throw `Can't find tag ${tag} in repo ${owner}/${repo}` }
+                  return result
+                }
+              ).then(
+                async result => {
+                  return await github.request( 'POST /repos/{owner}/{repo}/releases', create_release_data).then(
+                    result=>{
+                      release_id = id_from_release(result.data)
+                      console.log(`    ++ created auto release ${release_id}` )
+                      return release_id
+                    },
+                    post_err =>{
+                      core.error('Error auto-creating release')
+                      throw post_err
+                    }
+                  )
+                }
+              )
+            }
+
+            await github.request('GET /repos/{owner}/{repo}/releases/tags/{tag}', release_data ).then(
+              async result => { return await id_from_release(result.data) },
+              async err => { return await autocreate_release_if_appropriate(err) }
+            ).then(
+              release_id => {
+                if (!release_id){
+                  throw `Could not get release for ${tag} for repo ${owner}:${repo}`
+                }
+                console.log( `    **** release_id: ${release_id}` )
+                core.setOutput('id', release_id)
+              },
+              err => { throw err }
+            )
+
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          repository: ${{ env.TARGET_REPO }}
+          ref: ${{ env.RELEASE_TAG }}
+          clean: true
+          fetch-depth: 0
+
+      - name: 'Customize RPM Release tag via build/rpm_metadata/release (pre-release only)'
+        if: steps.validate-inputs.outputs.prebuild_suffix
+        env:
+          BUILD_SEMVER: ${{ steps.validate-inputs.outputs.build_semver }}
+          PREBUILD_TAG: ${{ steps.validate-inputs.outputs.prebuild_suffix }}
+          PREBUILD_NUMBER: ${{ steps.validate-inputs.outputs.prebuild_number }}
+        # Note: To accomodate the capabilities of EL7's version of RPM, the
+        # release number is formatted according to the Fedora Packaging
+        # Guidelines' "Traditional versioning" conventions:
+        #
+        #   - https://fedoraproject.org/en-US/packaging-guidelines/Versioning/
+        #   - https://fedoraproject.org/wiki/Package_Versioning_Examples
+        #
+        run: |
+          mkdir -p build/rpm_metadata
+          # Special case for simp-doc's unique data format in /release
+          if [[ "$TARGET_REPO" =~ ^simp\/simp-doc$ ]]; then
+            echo "version: $BUILD_SEMVER" > build/rpm_metadata/release
+            echo "release: 0.${PREBUILD_NUMBER:-$GITHUB_RUN_NUMBER}.${PREBUILD_TAG}" >> build/rpm_metadata/release
+            printf '::warning ::Added file build/rpm_metadata/release with content "%s"\n' "$(cat build/rpm_metadata/release)"
+          else
+            echo "0.${PREBUILD_NUMBER:-$GITHUB_RUN_NUMBER}.${PREBUILD_TAG}" > build/rpm_metadata/release
+            printf '::warning ::Added file build/rpm_metadata/release with content "%s"\n' "$(cat build/rpm_metadata/release)"
+          fi
+
+      - name: 'Customize RPM Release tag via build/rpm_metadata/release (RPM rebuild)'
+        if: ${{ github.event.inputs.rebuild_number != '' }}
+        env:
+          BUILD_SEMVER: ${{ steps.validate-inputs.outputs.build_semver }}
+          REBUILD_NUMBER: ${{ github.event.inputs.rebuild_number }}
+        run: |
+          mkdir -p build/rpm_metadata
+          # simp-doc uses a unique data format in /release
+          if [[ "$TARGET_REPO" =~ ^simp\/simp-doc$ ]]; then
+            echo "version: $BUILD_SEMVER" > build/rpm_metadata/release
+            echo "release: $REBUILD_NUMBER" > build/rpm_metadata/release
+          else
+            echo "$REBUILD_NUMBER" > build/rpm_metadata/release
+          fi
+          printf '::warning ::Added file build/rpm_metadata/release with content "%s"\n' "$(cat build/rpm_metadata/release)"
+
+      - name: >
+          Build & Sign RPMs for
+          ${{ github.event.inputs.release_tag }}
+          Release (${{ github.event.inputs.build_container_os }})
+        uses: simp/github-action-build-and-sign-pkg-single-rpm@v2
+        id: build-and-sign-rpm
+        with:
+          gpg_signing_key: ${{ secrets.SIMP_DEV_GPG_SIGNING_KEY }}
+          gpg_signing_key_id: ${{ secrets.SIMP_DEV_GPG_SIGNING_KEY_ID }}
+          gpg_signing_key_passphrase: ${{ secrets.SIMP_DEV_GPG_SIGNING_KEY_PASSPHRASE }}
+          simp_core_ref_for_building_rpms: ${{ secrets.SIMP_CORE_REF_FOR_BUILDING_RPMS }}
+          simp_builder_docker_image: 'docker.io/simpproject/simp_build_${{ github.event.inputs.build_container_os }}:latest'
+          path_to_build: "${{ (github.event.inputs.path_to_build != null && format('{0}/{1}', github.workspace, github.event.inputs.path_to_build)) || github.workspace }}"
+          verbose: 'no'  # ${{ github.event.inputs.verbose }}
+
+      - name: "Wipe all previous assets from GitHub Release (when clean == 'yes')"
+        if: ${{ github.event.inputs.clean == 'yes' && github.event.inputs.dry_run != 'yes' }}
+        uses: actions/github-script@v6
+        env:
+          release_id: ${{ steps.release-api.outputs.id }}
+        with:
+          github-token: ${{ github.event.inputs.target_repo_token || secrets.GITHUB_TOKEN }}
+          script: |
+            const release_id = process.env.release_id
+            const [owner, repo] = process.env.TARGET_REPO.split('/')
+            const existingAssets = await github.rest.repos.listReleaseAssets({ owner, repo, release_id })
+
+            console.log( `  !! !! Wiping ALL uploaded assets for ${owner}/${repo} release (id: ${release_id})`)
+            existingAssets.data.forEach(async function(asset){
+              asset_id = asset.id
+              console.log( `  !! !! !! Wiping existing asset for ${asset.name} (id: ${asset_id})`)
+              await github.rest.repos.deleteReleaseAsset({ owner, repo, asset_id })
+            })
+
+      - name: "Upload RPM file(s) to GitHub Release (dry_run != 'yes')"
+        if: ${{ github.event.inputs.dry_run != 'yes' }}
+        uses: actions/github-script@v6
+        env:
+          rpm_file_paths: ${{ steps.build-and-sign-rpm.outputs.rpm_file_paths }}
+          rpm_gpg_file: ${{ steps.build-and-sign-rpm.outputs.rpm_gpg_file }}
+          release_id: ${{ steps.release-api.outputs.id }}
+          clobber: ${{ github.event.inputs.clobber }}
+          clean: ${{ github.event.inputs.clean }}
+          dry_run: ${{ github.event.inputs.dry_run }}
+        with:
+          github-token: ${{ github.event.inputs.target_repo_token || secrets.GITHUB_TOKEN }}
+          script: |
+            const path = require('path')
+            const fs = require('fs')
+
+            async function clobberAsset (name, owner, repo, release_id ){
+              console.log( `  -- clobber asset ${name}: owner: ${owner}  repo: ${repo}  release_id: ${release_id}` )
+
+              const existingAssets = await github.rest.repos.listReleaseAssets({ owner, repo, release_id })
+              const matchingAssets = existingAssets.data.filter(item => item.name == name);
+              if ( matchingAssets.length > 0 ){
+                asset_id = matchingAssets[0].id
+                console.log( `  !! !! Clobbering existing asset for ${name} (id: ${asset_id})`)
+                await github.rest.repos.deleteReleaseAsset({ owner, repo, asset_id })
+                return(true)
+              }
+              return(false)
+            }
+
+            async function uploadAsset(owner, repo, release_id, file, assetContentType ){
+              console.log( `\n\n  -- uploadAsset: owner: ${owner}  repo: ${repo}  release_id: ${release_id}, file: ${file}\n` )
+              const name = path.basename(file)
+
+              const data = fs.readFileSync(file)
+              const contentLength = fs.statSync(file).size
+              const headers = {
+                'content-type': assetContentType,
+                'content-length': contentLength
+              };
+
+              console.log( `  == Uploading asset ${name}: ${assetContentType}` )
+              const uploadAssetResponse = await github.rest.repos.uploadReleaseAsset({
+                owner, repo, release_id, data, name, headers,
+              })
+              return( uploadAssetResponse );
+            }
+
+            console.log('== start');
+            const release_id = process.env.release_id
+            const [owner, repo] = process.env.TARGET_REPO.split('/')
+            const clobber = process.env.clobber == 'yes';
+            const rpm_files = process.env.rpm_file_paths.split(/[\r\n]+/);
+            const rpm_gpg_file = process.env.rpm_gpg_file;
+
+            let uploaded_files = rpm_files.concat(rpm_gpg_file).map(function(file){
+              const name = path.basename(file)
+              var content_type = 'application/pgp-keys'
+              if( name.match(/\.rpm$/) ){
+                content_type = 'application/octet-stream'
+              }
+
+              let conditionalClobber = new Promise((resolve,reject) => {
+                if ( clobber ){
+                  resolve(clobberAsset( name, owner, repo, release_id ))
+                  return
+                }
+                resolve( false )
+              })
+
+              conditionalClobber.then((clobbered)=> {
+                uploadAsset(owner, repo, release_id, file, content_type )
+              }).then(result => result )
+            })
+            console.log('== done')

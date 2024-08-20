@@ -1,12 +1,19 @@
 # ------------------------------------------------------------------------------
+#             NOTICE: **This file is maintained with puppetsync**
+#
+# This file is updated automatically as part of a puppet module baseline.
+#
+# The next baseline sync will overwrite any local changes to everything above
+# the line "# Repo-specific content"
+# ------------------------------------------------------------------------------
 # The testing matrix considers ruby/puppet versions supported by SIMP and PE:
 #
-# https://puppet.com/docs/pe/2019.8/component_versions_in_recent_pe_releases.html
+# https://puppet.com/docs/pe/latest/component_versions_in_recent_pe_releases.html
 # https://puppet.com/misc/puppet-enterprise-lifecycle
-# https://puppet.com/docs/pe/2018.1/overview/getting_support_for_pe.html
 # ------------------------------------------------------------------------------
 # Release       Puppet   Ruby    EOL
-# PE 2019.8     6.22     2.5.7   2022-12 (LTS)
+# PE 2021.7     7.30     2.7.8   2025-02 (LTS)
+# PE 2023.8     8.6      3.2.3   TBD
 ---
 
 stages:
@@ -22,33 +29,29 @@ variables:
   # fail.  The intended value for PUPPET_VERSION is provided by the `pup_#` YAML
   # anchors.  If it is still `UNDEFINED`, all the other setting from the job's
   # anchor are also missing.
-  PUPPET_VERSION:    'UNDEFINED' # <- Matrixed jobs MUST override this (or fail)
-  BUNDLER_VERSION:   '2.2.19'
+  PUPPET_VERSION: 'UNDEFINED'  # <- Matrixed jobs MUST override this (or fail)
+  BUNDLER_VERSION: '2.4.22'
   SIMP_MATRIX_LEVEL: '1'
   SIMP_FORCE_RUN_MATRIX: 'no'
 
   # Force dependencies into a path the gitlab-runner user can write to.
   # (This avoids some failures on Runners with misconfigured ruby environments.)
-  GEM_HOME:          .vendor/gem_install
+  GEM_HOME: .vendor/gem_install
   BUNDLE_CACHE_PATH: .vendor/bundle
-  BUNDLE_PATH:       .vendor/bundle
-  BUNDLE_BIN:        .vendor/gem_install/bin
-  BUNDLE_NO_PRUNE:   'true'
+  BUNDLE_PATH: .vendor/bundle
+  BUNDLE_BIN: .vendor/gem_install/bin
+  BUNDLE_NO_PRUNE: 'true'
 
+.snippets:
+  before_beaker_google:
+    # Logic for beaker-google environments
+    - echo -e "\e[0Ksection_start:`date +%s`:before_script05[collapsed=true]\r\e[0KGCP environment checks"
+    - "if [ \"$BEAKER_HYPERVISOR\" ==  google ]; then mkdir -p ~/.ssh; chmod 700 ~/.ssh; test -f ~/.ssh/google_compute_engine || ssh-keygen -f ~/.ssh/google_compute_engine < /dev/null; echo 'gem \"beaker-google\"' >> Gemfile.local ; fi"  # yamllint disable rule:line-length
+    - echo -e "\e[0Ksection_end:`date +%s`:before_script05\r\e[0K"
 
-# bundler dependencies and caching
-#
-# - Cache bundler gems between pipelines foreach Ruby version
-# - Try to use cached and local resources before downloading dependencies
-# --------------------------------------
-.setup_bundler_env: &setup_bundler_env
-  cache:
-    key: "${CI_PROJECT_NAMESPACE}_ruby-${MATRIX_RUBY_VERSION}_bundler"
-    paths:
-      - '.vendor'
-  before_script:
+  before:
     # Print important environment variables that may affect this job
-    - 'ruby -e "puts %(\n\n), %q(=)*80, %(\nSIMP-relevant Environment Variables:\n\n#{e=ENV.keys.grep(/^PUPPET|^SIMP|^BEAKER|MATRIX/); pad=((e.map{|x| x.size}.max||0)+1); e.map{|v| %(    * #{%(#{v}:).ljust(pad)} #{39.chr + ENV[v] + 39.chr}\n)}.join}\n),  %q(=)*80, %(\n\n)" || :'
+    - 'ruby -e "puts %(\n\n), %q(=)*80, %(\nSIMP-relevant Environment Variables:\n\n#{e=ENV.keys.grep(/^PUPPET|^SIMP|^BEAKER|MATRIX|GOOGLE/); pad=((e.map{|x| x.size}.max||0)+1); e.map{|v| %(    * #{%(#{v}:).ljust(pad)} #{39.chr + ENV[v] + 39.chr}\n)}.join}\n),  %q(=)*80, %(\n\n)" || :'  # yamllint disable rule:line-length
 
     - echo -e "\e[0Ksection_start:`date +%s`:before_script10[collapsed=true]\r\e[0KDiagnostic ruby & gem information"
     # Diagnostic ruby & gem information
@@ -63,7 +66,10 @@ variables:
     #   * Use $MATRIX_RUBY_VERSION ruby, install if not present
     - echo -e "\e[0Ksection_start:`date +%s`:before_script20[collapsed=true]\r\e[0KEnsure RVM & ruby is installed"
     - "if command -v rvm; then if declare -p rvm_path &> /dev/null; then source \"${rvm_path}/scripts/rvm\"; else source \"$HOME/.rvm/scripts/rvm\" || source /etc/profile.d/rvm.sh; fi; fi"
-    - "if command -v rvm && ! grep rvm_install_on_use_flag=1 ~/.rvmrc; then echo rvm_install_on_use_flag=1 >> ~/.rvmrc || echo '== WARNING: ~/.rvmrc is missing rvm_install_on_use_flag=1 and I failed to add it'; fi"
+    - >-
+      if command -v rvm && ! grep rvm_install_on_use_flag=1 ~/.rvmrc; then
+      echo rvm_install_on_use_flag=1 >> ~/.rvmrc
+      || echo '== WARNING: ~/.rvmrc is missing rvm_install_on_use_flag=1 and I failed to add it'; fi
     - "if command -v rvm; then rvm use \"$MATRIX_RUBY_VERSION\"; else echo \"rvm not detected; skipping 'rvm use'\"; fi"
     - 'ruby --version || :'
     - 'gem list sync || :'
@@ -72,13 +78,20 @@ variables:
     # Bundle gems (preferring cached > local > downloaded resources)
     #   * Try to use cached and local resources before downloading dependencies
     - echo -e "\e[0Ksection_start:`date +%s`:before_script30[collapsed=true]\r\e[0KBundle gems (preferring cached > local > downloaded resources)"
-    - 'declare GEM_BUNDLER_VER=(-v "~> ${BUNDLER_VERSION:-2.2.6}")'
+    - 'declare GEM_BUNDLER_VER=(-v "~> ${BUNDLER_VERSION:-2.4.22}")'
     - 'declare GEM_INSTALL_CMD=(gem install --no-document)'
     - 'declare BUNDLER_INSTALL_CMD=(bundle install --no-binstubs --jobs $(nproc) "${FLAGS[@]}")'
     - 'mkdir -p ${GEM_HOME} ${BUNDLER_BIN}'
     - 'gem list -ie "${GEM_BUNDLER_VER[@]}" --silent bundler || "${GEM_INSTALL_CMD[@]}" --local "${GEM_BUNDLER_VER[@]}" bundler || "${GEM_INSTALL_CMD[@]}" "${GEM_BUNDLER_VER[@]}" bundler'
     - 'rm -rf pkg/ || :'
-    - 'bundle check || rm -f Gemfile.lock && ("${BUNDLER_INSTALL_CMD[@]}" --local || "${BUNDLER_INSTALL_CMD[@]}" || bundle pristine ||  "${BUNDLER_INSTALL_CMD[@]}") || { echo "PIPELINE: Bundler could not install everything (see log output above)" && exit 99 ; }'
+    - >-
+      bundle check
+      || rm -f Gemfile.lock
+      && ("${BUNDLER_INSTALL_CMD[@]}" --local
+      || "${BUNDLER_INSTALL_CMD[@]}"
+      || bundle pristine
+      || "${BUNDLER_INSTALL_CMD[@]}")
+      || { echo "PIPELINE: Bundler could not install everything (see log output above)" && exit 99 ; }
     - echo -e "\e[0Ksection_end:`date +%s`:before_script30\r\e[0K"
 
     # Diagnostic bundler, ruby, and gem checks:
@@ -89,23 +102,143 @@ variables:
     - 'bundle exec gem list sync || :'
     - echo -e "\e[0Ksection_end:`date +%s`:before_script40\r\e[0K"
 
+# bundler dependencies and caching
+#
+# - Cache bundler gems between pipelines foreach Ruby version
+# - Try to use cached and local resources before downloading dependencies
+# --------------------------------------
+.setup_bundler_env: &setup_bundler_env
+  cache:
+    key: "${CI_PROJECT_NAMESPACE}_ruby-${MATRIX_RUBY_VERSION}_bundler"
+    paths:
+      - '.vendor'
+  before_script:
+    !reference [.snippets, before]
+
+
+# Assign a matrix level when your test will run.  Heavier jobs get higher numbers
+# NOTE: To skip all jobs with a SIMP_MATRIX_LEVEL, set SIMP_MATRIX_LEVEL=0
+
+.relevant_file_conditions_trigger_spec_tests: &relevant_file_conditions_trigger_spec_tests
+  changes:
+    - .gitlab-ci.yml
+    - .fixtures.yml
+    - "spec/spec_helper.rb"
+    - "spec/{classes,unit,defines,type_aliases,types,hosts,lib}/**/*.rb"
+    - "{SIMP,data,manifests,files,types,lib,functions}/**/*"
+    - "templates/**/*.{erb,epp}"
+    - "Gemfile"
+  exists:
+    - "spec/{classes,unit,defines,type_aliases,types,hosts}/**/*_spec.rb"
+
+.relevant_file_conditions_trigger_acceptance_tests: &relevant_file_conditions_trigger_acceptance_tests
+  changes:
+    - .gitlab-ci.yml
+    - .fixtures.yml
+    - "spec/spec_helper_acceptance.rb"
+    - "spec/{helpers,acceptance}/**/*"
+    - "spec/inspec_*/**/*"
+    - "{SIMP,data,manifests,files,types,lib,functions}/**/*"
+    - "templates/**/*.{erb,epp}"
+    - "Gemfile"
+  exists:
+    - "spec/acceptance/**/*_spec.rb"
+
+# For some reason, the rule regexes stopped matching line starts inside
+# $CI_COMMIT_MESSAGE with carets /^/, so we're using /\n?/ as a workaround.
+.skip_job_when_commit_message_says_to: &skip_job_when_commit_message_says_to
+  if: '$CI_COMMIT_MESSAGE =~ /\n?CI: (SKIP MATRIX|MATRIX LEVEL 0)/'
+  when: never
+
+.force_run_job_when_commit_message_lvl_1_or_above: &force_run_job_when_commit_mssage_lvl_1_or_above
+  if: '$CI_COMMIT_MESSAGE =~ /\n?CI: MATRIX LEVEL [123]/'
+  when: on_success
+
+.force_run_job_when_commit_message_lvl_2_or_above: &force_run_job_when_commit_mssage_lvl_2_or_above
+  if: '$CI_COMMIT_MESSAGE =~ /\n?CI: MATRIX LEVEL [23]/'
+  when: on_success
+
+.force_run_job_when_commit_message_lvl_3_or_above: &force_run_job_when_commit_mssage_lvl_3_or_above
+  if: '$CI_COMMIT_MESSAGE =~ /\n?CI: MATRIX LEVEL [3]/'
+  when: on_success
+
+# check for $CI_PIPELINE_SOURCE needed because this is combined w/when:changes
+.run_job_when_level_1_or_above_w_changes: &run_job_when_level_1_or_above_w_changes
+  if: '$SIMP_MATRIX_LEVEL =~ /^[123]$/ && $CI_COMMIT_BRANCH && $CI_PIPELINE_SOURCE == "push"'
+  when: on_success
+
+.run_job_when_level_2_or_above_w_changes: &run_job_when_level_2_or_above_w_changes
+  if: '$SIMP_MATRIX_LEVEL =~ /^[23]$/ && $CI_COMMIT_BRANCH && $CI_PIPELINE_SOURCE == "push"'
+  when: on_success
+
+.run_job_when_level_3_or_above_w_changes: &run_job_when_level_3_or_above_w_changes
+  if: '$SIMP_MATRIX_LEVEL =~ /^[3]$/ && $CI_COMMIT_BRANCH && $CI_PIPELINE_SOURCE == "push"'
+  when: on_success
+
+.force_run_job_when_var_and_lvl_1_or_above: &force_run_job_when_var_and_lvl_1_or_above
+  if: '$SIMP_FORCE_RUN_MATRIX == "yes" && $SIMP_MATRIX_LEVEL =~ /^[123]$/'
+  when: on_success
+
+.force_run_job_when_var_and_lvl_2_or_above: &force_run_job_when_var_and_lvl_2_or_above
+  if: '$SIMP_FORCE_RUN_MATRIX == "yes" && $SIMP_MATRIX_LEVEL =~ /^[23]$/'
+  when: on_success
+
+.force_run_job_when_var_and_lvl_3_or_above: &force_run_job_when_var_and_lvl_3_or_above
+  if: '$SIMP_FORCE_RUN_MATRIX == "yes" && $SIMP_MATRIX_LEVEL =~ /^[3]$/'
+  when: on_success
+
+
+# SIMP_MATRIX_LEVEL=1: Intended to run every commit
+.with_SIMP_ACCEPTANCE_MATRIX_LEVEL_1: &with_SIMP_ACCEPTANCE_MATRIX_LEVEL_1
+  rules:
+    - <<: *skip_job_when_commit_message_says_to
+    - <<: *force_run_job_when_var_and_lvl_1_or_above
+    - <<: *force_run_job_when_commit_mssage_lvl_1_or_above
+    - <<: *run_job_when_level_1_or_above_w_changes
+      <<: *relevant_file_conditions_trigger_acceptance_tests
+    - when: never
+
+.with_SIMP_SPEC_MATRIX_LEVEL_1: &with_SIMP_SPEC_MATRIX_LEVEL_1
+  rules:
+    - <<: *skip_job_when_commit_message_says_to
+    - <<: *force_run_job_when_commit_mssage_lvl_1_or_above
+    - <<: *force_run_job_when_var_and_lvl_1_or_above
+    - <<: *run_job_when_level_1_or_above_w_changes
+      <<: *relevant_file_conditions_trigger_spec_tests
+    - when: never
+
+# SIMP_MATRIX_LEVEL=2: Resource-heavy or redundant jobs
+.with_SIMP_ACCEPTANCE_MATRIX_LEVEL_2: &with_SIMP_ACCEPTANCE_MATRIX_LEVEL_2
+  rules:
+    - <<: *skip_job_when_commit_message_says_to
+    - <<: *force_run_job_when_var_and_lvl_2_or_above
+    - <<: *force_run_job_when_commit_mssage_lvl_2_or_above
+    - <<: *run_job_when_level_2_or_above_w_changes
+      <<: *relevant_file_conditions_trigger_acceptance_tests
+    - when: never
+
+.with_SIMP_SPEC_MATRIX_LEVEL_2: &with_SIMP_SPEC_MATRIX_LEVEL_2
+  rules:
+    - <<: *skip_job_when_commit_message_says_to
+    - <<: *force_run_job_when_commit_mssage_lvl_2_or_above
+    - <<: *force_run_job_when_var_and_lvl_2_or_above
+    - <<: *run_job_when_level_2_or_above_w_changes
+      <<: *relevant_file_conditions_trigger_spec_tests
+    - when: never
+
+# SIMP_MATRIX_LEVEL=3: Reserved for FULL matrix testing
+.with_SIMP_ACCEPTANCE_MATRIX_LEVEL_3: &with_SIMP_ACCEPTANCE_MATRIX_LEVEL_3
+  rules:
+    - <<: *skip_job_when_commit_message_says_to
+    - <<: *force_run_job_when_var_and_lvl_3_or_above
+    - <<: *force_run_job_when_commit_mssage_lvl_3_or_above
+    - <<: *run_job_when_level_3_or_above_w_changes
+      <<: *relevant_file_conditions_trigger_acceptance_tests
+    - when: never
+
 
 # Puppet Versions
-#-----------------------------------------------------------------------
-
-.pup_6_x: &pup_6_x
-  image: 'ruby:2.5'
-  variables:
-    PUPPET_VERSION: '~> 6.0'
-    BEAKER_PUPPET_COLLECTION: 'puppet6'
-    MATRIX_RUBY_VERSION: '2.5'
-
-.pup_6_pe: &pup_6_pe
-  image: 'ruby:2.5'
-  variables:
-    PUPPET_VERSION: '6.22.1'
-    BEAKER_PUPPET_COLLECTION: 'puppet6'
-    MATRIX_RUBY_VERSION: '2.5'
+# -----------------------------------------------------------------------
 
 .pup_7_x: &pup_7_x
   image: 'ruby:2.7'
@@ -114,85 +247,117 @@ variables:
     BEAKER_PUPPET_COLLECTION: 'puppet7'
     MATRIX_RUBY_VERSION: '2.7'
 
+.pup_7_pe: &pup_7_pe
+  image: 'ruby:2.7'
+  variables:
+    PUPPET_VERSION: '7.21.0'
+    BEAKER_PUPPET_COLLECTION: 'puppet7'
+    MATRIX_RUBY_VERSION: '2.7'
+
+.pup_8_x: &pup_8_x
+  image: 'ruby:3.2'
+  variables:
+    PUPPET_VERSION: '~> 8.0'
+    BEAKER_PUPPET_COLLECTION: 'puppet8'
+    MATRIX_RUBY_VERSION: '3.2'
+
+
 # Testing Environments
-#-----------------------------------------------------------------------
+# -----------------------------------------------------------------------
 
 .lint_tests: &lint_tests
   stage: 'validation'
   tags: ['docker']
   <<: *setup_bundler_env
   script:
+    - 'bundle exec rake syntax'
+    - 'bundle exec rake lint'
     - 'bundle exec rake metadata_lint'
 
 .unit_tests: &unit_tests
   stage: 'validation'
   tags: ['docker']
   <<: *setup_bundler_env
+  <<: *with_SIMP_SPEC_MATRIX_LEVEL_1
   script:
     - 'bundle exec rake spec'
 
+.beaker: &beaker
+  image: ruby:2.7.2  # must be 2.7.2 if running in GCP
+  tags:
+    - beaker
+  before_script:
+    - !reference [.snippets, before_beaker_google]
+    - !reference [.snippets, before]
+
+
 .acceptance_base: &acceptance_base
   stage: 'acceptance'
-  tags: ['beaker']
   <<: *setup_bundler_env
+  <<: *with_SIMP_ACCEPTANCE_MATRIX_LEVEL_1
+  <<: *beaker
 
 .compliance_base: &compliance_base
   stage: 'compliance'
-  tags: ['beaker']
   <<: *setup_bundler_env
+  <<: *with_SIMP_ACCEPTANCE_MATRIX_LEVEL_1
+  <<: *beaker
 
 
 # Pipeline / testing matrix
-#=======================================================================
+# =======================================================================
 
 releng_checks:
-  <<: *pup_6_x
+  <<: *pup_7_x
   <<: *setup_bundler_env
   stage: 'validation'
   tags: ['docker']
   script:
     - 'command -v rpm || if command -v apt-get; then apt-get update; apt-get install -y rpm; fi ||:'
-    - 'SIMP_RPM_dist=.el7 bundle exec rake check:dot_underscore'
-    - 'SIMP_RPM_dist=.el7 bundle exec rake check:test_file'
-    - 'bundle exec rake metadata_lint'
+    - 'bundle exec rake check:dot_underscore'
+    - 'bundle exec rake check:test_file'
+    - 'bundle exec rake pkg:check_version'
+    - 'bundle exec rake pkg:compare_latest_tag[,true]'
+    - 'bundle exec rake pkg:create_tag_changelog'
     - 'bundle exec pdk build --force --target-dir=dist'
 
 
-# Project-specific test control variables
-#=======================================================================
+# Linting
+# -----------------------------------------------------------------------
+
+# NOTE: Don't add more lint checks here.
+#       puppet-lint is a validator, not a parser; it includes its own lexer and
+#       doesn't use the Puppet gem at all.  Running multiple lint tests against
+#       different Puppet versions won't accomplish anything.
+
+pup-lint:
+  <<: *pup_7_x
+  <<: *lint_tests
+
+# Unit Tests
+# -----------------------------------------------------------------------
+
+pup7.x-unit:
+  <<: *pup_7_x
+  <<: *unit_tests
+  <<: *with_SIMP_SPEC_MATRIX_LEVEL_2
+
+pup7.pe-unit:
+  <<: *pup_7_pe
+  <<: *unit_tests
+
+pup8.x-unit:
+  <<: *pup_8_x
+  <<: *unit_tests
+
+# ------------------------------------------------------------------------------
+#             NOTICE: **This file is maintained with puppetsync**
 #
+# Everything above the "Repo-specific content" comment will be overwritten by
+# the next puppetsync.
+# ------------------------------------------------------------------------------
 
-# Anchor to disable release flavored tests, and run them only when
-# the environment variable SIMP_RELEASE_TESTS is set in the GitLab repo settings
-.only_with_SIMP_RELEASE_TESTS: &only_with_SIMP_RELEASE_TESTS
-  only:
-    variables:
-      - $SIMP_RELEASE_TESTS
-
-# To avoid running a prohibitive number of tests every commit,
-# don't set this env var in your gitlab instance
-.only_with_SIMP_FULL_MATRIX: &only_with_SIMP_FULL_MATRIX
-  only:
-    variables:
-      - $SIMP_FULL_MATRIX
-
-# When you want to run the ipa suite tests along with the default suite tests
-# or run the full matrix
-.only_with_SIMP_FULL_MATRIX_or_SIMP_IPA_TEST: &only_with_SIMP_FULL_MATRIX_or_SIMP_IPA_TEST
-  only:
-    variables:
-      - $SIMP_FULL_MATRIX
-      - $SIMP_IPA_TEST
-
-# When you want to run the simp_lite suite tests along with the default suite tests
-# or run the full matrix
-.only_with_SIMP_FULL_MATRIX_or_SIMP_LITE_TEST: &only_with_SIMP_FULL_MATRIX_or_SIMP_LITE_TEST
-  only:
-    variables:
-      - $SIMP_FULL_MATRIX
-      - $SIMP_LITE_TEST
-
-# Acceptance tests
+# Repo-specific content
 # ==============================================================================
 
 pup6.pe-default_el7:
