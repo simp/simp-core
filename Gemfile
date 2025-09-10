@@ -10,7 +10,7 @@ group :test do
   gem 'hiera-puppet-helper'
   gem 'metadata-json-lint'
   gem 'naturally'
-  gem 'pathspec', '~> 0.2' if Gem::Requirement.create('< 2.6').satisfied_by?(Gem::Version.new(RUBY_VERSION.dup))
+  gem 'pathspec', '~> 2.0' if Gem::Requirement.create('< 2.6').satisfied_by?(Gem::Version.new(RUBY_VERSION.dup))
   gem('pdk', ENV.fetch('PDK_VERSION', ['>= 2.0', '< 4.0']), require: false) if major_puppet_version > 5
   gem 'puppet', puppet_version
   gem 'puppet-lint-trailing_comma-check', :require => false
