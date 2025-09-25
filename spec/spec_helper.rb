@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 #
 # ------------------------------------------------------------------------------
 #         NOTICE: **This file is maintained with puppetsync**
@@ -27,10 +28,6 @@ default_hiera_config = <<~HIERA_CONFIG
 ---
 version: 5
 hierarchy:
-  - name: SIMP Compliance Engine
-    lookup_key: compliance_markup::enforcement
-    options:
-      enabled_sce_versions: [2]
   - name: Custom Test Hiera
     path: "%{custom_hiera}.yaml"
   - name: "%{module_name}"
@@ -90,7 +87,7 @@ RSpec.configure do |c|
   # If nothing else...
   c.default_facts = {
     production: {
-      #:fqdn           => 'production.rspec.test.localdomain',
+      # :fqdn           => 'production.rspec.test.localdomain',
       path: '/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin',
       concat_basedir: '/tmp'
     }
@@ -151,9 +148,9 @@ RSpec.configure do |c|
 
     # sanitize hieradata
     if defined?(hieradata)
-      set_hieradata(hieradata.gsub(':', '_'))
+      set_hieradata(hieradata.tr(':', '_'))
     elsif defined?(class_name)
-      set_hieradata(class_name.gsub(':', '_'))
+      set_hieradata(class_name.tr(':', '_'))
     end
   end
 

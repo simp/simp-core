@@ -4,24 +4,8 @@
 # This file is automatically updated as part of a puppet module baseline.
 # The next baseline sync will overwrite any local changes made to this file.
 # ------------------------------------------------------------------------------
-.*.sw?
-.yardoc
-.idea/
-dist
-/pkg
-# Read everything in fixtures
-/spec/fixtures/*
-# Un-ignore hieradata
-!/spec/fixtures/hieradata/*
-# Except this one, which is auto-generated
-/spec/fixtures/hieradata/hiera.yaml
-/spec/rp_env
-/.rspec_system
-/.vagrant
-/.bundle
-/.vendor
-/vendor
-/junit
-/log
-/doc
-/Gemfile.lock
+*.erb eol=lf
+*.pp eol=lf
+*.sh eol=lf
+*.epp eol=lf
+*.rb eol=lf

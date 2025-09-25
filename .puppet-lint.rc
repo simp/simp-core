@@ -4,24 +4,12 @@
 # This file is automatically updated as part of a puppet module baseline.
 # The next baseline sync will overwrite any local changes made to this file.
 # ------------------------------------------------------------------------------
-.*.sw?
-.yardoc
-.idea/
-dist
-/pkg
-# Read everything in fixtures
-/spec/fixtures/*
-# Un-ignore hieradata
-!/spec/fixtures/hieradata/*
-# Except this one, which is auto-generated
-/spec/fixtures/hieradata/hiera.yaml
-/spec/rp_env
-/.rspec_system
-/.vagrant
-/.bundle
-/.vendor
-/vendor
-/junit
-/log
-/doc
-/Gemfile.lock
+--log-format="%{path}:%{line}:%{check}:%{KIND}:%{message}"
+--relative
+--no-class_inherits_from_params_class-check
+--no-140chars-check
+--no-trailing_comma-check
+--no-params-empty-string-assignment-check
+# This is here because the code can't handle lookups in parameters and SIMP
+# modules have a LOT of those
+--no-parameter_order-check

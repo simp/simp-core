@@ -1,3 +1,9 @@
+# ------------------------------------------------------------------------------
+#         NOTICE: **This file is maintained with puppetsync**
+#
+# This file is automatically updated as part of a puppet module baseline.
+# The next baseline sync will overwrite any local changes made to this file.
+# ------------------------------------------------------------------------------
 gem_sources = ENV.fetch('GEM_SERVERS', 'https://rubygems.org').split(%r{[, ]+})
 
 ENV['PDK_DISABLE_ANALYTICS'] ||= 'true'
@@ -13,16 +19,14 @@ group :test do
   gem 'pathspec', '~> 0.2' if Gem::Requirement.create('< 2.6').satisfied_by?(Gem::Version.new(RUBY_VERSION.dup))
   gem('pdk', ENV.fetch('PDK_VERSION', ['>= 2.0', '< 4.0']), require: false) if major_puppet_version > 5
   gem 'puppet', puppet_version
-  gem 'puppet-lint-trailing_comma-check', :require => false
-  gem 'puppet-strings'
   gem 'puppetlabs_spec_helper'
+  gem 'puppet-lint-trailing_comma-check', require: false
+  gem 'puppet-strings'
   gem 'rake'
   gem 'rspec'
   gem 'rspec-puppet'
-  gem 'simp-build-helpers', ENV.fetch('SIMP_BUILD_HELPERS_VERSION', ['> 0.1', '< 2.0'])
   gem 'simp-rake-helpers', ENV.fetch('SIMP_RAKE_HELPERS_VERSION', ['>= 5.21.0', '< 6'])
   gem 'simp-rspec-puppet-facts', ENV.fetch('SIMP_RSPEC_PUPPET_FACTS_VERSION', '~> 3.7')
-  gem 'terminal-table'
 end
 
 group :development do
