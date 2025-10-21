@@ -11,17 +11,21 @@ group :test do
   gem 'metadata-json-lint'
   gem 'naturally'
   gem 'pathspec', '~> 0.2' if Gem::Requirement.create('< 2.6').satisfied_by?(Gem::Version.new(RUBY_VERSION.dup))
+  # renovate: datasource=rubygems versioning=ruby
   gem('pdk', ENV.fetch('PDK_VERSION', ['>= 2.0', '< 4.0']), require: false) if major_puppet_version > 5
   gem 'puppet', puppet_version
   gem 'puppet-lint-trailing_comma-check', :require => false
   gem 'puppet-strings'
-  gem 'puppetlabs_spec_helper'
+  gem 'puppetlabs_spec_helper', '~> 8.0.0'
   gem 'rake'
   gem 'rspec'
   gem 'rspec-puppet'
+  # renovate: datasource=rubygems versioning=ruby
   gem 'simp-build-helpers', ENV.fetch('SIMP_BUILD_HELPERS_VERSION', ['> 0.1', '< 2.0'])
-  gem 'simp-rake-helpers', ENV.fetch('SIMP_RAKE_HELPERS_VERSION', ['>= 5.21.0', '< 6'])
-  gem 'simp-rspec-puppet-facts', ENV.fetch('SIMP_RSPEC_PUPPET_FACTS_VERSION', '~> 3.7')
+  # renovate: datasource=rubygems versioning=ruby
+  gem 'simp-rake-helpers', ENV.fetch('SIMP_RAKE_HELPERS_VERSION', '~> 5.24.0')
+  # renovate: datasource=rubygems versioning=ruby
+  gem 'simp-rspec-puppet-facts', ENV.fetch('SIMP_RSPEC_PUPPET_FACTS_VERSION', '~> 4.0.0')
   gem 'terminal-table'
 end
 
@@ -35,7 +39,8 @@ group :system_tests do
   gem 'bcrypt_pbkdf'
   gem 'beaker'
   gem 'beaker-rspec'
-  gem 'simp-beaker-helpers', ENV.fetch('SIMP_BEAKER_HELPERS_VERSION', ['>= 1.32.1', '< 2'])
+  # renovate: datasource=rubygems versioning=ruby
+  gem 'simp-beaker-helpers', ENV.fetch('SIMP_BEAKER_HELPERS_VERSION', '~> 2.0.0')
 end
 
 # Evaluate extra gemfiles if they exist
