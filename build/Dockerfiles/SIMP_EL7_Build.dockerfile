@@ -29,7 +29,7 @@
 #   * docker commit <running container ID> el7_build
 #   * docker run -it el7_build
 
-FROM centos:7.0.1406
+FROM centos:7.9.2009
 ENV container docker
 ARG ruby_version=2.7
 
