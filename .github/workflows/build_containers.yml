@@ -52,7 +52,7 @@ jobs:
       #    sudo apt-get update
       #    sudo apt autoremove -y
       #    sudo systemctl start docker
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - name: build
         env:
