@@ -1,6 +1,6 @@
 # This Dockerfile targets running acceptance tests using Beaker
 
-FROM centos:7
+FROM centos:8
 ENV container docker
 
 RUN mkdir /root/build_scripts
