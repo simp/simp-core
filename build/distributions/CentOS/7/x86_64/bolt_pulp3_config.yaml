@@ -86,7 +86,6 @@ SIMP:
   - name: pupmod-simp-at
   - name: pupmod-simp-auditd
   - name: pupmod-simp-autofs
-  - name: pupmod-simp-chkrootkit
   - name: pupmod-simp-clamav
   - name: pupmod-simp-compliance_markup
   - name: pupmod-simp-cron
@@ -99,9 +98,7 @@ SIMP:
   - name: pupmod-simp-gdm
   - name: pupmod-simp-gnome
   - name: pupmod-simp-haveged
-  - name: pupmod-simp-hirs_provisioner
   - name: pupmod-simp-ima
-  - name: pupmod-simp-incron
   - name: pupmod-simp-iptables
   - name: pupmod-simp-issue
   - name: pupmod-simp-krb5
@@ -111,7 +108,6 @@ SIMP:
   - name: pupmod-simp-mate
   - name: pupmod-simp-mozilla
   - name: pupmod-simp-named
-  - name: pupmod-simp-network
   - name: pupmod-simp-nfs
   - name: pupmod-simp-ntpd
   - name: pupmod-simp-oath
@@ -123,7 +119,6 @@ SIMP:
   - name: pupmod-simp-postfix
   - name: pupmod-simp-pupmod
   - name: pupmod-simp-resolv
-  - name: pupmod-simp-rkhunter
   - name: pupmod-simp-rsync
   - name: pupmod-simp-rsyslog
   - name: pupmod-simp-selinux
@@ -133,11 +128,9 @@ SIMP:
   - name: pupmod-simp-simp_firewalld
   - name: pupmod-simp-simp_gitlab
   - name: pupmod-simp-simp_grub
-  - name: pupmod-simp-simp_ipa
   - name: pupmod-simp-simpkv
   - name: pupmod-simp-simplib
   - name: pupmod-simp-simp_nfs
-  - name: pupmod-simp-simp_openldap
   - name: pupmod-simp-simp_options
   - name: pupmod-simp-simp_rsyslog
   - name: pupmod-simp-simp_snmpd
@@ -145,13 +138,10 @@ SIMP:
   - name: pupmod-simp-sssd
   - name: pupmod-simp-stunnel
   - name: pupmod-simp-sudo
-  - name: pupmod-simp-sudosh
   - name: pupmod-simp-svckill
   - name: pupmod-simp-swap
-  - name: pupmod-simp-tcpwrappers
   - name: pupmod-simp-tftpboot
   - name: pupmod-simp-tlog
-  - name: pupmod-simp-tpm
   - name: pupmod-simp-tpm2
   - name: pupmod-simp-tuned
   - name: pupmod-simp-useradd
@@ -159,7 +149,6 @@ SIMP:
   - name: pupmod-simp-vox_selinux
   - name: pupmod-simp-vsftpd
   - name: pupmod-simp-x2go
-  - name: pupmod-simp-xinetd
   - name: pupmod-treydock-kdump
   - name: pupmod-trlinkin-nsswitch
   - name: rubygem-simp-cli
@@ -196,40 +185,14 @@ SIMP:
   - name: tlog
     direct_url: https://download.simp-project.com/simp/yum/releases/6.5.0-1/el/7/x86_64/simp/tlog-4-1.el7.x86_64.rpm
 
-  # FIXME *extremely* old el7 RPM (2014), signed with original 2015 SIMP GPG key (7da6f216, no expiration)
-  # ------------------------------------------------------------------------------
-  # NOTE: chkroot is not supported on EL8+; it was replaced by rkhunter
-  - name: chkrootkit
-    direct_url: https://download.simp-project.com/simp/yum/releases/6.5.0-1/el/7Server/x86_64/simp/chkrootkit-0.50-4el7.x86_64.rpm
-
-  # FIXME *extremely* old el7 RPMs (2014), signed with original 2015 SIMP GPG key (7da6f216, no expiration)
-  # ------------------------------------------------------------------------------
-  # provides Password policy overlay for OpenLDAP, used by simp/simp_openldap on EL7
-  - name: simp-ppolicy-check-password
-    direct_url: https://download.simp-project.com/simp/yum/releases/6.5.0-1/el/7Server/x86_64/simp/simp-ppolicy-check-password-2.4.39-0el7.x86_64.rpm
-
-  # provides the 'lastbind' plugin for OpenLDAP, used by simp/simp_openldap on EL7
-  - name: simp-lastbind
-    direct_url: https://download.simp-project.com/simp/yum/releases/6.5.0-1/el/7Server/x86_64/simp/simp-lastbind-2.4.23-0.x86_64.rpm
 
   # FIXME: old TPM simulator packages (built 2019), no builds for EL8
   # FIXME: See docs at https://simp.readthedocs.io/en/master/HOWTO/90_Misc/Manage_TPM.html#tpm-simulators
   # TODO: should these packages be rebuilt for EL8, and/or from more recent versions?
   # ------------------------------------------------------------------------------
-  - name: simp-tpm12-simulator
-    direct_url: https://download.simp-project.com/simp/yum/releases/6.5.0-1/el/7Server/x86_64/simp/simp-tpm12-simulator-4769.0.0-0.el7.x86_64.rpm
   - name: simp-tpm2-simulator
     direct_url: https://download.simp-project.com/simp/yum/releases/6.5.0-1/el/7Server/x86_64/simp/simp-tpm2-simulator-1332.0.0-0.el7.x86_64.rpm
 
-  # FIXME: HIRS RPMS: old versions with CVEs (log4j/CVE-2021-44228),
-  # FIXME:old el7 RPM (2019) https://github.com/nsacyber/paccor
-  # Upstream RPMs: a.) are not signed, and: b.) do not support EL8
-  # SIMP doesn't maintain its own updated signed RPMs of these tools
-  # ------------------------------------------------------------------------------
-  - name: HIRS_Provisioner_TPM_1_2
-    direct_url: https://download.simp-project.com/simp/yum/releases/6.5.0-1/el/7Server/x86_64/simp/HIRS_Provisioner_TPM_1_2-1.0.4-1558547257.cedc93.el7.noarch.rpm
-  - name: HIRS_Provisioner_TPM_2_0
-    direct_url: https://download.simp-project.com/simp/yum/releases/6.5.0-1/el/7Server/x86_64/simp/HIRS_Provisioner_TPM_2_0-1.0.4-1.x86_64.rpm
   - name: tpm_module
     direct_url: https://download.simp-project.com/SIMP/yum/releases/latest/el/7Server/x86_64/simp/tpm_module-1.0.4-1558547257.cedc93.x86_64.rpm
   - name: paccor
@@ -1562,7 +1525,6 @@ os:
   - name: xerces-c
   - name: xerces-j2
   - name: xfsprogs
-  - name: xinetd
   - name: xkeyboard-config
   - name: xmlrpc-c
   - name: xmlrpc-c-client
@@ -2096,7 +2058,6 @@ epel:
   - name: pwgen
   - name: python-linecache2
   - name: re2
-  - name: rkhunter
   ###  - name: ruby-ldap # <-- 2014-era package (*GONE* from EPEL), only used by one simp-utils script.  Ditching it
   - name: rubygem-highline
   - name: rubygem-net-ldap
@@ -2109,8 +2070,6 @@ epel:
   - name: x2goserver
   - name: x2goserver-common
   - name: x2goserver-xsession
-  - name: incron
-    version: '>= 0.5.12-9' # Resolved https://bugzilla.redhat.com/show_bug.cgi?id=1656939#c14
 
 postgresql:
   #url: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/

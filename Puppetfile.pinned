@@ -165,10 +165,6 @@ mod 'simp-autofs',
   :git => 'https://github.com/simp/pupmod-simp-autofs',
   :tag => '7.1.0'
 
-mod 'simp-chkrootkit',
-  :git => 'https://github.com/simp/pupmod-simp-chkrootkit',
-  :tag => '0.4.0'
-
 mod 'simp-clamav',
   :git => 'https://github.com/simp/pupmod-simp-clamav',
   :tag => '6.5.0'
@@ -221,17 +217,9 @@ mod 'simp-haveged',
   :git => 'https://github.com/simp/pupmod-simp-haveged',
   :tag => '0.9.1'
 
-mod 'simp-hirs_provisioner',
-  :git => 'https://github.com/simp/pupmod-simp-hirs_provisioner',
-  :tag => '0.2.0'
-
 mod 'simp-ima',
   :git => 'https://github.com/simp/pupmod-simp-ima',
   :tag => '0.4.0'
-
-mod 'simp-incron',
-  :git => 'https://github.com/simp/pupmod-simp-incron',
-  :tag => '0.6.1'
 
 mod 'simp-iptables',
   :git => 'https://github.com/simp/pupmod-simp-iptables',
@@ -268,10 +256,6 @@ mod 'simp-mozilla',
 mod 'simp-named',
   :git => 'https://github.com/simp/pupmod-simp-named',
   :tag => '6.4.0'
-
-mod 'simp-network',
-  :git => 'https://github.com/simp/pupmod-simp-network',
-  :tag => '6.3.2'
 
 mod 'simp-nfs',
   :git => 'https://github.com/simp/pupmod-simp-nfs',
@@ -316,10 +300,6 @@ mod 'simp-pupmod',
 mod 'simp-resolv',
   :git => 'https://github.com/simp/pupmod-simp-resolv',
   :tag => '0.7.0'
-
-mod 'simp-rkhunter',
-  :git => 'https://github.com/simp/pupmod-simp-rkhunter',
-  :tag => '0.1.0'
 
 mod 'simp-rsync',
   :git => 'https://github.com/simp/pupmod-simp-rsync',
@@ -369,17 +349,9 @@ mod 'simp-simp_grub',
   :git => 'https://github.com/simp/pupmod-simp-simp_grub',
   :tag => '0.3.1'
 
-mod 'simp-simp_ipa',
-  :git => 'https://github.com/simp/pupmod-simp-simp_ipa',
-  :tag => '0.2.1'
-
 mod 'simp-simp_nfs',
   :git => 'https://github.com/simp/pupmod-simp-simp_nfs',
   :tag => '1.1.0'
-
-mod 'simp-simp_openldap',
-  :git => 'https://github.com/simp/pupmod-simp-simp_openldap',
-  :tag => '6.6.0'
 
 mod 'simp-simp_options',
   :git => 'https://github.com/simp/pupmod-simp-simp_options',
@@ -409,10 +381,6 @@ mod 'simp-sudo',
   :git => 'https://github.com/simp/pupmod-simp-sudo',
   :tag => '5.5.1'
 
-mod 'simp-sudosh',
-  :git => 'https://github.com/simp/pupmod-simp-sudosh',
-  :tag => '6.3.0'
-
 mod 'simp-svckill',
   :git => 'https://github.com/simp/pupmod-simp-svckill',
   :tag => '3.7.0'
@@ -421,10 +389,6 @@ mod 'simp-swap',
   :git => 'https://github.com/simp/pupmod-simp-swap',
   :tag => '0.3.1'
 
-mod 'simp-tcpwrappers',
-  :git => 'https://github.com/simp/pupmod-simp-tcpwrappers',
-  :tag => '6.3.0'
-
 mod 'simp-tftpboot',
   :git => 'https://github.com/simp/pupmod-simp-tftpboot',
   :tag => '6.4.1'
@@ -432,10 +396,6 @@ mod 'simp-tftpboot',
 mod 'simp-tlog',
   :git => 'https://github.com/simp/pupmod-simp-tlog',
   :tag => '0.3.2'
-
-mod 'simp-tpm',
-  :git => 'https://github.com/simp/pupmod-simp-tpm',
-  :tag => '3.3.1'
 
 mod 'simp-tpm2',
   :git => 'https://github.com/simp/pupmod-simp-tpm2',
@@ -471,10 +431,6 @@ mod 'simp-vsftpd',
 mod 'simp-x2go',
   :git => 'https://github.com/simp/pupmod-simp-x2go',
   :tag => '0.4.0'
-
-mod 'simp-xinetd',
-  :git => 'https://github.com/simp/pupmod-simp-xinetd',
-  :tag => '4.3.1'
 
 mod 'treydock-kdump',
   :git => 'https://github.com/simp/pupmod-treydock-kdump',

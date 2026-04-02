@@ -91,10 +91,6 @@
       "version_requirement": ">= 0.2.0 < 1.0.0"
     },
     {
-      "name": "simp/chkrootkit",
-      "version_requirement": ">= 0.4.0 < 1.0.0"
-    },
-    {
       "name": "simp/clamav",
       "version_requirement": ">= 6.5.0 < 7.0.0"
     },
@@ -143,10 +139,6 @@
       "version_requirement": ">= 0.7.0 < 1.0.0"
     },
     {
-      "name": "simp/rkhunter",
-      "version_requirement": ">= 0.1.0 < 1.0.0"
-    },
-    {
       "name": "simp/rsync",
       "version_requirement": ">= 6.5.0 < 7.0.0"
     },
@@ -167,10 +159,6 @@
       "version_requirement": ">= 0.1.1 < 1.0.0"
     },
     {
-      "name": "simp/simp_openldap",
-      "version_requirement": ">= 6.6.0 < 7.0.0"
-    },
-    {
       "name": "simp/simp_options",
       "version_requirement": ">= 1.6.0 < 2.0.0"
     },
@@ -183,16 +171,8 @@
       "version_requirement": ">= 6.7.1 < 7.0.0"
     },
     {
-      "name": "simp/sudosh",
-      "version_requirement": ">= 6.3.0 < 7.0.0"
-    },
-    {
       "name": "simp/svckill",
       "version_requirement": ">= 3.7.0 < 4.0.0"
-    },
-    {
-      "name": "simp/tcpwrappers",
-      "version_requirement": ">= 6.3.0 < 7.0.0"
     },
     {
       "name": "simp/tftpboot",
@@ -251,10 +231,6 @@
       "version_requirement": ">= 0.9.1 < 1.0.0"
     },
     {
-      "name": "simp/incron",
-      "version_requirement": ">= 0.6.1 < 1.0.0"
-    },
-    {
       "name": "simp/ntpd",
       "version_requirement": ">= 6.7.0 < 7.0.0"
     },
@@ -309,10 +285,6 @@
     {
       "name": "simp/useradd",
       "version_requirement": ">= 0.6.0 < 2.0.0"
-    },
-    {
-      "name": "simp/xinetd",
-      "version_requirement": ">= 4.3.1 < 5.0.0"
     },
     {
       "name": "puppet-nsswitch",
