@@ -162,10 +162,6 @@ mod 'simp-autofs',
   :git => 'https://github.com/simp/pupmod-simp-autofs',
   :branch => 'master'
 
-mod 'simp-chkrootkit',
-  :git => 'https://github.com/simp/pupmod-simp-chkrootkit',
-  :branch => 'master'
-
 mod 'simp-clamav',
   :git => 'https://github.com/simp/pupmod-simp-clamav',
   :branch => 'master'
@@ -218,16 +214,8 @@ mod 'simp-haveged',
   :git => 'https://github.com/simp/pupmod-simp-haveged',
   :branch => 'master'
 
-mod 'simp-hirs_provisioner',
-  :git => 'https://github.com/simp/pupmod-simp-hirs_provisioner',
-  :branch => 'master'
-
 mod 'simp-ima',
   :git => 'https://github.com/simp/pupmod-simp-ima',
-  :branch => 'master'
-
-mod 'simp-incron',
-  :git => 'https://github.com/simp/pupmod-simp-incron',
   :branch => 'master'
 
 mod 'simp-iptables',
@@ -264,10 +252,6 @@ mod 'simp-mozilla',
 
 mod 'simp-named',
   :git => 'https://github.com/simp/pupmod-simp-named',
-  :branch => 'master'
-
-mod 'simp-network',
-  :git => 'https://github.com/simp/pupmod-simp-network',
   :branch => 'master'
 
 mod 'simp-nfs',
@@ -312,10 +296,6 @@ mod 'simp-pupmod',
 
 mod 'simp-resolv',
   :git => 'https://github.com/simp/pupmod-simp-resolv',
-  :branch => 'master'
-
-mod 'simp-rkhunter',
-  :git => 'https://github.com/simp/pupmod-simp-rkhunter',
   :branch => 'master'
 
 mod 'simp-rsync',
@@ -366,16 +346,8 @@ mod 'simp-simp_grub',
   :git => 'https://github.com/simp/pupmod-simp-simp_grub',
   :branch => 'master'
 
-mod 'simp-simp_ipa',
-  :git => 'https://github.com/simp/pupmod-simp-simp_ipa',
-  :branch => 'master'
-
 mod 'simp-simp_nfs',
   :git => 'https://github.com/simp/pupmod-simp-simp_nfs',
-  :branch => 'master'
-
-mod 'simp-simp_openldap',
-  :git => 'https://github.com/simp/pupmod-simp-simp_openldap',
   :branch => 'master'
 
 mod 'simp-simp_options',
@@ -406,10 +378,6 @@ mod 'simp-sudo',
   :git => 'https://github.com/simp/pupmod-simp-sudo',
   :branch => 'master'
 
-mod 'simp-sudosh',
-  :git => 'https://github.com/simp/pupmod-simp-sudosh',
-  :branch => 'master'
-
 mod 'simp-svckill',
   :git => 'https://github.com/simp/pupmod-simp-svckill',
   :branch => 'master'
@@ -418,20 +386,12 @@ mod 'simp-swap',
   :git => 'https://github.com/simp/pupmod-simp-swap',
   :branch => 'master'
 
-mod 'simp-tcpwrappers',
-  :git => 'https://github.com/simp/pupmod-simp-tcpwrappers',
-  :branch => 'master'
-
 mod 'simp-tftpboot',
   :git => 'https://github.com/simp/pupmod-simp-tftpboot',
   :branch => 'master'
 
 mod 'simp-tlog',
   :git => 'https://github.com/simp/pupmod-simp-tlog',
-  :branch => 'master'
-
-mod 'simp-tpm',
-  :git => 'https://github.com/simp/pupmod-simp-tpm',
   :branch => 'master'
 
 mod 'simp-tpm2',
@@ -471,10 +431,6 @@ mod 'simp-vsftpd',
 
 mod 'simp-x2go',
   :git => 'https://github.com/simp/pupmod-simp-x2go',
-  :branch => 'master'
-
-mod 'simp-xinetd',
-  :git => 'https://github.com/simp/pupmod-simp-xinetd',
   :branch => 'master'
 
 mod 'treydock-kdump',

@@ -59,7 +59,6 @@ epel:
   - name: redhat-text-fonts
   - name: rubygem-highline
   - name: rubygem-net-ldap
-  - name: incron
   - name: pass
   - name: haveged
   - name: dnf-plugin-ovl
@@ -67,7 +66,6 @@ epel:
   - name: clamav-update
   - name: clamd
   - name: pwgen
-  - name: rkhunter
   - name: openssh-ldap-authkeys # AuthorizedKeysCommand script for LDAP
 
 puppet6:
@@ -386,7 +384,6 @@ AppStream:
   - name: urlview
   - name: uuid
   - name: vim-enhanced
-  - name: xinetd
   # --------------------------------------------------------------------------
   # Installed for repoclosure
   # --------------------------------------------------------------------------
@@ -464,7 +461,6 @@ SIMP:
    - name: pupmod-simp-at
    - name: pupmod-simp-auditd
    - name: pupmod-simp-autofs
-   - name: pupmod-simp-chkrootkit
    - name: pupmod-simp-clamav
    - name: pupmod-simp-compliance_markup
    - name: pupmod-simp-cron
@@ -478,9 +474,7 @@ SIMP:
    - name: pupmod-simp-gdm
    - name: pupmod-simp-gnome
    - name: pupmod-simp-haveged
-   - name: pupmod-simp-hirs_provisioner
    - name: pupmod-simp-ima
-   - name: pupmod-simp-incron
    - name: pupmod-simp-iptables
    - name: pupmod-simp-issue
    - name: pupmod-simp-krb5
@@ -490,7 +484,6 @@ SIMP:
    - name: pupmod-simp-mate
    - name: pupmod-simp-mozilla
    - name: pupmod-simp-named
-   - name: pupmod-simp-network
    - name: pupmod-simp-nfs
    - name: pupmod-simp-ntpd
    - name: pupmod-simp-oath
@@ -502,7 +495,6 @@ SIMP:
    - name: pupmod-simp-postfix
    - name: pupmod-simp-pupmod
    - name: pupmod-simp-resolv
-   - name: pupmod-simp-rkhunter
    - name: pupmod-simp-rsync
    - name: pupmod-simp-rsyslog
    - name: pupmod-simp-selinux
@@ -513,9 +505,7 @@ SIMP:
    - name: pupmod-simp-simp_firewalld
    - name: pupmod-simp-simp_gitlab
    - name: pupmod-simp-simp_grub
-   - name: pupmod-simp-simp_ipa
    - name: pupmod-simp-simp_nfs
-   - name: pupmod-simp-simp_openldap
    - name: pupmod-simp-simp_options
    - name: pupmod-simp-simp_rsyslog
    - name: pupmod-simp-simp_snmpd
@@ -525,13 +515,10 @@ SIMP:
    - name: pupmod-simp-sssd
    - name: pupmod-simp-stunnel
    - name: pupmod-simp-sudo
-   - name: pupmod-simp-sudosh
    - name: pupmod-simp-svckill
    - name: pupmod-simp-swap
-   - name: pupmod-simp-tcpwrappers
    - name: pupmod-simp-tftpboot
    - name: pupmod-simp-tlog
-   - name: pupmod-simp-tpm
    - name: pupmod-simp-tpm2
    - name: pupmod-simp-tuned
    - name: pupmod-simp-useradd
@@ -539,7 +526,6 @@ SIMP:
    - name: pupmod-simp-vox_selinux
    - name: pupmod-simp-vsftpd
    - name: pupmod-simp-x2go
-   - name: pupmod-simp-xinetd
    - name: pupmod-treydock-kdump
    - name: pupmod-trlinkin-nsswitch
    - name: rubygem-simp-cli
