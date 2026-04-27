@@ -8,7 +8,7 @@ dnf install -y util-linux openssl augeas-libs createrepo_c git gnupg2 libicu-dev
 # genisoimage and isomd5sum are in EPEL 9; xorriso is the modern alternative
 dnf install -y genisoimage isomd5sum ||:
 dnf install -y xorriso ||:
-dnf install -y python3 fontconfig dejavu-sans-fonts dejavu-sans-mono-fonts dejavu-serif-fonts dejavu-fonts-common libjpeg-devel zlib-devel openssl-devel
+dnf install -y python3 fontconfig dejavu-sans-fonts dejavu-sans-mono-fonts dejavu-serif-fonts libjpeg-devel zlib-devel openssl-devel
 dnf install -y libyaml autoconf gcc gcc-c++ glibc-devel readline-devel libffi-devel automake libtool bison sqlite-devel pinentry
 
 # Helper packages

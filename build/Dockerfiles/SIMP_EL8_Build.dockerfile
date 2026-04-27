@@ -23,7 +23,7 @@
 # docker run -v $PWD/ISO:/ISO:Z -it <container ID>
 # ```
 
-FROM almalinux:8.3
+FROM almalinux:8.4
 ENV container docker
 ARG ruby_version=2.7
 
@@ -34,6 +34,7 @@ ADD scripts/el8/* /root/build_scripts/
 WORKDIR /root/build_scripts
 RUN chmod +x *
 
+RUN ./00_setup_vault.sh
 RUN ./00_system_prep.sh
 RUN ./minimize_package_installs.sh
 RUN ./05_selinux.sh

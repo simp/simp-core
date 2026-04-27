@@ -34,6 +34,7 @@ ADD scripts/el9/* /root/build_scripts/
 WORKDIR /root/build_scripts
 RUN chmod +x *
 
+RUN ./00_setup_vault.sh
 RUN ./00_system_prep.sh
 RUN ./minimize_package_installs.sh
 RUN ./05_selinux.sh
