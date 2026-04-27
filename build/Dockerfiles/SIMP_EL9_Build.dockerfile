@@ -1,19 +1,19 @@
-# Build from the oldest AlmaLinux 8 release to accumulate SELinux contexts.
+# Build from the oldest AlmaLinux 9 release to accumulate SELinux contexts.
 #
 # To build using docker, run:
 #
 # ```sh
 # docker build \
-#   --tag "simp-core-iso-builder:el8.$(git rev-parse --short HEAD)" \
-#   --file build/Dockerfiles/SIMP_EL8_Build.dockerfile \
+#   --tag "simp-core-iso-builder:el9.$(git rev-parse --short HEAD)" \
+#   --file build/Dockerfiles/SIMP_EL9_Build.dockerfile \
 #   build/Dockerfiles
 # ```
 #
 # To build using podman, run:
 # ```sh
 # podman build \
-#   --tag "simp-core-iso-builder:el8.$(git rev-parse --short HEAD)" \
-#   --file build/Dockerfiles/SIMP_EL8_Build.dockerfile \
+#   --tag "simp-core-iso-builder:el9.$(git rev-parse --short HEAD)" \
+#   --file build/Dockerfiles/SIMP_EL9_Build.dockerfile \
 #   build/Dockerfiles
 # ```
 #
@@ -23,13 +23,13 @@
 # docker run -v $PWD/ISO:/ISO:Z -it <container ID>
 # ```
 
-FROM almalinux:8.4
+FROM almalinux:9.0
 ENV container docker
-ARG ruby_version=2.7
+ARG ruby_version=3.1
 
 RUN mkdir /root/build_scripts
 ADD scripts/common/* /root/build_scripts/
-ADD scripts/el8/* /root/build_scripts/
+ADD scripts/el9/* /root/build_scripts/
 
 WORKDIR /root/build_scripts
 RUN chmod +x *

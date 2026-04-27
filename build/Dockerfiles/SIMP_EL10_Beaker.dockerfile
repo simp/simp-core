@@ -1,10 +1,10 @@
-# This Dockerfile targets running acceptance tests using Beaker on AlmaLinux 8
+# This Dockerfile targets running acceptance tests using Beaker on AlmaLinux 10
 
-FROM almalinux:8
+FROM almalinux:10
 ENV container docker
 
 RUN mkdir /root/build_scripts
-ADD scripts/el8/* /root/build_scripts
+ADD scripts/el10/* /root/build_scripts
 ADD scripts/common/* /root/build_scripts
 
 WORKDIR /root/build_scripts
