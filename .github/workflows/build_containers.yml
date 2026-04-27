@@ -5,69 +5,58 @@ on:
   workflow_dispatch:
     inputs:
       ruby_version:
-        description: "Ruby verion build arg"
+        description: "Ruby version build arg"
         required: true
+        type: choice
         options:
-        - 2.7
-        - 3.1
+          - "2.7"
+          - "3.1"
+          - "3.3"
       dockerfile:
-#        description: >
-#          Filename of SIMP Dockerfile to build
-#          (under `build/Dockerfiles/`)
-#          Example: `SIMP_EL7_Build.dockerfile`
+        description: >
+          Filename of Dockerfile to build (under build/Dockerfiles/).
+          Example: SIMP_EL9_Build.dockerfile
         required: true
-      container_name:
-#        description: >
-#          Name of container to push
-#          Examples: `simp_beaker_el7`, `simp_build_centos7`
+      image_name:
+        description: >
+          Image name to publish under ghcr.io/<org>/.
+          Example: simp-build-el9
         required: true
       container_tag:
-#        description: >
-#          Tag of container to push
-#          Examples: `latest`, `20230703`
+        description: "Image tag. Example: latest, 20250427"
         required: true
         default: latest
-      registry_repo:
-        required: true
-#        description: >
-#          Dockerhub + repo to push to
-        default: 'docker.io/simpproject'
-      registry_user:
-        required: true
-      registry_password:
-        required: true
       git_ref:
+        description: "Branch, tag, or SHA to build from"
         required: true
         default: master
+
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   build_container:
     name: Build and push container
     runs-on: ubuntu-latest
     steps:
-      #- name: install docker
-      #  run: |
-      #    set -x
-      #    sudo apt-get remove -y podman ||:
-      #    sudo apt-get install -y docker-ce docker docker-engine docker.io containerd runc ||:
-      #    sudo apt-get update
-      #    sudo apt autoremove -y
-      #    sudo systemctl start docker
       - uses: actions/checkout@v6
+        with:
+          ref: ${{ inputs.git_ref }}
 
-      - name: build
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push
         env:
-          RUBY_VERSION: ${{github.event.inputs.ruby_version}}
-          DOCKERFILE: ${{github.event.inputs.dockerfile}}
-          CONTAINER_NAME: ${{github.event.inputs.container_name}}
-          CONTAINER_TAG: ${{github.event.inputs.container_tag}}
-          REGISTRY_USER: ${{github.event.inputs.registry_user}}
-          REGISTRY_PASSWORD: ${{github.event.inputs.registry_password}}
-          REGISTRY_REPO: ${{github.event.inputs.registry_repo}}
+          RUBY_VERSION: ${{ inputs.ruby_version }}
+          DOCKERFILE: ${{ inputs.dockerfile }}
+          IMAGE_REF: ghcr.io/${{ github.repository_owner }}/${{ inputs.image_name }}:${{ inputs.container_tag }}
         run: |
           cd build/Dockerfiles
-          docker build --build-arg ruby_version="$RUBY_VERSION" -f "$DOCKERFILE" -t "$CONTAINER_TAG"
-          echo "$REGISTRY_PASSWORD" | docker login --username "$REGISTRY_USER" --password-stdin
-          docker push "$CONTAINER_NAME:CONTAINER_TAG"
-
-
-
+          docker build --build-arg ruby_version="$RUBY_VERSION" -f "$DOCKERFILE" -t "$IMAGE_REF" .
+          docker push "$IMAGE_REF"
