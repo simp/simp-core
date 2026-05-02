@@ -1,6 +1,6 @@
 # This Dockerfile targets running acceptance tests using Beaker on AlmaLinux 9
 
-FROM almalinux:9
+FROM almalinux:10
 ENV container docker
 
 RUN mkdir /root/build_scripts
