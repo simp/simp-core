@@ -23,7 +23,7 @@
 # docker run -v $PWD/ISO:/ISO:Z -it <container ID>
 # ```
 
-FROM almalinux:9.0
+FROM almalinux:10.1
 ENV container docker
 ARG ruby_version=3.1
 
