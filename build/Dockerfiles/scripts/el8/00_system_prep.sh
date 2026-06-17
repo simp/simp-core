@@ -1,4 +1,12 @@
-#!/bin/sh -e
+#!/bin/bash
+#
+# Prepare dnf: install config-manager, bake the minimization settings into the
+# dnf config, install the en_US language pack, rebuild the rpm database, and
+# install yum-utils.
+#
+# Used by: both image families (Beaker SUT and ISO build)
+#
+set -euo pipefail
 
 dnf install -y --setopt=override_install_langs=en_US.utf8 --setopt=install_weak_deps=False --setopt=tsflags=nodocs 'dnf-command(config-manager)'
 dnf config-manager --save --setopt=best=True

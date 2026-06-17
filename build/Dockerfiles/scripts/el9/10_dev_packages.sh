@@ -1,4 +1,11 @@
-#!/bin/sh -e
+#!/bin/bash
+#
+# Install the full ISO/RPM build toolchain: rpmbuild tooling, ruby-devel and
+# compilers, ISO-creation tools, fonts, an SSH server for CI, and helpers.
+#
+# Used by: ISO build images (SIMP_EL*_Build.dockerfile)
+#
+set -euo pipefail
 
 dnf install -y epel-release
 dnf config-manager --set-enabled crb
@@ -9,7 +16,7 @@ dnf install -y util-linux openssl augeas-libs createrepo_c git gnupg2 libicu-dev
 dnf install -y genisoimage isomd5sum ||:
 dnf install -y xorriso ||:
 dnf install -y python3 fontconfig dejavu-sans-fonts dejavu-sans-mono-fonts dejavu-serif-fonts libjpeg-devel zlib-devel openssl-devel
-dnf install -y libyaml autoconf gcc gcc-c++ glibc-devel readline-devel libffi-devel automake libtool bison sqlite-devel pinentry
+dnf install -y libyaml libyaml-devel autoconf gcc gcc-c++ glibc-devel readline-devel libffi-devel automake libtool bison sqlite-devel pinentry
 
 # Helper packages
 dnf install -y rubygems vim-enhanced jq

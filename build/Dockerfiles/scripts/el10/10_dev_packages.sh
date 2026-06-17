@@ -1,4 +1,11 @@
-#!/bin/sh -e
+#!/bin/bash
+#
+# Install the full ISO/RPM build toolchain: rpmbuild tooling, ruby-devel and
+# compilers, ISO-creation tools, fonts, an SSH server for CI, and helpers.
+#
+# Used by: ISO build images (SIMP_EL*_Build.dockerfile)
+#
+set -euo pipefail
 
 dnf install -y epel-release ||:
 dnf config-manager --set-enabled crb

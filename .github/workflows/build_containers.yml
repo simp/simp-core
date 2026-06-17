@@ -5,13 +5,13 @@ on:
   workflow_dispatch:
     inputs:
       ruby_version:
-        description: "Ruby version build arg"
+        description: "Default Ruby version build arg (3.2 = OpenVox 8, 4.0 = OpenVox 9)"
         required: true
         type: choice
+        default: "3.2"
         options:
-          - "2.7"
-          - "3.1"
-          - "3.3"
+          - "3.2"
+          - "4.0"
       dockerfile:
         description: >
           Filename of Dockerfile to build (under build/Dockerfiles/).

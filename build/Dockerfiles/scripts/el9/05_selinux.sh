@@ -1,4 +1,11 @@
-#!/bin/sh -e
+#!/bin/bash
+#
+# Downgrade packages back to the vault baseline (keeping TLS-critical packages
+# current) and install the SELinux policy and management tooling.
+#
+# Used by: ISO build images (SIMP_EL*_Build.dockerfile)
+#
+set -euo pipefail
 
 # Vault repos were set up by 00_setup_vault.sh. Downgrade any packages that
 # minimize_package_installs.sh may have bumped above 9.0, keeping TLS-critical
