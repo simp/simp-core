@@ -1,0 +1,96 @@
+---
+# Reusable workflow: build one container image from build/Dockerfiles/ and
+# optionally push it to ghcr.io. Called by build_containers.yml (manual,
+# single image) and containers.yml (PR validation + push/schedule publish).
+name: 'Reusable: build container image'
+
+on:
+  workflow_call:
+    inputs:
+      dockerfile:
+        description: "Dockerfile filename under build/Dockerfiles/"
+        required: true
+        type: string
+      image_name:
+        description: "Image name to publish under ghcr.io/<owner>/"
+        required: true
+        type: string
+      ruby_version:
+        description: "Default Ruby version build arg (ignored by Beaker images)"
+        required: false
+        type: string
+        default: "3.2"
+      ref:
+        description: "Branch, tag, or SHA to build from"
+        required: false
+        type: string
+        default: ""
+      push:
+        description: "Push the image to ghcr.io (false = build only, for PRs)"
+        required: false
+        type: boolean
+        default: false
+      extra_tag:
+        description: "Optional additional tag (in addition to latest + date)"
+        required: false
+        type: string
+        default: ""
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build:
+    name: "${{ inputs.image_name }}"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ inputs.ref }}
+
+      - name: Compute image tags
+        id: meta
+        env:
+          IMAGE: "ghcr.io/${{ github.repository_owner }}/${{ inputs.image_name }}"
+          EXTRA_TAG: ${{ inputs.extra_tag }}
+        run: |
+          # Date-based tag (UTC) so it is clear when an image was built.
+          date_tag="$(date -u +%Y%m%d)"
+          tags="${IMAGE}:${date_tag},${IMAGE}:latest"
+          if [ -n "$EXTRA_TAG" ]; then
+            tags="${tags},${IMAGE}:${EXTRA_TAG}"
+          fi
+          echo "tags=${tags}" >> "$GITHUB_OUTPUT"
+          echo "Image tags: ${tags}"
+
+      - name: Log in to GitHub Container Registry
+        if: ${{ inputs.push }}
+        uses: docker/login-action@v4
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build${{ inputs.push && ' and push' || ' (no push)' }}
+        env:
+          DOCKERFILE: ${{ inputs.dockerfile }}
+          RUBY_VERSION: ${{ inputs.ruby_version }}
+          TAGS: ${{ steps.meta.outputs.tags }}
+          PUSH: ${{ inputs.push }}
+        run: |
+          cd build/Dockerfiles
+          IFS=',' read -ra image_tags <<< "$TAGS"
+          tag_args=()
+          for t in "${image_tags[@]}"; do
+            tag_args+=( -t "$t" )
+          done
+          docker build --pull \
+            --build-arg ruby_version="$RUBY_VERSION" \
+            -f "$DOCKERFILE" \
+            "${tag_args[@]}" .
+          if [ "$PUSH" = "true" ]; then
+            for t in "${image_tags[@]}"; do
+              docker push "$t"
+            done
+          fi

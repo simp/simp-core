@@ -1,0 +1,63 @@
+---
+# Build all container images from build/Dockerfiles/.
+#
+# - Pull requests touching the Dockerfiles build every image WITHOUT pushing,
+#   to catch breakage before merge (the scripts are fail-fast, so a broken
+#   build fails the check instead of shipping a broken image).
+# - Pushes to master touching the Dockerfiles, the weekly schedule, and manual
+#   runs build AND push to ghcr.io. Images are tagged `latest` and `YYYYMMDD`.
+#
+# The weekly schedule keeps the images current with upstream base/package
+# updates even when the Dockerfiles themselves have not changed.
+name: 'Containers: build + publish'
+
+on:
+  pull_request:
+    paths:
+      - 'build/Dockerfiles/**'
+      - '.github/workflows/containers.yml'
+      - '.github/workflows/build_container.yml'
+  push:
+    branches:
+      - master
+    paths:
+      - 'build/Dockerfiles/**'
+      - '.github/workflows/containers.yml'
+      - '.github/workflows/build_container.yml'
+  schedule:
+    # Weekly, Mondays 06:17 UTC
+    - cron: '17 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+concurrency:
+  group: containers-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  containers:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - dockerfile: SIMP_EL8_Beaker.dockerfile
+            image_name: simp-el8-beaker
+          - dockerfile: SIMP_EL9_Beaker.dockerfile
+            image_name: simp-el9-beaker
+          - dockerfile: SIMP_EL10_Beaker.dockerfile
+            image_name: simp-el10-beaker
+          - dockerfile: SIMP_EL8_Build.dockerfile
+            image_name: simp-el8-build
+          - dockerfile: SIMP_EL9_Build.dockerfile
+            image_name: simp-el9-build
+          - dockerfile: SIMP_EL10_Build.dockerfile
+            image_name: simp-el10-build
+    uses: ./.github/workflows/build_container.yml
+    with:
+      dockerfile: ${{ matrix.dockerfile }}
+      image_name: ${{ matrix.image_name }}
+      # Build only on PRs; build + push everywhere else.
+      push: ${{ github.event_name != 'pull_request' }}
