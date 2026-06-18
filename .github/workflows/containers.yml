@@ -9,7 +9,12 @@
 #
 # The weekly schedule keeps the images current with upstream base/package
 # updates even when the Dockerfiles themselves have not changed.
-name: 'Containers: build + publish'
+name: Containers
+
+# On PRs the images are built but NOT published (push: false below), so the
+# run title reflects build-only vs. build + publish per trigger.
+run-name: >-
+  Containers: ${{ github.event_name == 'pull_request' && 'build (no publish)' || 'build + publish' }}
 
 on:
   pull_request:
@@ -38,7 +43,7 @@ concurrency:
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
-  containers:
+  build:
     strategy:
       fail-fast: false
       matrix:
