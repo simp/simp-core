@@ -12,9 +12,16 @@ user_id="${1:-build_user}"
 
 useradd -b /home -G wheel -m -c "Build User" -s /bin/bash -U "$user_id"
 
-# Ensure that "$user_id" can sudo to root for the build tooling.
-# NOTE: these use double quotes so "$user_id" expands; the previous single-quoted
-# versions wrote a literal "$user_id" into /etc/sudoers.
-echo "Defaults:${user_id} !requiretty" >> /etc/sudoers
-echo "${user_id} ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+# Ensure that "$user_id" can sudo to root for the build tooling. Write a
+# dedicated /etc/sudoers.d/ drop-in (idempotent across rebuilds) with the
+# 0440 perms sudo requires, and validate it with visudo before it takes effect
+# so a malformed line can't break sudo for the whole image.
+sudoers_file="/etc/sudoers.d/${user_id}"
+cat > "$sudoers_file" <<EOF
+Defaults:${user_id} !requiretty
+${user_id} ALL=(ALL) NOPASSWD: ALL
+EOF
+chmod 0440 "$sudoers_file"
+visudo -cf "$sudoers_file"
+
 rm -rf /etc/security/limits.d/*.conf

@@ -17,12 +17,23 @@ set -euo pipefail
 user_id="${1:-build_user}"
 default_ruby="${2:-3.2}"
 
+# Both supported Rubies are always installed; the build arg only selects which
+# one is the global default. Reject anything else so a typo can't silently ship
+# an image missing a Ruby the build expects.
+case "$default_ruby" in
+  3.2|4.0) ;;
+  *)
+    echo "ERROR: unsupported ruby_version '${default_ruby}' (expected 3.2 or 4.0)" >&2
+    exit 1
+    ;;
+esac
+
 # Rubies to make available in the image. The default is listed first so mise
 # treats it as the global default.
 if [ "$default_ruby" = "4.0" ]; then
   ruby_list="ruby@4.0 ruby@3.2"
 else
-  ruby_list="ruby@${default_ruby} ruby@4.0"
+  ruby_list="ruby@3.2 ruby@4.0"
 fi
 
 # Don't ship gem docs.
