@@ -1,17 +1,12 @@
 ---
+# Manual, single-image build + publish. For ad-hoc rebuilds with a specific
+# Ruby version, git ref, or extra tag. The full set of images is built
+# automatically by containers.yml.
 name: 'RELENG: Build + publish SIMP container image'
 
 on:
   workflow_dispatch:
     inputs:
-      ruby_version:
-        description: "Ruby version build arg"
-        required: true
-        type: choice
-        options:
-          - "2.7"
-          - "3.1"
-          - "3.3"
       dockerfile:
         description: >
           Filename of Dockerfile to build (under build/Dockerfiles/).
@@ -20,12 +15,20 @@ on:
       image_name:
         description: >
           Image name to publish under ghcr.io/<org>/.
-          Example: simp-build-el9
+          Example: simp-el9-build
         required: true
+      ruby_version:
+        description: "Default Ruby version build arg (3.2 = OpenVox 8, 4.0 = OpenVox 9)"
+        required: true
+        type: choice
+        default: "3.2"
+        options:
+          - "3.2"
+          - "4.0"
       container_tag:
-        description: "Image tag. Example: latest, 20250427"
-        required: true
-        default: latest
+        description: "Optional extra tag (latest + a YYYYMMDD date tag are always applied)"
+        required: false
+        default: ""
       git_ref:
         description: "Branch, tag, or SHA to build from"
         required: true
@@ -36,27 +39,12 @@ permissions:
   packages: write
 
 jobs:
-  build_container:
-    name: Build and push container
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v6
-        with:
-          ref: ${{ inputs.git_ref }}
-
-      - name: Log in to GitHub Container Registry
-        uses: docker/login-action@v4
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Build and push
-        env:
-          RUBY_VERSION: ${{ inputs.ruby_version }}
-          DOCKERFILE: ${{ inputs.dockerfile }}
-          IMAGE_REF: ghcr.io/${{ github.repository_owner }}/${{ inputs.image_name }}:${{ inputs.container_tag }}
-        run: |
-          cd build/Dockerfiles
-          docker build --build-arg ruby_version="$RUBY_VERSION" -f "$DOCKERFILE" -t "$IMAGE_REF" .
-          docker push "$IMAGE_REF"
+  build:
+    uses: ./.github/workflows/build_container.yml
+    with:
+      dockerfile: ${{ inputs.dockerfile }}
+      image_name: ${{ inputs.image_name }}
+      ruby_version: ${{ inputs.ruby_version }}
+      ref: ${{ inputs.git_ref }}
+      push: true
+      extra_tag: ${{ inputs.container_tag }}

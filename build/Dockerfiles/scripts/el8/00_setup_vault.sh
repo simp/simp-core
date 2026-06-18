@@ -1,4 +1,12 @@
-#!/bin/sh -e
+#!/bin/bash
+#
+# Replace the default repos with AlmaLinux Vault repos pinned to the oldest
+# point release, giving the build a stable library/ABI floor and keeping GPG
+# verification working with the base image's bundled signing key.
+#
+# Used by: ISO build images (SIMP_EL*_Build.dockerfile)
+#
+set -euo pipefail
 
 VAULT="https://vault.almalinux.org/8.4"
 GPG_KEY="file:///etc/pki/rpm-gpg/RPM-GPG-KEY-AlmaLinux"

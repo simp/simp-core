@@ -1,4 +1,13 @@
 #!/bin/bash
+#
+# Install a systemd path+oneshot unit that strips CapabilityBoundingSet and
+# PrivateNetwork directives from unit files. Those directives fail inside an
+# unprivileged container and cannot be reliably overridden, so this keeps the
+# systemd-based test node bootable.
+#
+# Used by: Beaker SUT images (SIMP_EL*_Beaker.dockerfile)
+#
+set -euo pipefail
 
 if [ -d "/usr/lib/systemd" ]; then
   mkdir -p "/usr/lib/systemd/system"
@@ -29,5 +38,7 @@ ExecStart=/usr/bin/systemctl daemon-reload
 HERE
 fi
 
-systemctl daemon-reload
+# daemon-reload needs a running systemd, which is absent during the image build;
+# ignore failure here. The unit is still enabled so it runs when the node boots.
+systemctl daemon-reload || true
 systemctl enable container_safe_services.path

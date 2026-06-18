@@ -67,7 +67,9 @@ The Rakefile also loads `simp-rake-helpers` (`Simp::Rake::Build::Helpers`) which
 ### CI (`.github/workflows/`)
 
 - **`pr_checks.yml`** — runs on PRs: YAML lint, RPM file checks (`rake check:dot_underscore`, `rake check:test_file`), metadata lint, and `pdk build`; sets `SIMP_RPM_dist=.el7`
-- **`build_containers.yml`** — manual workflow to build and push Docker build/test images to a registry
+- **`containers.yml`** — builds all `build/Dockerfiles/` images. On PRs touching the Dockerfiles it builds every image without pushing (pre-merge validation); on push to master (path-filtered), a weekly schedule, and manual dispatch it builds and pushes to `ghcr.io` tagged `latest` + `YYYYMMDD`
+- **`build_container.yml`** — reusable (`workflow_call`) workflow that builds/pushes a single image; called by `containers.yml` and `build_containers.yml`
+- **`build_containers.yml`** — manual (`workflow_dispatch`) single-image build + publish for ad-hoc rebuilds (specific Ruby version, git ref, or extra tag)
 
 ### Gemfile Notes
 
