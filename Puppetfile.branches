@@ -60,15 +60,15 @@ moduledir 'src/puppet/modules'
 
 mod 'puppet-kmod',
   :git => 'https://github.com/simp/pupmod-voxpupuli-kmod.git',
-  :tag => 'v3.0.0'
+  :tag => 'v3.2.0'
 
-mod 'camptocamp-systemd',
-  :git => 'https://github.com/simp/puppet-systemd.git',
-  :tag => '2.12.0'
+mod 'puppet-systemd',
+  :git => 'https://github.com/simp/pupmod-voxpupuli-systemd',
+  :tag => 'v3.10.0'
 
 mod 'herculesteam-augeasproviders_core',
   :git => 'https://github.com/simp/augeasproviders_core',
-  :tag => '2.7.0'
+  :tag => '3.1.0'
 
 mod 'herculesteam-augeasproviders_grub',
   :git => 'https://github.com/simp/augeasproviders_grub',
@@ -80,7 +80,7 @@ mod 'herculesteam-augeasproviders_ssh',
 
 mod 'herculesteam-augeasproviders_sysctl',
   :git => 'https://github.com/simp/augeasproviders_sysctl',
-  :tag => '2.6.0'
+  :tag => '2.6.2'
 
 mod 'onyxpoint-gpasswd',
   :git => 'https://github.com/simp/puppet-gpasswd',
@@ -88,11 +88,11 @@ mod 'onyxpoint-gpasswd',
 
 mod 'puppetlabs-apache',
   :git => 'https://github.com/simp/puppetlabs-apache',
-  :tag => 'v6.2.0'
+  :tag => 'v6.5.1'
 
 mod 'puppetlabs-concat',
   :git => 'https://github.com/simp/puppetlabs-concat',
-  :tag => 'v6.4.0'
+  :tag => 'v7.0.1'
 
 mod 'puppetlabs-hocon',
   :git => 'https://github.com/simp/pupmod-puppetlabs-hocon',
@@ -100,7 +100,7 @@ mod 'puppetlabs-hocon',
 
 mod 'puppetlabs-inifile',
   :git => 'https://github.com/simp/puppetlabs-inifile',
-  :tag => 'v4.1.0'
+  :tag => 'v5.3.0'
 
 mod 'puppetlabs-java',
   :git => 'https://github.com/simp/puppetlabs-java',
@@ -112,14 +112,14 @@ mod 'puppetlabs-motd',
 
 mod 'puppetlabs-postgresql',
   :git => 'https://github.com/simp/puppetlabs-postgresql',
-  :tag => 'v6.6.0'
+  :tag => 'v8.0.0'
 
 mod 'puppetlabs-puppetdb',
   :git => 'https://github.com/simp/pupmod-puppetlabs-puppetdb',
-  :tag => '7.5.0'
+  :tag => '7.10.0'
 
 mod 'puppetlabs-puppet_authorization',
-  :git => 'https://github.com/simp/puppetlabs-puppet_authorization.git',
+  :git => 'https://github.com/simp/pupmod-puppetlabs-puppet_authorization',
   :tag => '0.5.1'
 
 mod 'puppetlabs-ruby_task_helper',
@@ -128,7 +128,7 @@ mod 'puppetlabs-ruby_task_helper',
 
 mod 'puppetlabs-stdlib',
   :git => 'https://github.com/simp/puppetlabs-stdlib',
-  :tag => 'v6.6.0'
+  :tag => 'v7.1.0'
 
 mod 'puppetlabs-translate',
   :git => 'https://github.com/simp/pupmod-puppetlabs-translate',
@@ -139,7 +139,7 @@ mod 'saz-locales',
   :tag => 'v2.5.1'
 
 mod 'saz-timezone',
-  :git => 'https://github.com/simp/pupmod-simp-timezone',
+  :git => 'https://github.com/simp/pupmod-saz-timezone',
   :tag => 'v6.1.0'
 
 mod 'simp-acpid',
@@ -402,10 +402,6 @@ mod 'simp-tuned',
   :git => 'https://github.com/simp/pupmod-simp-tuned',
   :branch => 'master'
 
-mod 'simp-upstart',
-  :git => 'https://github.com/simp/pupmod-simp-upstart',
-  :branch => 'master'
-
 mod 'simp-useradd',
   :git => 'https://github.com/simp/pupmod-simp-useradd',
   :branch => 'master'
@@ -435,19 +431,20 @@ mod 'simp-x2go',
 
 mod 'treydock-kdump',
   :git => 'https://github.com/simp/pupmod-treydock-kdump',
-  :tag => 'v0.4.1'
+  :tag => 'v1.0.0'
 
+# NOTE: repo archived
 mod 'trlinkin-nsswitch',
-  :git => 'https://github.com/simp/puppet-nsswitch',
-  :tag => '2.2.0'
+  :git => 'https://github.com/simp/pupmod-trlinkin-nsswitch',
+  :tag => 'simp-2.3.0'
 
 mod 'voxpupuli-chrony',
   :git => 'https://github.com/simp/pupmod-voxpupuli-chrony',
-  :tag => 'v1.0.0'
+  :tag => 'v2.4.0'
 
 mod 'voxpupuli-firewalld',
   :git => 'https://github.com/simp/pupmod-voxpupuli-firewalld',
-  :tag => 'v4.4.0'
+  :tag => 'v4.5.1'
 
 mod 'voxpupuli-posix_acl',
   :git => 'https://github.com/simp/pupmod-voxpupuli-posix_acl',
@@ -455,14 +452,14 @@ mod 'voxpupuli-posix_acl',
 
 mod 'voxpupuli-gitlab',
   :git => 'https://github.com/simp/puppet-gitlab.git',
-  :tag => 'v7.1.0'
+  :tag => 'v8.0.0'
 
 mod 'voxpupuli-snmp',
-  :git => 'https://github.com/simp/puppet-snmp',
-  :tag => 'v5.1.1'
+  :git => 'https://github.com/simp/pupmod-voxpupuli-snmp',
+  :tag => 'v6.0.0'
 
 mod 'voxpupuli-yum',
-  :git => 'https://github.com/simp/voxpupuli-yum',
-  :tag => 'v4.3.0'
+  :git => 'https://github.com/simp/pupmod-voxpupuli-yum',
+  :tag => 'v5.4.0'
 
 # vi:syntax=ruby

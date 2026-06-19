@@ -436,6 +436,7 @@ mod 'treydock-kdump',
   :git => 'https://github.com/simp/pupmod-treydock-kdump',
   :tag => 'v1.0.0'
 
+# NOTE: repo archived
 mod 'trlinkin-nsswitch',
   :git => 'https://github.com/simp/pupmod-trlinkin-nsswitch',
   :tag => 'simp-2.3.0'
