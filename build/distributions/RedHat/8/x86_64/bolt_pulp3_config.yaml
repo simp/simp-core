@@ -485,7 +485,6 @@ SIMP:
    - name: pupmod-simp-mozilla
    - name: pupmod-simp-named
    - name: pupmod-simp-nfs
-   - name: pupmod-simp-ntpd
    - name: pupmod-simp-oath
    - name: pupmod-simp-oddjob
    - name: pupmod-simp-openscap

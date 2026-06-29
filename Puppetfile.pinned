@@ -261,10 +261,6 @@ mod 'simp-nfs',
   :git => 'https://github.com/simp/pupmod-simp-nfs',
   :tag => '7.2.0'
 
-mod 'simp-ntpd',
-  :git => 'https://github.com/simp/pupmod-simp-ntpd',
-  :tag => '6.7.0'
-
 mod 'simp-oath',
   :git => 'https://github.com/simp/pupmod-simp-oath',
   :tag => '0.3.0'

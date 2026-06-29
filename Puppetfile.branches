@@ -258,10 +258,6 @@ mod 'simp-nfs',
   :git => 'https://github.com/simp/pupmod-simp-nfs',
   :branch => 'master'
 
-mod 'simp-ntpd',
-  :git => 'https://github.com/simp/pupmod-simp-ntpd',
-  :branch => 'master'
-
 mod 'simp-oath',
   :git => 'https://github.com/simp/pupmod-simp-oath',
   :branch => 'master'
