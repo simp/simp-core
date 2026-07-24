@@ -85,7 +85,7 @@ mod 'herculesteam-augeasproviders_sysctl',
   :git => 'https://github.com/simp/augeasproviders_sysctl',
   :tag => '2.6.2'
 
-mod 'onyxpoint-gpasswd',
+mod 'simp-gpasswd',
   :git => 'https://github.com/simp/puppet-gpasswd',
   :tag => '1.1.2'
 
