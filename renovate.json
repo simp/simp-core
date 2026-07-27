@@ -4,5 +4,14 @@
     "config:recommended",
     "github>simp/renovate-config",
     "github>simp/renovate-config:ruby.json"
+  ],
+  "packageRules": [
+    {
+      "description": "The AlmaLinux base image tags in build/Dockerfiles are pinned on purpose (one image per EL major, Build images pinned to a specific minor). Renovate must not bump them.",
+      "matchManagers": ["dockerfile"],
+      "matchDepNames": ["almalinux"],
+      "matchFileNames": ["build/Dockerfiles/**"],
+      "enabled": false
+    }
   ]
 }
