@@ -16,7 +16,7 @@ group :test do
   gem 'puppet', puppet_version
   gem 'puppet-lint-trailing_comma-check', :require => false
   gem 'puppet-strings'
-  gem 'puppetlabs_spec_helper', '~> 8.0.0'
+  gem 'puppetlabs_spec_helper', '~> 9.0.0'
   gem 'rake'
   gem 'rspec'
   gem 'rspec-puppet'
