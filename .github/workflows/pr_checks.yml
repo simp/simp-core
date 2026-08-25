@@ -7,7 +7,7 @@ on:
 
 env:
   # Required to prevent all rake tasks from exploding
-  SIMP_RPM_dist: .el7
+  SIMP_RPM_dist: .el8
 
 jobs:
   validate-yaml:
@@ -17,10 +17,11 @@ jobs:
       - uses: actions/checkout@v7
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.7.8
+          ruby-version: 3.4.9
           bundler-cache: true
-      - run: 'command -v rpm || if command -v apt-get; then apt-get update; apt-get install -y rpm; fi ||:'
+      - run: 'command -v rpm || if command -v apt-get; then sudo apt-get update; sudo apt-get install -y rpm; fi ||:'
       - run: bundle exec rake check:syntax:yaml
+      - run: bundle exec rake check:pkglist_lint
 
   rpm_checks:
     name: RPM checks
@@ -29,11 +30,10 @@ jobs:
       - uses: actions/checkout@v7
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.7.8
+          ruby-version: 3.4.9
           bundler-cache: true
-      - run: 'command -v rpm || if command -v apt-get; then apt-get update; apt-get install -y rpm; fi ||:'
+      - run: 'command -v rpm || if command -v apt-get; then sudo apt-get update; sudo apt-get install -y rpm; fi ||:'
       - run: |
-         command -v rpm || if command -v apt-get; then apt-get update; apt-get install -y rpm; fi ||:
          bundle exec rake check:dot_underscore
          bundle exec rake check:test_file
 
@@ -44,9 +44,39 @@ jobs:
       - uses: actions/checkout@v7
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.7.8
+          ruby-version: 3.4.9
           bundler-cache: true
-      - run: 'command -v rpm || if command -v apt-get; then apt-get update; apt-get install -y rpm; fi ||:'
-      - run: |
-          bundle exec rake metadata_lint
-          bundle exec pdk build --force --target-dir=dist
+      - run: 'command -v rpm || if command -v apt-get; then sudo apt-get update; sudo apt-get install -y rpm; fi ||:'
+      - run: bundle exec rake metadata_lint
+      - name: 'Test-build the Puppet module'
+        run: bundle exec rake pupmod:build
+
+  spec-tests:
+    name: Puppetfile checks
+    runs-on: ubuntu-24.04
+    strategy:
+      matrix:
+        puppet:
+          - label: 'OpenVox 8.x (Ruby 3.2)'
+            puppet_version: '~> 8.0'
+            ruby_version: '3.2'
+          - label: 'OpenVox 8.x (Ruby 3.4)'
+            puppet_version: '~> 8.0'
+            ruby_version: '3.4'
+          # OpenVox 9 is unreleased; preview the future Ruby 4.0 / OpenVox 9
+          # combo by running the OpenVox 8 gem on Ruby 4.0.
+          - label: 'OpenVox 9.x preview (Ruby 4.0, OpenVox 8 gem)'
+            puppet_version: '~> 8.0'
+            ruby_version: '4.0'
+      fail-fast: false
+    env:
+      PUPPET_VERSION: ${{matrix.puppet.puppet_version}}
+    steps:
+      - uses: actions/checkout@v7
+      - name: 'Install Ruby ${{matrix.puppet.ruby_version}}'
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{matrix.puppet.ruby_version}}
+          bundler-cache: true
+      - run: 'command -v rpm || if command -v apt-get; then sudo apt-get update; sudo apt-get install -y rpm; fi ||:'
+      - run: bundle exec rake spec

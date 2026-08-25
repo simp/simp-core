@@ -2,8 +2,7 @@ require 'json'
 require 'spec_helper'
 
 describe 'Puppetfile Validation' do
-  top_dir = File.absolute_path(fixtures).split('/')
-  top_dir = top_dir[0..-(fixtures.split('/').count + 1)].join('/')
+  top_dir = File.absolute_path(File.join(__dir__, '..', '..'))
 
   before(:each) do
     @tmpdir = Dir.mktmpdir
@@ -46,7 +45,7 @@ describe 'Puppetfile Validation' do
           (duplicate_refs[k] = git_refs[k]) if (v.size > 1)
         end
 
-        expect(JSON.pretty_generate(duplicate_refs)).to eq("{\n}")
+        expect(duplicate_refs).to be_empty, "Duplicate :git sources found:\n#{JSON.pretty_generate(duplicate_refs)}"
       end
     end
   end

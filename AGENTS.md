@@ -61,19 +61,18 @@ The Rakefile also loads `simp-rake-helpers` (`Simp::Rake::Build::Helpers`) which
   - `yum_data/` — repo configs and `packages.yaml` (external package manifest)
   - `release_mappings.yaml` — official SIMP releases for that distro
   - Output dirs created at build time: `SIMP/`, `SIMP_ISO/`, `SIMP_ISO_STAGING/`
-- `build/Dockerfiles/` — Docker images for isolated build (`SIMP_EL7_Build`, `SIMP_EL8_Build`) and acceptance testing (`SIMP_EL7_Beaker`, `SIMP_EL8_Beaker`)
+- `build/Dockerfiles/` — Docker images for isolated build (`SIMP_EL{8,9,10}_Build`) and acceptance testing (`SIMP_EL{8,9,10}_Beaker`)
 - `build/metadata.yaml` — controls which distros are enabled for builds; override with `SIMP_BUILD_distro=CentOS,7,x86_64`
 
 ### CI (`.github/workflows/`)
 
-- **`pr_checks.yml`** — runs on PRs: YAML lint, RPM file checks (`rake check:dot_underscore`, `rake check:test_file`), metadata lint, and `pdk build`; sets `SIMP_RPM_dist=.el7`
+- **`pr_checks.yml`** — runs on PRs: YAML lint, package list lint, RPM file checks (`rake check:dot_underscore`, `rake check:test_file`), metadata lint, a module test-build (`rake pupmod:build`), and the spec suite (Puppetfile validation) on Ruby 3.2/3.4/4.0 with the OpenVox 8 gem; sets `SIMP_RPM_dist=.el8`
 - **`containers.yml`** — builds all `build/Dockerfiles/` images. On PRs touching the Dockerfiles it builds every image without pushing (pre-merge validation); on push to master (path-filtered), a weekly schedule, and manual dispatch it builds and pushes to `ghcr.io` tagged `latest` + `YYYYMMDD`
 - **`build_container.yml`** — reusable (`workflow_call`) workflow that builds/pushes a single image; called by `containers.yml` and `build_containers.yml`
 - **`build_containers.yml`** — manual (`workflow_dispatch`) single-image build + publish for ad-hoc rebuilds (specific Ruby version, git ref, or extra tag)
 
 ### Gemfile Notes
 
-- `PUPPET_VERSION` env var pins Puppet gem (default: `>= 7, < 9`)
+- `PUPPET_VERSION` env var pins the Puppet/OpenVox gem version (default: `>= 8, < 9`); `OPENVOX_VERSION` overrides it for the `openvox` gem specifically
 - `GEM_SERVERS` env var overrides gem sources
 - Optional extra Gemfiles: `Gemfile.project`, `Gemfile.local`, `~/.gemfile`
-- `PDK_DISABLE_ANALYTICS=true` is set automatically

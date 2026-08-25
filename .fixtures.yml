@@ -1,5 +1,9 @@
 ---
-# Workaround SIMP-5498 (BEAKER_fips=yes requires a .fixtures.yaml)
+# Workaround SIMP-5498 (BEAKER_fips=yes requires a .fixtures.yml)
+#
+# puppet_fixtures (via voxpupuli-test) does not interpolate the old
+# "#{source_dir}" tokens. Targets are written relative to the link location
+# (spec/fixtures/modules/).
 fixtures:
   symlinks:
-    garbage: "#{source_dir}/spec/fixtures/empty"
+    garbage: "../empty"
