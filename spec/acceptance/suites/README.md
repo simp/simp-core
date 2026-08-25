@@ -25,7 +25,8 @@ procedure:
 
 1. Spin up at least 3 vagrant boxes
 
-   * One puppetserver, 1 EL8 client, 1 EL7 client
+   * One puppetserver and 2 clients of adjacent EL versions
+     (e.g., 1 EL9 client and 1 EL8 client)
    * EL version of the puppetserver changes based on nodeset.
    * One of the clients is a rsyslog server, whose EL version
      also changes based on nodeset.
@@ -50,43 +51,34 @@ builds/download RPMs, and then builds the ISO.
 
 ## Running a Test Suite
 
-1. Set up your environment with a [ruby version manager](https://rvm.io/), [vagrant](https://www.vagrantup.com/), and [VirtualBox](https://www.virtualbox.org/)
-2. Install Ruby 2.5.8 (follow the guides from the link above)
+1. Set up your environment with a [ruby version manager](https://mise.jdx.dev/), [vagrant](https://www.vagrantup.com/), and a supported hypervisor (libvirt or [VirtualBox](https://www.virtualbox.org/))
+2. Install a supported Ruby (3.2 or later)
 3. Install bundler: `gem install bundler`
 4. Install other dependencies: `bundle install`
 5. Determine the environment variables appropriate for your test
 
    * All integration/(pre-)release tests use PUPPET_VERSION
-     and BEAKER_PUPPET_COLLECTION to configure Puppet.
-   * All integration/(pre-)release tests use SIMP_BEAKER_OS='oracle'
-     to enable OEL servers in lieu of CentOS servers.
+     and BEAKER_PUPPET_COLLECTION to configure Puppet/OpenVox.
    * Some tests may have test-specific environment variables.  See
      the test descriptions, below, for details.
 
 6. Determine the nodeset appropriate for your test.
 
    * Each integration/(pre-)release test suite contains a nodeset for each
-     supported EL server (currently: `el7_server`). These nodesets control the
-     EL version of both the puppetserver and rsyslog server.
+     supported EL server (`el8_server`, `el9_server`, and `el10_server`;
+     `default` is `el9_server`). These nodesets control the EL version of
+     both the puppetserver and rsyslog server.
    * The `rpm_docker` test suite contains nodesets for building an ISO for
-     various OSes (e.g., `rpm_docker/nodesets/el7.yml`,
-     `rpm_docker/nodesets/el8.yml`)
+     various OSes (e.g., `rpm_docker/nodesets/el8.yml`,
+     `rpm_docker/nodesets/el9.yml`, `rpm_docker/nodesets/el10.yml`)
 
 7. Run the tests for a suite and selected nodeset.  For example,
 
 ```bash
-# to run the default suite using Puppet 6 and an EL7 simp server
-export PUPPET_VERSION='~> 6.18'
-export BEAKER_PUPPET_COLLECTION='puppet6'
-bundle exec rake beaker:suites[default,el7_server]
-```
-
-```bash
-# to run the default suite on OEL using Puppet 6 and an OEL7 simp server
-export PUPPET_VERSION='~> 6.18'
-export BEAKER_PUPPET_COLLECTION='puppet6'
-export SIMP_BEAKER_OS='oracle'
-bundle exec rake beaker:suites[default,el7_server]
+# to run the default suite using OpenVox 8 and an EL9 simp server
+export PUPPET_VERSION='~> 8.0'
+export BEAKER_PUPPET_COLLECTION='openvox8'
+bundle exec rake beaker:suites[default,el9_server]
 ```
 
 ### `default` Suite
@@ -423,28 +415,17 @@ suites.
 
 #### `BEAKER_puppet_repo`
 
-* Only applies if the Puppet repo is enabled in a test suite.
+* Only applies if the Puppet/OpenVox repo is enabled in a test suite.
 * **unset** - Defaults to `true`
-* **true** - The test will install the Puppet repo for the collection
-  specified by BEAKER_PUPPET_COLLECTION.  The root of the Puppet repos can
-  be found at [yum.puppetlabs.com](yum.puppetlabs.com).
-* **false** - Overrides the test set up and does not install the Puppet repo.
+* **true** - The test will install the release repo for the collection
+  specified by BEAKER_PUPPET_COLLECTION.  OpenVox collections come from
+  [yum.voxpupuli.org](https://yum.voxpupuli.org/) and legacy Puppet
+  collections from [yum.puppet.com](https://yum.puppet.com/).
+* **false** - Overrides the test set up and does not install the repo.
 
 #### `BEAKER_PUPPET_COLLECTION`
 
-The Puppet collection. Current valid values are `pc1` (Puppet 4), `puppet5`,
-`puppet6`, and `puppet6-nightly`.
+The Puppet/OpenVox collection, e.g. `openvox8` or `puppet8`.
 
-* Only applies if the Puppet repo is enabled in a test suite.
-* **unset** - Defaults to 'puppet6'
-
-#### `SIMP_BEAKER_OS`
-
-Sets the test VM box types.  Valid values are `centos`, `oracle`, and
-`oel`.
-
-* **unset** - Defaults to `centos`
-* When `centos`, uses `generic/centos8` and `centos/7` boxes.
-* When `oracle` or `oel`, uses the boxes `generic/oracle8` and
-  `generic/oracle7`
-* Any other value defaults to `generic/centos8` and `centos/7`.
+* Only applies if the Puppet/OpenVox repo is enabled in a test suite.
+* **unset** - Defaults to 'openvox8'

@@ -36,11 +36,13 @@ module Acceptance
         on(server, "grep #{domain} #{autosign_file}")
       end
 
-      # Install puppetmaster RPM on a host, working around puppetserver
-      # RPM digest issues, if necessary
+      # Install the Puppet/OpenVox server RPM on a host, working around
+      # legacy puppetserver RPM digest issues, if necessary
       def install_puppetserver(host)
-        os_maj = fact_on(host, 'operatingsystemmajrelease').to_i
-        if ( os_maj > 7) &&
+        puppet_collection = puppet_collection_for(host)
+        package_name = puppet_collection.start_with?('openvox') ? 'openvox-server' : 'puppetserver'
+
+        if ( package_name == 'puppetserver' ) &&
            ( on(host, 'cat /proc/sys/crypto/fips_enabled', :accept_all_exit_codes => true).stdout.strip == '1' )
           # Workaround until the puppetserver RPM digest problem on EL8 in FIPS
           # mode is solved (https://tickets.puppetlabs.com/browse/PUP-10859)
@@ -53,7 +55,7 @@ module Acceptance
           on(host, 'yumdownloader puppetserver')
           on(host, 'rpm -i --force --nodigest --nofiledigest puppetserver*.rpm')
         else
-          host.install_package('puppetserver')
+          host.install_package(package_name)
         end
       end
 

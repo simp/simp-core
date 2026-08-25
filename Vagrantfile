@@ -18,8 +18,8 @@
 #
 ENV['VAGRANT_NO_PARALLEL'] = 'yes'
 ENV['SIMP_RELEASE_TYPE'] ||= 'unstable'
-ENV['SIMP_VAGRANT_BOX'] ||= 'generic/centos8s'
-#ENV['SIMP_VAGRANT_BOX'] ||= 'centos/7'
+ENV['SIMP_VAGRANT_BOX'] ||= 'almalinux/9'
+#ENV['SIMP_VAGRANT_BOX'] ||= 'almalinux/8'
 ENV['SIMP_VAGRANT_NETWORK'] ||= '10.255.239.55'
 
 ENV['SIMP_DNF_REPO_SETUP_METHOD'] ||= 'rpm'

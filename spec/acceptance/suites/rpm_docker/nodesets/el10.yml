@@ -1,11 +1,11 @@
 ---
 HOSTS:
-  el8-build-server:
+  el10-build-server:
     roles:
       - primary
-    platform: el-8-x86_64
+    platform: el-10-x86_64
     hypervisor: docker
-    image: ghcr.io/simp/simp-el8-build:latest
+    image: ghcr.io/simp/simp-el10-build:latest
     docker_cmd: '/usr/sbin/sshd -D -E /var/log/sshd.log'
     docker_preserve_image: true
     docker_image_commands:

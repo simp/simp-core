@@ -1,6 +1,17 @@
+require 'beaker_puppet_helpers'
+
 module Acceptance
   module Helpers
     module RepoHelper
+
+      # Returns the Puppet/OpenVox collection configured for this run
+      # (e.g. 'openvox8', 'puppet8')
+      def puppet_collection_for(host)
+        ENV['BEAKER_OPENVOX_COLLECTION'] ||
+          ENV['BEAKER_PUPPET_COLLECTION'] ||
+          host.options['puppet_collection'] ||
+          'openvox8'
+      end
 
       # Install a yum repo
       #
@@ -30,19 +41,15 @@ module Acceptance
         end
 
         if install_repo
-          puppet_collection = ENV['BEAKER_PUPPET_COLLECTION'] || 'puppet6'
+          puppet_collection = puppet_collection_for(host)
 
           puts('='*72)
-          puts("Using Puppet #{puppet_collection} repo from yum.puppetlabs.com")
+          puts("Installing the #{puppet_collection} release repo")
           puts('='*72)
 
-          if host.host_hash[:platform] =~ /(el-[78])/
-            family = $1
-          else
-            fail("install_puppet_repo(): No supported OS platform found for #{host.name}; unable to determine puppet repo")
-          end
-          url = "http://yum.puppetlabs.com/#{puppet_collection}/#{puppet_collection}-release-#{family}.noarch.rpm"
-          on(host, "yum install #{url} -y")
+          # Handles both openvox* (yum.voxpupuli.org) and puppet*
+          # (yum.puppet.com) collections on all supported EL releases
+          BeakerPuppetHelpers::InstallUtils.install_puppet_release_repo_on(host, puppet_collection)
         end
       end
 
@@ -77,11 +84,11 @@ module Acceptance
 
           if set_up_simp_deps
             os_maj = fact_on(host, 'operatingsystemmajrelease').to_i
-            if os_maj > 7
-              # FIXME For Puppet 6, can't access the simp-community-postgresql
-              # non-modular repo that contains postgresql 9.6, unless we first
-              # disable the AppStream postgresql repo. Need to figure out if
-              # this must also be done for Puppet 7, which uses postgresql 11.
+            if os_maj == 8
+              # FIXME Can't access the postgresql version in the
+              # simp-community-postgresql non-modular repo unless we first
+              # disable the AppStream postgresql module. Only EL8 has
+              # modularity; the module subcommand fails on EL9+.
               on(host, 'dnf module disable postgresql -y')
             end
           else

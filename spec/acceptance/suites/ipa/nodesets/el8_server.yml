@@ -2,41 +2,45 @@
 HOSTS:
   puppet:
     roles:
-    - server # Mandatory
+    - server
     - master
     - default
     - simp_server
     - agent
+    - ipa_client
     platform: el-8-x86_64
     box: almalinux/8
     hypervisor: "<%= ENV.fetch('BEAKER_HYPERVISOR', 'vagrant') %>"
     vagrant_memsize: 4608
     family: almalinux-cloud/almalinux-8
     gce_machine_type: n1-standard-2
+  ipa:
+    roles:
+    - ipa_server
+    - agent
+    platform: el-8-x86_64
+    box: almalinux/8
+    hypervisor: "<%= ENV.fetch('BEAKER_HYPERVISOR', 'vagrant') %>"
+    vagrant_memsize: 2048
+    family: almalinux-cloud/almalinux-8
+    gce_machine_type: n1-standard-2
   agent-el8:
     roles:
     - agent
+    - syslog_server
+    - ipa_client
     platform: el-8-x86_64
     box: almalinux/8
     hypervisor: "<%= ENV.fetch('BEAKER_HYPERVISOR', 'vagrant') %>"
     family: almalinux-cloud/almalinux-8
     gce_machine_type: n1-standard-2
-  agent-el9:
-    roles:
-    - agent
-    - syslog_server
-    platform: el-9-x86_64
-    box: almalinux/9
-    hypervisor: "<%= ENV.fetch('BEAKER_HYPERVISOR', 'vagrant') %>"
-    family: almalinux-cloud/almalinux-9
-    gce_machine_type: n1-standard-2
 CONFIG:
   vagrant_cpus: 2
   log_level: verbose
   type: aio
-  synced_folder: disabled
   ssh:
     keepalive: true
     keepalive_interval: 10
     keepalive_maxcount: 120
+  synced_folder: disabled
   puppet_collection: "<%= ENV.fetch('BEAKER_PUPPET_COLLECTION', 'openvox8') %>"

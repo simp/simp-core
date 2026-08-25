@@ -1,20 +1,21 @@
 ---
 HOSTS:
-  el7-build-server:
+  el9-build-server:
     roles:
       - primary
-    platform: el-7-x86_64
+    platform: el-9-x86_64
     hypervisor: docker
-    image: simpproject/simp_build_centos7
+    image: ghcr.io/simp/simp-el9-build:latest
     docker_cmd: '/usr/sbin/sshd -D -E /var/log/sshd.log'
     docker_preserve_image: true
+    docker_image_commands:
+      # Make sure sshd can start even if the image shipped without host keys
+      - 'ssh-keygen -A'
 
 CONFIG:
-<% unless ENV['TRAVIS'] -%>
   mount_folders:
     simp_core:
       host_path: './'
       container_path: '/simp-core'
-<% end -%>
   log_level: verbose
   type: aio

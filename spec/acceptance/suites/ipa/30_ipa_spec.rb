@@ -20,7 +20,7 @@ describe 'IPA server integration' do
       out     = run_ipa_cmd(ipa_server, "ipa dnsrecord-find #{ipa_domain}")
       records = out.stdout.split("\n").grep(/Record name/).map {|h|h.split(': ').last}
 
-      %w[puppet ipa agent-el7].each do |host|
+      hosts.map(&:name).each do |host|
         expect(records).to include(host)
       end
     end

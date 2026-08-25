@@ -7,20 +7,22 @@ HOSTS:
     - default
     - simp_server
     - agent
-    platform: el-8-x86_64
-    box: almalinux/8
+    platform: el-10-x86_64
+    box: almalinux/10
     hypervisor: "<%= ENV.fetch('BEAKER_HYPERVISOR', 'vagrant') %>"
     vagrant_memsize: 4608
-    family: almalinux-cloud/almalinux-8
-    gce_machine_type: n1-standard-2
-  agent-el8:
+    # There are not currently any el10 images available on google cloud
+    # family: almalinux-cloud/almalinux-10
+    # gce_machine_type: n1-standard-2
+  agent-el10:
     roles:
     - agent
-    platform: el-8-x86_64
-    box: almalinux/8
+    platform: el-10-x86_64
+    box: almalinux/10
     hypervisor: "<%= ENV.fetch('BEAKER_HYPERVISOR', 'vagrant') %>"
-    family: almalinux-cloud/almalinux-8
-    gce_machine_type: n1-standard-2
+    # There are not currently any el10 images available on google cloud
+    # family: almalinux-cloud/almalinux-10
+    # gce_machine_type: n1-standard-2
   agent-el9:
     roles:
     - agent

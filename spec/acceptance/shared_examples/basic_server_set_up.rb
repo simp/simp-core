@@ -49,10 +49,14 @@ shared_examples 'basic server setup' do |host, options|
   end
 
   # Some scripts (e.g. simp CLI) require Puppet's Ruby and more capable facts.
-  it "should install puppet-agent to ensure Puppet's Ruby and facter are installed" do
-    # will install a specific puppet-agent version if PUPPET_VERSION is set
-    puppet_version = latest_puppet_agent_version_for(ENV['PUPPET_VERSION'])
-    host.install_package('puppet-agent', '', puppet_version)
+  it "should install the agent package to ensure Puppet's Ruby and facter are installed" do
+    puppet_collection = puppet_collection_for(host)
+    gem_name = puppet_collection.sub(/\d+.*\z/, '') # 'openvox' or 'puppet'
+    package_name = (gem_name == 'openvox') ? 'openvox-agent' : 'puppet-agent'
+
+    # will install a specific agent version if PUPPET_VERSION is set
+    puppet_version = latest_puppet_agent_version_for(ENV['PUPPET_VERSION'], gem_name)
+    host.install_package(package_name, '', puppet_version)
   end
 
   it 'should remove temporary system factor gem required for beaker host prep' do
