@@ -8,5 +8,5 @@
 set -euo pipefail
 
 dnf install -y dnf-plugins-core
-dnf config-manager --add-repo https://mise.en.dev/rpm/mise.repo
+dnf config-manager --add-repo https://mise.jdx.dev/rpm/mise.repo
 dnf install -y mise
