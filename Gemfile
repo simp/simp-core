@@ -13,7 +13,7 @@ group :syntax do
 end
 
 group :test do
-  puppet_version = ENV.fetch('PUPPET_VERSION', ['>= 8', '< 9'])
+  puppet_version = ENV.fetch('PUPPET_VERSION', ['>= 8', '< 10'])
   openvox_version = ENV.fetch('OPENVOX_VERSION', puppet_version)
   gem 'hiera-puppet-helper'
   # highline and nokogiri are required directly by the puppetfile:check tasks
