@@ -87,6 +87,8 @@ jobs:
           sudo systemctl start libvirtd
           sudo virsh net-start default 2>/dev/null || :
           sudo virsh net-list --all
+      # QEMU runs as libvirt-qemu, which can't reach the workspace under
+      # /home/runner, so the VM's files go in libvirt's image directory.
       - name: Kickstart and check the host
         env:
           INSTALL_TIMEOUT: '60'
@@ -97,10 +99,15 @@ jobs:
             -f '${{ matrix.firmware }}' \
             ${{ matrix.fips && '-F' || '' }} \
             ${{ matrix.disk == 'encrypted' && '-C' || '' }} \
-            -o "$RUNNER_TEMP/ks"
+            -o /var/lib/libvirt/images/simp-ks
       - name: Collect logs
         if: always()
-        run: sudo chmod -R a+rX "$RUNNER_TEMP/ks" 2>/dev/null || true
+        run: |
+          mkdir -p "$RUNNER_TEMP/ks"
+          sudo find /var/lib/libvirt/images/simp-ks -maxdepth 1 -type f \
+            \( -name '*.log' -o -name '*.cfg' -o -name inspect.txt \) \
+            -exec cp {} "$RUNNER_TEMP/ks/" \; 2>/dev/null || true
+          sudo chown -R "$(id -u):$(id -g)" "$RUNNER_TEMP/ks"
       - name: Upload logs
         if: always()
         uses: actions/upload-artifact@v7
