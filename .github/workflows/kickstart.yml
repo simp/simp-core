@@ -1,0 +1,113 @@
+# Lint the EL kickstarts, then kickstart a libvirt VM with each of them.
+#
+# The installs use the AlmaLinux mirrors, EPEL and the OpenVox repositories,
+# so the weekly run also catches changes in those.  RHEL can't be installed
+# here (it needs a subscription), so it has to be tested by hand.
+name: Kickstart
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+    paths:
+      - 'build/distributions/RedHat/*/x86_64/DVD/ks/**'
+      - 'spec/kickstart/**'
+      - '.github/workflows/kickstart.yml'
+  push:
+    branches:
+      - master
+    paths:
+      - 'build/distributions/RedHat/*/x86_64/DVD/ks/**'
+      - 'spec/kickstart/**'
+      - '.github/workflows/kickstart.yml'
+  schedule:
+    - cron: '17 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: Lint kickstarts
+    runs-on: ubuntu-26.04
+    steps:
+      - uses: actions/checkout@v7
+      - name: Install pykickstart and ShellCheck
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y shellcheck
+          python3 -m venv "$RUNNER_TEMP/venv"
+          "$RUNNER_TEMP/venv/bin/pip" install pykickstart
+      - name: Lint
+        run: spec/kickstart/lint.sh "$RUNNER_TEMP/venv/bin/ksvalidator"
+
+  install:
+    name: "EL${{ matrix.version }} ${{ matrix.role }} (${{ matrix.firmware }}${{ matrix.fips && ', FIPS' || '' }}${{ matrix.disk == 'encrypted' && ', encrypted disk' || '' }})"
+    needs: lint
+    runs-on: ubuntu-26.04
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        version: ['8', '9', '10']
+        role: [client, server]
+        disk: [plain]
+        include:
+          # Cover both firmware types and FIPS on and off, across the roles.
+          - role: client
+            firmware: uefi
+            fips: true
+          - role: server
+            firmware: bios
+            fips: false
+          # diskdetect.sh's simp_disk_crypt option
+          - version: '10'
+            role: client
+            disk: encrypted
+            firmware: uefi
+            fips: true
+    steps:
+      - uses: actions/checkout@v7
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' \
+            | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Install libvirt
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            libvirt-daemon-system qemu-system-x86 qemu-utils ovmf virtinst \
+            libguestfs-tools
+          sudo systemctl start libvirtd
+          sudo virsh net-start default 2>/dev/null || :
+          sudo virsh net-list --all
+      - name: Kickstart and check the host
+        env:
+          INSTALL_TIMEOUT: '60'
+        run: |
+          sudo -E spec/kickstart/run_install.sh \
+            -v '${{ matrix.version }}' \
+            -r '${{ matrix.role }}' \
+            -f '${{ matrix.firmware }}' \
+            ${{ matrix.fips && '-F' || '' }} \
+            ${{ matrix.disk == 'encrypted' && '-C' || '' }} \
+            -o "$RUNNER_TEMP/ks"
+      - name: Collect logs
+        if: always()
+        run: sudo chmod -R a+rX "$RUNNER_TEMP/ks" 2>/dev/null || true
+      - name: Upload logs
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: kickstart-el${{ matrix.version }}-${{ matrix.role }}-${{ matrix.disk }}
+          path: |
+            ${{ runner.temp }}/ks/*.log
+            ${{ runner.temp }}/ks/*.cfg
+            ${{ runner.temp }}/ks/inspect.txt
+          if-no-files-found: ignore

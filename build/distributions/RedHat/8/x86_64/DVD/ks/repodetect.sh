@@ -1,108 +1,110 @@
 #!/bin/sh
 #
-# repodetect.sh - determine kickstart repos based on your OS
+# repodetect.sh - write the kickstart repository configuration for this OS
 #
 # Usage: repodetect.sh VERSION [YUM_SERVER] [LINUX_DIST]
 #
-#   VERSION     Major OS version number (e.g., '8', '7')
-#   YUM_SERVER  (Optional) empty, 'local', or a URI of a yum server
-#   LINUX_DIST  (Optional) Forces Linux  distro (e.g., 'CentOS', 'RedHat')
+#   VERSION     Major OS version number ('8', '9' or '10')
+#   YUM_SERVER  (Optional) Empty or 'local' for the SIMP DVD, or the host name
+#               (with an optional ':port') of a SIMP yum server
+#   LINUX_DIST  (Optional) The OS directory name on the yum server, which is
+#               the OS's `os.name` fact: 'RedHat', 'AlmaLinux', 'Rocky',
+#               'OracleLinux' or 'CentOS'.  Detected from the installer when
+#               not given.
 #
-# Supported OSes: LINUX_DIST: [CentOS, RedHat],  VERSION: [7, 8]
+# Writes:
+#
+#   /tmp/repo-include      `repo` kickstart commands for the repositories that
+#                          aren't on the OS DVD.  The kickstart's own `url` or
+#                          `cdrom` command provides BaseOS and AppStream (from
+#                          the DVD's .treeinfo).
+#   /tmp/simp-packages     The SIMP packages to install, or nothing when the
+#                          yum server has no SIMP repository
+#
+# Expected yum server layout (VERSION and ARCH are e.g. '9' and 'x86_64'):
+#
+#   /yum/LINUX_DIST/VERSION/ARCH/            A copy of the OS DVD (.treeinfo,
+#                                            images/, BaseOS/, AppStream/)
+#   /yum/SIMP/LINUX_DIST/VERSION/ARCH/CRB    CodeReady Builder (named
+#                                            'PowerTools' on EL8)
+#   /yum/SIMP/LINUX_DIST/VERSION/ARCH/epel   EPEL
+#   /yum/SIMP/LINUX_DIST/VERSION/ARCH/openvox  OpenVox (yum.voxpupuli.org)
+#   /yum/SIMP/LINUX_DIST/VERSION/ARCH/SIMP   SIMP packages (optional)
 #
 
-unknown="REPODETECT_UNKNOWN_OS_TYPE"
+unknown='REPODETECT_UNKNOWN_OS_TYPE'
 distro="$unknown"
-arch="x86_64"
 
 version="$1"
 yum_server="$2"
-if [ $# -gt 2 ]; then distro="$3"; fi
-arch="$(uname -m)" # (e.g., "x86_64")
+if [ $# -gt 2 ] && [ -n "$3" ]; then distro="$3"; fi
+arch="$(uname -m)"
 
-if [ -z "$version" ]; then
-  echo "ERROR: You must pass the major OS VERSION (e.g., '8','7') as the first argument"
-  exit 1
+case "$version" in
+  8|9|10) ;;
+  '')
+    echo "ERROR: You must pass the major OS VERSION ('8', '9' or '10') as the first argument" >&2
+    exit 1
+    ;;
+  *)
+    echo "ERROR: Unsupported OS VERSION '${version}'; expected '8', '9' or '10'" >&2
+    exit 1
+    ;;
+esac
+
+if [ "$distro" = "$unknown" ]; then
+  os_id=''
+  if [ -r /etc/os-release ]; then
+    # shellcheck source=/dev/null
+    os_id="$(. /etc/os-release && echo "$ID")"
+  fi
+
+  case "$os_id" in
+    rhel)      distro=RedHat ;;
+    almalinux) distro=AlmaLinux ;;
+    rocky)     distro=Rocky ;;
+    ol)        distro=OracleLinux ;;
+    centos)    distro=CentOS ;;
+    *)
+      if grep -qs 'Red Hat' /etc/redhat-release; then
+        distro=RedHat
+      else
+        echo "WARNING: Unable to determine the OS distribution (ID='${os_id}'); assuming RedHat" >&2
+        distro=RedHat
+      fi
+      ;;
+  esac
 fi
 
-if [ "$distro" == "$unknown" ]; then
-  osline="$(dmesg -s 10485760 | grep '(Kernel Module GPG key)')" ||:
-  if grep -q 'Red Hat' /etc/redhat-release \
-    || grep -q "url is.*RedHat" /tmp/anaconda.log \
-    || [[ "$osline" =~ RedHat ]] \
-    || [ -f /tmp/RedHat.osbuild ]
-  then
-    distro=RedHat
-  elif grep -q 'CentOS' /etc/redhat-release \
-    || grep -q "url is.*CentOS" /tmp/anaconda.log \
-    || [[ "$osline" =~ CentOS ]] \
-    || [ -f /tmp/CentOS.osbuild ]
-  then
-    distro=CentOS
-  elif [ "$distro" == "$unknown" ]; then
-    echo "WARNING: Unable to determine distro of OS; Assuming CentOS"
-    distro=CentOS
-  fi
-fi
-
-if [ -z "$yum_server" ] || [ "$yum_server" == 'local' ]; then
-  uri_header="file:///mnt/source"
-  if [ "$version" == "7" ]; then
-    local_header=$uri_header/SIMP/$arch
-  else
-    local_header="$uri_header/SimpRepos"
-  fi
+# Name of the CodeReady Builder repository directory
+if [ "$version" = '8' ]; then
+  crb='PowerTools'
 else
-  uri_header="https://$yum_server/yum/$distro/$version/$arch"
-  local_header="https://$yum_server/yum/SIMP/$distro/$version/$arch"
+  crb='CRB'
 fi
 
-if [ "$distro" == RedHat ]; then
+if [ -z "$yum_server" ] || [ "$yum_server" = 'local' ]; then
+  simp_uri='file:///mnt/source/SimpRepos'
+else
+  simp_uri="https://${yum_server}/yum/SIMP/${distro}/${version}/${arch}"
+fi
 
-  case $version in
-    '8' )
-      cat << EOF > /tmp/repo-include
-repo --name="baseos"   --baseurl="$uri_header/BaseOS" --noverifyssl
-repo --name="appstream"   --baseurl="$uri_header/AppStream" --noverifyssl
-repo --name="epel"   --baseurl="$local_header/epel" --noverifyssl
-repo --name="postgresql"   --baseurl="$local_header/postgresql" --noverifyssl
-repo --name="codeready-builder"   --baseurl="$local_header/codeready-builder-for-rhel-8-x86_64-rpms" --noverifyssl
-repo --name="puppet"   --baseurl="$local_header/puppet" --noverifyssl
-repo --name="simp"   --baseurl="$local_header/SIMP" --noverifyssl
+cat << EOF > /tmp/repo-include
+repo --name="crb" --baseurl="${simp_uri}/${crb}" --noverifyssl
+repo --name="epel" --baseurl="${simp_uri}/epel" --noverifyssl
+repo --name="openvox" --baseurl="${simp_uri}/openvox" --noverifyssl
 EOF
-    ;;
-    '7' )
-      cat << EOF > /tmp/repo-include
-repo --name="HighAvailability" --baseurl="$uri_header/addons/HighAvailability"
-repo --name="ResilientStorage" --baseurl="$uri_header/addons/ResilientStorage"
-repo --name="Base" --baseurl="$uri_header"
-repo --name="simp" --baseurl="$local_header"
-EOF
-    ;;
-  esac
 
-elif [ "$distro" == CentOS ]; then
-
-  case $version in
-    '8' )
-      cat << EOF > /tmp/repo-include
-repo --name="baseos"   --baseurl="$uri_header/BaseOS" --noverifyssl
-repo --name="appstream"   --baseurl="$uri_header/AppStream" --noverifyssl
-repo --name="epel"   --baseurl="$local_header/epel" --noverifyssl
-repo --name="extras"   --baseurl="$local_header/extras" --noverifyssl
-repo --name="postgresql"   --baseurl="$local_header/postgresql" --noverifyssl
-repo --name="powertools"   --baseurl="$local_header/PowerTools" --noverifyssl
-repo --name="puppet"   --baseurl="$local_header/puppet" --noverifyssl
-repo --name="simp"   --baseurl="$local_header/SIMP" --noverifyssl
+# The SIMP repository is optional, so that a host can be kickstarted before
+# SIMP packages are published for its OS.
+: > /tmp/simp-packages
+simp_repomd="${simp_uri}/SIMP/repodata/repomd.xml"
+if curl -kfsS -o /dev/null "$simp_repomd" 2>/dev/null; then
+  echo "repo --name=\"simp\" --baseurl=\"${simp_uri}/SIMP\" --noverifyssl" >> /tmp/repo-include
+  cat << EOF > /tmp/simp-packages
+simp
+simp-adapter
 EOF
-    ;;
-    '7' )
-      cat << EOF > /tmp/repo-include
-repo --name="Server" --baseurl="$uri_header"
-repo --name="simp" --baseurl="$local_header"
-repo --name="Updates" --baseurl="$uri_header/Updates" --noverifyssl
-EOF
-    ;;
-  esac
-
+else
+  echo "WARNING: No SIMP repository at '${simp_uri}/SIMP'; SIMP packages will not be installed" >&2
 fi

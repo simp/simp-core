@@ -1,0 +1,4 @@
+#!/bin/sh
+# Test stand-in for the script that simp::server::kickstart publishes.  The
+# kickstart test has no SIMP server to bootstrap against.
+echo 'SIMP client bootstrap stand-in ran' > /root/simp_client_bootstrap_test

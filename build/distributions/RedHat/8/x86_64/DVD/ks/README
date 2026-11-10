@@ -1,15 +1,34 @@
-= Intro =
+= SIMP kickstarts for EL8 =
 
-This directory has been set up as an example of how you can configure your
-kickstart directory.
+These kickstarts install EL8 (Red Hat Enterprise Linux, AlmaLinux, Rocky Linux
+or Oracle Linux) over the network, from a SIMP kickstart and YUM server, with
+OpenVox 9.
 
-It should suffice for most clients built from the default load, but you may
-extend this kickstart space as fits your needs.
+  pupclient_x86_64.cfg    A SIMP client.  Installs the OpenVox agent and
+                          schedules the SIMP client bootstrap
+                          (simp_client_bootstrap.service, published by the SIMP
+                          server's simp::server::kickstart class) for its first
+                          boot.
+  simp_server_x86_64.cfg  A SIMP server.  Installs OpenVox server and, when the
+                          YUM server has a SIMP repository, the 'simp' and
+                          'simp-adapter' packages.  Run `simp config` and
+                          `simp bootstrap` after the first boot.
+  diskdetect.sh           Writes the partitioning for the first disk
+  repodetect.sh           Writes the repositories, and describes the YUM server
+                          layout they expect
+  dvd/                    The SIMP ISO's kickstarts.  These haven't been
+                          updated for OpenVox or for this repodetect.sh yet.
 
-It is suggested that you always start with the pupclient*.cfg files and only add
-additional diskdetect scripts to meet your space needs.  If you extend the
-kickstart files, particularly the package lists, then future management of the
-systems may become overly complicated.
+Each .cfg file lists the #PLACEHOLDERS# to replace and the installer (kernel
+command line) options it supports.  Serve diskdetect.sh and repodetect.sh from
+https://<kickstart server>/ks/.
 
-Remember, the premise of this system is that you start small and secure and you
-extend via Puppet to create your desired environment.
+Start with these files, and extend the host through Puppet rather than the
+kickstart.  The premise of SIMP is that you start small and secure, and build
+the environment you need from there.
+
+== Testing ==
+
+spec/kickstart/run_install.sh in simp-core kickstarts a libvirt VM with these
+files (from the AlmaLinux mirrors), boots it and checks the result.  The
+'Kickstart' GitHub Actions workflow runs it for EL8, EL8 and EL10.
