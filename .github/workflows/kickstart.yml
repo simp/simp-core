@@ -64,6 +64,12 @@ jobs:
           - role: server
             firmware: bios
             fips: false
+          # EL8's shim hangs under the runner's OVMF ("efi_update_mem_attrs:
+          # addr is not page aligned") after a UEFI install, so the EL8 client
+          # boots BIOS here.  EL8 UEFI installs work with Fedora's OVMF.
+          - version: '8'
+            role: client
+            firmware: bios
           # diskdetect.sh's simp_disk_crypt option
           - version: '10'
             role: client
@@ -90,10 +96,8 @@ jobs:
       # QEMU runs as libvirt-qemu, which can't reach the workspace under
       # /home/runner, so the VM's files go in libvirt's image directory.
       - name: Kickstart and check the host
-        env:
-          INSTALL_TIMEOUT: '60'
         run: |
-          sudo -E spec/kickstart/run_install.sh \
+          sudo spec/kickstart/run_install.sh \
             -v '${{ matrix.version }}' \
             -r '${{ matrix.role }}' \
             -f '${{ matrix.firmware }}' \
