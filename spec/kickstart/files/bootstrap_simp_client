@@ -1,4 +1,18 @@
 #!/bin/sh
 # Test stand-in for the script that simp::server::kickstart publishes.  The
 # kickstart test has no SIMP server to bootstrap against.
+#
+# It also reports on the running host on its serial console (ttyS1), which
+# run_install.sh reads when it can't open the disk (an encrypted disk).
 echo 'SIMP client bootstrap stand-in ran' > /root/simp_client_bootstrap_test
+
+{
+  rpm -q --qf '%{NAME}-%{VERSION}-%{RELEASE}\n' openvox-agent || :
+  echo "crypto_policy=$(cat /etc/crypto-policies/config 2>/dev/null)"
+  echo "fips_enabled=$(cat /proc/sys/crypto/fips_enabled 2>/dev/null)"
+  echo "selinux=$(sed -n 's/^SELINUX=//p' /etc/selinux/config)"
+  echo "selinux_mode=$(getenforce 2>/dev/null)"
+  echo "bootstrap_test=$(cat /root/simp_client_bootstrap_test 2>/dev/null)"
+  echo "openvox_version=$(/opt/puppetlabs/bin/puppet --version 2>/dev/null)"
+  echo 'end'
+} 2>&1 | sed 's/^/simp-ks-report: /' > /dev/ttyS1

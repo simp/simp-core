@@ -6,9 +6,13 @@
 #
 # - Validates each .cfg file with pykickstart's ksvalidator, for its EL
 #   version, after replacing the #PLACEHOLDERS# (a '#' starts a comment).
+# - Checks that each .cfg file uses only the known placeholders, has one
+#   `url` for its EL version, and runs repodetect.sh for its EL version.
+# - Checks that the EL8 and EL9 .cfg files differ from EL10's only in the
+#   version.
+# - Checks that EL8's and EL9's diskdetect.sh and repodetect.sh are symlinks
+#   to EL10's, since they support all of them.
 # - Runs ShellCheck on the helper scripts, if it's installed.
-# - Checks that diskdetect.sh and repodetect.sh are the same for every EL
-#   version, since they support all of them.
 
 set -euo pipefail
 
@@ -18,11 +22,23 @@ tmp="$(mktemp -d)"
 trap 'rm -rf "$tmp"' EXIT
 
 versions=(8 9 10)
+newest=10
+placeholders='BOOTPASS|KSSERVER|LINUXDIST|ROOTPASS|YUMSERVER'
 rc=0
 
+ks_dir() { echo "${repo_root}/build/distributions/RedHat/$1/x86_64/DVD/ks"; }
+
+# normalize VERSION FILE: FILE with its EL version replaced by 'N'
+normalize() {
+  sed -E \
+    -e "s/EL$1([^0-9]|$)/ELN\1/g" \
+    -e "s#/$1/x86_64#/N/x86_64#g" \
+    -e "s/'$1'/'N'/g" \
+    "$2"
+}
+
 for version in "${versions[@]}"; do
-  ks_dir="${repo_root}/build/distributions/RedHat/${version}/x86_64/DVD/ks"
-  for cfg in "$ks_dir"/*.cfg; do
+  for cfg in "$(ks_dir "$version")"/*.cfg; do
     name="EL${version}/$(basename "$cfg")"
     # shellcheck disable=SC2016 # a literal password hash
     sed \
@@ -31,8 +47,9 @@ for version in "${versions[@]}"; do
       -e 's/#[A-Z]\{1,\}#/placeholder/g' \
       "$cfg" > "${tmp}/ks.cfg"
 
-    if grep -qE '#[A-Z]+#' "${tmp}/ks.cfg"; then
-      echo "FAIL: ${name}: unreplaced placeholder"
+    unknown="$(grep -oE '#[A-Z]+#' "$cfg" | grep -vxE "#(${placeholders})#" | sort -u | tr '\n' ' ' || :)"
+    if [ -n "$unknown" ]; then
+      echo "FAIL: ${name}: unknown placeholder(s): ${unknown}"
       rc=1
     fi
 
@@ -49,19 +66,34 @@ for version in "${versions[@]}"; do
       echo "FAIL: ${name}: does not run repodetect.sh for EL${version}"
       rc=1
     fi
-    if grep -E '^url ' "$cfg" | grep -qvE "/${version}/x86_64( |$)"; then
+    # dracut reads the `url` to find the installer's second stage.
+    urls="$(grep -cE '^url ' "$cfg" || :)"
+    if [ "$urls" != 1 ]; then
+      echo "FAIL: ${name}: has ${urls} 'url' lines; expected 1"
+      rc=1
+    elif ! grep -E '^url ' "$cfg" | grep -qE "/${version}/x86_64( |$)"; then
       echo "FAIL: ${name}: the 'url' is not for EL${version}"
       rc=1
+    fi
+
+    if [ "$version" != "$newest" ]; then
+      newest_cfg="$(ks_dir "$newest")/$(basename "$cfg")"
+      if ! diff -u --label "EL${newest}/$(basename "$cfg")" --label "$name" \
+          <(normalize "$newest" "$newest_cfg") <(normalize "$version" "$cfg"); then
+        echo "FAIL: ${name} differs from EL${newest}'s in more than the version"
+        rc=1
+      fi
     fi
   done
 done
 
 for script in diskdetect.sh repodetect.sh; do
-  reference="${repo_root}/build/distributions/RedHat/${versions[0]}/x86_64/DVD/ks/${script}"
-  for version in "${versions[@]:1}"; do
-    other="${repo_root}/build/distributions/RedHat/${version}/x86_64/DVD/ks/${script}"
-    if ! cmp -s "$reference" "$other"; then
-      echo "FAIL: ${script} differs between EL${versions[0]} and EL${version}"
+  reference="$(ks_dir "$newest")/${script}"
+  for version in "${versions[@]}"; do
+    [ "$version" = "$newest" ] && continue
+    link="$(ks_dir "$version")/${script}"
+    if [ ! -L "$link" ] || [ "$(readlink -f "$link")" != "$(readlink -f "$reference")" ]; then
+      echo "FAIL: EL${version}/${script} is not a symlink to EL${newest}/${script}"
       rc=1
     fi
   done
@@ -76,7 +108,8 @@ for script in diskdetect.sh repodetect.sh; do
 done
 
 if command -v shellcheck >/dev/null; then
-  if shellcheck "${repo_root}/spec/kickstart/run_install.sh" "${repo_root}/spec/kickstart/lint.sh"; then
+  if shellcheck "${repo_root}/spec/kickstart/run_install.sh" "${repo_root}/spec/kickstart/lint.sh" \
+      "${repo_root}/spec/kickstart/files/bootstrap_simp_client"; then
     echo "ok:   shellcheck spec/kickstart"
   else
     rc=1

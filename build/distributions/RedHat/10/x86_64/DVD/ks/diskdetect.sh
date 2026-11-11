@@ -11,7 +11,10 @@
 #                     initramfs, so the system boots unattended.  This is *not*
 #                     secure; it lets you change the passphrase later without
 #                     reinstalling.
-#   simp_opt=prompt   Partition the disk by hand in the installer.
+#   simp_opt=prompt   Partition the disk by hand in the installer.  Encrypt
+#                     it there too; simp_disk_crypt is ignored.
+#
+# Exits with an error when it can't find a disk to install on.
 #
 
 DISK=""
@@ -25,11 +28,21 @@ for disk in \
   /sys/block/vd[a-z][a-z] \
   /sys/block/nvme[0-9]n[0-9] \
   /sys/block/nvme[0-9]n[0-9][0-9] \
+  /sys/block/nvme[0-9][0-9]n[0-9] \
+  /sys/block/nvme[0-9][0-9]n[0-9][0-9] \
+  /sys/block/mmcblk[0-9] \
+  /sys/block/mmcblk[0-9][0-9] \
   ;
 do
   [ -d "$disk" ] || continue
 
-  # Ignore removable and virtual devices.
+  # Ignore hidden (e.g. NVMe multipath paths), removable and virtual devices.
+
+  if [ -f "$disk"/hidden ]; then
+    if read -r hidden _ < "$disk"/hidden; then
+      [ "$hidden" != "0" ] && continue
+    fi
+  fi
 
   if [ -f "$disk"/removable ]; then
     if read -r removable _ < "$disk"/removable; then
@@ -57,15 +70,6 @@ else
   encrypt=1
 fi
 
-if [ $encrypt -eq 0 ]; then
-  # anaconda doesn't create /boot until it partitions the disk
-  mkdir -p /boot
-  LC_CTYPE=C tr -dc '[:alnum:]' < /dev/urandom | head -c 256 > /boot/disk_creds
-  passphrase="$(cat /boot/disk_creds)"
-
-  echo "$DISK" > /boot/crypt_disk
-fi
-
 simp_opt="$(awk -F 'simp_opt=' '{print $2}' /proc/cmdline | cut -f1 -d' ')"
 
 if [ "$simp_opt" = "prompt" ]; then
@@ -73,7 +77,24 @@ if [ "$simp_opt" = "prompt" ]; then
   # has no partitioning commands.  `reqpart` alone leaves "Installation
   # Destination" incomplete, so the user has to partition by hand.
   echo "reqpart" > /tmp/part-include
+  if [ $encrypt -eq 0 ]; then
+    echo "WARNING: simp_disk_crypt is ignored with simp_opt=prompt; encrypt the disk in the installer" >&2
+  fi
   exit 0
+fi
+
+if [ -z "$DISK" ]; then
+  echo "ERROR: diskdetect.sh found no disk to install on (looked for non-removable sd*, vd*, xvd*, nvme* and mmcblk* disks in /sys/block).  Boot with simp_opt=prompt to partition by hand." >&2
+  exit 1
+fi
+
+if [ $encrypt -eq 0 ]; then
+  # anaconda doesn't create /boot until it partitions the disk
+  mkdir -p /boot
+  LC_CTYPE=C tr -dc '[:alnum:]' < /dev/urandom | head -c 256 > /boot/disk_creds
+  passphrase="$(cat /boot/disk_creds)"
+
+  echo "$DISK" > /boot/crypt_disk
 fi
 
 # `reqpart` adds whatever the firmware needs: /boot/efi on UEFI, or a BIOS

@@ -11,7 +11,9 @@
 #   -f FIRMWARE  'uefi' (default) or 'bios'
 #   -F           Install in FIPS mode (fips=1 on the installer command line)
 #   -C           Encrypt the disk (simp_disk_crypt on the installer command
-#                line).  The installed host must then boot unattended.
+#                line).  The installed host must then boot unattended.  Only
+#                for clients: the host is checked through the report that the
+#                client bootstrap stand-in writes to its console.
 #   -o OUTDIR    Where to put the disk image and logs (default: a new
 #                directory under /var/tmp)
 #
@@ -59,6 +61,10 @@ case "$role" in
   *) echo "ERROR: -r must be 'client' or 'server'" >&2; exit 2 ;;
 esac
 case "$firmware" in uefi|bios) ;; *) echo "ERROR: -f must be 'uefi' or 'bios'" >&2; exit 2 ;; esac
+if [ -n "$crypt" ] && [ "$role" != 'client' ]; then
+  echo "ERROR: -C is only supported with -r client" >&2
+  exit 2
+fi
 
 install_timeout="${INSTALL_TIMEOUT:-60}"
 boot_timeout="${BOOT_TIMEOUT:-600}"
@@ -203,7 +209,17 @@ for _ in $(seq 1 "$((boot_timeout / 5))"); do
   sleep 5
 done
 # Give first-boot services (the SIMP client bootstrap) a moment to finish.
-[ "$booted" = yes ] && sleep 30
+if [ "$booted" = yes ]; then
+  if [ -n "$crypt" ]; then
+    # Wait for the bootstrap stand-in's report (see below).
+    for _ in $(seq 1 36); do
+      grep -q 'simp-ks-report: end' "${consoledir}/ttyS1.log" 2>/dev/null && break
+      sleep 5
+    done
+  else
+    sleep 30
+  fi
+fi
 cp "${consoledir}/ttyS1.log" "${outdir}/boot-ttyS1.log" 2>/dev/null || :
 virsh shutdown "$name" >/dev/null 2>&1 || :
 for _ in $(seq 1 60); do
@@ -220,10 +236,23 @@ fi
 
 log "Inspecting the installed host"
 export LIBGUESTFS_BACKEND=direct
+failures=()
+check() {
+  local desc="$1" pattern="$2" file="${3:-${outdir}/inspect.txt}"
+  if grep -qE "$pattern" "$file"; then
+    log "PASS: ${desc}"
+  else
+    log "FAIL: ${desc}"
+    failures+=("$desc")
+  fi
+}
+
 if [ -n "$crypt" ]; then
-  # The key is only on the encrypted host, so all that can be checked from
-  # here is that the disk is encrypted.  Booting to a login prompt above
-  # showed that the host unlocks it unattended.
+  # guestfish can't open the encrypted disk, since its key is only inside it
+  # (and in its initramfs).  Check that the disk is encrypted, and check the
+  # running host through the report that the bootstrap stand-in
+  # (files/bootstrap_simp_client) writes to the console.  Booting to a login
+  # prompt above showed that the host unlocks the disk unattended.
   partitions="$(guestfish --ro -a "${outdir}/disk.qcow2" run : list-partitions)"
   {
     echo 'run'
@@ -231,18 +260,18 @@ if [ -n "$crypt" ]; then
       echo "-echo ${partition}"
       echo "-vfs-type ${partition}"
     done
-  } | guestfish --ro -a "${outdir}/disk.qcow2" > "${outdir}/inspect.txt" 2>&1 || :
-  cat "${outdir}/inspect.txt"
-  if grep -q 'crypto_LUKS' "${outdir}/inspect.txt"; then
-    log "PASS: the disk is encrypted, and the host boots unattended"
-    log "All checks passed"
-    exit 0
-  fi
-  log "FAIL: the disk is not encrypted"
-  exit 1
-fi
+  } | guestfish --ro -a "${outdir}/disk.qcow2" > "${outdir}/luks.txt" 2>&1 || :
+  cat "${outdir}/luks.txt"
+  check 'the disk is encrypted' 'crypto_LUKS' "${outdir}/luks.txt"
 
-guestfish --ro -a "${outdir}/disk.qcow2" -i <<'EOF' > "${outdir}/inspect.txt" 2>&1 || :
+  sed -n 's/\r$//; s/^.*simp-ks-report: //p' "${outdir}/boot-ttyS1.log" > "${outdir}/inspect.txt"
+  check 'the host reported on itself' '^end$'
+  check 'SELinux is enforcing on the running host' '^selinux_mode=Enforcing'
+  if [ "$fips" = 1 ]; then
+    check 'the kernel runs in FIPS mode' '^fips_enabled=1'
+  fi
+else
+  guestfish --ro -a "${outdir}/disk.qcow2" -i <<'EOF' > "${outdir}/inspect.txt" 2>&1 || :
 -sh "rpm -q --qf '%{NAME}-%{VERSION}-%{RELEASE}\n' openvox-agent openvox-server simp simp-adapter || :"
 -sh "echo fips_kernel_arg=$(grep -o 'fips=[01]' /etc/kernel/cmdline /boot/loader/entries/*.conf /etc/default/grub 2>/dev/null | sort -u | tr '\n' ' ')"
 -sh "echo crypto_policy=$(cat /etc/crypto-policies/config 2>/dev/null)"
@@ -252,18 +281,8 @@ guestfish --ro -a "${outdir}/disk.qcow2" -i <<'EOF' > "${outdir}/inspect.txt" 2>
 -sh "echo openvox_version=$(/opt/puppetlabs/bin/puppet --version 2>/dev/null)"
 -cat /root/ks-post.log
 EOF
+fi
 cat "${outdir}/inspect.txt"
-
-failures=()
-check() {
-  local desc="$1" pattern="$2"
-  if grep -qE "$pattern" "${outdir}/inspect.txt"; then
-    log "PASS: ${desc}"
-  else
-    log "FAIL: ${desc}"
-    failures+=("$desc")
-  fi
-}
 
 check 'openvox-agent 9 is installed' '^openvox-agent-9\.'
 check 'the OpenVox agent runs' '^openvox_version=9\.'

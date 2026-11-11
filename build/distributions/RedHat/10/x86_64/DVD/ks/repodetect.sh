@@ -25,8 +25,11 @@
 #
 #   /yum/LINUX_DIST/VERSION/ARCH/            A copy of the OS DVD (.treeinfo,
 #                                            images/, BaseOS/, AppStream/)
-#   /yum/SIMP/LINUX_DIST/VERSION/ARCH/CRB    CodeReady Builder (named
-#                                            'PowerTools' on EL8)
+#   /yum/SIMP/LINUX_DIST/VERSION/ARCH/CRB    CodeReady Builder.  Also found
+#                                            as 'PowerTools' (EL8) or as
+#                                            'codeready-builder-for-rhel-
+#                                            VERSION-ARCH-rpms' (SIMP 6 on
+#                                            RHEL).
 #   /yum/SIMP/LINUX_DIST/VERSION/ARCH/epel   EPEL
 #   /yum/SIMP/LINUX_DIST/VERSION/ARCH/openvox  OpenVox (yum.voxpupuli.org)
 #   /yum/SIMP/LINUX_DIST/VERSION/ARCH/SIMP   SIMP packages (optional)
@@ -76,17 +79,34 @@ if [ "$distro" = "$unknown" ]; then
   esac
 fi
 
-# Name of the CodeReady Builder repository directory
-if [ "$version" = '8' ]; then
-  crb='PowerTools'
-else
-  crb='CRB'
-fi
-
 if [ -z "$yum_server" ] || [ "$yum_server" = 'local' ]; then
   simp_uri='file:///mnt/source/SimpRepos'
 else
   simp_uri="https://${yum_server}/yum/SIMP/${distro}/${version}/${arch}"
+fi
+
+# repo_exists DIR: whether ${simp_uri}/DIR is a yum repository
+repo_exists() {
+  curl -kfsSL -o /dev/null "${simp_uri}/$1/repodata/repomd.xml" 2>/dev/null
+}
+
+# The CodeReady Builder repository directory has had several names.
+if [ "$version" = '8' ]; then
+  crb_dirs='PowerTools CRB'
+else
+  crb_dirs='CRB'
+fi
+crb_dirs="${crb_dirs} codeready-builder-for-rhel-${version}-${arch}-rpms"
+crb=''
+for dir in $crb_dirs; do
+  if repo_exists "$dir"; then
+    crb="$dir"
+    break
+  fi
+done
+if [ -z "$crb" ]; then
+  crb="${crb_dirs%% *}"
+  echo "WARNING: No CodeReady Builder repository at '${simp_uri}' (looked for: ${crb_dirs}); using '${crb}'" >&2
 fi
 
 cat << EOF > /tmp/repo-include
@@ -98,8 +118,7 @@ EOF
 # The SIMP repository is optional, so that a host can be kickstarted before
 # SIMP packages are published for its OS.
 : > /tmp/simp-packages
-simp_repomd="${simp_uri}/SIMP/repodata/repomd.xml"
-if curl -kfsS -o /dev/null "$simp_repomd" 2>/dev/null; then
+if repo_exists SIMP; then
   echo "repo --name=\"simp\" --baseurl=\"${simp_uri}/SIMP\" --noverifyssl" >> /tmp/repo-include
   cat << EOF > /tmp/simp-packages
 simp

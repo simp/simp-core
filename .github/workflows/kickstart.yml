@@ -109,7 +109,7 @@ jobs:
         run: |
           mkdir -p "$RUNNER_TEMP/ks"
           sudo find /var/lib/libvirt/images/simp-ks -maxdepth 1 -type f \
-            \( -name '*.log' -o -name '*.cfg' -o -name inspect.txt \) \
+            \( -name '*.log' -o -name '*.cfg' -o -name '*.txt' \) \
             -exec cp {} "$RUNNER_TEMP/ks/" \; 2>/dev/null || true
           sudo chown -R "$(id -u):$(id -g)" "$RUNNER_TEMP/ks"
       - name: Upload logs
@@ -120,5 +120,5 @@ jobs:
           path: |
             ${{ runner.temp }}/ks/*.log
             ${{ runner.temp }}/ks/*.cfg
-            ${{ runner.temp }}/ks/inspect.txt
+            ${{ runner.temp }}/ks/*.txt
           if-no-files-found: ignore

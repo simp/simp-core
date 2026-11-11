@@ -16,12 +16,14 @@ OpenVox 9.
   diskdetect.sh           Writes the partitioning for the first disk
   repodetect.sh           Writes the repositories, and describes the YUM server
                           layout they expect
-  dvd/                    The SIMP ISO's kickstarts.  These haven't been
-                          updated for OpenVox or for this repodetect.sh yet.
+  dvd/                    The SIMP 6 ISO's kickstarts, with their own copies of
+                          diskdetect.sh and repodetect.sh for the SIMP 6 ISO
+                          layout.  These haven't been updated for OpenVox yet.
 
 Each .cfg file lists the #PLACEHOLDERS# to replace and the installer (kernel
 command line) options it supports.  Serve diskdetect.sh and repodetect.sh from
-https://<kickstart server>/ks/.
+https://<kickstart server>/ks/.  They support EL8, EL9 and EL10; the RedHat/8
+and RedHat/9 copies are symlinks to RedHat/10's.
 
 Start with these files, and extend the host through Puppet rather than the
 kickstart.  The premise of SIMP is that you start small and secure, and build
@@ -31,4 +33,4 @@ the environment you need from there.
 
 spec/kickstart/run_install.sh in simp-core kickstarts a libvirt VM with these
 files (from the AlmaLinux mirrors), boots it and checks the result.  The
-'Kickstart' GitHub Actions workflow runs it for EL8, EL8 and EL10.
+'Kickstart' GitHub Actions workflow runs it for EL8, EL9 and EL10.
