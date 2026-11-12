@@ -25,7 +25,8 @@ SIMP build directory
 ## The build/distributions/ Directory
 * Contains the files needed to build each distribution
 * Formatted as `build/distributions/DISTRIBUTION_NAME/MAJOR_RELEASE/ARCHITECTURE`
-  For example, `distribtutions/CentOS/6/x86_64/`
+  For example, `distributions/RedHat/9/x86_64/`. `RedHat` covers every EL
+  distribution (RHEL, AlmaLinux, Rocky Linux and Oracle Linux).
 
 ### build_metadata.yaml
 * Dictates the build infrastructure for supported SIMP operating systems.

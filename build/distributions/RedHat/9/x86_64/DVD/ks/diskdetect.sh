@@ -1,0 +1,1 @@
+../../../../10/x86_64/DVD/ks/diskdetect.sh
