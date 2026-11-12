@@ -52,7 +52,7 @@ r10k uses `moduledir 'src'` (Puppet modules) and `moduledir 'src/assets'` (non-m
 | `pkglist_lint.rake` | RPM package list ordering checks |
 | `simp_core_deps_helper.rb` | Shared helpers: changelog diffs, component version extraction, git log gathering |
 
-The Rakefile also loads `simp-rake-helpers` (`Simp::Rake::Build::Helpers`) which provides the broader ISO/RPM build pipeline (may emit a warning if the gem isn't installed).
+The Rakefile also loads `simp-rake-helpers` (`Simp::Rake::Build::Helpers`), which provides the broader ISO/RPM build pipeline. A load failure aborts rake rather than silently dropping the `build:*`/`pkg:*` tasks.
 
 ### Build Infrastructure (`build/`)
 

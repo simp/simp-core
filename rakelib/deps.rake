@@ -1,7 +1,7 @@
 # simp-core additions to deps-namespaced targets
 #
 # This is a playground for tasks that may eventually be moved to
-# simp-rake-helpers or simp-build-helpers
+# simp-rake-helpers
 #
 require_relative 'simp_core_deps_helper'
 
