@@ -271,9 +271,6 @@ simp_options::trusted_nets: <%= (trusted_nets.nil? or trusted_nets.empty?) ? '[]
 # * An empty Hash (`{}`) means the domain is present with default options.
 #   Use `{ ensure: absent }` to remove a domain.
 #
-# IMPORTANT: For EL < 8, this field *MUST* have a valid domain or the sssd
-# service will fail to start.
-#
 sssd::domains_entries:
   LDAP: {}
 
