@@ -7,13 +7,9 @@ require 'simp/rake/build/deps'
 
 Simp::Rake::Beaker.new(File.dirname(__FILE__))
 
-begin
-  require 'simp/rake/build/helpers'
-  BASEDIR    = File.dirname(__FILE__)
-  Simp::Rake::Build::Helpers.new( BASEDIR )
-rescue LoadError => e
-  warn "WARNING: #{e.message}"
-end
+require 'simp/rake/build/helpers'
+BASEDIR = File.dirname(__FILE__)
+Simp::Rake::Build::Helpers.new(BASEDIR)
 
 task :metadata_lint do
   sh 'metadata-json-lint --strict-dependencies --strict-license --fail-on-warnings metadata.json'
