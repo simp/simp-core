@@ -326,19 +326,12 @@ Vagrant.configure('2') do |c|
 
     v.vm.synced_folder '.', '/vagrant', disabled: true
 
-    # Enable the SIMP Repos from the build module
-    v.vm.provision 'file',
-      source: 'build/distributions/CentOS/7/x86_64/yum_data/repos/simp.repo',
-      destination: '/tmp/simp.repo'
+    # Enable the SIMP repos, the same way as on the server
+    v.vm.provision 'shell',
+      inline: simp_vagrant_inline_dnf_repo_setup_script
 
     v.vm.provision 'shell',
-      inline: 'mv /tmp/simp.repo /etc/yum.repos.d'
-
-    v.vm.provision 'shell',
-      inline: 'chown root:root /etc/yum.repos.d/simp.repo'
-
-    v.vm.provision 'shell',
-      inline: 'chmod ugo+rX /etc/yum.repos.d/simp.repo'
+      inline: "echo #{ENV['SIMP_RELEASE_TYPE']} > /etc/yum/vars/simpreleasetype"
 
     # Install the puppet package so that the provisioner script will work
     v.vm.provision 'shell',
@@ -387,19 +380,12 @@ Vagrant.configure('2') do |c|
 
     v.vm.synced_folder '.', '/vagrant', disabled: true
 
-    # Enable the SIMP Repos from the build module
-    v.vm.provision 'file',
-      source: 'build/distributions/CentOS/7/x86_64/yum_data/repos/simp.repo',
-      destination: '/tmp/simp.repo'
+    # Enable the SIMP repos, the same way as on the server
+    v.vm.provision 'shell',
+      inline: simp_vagrant_inline_dnf_repo_setup_script
 
     v.vm.provision 'shell',
-      inline: 'mv /tmp/simp.repo /etc/yum.repos.d'
-
-    v.vm.provision 'shell',
-      inline: 'chown root:root /etc/yum.repos.d/simp.repo'
-
-    v.vm.provision 'shell',
-      inline: 'chmod ugo+rX /etc/yum.repos.d/simp.repo'
+      inline: "echo #{ENV['SIMP_RELEASE_TYPE']} > /etc/yum/vars/simpreleasetype"
 
     # Install the puppet package so that the provisioner script will work
     v.vm.provision 'shell',

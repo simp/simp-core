@@ -10,41 +10,19 @@
 #
 # Examples:
 #
-# # Build all CentOS releases
-# SIMP_BUILD_distro=CentOS rake build:auto[...]
+# # Build all RedHat (EL) releases
+# SIMP_BUILD_distro=RedHat rake build:auto[...]
 #
-# # Build all CentOS 6 releases
-# SIMP_BUILD_distro=CentOS,6 rake build:auto[...]
+# # Build all RedHat 8 releases
+# SIMP_BUILD_distro=RedHat,8 rake build:auto[...]
 #
-# # Build all CentOS 6 x86_64 releases
-# SIMP_BUILD_distro=CentOS,6,x86_64 rake build:auto[...]
+# # Build all RedHat 8 x86_64 releases
+# SIMP_BUILD_distro=RedHat,8,x86_64 rake build:auto[...]
 ---
 'distributions':
-  'CentOS':
-    '6':
-      'build': false
-      'pkg_type': 'rpm'
-      'arch':
-        - 'x86_64'
-    '7':
-      'build': true
-      'pkg_type': 'rpm'
-      'arch':
-        - 'x86_64'
   'RedHat':
-    '6':
-      'build': false
-      'pkg_type': 'rpm'
-      'arch':
-        - 'x86_64'
-    '7':
-      'build': false
-      'pkg_type': 'rpm'
-      'arch':
-        - 'x86_64'
-  'Fedora':
-    '24':
-      'build': false
+    '8':
+      'build': true
       'pkg_type': 'rpm'
       'arch':
         - 'x86_64'

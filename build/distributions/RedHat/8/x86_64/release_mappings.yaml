@@ -1,1 +1,23 @@
-../../../CentOS/8/x86_64/release_mappings.yaml
+---
+# This file houses the *officially supported* SIMP release combinations
+# Other build combinations may work, but unexpected issues may arise.
+simp_releases:
+  6.X:
+    flavors:
+      RedHat:
+        isos:
+          - name:     'rhel-server-8.5-x86_64-dvd.iso'
+            size:     10130292736
+            checksum: '48f955712454c32718dcde858dea5aca574376a1d7a4b0ed6908ac0b85597811'
+        build_command: 'bundle exec rake build:auto[rhel-server-8.5-x86_64-dvd.iso,6.X]'
+        os_version:   '8.5'
+  '6.6':
+    flavors:
+      RedHat:
+        isos:
+          - name:     'rhel-server-8.5-x86_64-dvd.iso'
+            size:     10130292736
+            checksum: '48f955712454c32718dcde858dea5aca574376a1d7a4b0ed6908ac0b85597811'
+        build_command: 'bundle exec rake build:auto[rhel-server-8.5-x86_64-dvd.iso,6.6]'
+        os_version:   '8.5'
+

@@ -1,0 +1,12 @@
+# Test stand-in for the unit that simp::server::kickstart publishes.  The
+# kickstart test has no SIMP server to bootstrap against.
+[Unit]
+Description=SIMP client bootstrap (kickstart test stand-in)
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/bootstrap_simp_client
+
+[Install]
+WantedBy=multi-user.target

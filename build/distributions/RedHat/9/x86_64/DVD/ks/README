@@ -1,0 +1,33 @@
+= SIMP kickstarts for EL9 =
+
+These kickstarts install EL9 (Red Hat Enterprise Linux, AlmaLinux, Rocky Linux
+or Oracle Linux) over the network, from a SIMP kickstart and YUM server, with
+OpenVox 9.
+
+  pupclient_x86_64.cfg    A SIMP client.  Installs the OpenVox agent and
+                          schedules the SIMP client bootstrap
+                          (simp_client_bootstrap.service, published by the SIMP
+                          server's simp::server::kickstart class) for its first
+                          boot.
+  simp_server_x86_64.cfg  A SIMP server.  Installs OpenVox server and, when the
+                          YUM server has a SIMP repository, the 'simp' and
+                          'simp-adapter' packages.  Run `simp config` and
+                          `simp bootstrap` after the first boot.
+  diskdetect.sh           Writes the partitioning for the first disk
+  repodetect.sh           Writes the repositories, and describes the YUM server
+                          layout they expect
+
+Each .cfg file lists the #PLACEHOLDERS# to replace and the installer (kernel
+command line) options it supports.  Serve diskdetect.sh and repodetect.sh from
+https://<kickstart server>/ks/.  They support EL8, EL9 and EL10; the RedHat/8
+and RedHat/9 copies are symlinks to RedHat/10's.
+
+Start with these files, and extend the host through Puppet rather than the
+kickstart.  The premise of SIMP is that you start small and secure, and build
+the environment you need from there.
+
+== Testing ==
+
+spec/kickstart/run_install.sh in simp-core kickstarts a libvirt VM with these
+files (from the AlmaLinux mirrors), boots it and checks the result.  The
+'Kickstart' GitHub Actions workflow runs it for EL8, EL9 and EL10.
