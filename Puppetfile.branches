@@ -159,6 +159,10 @@ mod 'simp-clamav',
   :git => 'https://github.com/simp/pupmod-simp-clamav',
   :branch => 'master'
 
+mod 'simp-compliance_engine',
+  :git => 'https://github.com/simp/rubygem-simp-compliance_engine',
+  :branch => 'main'
+
 mod 'simp-compliance_markup',
   :git => 'https://github.com/simp/pupmod-simp-compliance_markup',
   :branch => 'master'
