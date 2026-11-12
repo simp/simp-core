@@ -73,6 +73,7 @@ Requires: pupmod-simp-polkit >= 6.4.0, pupmod-simp-polkit < 7.0.0
 Requires: pupmod-simp-postfix >= 5.7.0, pupmod-simp-postfix < 6.0.0
 Requires: pupmod-simp-pupmod >= 8.3.1, pupmod-simp-pupmod < 9.0.0
 Requires: pupmod-simp-resolv >= 0.7.0, pupmod-simp-resolv < 1.0.0
+Requires: pupmod-simp-rngd >= 0.2.0, pupmod-simp-rngd < 1.0.0
 Requires: pupmod-simp-rsync >= 6.5.0, pupmod-simp-rsync < 7.0.0
 Requires: pupmod-simp-rsyslog >= 8.2.0, pupmod-simp-rsyslog < 9.0.0
 Requires: pupmod-simp-selinux >= 2.8.0, pupmod-simp-selinux < 3.0.0
