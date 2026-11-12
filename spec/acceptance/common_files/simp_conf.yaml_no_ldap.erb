@@ -225,18 +225,22 @@ simp_options::syslog::log_servers: <%= (syslog_server_fqdns.nil? or syslog_serve
 # you can override it in Hiera.
 simp_options::trusted_nets: <%= (trusted_nets.nil? or trusted_nets.empty?) ? '[]': '[ ' + trusted_nets.join(', ') + ' ]' %>
 
-# === sssd::domains ===
-# A list of domains for SSSD to use.
+# === sssd::domains_entries ===
+# A Hash of the SSSD domains to manage, each mapped to its options.
 #
 # * When you are using SIMP-provided LDAP, this field should include `LDAP`,
 #   the name of the SSSD domain SIMP creates.
 # * This field may include 'LOCAL', to use the domain SIMP creates with
 #   the 'files' provider.
+# * An empty Hash (`{}`) means the domain is present with default options.
+#   Use `{ ensure: absent }` to remove a domain.
+#
+# Leave this key out when there are no domains, so the module's defaults apply.
 #
 # IMPORTANT: For EL < 8, this field *MUST* have a valid domain or the sssd
 # service will fail to start.
 #
-sssd::domains: <%= (sssd_domains.nil? or sssd_domains.empty?) ? '[]': '[ ' + sssd_domains.join(', ') + ' ]' %>
+<%= (sssd_domains.nil? or sssd_domains.empty?) ? '' : "sssd::domains_entries:\n" + sssd_domains.map { |domain| "  #{domain}: {}\n" }.join %>
 
 # === svckill::mode ===
 # Strategy svckill should use when it encounters undeclared services.
