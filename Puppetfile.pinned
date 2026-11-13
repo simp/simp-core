@@ -224,7 +224,7 @@ mod 'simp-issue',
 
 mod 'simp-krb5',
   :git => 'https://github.com/simp/pupmod-simp-krb5',
-  :tag => '8.1.0'
+  :tag => '8.2.0'
 
 mod 'simp-libreswan',
   :git => 'https://github.com/simp/pupmod-simp-libreswan',
@@ -280,7 +280,7 @@ mod 'simp-polkit',
 
 mod 'simp-postfix',
   :git => 'https://github.com/simp/pupmod-simp-postfix',
-  :tag => '7.1.0'
+  :tag => '7.2.0'
 
 mod 'simp-pupmod',
   :git => 'https://github.com/simp/pupmod-simp-pupmod',
@@ -372,7 +372,7 @@ mod 'simp-sssd',
 
 mod 'simp-stunnel',
   :git => 'https://github.com/simp/pupmod-simp-stunnel',
-  :tag => '9.1.0'
+  :tag => '9.2.0'
 
 mod 'simp-sudo',
   :git => 'https://github.com/simp/pupmod-simp-sudo',
@@ -423,7 +423,7 @@ mod 'simp-vox_selinux',
 
 mod 'simp-vsftpd',
   :git => 'https://github.com/simp/pupmod-simp-vsftpd',
-  :tag => '9.1.0'
+  :tag => '9.2.0'
 
 mod 'simp-x2go',
   :git => 'https://github.com/simp/pupmod-simp-x2go',
