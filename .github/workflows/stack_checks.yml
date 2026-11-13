@@ -1,0 +1,65 @@
+# Whole-stack checks: test the SIMP module set as simp-core assembles it,
+# not any one module (see rakelib/stack.rake).
+#
+# - Pull requests: Puppetfile.pinned, dependency consistency and catalog
+#   compiles against simp-environment-skeleton master.
+# - Nightly and on demand: Puppetfile.pinned and Puppetfile.branches. The
+#   branches run reports drift on module default branches before it reaches
+#   a release; it doesn't block anything.
+name: Stack checks
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+  schedule:
+    - cron: '17 7 * * *'
+  workflow_dispatch:
+    inputs:
+      skeleton_ref:
+        description: 'simp-environment-skeleton branch or tag'
+        required: false
+        default: 'master'
+
+env:
+  # Required to prevent all rake tasks from exploding
+  SIMP_RPM_dist: .el8
+  STACK_SKELETON_REF: ${{ github.event.inputs.skeleton_ref || 'master' }}
+
+jobs:
+  stack:
+    name: 'Stack (${{ matrix.puppetfile }}, ${{ matrix.puppet.label }})'
+    runs-on: ubuntu-26.04
+    # Puppetfile.branches tracks module default branches, so it is expected to
+    # drift; report it without failing the workflow
+    continue-on-error: ${{ matrix.puppetfile == 'branches' }}
+    strategy:
+      fail-fast: false
+      matrix:
+        puppetfile: ${{ fromJSON(github.event_name == 'pull_request' && '["pinned"]' || '["pinned", "branches"]') }}
+        puppet:
+          - label: 'OpenVox 8.x'
+            puppet_version: '~> 8.0'
+            ruby_version: '3.4'
+          - label: 'OpenVox 9.x'
+            puppet_version: '~> 9.0'
+            ruby_version: '4.0'
+    env:
+      PUPPET_VERSION: ${{ matrix.puppet.puppet_version }}
+    steps:
+      - uses: actions/checkout@v7
+      - name: 'Install Ruby ${{ matrix.puppet.ruby_version }}'
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.puppet.ruby_version }}
+          bundler-cache: true
+      - run: 'command -v rpm || if command -v apt-get; then sudo apt-get update; sudo apt-get install -y rpm; fi ||:'
+      - name: 'Install Puppetfile.${{ matrix.puppetfile }}'
+        run: bundle exec rake stack:install[${{ matrix.puppetfile }}]
+      - name: 'Clone simp-environment-skeleton (${{ env.STACK_SKELETON_REF }})'
+        run: bundle exec rake stack:skeleton
+      - name: 'Module dependencies'
+        run: bundle exec rake stack:deps[${{ matrix.puppetfile }}]
+      - name: 'Catalogs'
+        # Run even when the dependency check failed, so both are reported
+        if: ${{ !cancelled() }}
+        run: bundle exec rake stack:catalogs[${{ matrix.puppetfile }}]
