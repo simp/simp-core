@@ -211,6 +211,10 @@
       "version_requirement": ">= 11.3.3 < 12.0.0"
     },
     {
+      "name": "simp/compliance_engine",
+      "version_requirement": ">= 1.2.0 < 2.0.0"
+    },
+    {
       "name": "simp/compliance_markup",
       "version_requirement": ">= 4.0.1 < 5.0.0"
     },
@@ -241,6 +245,10 @@
     {
       "name": "simp/pupmod",
       "version_requirement": ">= 13.0.0 < 14.0.0"
+    },
+    {
+      "name": "simp/rngd",
+      "version_requirement": ">= 0.2.0 < 1.0.0"
     },
     {
       "name": "simp/rsyslog",
