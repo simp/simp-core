@@ -168,7 +168,7 @@
     },
     {
       "name": "simp/stunnel",
-      "version_requirement": ">= 9.1.0 < 10.0.0"
+      "version_requirement": ">= 9.2.0 < 10.0.0"
     },
     {
       "name": "simp/svckill",
@@ -240,7 +240,7 @@
     },
     {
       "name": "simp/postfix",
-      "version_requirement": ">= 7.1.0 < 8.0.0"
+      "version_requirement": ">= 7.2.0 < 8.0.0"
     },
     {
       "name": "simp/pupmod",
