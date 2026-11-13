@@ -1,0 +1,100 @@
+# Whole-stack checks: test the SIMP module set as simp-core assembles it,
+# not any one module (see rakelib/stack.rake).
+#
+# - Pull requests: Puppetfile.pinned, dependency consistency and catalog
+#   compiles against simp-environment-skeleton master.
+# - Nightly and on demand: Puppetfile.pinned and Puppetfile.branches. The
+#   branches run catches drift on module default branches before it reaches
+#   a release. A failed nightly run opens (or comments on) an issue labeled
+#   `stack-drift`; the next passing nightly run closes it.
+name: Stack checks
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+  schedule:
+    - cron: '17 7 * * *'
+  workflow_dispatch:
+    inputs:
+      skeleton_ref:
+        description: 'simp-environment-skeleton branch or tag'
+        required: false
+        default: 'master'
+
+permissions:
+  contents: read
+
+env:
+  # Required to prevent all rake tasks from exploding
+  SIMP_RPM_dist: .el8
+  STACK_SKELETON_REF: ${{ github.event.inputs.skeleton_ref || 'master' }}
+
+jobs:
+  stack:
+    name: 'Stack (${{ matrix.puppetfile }}, ${{ matrix.puppet.label }})'
+    runs-on: ubuntu-26.04
+    strategy:
+      fail-fast: false
+      matrix:
+        puppetfile: ${{ fromJSON(github.event_name == 'pull_request' && '["pinned"]' || '["pinned", "branches"]') }}
+        puppet:
+          - label: 'OpenVox 8.x'
+            puppet_version: '~> 8.0'
+            ruby_version: '3.4'
+          - label: 'OpenVox 9.x'
+            puppet_version: '~> 9.0'
+            ruby_version: '4.0'
+    env:
+      PUPPET_VERSION: ${{ matrix.puppet.puppet_version }}
+    steps:
+      - uses: actions/checkout@v7
+      - name: 'Install Ruby ${{ matrix.puppet.ruby_version }}'
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.puppet.ruby_version }}
+          bundler-cache: true
+      - run: 'command -v rpm || if command -v apt-get; then sudo apt-get update; sudo apt-get install -y rpm; fi ||:'
+      - name: 'Install Puppetfile.${{ matrix.puppetfile }}'
+        run: bundle exec rake stack:install[${{ matrix.puppetfile }}]
+      - name: 'Clone simp-environment-skeleton (${{ env.STACK_SKELETON_REF }})'
+        run: bundle exec rake stack:skeleton
+      - name: 'Module dependencies'
+        run: bundle exec rake stack:deps[${{ matrix.puppetfile }}]
+      - name: 'Catalogs'
+        # Run even when the dependency check failed, so both are reported
+        if: ${{ !cancelled() }}
+        run: bundle exec rake stack:catalogs[${{ matrix.puppetfile }}]
+
+  # Scheduled runs have no PR to report to, and GitHub only emails the person
+  # who last edited the cron line, so track failures in an issue instead
+  report:
+    name: 'Report nightly result'
+    needs: stack
+    if: ${{ !cancelled() && github.event_name == 'schedule' }}
+    runs-on: ubuntu-26.04
+    permissions:
+      issues: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      RESULT: ${{ needs.stack.result }}
+      RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+    steps:
+      - name: 'Open, update or close the stack-drift issue'
+        run: |
+          gh label create stack-drift --color B60205 \
+            --description 'Nightly whole-stack check is failing' 2>/dev/null || :
+          issue=$(gh issue list --label stack-drift --state open --json number --jq '.[0].number // empty')
+          if [ "$RESULT" = 'success' ]; then
+            if [ -n "$issue" ]; then
+              gh issue close "$issue" --comment "The nightly stack check passed: $RUN_URL"
+            fi
+          elif [ -n "$issue" ]; then
+            gh issue comment "$issue" --body "Still failing: $RUN_URL"
+          else
+            gh issue create --label stack-drift \
+              --title 'Nightly whole-stack check is failing' \
+              --body "The nightly stack check (Puppetfile.pinned and Puppetfile.branches) failed: $RUN_URL
+
+          See the failed job's 'Module dependencies' and 'Catalogs' steps for details. This issue is closed automatically by the next passing nightly run."
+          fi
