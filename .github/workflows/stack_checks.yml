@@ -4,8 +4,9 @@
 # - Pull requests: Puppetfile.pinned, dependency consistency and catalog
 #   compiles against simp-environment-skeleton master.
 # - Nightly and on demand: Puppetfile.pinned and Puppetfile.branches. The
-#   branches run reports drift on module default branches before it reaches
-#   a release; it doesn't block anything.
+#   branches run catches drift on module default branches before it reaches
+#   a release. A failed nightly run opens (or comments on) an issue labeled
+#   `stack-drift`; the next passing nightly run closes it.
 name: Stack checks
 
 on:
@@ -20,6 +21,9 @@ on:
         required: false
         default: 'master'
 
+permissions:
+  contents: read
+
 env:
   # Required to prevent all rake tasks from exploding
   SIMP_RPM_dist: .el8
@@ -29,9 +33,6 @@ jobs:
   stack:
     name: 'Stack (${{ matrix.puppetfile }}, ${{ matrix.puppet.label }})'
     runs-on: ubuntu-26.04
-    # Puppetfile.branches tracks module default branches, so it is expected to
-    # drift; report it without failing the workflow
-    continue-on-error: ${{ matrix.puppetfile == 'branches' }}
     strategy:
       fail-fast: false
       matrix:
@@ -63,3 +64,37 @@ jobs:
         # Run even when the dependency check failed, so both are reported
         if: ${{ !cancelled() }}
         run: bundle exec rake stack:catalogs[${{ matrix.puppetfile }}]
+
+  # Scheduled runs have no PR to report to, and GitHub only emails the person
+  # who last edited the cron line, so track failures in an issue instead
+  report:
+    name: 'Report nightly result'
+    needs: stack
+    if: ${{ !cancelled() && github.event_name == 'schedule' }}
+    runs-on: ubuntu-26.04
+    permissions:
+      issues: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      RESULT: ${{ needs.stack.result }}
+      RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+    steps:
+      - name: 'Open, update or close the stack-drift issue'
+        run: |
+          gh label create stack-drift --color B60205 \
+            --description 'Nightly whole-stack check is failing' 2>/dev/null || :
+          issue=$(gh issue list --label stack-drift --state open --json number --jq '.[0].number // empty')
+          if [ "$RESULT" = 'success' ]; then
+            if [ -n "$issue" ]; then
+              gh issue close "$issue" --comment "The nightly stack check passed: $RUN_URL"
+            fi
+          elif [ -n "$issue" ]; then
+            gh issue comment "$issue" --body "Still failing: $RUN_URL"
+          else
+            gh issue create --label stack-drift \
+              --title 'Nightly whole-stack check is failing' \
+              --body "The nightly stack check (Puppetfile.pinned and Puppetfile.branches) failed: $RUN_URL
+
+          See the failed job's 'Module dependencies' and 'Catalogs' steps for details. This issue is closed automatically by the next passing nightly run."
+          fi
