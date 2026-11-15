@@ -18,7 +18,7 @@ describe 'simp:defaults enforcement and idempotence' do
     end
 
     it 'enforces simp:defaults' do
-      result = on(master, 'puppet lookup --environment production --render-as json compliance_engine::enforcement')
+      result = on(master, 'puppet lookup --compile --environment production --render-as json compliance_engine::enforcement')
       expect(JSON.parse(result.stdout)).to include('simp:defaults')
     end
   end

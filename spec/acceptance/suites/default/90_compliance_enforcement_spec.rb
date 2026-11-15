@@ -61,9 +61,8 @@ describe 'DISA STIG enforcement with the Compliance Engine' do
       # the profile would enforce almost nothing. Treat the RHEL rebuilds
       # as RHEL, as their STIG content in SCAP Security Guide does.
       it 'applies the RHEL benchmarks to RHEL rebuilds' do
-        on(master,
-           "find #{prod_env_dir}/modules/simp_enterprise_el_disa/SIMP -name '*.json' -print0 | " \
-           %(xargs -0 sed -i 's/"os.name":\\["RedHat"\\]/"os.name":["RedHat","AlmaLinux","Rocky","CentOS"]/g'))
+        sed_expr = 's/"os.name":\["RedHat"\]/"os.name":["RedHat","AlmaLinux","Rocky","CentOS"]/g'
+        on(master, "find #{prod_env_dir}/modules/simp_enterprise_el_disa/SIMP -name '*.json' -print0 | xargs -0 sed -i '#{sed_expr}'")
         on(master, "grep -rqF '\"os.name\":[\"RedHat\",\"AlmaLinux\"' #{prod_env_dir}/modules/simp_enterprise_el_disa/SIMP")
       end
     end
@@ -92,7 +91,7 @@ describe 'DISA STIG enforcement with the Compliance Engine' do
     end
 
     it 'resolves the enforcement list on the puppetserver' do
-      result = on(master, 'puppet lookup --environment production --render-as json compliance_engine::enforcement')
+      result = on(master, 'puppet lookup --compile --environment production --render-as json compliance_engine::enforcement')
       expect(JSON.parse(result.stdout)).to eq([compliance_profile, 'simp:defaults'])
     end
   end
