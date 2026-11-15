@@ -1,0 +1,38 @@
+# Whole-stack check: skeleton scenarios compile for each EL release.
+# See stack_check.yml for which Puppetfiles run on each event.
+name: 'Stack: catalogs'
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+  push:
+    tags:
+      - '*'
+  schedule:
+    - cron: '27 7 * * *'
+  workflow_dispatch:
+    inputs:
+      puppetfile:
+        description: 'Puppetfile to check'
+        type: choice
+        options: [both, pinned, branches]
+        default: both
+      skeleton_ref:
+        description: 'simp-environment-skeleton branch or tag'
+        required: false
+        default: 'master'
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    uses: ./.github/workflows/stack_check.yml
+    permissions:
+      contents: read
+      issues: write
+    with:
+      check: catalogs
+      title: 'Catalogs'
+      puppetfile: ${{ inputs.puppetfile || '' }}
+      skeleton_ref: ${{ inputs.skeleton_ref || 'master' }}

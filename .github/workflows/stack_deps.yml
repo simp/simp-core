@@ -1,0 +1,33 @@
+# Whole-stack check: dependency ranges agree across the SIMP module set.
+# See stack_check.yml for which Puppetfiles run on each event.
+name: 'Stack: dependencies'
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+  push:
+    tags:
+      - '*'
+  schedule:
+    - cron: '17 7 * * *'
+  workflow_dispatch:
+    inputs:
+      puppetfile:
+        description: 'Puppetfile to check'
+        type: choice
+        options: [both, pinned, branches]
+        default: both
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    uses: ./.github/workflows/stack_check.yml
+    permissions:
+      contents: read
+      issues: write
+    with:
+      check: deps
+      title: 'Module dependencies'
+      puppetfile: ${{ inputs.puppetfile || '' }}
