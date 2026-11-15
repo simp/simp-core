@@ -63,6 +63,13 @@ name: 'Full-stack acceptance'
           data/default.yaml before bootstrap, e.g. to try a workaround
         type: string
         default: ''
+      puppetdb:
+        description: >-
+          Also enable PuppetDB on the server (simp::puppetdb). Off by default:
+          it installs puppetdb packages that the OpenVox repositories don't
+          provide (simp/pupmod-simp-simp#422)
+        type: boolean
+        default: false
       compliance_profile:
         description: 'Compliance profile enforced ahead of simp:defaults by the disa test'
         type: string
@@ -153,6 +160,7 @@ jobs:
       # TEMPORARY pull_request overrides: unmerged PRs the stack needs
       BEAKER_puppetfile_overrides: ${{ github.event_name == 'pull_request' && 'simp-environment=https://github.com/silug/simp-environment-skeleton#compliance-engine simp-ssh=https://github.com/silug/pupmod-simp-ssh#simp-defaults-no-tcpwrappers simp-compliance_engine=https://github.com/simp/rubygem-simp-compliance_engine#main' || inputs.puppetfile_overrides }}
       BEAKER_extra_hieradata: ${{ inputs.extra_hieradata }}
+      BEAKER_simp_puppetdb: ${{ inputs.puppetdb && 'yes' || 'no' }}
       BEAKER_compliance_profile: ${{ inputs.compliance_profile || 'disa:mac-1:classified' }}
       BEAKER_sicura_disa_ref: ${{ inputs.sicura_disa_ref || '3.2.1' }}
       BEAKER_sicura_el_ref: ${{ inputs.sicura_el_ref || '3.0.5' }}
