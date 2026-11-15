@@ -55,6 +55,19 @@ describe 'DISA STIG enforcement with the Compliance Engine' do
       on(master, 'simp environment fix production --no-secondary-env --no-writable-env')
     end
 
+    if ENV.fetch('BEAKER_sicura_el_as_redhat', 'yes') == 'yes'
+      # The DISA RHEL benchmarks are confined to os.name RedHat (and the
+      # Oracle Linux ones to OracleLinux), so on the AlmaLinux test boxes
+      # the profile would enforce almost nothing. Treat the RHEL rebuilds
+      # as RHEL, as their STIG content in SCAP Security Guide does.
+      it 'applies the RHEL benchmarks to RHEL rebuilds' do
+        on(master,
+           "find #{prod_env_dir}/modules/simp_enterprise_el_disa/SIMP -name '*.json' -print0 | " \
+           %(xargs -0 sed -i 's/"os.name":\\["RedHat"\\]/"os.name":["RedHat","AlmaLinux","Rocky","CentOS"]/g'))
+        on(master, "grep -rqF '\"os.name\":[\"RedHat\",\"AlmaLinux\"' #{prod_env_dir}/modules/simp_enterprise_el_disa/SIMP")
+      end
+    end
+
     it "enforces #{compliance_profile} before simp:defaults" do
       hiera = YAML.safe_load(on(master, "cat #{prod_env_default_yaml}").stdout) || {}
 

@@ -113,16 +113,10 @@ module Acceptance
       #
       # +host+: Host (object)
       def dns_nameserver(host)
-        host.install_package('bind-utils') # for dig
-        dig_result = on(host, "dig #{host.name}", :accept_all_exit_codes => true)
-        nameserver = nil
-        if dig_result.exit_code == 0
-          match = dig_result.stdout.match(/\n;; SERVER:.*\((.*)\)\s*\n/)
-          unless match.nil?
-            nameserver = match[1]
-          end
-        end
-        nameserver
+        result = on(host, "awk '/^nameserver[[:space:]]/ { print $2; exit }' /etc/resolv.conf",
+                    accept_all_exit_codes: true)
+        nameserver = result.stdout.strip
+        nameserver.empty? ? nil : nameserver
       end
 
       # Generates application certs for hosts on the puppet master
