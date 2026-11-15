@@ -20,5 +20,10 @@ describe 'Configure and bootstrap SIMP puppetserver with pre-populated SIMP OMNI
     :simp_config_extra_args => [ '--force-config' ]
   }
 
+  # BEAKER_extra_hieradata: a YAML (or JSON) Hash merged into the production
+  # environment's data/default.yaml, e.g. to try a workaround on demand
+  extra_hieradata = ENV.fetch('BEAKER_extra_hieradata', '').strip
+  config[:other_hiera] = YAML.safe_load(extra_hieradata) unless extra_hieradata.empty?
+
   include_examples 'SIMP server bootstrap', master, config
 end
