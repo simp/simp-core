@@ -76,12 +76,12 @@ jobs:
           bundler-cache: true
       - run: 'command -v rpm || if command -v apt-get; then sudo apt-get update; sudo apt-get install -y rpm; fi ||:'
       - name: 'Install Puppetfile.${{ matrix.puppetfile }}'
-        run: bundle exec rake stack:install[${{ matrix.puppetfile }}]
+        run: bundle exec rake "stack:install[${{ matrix.puppetfile }}]"
       - name: 'Clone simp-environment-skeleton (${{ env.STACK_SKELETON_REF }})'
         if: ${{ inputs.check == 'catalogs' }}
         run: bundle exec rake stack:skeleton
       - name: '${{ inputs.title }}'
-        run: bundle exec rake stack:${{ inputs.check }}[${{ matrix.puppetfile }}]
+        run: bundle exec rake "stack:${{ inputs.check }}[${{ matrix.puppetfile }}]"
 
   # Scheduled runs have no PR to report to, and GitHub only emails the person
   # who last edited the cron line, so track failures in an issue instead
