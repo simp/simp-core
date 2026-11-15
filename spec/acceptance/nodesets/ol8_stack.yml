@@ -1,0 +1,36 @@
+---
+# One SIMP server and one SIMP client, both Oracle Linux 8. Used by the
+# full-stack acceptance workflow's disa test (.github/workflows/full_stack.yml):
+# Sicura's DISA STIG data has Oracle Linux benchmarks. The client is also the
+# remote syslog server.
+HOSTS:
+  puppet:
+    roles:
+    - server # Mandatory
+    - master
+    - default
+    - simp_server
+    - agent
+    platform: el-8-x86_64
+    box: generic/oracle8
+    hypervisor: "<%= ENV.fetch('BEAKER_HYPERVISOR', 'vagrant') %>"
+    vagrant_memsize: 6144
+    vagrant_cpus: 2
+  client-ol8:
+    roles:
+    - agent
+    - syslog_server
+    platform: el-8-x86_64
+    box: generic/oracle8
+    hypervisor: "<%= ENV.fetch('BEAKER_HYPERVISOR', 'vagrant') %>"
+    vagrant_memsize: 2048
+CONFIG:
+  vagrant_cpus: 2
+  log_level: verbose
+  type: aio
+  synced_folder: disabled
+  ssh:
+    keepalive: true
+    keepalive_interval: 10
+    keepalive_maxcount: 120
+  puppet_collection: "<%= ENV.fetch('BEAKER_PUPPET_COLLECTION', 'openvox9') %>"

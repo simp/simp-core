@@ -25,9 +25,16 @@ module Acceptance
       # The ref may be a branch, tag or commit. An entry whose name is not in
       # the Puppetfile is added to the Puppet modules.
       #
+      # BEAKER_simp_cli=<git URL>#<ref> is shorthand for an override of
+      # rubygem-rubygem_simp_cli (the simp-cli asset).
+      #
       # @return [Hash] module name => { git:, ref: }
       def puppetfile_overrides
-        ENV.fetch('BEAKER_puppetfile_overrides', '').split(%r{[\s,]+}).reject(&:empty?).to_h do |entry|
+        entries = ENV.fetch('BEAKER_puppetfile_overrides', '').split(%r{[\s,]+}).reject(&:empty?)
+        simp_cli = ENV.fetch('BEAKER_simp_cli', '').strip
+        entries << "rubygem-rubygem_simp_cli=#{simp_cli}" unless simp_cli.empty?
+
+        entries.to_h do |entry|
           match = entry.match(%r{\A([^=\s]+)=(\S+)#([^#\s]+)\z})
           raise "Invalid BEAKER_puppetfile_overrides entry '#{entry}'; expected <name>=<git url>#<ref>" unless match
 

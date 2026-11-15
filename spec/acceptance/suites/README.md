@@ -115,15 +115,18 @@ clients, and then executes the following tests:
 #### Full-stack tests run by GitHub Actions
 
 `.github/workflows/full_stack.yml` runs a subset of this suite weekly, on
-tags and on demand (Actions > Full-stack acceptance > Run workflow), using
-the `el8_stack`, `el9_stack` and `el10_stack` nodesets (one server and one
-client of the same EL release):
+tags and on demand (Actions > Full-stack acceptance > Run workflow). Each
+test runs in its own job, on a nodeset with one server and one client of
+the same release:
 
-| Test            | Spec files              | What it checks |
-| --------------- | ----------------------- | -------------- |
-| `simp-defaults` | `00`-`02`, `03`, `04`   | Install and bootstrap; `simp:defaults` is enforced through the `compliance_engine::enforcement` Hiera backend (e.g. `Service[sshd]` is managed); another agent run changes nothing; baseline OpenSCAP STIG scan of the client |
-| `disa`          | `00`-`02`, `90`         | Install and bootstrap; enforce a Sicura DISA STIG profile ahead of `simp:defaults`; OpenSCAP STIG scan of the client |
-| `all`           | all of the above        | |
+| Test            | Nodesets                                       | Spec files                | What it checks |
+| --------------- | ---------------------------------------------- | ------------------------- | -------------- |
+| `simp-defaults` | `el8_stack`, `el9_stack`, `el10_stack` (AlmaLinux) | `00`-`02`, `03`, `04` | Install and bootstrap; `simp:defaults` is enforced through the `compliance_engine::enforcement` Hiera backend (e.g. `Service[sshd]` is managed); another agent run changes nothing; OpenSCAP STIG scan of the client |
+| `disa`          | `ol8_stack`, `ol9_stack` (Oracle Linux)        | `00`-`02`, `04`, `90`     | Install, bootstrap and baseline scan; enforce a Sicura DISA STIG profile ahead of `simp:defaults`; OpenSCAP STIG scan of the client |
+
+`disa` runs on Oracle Linux because the Sicura DISA data confines each
+benchmark to `os.name` (RedHat 8/9/10, OracleLinux 8/9), so on AlmaLinux
+almost nothing would be enforced. There is no Oracle Linux 10 benchmark yet.
 
 The OpenSCAP scans are report-only. Each writes `results.xml`, `report.html`
 and `oscap.log` to `sec_results/openscap/<scan>/<host>/` and a row with the
@@ -135,6 +138,10 @@ To run one locally, pass the spec files to `rspec` with a nodeset:
 export BEAKER_HYPERVISOR=vagrant_libvirt BEAKER_PUPPET_COLLECTION=openvox9
 export BEAKER_setfile=spec/acceptance/nodesets/el9_stack.yml
 bundle exec rspec spec/acceptance/suites/default/0{0,1,2,3,4}_*_spec.rb
+
+# disa
+export BEAKER_setfile=spec/acceptance/nodesets/ol9_stack.yml
+bundle exec rspec spec/acceptance/suites/default/0{0,1,2,4}_*_spec.rb spec/acceptance/suites/default/90_*_spec.rb
 ```
 
 #### yum repositories enabled
@@ -449,6 +456,9 @@ spaces or commas:
 ```
 simp-ssh=https://github.com/someone/pupmod-simp-ssh#my-branch simp-environment=https://github.com/someone/simp-environment-skeleton#other-branch
 ```
+
+`BEAKER_simp_cli=<git URL>#<ref>` is shorthand for an override of the
+simp-cli asset (`rubygem-rubygem_simp_cli`).
 
 #### `BEAKER_repo`
 

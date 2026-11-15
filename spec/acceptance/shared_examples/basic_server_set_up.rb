@@ -26,7 +26,11 @@ shared_examples 'basic server setup' do |host, options|
 
   it 'should install necessary repos' do
     if options.has_key?(:repos) && !options[:repos].empty?
-      host.install_package('epel-release') if options[:repos].include?(:epel)
+      if options[:repos].include?(:epel)
+        # Oracle Linux ships EPEL as oracle-epel-release-el<N>
+        os_id, os_maj = on(host, '. /etc/os-release && echo "${ID} ${VERSION_ID%%.*}"').stdout.split
+        host.install_package(os_id == 'ol' ? "oracle-epel-release-el#{os_maj}" : 'epel-release')
+      end
 
       set_up_simp_main = options[:repos].include?(:simp)
       set_up_simp_deps = options[:repos].include?(:simp_deps)

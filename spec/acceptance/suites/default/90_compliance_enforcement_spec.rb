@@ -20,6 +20,11 @@ clients = agents - [master]
 #    must come first.
 # 3. Run Puppet and reboot, then scan the clients with OpenSCAP (report-only).
 #
+# Run it on an OS the profile data has a benchmark for. The data confines
+# each benchmark to os.name and the major release: RedHat 8/9/10 and
+# OracleLinux 8/9 today. On anything else (e.g. AlmaLinux) almost nothing
+# would be enforced, so the full-stack workflow runs this on Oracle Linux.
+#
 # Environment variables:
 #   BEAKER_compliance_profile  - profile to enforce (default disa:mac-1:classified)
 #   BEAKER_sicura_disa_ref     - git ref of sicura-simp_enterprise_el_disa
@@ -43,6 +48,15 @@ describe 'DISA STIG enforcement with the Compliance Engine' do
     PUPPETFILE
   end
 
+  context 'supported OS' do
+    clients.each do |host|
+      it "has a Sicura DISA benchmark for #{host}" do
+        os_name = fact_on(host, 'os.name')
+        expect(%w[RedHat OracleLinux]).to include(os_name), "The DISA profile data has no benchmarks for #{os_name}"
+      end
+    end
+  end
+
   context 'puppetserver setup' do
     it 'adds the Sicura DISA STIG modules to the production Puppetfile' do
       puppetfile = on(master, "cat #{prod_env_dir}/Puppetfile").stdout
@@ -57,18 +71,6 @@ describe 'DISA STIG enforcement with the Compliance Engine' do
         verbose: true.to_s)
       on(master, 'simp environment fix production --no-secondary-env --no-writable-env')
       on(master, "test -d #{prod_env_dir}/modules/simp_enterprise_el_disa/SIMP && test -d #{prod_env_dir}/modules/simp_enterprise_el/manifests")
-    end
-
-    if ENV.fetch('BEAKER_sicura_el_as_redhat', 'yes') == 'yes'
-      # The DISA RHEL benchmarks are confined to os.name RedHat (and the
-      # Oracle Linux ones to OracleLinux), so on the AlmaLinux test boxes
-      # the profile would enforce almost nothing. Treat the RHEL rebuilds
-      # as RHEL, as their STIG content in SCAP Security Guide does.
-      it 'applies the RHEL benchmarks to RHEL rebuilds' do
-        sed_expr = 's/"os.name":\["RedHat"\]/"os.name":["RedHat","AlmaLinux","Rocky","CentOS"]/g'
-        on(master, "find #{prod_env_dir}/modules/simp_enterprise_el_disa/SIMP -name '*.json' -print0 | xargs -0 sed -i '#{sed_expr}'")
-        on(master, "grep -rqF '\"os.name\":[\"RedHat\",\"AlmaLinux\"' #{prod_env_dir}/modules/simp_enterprise_el_disa/SIMP")
-      end
     end
 
     it "enforces #{compliance_profile} before simp:defaults" do
