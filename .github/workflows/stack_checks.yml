@@ -3,6 +3,8 @@
 #
 # - Pull requests: Puppetfile.pinned, dependency consistency and catalog
 #   compiles against simp-environment-skeleton master.
+# - Tags: Puppetfile.pinned, so every release tag records a stack check of
+#   exactly what it pins.
 # - Nightly and on demand: Puppetfile.pinned and Puppetfile.branches. The
 #   branches run catches drift on module default branches before it reaches
 #   a release. A failed nightly run opens (or comments on) an issue labeled
@@ -12,6 +14,9 @@ name: Stack checks
 on:
   pull_request:
     types: [opened, reopened, synchronize]
+  push:
+    tags:
+      - '*'
   schedule:
     - cron: '17 7 * * *'
   workflow_dispatch:
@@ -36,7 +41,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        puppetfile: ${{ fromJSON(github.event_name == 'pull_request' && '["pinned"]' || '["pinned", "branches"]') }}
+        puppetfile: ${{ fromJSON((github.event_name == 'pull_request' || github.event_name == 'push') && '["pinned"]' || '["pinned", "branches"]') }}
         puppet:
           - label: 'OpenVox 8.x'
             puppet_version: '~> 8.0'
