@@ -5,10 +5,10 @@ test_name 'Configure and bootstrap SIMP puppetserver'
 # facts gathered here are executed when the file first loads and
 # use the factor gem temporarily installed into system ruby
 master              = only_host_with_role(hosts, 'master')
-master_fqdn         = fact_on(master, 'fqdn')
+master_fqdn         = host_fqdn(master)
 syslog_servers      = hosts_with_role(hosts, 'syslog_server')
-syslog_server_fqdns = syslog_servers.map { |server| fact_on(server, 'fqdn') }
-domain              = fact_on(master, 'domain')
+syslog_server_fqdns = syslog_servers.map { |server| host_fqdn(server) }
+domain              = host_domain(master)
 
 describe 'Configure and bootstrap SIMP puppetserver with pre-populated SIMP OMNI env' do
 

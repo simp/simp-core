@@ -111,6 +111,31 @@ clients, and then executes the following tests:
    reporting via the `simp-compliance_markup` module and then evaluates the
    results.
 
+#### Full-stack tests run by GitHub Actions
+
+`.github/workflows/full_stack.yml` runs a subset of this suite weekly, on
+tags and on demand (Actions > Full-stack acceptance > Run workflow), using
+the `el8_stack`, `el9_stack` and `el10_stack` nodesets (one server and one
+client of the same EL release):
+
+| Test            | Spec files              | What it checks |
+| --------------- | ----------------------- | -------------- |
+| `simp-defaults` | `00`-`02`, `03`, `04`   | Install and bootstrap; `simp:defaults` is enforced through the `compliance_engine::enforcement` Hiera backend (e.g. `Service[sshd]` is managed); another agent run changes nothing; baseline OpenSCAP STIG scan of the client |
+| `disa`          | `00`-`02`, `90`         | Install and bootstrap; enforce a Sicura DISA STIG profile ahead of `simp:defaults`; OpenSCAP STIG scan of the client |
+| `all`           | all of the above        | |
+
+The OpenSCAP scans are report-only. Each writes `results.xml`, `report.html`
+and `oscap.log` to `sec_results/openscap/<scan>/<host>/` and a row with the
+score to `sec_results/openscap/summary.md`.
+
+To run one locally, pass the spec files to `rspec` with a nodeset:
+
+```bash
+export BEAKER_HYPERVISOR=vagrant_libvirt BEAKER_PUPPET_COLLECTION=openvox9
+export BEAKER_setfile=spec/acceptance/nodesets/el9_stack.yml
+bundle exec rspec spec/acceptance/suites/default/0{0,1,2,3,4}_*_spec.rb
+```
+
 #### yum repositories enabled
 
 This test enables EPEL, SIMP 6 (simp-community-simp), SIMP 6 dependencies
@@ -132,7 +157,7 @@ Details:
 1. Installs assets:
 
    * Creates a Puppetfile containing only the asset entries from
-     `Puppetfile.pinned`
+     `Puppetfile.pinned` (see `BEAKER_puppetfile`)
    * Downloads assets to a staging directory via `r10k puppetfile install` of
      the asset Puppetfile
    * Manually completes asset installation using commands that (largely) mimic
@@ -144,14 +169,25 @@ Details:
 4. Installs modules:
 
    * In the production environment creates a Puppetfile containing only the
-     module entries from `Puppetfile.pinned`
+     module entries from `Puppetfile.pinned` (see `BEAKER_puppetfile`)
    * Downloads modules to the production environment's module directory via
      `r10k puppetfile install` of the module Puppetfile
    * Uses `simp` CLI to fix the permissions of the downloaded modules
 
 #### Environment variables
 
-See [Common Environment Variables](#common-environment-variables)
+See [Common Environment Variables](#common-environment-variables). In
+addition, `90_compliance_enforcement_spec.rb` uses:
+
+* `BEAKER_compliance_profile` - the profile enforced ahead of `simp:defaults`
+  (default `disa:mac-1:classified`)
+* `BEAKER_sicura_disa_ref`, `BEAKER_sicura_el_ref` - git refs of
+  [sicura-simp_enterprise_el_disa](https://github.com/sicuraus/sicura-simp_enterprise_el_disa)
+  and its companion
+  [sicura-simp_enterprise_el](https://github.com/sicuraus/sicura-simp_enterprise_el),
+  installed with r10k (no dependency resolution, so their `metadata.json`
+  caps don't apply)
+* `BEAKER_openscap_profile` - XCCDF profile for the scans (default `stig`)
 
 
 ### `ipa` Suite
@@ -394,6 +430,24 @@ for more detailed instructions.
 
 Below are common environment variables used in the integration/(pre-)release test
 suites.
+
+#### `BEAKER_puppetfile`
+
+The simp-core Puppetfile that suites installing from a Puppetfile use.
+
+* **unset** or **pinned** - `Puppetfile.pinned`
+* **branches** - `Puppetfile.branches`
+* **path** - any Puppetfile laid out like `Puppetfile.pinned`
+
+#### `BEAKER_puppetfile_overrides`
+
+Replaces (or, for a name not in the Puppetfile, adds as a Puppet module)
+Puppetfile entries, to test unmerged changes. Entries are separated by
+spaces or commas:
+
+```
+simp-ssh=https://github.com/someone/pupmod-simp-ssh#my-branch simp-environment=https://github.com/someone/simp-environment-skeleton#other-branch
+```
 
 #### `BEAKER_repo`
 

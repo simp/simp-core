@@ -10,10 +10,11 @@ describe 'Install SIMP modules and assets via r10K' do
   context 'all hosts prep' do
     set_up_options = {
       :root_password => test_password(:root),
+      # There are no SIMP 7 package repositories (download.simp-project.com
+      # stops at SIMP 6.6 / EL8), and nothing installed here needs them:
+      # the modules and assets come from the Puppetfile and r10k.
       :repos         => [
         :epel,
-        :simp,      # TODO verify if this necessary
-        :simp_deps,
         :puppet
       ]
     }
@@ -59,8 +60,8 @@ describe 'Install SIMP modules and assets via r10K' do
       on(master, 'simp environment new production --no-puppetfile-gen')
     end
 
-    it 'should create a Puppetfile in production env from Puppetfile.pinned' do
-      file_content = create_r10k_puppetfile('Puppetfile.pinned', 'src/puppet/modules')
+    it "should create a Puppetfile in production env from #{simp_core_puppetfile}" do
+      file_content = create_r10k_puppetfile(simp_core_puppetfile, 'src/puppet/modules')
       create_remote_file(master, "#{production_env_dir}/Puppetfile", file_content)
     end
 

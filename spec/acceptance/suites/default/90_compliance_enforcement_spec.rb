@@ -1,185 +1,129 @@
 require 'spec_helper_integration'
+require 'json'
 
-test_name 'compliance reporting and enforcement'
+test_name 'DISA STIG enforcement with the Compliance Engine'
 
 master = only_host_with_role(hosts, 'master')
 agents = hosts_with_role(hosts, 'agent')
+clients = agents - [master]
 
-describe 'compliance reporting and enforcement' do
+# Enforces a Sicura DISA STIG profile together with simp:defaults on every
+# node, the way a site would add it:
+#
+# 1. Install sicura-simp_enterprise_el_disa (the profile data) and
+#    sicura-simp_enterprise_el (the classes and defines that data drives)
+#    into the production environment with r10k. r10k does no dependency
+#    resolution, so the modules' metadata.json caps (OpenVox, pupmod, simp,
+#    simp_openldap, ...) are not applied; Puppet itself ignores them.
+# 2. Set compliance_engine::enforcement to [<profile>, 'simp:defaults'].
+#    The first-listed profile wins for scalar values, so the DISA profile
+#    must come first.
+# 3. Run Puppet and reboot, then scan the clients with OpenSCAP (report-only).
+#
+# Environment variables:
+#   BEAKER_compliance_profile  - profile to enforce (default disa:mac-1:classified)
+#   BEAKER_sicura_disa_ref     - git ref of sicura-simp_enterprise_el_disa
+#   BEAKER_sicura_el_ref       - git ref of sicura-simp_enterprise_el
+describe 'DISA STIG enforcement with the Compliance Engine' do
+  compliance_profile = ENV.fetch('BEAKER_compliance_profile', 'disa:mac-1:classified')
 
-  let(:compliance_profile) { 'disa_stig' }
+  let(:prod_env_dir) { '/etc/puppetlabs/code/environments/production' }
+  let(:prod_env_default_yaml) { File.join(prod_env_dir, 'data', 'default.yaml') }
+  let(:r10k) { '/opt/puppetlabs/puppet/bin/r10k' }
 
-  context 'beaker workarounds' do
-    agents.each do |host|
-      # Work around Vagrant and cipher restrictions in EL8+.
-      # This allows ssh-rsa in PubkeyAcceptedKeyTypes.
-      munge_ssh_crypto_policies(host)
+  let(:sicura_puppetfile) do
+    <<~PUPPETFILE
+      mod 'sicura-simp_enterprise_el_disa',
+        :git => 'https://github.com/sicuraus/sicura-simp_enterprise_el_disa',
+        :ref => '#{ENV.fetch('BEAKER_sicura_disa_ref', '3.2.1')}'
 
-      ensure_ssh_connection(host)
-    end
+      mod 'sicura-simp_enterprise_el',
+        :git => 'https://github.com/sicuraus/sicura-simp_enterprise_el',
+        :ref => '#{ENV.fetch('BEAKER_sicura_el_ref', '3.0.5')}'
+    PUPPETFILE
   end
 
-  context 'master setup' do
-    let(:prod_env_dir) { '/etc/puppetlabs/code/environments/production' }
-    let(:prod_env_hiera_yaml) { File.join(prod_env_dir, 'hiera.yaml') }
-    let(:prod_env_default_yaml) { File.join(prod_env_dir, 'data', 'default.yaml') }
-    let(:prod_env_site_pp) { File.join(prod_env_dir, 'manifests', 'site.pp') }
-
-    it 'should configure the compliance profile for reporting' do
-      site_pp = on(master, "cat #{prod_env_site_pp}").stdout
-      if site_pp.match(/\n\$compliance_profile\s*=\s/).nil?
-        # set profile in hieradata
-        hiera = YAML.load(on(master, "cat #{prod_env_default_yaml}").stdout)
-        default_yaml = hiera.merge( 'compliance_markup::validate_profiles' => [compliance_profile])
-        create_remote_file(master, "#{prod_env_default_yaml}", default_yaml.to_yaml)
-        on(master, "cat #{prod_env_default_yaml}")
-      else
-        # set global $compliance_profile
-        site_pp.gsub!(/\n\$compliance_profile\s*=\s.+?\n/,
-          "\n$compliance_profile = '#{compliance_profile}'\n")
-        create_remote_file(master, prod_env_site_pp, site_pp)
-        on(master, "cat #{prod_env_site_pp}")
-      end
+  context 'puppetserver setup' do
+    it 'installs the Sicura DISA STIG modules into the production environment' do
+      create_remote_file(master, '/root/Puppetfile.sicura', sicura_puppetfile)
+      retry_on(master,
+        "#{r10k} puppetfile install -v info --moduledir=#{prod_env_dir}/modules --puppetfile=/root/Puppetfile.sicura",
+        desired_exit_codes: [0],
+        retry_interval: 15,
+        max_retries: 3,
+        verbose: true.to_s)
+      on(master, 'simp environment fix production --no-secondary-env --no-writable-env')
     end
 
-    it 'should configure the environment for the compliance engine backend' do
-      hiera_yaml = YAML.load( on(master, "cat #{prod_env_hiera_yaml}").stdout )
-      has_compliance = false
-      hiera_yaml['hierarchy'].each do |entry|
-        if entry.has_key?('lookup_key') and entry['lookup_key'] == 'compliance_markup::enforcement'
-          has_compliance = true
-          break
-        end
-      end
-      if has_compliance
-        puts '>>> Compliance engine backend is already configured'
-      else
-        puts '>>> Adding compliance engine backend to hiera.yaml'
-        # add it just before the final entry (SIMP specific data) or
-        # any test overrides that allow the user to login to the box as
-        # root will fail
-        hierarchy = hiera_yaml['hierarchy'].dup
-        last = hierarchy.pop
-        hierarchy << {'name' => 'Compliance', 'lookup_key' => 'compliance_markup::enforcement'}
-        hierarchy << last
-        hiera_yaml['hierarchy'] = hierarchy
-        create_remote_file(master, prod_env_hiera_yaml, hiera_yaml.to_yaml)
-        on(master, "cat #{prod_env_hiera_yaml}")
-      end
-    end
+    it "enforces #{compliance_profile} before simp:defaults" do
+      hiera = YAML.safe_load(on(master, "cat #{prod_env_default_yaml}").stdout) || {}
 
-    it 'should run puppet successfully' do
-      # Adjust hiera
-      hiera = YAML.load(on(master, "cat #{prod_env_default_yaml}").stdout)
+      hiera['compliance_engine::enforcement'] = [compliance_profile, 'simp:defaults']
 
-      # Restore settings turned off in the disable tests, as we have inserted the
-      # compliance engine after default.yaml in the data hierarchy
-      hiera.delete('selinux::ensure')
-      hiera['simp_options::fips'] = true
-      hiera.delete('auditd::enable')
-
-      # Add compliance settings
-      hiera['compliance_markup::report_types'] = ['full']
-      hiera['compliance_markup::enforcement'] = [compliance_profile]
-
-      # This selinux setting will allow vagrant to sudo su to
-      # root after the compliance profile is enforced.
+      # Keep the nodes usable by the test after enforcement:
+      # - The STIG profiles turn on repo_gpgcheck, which breaks repos that
+      #   don't sign their metadata (the profile's README recommends this).
+      hiera['yum::config_options'] = { 'repo_gpgcheck' => false }
+      # - Let the vagrant user keep sudo to root under the STIG SELinux
+      #   user mappings.
       hiera['selinux::login_resources'] = {
-        '__default__' => {
-          'seuser'    => 'user_u',
-          'mls_range' => 's0'
-        },
-        'vagrant'     => {
-          'seuser'    => 'staff_u',
-          'mls_range' => 's0-s0:c0.c1023'
-        }
+        '__default__' => { 'seuser' => 'user_u', 'mls_range' => 's0' },
+        'vagrant' => { 'seuser' => 'staff_u', 'mls_range' => 's0-s0:c0.c1023' },
       }
+      if hiera.dig('sudo::user_specifications', 'vagrant_all')
+        hiera['sudo::user_specifications']['vagrant_all']['options'] = { 'role' => 'unconfined_r' }
+      end
 
-      # This addition to the sudo specification allows the user to sudo su to
-      # root without specifying the selinux role, i.e.,
-      #   sudo su - root
-      # instead of
-      #   sudo -r unconfined_r su - root
-      hiera['sudo::user_specifications']['vagrant_all']['options'] = {
-        'role' => 'unconfined_r'
-      }
+      set_default_yaml(master, hiera)
+      on(master, 'simp environment fix production --no-secondary-env --no-writable-env')
+    end
 
-      create_remote_file(master, "#{prod_env_default_yaml}", hiera.to_yaml)
-      on(master, "cat #{prod_env_default_yaml}")
-
-      result = on(master, 'puppet agent -t', :accept_all_exit_codes => true).output.strip
-      expect(result).to_not match /parameter .+ expects .+ got/m
+    it 'resolves the enforcement list on the puppetserver' do
+      result = on(master, 'puppet lookup --environment production --render-as json compliance_engine::enforcement')
+      expect(JSON.parse(result.stdout)).to eq([compliance_profile, 'simp:defaults'])
     end
   end
 
-  context 'agent run' do
-    agents.each do |host|
-      it 'should ensure SSH connectivity' do
-        ensure_ssh_connection(host)
-      end
-
-      it 'should run puppet successfully' do
-        result = on(host, 'puppet agent -t', :accept_all_exit_codes => true).output.strip
-        expect(result).to_not match /parameter .+ expects .+ got/m
-      end
-    end
-
-    it 'should reboot the agents to apply boot time config' do
-      # this will also re-establish beaker's ssh connection with
-      # the correct ciphers
-      block_on(agents, :run_in_parallel => false) do |agent|
-        agent.reboot
-      end
-    end
-
+  context 'puppet runs' do
+    # Exit codes 0 and 2 (changes) are fine; 1, 4 and 6 mean failures.
     hosts.each do |host|
-      it 'should ensure SSH connectivity' do
+      it "applies the profile on #{host}" do
         ensure_ssh_connection(host)
+        result = on(host, 'puppet agent -t --detailed-exitcodes', acceptable_exit_codes: [0, 1, 2, 4, 6])
+        expect(result.output).not_to match(%r{parameter .+ expects .+ got}m)
+        expect(result.output).not_to match(%r{Could not retrieve catalog})
+
+        # Some resources depend on others applied in the same run
+        on(host, 'puppet agent -t --detailed-exitcodes', acceptable_exit_codes: [0, 2])
+      end
+    end
+
+    it 'reboots the clients to apply boot-time settings (FIPS, kernel parameters)' do
+      clients.each(&:reboot)
+    end
+
+    clients.each do |host|
+      it "has no failures after the reboot on #{host}" do
+        munge_ssh_crypto_policies(host)
+        ensure_ssh_connection(host)
+        retry_on(host, 'puppet agent -t --detailed-exitcodes',
+          desired_exit_codes: [0, 2],
+          retry_interval: 15,
+          max_retries: 3,
+          verbose: true.to_s)
+      end
+
+      it "reports the profile in the catalog of #{host}" do
+        certname = on(host, 'puppet config print certname').stdout.strip
+        client_datadir = on(host, 'puppet config print client_datadir').stdout.strip
+        catalog = JSON.parse(on(host, "cat #{client_datadir}/catalog/#{certname}.json").stdout)
+        classes = catalog['resources'].select { |r| r['type'] == 'Class' }.map { |r| r['title'] }
+        expect(classes).to include('Simp_enterprise_el')
       end
     end
   end
 
-  context 'compliance reports on the master' do
-    let(:sec_results_dir) {
-      # simp-core/sec_results
-      sec_results_root = File.join(File.expand_path(File.join(File.dirname(__FILE__), '..', '..', '..', '..')), 'sec_results')
-      File.join(sec_results_root, File.basename(File.dirname(__FILE__)))
-    }
-
-    agents.each do |host|
-      context "a valid report for #{host}" do
-        let(:fqdn) { fact_on(host, 'networking.fqdn') }
-        let(:host_sec_results_dir) { File.join(sec_results_dir, fqdn) }
-        let(:report_file) { File.join(host_sec_results_dir, 'compliance_report.json') }
-
-        it 'should have a report' do
-          FileUtils.mkdir_p(host_sec_results_dir)
-          # scp will fail if this is a locked down directory
-          FileUtils.chmod_R('o+rX', host_sec_results_dir)
-          on(master, 'ls /opt/puppetlabs/server/data/puppetserver/simp/compliance_reports')
-          scp_from(master, "/opt/puppetlabs/server/data/puppetserver/simp/compliance_reports/#{fqdn}/compliance_report.json", host_sec_results_dir)
-
-          expect { JSON.load(File.read(report_file)) }.to_not raise_error
-        end
-
-        it 'should have host metadata' do
-          expect(JSON.load(File.read(report_file))['fqdn']).to eq(fqdn)
-        end
-
-        it 'should have a passing compliance profile report' do
-          compliance_report = JSON.load(File.read(report_file))
-          expect(compliance_report['compliance_profiles']).to_not be_empty
-          expect(compliance_report['compliance_profiles'][compliance_profile]).to_not be_empty
-          expect(compliance_report['compliance_profiles'][compliance_profile]['summary']).to_not be_empty
-
-          # We need to make sure this is true in the future but the tests
-          # successfully prove that the subsystem is working properly across
-          # the board.
-          #
-          # expect(compliance_report['compliance_profiles'][compliance_profile]['summary']['percent_compliant']).to be == 100
-        end
-      end
-    end
+  context 'OpenSCAP' do
+    include_examples 'OpenSCAP scan', clients, label: compliance_profile.tr(':', '_')
   end
-
 end

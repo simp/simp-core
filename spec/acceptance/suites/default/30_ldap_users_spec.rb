@@ -15,9 +15,9 @@ test_name 'LDAP user access'
 # facts gathered here are executed when the file first loads and
 # use the factor gem temporarily installed into system ruby
 puppetserver      = only_host_with_role(hosts, 'master')
-puppetserver_fqdn = fact_on(puppetserver, 'fqdn')
+puppetserver_fqdn = host_fqdn(puppetserver)
 agents            = hosts_with_role(hosts, 'agent')
-ldap_is_389ds     = (fact_on(puppetserver, 'operatingsystemmajrelease') != '7')
+ldap_is_389ds     = true # SIMP's LDAP server is 389-DS on EL8+
 
 # subset of LDAP users for whom we want to execute login tests
 ldap_users_with_ssh_access  = [ 'admin2', 'auditor1' ]
