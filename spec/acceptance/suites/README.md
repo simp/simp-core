@@ -107,9 +107,10 @@ clients, and then executes the following tests:
    * Re-bootstrap (second `simp bootstrap`)
    * Subset of `simp environment new` operations
 
-5. _Compliance enforcement and reporting_: Enables compliance enforcement and
-   reporting via the `simp-compliance_markup` module and then evaluates the
-   results.
+5. _Compliance enforcement_: Adds a Sicura DISA STIG profile to the
+   environment's Puppetfile, enforces it ahead of `simp:defaults` through
+   the Compliance Engine (`compliance_engine::enforcement`), and scans the
+   clients with OpenSCAP (report-only).
 
 #### Full-stack tests run by GitHub Actions
 

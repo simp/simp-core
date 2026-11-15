@@ -15,9 +15,10 @@
 # OpenSCAP scans are report-only: the scores go to the job summary and the
 # results and HTML reports are uploaded as an artifact.
 #
-# Weekly and on workflow_dispatch with no inputs changed, every test runs
-# on EL8, EL9 and EL10. Tags test Puppetfile.pinned only, so each release
-# tag records a whole-stack run of exactly what it pins.
+# Weekly, every test runs on EL8, EL9 and EL10 for both Puppetfile.pinned
+# and Puppetfile.branches. Tags test Puppetfile.pinned only, so each release
+# tag records a whole-stack run of exactly what it pins. workflow_dispatch
+# runs any one test, OS or Puppetfile on demand (see the inputs).
 ---
 name: 'Full-stack acceptance'
 
@@ -27,12 +28,6 @@ name: 'Full-stack acceptance'
   push:
     tags:
       - '*'
-  # TEMPORARY, while the PR is a draft: run on pushes to it
-  pull_request:
-    paths:
-      - '.github/workflows/full_stack.yml'
-      - 'spec/acceptance/**'
-      - 'spec/spec_helper_integration.rb'
   workflow_dispatch:
     inputs:
       test:
@@ -116,7 +111,6 @@ jobs:
           case "$EVENT" in
             schedule) puppetfile=both ;;
             push) puppetfile=pinned ;;
-            pull_request) puppetfile=branches ;; # TEMPORARY
             *) puppetfile="${IN_PUPPETFILE:-pinned}" ;;
           esac
 
@@ -157,8 +151,7 @@ jobs:
       BEAKER_setfile: spec/acceptance/nodesets/${{ matrix.os }}_stack.yml
       BEAKER_PUPPET_COLLECTION: ${{ inputs.puppet_collection || 'openvox9' }}
       BEAKER_puppetfile: ${{ matrix.puppetfile }}
-      # TEMPORARY pull_request overrides: unmerged PRs the stack needs
-      BEAKER_puppetfile_overrides: ${{ github.event_name == 'pull_request' && 'simp-environment=https://github.com/silug/simp-environment-skeleton#compliance-engine simp-ssh=https://github.com/silug/pupmod-simp-ssh#simp-defaults-no-tcpwrappers simp-compliance_engine=https://github.com/simp/rubygem-simp-compliance_engine#main' || inputs.puppetfile_overrides }}
+      BEAKER_puppetfile_overrides: ${{ inputs.puppetfile_overrides }}
       BEAKER_extra_hieradata: ${{ inputs.extra_hieradata }}
       BEAKER_simp_puppetdb: ${{ inputs.puppetdb && 'yes' || 'no' }}
       BEAKER_compliance_profile: ${{ inputs.compliance_profile || 'disa:mac-1:classified' }}
