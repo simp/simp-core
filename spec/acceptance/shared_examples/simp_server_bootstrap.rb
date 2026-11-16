@@ -82,9 +82,6 @@ shared_examples 'SIMP server bootstrap' do |master, config|
         #
         # The following variables are require only by simp_conf.yaml.erb
         #   ldap_root_password_hash
-        #
-        # The following variables are require only by simp_conf.yaml_no_ldap.erb
-        #   sssd_domains
 
         trusted_nets =  host_networks(master)
         expect(trusted_nets).to_not be_empty
@@ -102,10 +99,6 @@ shared_examples 'SIMP server bootstrap' do |master, config|
 
         if config.fetch(:simp_ldap_server, true)
           ldap_root_password_hash = encrypt_openldap_password(test_password(:ldap_root))
-        else
-  #FIXME Is this still required?
-          el7_master = (pfact_on(master, 'os.release.major') == '7')
-          sssd_domains = el7_master ? ['local'] : []
         end
 
         if config.has_key?(:simp_scenario)

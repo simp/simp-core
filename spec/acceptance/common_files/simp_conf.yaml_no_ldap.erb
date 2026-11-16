@@ -225,18 +225,12 @@ simp_options::syslog::log_servers: <%= (syslog_server_fqdns.nil? or syslog_serve
 # you can override it in Hiera.
 simp_options::trusted_nets: <%= (trusted_nets.nil? or trusted_nets.empty?) ? '[]': '[ ' + trusted_nets.join(', ') + ' ]' %>
 
-# === sssd::domains ===
-# A list of domains for SSSD to use.
-#
-# * When you are using SIMP-provided LDAP, this field should include `LDAP`,
-#   the name of the SSSD domain SIMP creates.
-# * This field may include 'LOCAL', to use the domain SIMP creates with
-#   the 'files' provider.
-#
-# IMPORTANT: For EL < 8, this field *MUST* have a valid domain or the sssd
-# service will fail to start.
-#
-sssd::domains: <%= (sssd_domains.nil? or sssd_domains.empty?) ? '[]': '[ ' + sssd_domains.join(', ') + ' ]' %>
+# === sssd::domains_entries ===
+# Not set: without SIMP-provided LDAP, `simp config` does not manage SSSD
+# domains, so the sssd module's defaults (and any compliance profile) apply.
+# To manage domains, add a Hash of domain name to options, for example
+#   sssd::domains_entries:
+#     MYDOMAIN: {}
 
 # === svckill::mode ===
 # Strategy svckill should use when it encounters undeclared services.
