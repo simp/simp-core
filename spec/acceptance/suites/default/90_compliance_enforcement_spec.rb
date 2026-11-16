@@ -98,8 +98,19 @@ describe 'DISA STIG enforcement with the Compliance Engine' do
     end
   end
 
+  # Puppet failures under the profile (exit codes 1, 4 and 6) are recorded
+  # here and reported at the end, so the OpenSCAP scan still runs and shows
+  # what was enforced. A catalog that doesn't compile fails at once.
+  puppet_failures = {}
+
   context 'puppet runs' do
-    # Exit codes 0 and 2 (changes) are fine; 1, 4 and 6 mean failures.
+    record_run = lambda do |host, result|
+      next if [0, 2].include?(result.exit_code)
+
+      errors = result.output.lines.grep(%r{^\S*\s*Error:}).map(&:strip).uniq
+      puppet_failures[host.name] = errors.empty? ? ["exit code #{result.exit_code}"] : errors
+    end
+
     hosts.each do |host|
       it "applies the profile on #{host}" do
         ensure_ssh_connection(host)
@@ -108,7 +119,7 @@ describe 'DISA STIG enforcement with the Compliance Engine' do
         expect(result.output).not_to match(%r{Could not retrieve catalog})
 
         # Some resources depend on others applied in the same run
-        on(host, 'puppet agent -t --detailed-exitcodes', acceptable_exit_codes: [0, 2])
+        record_run.call(host, on(host, 'puppet agent -t --detailed-exitcodes', acceptable_exit_codes: [0, 1, 2, 4, 6]))
       end
     end
 
@@ -117,14 +128,13 @@ describe 'DISA STIG enforcement with the Compliance Engine' do
     end
 
     clients.each do |host|
-      it "has no failures after the reboot on #{host}" do
+      it "runs Puppet again after the reboot on #{host}" do
         munge_ssh_crypto_policies(host)
         ensure_ssh_connection(host)
-        retry_on(host, 'puppet agent -t --detailed-exitcodes',
-          desired_exit_codes: [0, 2],
-          retry_interval: 15,
-          max_retries: 3,
-          verbose: true.to_s)
+        result = on(host, 'puppet agent -t --detailed-exitcodes', acceptable_exit_codes: [0, 1, 2, 4, 6])
+        expect(result.output).not_to match(%r{Could not retrieve catalog})
+        puppet_failures.delete(host.name)
+        record_run.call(host, result)
       end
 
       it "reports the profile in the catalog of #{host}" do
@@ -139,5 +149,12 @@ describe 'DISA STIG enforcement with the Compliance Engine' do
 
   context 'OpenSCAP' do
     include_examples 'OpenSCAP scan', clients, label: compliance_profile.tr(':', '_')
+  end
+
+  context 'enforcement result' do
+    it 'applied the profile without Puppet failures' do
+      message = puppet_failures.map { |host, errors| "#{host}:\n  #{errors.join("\n  ")}" }.join("\n")
+      expect(puppet_failures).to be_empty, "Puppet failures under #{compliance_profile}:\n#{message}"
+    end
   end
 end
