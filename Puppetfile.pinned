@@ -258,6 +258,10 @@ mod 'simp-nfs',
   :git => 'https://github.com/simp/pupmod-simp-nfs',
   :tag => '8.1.0'
 
+mod 'simp-nm',
+  :git => 'https://github.com/simp/pupmod-simp-nm',
+  :ref => '485b7b3ce4cf35bba0f2c62188c50c364405db80'
+
 mod 'simp-oath',
   :git => 'https://github.com/simp/pupmod-simp-oath',
   :tag => '1.1.0'
@@ -440,6 +444,10 @@ mod 'puppet-nsswitch',
 mod 'puppet-chrony',
   :git => 'https://github.com/simp/pupmod-voxpupuli-chrony',
   :tag => 'v5.0.0'
+
+mod 'puppet-extlib',
+  :git => 'https://github.com/simp/pupmod-voxpupuli-extlib',
+  :tag => 'v8.5.0'
 
 mod 'puppet-firewalld',
   :git => 'https://github.com/simp/pupmod-voxpupuli-firewalld',
