@@ -78,6 +78,10 @@ mod 'puppet-augeasproviders_sysctl',
   :git => 'https://github.com/simp/augeasproviders_sysctl',
   :tag => 'v4.1.0'
 
+mod 'puppet-authselect',
+  :git => 'https://github.com/simp/puppet-authselect',
+  :tag => 'v2.0.0'
+
 mod 'simp-gpasswd',
   :git => 'https://github.com/simp/puppet-gpasswd',
   :tag => '2.2.1'
@@ -328,7 +332,7 @@ mod 'simp-simp_apache',
 
 mod 'simp-simp_authselect',
   :git => 'https://github.com/simp/pupmod-simp-simp_authselect',
-  :tag => '1.1.0'
+  :tag => '1.1.1'
 
 mod 'simp-simp_banners',
   :git => 'https://github.com/simp/pupmod-simp-simp_banners',
