@@ -109,6 +109,7 @@ module StackCatalogs
         '--vardir', File.join(StackHelper.work_dir, 'puppet', 'var'),
         '--codedir', File.join(StackHelper.work_dir, 'puppet', 'code'),
         '--environmentpath', environmentpath,
+        '--vendormoduledir', StackHelper.vendordir,
         '--strict', 'warning'
       ],
     )

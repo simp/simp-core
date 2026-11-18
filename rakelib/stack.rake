@@ -14,6 +14,8 @@
 #
 # Environment variables:
 #   STACK_MODULEDIR        install into (or use an existing) module directory
+#   STACK_VENDORDIR        install the vendored core modules into (or use an
+#                          existing) directory
 #   STACK_SKELETON         use an existing simp-environment-skeleton checkout
 #   STACK_SKELETON_REPO    clone from this URL
 #                          (default https://github.com/simp/simp-environment-skeleton.git)
@@ -21,6 +23,22 @@
 
 namespace :stack do
   stack_dir = File.join(__dir__, '..', 'tmp', 'stack')
+
+  # The modules the openvox-agent and openvox-server packages vendor in
+  # /opt/puppetlabs/puppet/vendor_modules. A SIMP server compiles with them
+  # (pupmod's `cron` resources, for example), but the openvox gem doesn't
+  # ship them, so install them for the catalog check.
+  vendored_modules = [
+    'puppetlabs-augeas_core',
+    'puppetlabs-cron_core',
+    'puppetlabs-host_core',
+    'puppetlabs-mount_core',
+    'puppetlabs-scheduled_task',
+    'puppetlabs-selinux_core',
+    'puppetlabs-sshkeys_core',
+    'puppetlabs-yumrepo_core',
+    'puppetlabs-zfs_core',
+  ]
 
   set_env = ->(args) do
     args.with_defaults(puppetfile: 'pinned')
@@ -30,6 +48,7 @@ namespace :stack do
 
     ENV['STACK_PUPPETFILE'] = args[:puppetfile]
     ENV['STACK_MODULEDIR'] ||= File.expand_path(File.join(stack_dir, args[:puppetfile], 'modules'))
+    ENV['STACK_VENDORDIR'] ||= File.expand_path(File.join(stack_dir, args[:puppetfile], 'vendor_modules'))
   end
 
   desc 'Install the Puppet modules from Puppetfile.<puppetfile> (pinned or branches) with r10k'
@@ -49,6 +68,12 @@ namespace :stack do
     puppetfile = File.join(File.dirname(moduledir), 'Puppetfile')
     File.write(puppetfile, modules.sub(%r{\Amoduledir\s+\S+}, "moduledir '#{moduledir}'"))
     sh 'r10k', 'puppetfile', 'install', '--puppetfile', puppetfile, '--moduledir', moduledir, '--force'
+
+    vendordir = ENV.fetch('STACK_VENDORDIR')
+    FileUtils.mkdir_p(vendordir)
+    vendor_puppetfile = File.join(File.dirname(vendordir), 'Puppetfile.vendor')
+    File.write(vendor_puppetfile, vendored_modules.map { |m| "mod '#{m}'\n" }.join)
+    sh 'r10k', 'puppetfile', 'install', '--puppetfile', vendor_puppetfile, '--moduledir', vendordir, '--force'
   end
 
   desc 'Clone simp-environment-skeleton (STACK_SKELETON_REF, default master)'

@@ -8,6 +8,7 @@
 # Environment variables (set by rakelib/stack.rake):
 #   STACK_PUPPETFILE  Puppetfile suffix: `pinned` (default) or `branches`
 #   STACK_MODULEDIR   Directory the Puppetfile was installed into
+#   STACK_VENDORDIR   Directory the vendored core modules were installed into
 #   STACK_SKELETON    simp-environment-skeleton checkout (catalog checks)
 
 require 'json'
@@ -29,6 +30,10 @@ module StackHelper
 
   def moduledir
     ENV.fetch('STACK_MODULEDIR', File.join(work_dir, 'modules'))
+  end
+
+  def vendordir
+    ENV.fetch('STACK_VENDORDIR', File.join(work_dir, 'vendor_modules'))
   end
 
   def skeleton_dir
