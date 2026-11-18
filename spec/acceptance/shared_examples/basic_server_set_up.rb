@@ -1,7 +1,7 @@
 require_relative '../helpers'
 
 include Acceptance::Helpers::RepoHelper
-include Acceptance::Helpers::SystemGemHelper
+include Acceptance::Helpers::Utils
 
 # options keys:
 #   :root_password - plain text password for the root user
@@ -26,11 +26,15 @@ shared_examples 'basic server setup' do |host, options|
 
   it 'should install necessary repos' do
     if options.has_key?(:repos) && !options[:repos].empty?
-      host.install_package('epel-release') if options[:repos].include?(:epel)
+      if options[:repos].include?(:epel)
+        # Oracle Linux ships EPEL as oracle-epel-release-el<N>
+        os_id, os_maj = on(host, '. /etc/os-release && echo "${ID} ${VERSION_ID%%.*}"').stdout.split
+        host.install_package(os_id == 'ol' ? "oracle-epel-release-el#{os_maj}" : 'epel-release')
+      end
 
       set_up_simp_main = options[:repos].include?(:simp)
       set_up_simp_deps = options[:repos].include?(:simp_deps)
-      set_up_simp_repos(host, set_up_simp_main, set_up_simp_deps)
+      set_up_simp_repos(host, set_up_simp_main, set_up_simp_deps) if set_up_simp_main || set_up_simp_deps
 
       install_puppet_repo(host) if options[:repos].include?(:puppet)
 
@@ -39,28 +43,16 @@ shared_examples 'basic server setup' do |host, options|
   end
 
   it 'should ensure hostname is set to a FQDN' do
-    # FQDN fact seems to be correct even though all the places hostname must
-    # be set may not be. This can break apps such as rsyslog.
-    fqdn = fact_on(host, 'fqdn')
-    on(host, "hostname #{fqdn}")
-    on(host, "echo #{fqdn} > /etc/hostname")
-    on(host, "sed -i '/HOSTNAME/d' /etc/sysconfig/network")
-    on(host, "echo HOSTNAME=#{fqdn} >> /etc/sysconfig/network")
+    # spec_helper_integration's ensure_fqdns sets this up; apps such as
+    # rsyslog break without it
+    fqdn = host_fqdn(host)
+    expect(fqdn).to include('.')
+    on(host, "hostnamectl set-hostname #{fqdn}")
   end
 
   # Some scripts (e.g. simp CLI) require Puppet's Ruby and more capable facts.
   it "should install the agent package to ensure Puppet's Ruby and facter are installed" do
-    puppet_collection = puppet_collection_for(host)
-    gem_name = puppet_collection.sub(/\d+.*\z/, '') # 'openvox' or 'puppet'
-    package_name = (gem_name == 'openvox') ? 'openvox-agent' : 'puppet-agent'
-
-    # will install a specific agent version if PUPPET_VERSION is set
-    puppet_version = latest_puppet_agent_version_for(ENV['PUPPET_VERSION'], gem_name)
-    host.install_package(package_name, '', puppet_version)
-  end
-
-  it 'should remove temporary system factor gem required for beaker host prep' do
-    uninstall_system_factor_gem(host)
+    install_puppet_agent(host)
   end
 
   it 'should ensure FIPS mode is set per test' do

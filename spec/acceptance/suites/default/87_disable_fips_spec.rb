@@ -3,7 +3,7 @@ require 'spec_helper_integration'
 test_name 'disabling FIPS after fully configured with FIPS enabled'
 
 master      = only_host_with_role(hosts, 'master')
-master_fqdn = fact_on(master, 'fqdn')
+master_fqdn = host_fqdn(master)
 agents      = hosts_with_role(hosts, 'agent')
 
 describe 'disabling FIPS after fully configured with FIPS enabled' do

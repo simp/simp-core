@@ -10,7 +10,7 @@ non_syslog_servers = hosts - syslog_servers
 master      = only_host_with_role(hosts, 'master')
 # facts gathered here are executed when the file first loads and
 # use the factor gem temporarily installed into system ruby
-domain = fact_on(master, 'domain')
+domain = host_domain(master)
 
 describe 'Validation of rsyslog forwarding' do
   options = {

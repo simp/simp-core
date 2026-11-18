@@ -1,0 +1,221 @@
+# Whole-stack acceptance ("layer 3"): bring up a SIMP server and client in
+# Vagrant/libvirt VMs, install SIMP the way a site would, and test it.
+#
+# Tests (spec/acceptance/suites/default), each in its own job and VMs:
+#   simp-defaults  AlmaLinux 8/9/10: install the modules and assets from the
+#                  Puppetfile with r10k, `simp config`, `simp bootstrap`,
+#                  bootstrap the client, check that simp:defaults is
+#                  enforced through the Compliance Engine and that another
+#                  agent run changes nothing, then an OpenSCAP STIG scan of
+#                  the client
+#   disa           Oracle Linux 8/9: the same install, bootstrap and baseline
+#                  scan, then enforce a Sicura DISA STIG profile ahead of
+#                  simp:defaults and scan the client again. Sicura's DISA
+#                  data has Oracle Linux 8/9 benchmarks; it has none for
+#                  OL10, and its RHEL ones only apply to RHEL itself.
+#
+# OpenSCAP scans are report-only: the scores go to the job summary and the
+# results and HTML reports are uploaded as an artifact.
+#
+# Weekly, both tests run on every release for both Puppetfile.pinned and
+# Puppetfile.branches. Tags test Puppetfile.pinned only, so each release
+# tag records a whole-stack run of exactly what it pins. workflow_dispatch
+# runs any one test, release or Puppetfile on demand (see the inputs).
+---
+name: 'Full-stack acceptance'
+
+'on':
+  schedule:
+    - cron: '37 4 * * 1'
+  push:
+    tags:
+      - '*'
+  workflow_dispatch:
+    inputs:
+      test:
+        description: 'Which test to run (all = both, in separate jobs)'
+        type: choice
+        options: [all, simp-defaults, disa]
+        default: all
+      os:
+        description: >-
+          EL major release of the server and client (AlmaLinux for
+          simp-defaults, Oracle Linux for disa; disa has no el10)
+        type: choice
+        options: [all, el8, el9, el10]
+        default: all
+      puppetfile:
+        description: 'simp-core Puppetfile to install from'
+        type: choice
+        options: [pinned, branches, both]
+        default: pinned
+      puppetfile_overrides:
+        description: >-
+          Replace or add Puppetfile entries: space-separated
+          <name>=<git url>#<ref>, e.g.
+          simp-ssh=https://github.com/me/pupmod-simp-ssh#fix
+        type: string
+        default: ''
+      simp_cli:
+        description: >-
+          Install rubygem-simp-cli from <git url>#<ref> instead of the
+          Puppetfile's version, e.g.
+          https://github.com/silug/rubygem-simp-cli#java-version-maxpermsize
+        type: string
+        default: ''
+      extra_hieradata:
+        description: >-
+          YAML or JSON Hash merged into the production environment's
+          data/default.yaml before bootstrap, e.g. to try a workaround
+        type: string
+        default: ''
+      puppetdb:
+        description: >-
+          Also enable PuppetDB on the server (simp::puppetdb). Off by default:
+          it installs puppetdb packages that the OpenVox repositories don't
+          provide (simp/pupmod-simp-simp#422)
+        type: boolean
+        default: false
+      compliance_profile:
+        description: 'Compliance profile enforced ahead of simp:defaults by the disa test'
+        type: string
+        default: 'disa:mac-1:classified'
+      sicura_disa_ref:
+        description: 'git ref of sicuraus/sicura-simp_enterprise_el_disa'
+        type: string
+        default: '3.2.1'
+      sicura_el_ref:
+        description: 'git ref of sicuraus/sicura-simp_enterprise_el'
+        type: string
+        default: '3.0.5'
+      puppet_collection:
+        description: 'OpenVox collection installed on the VMs'
+        type: choice
+        options: [openvox9, openvox8]
+        default: openvox9
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name != 'schedule' && !startsWith(github.ref, 'refs/tags/') }}
+
+jobs:
+  plan:
+    name: 'Plan'
+    runs-on: ubuntu-26.04
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+    steps:
+      - name: 'Choose the tests, operating systems and Puppetfiles'
+        id: plan
+        env:
+          EVENT: ${{ github.event_name }}
+          IN_TEST: ${{ inputs.test }}
+          IN_OS: ${{ inputs.os }}
+          IN_PUPPETFILE: ${{ inputs.puppetfile }}
+        run: |
+          test="${IN_TEST:-all}"
+          os="${IN_OS:-all}"
+          case "$EVENT" in
+            schedule) puppetfile=both ;;
+            push) puppetfile=pinned ;;
+            *) puppetfile="${IN_PUPPETFILE:-pinned}" ;;
+          esac
+
+          d=spec/acceptance/suites/default
+          base="$d/00_simp_server_install_spec.rb $d/01_simp_server_bootstrap_spec.rb $d/02_simp_client_bootstrap_spec.rb"
+          scan="$d/04_openscap_simp_defaults_spec.rb"
+
+          # simp-defaults runs on AlmaLinux 8/9/10. disa runs on Oracle
+          # Linux 8/9, the releases Sicura's DISA data has benchmarks for
+          # (it has none for OL10 yet, and its RHEL benchmarks are confined
+          # to RHEL itself). Each job installs and bootstraps its own VMs.
+          rows='[]'
+          add() { # test os nodeset osname specs
+            rows=$(jq -c --arg t "$1" --arg o "$2" --arg n "$3" --arg on "$4" --arg s "$5" \
+              '. + [{test: $t, os: $o, nodeset: $n, os_name: $on, specs: $s}]' <<< "$rows")
+          }
+          for v in 8 9 10; do
+            [ "$os" = all ] || [ "$os" = "el$v" ] || continue
+            if [ "$test" != disa ]; then
+              add simp-defaults "el$v" "el${v}_stack" "AlmaLinux $v" "$base $d/03_simp_defaults_spec.rb $scan"
+            fi
+            if [ "$test" != simp-defaults ]; then
+              if [ "$v" = 10 ]; then
+                echo "::notice::disa: no Sicura DISA benchmark for Oracle Linux 10 yet; skipping el10"
+              else
+                add disa "el$v" "ol${v}_stack" "Oracle Linux $v" "$base $scan $d/90_compliance_enforcement_spec.rb"
+              fi
+            fi
+          done
+          [ "$(jq length <<< "$rows")" -gt 0 ] || { echo "::error::Nothing to run for test=$test os=$os"; exit 1; }
+
+          if [ "$puppetfile" = both ]; then pfs='["pinned","branches"]'; else pfs="[\"$puppetfile\"]"; fi
+          matrix=$(jq -c --argjson pfs "$pfs" '{include: [.[] as $r | $pfs[] | $r + {puppetfile: .}]}' <<< "$rows")
+          echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
+          {
+            echo "### Plan"
+            jq -r '.include[] | "- \(.test) on \(.os_name) (`\(.nodeset)`, \(.puppetfile))"' <<< "$matrix"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  acceptance:
+    name: '${{ matrix.test }} ${{ matrix.os }} (${{ matrix.puppetfile }})'
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 330
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    env:
+      BEAKER_HYPERVISOR: vagrant_libvirt
+      VAGRANT_DEFAULT_PROVIDER: libvirt
+      BEAKER_setfile: spec/acceptance/nodesets/${{ matrix.nodeset }}.yml
+      BEAKER_PUPPET_COLLECTION: ${{ inputs.puppet_collection || 'openvox9' }}
+      BEAKER_puppetfile: ${{ matrix.puppetfile }}
+      BEAKER_puppetfile_overrides: ${{ inputs.puppetfile_overrides }}
+      BEAKER_simp_cli: ${{ inputs.simp_cli }}
+      BEAKER_extra_hieradata: ${{ inputs.extra_hieradata }}
+      BEAKER_simp_puppetdb: ${{ inputs.puppetdb && 'yes' || 'no' }}
+      BEAKER_compliance_profile: ${{ inputs.compliance_profile || 'disa:mac-1:classified' }}
+      BEAKER_sicura_disa_ref: ${{ inputs.sicura_disa_ref || '3.2.1' }}
+      BEAKER_sicura_el_ref: ${{ inputs.sicura_el_ref || '3.0.5' }}
+      SPECS: ${{ matrix.specs }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.4.12
+          bundler-cache: true
+      - name: 'Set up libvirt for Vagrant'
+        uses: simp/gha-workflows/.github/actions/setup-vagrant-libvirt@v1.1.0
+      - name: 'Run the acceptance tests'
+        run: |
+          # shellcheck disable=SC2086 # SPECS is a list of files
+          bundle exec rspec $SPECS
+      - name: 'Add the OpenSCAP scores to the job summary'
+        if: always()
+        run: |
+          summary=sec_results/openscap/summary.md
+          {
+            echo "### OpenSCAP: ${{ matrix.test }} on ${{ matrix.os_name }} (${{ matrix.puppetfile }})"
+            echo
+            if [ -f "$summary" ]; then
+              cat "$summary"
+              echo
+              echo 'Report-only: the scores do not fail the job.'
+            else
+              echo 'No OpenSCAP scan completed.'
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+      - name: 'Upload the OpenSCAP results and logs'
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: full-stack-${{ matrix.test }}-${{ matrix.os }}-${{ matrix.puppetfile }}
+          path: |
+            sec_results/
+            log/
+          if-no-files-found: ignore
+          retention-days: 30
