@@ -75,6 +75,10 @@ mod 'puppet-augeasproviders_sysctl',
   :git => 'https://github.com/simp/augeasproviders_sysctl',
   :tag => 'v4.1.0'
 
+mod 'puppet-authselect',
+  :git => 'https://github.com/simp/puppet-authselect',
+  :tag => 'v2.0.0'
+
 mod 'simp-gpasswd',
   :git => 'https://github.com/simp/puppet-gpasswd',
   :tag => '2.2.1'
@@ -253,6 +257,10 @@ mod 'simp-named',
 
 mod 'simp-nfs',
   :git => 'https://github.com/simp/pupmod-simp-nfs',
+  :branch => 'master'
+
+mod 'simp-nm',
+  :git => 'https://github.com/simp/pupmod-simp-nm',
   :branch => 'master'
 
 mod 'simp-oath',
@@ -437,6 +445,10 @@ mod 'puppet-nsswitch',
 mod 'puppet-chrony',
   :git => 'https://github.com/simp/pupmod-voxpupuli-chrony',
   :tag => 'v5.0.0'
+
+mod 'puppet-extlib',
+  :git => 'https://github.com/simp/pupmod-voxpupuli-extlib',
+  :tag => 'v8.5.0'
 
 mod 'puppet-firewalld',
   :git => 'https://github.com/simp/pupmod-voxpupuli-firewalld',
