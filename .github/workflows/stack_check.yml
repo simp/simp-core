@@ -30,10 +30,10 @@ on:
         type: string
         default: ''
       skeleton_ref:
-        description: 'simp-environment-skeleton branch or tag (catalogs only)'
+        description: "simp-environment-skeleton branch or tag (catalogs only; default: the Puppetfile's simp-environment pin)"
         required: false
         type: string
-        default: 'master'
+        default: ''
 
 permissions:
   contents: read
@@ -41,7 +41,7 @@ permissions:
 env:
   # Required to prevent all rake tasks from exploding
   SIMP_RPM_dist: .el8
-  STACK_SKELETON_REF: ${{ inputs.skeleton_ref || 'master' }}
+  STACK_SKELETON_REF: ${{ inputs.skeleton_ref }}
 
 jobs:
   stack:
@@ -77,9 +77,9 @@ jobs:
       - run: 'command -v rpm || if command -v apt-get; then sudo apt-get update; sudo apt-get install -y rpm; fi ||:'
       - name: 'Install Puppetfile.${{ matrix.puppetfile }}'
         run: bundle exec rake "stack:install[${{ matrix.puppetfile }}]"
-      - name: 'Clone simp-environment-skeleton (${{ env.STACK_SKELETON_REF }})'
+      - name: 'Clone simp-environment-skeleton (${{ env.STACK_SKELETON_REF || format(''Puppetfile.{0} pin'', matrix.puppetfile) }})'
         if: ${{ inputs.check == 'catalogs' }}
-        run: bundle exec rake stack:skeleton
+        run: bundle exec rake "stack:skeleton[${{ matrix.puppetfile }}]"
       - name: '${{ inputs.title }}'
         run: bundle exec rake "stack:${{ inputs.check }}[${{ matrix.puppetfile }}]"
 

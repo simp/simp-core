@@ -5,7 +5,7 @@
 # usable on its own; these tasks catch drift between modules.
 #
 #   rake stack:install[pinned]   # r10k-install Puppetfile.pinned into tmp/stack/pinned/modules
-#   rake stack:skeleton          # clone simp-environment-skeleton into tmp/stack/
+#   rake stack:skeleton[pinned]  # clone the skeleton that Puppetfile.pinned pins into tmp/stack/pinned/
 #   rake stack:deps[pinned]      # dependency consistency across the module set
 #   rake stack:catalogs[pinned]  # compile skeleton catalogs for each scenario and EL release
 #   rake stack:all[pinned]       # all of the above
@@ -19,7 +19,8 @@
 #   STACK_SKELETON         use an existing simp-environment-skeleton checkout
 #   STACK_SKELETON_REPO    clone from this URL
 #                          (default https://github.com/simp/simp-environment-skeleton.git)
-#   STACK_SKELETON_REF     clone this branch or tag (default master)
+#   STACK_SKELETON_REF     clone this branch or tag (default: the Puppetfile's
+#                          `simp-environment` :tag/:branch/:ref)
 
 namespace :stack do
   stack_dir = File.join(__dir__, '..', 'tmp', 'stack')
@@ -76,13 +77,16 @@ namespace :stack do
     sh 'r10k', 'puppetfile', 'install', '--puppetfile', vendor_puppetfile, '--moduledir', vendordir, '--force'
   end
 
-  desc 'Clone simp-environment-skeleton (STACK_SKELETON_REF, default master)'
-  task :skeleton do
+  desc 'Clone the simp-environment-skeleton that Puppetfile.<puppetfile> pins (or STACK_SKELETON_REF)'
+  task :skeleton, [:puppetfile] do |_t, args|
+    set_env.call(args)
     next if ENV['STACK_SKELETON']
 
-    dir = File.expand_path(File.join(stack_dir, 'simp-environment-skeleton'))
+    dir = File.expand_path(File.join(stack_dir, args[:puppetfile], 'simp-environment-skeleton'))
     repo = ENV.fetch('STACK_SKELETON_REPO', 'https://github.com/simp/simp-environment-skeleton.git')
-    ref = ENV.fetch('STACK_SKELETON_REF', 'master')
+    # Loaded here, not at the top: every rake run loads rakelib/
+    require_relative '../spec/stack/stack_helper'
+    ref = StackHelper.skeleton_ref
     FileUtils.rm_rf(dir)
     sh 'git', 'clone', '--quiet', '--depth', '1', '--branch', ref, repo, dir
     ENV['STACK_SKELETON'] = dir
@@ -97,14 +101,14 @@ namespace :stack do
   desc 'Compile skeleton catalogs for each scenario and EL release (run stack:install and stack:skeleton first)'
   task :catalogs, [:puppetfile] do |_t, args|
     set_env.call(args)
-    ENV['STACK_SKELETON'] ||= File.expand_path(File.join(stack_dir, 'simp-environment-skeleton'))
+    ENV['STACK_SKELETON'] ||= File.expand_path(File.join(stack_dir, args[:puppetfile], 'simp-environment-skeleton'))
     sh 'rspec', '--no-fail-fast', '--format', 'documentation', 'spec/stack/catalogs_spec.rb'
   end
 
   desc 'Install the module set and run every stack check'
   task :all, [:puppetfile] do |_t, args|
     Rake::Task['stack:install'].invoke(args[:puppetfile])
-    Rake::Task['stack:skeleton'].invoke
+    Rake::Task['stack:skeleton'].invoke(args[:puppetfile])
     failed = []
     ['stack:deps', 'stack:catalogs'].each do |t|
       Rake::Task[t].invoke(args[:puppetfile])

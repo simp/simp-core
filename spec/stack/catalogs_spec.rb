@@ -21,6 +21,7 @@ require 'fileutils'
 require 'puppet'
 require 'rspec'
 require 'simp/rspec-puppet-facts'
+require 'facter'
 
 module StackCatalogs
   extend Simp::RspecPuppetFacts
@@ -84,14 +85,40 @@ module StackCatalogs
     env
   end
 
-  # Facts for each EL release, as an OpenVox 8+ agent sends them: without the
-  # legacy fqdn/hostname/domain facts
+  # Legacy fact names, from openfact's own fact definitions (some are
+  # patterns, such as `ipaddress_.*`). OpenVox 8+ agents don't send them
+  # (include_legacy_facts defaults to false), but simp-rspec-puppet-facts
+  # merges them into every fact set. InternalFactLoader isn't a public API,
+  # so fail loudly if it stops returning anything.
+  def fact_loader
+    @fact_loader ||= Facter::InternalFactLoader.new(['Linux', 'Rhel'])
+  end
+
+  def legacy_fact_patterns
+    @legacy_fact_patterns ||= begin
+      names = fact_loader.legacy_facts.map(&:name).uniq
+      raise "openfact returned no legacy facts; can't filter them out of the fact sets" if names.empty?
+
+      names.map { |n| Regexp.new("\\A#{n}\\z") }
+    end
+  end
+
+  # A pattern such as `processor.*` also matches core facts (`processors`)
+  def core_fact_names
+    @core_fact_names ||= fact_loader.core_facts.map { |f| f.name.split('.').first }.uniq
+  end
+
+  def legacy_fact?(name)
+    !core_fact_names.include?(name) && legacy_fact_patterns.any? { |re| re.match?(name) }
+  end
+
+  # Facts for each EL release, as an OpenVox 8+ agent sends them: without
+  # legacy facts
   def os_facts
     @os_facts ||= on_supported_os(
       supported_os: [{ 'operatingsystem' => 'RedHat', 'operatingsystemrelease' => OS_RELEASES }],
     ).to_h do |os, facts|
-      facts = JSON.parse(JSON.generate(facts))
-      ['fqdn', 'hostname', 'domain'].each { |f| facts.delete(f) }
+      facts = JSON.parse(JSON.generate(facts)).reject { |name, _| legacy_fact?(name) }
       facts['networking'] = (facts['networking'] || {}).merge(
         'fqdn' => CERTNAME, 'hostname' => 'node', 'domain' => 'example.com',
       )
@@ -122,7 +149,11 @@ module StackCatalogs
     logs = []
     collector = Puppet::Test::LogCollector.new(logs)
     Puppet::Util::Log.newdestination(collector)
-    node = Puppet::Node.new(CERTNAME, facts: Puppet::Node::Facts.new(CERTNAME, facts), environment: environment)
+    node = Puppet::Node.new(CERTNAME, environment: environment)
+    # As the server's node lookup does (Puppet::Node::Plain): store the facts
+    # and make them top-scope variables, so `$::os` resolves as on a server.
+    # Compiling freezes the values, so give each node its own copy.
+    node.fact_merge(Puppet::Node::Facts.new(CERTNAME, Marshal.load(Marshal.dump(facts))))
     node.add_server_facts({})
     trusted = Puppet::Context::TrustedInformation.new('remote', CERTNAME, {})
     catalog = Puppet.override(trusted_information: trusted) { Puppet::Parser::Compiler.compile(node) }
@@ -151,6 +182,12 @@ describe "Stack catalogs with Puppetfile.#{StackHelper.puppetfile}" do
     StackCatalogs.init_puppet
   end
 
+  it 'has a compliance_engine::enforcement level in the skeleton hiera.yaml' do
+    expect(StackCatalogs.compliance_engine_level?).to be(true),
+      "simp-environment-skeleton #{StackHelper.skeleton_ref} has no compliance_engine::enforcement level " \
+      'in hiera.yaml, so SIMP modules would compile without simp:defaults (simp/simp-environment-skeleton#75)'
+  end
+
   it 'installs every module that the skeleton hiera.yaml uses as a backend' do
     expect(StackCatalogs.missing_backend_modules).to be_empty,
       "hiera.yaml uses functions from modules that aren't in Puppetfile.#{StackHelper.puppetfile}: " \
@@ -161,8 +198,7 @@ describe "Stack catalogs with Puppetfile.#{StackHelper.puppetfile}" do
     context "with the #{scenario} scenario" do
       before(:all) do
         unless StackCatalogs.compliance_engine_level?
-          skip('The skeleton hiera.yaml has no compliance_engine::enforcement level yet ' \
-               '(simp/simp-environment-skeleton#75), so the SIMP modules would compile without simp:defaults')
+          skip('The skeleton hiera.yaml has no compliance_engine::enforcement level (see the failing example above)')
         end
         unless StackCatalogs.missing_backend_modules.empty?
           skip("hiera.yaml needs modules that aren't installed: #{StackCatalogs.missing_backend_modules.join(', ')}")

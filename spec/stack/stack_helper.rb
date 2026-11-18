@@ -10,6 +10,8 @@
 #   STACK_MODULEDIR   Directory the Puppetfile was installed into
 #   STACK_VENDORDIR   Directory the vendored core modules were installed into
 #   STACK_SKELETON    simp-environment-skeleton checkout (catalog checks)
+#   STACK_SKELETON_REF  skeleton branch or tag; by default, the
+#                       `simp-environment` pin in the Puppetfile under test
 
 require 'json'
 require 'yaml'
@@ -37,7 +39,24 @@ module StackHelper
   end
 
   def skeleton_dir
-    ENV.fetch('STACK_SKELETON', File.join(BASE_DIR, 'tmp', 'stack', 'simp-environment-skeleton'))
+    ENV.fetch('STACK_SKELETON', File.join(work_dir, 'simp-environment-skeleton'))
+  end
+
+  # The skeleton branch or tag to test: STACK_SKELETON_REF when it's set,
+  # otherwise the `simp-environment` entry's :tag, :branch or :ref in the
+  # Puppetfile under test, so each check compiles the skeleton it pins
+  def skeleton_ref
+    ref = ENV.fetch('STACK_SKELETON_REF', '')
+    return ref unless ref.empty?
+
+    file = File.join(BASE_DIR, "Puppetfile.#{puppetfile}")
+    entry = File.read(file)[%r{^mod\s+['"]simp-environment['"],.*?(?=^mod\s|\z)}m]
+    raise "No simp-environment entry in #{file}" unless entry
+
+    ref = entry[%r{:(?:tag|branch|ref)\s*=>\s*['"]([^'"]+)['"]}, 1]
+    raise "The simp-environment entry in #{file} has no :tag, :branch or :ref" unless ref
+
+    ref
   end
 
   # name used in dependency lists ("owner/name"), normalized

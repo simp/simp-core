@@ -18,9 +18,9 @@ on:
         options: [both, pinned, branches]
         default: both
       skeleton_ref:
-        description: 'simp-environment-skeleton branch or tag'
+        description: "simp-environment-skeleton branch or tag (default: each Puppetfile's simp-environment pin)"
         required: false
-        default: 'master'
+        default: ''
 
 permissions:
   contents: read
@@ -35,4 +35,4 @@ jobs:
       check: catalogs
       title: 'Catalogs'
       puppetfile: ${{ inputs.puppetfile || '' }}
-      skeleton_ref: ${{ inputs.skeleton_ref || 'master' }}
+      skeleton_ref: ${{ inputs.skeleton_ref || '' }}
