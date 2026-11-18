@@ -75,6 +75,10 @@ mod 'puppet-augeasproviders_sysctl',
   :git => 'https://github.com/simp/augeasproviders_sysctl',
   :tag => 'v4.1.0'
 
+mod 'puppet-authselect',
+  :git => 'https://github.com/simp/puppet-authselect',
+  :tag => 'v2.0.0'
+
 mod 'simp-gpasswd',
   :git => 'https://github.com/simp/puppet-gpasswd',
   :tag => '2.2.1'
