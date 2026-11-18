@@ -1,0 +1,120 @@
+# Reusable whole-stack check: tests the SIMP module set as simp-core
+# assembles it, not any one module (see rakelib/stack.rake). Called by
+# stack_deps.yml and stack_catalogs.yml, so each check can be run on its own.
+#
+# Which Puppetfiles run:
+# - Pull requests and tags: Puppetfile.pinned, so every release tag records a
+#   stack check of exactly what it pins.
+# - Nightly: Puppetfile.pinned and Puppetfile.branches. The branches run
+#   catches drift on module default branches before it reaches a release.
+# - On demand: chosen with the `puppetfile` input.
+#
+# A failed nightly run opens (or comments on) an issue labeled `stack-drift`
+# for that check; the next passing nightly run closes it.
+name: Stack check (reusable)
+
+on:
+  workflow_call:
+    inputs:
+      check:
+        description: 'Which check to run: deps or catalogs'
+        required: true
+        type: string
+      title:
+        description: 'Human-readable name of the check'
+        required: true
+        type: string
+      puppetfile:
+        description: 'pinned, branches or both (default: by event)'
+        required: false
+        type: string
+        default: ''
+      skeleton_ref:
+        description: "simp-environment-skeleton branch or tag (catalogs only; default: the Puppetfile's simp-environment pin)"
+        required: false
+        type: string
+        default: ''
+
+permissions:
+  contents: read
+
+env:
+  # Required to prevent all rake tasks from exploding
+  SIMP_RPM_dist: .el8
+  STACK_SKELETON_REF: ${{ inputs.skeleton_ref }}
+
+jobs:
+  stack:
+    name: '${{ inputs.title }} (${{ matrix.puppetfile }}, ${{ matrix.puppet.label }})'
+    runs-on: ubuntu-26.04
+    strategy:
+      fail-fast: false
+      matrix:
+        puppetfile: >-
+          ${{ fromJSON(
+            (inputs.puppetfile == 'pinned' && '["pinned"]') ||
+            (inputs.puppetfile == 'branches' && '["branches"]') ||
+            (inputs.puppetfile == 'both' && '["pinned", "branches"]') ||
+            ((github.event_name == 'pull_request' || github.event_name == 'push') && '["pinned"]') ||
+            '["pinned", "branches"]'
+          ) }}
+        puppet:
+          - label: 'OpenVox 8.x'
+            puppet_version: '~> 8.0'
+            ruby_version: '3.4'
+          - label: 'OpenVox 9.x'
+            puppet_version: '~> 9.0'
+            ruby_version: '4.0'
+    env:
+      PUPPET_VERSION: ${{ matrix.puppet.puppet_version }}
+    steps:
+      - uses: actions/checkout@v7
+      - name: 'Install Ruby ${{ matrix.puppet.ruby_version }}'
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.puppet.ruby_version }}
+          bundler-cache: true
+      - run: 'command -v rpm || if command -v apt-get; then sudo apt-get update; sudo apt-get install -y rpm; fi ||:'
+      - name: 'Install Puppetfile.${{ matrix.puppetfile }}'
+        run: bundle exec rake "stack:install[${{ matrix.puppetfile }}]"
+      - name: 'Clone simp-environment-skeleton (${{ env.STACK_SKELETON_REF || format(''Puppetfile.{0} pin'', matrix.puppetfile) }})'
+        if: ${{ inputs.check == 'catalogs' }}
+        run: bundle exec rake "stack:skeleton[${{ matrix.puppetfile }}]"
+      - name: '${{ inputs.title }}'
+        run: bundle exec rake "stack:${{ inputs.check }}[${{ matrix.puppetfile }}]"
+
+  # Scheduled runs have no PR to report to, and GitHub only emails the person
+  # who last edited the cron line, so track failures in an issue instead
+  report:
+    name: 'Report nightly result'
+    needs: stack
+    if: ${{ !cancelled() && github.event_name == 'schedule' }}
+    runs-on: ubuntu-26.04
+    permissions:
+      issues: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      RESULT: ${{ needs.stack.result }}
+      RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+      TITLE: 'Nightly stack check failing: ${{ inputs.title }}'
+      CHECK: ${{ inputs.title }}
+    steps:
+      - name: 'Open, update or close the stack-drift issue'
+        run: |
+          gh label create stack-drift --color B60205 \
+            --description 'Nightly whole-stack check is failing' 2>/dev/null || :
+          issue=$(gh issue list --label stack-drift --state open --json number,title \
+            --jq "map(select(.title == env.TITLE)) | .[0].number // empty")
+          if [ "$RESULT" = 'success' ]; then
+            if [ -n "$issue" ]; then
+              gh issue close "$issue" --comment "The nightly '$CHECK' stack check passed: $RUN_URL"
+            fi
+          elif [ -n "$issue" ]; then
+            gh issue comment "$issue" --body "Still failing: $RUN_URL"
+          else
+            gh issue create --label stack-drift --title "$TITLE" \
+              --body "The nightly '$CHECK' stack check (Puppetfile.pinned and Puppetfile.branches) failed: $RUN_URL
+
+          See the failed job's '$CHECK' step for details. This issue is closed automatically by the next passing nightly run."
+          fi
