@@ -176,7 +176,7 @@
     },
     {
       "name": "simp/tftpboot",
-      "version_requirement": ">= 8.1.0 < 9.0.0"
+      "version_requirement": ">= 9.0.0 < 10.0.0"
     },
     {
       "name": "simp/tlog",
@@ -211,8 +211,12 @@
       "version_requirement": ">= 11.3.3 < 12.0.0"
     },
     {
+      "name": "simp/compliance_engine",
+      "version_requirement": ">= 1.2.0 < 2.0.0"
+    },
+    {
       "name": "simp/compliance_markup",
-      "version_requirement": ">= 4.0.1 < 5.0.0"
+      "version_requirement": ">= 4.1.0 < 5.0.0"
     },
     {
       "name": "simp/crypto_policy",
@@ -241,6 +245,10 @@
     {
       "name": "simp/pupmod",
       "version_requirement": ">= 13.0.0 < 14.0.0"
+    },
+    {
+      "name": "simp/rngd",
+      "version_requirement": ">= 0.2.0 < 1.0.0"
     },
     {
       "name": "simp/rsyslog",

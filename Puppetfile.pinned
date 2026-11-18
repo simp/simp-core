@@ -78,6 +78,10 @@ mod 'puppet-augeasproviders_sysctl',
   :git => 'https://github.com/simp/augeasproviders_sysctl',
   :tag => 'v4.1.0'
 
+mod 'puppet-authselect',
+  :git => 'https://github.com/simp/puppet-authselect',
+  :tag => 'v2.0.0'
+
 mod 'simp-gpasswd',
   :git => 'https://github.com/simp/puppet-gpasswd',
   :tag => '2.2.1'
@@ -162,9 +166,13 @@ mod 'simp-clamav',
   :git => 'https://github.com/simp/pupmod-simp-clamav',
   :tag => '7.1.0'
 
+mod 'simp-compliance_engine',
+  :git => 'https://github.com/simp/rubygem-simp-compliance_engine',
+  :tag => '1.2.0'
+
 mod 'simp-compliance_markup',
   :git => 'https://github.com/simp/pupmod-simp-compliance_markup',
-  :tag => '4.0.1'
+  :tag => '4.1.0'
 
 mod 'simp-cron',
   :git => 'https://github.com/simp/pupmod-simp-cron',
@@ -254,6 +262,10 @@ mod 'simp-nfs',
   :git => 'https://github.com/simp/pupmod-simp-nfs',
   :tag => '8.1.0'
 
+mod 'simp-nm',
+  :git => 'https://github.com/simp/pupmod-simp-nm',
+  :ref => '485b7b3ce4cf35bba0f2c62188c50c364405db80'
+
 mod 'simp-oath',
   :git => 'https://github.com/simp/pupmod-simp-oath',
   :tag => '1.1.0'
@@ -316,7 +328,7 @@ mod 'simp-simpkv',
 
 mod 'simp-simplib',
   :git => 'https://github.com/simp/pupmod-simp-simplib',
-  :tag => '7.2.0'
+  :tag => '7.2.1'
 
 mod 'simp-simp_apache',
   :git => 'https://github.com/simp/pupmod-simp-simp_apache',
@@ -324,7 +336,7 @@ mod 'simp-simp_apache',
 
 mod 'simp-simp_authselect',
   :git => 'https://github.com/simp/pupmod-simp-simp_authselect',
-  :tag => '1.1.0'
+  :tag => '1.1.1'
 
 mod 'simp-simp_banners',
   :git => 'https://github.com/simp/pupmod-simp-simp_banners',
@@ -388,7 +400,7 @@ mod 'simp-swap',
 
 mod 'simp-tftpboot',
   :git => 'https://github.com/simp/pupmod-simp-tftpboot',
-  :tag => '8.1.0'
+  :tag => '9.0.0'
 
 mod 'simp-tlog',
   :git => 'https://github.com/simp/pupmod-simp-tlog',
@@ -404,7 +416,7 @@ mod 'simp-tuned',
 
 mod 'simp-useradd',
   :git => 'https://github.com/simp/pupmod-simp-useradd',
-  :tag => '4.1.0'
+  :tag => '4.2.0'
 
 mod 'simp-vnc',
   :git => 'https://github.com/simp/pupmod-simp-vnc',
@@ -436,6 +448,10 @@ mod 'puppet-nsswitch',
 mod 'puppet-chrony',
   :git => 'https://github.com/simp/pupmod-voxpupuli-chrony',
   :tag => 'v5.0.0'
+
+mod 'puppet-extlib',
+  :git => 'https://github.com/simp/pupmod-voxpupuli-extlib',
+  :tag => 'v8.5.0'
 
 mod 'puppet-firewalld',
   :git => 'https://github.com/simp/pupmod-voxpupuli-firewalld',
