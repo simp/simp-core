@@ -12,6 +12,10 @@
 #   version.
 # - Checks that EL8's and EL9's diskdetect.sh and repodetect.sh are symlinks
 #   to EL10's, since they support all of them.
+# - Validates each ISO kickstart (ks/dvd/*.cfg) with ksvalidator, with its
+#   ISO-only %include files inlined, checks that it runs repodetect.sh for
+#   its EL version, and checks the shell syntax of its %pre and %post
+#   sections with `bash -n`.
 # - Runs ShellCheck on the helper scripts, if it's installed.
 
 set -euo pipefail
@@ -84,6 +88,47 @@ for version in "${versions[@]}"; do
         rc=1
       fi
     fi
+  done
+done
+
+# The ISO kickstarts %include files from /mnt/install/repo, which only exists
+# on the ISO, so inline them. The /tmp includes are written by %pre at install
+# time; ksvalidator skips them without -i.
+# shortcut: an %include inside an included file isn't inlined; none exist today.
+for version in "${versions[@]}"; do
+  dvd="$(ks_dir "$version")/dvd"
+  [ -d "$dvd" ] || continue
+  for cfg in "$dvd"/*.cfg; do
+    name="EL${version}/dvd/$(basename "$cfg")"
+    sed -E "s#^%include /mnt/install/repo/ks/dvd/(include/[^ ]+)\$#cat '${dvd}'/\\1#e" \
+      "$cfg" > "${tmp}/ks.cfg"
+
+    if out="$("$ksvalidator" -e -v "RHEL${version}" "${tmp}/ks.cfg" 2>&1)"; then
+      echo "ok:   ${name}"
+    else
+      echo "FAIL: ${name}"
+      printf '      %s\n' "$out"
+      rc=1
+    fi
+
+    if ! grep -qE "repodetect\.sh '${version}'" "$cfg"; then
+      echo "FAIL: ${name}: does not run repodetect.sh for EL${version}"
+      rc=1
+    fi
+
+    # ksvalidator doesn't parse shell, so check each %pre/%post body.
+    rm -f "${tmp}"/section*.sh
+    awk -v d="$tmp" '/^%(pre|post)( |$)/ { n++; f = 1; next }
+                     /^%end/ { f = 0 }
+                     f { print > (d "/section" n ".sh") }' "${tmp}/ks.cfg"
+    for section in "${tmp}"/section*.sh; do
+      [ -e "$section" ] || continue
+      if ! out="$(bash -n "$section" 2>&1)"; then
+        echo "FAIL: ${name}: shell syntax error in a %pre/%post section"
+        printf '      %s\n' "$out"
+        rc=1
+      fi
+    done
   done
 done
 
