@@ -24,6 +24,7 @@ namespace :puppetfile do
 
     target_module = target_module[target_module.keys.first]
 
+    warn_without_github_token
     update_module_github_status!(target_module)
     update_module_puppet_forge_status!(target_module)
 
@@ -46,6 +47,8 @@ namespace :puppetfile do
     puppetfile = "#{base_dir}/Puppetfile." + args[:puppetfile]
 
     modules = load_modules(puppetfile)
+
+    warn_without_github_token unless local_only
 
     modules.each do |id, mod|
       print "Processing: #{mod[:owner]}-#{id}".ljust(55,' ') + "\r"

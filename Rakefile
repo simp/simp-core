@@ -52,59 +52,82 @@ def load_modules(puppetfile)
   return modules
 end
 
+# GET a GitHub REST API path and return the parsed JSON, or nil on a 404.
+#
+# Set GITHUB_TOKEN: the unauthenticated limit (60 requests/hour) is too low
+# for a full Puppetfile. Network and 5xx errors are retried; anything else
+# raises, so the caller can report 'error' instead of a wrong answer.
+def github_api_get(path, attempts: 3)
+  require 'json'
+  require 'net/http'
+
+  uri = URI("https://api.github.com#{path}")
+  attempt = 0
+  begin
+    attempt += 1
+    request = Net::HTTP::Get.new(uri)
+    request['Accept'] = 'application/vnd.github+json'
+    request['X-GitHub-Api-Version'] = '2022-11-28'
+    token = ENV['GITHUB_TOKEN'].to_s
+    request['Authorization'] = "Bearer #{token}" unless token.empty?
+
+    response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) { |http| http.request(request) }
+    raise Net::HTTPFatalError.new("GitHub API returned #{response.code}", response) if response.code.start_with?('5')
+    return nil if response.code == '404'
+    raise "GitHub API returned #{response.code} for #{uri.path}: #{response.body.to_s[0, 200]}" unless response.code == '200'
+
+    JSON.parse(response.body)
+  rescue Net::HTTPFatalError, SocketError, SystemCallError, Net::OpenTimeout, Net::ReadTimeout, OpenSSL::SSL::SSLError => e
+    raise "GitHub API request for #{uri.path} failed after #{attempts} attempts: #{e.message}" if attempt >= attempts
+
+    sleep(2 * attempt)
+    retry
+  end
+end
+
+def warn_without_github_token
+  return unless ENV['GITHUB_TOKEN'].to_s.empty?
+
+  warn 'WARNING: GITHUB_TOKEN is not set. The unauthenticated GitHub API limit (60 requests/hour)'
+  warn '         is too low for a full Puppetfile. Try: GITHUB_TOKEN=$(gh auth token)'
+end
+
 def update_module_github_status!(mod)
   require 'json'
-  require 'nokogiri'
   require 'open-uri'
-
-  require 'highline'
-  HighLine.colorize_strings
 
   mod[:published] ||= {}
   mod[:published]['GitHub'] ||= 'unknown'
   mod[:published]['Puppet Forge'] ||= 'unknown'
 
   mod_remote = mod[:remote].gsub(/\.git$/,'')
+  repo = mod_remote.sub(%r{^https://github\.com/}, '')
+  tag = mod[:version]
 
-  # See if we have a valid release on GitHub
-  github_releases_url = mod_remote + '/releases'
-
+  # See if we have a valid release (or at least a tag) on GitHub
   begin
-    github_query = Nokogiri::HTML(URI.open(github_releases_url).read)
-
-    published_versions = github_query.xpath('//a/@href').map(&:value).select{|x| x.include?('releases/tag/')}.map{|x| x.split('/').last}
-
-    if published_versions.include?(mod[:version])
+    if github_api_get("/repos/#{repo}/releases/tags/#{tag}")
       mod[:published]['GitHub'] = 'yes'
 
+      releases = github_api_get("/repos/#{repo}/releases?per_page=100") || []
       latest_version = Naturally.sort(
-        published_versions.map{|x| x.gsub(/^\D+/,'')}
+        releases.reject { |r| r['prerelease'] || r['draft'] }.map { |r| r['tag_name'].gsub(/^\D+/,'') }
       ).last
 
-      if latest_version != mod[:version]
+      if latest_version && latest_version != tag.gsub(/^\D+/,'')
         mod[:published]['GitHub'] = latest_version
       end
+    elsif github_api_get("/repos/#{repo}/git/ref/tags/#{tag}")
+      mod[:published]['GitHub'] = 'tag'
     else
       mod[:published]['GitHub'] = 'no'
     end
-  rescue
-    begin
-      github_releases_url = mod_remote + '/tags'
-      github_query = Nokogiri::HTML(URI.open(github_releases_url).read)
-
-      if github_query.xpath('//a/@title').map(&:value).include?(mod[:version])
-        mod[:published]['GitHub'] = 'tag'
-      else
-        mod[:published]['GitHub'] = 'no'
-      end
-    rescue
-      mod[:published]['GitHub'] = 'no'
-    end
+  rescue StandardError => e
+    warn "WARNING: #{e.message}"
+    mod[:published]['GitHub'] = 'error'
   end
 
-  unless ['no',nil].include?(mod[:published]['GitHub'].uncolor)
-    github_diff_uri = mod_remote + "/compare/#{mod[:version]}...HEAD"
-
+  unless ['no', 'error', nil].include?(mod[:published]['GitHub'])
     to_keep = [
       'GPGKEYS/',
       'SIMP/',
@@ -130,30 +153,22 @@ def update_module_github_status!(mod)
       'utils/'
     ]
 
-
     begin
-      diff_result = Nokogiri::HTML(URI.open(github_diff_uri).read)
-    rescue OpenURI::HTTPError => e
-      raise e unless e.message =~ /429|Too many requests/
-      warn "WARNING: Encountered '#{e.message}' when reading from '#{github_diff_uri}'"
-      warn "         waiting 90 seconds before retrying..."
-      sleep 90
-      retry
-    end
-    diff_items = diff_result
-      .xpath("//a[contains(@href,'#diff-')]")
-      .map{|x| x.text}
-      .delete_if{|x|
-        x.strip.empty? ||
-          x.include?('→') ||
-          !to_keep.find{|k| x.start_with?(k)}
-      }
+      files = github_api_get("/repos/#{repo}/compare/#{tag}...HEAD")['files'] || []
+      diff_items = files.map { |f| f['filename'] }.select { |x| to_keep.find { |k| x.start_with?(k) } }
 
-    if diff_items.empty?
-      mod[:published]['GitHub InSync'] = 'yes'
-    else
-      mod[:published]['GitHub InSync'] = 'no'
-      mod[:published]['GitHub Changed'] = ([''] + diff_items).sort.uniq.join("\n      * ")
+      if !diff_items.empty?
+        mod[:published]['GitHub InSync'] = 'no'
+        mod[:published]['GitHub Changed'] = ([''] + diff_items).sort.uniq.join("\n      * ")
+      elsif files.length >= 300
+        # The compare API lists at most 300 files, so the rest are unknown
+        mod[:published]['GitHub InSync'] = 'unknown'
+      else
+        mod[:published]['GitHub InSync'] = 'yes'
+      end
+    rescue StandardError => e
+      warn "WARNING: #{e.message}"
+      mod[:published]['GitHub InSync'] = 'error'
     end
   end
 
@@ -171,16 +186,17 @@ def update_module_github_status!(mod)
       mod[:version] = mod_info['version']
     end
   rescue StandardError => e
-    # If we get here, we're not a module
-    mod[:published]['Puppet Forge'] = 'N/A'
+    if e.is_a?(OpenURI::HTTPError) && e.io.status.first == '404'
+      # No metadata.json at this ref, so we're not a module
+      mod[:published]['Puppet Forge'] = 'N/A'
+    else
+      warn "WARNING: Could not read metadata.json for #{repo} #{mod[:desired_ref]}: #{e.message}"
+    end
   end
 end
 
 def update_module_puppet_forge_status!(mod)
-  require 'open-uri'
-
-  require 'highline'
-  HighLine.colorize_strings
+  require 'net/http'
 
   forge_url_base  = 'https://forgeapi.puppet.com/v3/releases/'
 
@@ -197,11 +213,17 @@ def update_module_puppet_forge_status!(mod)
         mod_owner = 'puppet'
       end
 
-      URI.open(URI.parse(forge_url_base + mod_owner + '-' + mod[:id] + '-' + mod[:version])) do |fh|
-        mod[:published]['Puppet Forge'] = 'yes'
-      end
+      response = Net::HTTP.get_response(URI.parse(forge_url_base + mod_owner + '-' + mod[:id] + '-' + mod[:version]))
+      mod[:published]['Puppet Forge'] = case response.code
+                                        when '200' then 'yes'
+                                        when '404' then 'no'
+                                        else
+                                          warn "WARNING: Puppet Forge returned #{response.code} for #{mod_owner}-#{mod[:id]}-#{mod[:version]}"
+                                          'error'
+                                        end
     rescue StandardError => e
-      mod[:published]['Puppet Forge'] = 'no'
+      warn "WARNING: Puppet Forge check failed for #{mod_owner}-#{mod[:id]}-#{mod[:version]}: #{e.message}"
+      mod[:published]['Puppet Forge'] = 'error'
     end
   end
 end
