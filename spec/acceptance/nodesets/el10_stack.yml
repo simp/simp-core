@@ -1,0 +1,35 @@
+---
+# One SIMP server and one SIMP client, both EL10. Used by the full-stack
+# acceptance workflow (.github/workflows/full_stack.yml), which tests one
+# EL release per job. The client is also the remote syslog server.
+HOSTS:
+  puppet:
+    roles:
+    - server # Mandatory
+    - master
+    - default
+    - simp_server
+    - agent
+    platform: el-10-x86_64
+    box: almalinux/10
+    hypervisor: "<%= ENV.fetch('BEAKER_HYPERVISOR', 'vagrant') %>"
+    vagrant_memsize: 6144
+    vagrant_cpus: 2
+  client-el10:
+    roles:
+    - agent
+    - syslog_server
+    platform: el-10-x86_64
+    box: almalinux/10
+    hypervisor: "<%= ENV.fetch('BEAKER_HYPERVISOR', 'vagrant') %>"
+    vagrant_memsize: 2048
+CONFIG:
+  vagrant_cpus: 2
+  log_level: verbose
+  type: aio
+  synced_folder: disabled
+  ssh:
+    keepalive: true
+    keepalive_interval: 10
+    keepalive_maxcount: 120
+  puppet_collection: "<%= ENV.fetch('BEAKER_PUPPET_COLLECTION', 'openvox9') %>"

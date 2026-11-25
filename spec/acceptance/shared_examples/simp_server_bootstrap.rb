@@ -168,7 +168,8 @@ shared_examples 'SIMP server bootstrap' do |master, config|
       end
     end
 
-    context 'enable puppetdb' do
+    # BEAKER_simp_puppetdb=no skips this
+    context 'enable puppetdb', if: ENV.fetch('BEAKER_simp_puppetdb', 'yes') == 'yes' do
       let(:hieradata) do
         default_hieradata.merge({
           'simp::server::classes'                             => ['simp::puppetdb'],

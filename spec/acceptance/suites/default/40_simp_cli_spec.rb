@@ -9,7 +9,7 @@ test_name 'simp cli operations'
 # facts gathered here are executed when the file first loads and
 # use the factor gem temporarily installed into system ruby
 master      = only_host_with_role(hosts, 'master')
-master_fqdn = fact_on(master, 'fqdn')
+master_fqdn = host_fqdn(master)
 agents      = hosts_with_role(hosts, 'agent')
 
 describe 'simp cli operations' do

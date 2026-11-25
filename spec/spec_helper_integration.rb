@@ -11,20 +11,19 @@ include Acceptance::Helpers::IpaHelper
 include Acceptance::Helpers::PasswordHelper
 include Acceptance::Helpers::PuppetHelper
 include Acceptance::Helpers::RepoHelper
-include Acceptance::Helpers::SystemGemHelper
 include Acceptance::Helpers::Utils
 
 
 unless ENV['BEAKER_provision'] == 'no'
+  # simp config and the SIMP PKI need every host to have a FQDN
+  ensure_fqdns(hosts)
+
+  # simp-beaker-helpers' before(:all) hook reads facts with `puppet facts`
+  # (beaker_puppet_helpers' fact_on), so the agent must be installed before
+  # any example runs
   hosts.each do |host|
-    # Temporarily install facter for beaker helpers fact_on() calls executed
-    # during server prep. (We don't have puppet's facter, because in this
-    # test, puppet hasn't been installed as part of the prep.)
-    #
-    # WARNING:  Any facter_on() calls outside of an rspec example (it block)
-    #           will be executed as part of server prep with this version of
-    #           facter.  Only basic facts will be available.
-    install_system_factor_gem(host)
+    install_puppet_repo(host)
+    install_puppet_agent(host)
   end
 end
 

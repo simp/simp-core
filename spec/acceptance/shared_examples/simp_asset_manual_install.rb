@@ -19,12 +19,15 @@ shared_examples 'simp asset manual install' do |server, assets_to_install|
       # - simp-adapter needs git and rsync
       install_package_unless_present_on(server, 'git')
       install_package_unless_present_on(server, 'rsync')
+      # `simp environment new` runs setfacl. The rubygem-simp-cli RPM doesn't
+      # require acl, and EL10 cloud images don't include it.
+      install_package_unless_present_on(server, 'acl')
 
       on(server, 'puppet resource package r10k ensure=present provider=puppet_gem')
     end
 
-    it 'should create a Puppetfile for assets from Puppetfile.pinned' do
-      file_content = create_r10k_puppetfile('Puppetfile.pinned', 'src/assets')
+    it "should create a Puppetfile for assets from #{simp_core_puppetfile}" do
+      file_content = create_r10k_puppetfile(simp_core_puppetfile, 'src/assets')
       create_remote_file(server, '/root/Puppetfile.assets', file_content)
     end
 

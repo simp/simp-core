@@ -3,7 +3,7 @@ require 'spec_helper_integration'
 test_name 'disabling auditing to prep for compliance enforcement'
 
 master      = only_host_with_role(hosts, 'master')
-master_fqdn = fact_on(master, 'fqdn')
+master_fqdn = host_fqdn(master)
 agents      = hosts_with_role(hosts, 'agent')
 
 describe 'disabling auditd to ensure that compliance enforcement works' do

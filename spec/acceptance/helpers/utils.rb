@@ -2,6 +2,53 @@ module Acceptance
   module Helpers
     module Utils
 
+      # @returns the FQDN of a host, without needing Puppet or facter
+      #
+      # Use this instead of fact_on(host, 'fqdn') in code that runs when a
+      # spec file is loaded: beaker_puppet_helpers' fact_on runs
+      # `puppet facts show`, and Puppet isn't installed until the
+      # 'basic server setup' examples run.
+      def host_fqdn(host)
+        on(host, 'hostname -f').stdout.strip
+      end
+
+      # @returns the DNS domain of a host, without needing Puppet or facter
+      def host_domain(host)
+        host_fqdn(host).split('.', 2)[1]
+      end
+
+      # Gives every host a FQDN that the other hosts resolve, which
+      # `simp config` and the SIMP PKI need.
+      #
+      # beaker writes `<ip> <name>.<domain> <name>` entries to /etc/hosts,
+      # taking the domain from /etc/resolv.conf. libvirt's default networks
+      # (local and on GitHub's runners) hand out no DNS domain, so the
+      # entries end up as `<name>. <name>` and `hostname -f` has no domain.
+      # In that case, use `domain` instead.
+      #
+      # +hosts+: Array of hosts (objects)
+      # +domain+: DNS domain to use when the hosts have none
+      def ensure_fqdns(hosts, domain = ENV.fetch('BEAKER_domain', 'simp.test'))
+        return if hosts.all? { |host| host_fqdn(host).match?(%r{\A[^.]+\.[^.].*[^.]\z}) }
+
+        entries = hosts.map do |host|
+          short = host.name.split('.').first
+          fqdn = host.name.include?('.') ? host.name : "#{short}.#{domain}"
+          { ip: host['vm_ip'] || host['ip'].to_s, fqdn: fqdn, short: short }
+        end
+        names = entries.map { |e| e[:short] }.join('|')
+
+        hosts.each do |host|
+          me = entries.find { |e| e[:short] == host.name.split('.').first }
+          # Drop beaker's and Vagrant's entries for the test hosts
+          on(host, %(sed -i -E '/[[:space:]](#{names})(\\.[^[:space:]]*)?([[:space:]]|$)/d' /etc/hosts))
+          lines = entries.map { |e| "#{e[:ip]}\t#{e[:fqdn]} #{e[:short]}" }.join("\n")
+          on(host, %(printf '%b\\n' '#{lines}' >> /etc/hosts))
+          on(host, "hostnamectl set-hostname #{me[:fqdn]}")
+          on(host, 'hostname -f')
+        end
+      end
+
       # @returns array of IPV4 networks configured on a host
       #
       # +host+: Host (object)
@@ -66,16 +113,10 @@ module Acceptance
       #
       # +host+: Host (object)
       def dns_nameserver(host)
-        host.install_package('bind-utils') # for dig
-        dig_result = on(host, "dig #{host.name}", :accept_all_exit_codes => true)
-        nameserver = nil
-        if dig_result.exit_code == 0
-          match = dig_result.stdout.match(/\n;; SERVER:.*\((.*)\)\s*\n/)
-          unless match.nil?
-            nameserver = match[1]
-          end
-        end
-        nameserver
+        result = on(host, "awk '/^nameserver[[:space:]]/ { print $2; exit }' /etc/resolv.conf",
+                    accept_all_exit_codes: true)
+        nameserver = result.stdout.strip
+        nameserver.empty? ? nil : nameserver
       end
 
       # Generates application certs for hosts on the puppet master
