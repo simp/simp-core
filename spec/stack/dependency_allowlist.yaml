@@ -1,0 +1,38 @@
+---
+# Known, intentional exceptions to the stack dependency check
+# (spec/stack/dependencies_spec.rb).
+#
+# Only list dependencies that SIMP deliberately doesn't ship, such as a
+# community module's dependency that is only used on platforms SIMP doesn't
+# support. Don't list drift between SIMP modules here: fix the module's
+# metadata.json, or the Puppetfile, instead.
+#
+# Each entry:
+#   module:     the module that declares the dependency ("owner/name"), or "*"
+#   dependency: the dependency's name ("owner/name")
+#   reason:     why SIMP doesn't ship it
+
+# Debian/Ubuntu-only dependencies of community modules
+- module: '*'
+  dependency: puppetlabs/apt
+  reason: Debian/Ubuntu package repositories; SIMP supports EL only
+- module: saz/timezone
+  dependency: stm/debconf
+  reason: Debian/Ubuntu only
+
+# Windows-only dependencies of community modules
+- module: puppetlabs/motd
+  dependency: puppetlabs/registry
+  reason: Windows registry; only used on Windows
+
+# Dependencies of community modules that SIMP doesn't use
+- module: '*'
+  dependency: puppet/archive
+  reason: >-
+    puppetlabs/apache and puppetlabs/java only use it for features SIMP
+    doesn't use (downloading archives)
+- module: puppetlabs/puppetdb
+  dependency: puppetlabs/firewall
+  reason: >-
+    Only used when puppetdb manages its own firewall rules; SIMP manages the
+    firewall with simp_firewalld
