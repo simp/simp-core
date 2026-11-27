@@ -20,7 +20,7 @@ bundle exec rake metadata_lint        # Validate metadata.json
 bundle exec rake deps:checkout        # Check out all Puppetfile modules into src/
 bundle exec rake deps:clean           # Remove checked-out dependencies
 
-# Module status checks (queries GitHub and Puppet Forge)
+# Module status checks (queries the GitHub and Puppet Forge APIs; set GITHUB_TOKEN, e.g. $(gh auth token))
 bundle exec rake puppetfile:check     # Check all pinned modules against GitHub/Forge
 bundle exec rake puppetfile:check_module[module_name]  # Check a single module
 
